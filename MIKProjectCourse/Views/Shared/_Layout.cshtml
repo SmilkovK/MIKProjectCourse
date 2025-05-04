@@ -10,14 +10,46 @@
 }
 
 <!DOCTYPE html>
-<html lang="@currentCulture">
+<html lang="@currentCulture" data-bs-theme="dark">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - @Localizer["ApplicationName"]</title>
+    <title>@(ViewData["Title"] ?? Localizer["Home"]) - @Localizer["ApplicationName"]</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css" id="hljs-theme">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <style>
+        :root {
+            --dark-bg: #1a1a1a;
+            --darker-bg: #121212;
+            --dark-text: #e0e0e0;
+            --dark-border: #2d2d2d;
+            --dark-primary: #6ea8fe;
+            --dark-hover: #3d3d3d;
+            --light-bg: #f8f9fa;
+            --light-text: #212529;
+            --light-border: #dee2e6;
+            --light-primary: #0d6efd;
+            --light-hover: #e9ecef;
+        }
+
+        [data-bs-theme="dark"] {
+            --bs-body-bg: var(--dark-bg);
+            --bs-body-color: var(--dark-text);
+            --bs-border-color: var(--dark-border);
+            --bs-primary: var(--dark-primary);
+            --bs-link-color: var(--dark-primary);
+            --bs-nav-link-hover-color: var(--dark-primary);
+        }
+
+        [data-bs-theme="light"] {
+            --bs-body-bg: var(--light-bg);
+            --bs-body-color: var(--light-text);
+            --bs-border-color: var(--light-border);
+            --bs-primary: var(--light-primary);
+            --bs-link-color: var(--light-primary);
+        }
+
         .sidebar {
             position: fixed;
             top: 0;
@@ -25,8 +57,8 @@
             bottom: 0;
             width: 260px;
             padding: 20px;
-            background-color: #f8f9fa;
-            border-right: 1px solid #dee2e6;
+            background-color: var(--bs-body-bg);
+            border-right: 1px solid var(--bs-border-color);
             overflow-y: auto;
             z-index: 1000;
         }
@@ -34,18 +66,27 @@
         .main-content {
             margin-left: 280px;
             padding: 20px;
+            background-color: var(--bs-body-bg);
+            min-height: 100vh;
         }
 
-        .language-switcher {
-            margin-bottom: 20px;
+        .language-switcher, .theme-switcher {
+            margin-bottom: 15px;
         }
 
-        .language-select {
+        .language-select, .theme-select {
             width: 100%;
             padding: 8px;
             border-radius: 4px;
-            border: 1px solid #ced4da;
+            border: 1px solid var(--bs-border-color);
+            background-color: var(--bs-body-bg);
+            color: var(--bs-body-color);
+            transition: all 0.3s ease;
         }
+
+            .language-select:hover, .theme-select:hover {
+                border-color: var(--bs-primary);
+            }
 
         .chapters-dropdown {
             margin-bottom: 20px;
@@ -61,13 +102,17 @@
             }
 
             .chapter-list a {
-                color: #333;
+                color: var(--bs-body-color);
                 text-decoration: none;
                 display: block;
+                padding: 5px 10px;
+                border-radius: 4px;
+                transition: all 0.2s;
             }
 
                 .chapter-list a:hover {
-                    color: #007bff;
+                    background-color: var(--light-hover);
+                    color: var(--bs-primary);
                 }
 
         .subchapter-list {
@@ -80,7 +125,15 @@
         .chapter-title {
             font-weight: 600;
             cursor: pointer;
+            color: var(--bs-body-color);
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: all 0.2s;
         }
+
+            .chapter-title:hover {
+                background-color: var(--light-hover);
+            }
 
             .chapter-title::after {
                 content: '+';
@@ -91,20 +144,44 @@
                 content: '-';
             }
 
+        .code-container {
+            margin: 20px 0;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .code-header {
+            background-color: var(--bs-body-bg);
+            padding: 8px 15px;
+            border-bottom: 1px solid var(--bs-border-color);
+            font-family: monospace;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .code-content {
+            background-color: var(--bs-body-bg);
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        pre {
+            margin: 0;
+            color: var(--bs-body-color);
+        }
+
         @@media (max-width: 992px) {
-            .sidebar
+            .sidebar {
+                width: 100%;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid var(--bs-border-color);
+            }
 
-        {
-            width: 100%;
-            position: relative;
-            border-right: none;
-            border-bottom: 1px solid #dee2e6;
-        }
-
-        .main-content {
-            margin-left: 0;
-        }
-
+            .main-content {
+                margin-left: 0;
+            }
         }
     </style>
     @await RenderSectionAsync("Styles", required: false)
@@ -114,15 +191,24 @@
         <div class="language-switcher">
             <form asp-controller="Home" asp-action="SetLanguage" method="post">
                 <input type="hidden" name="returnUrl" value="@Context.Request.Path@Context.Request.QueryString" />
-                <select name="culture" class="language-select" onchange="this.form.submit()">
+                <label for="cultureSelect" class="visually-hidden">Language</label>
+                <select name="culture" id="cultureSelect" class="language-select" onchange="this.form.submit()">
                     <option value="en" selected="@isEnglish">English</option>
                     <option value="mk" selected="@isMacedonian">Македонски</option>
                 </select>
             </form>
         </div>
 
+        <div class="theme-switcher">
+            <label for="themeSelect" class="visually-hidden">Theme</label>
+            <select class="theme-select" id="themeSelect">
+                <option value="dark" selected>🌙 Dark</option>
+                <option value="light">☀️ Light</option>
+            </select>
+        </div>
+
         <div class="chapters-dropdown">
-            <h5>@Localizer["Chapters"]</h5>
+            <h5 style="color: var(--bs-body-color);">@Localizer["Chapters"]</h5>
             <ul class="chapter-list">
                 <li>
                     <div class="chapter-title">@Localizer["DatabaseRelations"]</div>
@@ -136,16 +222,15 @@
                 <li>
                     <a class="chapter-title" asp-controller="Home" asp-action="About">@Localizer["About"]</a>
                 </li>
-
             </ul>
         </div>
     </div>
 
     <div class="main-content">
         <header>
-            <nav class="navbar navbar-expand-sm navbar-light bg-white mb-4">
+            <nav class="navbar navbar-expand-sm navbar-light mb-4" style="background-color: var(--bs-body-bg);">
                 <div class="container-fluid">
-                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">@Localizer["ApplicationName"]</a>
+                    <a class="navbar-brand" asp-controller="Home" asp-action="Index" style="color: var(--bs-body-color);">@Localizer["ApplicationName"]</a>
                     <partial name="_LoginPartial" />
                 </div>
             </nav>
@@ -154,35 +239,73 @@
         <main role="main">
             @RenderBody()
         </main>
-
-        <footer class="border-top footer text-muted mt-4">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        &copy; @DateTime.Now.Year - @Localizer["ApplicationName"]
-                    </div>
-                    <div class="col-md-6 text-end">
-                        <a asp-controller="Home" asp-action="Privacy">@Localizer["Privacy"]</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('.chapter-title').click(function(e) {
+        $(document).ready(function () {
+            const themeSelect = document.getElementById('themeSelect');
+            const htmlElement = document.documentElement;
+            const hljsTheme = document.getElementById('hljs-theme');
+
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            htmlElement.setAttribute('data-bs-theme', savedTheme);
+            themeSelect.value = savedTheme;
+            updateCodeTheme(savedTheme);
+
+            themeSelect.addEventListener('change', function () {
+                const selectedTheme = this.value;
+                htmlElement.setAttribute('data-bs-theme', selectedTheme);
+                localStorage.setItem('theme', selectedTheme);
+                updateCodeTheme(selectedTheme);
+            });
+
+            function updateCodeTheme(theme) {
+                if (theme === 'dark') {
+                    hljsTheme.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css';
+                } else {
+                    hljsTheme.href = 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github.min.css';
+                }
+                document.querySelectorAll('pre code').forEach((el) => {
+                    hljs.highlightElement(el);
+                });
+            }
+
+            const expandedChapters = JSON.parse(localStorage.getItem('expandedChapters') || '[]');
+            $('.chapter-title').each(function (index) {
+                if (expandedChapters.includes(index)) {
+                    $(this).addClass('active');
+                    $(this).siblings('.subchapter-list').show();
+                }
+            });
+
+            $('.chapter-title').click(function (e) {
                 if ($(this).siblings('.subchapter-list').length) {
                     e.preventDefault();
                     $(this).toggleClass('active');
                     $(this).siblings('.subchapter-list').slideToggle();
+
+                    const index = $('.chapter-title').index(this);
+                    const isActive = $(this).hasClass('active');
+
+                    if (isActive && !expandedChapters.includes(index)) {
+                        expandedChapters.push(index);
+                    } else if (!isActive) {
+                        const i = expandedChapters.indexOf(index);
+                        if (i > -1) expandedChapters.splice(i, 1);
+                    }
+
+                    localStorage.setItem('expandedChapters', JSON.stringify(expandedChapters));
                 }
             });
+
             var currentPath = window.location.pathname;
             $('.chapter-list a[href="' + currentPath + '"]').parents('.subchapter-list').show();
             $('.chapter-list a[href="' + currentPath + '"]').parents('.subchapter-list').prev('.chapter-title').addClass('active');
+
+            hljs.highlightAll();
         });
     </script>
     @await RenderSectionAsync("Scripts", required: false)

@@ -2,26 +2,21 @@
     ViewData["Title"] = "Many-to-Many with Join Entity in C#";
 }
 
-<div class="container mt-4">
-    <h1>🔗 Many-to-Many with Join Entity</h1>
+<div class="container">
+    <h1>Many-to-Many with Join Entity</h1>
+    <p>In this variation of the <strong>Many-to-Many</strong> relationship, we introduce a join entity that allows us to store additional information about the relationship.</p>
 
-    <p>In this variation of the <strong>Many-to-Many</strong> relationship, we introduce a join entity that allows us to store additional information about the relationship, such as grades or enrollment dates.</p>
+    <h2>Scenario</h2>
+    <p>A <strong>Student</strong> can enroll in many <strong>Courses</strong>, and a <strong>Course</strong> can have many <strong>Students</strong>. We use a join table to store additional details about the enrollment.</p>
 
-    <hr />
-
-    <h2>📘 Scenario</h2>
-    <p>A <strong>Student</strong> can enroll in many <strong>Courses</strong>, and a <strong>Course</strong> can have many <strong>Students</strong>. We use a join table to store additional details about the enrollment, such as the <code>Grade</code> and <code>EnrollmentDate</code>.</p>
-
-    <hr />
-
-    <h2>💻 Code Example</h2>
-    <div class="bg-light border rounded p-3 mb-4">
-        <pre><code>
+    <div class="code-container">
+        <div class="code-header">C# Entity Classes</div>
+        <div class="code-content">
+            <pre><code class="language-csharp">
 public class Student
 {
     public int Id { get; set; }
     public string Name { get; set; }
-
     public List&lt;StudentCourse&gt; StudentCourses { get; set; }
 }
 
@@ -29,7 +24,6 @@ public class Course
 {
     public int Id { get; set; }
     public string Title { get; set; }
-
     public List&lt;StudentCourse&gt; StudentCourses { get; set; }
 }
 
@@ -37,69 +31,98 @@ public class StudentCourse
 {
     public int StudentId { get; set; }
     public Student Student { get; set; }
-
     public int CourseId { get; set; }
     public Course Course { get; set; }
-
     public string Grade { get; set; }
     public DateTime EnrollmentDate { get; set; }
 }
-        </code></pre>
+            </code></pre>
+        </div>
     </div>
 
-    <p>Here, the <code>StudentCourse</code> entity acts as the join table and includes additional data such as <code>Grade</code> and <code>EnrollmentDate</code>.</p>
+    <p>Here, the <code>StudentCourse</code> entity acts as the join table and includes additional data.</p>
 
-    <hr />
-
-    <h2>🔄 Next Steps</h2>
-    <p>You've now learned the basics of relationships in C#! Keep practicing by applying these concepts to more complex projects.</p>
-
-    <p><a href="@Url.Action("Index", "Home")" class="btn btn-primary">Back to Main Topics</a></p>
+    <div class="navigation-buttons">
+        <a href="@Url.Action("ManyToMany", "DataBaseRelations")" class="btn btn-outline-primary">← Basic Many-to-Many</a>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">Back to Main Topics</a>
+    </div>
 </div>
+
 
 <style>
     .container {
         max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
     }
 
-    h1, h2, h3 {
-        font-weight: bold;
-        color: #333;
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
     }
 
-    ul {
-        list-style-type: none;
-        padding-left: 0;
+    h2 {
+        color: var(--bs-heading-color);
+        margin-top: 25px;
+        margin-bottom: 15px;
     }
 
-        ul li {
-            font-size: 1.1em;
-            margin-bottom: 10px;
-        }
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
 
-    hr {
-        border-top: 1px solid #ddd;
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
     }
 
     .btn-primary {
-        background-color: #007bff;
-        color: white;
-        text-decoration: none;
-        padding: 10px 20px;
-        border-radius: 5px;
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
     }
 
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-
-    pre code {
-        background-color: #f8f9fa;
-        border: 1px solid #ddd;
-        padding: 10px;
-        border-radius: 5px;
-        display: block;
-        margin-bottom: 20px;
-        white-space: pre-wrap;
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
     }
 </style>
