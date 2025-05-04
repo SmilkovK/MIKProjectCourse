@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "Many-to-Many with Join Entity in C#";
+}
+
+<div class="container mt-4">
+    <h1>🔗 Many-to-Many with Join Entity</h1>
+
+    <p>In this variation of the <strong>Many-to-Many</strong> relationship, we introduce a join entity that allows us to store additional information about the relationship, such as grades or enrollment dates.</p>
+
+    <hr />
+
+    <h2>📘 Scenario</h2>
+    <p>A <strong>Student</strong> can enroll in many <strong>Courses</strong>, and a <strong>Course</strong> can have many <strong>Students</strong>. We use a join table to store additional details about the enrollment, such as the <code>Grade</code> and <code>EnrollmentDate</code>.</p>
+
+    <hr />
+
+    <h2>💻 Code Example</h2>
+    <div class="bg-light border rounded p-3 mb-4">
+        <pre><code>
+public class Student
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+
+    public List&lt;StudentCourse&gt; StudentCourses { get; set; }
+}
+
+public class Course
+{
+    public int Id { get; set; }
+    public string Title { get; set; }
+
+    public List&lt;StudentCourse&gt; StudentCourses { get; set; }
+}
+
+public class StudentCourse
+{
+    public int StudentId { get; set; }
+    public Student Student { get; set; }
+
+    public int CourseId { get; set; }
+    public Course Course { get; set; }
+
+    public string Grade { get; set; }
+    public DateTime EnrollmentDate { get; set; }
+}
+        </code></pre>
+    </div>
+
+    <p>Here, the <code>StudentCourse</code> entity acts as the join table and includes additional data such as <code>Grade</code> and <code>EnrollmentDate</code>.</p>
+
+    <hr />
+
+    <h2>🔄 Next Steps</h2>
+    <p>You've now learned the basics of relationships in C#! Keep practicing by applying these concepts to more complex projects.</p>
+
+    <p><a href="@Url.Action("Index", "Home")" class="btn btn-primary">Back to Main Topics</a></p>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+    }
+
+    h1, h2, h3 {
+        font-weight: bold;
+        color: #333;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+        ul li {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+    hr {
+        border-top: 1px solid #ddd;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    pre code {
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        display: block;
+        margin-bottom: 20px;
+        white-space: pre-wrap;
+    }
+</style>

@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "One-to-One Relationship in C#";
+}
+
+<div class="container">
+    <h1>🔗 One-to-One Relationship in C#</h1>
+
+    <p>A One-to-One relationship means one record in Table A is related to exactly one record in Table B.</p>
+
+    <h2>📘 Example</h2>
+
+    <p>Consider a scenario where each <code>User</code> has exactly one <code>Profile</code>, and each <code>Profile</code> belongs to exactly one <code>User</code>.</p>
+
+    <div class="bg-light border rounded p-3 mb-4">
+        <pre><code>
+public class User
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+
+    public Profile Profile { get; set; }
+}
+
+public class Profile
+{
+    public int Id { get; set; }
+    public string Bio { get; set; }
+
+    public int UserId { get; set; }
+    public User User { get; set; }
+}
+        </code></pre>
+    </div>
+
+    <p>EF Core automatically maps this relationship by convention using a foreign key in the <code>Profile</code> class (<code>UserId</code>).</p>
+
+    <hr />
+
+    <h2>🔄 Next Steps</h2>
+
+    <p>Now, let's move on to the <strong>One-to-Many</strong> relationship. Click the link below to continue learning!</p>
+
+    <p><a href="@Url.Action("OneToMany", "DataBaseRelations")" class="btn btn-primary">Learn One-to-Many Relationship</a></p>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+    }
+
+    h1, h2, h3 {
+        font-weight: bold;
+        color: #333;
+    }
+
+    hr {
+        border-top: 1px solid #ddd;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    pre code {
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        display: block;
+        margin-bottom: 20px;
+    }
+</style>

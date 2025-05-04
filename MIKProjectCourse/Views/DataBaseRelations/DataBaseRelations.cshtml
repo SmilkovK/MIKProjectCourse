@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "Introduction to Database Relations in C#";
+}
+
+<div class="container">
+    <h1>📚 Introduction to Database Relations in C#</h1>
+
+    <p>In modern software development, it's crucial to understand how data entities are related to one another in a database. This chapter introduces the fundamental concepts of database relationships and how we can represent them in C# using <strong>Entity Framework Core</strong> (EF Core).</p>
+
+    <hr />
+
+    <h2>🔍 What Are Database Relationships?</h2>
+
+    <p>In a relational database, relationships between tables help define how data is connected. Understanding these relationships is vital for structuring databases in an efficient and logical way. In C#, EF Core allows us to define these relationships in our code and map them to the underlying database.</p>
+
+    <p>The three most common types of relationships are:</p>
+
+    <ul>
+        <li><strong>One-to-One</strong>: One record in Table A is related to one record in Table B.</li>
+        <li><strong>One-to-Many</strong>: One record in Table A is related to multiple records in Table B.</li>
+        <li><strong>Many-to-Many</strong>: Records in Table A can be related to many in Table B, and vice versa.</li>
+    </ul>
+
+    <hr />
+
+    <h2>🧐 Why Are Database Relationships Important?</h2>
+
+    <p>In real-world applications, data is rarely stored in a single table. Instead, it's organized into multiple tables that are connected by relationships. By defining these relationships in code, you ensure that:</p>
+
+    <ul>
+        <li><strong>Data Integrity:</strong> Relationships help enforce rules about how data should relate to each other, preventing errors and ensuring consistency.</li>
+        <li><strong>Efficient Queries:</strong> Understanding relationships allows for optimized queries when retrieving data from multiple tables.</li>
+        <li><strong>Maintainability:</strong> A well-structured database is easier to maintain and scale as your application grows.</li>
+    </ul>
+
+    <hr />
+
+    <h2>🔗 Types of Database Relationships</h2>
+
+    <p>Now that we understand the importance of relationships, let's explore the three main types of relationships:</p>
+
+    <h3>1. One-to-One Relationship</h3>
+
+    <p>In a <strong>One-to-One</strong> relationship, one record in Table A is associated with only one record in Table B. For example, a <code>User</code> has one <code>Profile</code>, and a <code>Profile</code> belongs to exactly one <code>User</code>.</p>
+
+    <h3>2. One-to-Many Relationship</h3>
+
+    <p>In a <strong>One-to-Many</strong> relationship, one record in Table A is associated with multiple records in Table B. For example, a <code>Course</code> can have many <code>Students</code>, but each <code>Student</code> belongs to only one <code>Course</code>.</p>
+
+    <h3>3. Many-to-Many Relationship</h3>
+
+    <p>In a <strong>Many-to-Many</strong> relationship, records in Table A can be associated with many records in Table B, and vice versa. For example, a <code>Student</code> can be enrolled in multiple <code>Courses</code>, and a <code>Course</code> can have many <code>Students</code>.</p>
+
+    <hr />
+
+    <h2>🛠 How Do We Implement These Relationships in C#?</h2>
+
+    <p>In Entity Framework Core (EF Core), we can implement these relationships using navigation properties, foreign keys, and models. EF Core handles much of the complexity for us, automatically creating the necessary relationships in the database when we use migrations.</p>
+
+    <p>Throughout this chapter, you will learn how to define relationships in C# models and how to use EF Core to interact with the database. You'll start by learning about the One-to-One relationship, followed by One-to-Many and Many-to-Many relationships.</p>
+
+    <hr />
+
+    <h2>🔄 Next Steps</h2>
+
+    <p>Let's dive into the details of the first relationship type — <strong>One-to-One</strong>. Click the link below to begin!</p>
+
+    <p><a href="@Url.Action("OneToOne", "DataBaseRelations")" class="btn btn-primary">Start Learning One-to-One Relationships</a></p>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+    }
+
+    h1, h2, h3 {
+        font-weight: bold;
+        color: #333;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+        ul li {
+            font-size: 1.1em;
+            margin-bottom: 10px;
+        }
+
+    hr {
+        border-top: 1px solid #ddd;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    pre code {
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        display: block;
+        margin-bottom: 20px;
+    }
+</style>
