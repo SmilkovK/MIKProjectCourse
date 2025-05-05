@@ -211,12 +211,25 @@
             <h5 style="color: var(--bs-body-color);">@Localizer["Chapters"]</h5>
             <ul class="chapter-list">
                 <li>
+                    <div class="chapter-title">@Localizer["Database"]</div>
+                    <ul class="subchapter-list">
+                        <li><a asp-controller="Database" asp-action="Index">@Localizer["WhatIsDatabase"]</a></li>
+                        <li><a asp-controller="Database" asp-action="WhyDatabase">@Localizer["WhyDatabase"]</a></li>
+                        <li><a asp-controller="Database" asp-action="TypesOfDatabase">@Localizer["TypesOfDatabase"]</a></li>
+                        <li><a asp-controller="Database" asp-action="HowDatabaseWorks">@Localizer["HowDatabaseWorks"]</a></li>
+                        <li><a asp-controller="Database" asp-action="RelationalDatabase">@Localizer["RelationalDatabase"]</a></li>
+                        <li><a asp-controller="Database" asp-action="Example">@Localizer["Example"]</a></li>
+                        <li><a asp-controller="Database" asp-action="Summary">@Localizer["Summary"]</a></li>
+                    </ul>
+                </li>
+                <li>
                     <div class="chapter-title">@Localizer["DatabaseRelations"]</div>
                     <ul class="subchapter-list">
                         <li><a asp-controller="DataBaseRelations" asp-action="Index">@Localizer["Overview"]</a></li>
                         <li><a asp-controller="DataBaseRelations" asp-action="OneToOne">@Localizer["OneToOne"]</a></li>
                         <li><a asp-controller="DataBaseRelations" asp-action="OneToMany">@Localizer["OneToMany"]</a></li>
                         <li><a asp-controller="DataBaseRelations" asp-action="ManyToMany">@Localizer["ManyToMany"]</a></li>
+                        <li><a asp-controller="DataBaseRelations" asp-action="ManyToManyWithJoin">@Localizer["ManyToManyWithJoin"]</a></li>
                     </ul>
                 </li>
                 <li>

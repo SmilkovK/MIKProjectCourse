@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "What is a Database?";
+}
+
+<div class="container">
+    <h1>What is a Database?</h1>
+    <p>A <strong>database</strong> is like a digital storage cabinet where we keep information in an organized way.</p>
+
+    <p>Imagine you're trying to remember the names of all your classmates. If you write them down on random sticky notes, you might lose track. But if you write them in a notebook with names under a "Name" column and birthdays under a "Birthday" column — now that's a simple database!</p>
+
+    <p>So, a database helps us <strong>store</strong>, <strong>organize</strong>, and <strong>retrieve</strong> data easily.</p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("WhyDatabase", "Database")" class="btn btn-primary">Next &raquo;</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

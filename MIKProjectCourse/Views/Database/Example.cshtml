@@ -1,0 +1,196 @@
+﻿@{
+    ViewData["Title"] = "School Database Example";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>This example explains how a school can use a relational database to manage students, courses, and enrollments — with real code and explanations for beginners.</p>
+
+    <h2>1. Students Table</h2>
+    <p>This table stores information about each student.</p>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>StudentID</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>Ana</td><td>Petrova</td><td>17</td></tr>
+            <tr><td>2</td><td>Marko</td><td>Jovanov</td><td>18</td></tr>
+            <tr><td>3</td><td>Elena</td><td>Stefanovska</td><td>16</td></tr>
+        </tbody>
+    </table>
+
+    <div class="code-container">
+        <div class="code-header">SQL to Create Students Table</div>
+        <div class="code-content">
+            <pre><code class="language-sql">
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Age INT
+);</code></pre>
+        </div>
+    </div>
+
+    <p><strong>Explanation:</strong> This code creates a table called <code>Students</code>. Each student has a unique ID (<code>StudentID</code>) and other info like name and age. The <code>PRIMARY KEY</code> ensures no two students have the same ID.</p>
+
+    <h2>2. Courses Table</h2>
+    <p>This table stores the courses students can enroll in.</p>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>CourseID</th>
+                <th>CourseName</th>
+                <th>Credits</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>101</td><td>Mathematics</td><td>3</td></tr>
+            <tr><td>102</td><td>History</td><td>2</td></tr>
+            <tr><td>103</td><td>Biology</td><td>3</td></tr>
+        </tbody>
+    </table>
+
+    <div class="code-container">
+        <div class="code-header">SQL to Create Courses Table</div>
+        <div class="code-content">
+            <pre><code class="language-sql">
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(100),
+    Credits INT
+);</code></pre>
+        </div>
+    </div>
+
+    <p><strong>Explanation:</strong> This creates a <code>Courses</code> table. Each course has a unique ID and includes a name and how many credit points it's worth. The ID makes it easy to refer to courses later.</p>
+
+    <h2>3. Enrollment Table (Links Students + Courses)</h2>
+    <p>This table shows which student is enrolled in which course.</p>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>EnrollmentID</th>
+                <th>StudentID</th>
+                <th>CourseID</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>1</td><td>1</td><td>101</td></tr>
+            <tr><td>2</td><td>1</td><td>102</td></tr>
+            <tr><td>3</td><td>2</td><td>101</td></tr>
+            <tr><td>4</td><td>3</td><td>103</td></tr>
+        </tbody>
+    </table>
+
+    <div class="code-container">
+        <div class="code-header">SQL to Create Enrollment Table</div>
+        <div class="code-content">
+            <pre><code class="language-sql">
+CREATE TABLE Enrollment (
+    EnrollmentID INT PRIMARY KEY,
+    StudentID INT,
+    CourseID INT,
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);</code></pre>
+        </div>
+    </div>
+
+    <p><strong>Explanation:</strong> This table connects students to courses. The <code>FOREIGN KEY</code> lines say that <code>StudentID</code> must match one from the <code>Students</code> table, and <code>CourseID</code> must match one from the <code>Courses</code> table. This is what makes it a <em>relational</em> database.</p>
+
+    <h2>Why This Is Useful</h2>
+    <ul>
+        <li>Data is organized: no repeated info.</li>
+        <li>Relationships make it easy to query: "Which courses is Ana taking?"</li>
+        <li>Adding or changing a course doesn't affect the students table.</li>
+    </ul>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("RelationalDatabase", "Database")" class="btn btn-outline-primary">← Back to Relational DB</a>
+        <a href="@Url.Action("Summary", "Database")" class="btn btn-primary">Summary →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+        color: var(--bs-body-color);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+    }
+
+    p, ul {
+        color: var(--bs-body-color);
+    }
+
+    .table {
+        background-color: var(--bs-body-bg);
+        color: var(--bs-body-color);
+        border-color: var(--bs-border-color);
+    }
+
+        .table th {
+            background-color: var(--darker-bg);
+            color: var(--bs-body-color);
+        }
+
+        .table td {
+            border-color: var(--bs-border-color);
+        }
+
+    .code-container {
+        margin: 20px 0;
+        background-color: var(--code-bg);
+        border-left: 4px solid var(--bs-primary);
+        padding: 0;
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        color: var(--bs-body-color);
+        padding: 10px 15px;
+        font-weight: bold;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+
+    .code-content {
+        padding: 15px;
+    }
+
+    pre {
+        margin: 0;
+        color: var(--bs-body-color);
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        border-radius: 4px;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        color: white;
+    }
+
+    .btn-outline-primary {
+        border: 1px solid var(--bs-primary);
+        color: var(--bs-primary);
+    }
+</style>

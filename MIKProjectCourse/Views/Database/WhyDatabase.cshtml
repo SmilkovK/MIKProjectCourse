@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Why Do We Need a Database?";
+}
+
+<div class="container">
+    <h1>Why Do We Need a Database?</h1>
+    <p>Imagine you're trying to keep track of all your favorite books. You could write them down in a notebook, but what happens when you want to find a book quickly, sort them by author, or share your list with a friend? It becomes hard to manage.</p>
+
+    <p>A <strong>database</strong> helps with all of that. It's a tool that lets us store, search, update, and organize data easily and efficiently.</p>
+
+    <h2>Benefits of Using a Database</h2>
+    <ul>
+        <li><strong>Organization:</strong> Keeps all your data structured and tidy.</li>
+        <li><strong>Searching:</strong> Quickly find the information you need.</li>
+        <li><strong>Sharing:</strong> Multiple people can use and update the data safely.</li>
+        <li><strong>Security:</strong> Protects your data from being lost or accessed by the wrong people.</li>
+    </ul>
+
+    <p>Databases are used everywhere – in banks, schools, hospitals, social media, and more – to keep data safe, accessible, and organized.</p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("Index", "Database")" class="btn btn-outline-primary">← What is a Database?</a>
+        <a href="@Url.Action("TypesOfDatabase", "Database")" class="btn btn-primary">Next: Types of Databases →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    .container p,
+    .container ul {
+        line-height: 1.6;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

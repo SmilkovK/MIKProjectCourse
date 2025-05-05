@@ -1,0 +1,198 @@
+﻿@{
+    ViewData["Title"] = "Relational Databases";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>A <strong>Relational Database</strong> is a type of database that stores data in tables, where each table has rows and columns. These tables can be related to one another through keys, such as primary keys and foreign keys, which makes relational databases powerful for organizing and linking data.</p>
+
+    <h2>What is a Relational Database?</h2>
+    <p>A relational database organizes data into one or more tables where the data is structured in rows and columns. Each table has a unique identifier, and relationships between tables can be established using keys.</p>
+
+    <h2>Key Concepts (Explained Simply)</h2>
+    <ul>
+        <li>
+            <strong>Table:</strong>
+            Think of a table like a spreadsheet or an Excel file. It has rows (each row is one entry, like a person or a product) and columns (each column holds a type of information, like name, age, or price).
+        </li>
+
+        <li>
+            <strong>Primary Key:</strong>
+            This is like a unique ID card for each row in a table. Imagine a student list — even if two students have the same name, their student ID is always unique. That student ID is the primary key.
+            <br /><em>We need a primary key to keep track of each record without confusion.</em>
+        </li>
+
+        <li>
+            <strong>Foreign Key:</strong>
+            This is how we link tables together. If we have a separate table for courses, and we want to know which student is taking which course, we use the student’s ID (from the Students table) inside the Enrollment table.
+            That Student ID inside the Enrollment table is a <strong>foreign key</strong> — it "points" to another table.
+            <br /><em>Think of it like a reference — it connects related information from two different tables.</em>
+        </li>
+
+        <li>
+            <strong>Relationship:</strong>
+            This is when tables are linked through keys. For example, one student can take many courses. This is a one-to-many relationship. These relationships help us organize data and avoid repeating the same info.
+        </li>
+
+        <li>
+            <strong>SQL (Structured Query Language):</strong>
+            This is a language used to talk to the database. It helps you ask the database to show you data, add new data, or update or delete data.
+            <br /><em>Think of it as the instructions you give to the database to get what you need.</em>
+        </li>
+    </ul>
+
+    <h2>Example of Relational Database</h2>
+    <div class="code-container">
+        <div class="code-header">SQL Example</div>
+        <div class="code-content">
+            <pre><code class="language-sql">
+-- Creating a table for students
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Age INT
+);
+
+-- Creating a table for courses
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(100),
+    Credits INT
+);
+
+-- Creating a table for enrollment, linking students and courses
+CREATE TABLE Enrollment (
+    EnrollmentID INT PRIMARY KEY,
+    StudentID INT,
+    CourseID INT,
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+            </code></pre>
+        </div>
+    </div>
+
+    <h2>Explanation of the Code (Beginner Friendly)</h2>
+    <p>This code is written in <strong>SQL</strong> (Structured Query Language), which is used to create and manage databases.</p>
+
+    <ul>
+        <li><strong>CREATE TABLE Students</strong>: Makes a table to store student information like ID, name, and age.</li>
+        <li><strong>StudentID INT PRIMARY KEY</strong>: A unique number (ID) for each student. No two students can have the same ID.</li>
+        <li><strong>FirstName / LastName</strong>: These store the student’s name using text (up to 50 characters).</li>
+        <li><strong>Age INT</strong>: The student's age, saved as a number.</li>
+        <li><strong>CREATE TABLE Courses</strong>: A new table to list the courses with a unique ID, course name, and credits.</li>
+        <li><strong>CREATE TABLE Enrollment</strong>: This table links students and courses. It shows who is taking what course.</li>
+        <li><strong>FOREIGN KEY (StudentID)</strong>: This says "this ID must match an ID in the Students table."</li>
+        <li><strong>FOREIGN KEY (CourseID)</strong>: This says "this ID must match an ID in the Courses table."</li>
+    </ul>
+
+    <p><strong>Think of it like this:</strong> Instead of copying a student’s full name into every course they take, we just use their ID — that makes everything easier to manage and avoids mistakes.</p>
+
+    <p>In this example:</p>
+    <ul>
+        <li>The <strong>Students</strong> table stores information about students.</li>
+        <li>The <strong>Courses</strong> table stores information about the courses offered.</li>
+        <li>The <strong>Enrollment</strong> table establishes a relationship between students and courses using <strong>foreign keys</strong>.</li>
+    </ul>
+
+    <h2>Advantages of Relational Databases</h2>
+    <ul>
+        <li><strong>Data Integrity:</strong> Ensures data consistency and accuracy through constraints and relationships.</li>
+        <li><strong>Scalability:</strong> Can handle large amounts of data while maintaining performance.</li>
+        <li><strong>Flexibility:</strong> Easily supports complex queries, joins, and transactions.</li>
+    </ul>
+
+    <h2>Popular Relational Database Management Systems (RDBMS)</h2>
+    <ul>
+        <li>MySQL</li>
+        <li>PostgreSQL</li>
+        <li>Microsoft SQL Server</li>
+        <li>Oracle Database</li>
+    </ul>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("HowDatabaseWorks", "Database")" class="btn btn-outline-primary">← Types of Databases</a>
+        <a href="@Url.Action("Example", "Database")" class="btn btn-primary">Example →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        color: var(--bs-heading-color);
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+
+    .container p,
+    .container ul {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

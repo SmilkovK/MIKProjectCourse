@@ -1,0 +1,91 @@
+﻿@{
+    ViewData["Title"] = "Types of Databases";
+}
+
+<div class="container">
+    <h1>Types of Databases</h1>
+    <p>Now that you understand what a database is, let’s explore the different types of databases and what they’re used for.</p>
+
+    <h2>1. Relational Databases (SQL)</h2>
+    <p>This is the most common type. Data is stored in tables, like spreadsheets, and tables can be connected with relationships. Examples include:</p>
+    <ul>
+        <li>Microsoft SQL Server</li>
+        <li>MySQL</li>
+        <li>PostgreSQL</li>
+        <li>Oracle Database</li>
+    </ul>
+    <p><strong>Use when:</strong> Your data is structured and needs relationships (like Users, Orders, Products).</p>
+
+    <h2>2. NoSQL Databases</h2>
+    <p>NoSQL databases are designed for flexibility. They don’t use tables like relational databases. Types of NoSQL databases include:</p>
+    <ul>
+        <li><strong>Document-based</strong> (e.g. MongoDB)</li>
+        <li><strong>Key-Value</strong> (e.g. Redis)</li>
+        <li><strong>Column-based</strong> (e.g. Cassandra)</li>
+        <li><strong>Graph-based</strong> (e.g. Neo4j)</li>
+    </ul>
+    <p><strong>Use when:</strong> You have large or rapidly changing data that doesn’t fit neatly into tables.</p>
+
+    <h2>3. In-Memory Databases</h2>
+    <p>These databases store everything in memory (RAM), which makes them super fast. An example is Redis.</p>
+    <p><strong>Use when:</strong> Speed is critical, like for caching or real-time apps.</p>
+
+    <h2>4. Cloud Databases</h2>
+    <p>These databases are hosted on the cloud (like Azure, AWS, or Google Cloud) and are easy to scale.</p>
+    <p><strong>Use when:</strong> You want flexibility, automatic backups, and easy access over the internet.</p>
+
+    <h2>5. Flat File Databases</h2>
+    <p>These are basic text files (like CSVs). Simple and used for very small applications.</p>
+    <p><strong>Use when:</strong> You don’t need complex structure or performance.</p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("WhyDatabase", "Database")" class="btn btn-outline-primary">← What is a Database?</a>
+        <a href="@Url.Action("HowDatabaseWorks", "Database")" class="btn btn-primary">How Databases Work →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+
+    .container p,
+    .container ul {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    .container ul {
+        margin-left: 20px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

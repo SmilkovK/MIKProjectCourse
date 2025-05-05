@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Database Overview and Next Topic";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>In this section, we explored several key concepts related to databases. Here's a quick overview:</p>
+
+    <ul>
+        <li><strong>Why Database?</strong>: We discussed the importance of databases in organizing, storing, and retrieving data efficiently.</li>
+        <li><strong>Types of Database</strong>: We examined different types of databases, including relational, NoSQL, and others, highlighting their use cases.</li>
+        <li><strong>How Database Works</strong>: We looked into how databases store and retrieve data, focusing on the mechanics of database engines and their operations.</li>
+        <li><strong>Relational Database</strong>: We focused on relational databases, emphasizing how data is organized in tables and how relationships are maintained between different data entities.</li>
+        <li><strong>Example</strong>: We provided a real-world example of a school database to demonstrate how databases can be structured and used effectively in applications.</li>
+    </ul>
+
+    <p>These topics are foundational for understanding how data is stored, organized, and managed in modern applications. With this knowledge, you'll be ready to dive deeper into specific database concepts and tools in future sections.</p>
+
+    <h2>Next Topic: Database Relations in C#</h2>
+    <p>Now that we've covered the basics of databases, it's time to move on to the next topic: <strong>Database Relations in C#</strong>. In this section, we will explore:</p>
+    <ul>
+        <li>How to implement relationships between database tables using C# and Entity Framework.</li>
+        <li>How to define one-to-one, one-to-many, and many-to-many relationships in C#.</li>
+        <li>How to work with foreign keys and navigation properties in Entity Framework.</li>
+    </ul>
+
+    <p>This will be the next step in building more advanced and dynamic database-driven applications using C# and Entity Framework Core.</p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("RelationalDatabase", "Database")" class="btn btn-outline-primary">← Relational Database</a>
+        <a href="@Url.Action("Index", "DataBaseRelations")" class="btn btn-primary">Database Relations in C# →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+        color: var(--bs-body-color);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+    }
+
+    .container p,
+    .container ul {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+        ul strong {
+            color: var(--bs-primary);
+        }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        gap: 1rem;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+        font-size: 1rem;
+        transition: all 0.3s ease-in-out;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        color: white;
+    }
+
+    .btn-outline-primary {
+        border: 2px solid var(--bs-primary);
+        color: var(--bs-primary);
+        background-color: transparent;
+    }
+
+
+</style>
