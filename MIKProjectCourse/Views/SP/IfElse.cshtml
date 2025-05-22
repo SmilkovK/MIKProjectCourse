@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = "If Else";
+}
+<body data-topic="ifelse">
+    <div class="container mt-4">
+        <h2>🔀 If - Else</h2>
+        <p>Sometimes you want the computer to make decisions. That's where <strong>if</strong> and <strong>else</strong> come in!</p>
+        <p>They let your program choose what to do based on a condition.</p>
+
+        <p>Example: If your age is 13 or more, you are a teenager.</p>
+
+        <div class="form-check form-switch mb-3">
+            <input class="form-check-input" type="checkbox" id="languageToggle" onchange="convertCode()">
+            <label class="form-check-label" for="languageToggle">Convert to C#</label>
+        </div>
+
+        <pre id="codeBlock" class="card p-3" style="background-color: var(--bs-tertiary-bg); color: var(--bs-body-color);">
+int age = 14;
+if (age >= 13) {
+    cout << "You are a teenager!";
+} else {
+    cout << "You are not a teenager.";
+}
+    </pre>
+
+        <p>You can also use <strong>if</strong> by itself if you don’t need the “else”.</p>
+
+        <pre class="card p-3" style="background-color: var(--bs-tertiary-bg); color: var(--bs-body-color);">
+if (age > 18) {
+    cout << "You can vote!";
+}
+    </pre>
+
+        <p><strong>Conditions</strong> use symbols:</p>
+        <ul>
+            <li><code>==</code> equal to</li>
+            <li><code>!=</code> not equal to</li>
+            <li><code>&gt;</code> greater than</li>
+            <li><code>&lt;</code> less than</li>
+        </ul>
+
+        <div class="d-flex justify-content-between mt-5">
+            <a class="btn btn-secondary" asp-controller="SP" asp-action="Variables">⬅ Back</a>
+            <a class="btn btn-primary" asp-controller="SP" asp-action="ForLoops">Next ➡</a>
+        </div>
+
+
+    <script>
+            function convertCode() {
+                const topic = document.body.getAttribute("data-topic");
+                const isChecked = document.getElementById("languageToggle").checked;
+                const codeBlock = document.getElementById("codeBlock");
+
+                const cppCode = {
+                    variables: `int age = 13;
+        float height = 1.55;
+        char grade = 'A';
+        string name = "Alex";`,
+
+                    ifelse: `int age = 14;
+        if (age >= 13) {
+            cout << "You are a teenager!";
+        } else {
+            cout << "You are not a teenager.";
+        }`,
+
+                    loops: `for (int i = 1; i <= 5; i++) {
+            cout << "Clap " << i << endl;
+        }`,
+
+                    arrays: `int numbers[5] = {10, 20, 30, 40, 50};
+        cout << numbers[0];`,
+
+                    strings: `string fruits[3] = {"Apple", "Banana", "Cherry"};
+        cout << fruits[0];`
+                };
+
+                const csharpCode = {
+                    variables: `int age = 13;
+        float height = 1.55f;
+        char grade = 'A';
+        string name = "Alex";`,
+
+                    ifelse: `int age = 14;
+        if (age >= 13)
+        {
+            Console.WriteLine("You are a teenager!");
+        }
+        else
+        {
+            Console.WriteLine("You are not a teenager.");
+        }`,
+
+                    loops: `for (int i = 1; i <= 5; i++)
+        {
+            Console.WriteLine("Clap " + i);
+        }`,
+
+                    arrays: `int[] numbers = {10, 20, 30, 40, 50};
+        Console.WriteLine(numbers[0]);`,
+
+                    strings: `string[] fruits = {"Apple", "Banana", "Cherry"};
+        Console.WriteLine(fruits[0]);`
+                };
+
+                // Replace content
+                codeBlock.textContent = isChecked ? csharpCode[topic] : cppCode[topic];
+            }
+    </script>
+
+
+
+
+</body>
