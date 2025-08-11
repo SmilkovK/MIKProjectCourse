@@ -1,0 +1,200 @@
+﻿@{
+    ViewData["Title"] = "Exercise: If-Else with Variables in C# - Interactive";
+}
+
+<div class="container">
+    <h1>Exercise: Define Variables and If-Else Check</h1>
+
+    <p>
+        Define two integer variables <code>a</code> and <code>b</code> where <code>a = 5</code> and <code>b = 10</code>.<br />
+        Then write an <strong>if-else</strong> statement to check if <code>a</code> is bigger than <code>b</code>.<br />
+        - If <code>a &gt; b</code>, output <strong>"Test"</strong>.<br />
+        - Otherwise, output <strong>"Test2"</strong>.
+    </p>
+
+    <div style="margin-bottom: 12px; padding: 12px; background-color: var(--code-bg); border: 1px solid var(--bs-border-color); border-radius: 5px; color: var(--bs-body-color); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; white-space: pre-line;">
+        <strong>How the code should be formatted and structured:</strong>
+        <br /><br />
+        - The <code>if</code> keyword followed by the condition in parentheses, e.g., <code>if (a &gt; b)</code>.<br />
+        - The opening brace <code>{</code> must be on the next line right after the <code>if</code> condition.<br />
+        - Inside the block, indent the code with 4 spaces or one tab.<br />
+        - The closing brace <code>}</code> should be on its own line aligned with the <code>if</code> keyword.<br />
+        - The <code>else</code> keyword should be on its own line after the closing brace.<br />
+        - The <code>else</code> block opening brace is on the next line.<br />
+        - The statements inside <code>else</code> are indented similarly.<br />
+        - The final closing brace ends the <code>else</code> block on its own line.
+    </div>
+
+    <label for="userCode" class="form-label" style="font-weight: 600; margin-bottom: 6px;">Type your code below:</label>
+    <textarea id="userCode" rows="15" style="width: 100%; font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 0.95rem; padding:10px;"></textarea>
+
+    <div style="display: flex; align-items: center; margin-top: 12px; gap: 12px;">
+        <label class="switch" style="user-select: none; margin-bottom: 0;">
+            <input type="checkbox" id="toggleCorrectCode" />
+            <span class="slider round"></span>
+        </label>
+        <span style="font-weight: 600; user-select: none;">Show Correct Code</span>
+    </div>
+
+    <div id="correctCodeContainer" class="code-container" style="display:none; margin-top: 12px;">
+        <div class="code-header">Correct Code</div>
+        <div class="code-content" style="padding: 15px; overflow-x: auto; background-color: var(--code-bg); border: 1px solid var(--bs-border-color); border-radius: 5px; font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 0.9rem; color: var(--bs-body-color); white-space: pre-wrap;">
+int a = 5;
+int b = 10;
+
+if (a > b)
+{
+    Console.WriteLine("Test");
+}
+else
+{
+    Console.WriteLine("Test2");
+}
+        </div>
+    </div>
+
+    <button id="checkBtn" class="btn btn-primary mt-3">Check Answer</button>
+    <div id="resultMessage" style="margin-top:15px; font-weight: 600;"></div>
+
+    <div class="navigation-buttons" style="margin-top: 30px;">
+        <a href="@Url.Action("Variables", "SP")" class="btn btn-outline-primary">← Previous Topic</a>
+        <a href="@Url.Action("IfElse", "SP")" class="btn btn-primary">Next Topic →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        color: white;
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        background-color: transparent;
+    }
+
+    /* Slider switch style */
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 42px;
+        height: 24px;
+    }
+
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: #ccc;
+        transition: 0.4s;
+        border-radius: 24px;
+    }
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: 0.4s;
+        border-radius: 50%;
+    }
+
+    input:checked + .slider {
+        background-color: var(--bs-primary);
+    }
+
+    input:checked + .slider:before {
+        transform: translateX(18px);
+    }
+
+    .code-container {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+</style>
+
+<script>
+    const correctCode =
+`int a = 5;
+int b = 10;
+
+if (a > b)
+{
+    Console.WriteLine("Test");
+}
+else
+{
+    Console.WriteLine("Test2");
+}`;
+
+    document.getElementById("checkBtn").addEventListener("click", () => {
+        const userCode = document.getElementById("userCode").value.trim().replace(/\r\n/g, "\n");
+        const normalizedCorrectCode = correctCode.trim().replace(/\r\n/g, "\n");
+
+        const resultMessage = document.getElementById("resultMessage");
+
+        if (userCode === normalizedCorrectCode) {
+            resultMessage.style.color = "green";
+            resultMessage.textContent = "✅ Correct! Well done.";
+        } else {
+            resultMessage.style.color = "red";
+            resultMessage.textContent = "❌ Incorrect. Please try again.";
+        }
+    });
+
+    document.getElementById("toggleCorrectCode").addEventListener("change", (e) => {
+        const correctCodeContainer = document.getElementById("correctCodeContainer");
+        correctCodeContainer.style.display = e.target.checked ? "block" : "none";
+    });
+</script>
