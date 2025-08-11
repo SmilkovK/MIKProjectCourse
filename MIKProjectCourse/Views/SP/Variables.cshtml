@@ -1,0 +1,135 @@
+﻿<!-- Example for Variables.cshtml with broader explanation -->
+@{
+    ViewData["Title"] = "Variables";
+}
+<body data-topic="variables">
+    <div class="container mt-4">
+        <h2>🔢 Variables</h2>
+        <p>
+            Variables are like boxes where we can keep information. They can hold numbers, letters, or words.
+            Think of a variable like a school locker. You give it a name, and you can put something inside.
+            Later, you can open it and use what's inside or change it.
+        </p>
+
+        <p>
+            Here are some types of variables:
+            <ul>
+                <li><strong>int</strong> - whole numbers (like 1, 2, 100)</li>
+                <li><strong>float</strong> - numbers with decimal points (like 1.5, 3.14)</li>
+                <li><strong>char</strong> - a single letter (like 'A')</li>
+                <li><strong>string</strong> - a group of letters or words (like "Hello")</li>
+            </ul>
+        </p>
+
+        <p>Let's look at an example:</p>
+
+        <div class="form-check form-switch mb-3">
+            <input class="form-check-input" type="checkbox" id="languageToggle" onchange="convertCode()">
+            <label class="form-check-label" for="languageToggle">Convert to C#</label>
+        </div>
+
+        <pre id="codeBlock" class="card p-3" style="background-color: var(--bs-tertiary-bg); color: var(--bs-body-color);">
+int age = 13;
+float height = 1.55;
+char grade = 'A';
+string name = "Tom";
+    </pre>
+
+        <p>
+            In this example:
+            <ul>
+                <li><code>age</code> is storing a number.</li>
+                <li><code>height</code> is storing a number with decimals.</li>
+                <li><code>grade</code> is storing one letter.</li>
+                <li><code>name</code> is storing a name, which is a string.</li>
+            </ul>
+        </p>
+
+        <p>You can also change the value later, like this:</p>
+        <pre class="card p-3" style="background-color: var(--bs-tertiary-bg); color: var(--bs-body-color);">
+age = 15;
+name = "Anna";
+    </pre>
+
+        <p>🌟 <strong>Fun Example:</strong> Let’s say you want to store your favorite number and color.</p>
+        <pre class="card p-3" style="background-color: var(--bs-tertiary-bg); color: var(--bs-body-color);">
+int favNumber = 7;
+string favColor = "Blue";
+    </pre>
+        <p>Now you’ve told the computer what your favorite number and color are!</p>
+
+        <!-- First section -->
+        <div class="d-flex justify-content-between mt-5">
+            <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">⬅ Back</a>
+            <a class="btn btn-primary" asp-controller="SP" asp-action="IfElse">Next ➡</a>
+        </div>
+
+
+    <script>
+            function convertCode() {
+                const topic = document.body.getAttribute("data-topic");
+                const isChecked = document.getElementById("languageToggle").checked;
+                const codeBlock = document.getElementById("codeBlock");
+
+                const cppCode = {
+                    variables: `int age = 13;
+        float height = 1.55;
+        char grade = 'A';
+        string name = "Alex";`,
+
+                    ifelse: `int age = 14;
+        if (age >= 13) {
+            cout << "You are a teenager!";
+        } else {
+            cout << "You are not a teenager.";
+        }`,
+
+                    loops: `for (int i = 1; i <= 5; i++) {
+            cout << "Clap " << i << endl;
+        }`,
+
+                    arrays: `int numbers[5] = {10, 20, 30, 40, 50};
+        cout << numbers[0];`,
+
+                    strings: `string fruits[3] = {"Apple", "Banana", "Cherry"};
+        cout << fruits[0];`
+                };
+
+                const csharpCode = {
+                    variables: `int age = 13;
+        float height = 1.55f;
+        char grade = 'A';
+        string name = "Alex";`,
+
+                    ifelse: `int age = 14;
+        if (age >= 13)
+        {
+            Console.WriteLine("You are a teenager!");
+        }
+        else
+        {
+            Console.WriteLine("You are not a teenager.");
+        }`,
+
+                    loops: `for (int i = 1; i <= 5; i++)
+        {
+            Console.WriteLine("Clap " + i);
+        }`,
+
+                    arrays: `int[] numbers = {10, 20, 30, 40, 50};
+        Console.WriteLine(numbers[0]);`,
+
+                    strings: `string[] fruits = {"Apple", "Banana", "Cherry"};
+        Console.WriteLine(fruits[0]);`
+                };
+
+                // Replace content
+                codeBlock.textContent = isChecked ? csharpCode[topic] : cppCode[topic];
+            }
+    </script>
+
+
+
+
+</body>
+
