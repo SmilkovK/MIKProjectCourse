@@ -4,6 +4,10 @@ namespace MIKProjectCourse.Controllers
 {
     public class ExercisesController : Controller
     {
+        public IActionResult Info()
+        {
+            return View();
+        }
         public IActionResult Index()
         {
             return View();
@@ -12,5 +16,6 @@ namespace MIKProjectCourse.Controllers
         {
             return View();
         }
+
     }
 }

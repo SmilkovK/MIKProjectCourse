@@ -211,13 +211,19 @@
             <h5 style="color: var(--bs-body-color);">@Localizer["Chapters"]</h5>
             <ul class="chapter-list">
                 <li>
+                    <div class="chapter-title">@Localizer["Introduction"]</div>
+                    <ul class="subchapter-list">
+                        <li><a asp-controller="Introduction" asp-action="Index">@Localizer["Introduction"]</a></li>
+                    </ul>
+                </li>
+                <li>
                     <div class="chapter-title">@Localizer["SP"]</div>
                     <ul class="subchapter-list">
-                        <li><a asp-controller="SP" asp-action="Variables">@Localizer["SPVariables"]</a></li>
-                        <li><a asp-controller="SP" asp-action="IfElse">@Localizer["SPIfElse"]</a></li>
-                        <li><a asp-controller="SP" asp-action="ForLoops">@Localizer["SPForLoops"]</a></li>
-                        <li><a asp-controller="SP" asp-action="Arrays">@Localizer["SPArrays"]</a></li>
-                        <li><a asp-controller="SP" asp-action="StringArrays">@Localizer["SPStringArrays"]</a></li>
+                        <li><a asp-controller="SP" asp-action="Variables">@Localizer["Variables"]</a></li>
+                        <li><a asp-controller="SP" asp-action="IfElse">@Localizer["IfElse"]</a></li>
+                        <li><a asp-controller="SP" asp-action="ForLoops">@Localizer["ForLoops"]</a></li>
+                        <li><a asp-controller="SP" asp-action="Arrays">@Localizer["Arrays"]</a></li>
+                        <li><a asp-controller="SP" asp-action="StringArrays">@Localizer["StringArrays"]</a></li>
                     </ul>
                 </li>
                 <li>
@@ -245,12 +251,10 @@
                 <li>
                     <div class="chapter-title">@Localizer["Exercises"]</div>
                     <ul class="subchapter-list">
-                        <li><a asp-controller="Exercises" asp-action="Index">@Localizer["Index"]</a></li>
-                        <li><a asp-controller="Exercises" asp-action="ArrayForLoop">@Localizer["ArrayForLoop"]</a></li>
+                         <li><a asp-controller="Exercises" asp-action="Info">@Localizer["Code formating info"]</a></li>
+                        <li><a asp-controller="Exercises" asp-action="Index">@Localizer["Exercise 1"]</a></li>
+                        <li><a asp-controller="Exercises" asp-action="ArrayForLoop">@Localizer["Exercise 2"]</a></li>
                     </ul>
-                </li>
-                <li>
-                    <a class="chapter-title" asp-controller="Home" asp-action="About">@Localizer["About"]</a>
                 </li>
             </ul>
         </div>

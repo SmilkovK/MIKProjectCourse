@@ -10,18 +10,6 @@
         Then use a <strong>for loop</strong> to print all the names.
     </p>
 
-    <div style="margin-bottom: 12px; padding: 12px; background-color: var(--code-bg); border: 1px solid var(--bs-border-color); border-radius: 5px; color: var(--bs-body-color); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; white-space: pre-line;">
-        <strong>How the code should be formatted and structured:</strong>
-        <br /><br />
-        - Declare the array of strings using <code>string[] students = { ... };</code><br />
-        - Use a <code>for</code> loop with an index variable initialized to 0.<br />
-        - The loop condition should check index is less than the array length.<br />
-        - Increment the index each iteration.<br />
-        - Inside the loop, print each student's name using <code>Console.WriteLine(students[i]);</code><br />
-        - Braces <code>{ }</code> should be on their own lines.<br />
-        - Indent inside the <code>for</code> loop body properly.
-    </div>
-
     <label for="userCode" class="form-label" style="font-weight: 600; margin-bottom: 6px;">Type your code below:</label>
     <textarea id="userCode" rows="15" style="width: 100%; font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 0.95rem; padding:10px;"></textarea>
 
@@ -49,8 +37,8 @@ for (int i = 0; i &lt; students.Length; i++)
     <div id="resultMessage" style="margin-top:15px; font-weight: 600;"></div>
 
     <div class="navigation-buttons" style="margin-top: 30px;">
-        <a href="@Url.Action("IfElse", "SP")" class="btn btn-outline-primary">← Previous Topic</a>
-        <a href="@Url.Action("ArrayForLoopNext", "SP")" class="btn btn-primary">Next Topic →</a>
+        <a href="@Url.Action("Index", "Exercises")" class="btn btn-outline-primary">← Exercise 1</a>
+        <a href="@Url.Action("ArrayForLoopNext", "Exercises")" class="btn btn-primary">Exercise 3 →</a>
     </div>
 </div>
 
@@ -96,7 +84,6 @@ for (int i = 0; i &lt; students.Length; i++)
         background-color: transparent;
     }
 
-    /* Slider switch style */
     .switch {
         position: relative;
         display: inline-block;

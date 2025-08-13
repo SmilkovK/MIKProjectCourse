@@ -1,9 +1,10 @@
 ﻿@{
     ViewData["Title"] = "Arrays";
 }
+
 <body data-topic="arrays">
     <div class="container mt-4">
-        <h2>📦 Arrays</h2>
+        <h1 class="mb-4">📦 Arrays</h1>
         <p>An array stores a list of things in one place, like a row of boxes.</p>
 
         <p>Example: Store 5 numbers.</p>
@@ -13,10 +14,15 @@
             <label class="form-check-label" for="languageToggle">Convert to C#</label>
         </div>
 
-        <pre id="codeBlock" class="card p-3" style="background-color: var(--bs-tertiary-bg); color: var(--bs-body-color);">
+        <div class="code-container mb-3">
+            <div class="code-header">Code Example</div>
+            <div class="code-content">
+<pre id="codeBlock">
 int numbers[5] = {10, 20, 30, 40, 50};
 cout << numbers[0]; // 10
-    </pre>
+</pre>
+            </div>
+        </div>
 
         <p>Array items start at index 0. So:</p>
         <ul>
@@ -26,81 +32,119 @@ cout << numbers[0]; // 10
 
         <p>We can also use loops with arrays:</p>
 
-        <pre class="card p-3" style="background-color: var(--bs-tertiary-bg); color: var(--bs-body-color);">
+        <div class="code-container mb-3">
+            <div class="code-header">Code Example</div>
+            <div class="code-content">
+<pre>
 for (int i = 0; i < 5; i++) {
     cout << numbers[i] << " ";
 }
-    </pre>
-
-        <div class="d-flex justify-content-between mt-5">
-            <a class="btn btn-secondary" asp-controller="SP" asp-action="ForLoops">⬅ Back</a>
-            <a class="btn btn-primary" asp-controller="SP" asp-action="StringArrays">Next ➡</a>
+</pre>
+            </div>
         </div>
 
+        <div class="navigation-buttons mt-4">
+            <a href="@Url.Action("ForLoops", "SP")" class="btn btn-outline-primary">← ForLoops</a>
+            <a href="@Url.Action("StringArrays", "SP")" class="btn btn-primary">StringArrays →</a>
+        </div>
+    </div>
+
+    <style>
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: var(--bs-body-bg);
+        }
+
+        h1 {
+            color: var(--bs-heading-color);
+            margin-bottom: 20px;
+        }
+
+        p, li, code {
+            color: var(--bs-body-color);
+            line-height: 1.6;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .code-container {
+            margin: 20px 0;
+            border: 1px solid var(--bs-border-color);
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: var(--code-bg);
+        }
+
+        .code-header {
+            background-color: var(--code-header-bg);
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--bs-border-color);
+            font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 0.9rem;
+            color: var(--bs-body-color);
+        }
+
+        .code-content {
+            padding: 15px;
+            overflow-x: auto;
+            font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            background-color: transparent;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--bs-primary);
+            border-color: var(--bs-primary);
+            color: #fff;
+        }
+
+        .btn-outline-primary {
+            color: var(--bs-primary);
+            border-color: var(--bs-primary);
+            background-color: transparent;
+        }
+
+        .form-check {
+            margin-bottom: 20px;
+        }
+    </style>
 
     <script>
-            function convertCode() {
-                const topic = document.body.getAttribute("data-topic");
-                const isChecked = document.getElementById("languageToggle").checked;
-                const codeBlock = document.getElementById("codeBlock");
+        function convertCode() {
+            const topic = document.body.getAttribute("data-topic");
+            const isChecked = document.getElementById("languageToggle").checked;
+            const codeBlock = document.getElementById("codeBlock");
 
-                const cppCode = {
-                    variables: `int age = 13;
-        float height = 1.55;
-        char grade = 'A';
-        string name = "Alex";`,
+            const cppCode = {
+                arrays: `int numbers[5] = {10, 20, 30, 40, 50};
+cout << numbers[0];`
+            };
 
-                    ifelse: `int age = 14;
-        if (age >= 13) {
-            cout << "You are a teenager!";
-        } else {
-            cout << "You are not a teenager.";
-        }`,
+            const csharpCode = {
+                arrays: `int[] numbers = {10, 20, 30, 40, 50};
+Console.WriteLine(numbers[0]);`
+            };
 
-                    loops: `for (int i = 1; i <= 5; i++) {
-            cout << "Clap " << i << endl;
-        }`,
-
-                    arrays: `int numbers[5] = {10, 20, 30, 40, 50};
-        cout << numbers[0];`,
-
-                    strings: `string fruits[3] = {"Apple", "Banana", "Cherry"};
-        cout << fruits[0];`
-                };
-
-                const csharpCode = {
-                    variables: `int age = 13;
-        float height = 1.55f;
-        char grade = 'A';
-        string name = "Alex";`,
-
-                    ifelse: `int age = 14;
-        if (age >= 13)
-        {
-            Console.WriteLine("You are a teenager!");
+            codeBlock.textContent = isChecked ? csharpCode[topic] : cppCode[topic];
         }
-        else
-        {
-            Console.WriteLine("You are not a teenager.");
-        }`,
-
-                    loops: `for (int i = 1; i <= 5; i++)
-        {
-            Console.WriteLine("Clap " + i);
-        }`,
-
-                    arrays: `int[] numbers = {10, 20, 30, 40, 50};
-        Console.WriteLine(numbers[0]);`,
-
-                    strings: `string[] fruits = {"Apple", "Banana", "Cherry"};
-        Console.WriteLine(fruits[0]);`
-                };
-
-                // Replace content
-                codeBlock.textContent = isChecked ? csharpCode[topic] : cppCode[topic];
-            }
     </script>
-
-
-
 </body>

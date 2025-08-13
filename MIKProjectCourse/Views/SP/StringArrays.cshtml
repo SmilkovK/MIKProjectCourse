@@ -16,10 +16,10 @@
     <div class="code-container">
         <div class="code-header">Code Example</div>
         <div class="code-content">
-            <pre id="codeBlock" style="white-space: pre-wrap;">
+<pre id="codeBlock">
 string fruits[3] = {"Apple", "Banana", "Cherry"};
 cout << fruits[0];
-            </pre>
+</pre>
         </div>
     </div>
 
@@ -30,19 +30,20 @@ cout << fruits[0];
     <div class="code-container">
         <div class="code-header">Code Example</div>
         <div class="code-content">
-            <pre style="white-space: pre-wrap;">
-for (int i = 0; i < 3; i++) {
+<pre>
+for (int i = 0; i < 3; i++)
+{
     cout << fruits[i] << endl;
 }
-            </pre>
+</pre>
         </div>
     </div>
 
     <p>This is how we print all items in a string array.</p>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Arrays", "SP")" class="btn btn-outline-primary">⬅ Back</a>
-        <a href="@Url.Action("Home", "Home")" class="btn btn-primary">🏠 Home</a>
+        <a href="@Url.Action("Arrays", "SP")" class="btn btn-outline-primary">← Arrays</a>
+        <a href="@Url.Action("Index", "Database")" class="btn btn-primary">Next Topic →</a>
     </div>
 </div>
 
@@ -53,26 +54,20 @@ for (int i = 0; i < 3; i++) {
         background-color: var(--bs-body-bg);
     }
 
-    h1, h2 {
-        color: var(--bs-heading-color);
-    }
-
     h1 {
+        color: var(--bs-heading-color);
         margin-bottom: 20px;
     }
 
     h2 {
+        color: var(--bs-heading-color);
         margin-top: 25px;
         margin-bottom: 15px;
     }
 
-    p, ul, li, code {
+    p, code {
         color: var(--bs-body-color);
         line-height: 1.6;
-    }
-
-    ul {
-        padding-left: 20px;
     }
 
     .code-container {
@@ -95,12 +90,13 @@ for (int i = 0; i < 3; i++) {
     .code-content {
         padding: 15px;
         overflow-x: auto;
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
 
     pre {
         margin: 0;
+        white-space: pre-wrap;
         background-color: transparent;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
 
     .navigation-buttons {
@@ -127,28 +123,19 @@ for (int i = 0; i < 3; i++) {
         border-color: var(--bs-primary);
         background-color: transparent;
     }
-
-    .form-check {
-        margin-bottom: 20px;
-    }
 </style>
 
 <script>
     function convertCode() {
-        const topic = "strings"; // fixed topic per page
         const isChecked = document.getElementById("languageToggle").checked;
         const codeBlock = document.getElementById("codeBlock");
 
-        const cppCode = {
-            strings: `string fruits[3] = {"Apple", "Banana", "Cherry"};
-cout << fruits[0];`
-        };
+        const cppCode = `string fruits[3] = {"Apple", "Banana", "Cherry"};
+cout << fruits[0];`;
 
-        const csharpCode = {
-            strings: `string[] fruits = {"Apple", "Banana", "Cherry"};
-Console.WriteLine(fruits[0]);`
-        };
+        const csharpCode = `string[] fruits = {"Apple", "Banana", "Cherry"};
+Console.WriteLine(fruits[0]);`;
 
-        codeBlock.textContent = isChecked ? csharpCode[topic] : cppCode[topic];
+        codeBlock.textContent = isChecked ? csharpCode : cppCode;
     }
 </script>

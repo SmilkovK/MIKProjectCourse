@@ -1,9 +1,10 @@
 ﻿@{
     ViewData["Title"] = "For Loops";
 }
+
 <body data-topic="loops">
     <div class="container mt-4">
-        <h2>🔁 For Loops</h2>
+        <h1 class="mb-4">🔁 For Loops</h1>
         <p>Loops help you repeat things without writing them many times.</p>
         <p>A <strong>for loop</strong> repeats a block of code as many times as you want.</p>
 
@@ -14,11 +15,16 @@
             <label class="form-check-label" for="languageToggle">Convert to C#</label>
         </div>
 
-        <pre id="codeBlock" class="card p-3" style="background-color: var(--bs-tertiary-bg); color: var(--bs-body-color);">
+        <div class="code-container mb-3">
+            <div class="code-header">Code Example</div>
+            <div class="code-content">
+<pre id="codeBlock">
 for (int i = 1; i <= 5; i++) {
     cout << "Clap " << i << endl;
 }
-    </pre>
+</pre>
+            </div>
+        </div>
 
         <p>This loop says:</p>
         <ul>
@@ -29,81 +35,118 @@ for (int i = 1; i <= 5; i++) {
 
         <p>Another example: Print numbers from 10 to 1</p>
 
-        <pre class="card p-3" style="background-color: var(--bs-tertiary-bg); color: var(--bs-body-color);">
+        <div class="code-container mb-3">
+            <div class="code-header">Code Example</div>
+            <div class="code-content">
+<pre>
 for (int i = 10; i >= 1; i--) {
     cout << i << " ";
 }
-    </pre>
-
-        <div class="d-flex justify-content-between mt-5">
-            <a class="btn btn-secondary" asp-controller="SP" asp-action="IfElse">⬅ Back</a>
-            <a class="btn btn-primary" asp-controller="SP" asp-action="Arrays">Next ➡</a>
+</pre>
+            </div>
         </div>
 
-    <script>
-            function convertCode() {
-                const topic = document.body.getAttribute("data-topic");
-                const isChecked = document.getElementById("languageToggle").checked;
-                const codeBlock = document.getElementById("codeBlock");
+        <div class="navigation-buttons mt-4">
+            <a href="@Url.Action("IfElse", "SP")" class="btn btn-outline-primary">← IfElse</a>
+            <a href="@Url.Action("Arrays", "SP")" class="btn btn-primary">Arrays →</a>
+        </div>
+    </div>
 
-                const cppCode = {
-                    variables: `int age = 13;
-        float height = 1.55;
-        char grade = 'A';
-        string name = "Alex";`,
-
-                    ifelse: `int age = 14;
-        if (age >= 13) {
-            cout << "You are a teenager!";
-        } else {
-            cout << "You are not a teenager.";
-        }`,
-
-                    loops: `for (int i = 1; i <= 5; i++) {
-            cout << "Clap " << i << endl;
-        }`,
-
-                    arrays: `int numbers[5] = {10, 20, 30, 40, 50};
-        cout << numbers[0];`,
-
-                    strings: `string fruits[3] = {"Apple", "Banana", "Cherry"};
-        cout << fruits[0];`
-                };
-
-                const csharpCode = {
-                    variables: `int age = 13;
-        float height = 1.55f;
-        char grade = 'A';
-        string name = "Alex";`,
-
-                    ifelse: `int age = 14;
-        if (age >= 13)
-        {
-            Console.WriteLine("You are a teenager!");
+    <style>
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: var(--bs-body-bg);
         }
-        else
-        {
-            Console.WriteLine("You are not a teenager.");
-        }`,
 
-                    loops: `for (int i = 1; i <= 5; i++)
-        {
-            Console.WriteLine("Clap " + i);
-        }`,
+        h1 {
+            color: var(--bs-heading-color);
+            margin-bottom: 20px;
+        }
 
-                    arrays: `int[] numbers = {10, 20, 30, 40, 50};
-        Console.WriteLine(numbers[0]);`,
+        p, li, code {
+            color: var(--bs-body-color);
+            line-height: 1.6;
+        }
 
-                    strings: `string[] fruits = {"Apple", "Banana", "Cherry"};
-        Console.WriteLine(fruits[0]);`
-                };
+        ul {
+            padding-left: 20px;
+        }
 
-                // Replace content
-                codeBlock.textContent = isChecked ? csharpCode[topic] : cppCode[topic];
-            }
+        .code-container {
+            margin: 20px 0;
+            border: 1px solid var(--bs-border-color);
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: var(--code-bg);
+        }
+
+        .code-header {
+            background-color: var(--code-header-bg);
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--bs-border-color);
+            font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 0.9rem;
+            color: var(--bs-body-color);
+        }
+
+        .code-content {
+            padding: 15px;
+            overflow-x: auto;
+            font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            background-color: transparent;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--bs-primary);
+            border-color: var(--bs-primary);
+            color: #fff;
+        }
+
+        .btn-outline-primary {
+            color: var(--bs-primary);
+            border-color: var(--bs-primary);
+            background-color: transparent;
+        }
+    </style>
+
+    <script>
+        function convertCode() {
+            const topic = document.body.getAttribute("data-topic");
+            const isChecked = document.getElementById("languageToggle").checked;
+            const codeBlock = document.getElementById("codeBlock");
+
+            const cppCode = {
+                loops: `for (int i = 1; i <= 5; i++) {
+    cout << "Clap " << i << endl;
+}`
+            };
+
+            const csharpCode = {
+                loops: `for (int i = 1; i <= 5; i++)
+{
+    Console.WriteLine("Clap " + i);
+}`
+            };
+
+            codeBlock.textContent = isChecked ? csharpCode[topic] : cppCode[topic];
+        }
     </script>
-
-
-
-
 </body>
