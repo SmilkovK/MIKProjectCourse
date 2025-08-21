@@ -1,0 +1,114 @@
+﻿@{
+    ViewData["Title"] = "Creating Your First Website with .NET";
+}
+
+<div class="container">
+    <h1>🌐 Creating Your First Website with .NET</h1>
+
+    <p>
+        After completing all the exercises and previous sections, we hope you are ready to continue with 
+        creating your very first website. 
+        <br />
+        Note: This will not make you an expert in web development. 
+        From here on out, this course will guide you into setting up your environment and 
+        creating your first beginner-friendly website.
+    </p>
+
+    <hr />
+
+    <h2>📝 What Does This Section Cover?</h2>
+    <p>
+        This section is divided into two main parts:
+    </p>
+    <ul>
+        <li><strong>Part 1:</strong> Learning the basics of .NET web programming (absolute beginner level).</li>
+        <li><strong>Part 2:</strong> Moving into more advanced topics (still beginner-friendly, but slightly deeper).</li>
+    </ul>
+
+    <p>
+        To put this into perspective, if we were to rank knowledge on a scale of 1–10:
+    </p>
+    <ul>
+        <li><strong>Part 1:</strong> You start at level <strong>1</strong>.</li>
+        <li><strong>Part 2:</strong> You’ll move up to about <strong>2.5 – 3</strong>.</li>
+    </ul>
+
+    <hr />
+
+    <h2>💻 Tools You Will Need</h2>
+    <p>
+        In this course, we will be using <strong>Visual Studio 2022 (Community Edition)</strong>. 
+        While you can use other IDEs, we highly recommend VS 2022 as it is the most beginner-friendly option.
+    </p>
+    <p>
+        <strong>Visual Studio Code</strong> is also a great option, but in our opinion, Microsoft’s Visual Studio 2022 
+        offers more pre-built classes and a UI that makes it easier for beginners to get started.
+    </p>
+    <p>
+        At the time of writing this course, we will be using <strong>.NET 9</strong>. 
+        We recommend you install and use the same version for consistency.
+    </p>
+
+    <hr />
+
+    <h2>🚀 What’s Next?</h2>
+    <p>
+        The next few chapters will guide you through:
+    </p>
+    <ul>
+        <li>Installing Visual Studio 2022</li>
+        <li>Understanding the basics of Controllers, Models, and Views</li>
+        <li>Building your first simple web application step by step</li>
+    </ul>
+
+    <p>
+        So buckle up and get ready — things are about to get exciting! 🎉
+    </p>
+
+    <p>
+        <a href="@Url.Action("SetupEnvironment", "FirstWebsite")" class="btn btn-primary">
+            Start with Environment Setup
+        </a>
+    </p>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+    }
+
+    h1, h2, h3 {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .container ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    hr {
+        border-top: 1px solid #ddd;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    pre code {
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        display: block;
+        margin-bottom: 20px;
+    }
+</style>

@@ -1,0 +1,137 @@
+﻿@{
+    ViewData["Title"] = "Introduction to .NET Web Development";
+}
+
+<div class="container">
+    <h1>🌐 Introduction to .NET Web Development</h1>
+
+    <p>
+        Now that you have installed Visual Studio and .NET, it’s time to dive into the fundamentals of 
+        <strong>ASP.NET Core Web Development</strong>.  
+        In this section, we will explore the <strong>MVC pattern</strong> 
+        (Models, Views, Controllers), the <strong>client-server model</strong>, and how everything works together 
+        to build modern web applications.
+    </p>
+
+    <hr />
+
+    <h2>🔑 What is ASP.NET Core?</h2>
+    <p>
+        ASP.NET Core is a powerful framework developed by Microsoft for building web applications, APIs, and services.  
+        It uses the <strong>MVC (Model-View-Controller)</strong> architectural pattern to keep your code organized, 
+        maintainable, and scalable.
+    </p>
+
+    <hr />
+
+    <h2>🏛 The MVC Pattern</h2>
+    <p>
+        MVC stands for <strong>Model–View–Controller</strong>.  
+        Each part has a specific role in your application:
+    </p>
+
+    <ul>
+        <li><strong>Model:</strong> Represents the data and business logic of the application.  
+            Example: A <code>Student</code> class with properties like <code>Name</code>, <code>Age</code>, and <code>Grade</code>.
+        </li>
+        <li><strong>View:</strong> The user interface that displays the data. Views are written in <code>.cshtml</code> files.  
+            Example: A web page that shows the list of students.
+        </li>
+        <li><strong>Controller:</strong> The middle layer that handles user requests, processes data using Models, 
+            and returns a View or API response.  
+            Example: A <code>StudentsController</code> that fetches students from the database and passes them to a View.
+        </li>
+    </ul>
+
+    <p>The flow can be summarized as:</p>
+    <pre><code>User Request → Controller → Model → Controller → View → Response to User</code></pre>
+
+    <hr />
+
+    <h2>Client-Server Model</h2>
+    <p>
+        ASP.NET Core applications follow the <strong>client-server architecture</strong>.  
+        Here’s how it works:
+    </p>
+    <ul>
+        <li><strong>Client:</strong> The user’s browser or mobile app that sends requests (e.g., clicking a button).</li>
+        <li><strong>Server:</strong> The ASP.NET Core application running on a server processes the request.</li>
+        <li><strong>Response:</strong> The server sends back an HTML page, JSON data, or another response type to the client.</li>
+    </ul>
+
+    <p>This interaction happens every time a user interacts with your web application.</p>
+
+    <hr />
+
+    <h2>Why Use MVC?</h2>
+    <p>The MVC pattern brings several advantages:</p>
+    <ul>
+        <li><strong>Separation of Concerns:</strong> Each part (Model, View, Controller) has a clear responsibility.</li>
+        <li><strong>Maintainability:</strong> Easier to manage, extend, and debug.</li>
+        <li><strong>Reusability:</strong> Models and Views can be reused across different Controllers.</li>
+        <li><strong>Scalability:</strong> Perfect for applications that grow over time.</li>
+    </ul>
+
+    <hr />
+
+    <h2>🚀 What’s Next?</h2>
+    <p>
+        In the next chapters, we will explore each component of MVC in detail:  
+    </p>
+    <ul>
+        <li>How to create and use <strong>Controllers</strong>.</li>
+        <li How to build <strong>Models</strong> and connect them to a database.</li>
+        <li>How to design <strong>Views</strong> to display data to users.</li>
+    </ul>
+
+    <p>
+        <a href="@Url.Action("ControllersBasics", "Web")" class="btn btn-primary">
+            Start with Controllers
+        </a>
+    </p>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+    }
+
+    h1, h2, h3 {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .container ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .container li {
+        margin-bottom: 5px;
+    }
+
+    hr {
+        border-top: 1px solid #ddd;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    pre code {
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        display: block;
+        margin-bottom: 20px;
+    }
+</style>

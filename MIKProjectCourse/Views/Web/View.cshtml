@@ -1,0 +1,262 @@
+﻿@{
+    ViewData["Title"] = "Introduction to Controllers";
+}
+
+<div class="container mt-4">
+    <h1 class="text-primary">📌 Understanding Controllers in ASP.NET Core MVC</h1>
+    <p class="lead">
+        Controllers are one of the <b>main building blocks</b> of an ASP.NET Core MVC application. 
+        They act as the “middle-man” between the <b>user (client)</b> and your <b>application logic & database (server)</b>.
+    </p>
+
+    <hr />
+
+    <h2 class="text-secondary">🔹 What is a Controller?</h2>
+    <div class="card mb-3 shadow">
+        <div class="card-body">
+            <p>
+                A <b>Controller</b> is a C# class that handles incoming <b>HTTP requests</b> (like when a user clicks a link or submits a form) 
+                and sends back a <b>response</b> (like showing a web page or returning data).
+            </p>
+            <p>
+                You can think of it as a <b>traffic manager</b>: it decides what should happen when a user visits a certain part of your site.
+            </p>
+        </div>
+    </div>
+
+    <h2 class="text-secondary">🔹 How Does It Work?</h2>
+    <ul class="list-group mb-3">
+        <li class="list-group-item">1️⃣ The <b>Client (browser)</b> sends a request (like going to <code>/Home/About</code>).</li>
+        <li class="list-group-item">2️⃣ The <b>Controller</b> receives that request.</li>
+        <li class="list-group-item">3️⃣ The Controller decides whether to use <b>Models</b> (data, logic) and then passes the result to a <b>View</b>.</li>
+        <li class="list-group-item">4️⃣ The <b>View</b> creates HTML and sends it back to the client.</li>
+    </ul>
+
+    <h2 class="text-secondary">🔹 Key Points About Controllers</h2>
+    <ul class="list-group mb-3">
+        <li class="list-group-item"><b>Controller = Class</b> (usually ends with the word “Controller”).</li>
+        <li class="list-group-item"><b>Action = Method</b> inside the controller that handles a request.</li>
+        <li class="list-group-item">Actions usually <b>return Views</b> (HTML pages) or <b>data</b> (like JSON for APIs).</li>
+        <li class="list-group-item">Controllers <b>connect Models and Views</b>.</li>
+    </ul>
+
+    <h2 class="text-secondary">🔹 Why Are Controllers Important?</h2>
+    <div class="card shadow">
+        <div class="card-body">
+            <ul>
+                <li>They organize your code (separate logic for each part of the app).</li>
+                <li>They make your app follow the MVC pattern (Model-View-Controller).</li>
+                <li>They allow you to handle different user actions (open pages, submit forms, etc.).</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr />
+    <p class="text-center text-muted">
+        ✅ In short: A Controller listens to the user → decides what to do → calls Models if needed → 
+        then returns a View (page) or Data.
+    </p>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+    }
+
+    h1, h2, h3 {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .text-primary {
+        color: #007bff;
+    }
+
+    .text-secondary {
+        color: #495057;
+    }
+
+    .list-group {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .list-group-item {
+        padding: 10px 15px;
+        margin-bottom: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .card-body {
+        padding: 15px;
+        background-color: #ffffff;
+    }
+
+    hr {
+        border-top: 1px solid #ddd;
+        margin: 25px 0;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        display: inline-block;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .lead {
+        font-size: 1.1rem;
+    }
+
+    p.text-muted {
+        color: #6c757d;
+    }
+</style>
+@{
+    ViewData["Title"] = "Introduction to Controllers";
+}
+
+<div class="container mt-4">
+    <h1 class="text-primary">📌 Understanding Controllers in ASP.NET Core MVC</h1>
+    <p class="lead">
+        Controllers are one of the <b>main building blocks</b> of an ASP.NET Core MVC application. 
+        They act as the “middle-man” between the <b>user (client)</b> and your <b>application logic & database (server)</b>.
+    </p>
+
+    <hr />
+
+    <h2 class="text-secondary">🔹 What is a Controller?</h2>
+    <div class="card mb-3 shadow">
+        <div class="card-body">
+            <p>
+                A <b>Controller</b> is a C# class that handles incoming <b>HTTP requests</b> (like when a user clicks a link or submits a form) 
+                and sends back a <b>response</b> (like showing a web page or returning data).
+            </p>
+            <p>
+                You can think of it as a <b>traffic manager</b>: it decides what should happen when a user visits a certain part of your site.
+            </p>
+        </div>
+    </div>
+
+    <h2 class="text-secondary">🔹 How Does It Work?</h2>
+    <ul class="list-group mb-3">
+        <li class="list-group-item">1️⃣ The <b>Client (browser)</b> sends a request (like going to <code>/Home/About</code>).</li>
+        <li class="list-group-item">2️⃣ The <b>Controller</b> receives that request.</li>
+        <li class="list-group-item">3️⃣ The Controller decides whether to use <b>Models</b> (data, logic) and then passes the result to a <b>View</b>.</li>
+        <li class="list-group-item">4️⃣ The <b>View</b> creates HTML and sends it back to the client.</li>
+    </ul>
+
+    <h2 class="text-secondary">🔹 Key Points About Controllers</h2>
+    <ul class="list-group mb-3">
+        <li class="list-group-item"><b>Controller = Class</b> (usually ends with the word “Controller”).</li>
+        <li class="list-group-item"><b>Action = Method</b> inside the controller that handles a request.</li>
+        <li class="list-group-item">Actions usually <b>return Views</b> (HTML pages) or <b>data</b> (like JSON for APIs).</li>
+        <li class="list-group-item">Controllers <b>connect Models and Views</b>.</li>
+    </ul>
+
+    <h2 class="text-secondary">🔹 Why Are Controllers Important?</h2>
+    <div class="card shadow">
+        <div class="card-body">
+            <ul>
+                <li>They organize your code (separate logic for each part of the app).</li>
+                <li>They make your app follow the MVC pattern (Model-View-Controller).</li>
+                <li>They allow you to handle different user actions (open pages, submit forms, etc.).</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr />
+    <p class="text-center text-muted">
+        ✅ In short: A Controller listens to the user → decides what to do → calls Models if needed → 
+        then returns a View (page) or Data.
+    </p>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        color: #333;
+    }
+
+    h1, h2, h3 {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .text-primary {
+        color: #007bff;
+    }
+
+    .text-secondary {
+        color: #495057;
+    }
+
+    .list-group {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .list-group-item {
+        padding: 10px 15px;
+        margin-bottom: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .card-body {
+        padding: 15px;
+        background-color: #ffffff;
+    }
+
+    hr {
+        border-top: 1px solid #ddd;
+        margin: 25px 0;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        display: inline-block;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .lead {
+        font-size: 1.1rem;
+    }
+
+    p.text-muted {
+        color: #6c757d;
+    }
+</style>

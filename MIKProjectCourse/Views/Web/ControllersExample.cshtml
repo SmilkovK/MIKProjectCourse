@@ -1,0 +1,146 @@
+﻿@{
+    ViewData["Title"] = "Controller Example with Code";
+}
+
+<div class="container mt-4">
+    <h1 class="text-primary">💻 Example Controller Explained</h1>
+
+    <p class="lead">
+        Let's look at a simple example of a controller and understand what each part does.
+    </p>
+
+    <hr />
+
+    <h2 class="text-secondary">🔹 Example Controller</h2>
+    <pre><code class="language-csharp">
+using Microsoft.AspNetCore.Mvc;
+
+namespace MyApp.Controllers
+{
+    public class HomeController : Controller
+    {
+        // Action for the home page
+        public IActionResult Index()
+        {
+            return View(); // Sends the Index.cshtml page to the browser
+        }
+
+        // Action for the About page
+        public IActionResult About()
+        {
+            ViewData["Message"] = "This is the About page."; // Pass data to the view
+            return View(); // Sends the About.cshtml page to the browser
+        }
+    }
+}
+    </code></pre>
+
+    <h2 class="text-secondary">🔹 What This Code Does</h2>
+    <ul class="list-group mb-3">
+        <li class="list-group-item"><b>using Microsoft.AspNetCore.Mvc;</b> → Imports MVC library for controllers & views.</li>
+        <li class="list-group-item"><b>namespace MyApp.Controllers</b> → Organizes your controllers in a namespace.</li>
+        <li class="list-group-item"><b>public class HomeController : Controller</b> → Defines a controller class inheriting from Controller.</li>
+        <li class="list-group-item"><b>public IActionResult Index()</b> → Handles requests for the home page.</li>
+        <li class="list-group-item"><b>return View();</b> → Returns the view (web page) to the browser.</li>
+        <li class="list-group-item"><b>public IActionResult About()</b> → Handles requests for the About page.</li>
+        <li class="list-group-item"><b>ViewData["Message"]</b> → Passes data to the view.</li>
+    </ul>
+
+    <h2 class="text-secondary">🔹 How It Works Step by Step</h2>
+    <ul class="list-group mb-3">
+        <li>1️⃣ User goes to <code>/Home/Index</code> → <b>Index</b> action runs → Index View is displayed.</li>
+        <li>2️⃣ User goes to <code>/Home/About</code> → <b>About</b> action runs → About View is displayed with the message.</li>
+        <li>3️⃣ The controller decides which page and data to show → acts as a bridge between user and app.</li>
+    </ul>
+
+    <p class="text-muted text-center">
+        ✅ Controllers manage requests, interact with models if needed, and return the appropriate views or data.
+    </p>
+</div>
+
+<style>
+    :root {
+        --background-color: #ffffff;
+        --text-color: #333333;
+        --card-background: #f8f9fa;
+        --border-color: #ddd;
+        --primary-color: #007bff;
+        --secondary-color: #495057;
+        --muted-color: #6c757d;
+    }
+
+    @@media (prefers-color-scheme: dark) {
+        :root {
+            --background-color: #121212;
+            --text-color: #e0e0e0;
+            --card-background: #1e1e1e;
+            --border-color: #333333;
+            --primary-color: #3399ff;
+            --secondary-color: #bbbbbb;
+            --muted-color: #888888;
+        }
+    }
+
+    body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    h1, h2, h3 {
+        font-weight: bold;
+        color: var(--text-color);
+    }
+
+    .text-primary {
+        color: var(--primary-color);
+    }
+
+    .text-secondary {
+        color: var(--secondary-color);
+    }
+
+    .list-group {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .list-group-item {
+        padding: 10px 15px;
+        margin-bottom: 5px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        background-color: var(--card-background);
+        color: var(--text-color);
+    }
+
+    hr {
+        border-top: 1px solid var(--border-color);
+        margin: 25px 0;
+    }
+
+    pre code {
+        background-color: var(--card-background);
+        border: 1px solid var(--border-color);
+        padding: 10px;
+        border-radius: 5px;
+        display: block;
+        margin-bottom: 20px;
+        font-family: Consolas, monospace;
+        color: var(--text-color);
+    }
+
+    .lead {
+        font-size: 1.1rem;
+    }
+
+    p.text-muted {
+        color: var(--muted-color);
+    }
+</style>

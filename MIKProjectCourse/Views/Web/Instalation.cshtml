@@ -1,0 +1,107 @@
+﻿@{
+    ViewData["Title"] = "Installing Visual Studio 2022 for .NET Development";
+}
+
+<div class="container">
+    <h1>⬇️ Installing Visual Studio 2022 for .NET Development</h1>
+
+    <p>
+        Before we can start building applications, we first need to install the right tools. 
+        In this section, we will walk you through installing 
+        <strong>Visual Studio 2022 (Community Edition)</strong> along with the necessary 
+        .NET components.
+    </p>
+
+    <hr />
+
+    <h2>📥 Step 1: Download Visual Studio 2022</h2>
+    <ul>
+        <li>Go to the official website: <a href="https://visualstudio.microsoft.com/downloads/" target="_blank">Visual Studio Downloads</a>.</li>
+        <li>Select <strong>Visual Studio 2022 Community Edition</strong> (free for students & individuals).</li>
+        <li>Download and run the installer file (<code>vs_installer.exe</code>).</li>
+    </ul>
+
+    <h2>⚙️ Step 2: Select Workloads</h2>
+    <p>
+        When the installer opens, you’ll need to select the workloads (features) you want.  
+        For this course, make sure you check the following options:
+    </p>
+    <ul>
+        <li>✅ <strong>ASP.NET and web development</strong> (required for web apps).</li>
+        <li>✅ <strong>.NET multi-platform app UI development</strong> (for cross-platform apps).</li>
+        <li>✅ <strong>.NET desktop development</strong> (for Windows desktop apps).</li>
+        <li>✅ <strong>Data storage and processing</strong> (for working with databases).</li>
+    </ul>
+
+    <h2>📦 Step 3: Add Required Components</h2>
+    <p>Make sure the following components are included during installation:</p>
+    <ul>
+        <li><strong>.NET 9.0 Runtime & SDK</strong> (required).</li>
+        <li><strong>Entity Framework Core tools</strong> (recommended for database work).</li>
+        <li><strong>SQL Server Express 2019 LocalDB</strong> (optional lightweight database).</li>
+    </ul>
+
+    <h2>📍 Step 4: Install & Launch</h2>
+    <ul>
+        <li>Click <strong>Install</strong> to begin.</li>
+        <li>Wait for the installation to complete (may take 10–30 minutes).</li>
+        <li>Once finished, open <strong>Visual Studio 2022</strong>.</li>
+        <li>(Optional) Sign in with a Microsoft account to sync settings.</li>
+    </ul>
+
+    <h2>✅ Step 5: Verify .NET Installation</h2>
+    <p>To confirm .NET is installed, open <code>Command Prompt</code> or <code>PowerShell</code> and run:</p>
+    <pre><code>dotnet --version</code></pre>
+    <p>You should see something like <code>9.0.x</code>, which means .NET 9 is installed successfully.</p>
+
+    <p>
+        <a href="@Url.Action("NextSection", "FirstWebsite")" class="btn btn-primary">
+            Continue to the Next Section
+        </a>
+    </p>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+    }
+
+    h1, h2, h3 {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .container ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .container li {
+        margin-bottom: 5px;
+    }
+
+    hr {
+        border-top: 1px solid #ddd;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+    pre code {
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        display: block;
+        margin-bottom: 20px;
+    }
+</style>
