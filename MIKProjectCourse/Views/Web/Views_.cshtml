@@ -1,0 +1,132 @@
+﻿@{
+    ViewData["Title"] = "Introduction to Views";
+}
+
+<div class="container mt-4">
+    <h1 class="text-primary">📌 Understanding Views in ASP.NET Core MVC</h1>
+    <p class="lead">
+        Views are the part of your application that shows <b>information to the user</b>.  
+        They take data from your <b>Models</b> and display it in a web page.
+    </p>
+
+    <hr />
+
+    <h2 class="text-secondary">🔹 What Are Views?</h2>
+    <div class="card mb-3 shadow">
+        <div class="card-body">
+            <p>
+                In ASP.NET Core MVC, a <b>View</b> is responsible for displaying the user interface (UI).  
+                It is usually a combination of HTML and Razor syntax that can include dynamic data from your <b>Models</b>.
+            </p>
+            <p>
+                Views are linked to <b>Controllers</b>. Each controller action usually returns a view to display the data to the user.
+            </p>
+        </div>
+    </div>
+
+    <h2 class="text-secondary">🔹 Views in MVC</h2>
+    <div class="card mb-3 shadow">
+        <div class="card-body">
+            <p>
+                Think of Views as the “face” of your application. They are what the user sees in the browser.  
+                Controllers send data to Views, and Views format that data as HTML to be displayed.
+            </p>
+            <p>
+                In this course, we will <b>not go deep into Views</b> because they are a long and complex topic.  
+                Instead, we will focus on <b>Controllers</b> and <b>Models</b> so you understand the core structure of an ASP.NET Core MVC app.
+            </p>
+        </div>
+    </div>
+
+    <hr />
+    <p class="text-center text-muted">
+        ✅ In short: Views are what the user sees. They get data from Models and are selected by Controllers.  
+        We will skip the details in this course to keep things simple for beginners.
+    </p>
+</div>
+
+<style>
+    :root {
+        --background-color: #ffffff;
+        --text-color: #333333;
+        --card-background: #f8f9fa;
+        --border-color: #ddd;
+        --primary-color: #007bff;
+        --secondary-color: #495057;
+        --muted-color: #6c757d;
+    }
+
+    @@media (prefers-color-scheme: dark) {
+        :root {
+            --background-color: #121212;
+            --text-color: #e0e0e0;
+            --card-background: #1e1e1e;
+            --border-color: #333333;
+            --primary-color: #3399ff;
+            --secondary-color: #bbbbbb;
+            --muted-color: #888888;
+        }
+    }
+
+    body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    h1, h2, h3 {
+        font-weight: bold;
+        color: var(--text-color);
+    }
+
+    .text-primary {
+        color: var(--primary-color);
+    }
+
+    .text-secondary {
+        color: var(--secondary-color);
+    }
+
+    .list-group {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    .list-group-item {
+        padding: 10px 15px;
+        margin-bottom: 5px;
+        border: 1px solid var(--border-color);
+        border-radius: 5px;
+        background-color: var(--card-background);
+        color: var(--text-color);
+    }
+
+    .card {
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .card-body {
+        padding: 15px;
+        background-color: var(--card-background);
+    }
+
+    hr {
+        border-top: 1px solid var(--border-color);
+        margin: 25px 0;
+    }
+
+    .lead {
+        font-size: 1.1rem;
+    }
+
+    p.text-muted {
+        color: var(--muted-color);
+    }
+</style>

@@ -19,7 +19,7 @@
                 and sends back a <b>response</b> (like showing a web page or returning data).
             </p>
             <p>
-                You can think of it as a <b>traffic manager</b>: it decides what should happen when a user visits a certain part of your site.
+                Think of it like a <b>traffic manager</b>: it decides what should happen when someone visits a page on your website.
             </p>
         </div>
     </div>
@@ -28,25 +28,71 @@
     <ul class="list-group mb-3">
         <li class="list-group-item">1️⃣ The <b>Client (browser)</b> sends a request (like going to <code>/Home/About</code>).</li>
         <li class="list-group-item">2️⃣ The <b>Controller</b> receives that request.</li>
-        <li class="list-group-item">3️⃣ The Controller decides whether to use <b>Models</b> (data, logic) and then passes the result to a <b>View</b>.</li>
+        <li class="list-group-item">3️⃣ The Controller decides whether to use <b>Models</b> (data and logic) and then sends it to a <b>View</b>.</li>
         <li class="list-group-item">4️⃣ The <b>View</b> creates HTML and sends it back to the client.</li>
     </ul>
 
     <h2 class="text-secondary">🔹 Key Points About Controllers</h2>
     <ul class="list-group mb-3">
-        <li class="list-group-item"><b>Controller = Class</b> (usually ends with the word “Controller”).</li>
-        <li class="list-group-item"><b>Action = Method</b> inside the controller that handles a request.</li>
-        <li class="list-group-item">Actions usually <b>return Views</b> (HTML pages) or <b>data</b> (like JSON for APIs).</li>
-        <li class="list-group-item">Controllers <b>connect Models and Views</b>.</li>
+        <li><b>Controller = Class</b> (usually ends with “Controller”).</li>
+        <li><b>Action = Method</b> inside the controller that does something.</li>
+        <li>Actions usually <b>return Views</b> (HTML pages) or <b>data</b> (like JSON for APIs).</li>
+        <li>Controllers <b>connect Models and Views</b>.</li>
     </ul>
+
+    <h2 class="text-secondary">🔹 Controller Names and URLs (Beginner-Friendly)</h2>
+    <div class="card mb-3 shadow">
+        <div class="card-body">
+            <p>
+                When you create a controller, its <b>name helps decide the website URL</b>.  
+                For beginners, here’s a simple way to remember:
+            </p>
+            <ul>
+                <li>Controller class = <b>HomeController</b> → URL prefix = <code>/Home</code></li>
+                <li>Action method = <b>Index()</b> → URL = <code>/Home/Index</code></li>
+                <li>Other method = <b>About()</b> → URL = <code>/Home/About</code></li>
+            </ul>
+            <p>
+                Tip: <b>Index()</b> is special – it’s the default action, so <code>/Home</code> will also show the Index page.
+            </p>
+            <p>
+                Think of it like a restaurant: <b>HomeController</b> is the restaurant building, <b>Index()</b> is the main door, and <b>About()</b> is a side door.
+            </p>
+        </div>
+    </div>
+
+    <h2 class="text-secondary">🔹 How Controllers and Views Connect</h2>
+    <div class="card mb-3 shadow">
+        <div class="card-body">
+            <p>
+                Views are the HTML pages that users see. Controllers tell which view to show.  
+                By default:
+            </p>
+            <ul>
+                <li>Controller = folder inside <code>Views</code> (without “Controller”).</li>
+                <li>Action method = view file inside that folder.</li>
+            </ul>
+            <p>
+                Example:
+            </p>
+            <ul>
+                <li>Controller: <b>HomeController</b></li>
+                <li>Action: <b>About()</b></li>
+                <li>View file: <code>Views/Home/About.cshtml</code></li>
+            </ul>
+            <p>
+                Simple way to think: <b>Controller decides what to do, View shows it to the user</b>.
+            </p>
+        </div>
+    </div>
 
     <h2 class="text-secondary">🔹 Why Are Controllers Important?</h2>
     <div class="card shadow">
         <div class="card-body">
             <ul>
-                <li>They organize your code (separate logic for each part of the app).</li>
-                <li>They make your app follow the MVC pattern (Model-View-Controller).</li>
-                <li>They allow you to handle different user actions (open pages, submit forms, etc.).</li>
+                <li>They organize your code so it’s easy to understand.</li>
+                <li>They help your app follow the MVC pattern (Model-View-Controller).</li>
+                <li>They let you handle different user actions (open pages, submit forms, etc.).</li>
             </ul>
         </div>
     </div>

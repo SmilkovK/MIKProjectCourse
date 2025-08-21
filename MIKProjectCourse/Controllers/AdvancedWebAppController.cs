@@ -2,13 +2,9 @@
 
 namespace MIKProjectCourse.Controllers
 {
-    public class WebController : Controller
+    public class AdvancedWebAppController : Controller
     {
         public IActionResult Index()
-        {
-            return View();
-        }
-        public IActionResult Instalation()
         {
             return View();
         }
@@ -16,27 +12,39 @@ namespace MIKProjectCourse.Controllers
         {
             return View();
         }
-        public IActionResult Controllers()
+        public IActionResult Layers()
         {
             return View();
         }
-        public IActionResult ControllersExample()
+        public IActionResult ControllerLayer()
         {
             return View();
         }
-        public IActionResult Models()
+        public IActionResult RepositoryLayer()
         {
             return View();
         }
-        public IActionResult Views_()
+        public IActionResult ServiceLayer()
         {
             return View();
         }
-        public IActionResult Database()
+        public IActionResult Identity()
         {
             return View();
         }
-        public IActionResult Programcs()
+        public IActionResult IdentityRoles()
+        {
+            return View();
+        }
+        public IActionResult Authorization()
+        {
+            return View();
+        }
+        public IActionResult Authentication()
+        {
+            return View();
+        }
+        public IActionResult IdentityTutorial()
         {
             return View();
         }
