@@ -1,1 +1,180 @@
-﻿<p>This is the program.cs page</p>
+﻿@{
+    ViewData["Title"] = "Introduction to Program.cs in .NET";
+}
+
+<div class="container">
+    <h1>⚙️ Understanding Program.cs in .NET</h1>
+
+    <p>
+        The <strong>Program.cs</strong> file is the starting point of a .NET application.  
+        It is where your application is configured and where the web server starts.
+    </p>
+
+    <hr />
+
+    <h2>🔹 What is Program.cs?</h2>
+    <div class="card">
+        <div class="card-body">
+            <p>
+                <strong>Program.cs</strong> contains the code that configures your application, sets up services, 
+                middleware, and defines how your app responds to HTTP requests.
+            </p>
+            <p>
+                In ASP.NET Core, it usually contains the <strong>WebApplication.CreateBuilder</strong> and <strong>app.Run()</strong> methods.
+            </p>
+        </div>
+    </div>
+
+    <h2>🔹 Example Program.cs</h2>
+    <div class="card">
+        <div class="card-body">
+            <pre><code class="language-csharp">
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container
+builder.Services.AddControllersWithViews();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+
+app.UseRouting();
+
+app.UseAuthorization();
+
+// Map default route
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();
+            </code></pre>
+            <p>
+                ✅ This code sets up a basic web application with MVC, routing, and middleware.
+            </p>
+        </div>
+    </div>
+
+    <h2>🔹 Key Points About Program.cs</h2>
+    <ul class="list-group mb-3">
+        <li><strong>Builder:</strong> Used to configure services and application settings.</li>
+        <li><strong>App:</strong> Configures middleware and handles HTTP requests.</li>
+        <li><strong>Services:</strong> Things your app needs, like controllers, databases, or authentication.</li>
+        <li><strong>Middleware:</strong> Components that process requests and responses in the pipeline.</li>
+        <li><strong>app.Run():</strong> Starts the web application.</li>
+    </ul>
+
+    <hr />
+    <p class="text-center text-muted">
+        ✅ In short: Program.cs is the entry point where your .NET application starts, configures services, sets up middleware, and runs the web server.
+    </p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("Database", "Web")" class="btn btn-outline-primary ajax-link">← Introduction to .NET Database</a>
+        <a href="@Url.Action("Summary", "Web")" class="btn btn-primary ajax-link">Summary of Current Chapter →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+
+    p, ul {
+        line-height: 1.6;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    ul li {
+        margin-bottom: 8px;
+    }
+
+    hr {
+        border-top: 1px solid #ddd;
+        margin: 25px 0;
+    }
+
+    .card {
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        background-color: #f8f9fa;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    pre code {
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        display: block;
+        margin-bottom: 20px;
+        color: #333;
+        font-family: Consolas, monospace;
+    }
+
+    .list-group-item {
+        padding: 10px 15px;
+        margin-bottom: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: white;
+    }
+
+    .btn-outline-primary {
+        color: #007bff;
+        border-color: #007bff;
+        background-color: transparent;
+    }
+
+    p.text-muted {
+        color: #6c757d;
+    }
+</style>

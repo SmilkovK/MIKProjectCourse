@@ -1,1 +1,181 @@
-﻿<p>This is the database page</p>
+﻿@{
+    ViewData["Title"] = "Introduction to Databases in .NET";
+}
+
+<div class="container">
+    <h1>💾 Understanding Databases in .NET</h1>
+
+    <p>
+        Databases are where your application stores and retrieves data.  
+        In .NET, we commonly use <strong>SQL Server</strong> or <strong>SQLite</strong> with 
+        <strong>Entity Framework Core</strong> to interact with the database.
+    </p>
+
+    <hr />
+
+    <h2>🔹 What is a Database?</h2>
+    <div class="card">
+        <div class="card-body">
+            <p>
+                A <strong>database</strong> is a structured collection of data that your application can read from and write to.  
+                It organizes information in <strong>tables</strong> which contain rows (records) and columns (fields).
+            </p>
+            <p>
+                Example: A <strong>Users</strong> table might have columns like <code>Id</code>, <code>Name</code>, <code>Email</code>.
+            </p>
+        </div>
+    </div>
+
+    <h2>🔹 How .NET Works With Databases</h2>
+    <div class="card">
+        <div class="card-body">
+            <p>
+                In .NET, we usually use <strong>Entity Framework Core (EF Core)</strong> to interact with databases.  
+                EF Core allows you to work with data as <strong>C# objects</strong> instead of writing SQL manually.
+            </p>
+            <ul>
+                <li>Define <strong>Models</strong> which represent your tables.</li>
+                <li>Use a <strong>DbContext</strong> class to manage connections and queries.</li>
+                <li>Perform operations like <strong>Create, Read, Update, Delete (CRUD)</strong> on your data.</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>🔹 Example: User Model and DbContext</h2>
+    <div class="card">
+        <div class="card-body">
+            <p>Here’s a simple example of a User model and DbContext:</p>
+            <pre><code class="language-csharp">
+public class User
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Email { get; set; }
+}
+
+public class AppDbContext : DbContext
+{
+    public DbSet&lt;User&gt; Users { get; set; }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer("YourConnectionStringHere");
+    }
+}
+            </code></pre>
+            <p>
+                ✅ This allows you to access the <strong>Users</strong> table via C# code and perform CRUD operations.
+            </p>
+        </div>
+    </div>
+
+    <h2>🔹 Key Points About Databases in .NET</h2>
+    <ul class="list-group mb-3">
+        <li>Use <strong>EF Core</strong> for easier data access.</li>
+        <li>Models represent <strong>tables</strong> in the database.</li>
+        <li>DbContext manages <strong>connections and queries</strong>.</li>
+        <li>CRUD operations let you <strong>create, read, update, and delete data</strong> from the database.</li>
+    </ul>
+
+    <hr />
+    <p class="text-center text-muted">
+        ✅ In short: Databases store your data, Models represent the data in C#, and DbContext helps your application interact with it easily.
+    </p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("Views_", "Web")" class="btn btn-outline-primary ajax-link">← Introduction to views</a>
+        <a href="@Url.Action("Programcs", "Web")" class="btn btn-primary ajax-link">Introduction to Program.cs →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+
+    p, ul {
+        line-height: 1.6;
+    }
+
+    ul {
+        list-style-type: none;
+        padding-left: 0;
+    }
+
+    ul li {
+        margin-bottom: 8px;
+    }
+
+    hr {
+        border-top: 1px solid #ddd;
+        margin: 25px 0;
+    }
+
+    .card {
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #ddd;
+        background-color: #f8f9fa;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    pre code {
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 5px;
+        display: block;
+        margin-bottom: 20px;
+        color: #333;
+        font-family: Consolas, monospace;
+    }
+
+    .list-group-item {
+        padding: 10px 15px;
+        margin-bottom: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: white;
+    }
+
+    .btn-outline-primary {
+        color: #007bff;
+        border-color: #007bff;
+        background-color: transparent;
+    }
+
+    p.text-muted {
+        color: #6c757d;
+    }
+</style>

@@ -8,8 +8,8 @@
     <p>
         Now that you have installed Visual Studio and .NET, it’s time to dive into the fundamentals of 
         <strong>ASP.NET Core Web Development</strong>.  
-        In this section, we will explore the <strong>MVC pattern</strong> 
-        (Models, Views, Controllers), the <strong>client-server model</strong>, and how everything works together 
+        In this section, we will explore the <strong>MVC pattern</strong>, 
+        the <strong>client-server model</strong>, and how everything works together 
         to build modern web applications.
     </p>
 
@@ -48,7 +48,7 @@
 
     <hr />
 
-    <h2>Client-Server Model</h2>
+    <h2>🌍 Client-Server Model</h2>
     <p>
         ASP.NET Core applications follow the <strong>client-server architecture</strong>.  
         Here’s how it works:
@@ -63,7 +63,7 @@
 
     <hr />
 
-    <h2>Why Use MVC?</h2>
+    <h2>⚡ Why Use MVC?</h2>
     <p>The MVC pattern brings several advantages:</p>
     <ul>
         <li><strong>Separation of Concerns:</strong> Each part (Model, View, Controller) has a clear responsibility.</li>
@@ -80,25 +80,26 @@
     </p>
     <ul>
         <li>How to create and use <strong>Controllers</strong>.</li>
-        <li How to build <strong>Models</strong> and connect them to a database.</li>
+        <li>How to build <strong>Models</strong> and connect them to a database.</li>
         <li>How to design <strong>Views</strong> to display data to users.</li>
     </ul>
 
-    <p>
-        <a href="@Url.Action("ControllersBasics", "Web")" class="btn btn-primary">
-            Start with Controllers
-        </a>
-    </p>
+    <div class="navigation-buttons">
+        <a href="@Url.Action("Instalation", "Web")" class="btn btn-outline-primary ajax-link">← Instalation of Visual Studio 2022</a>
+        <a href="@Url.Action("Controllers", "Web")" class="btn btn-primary ajax-link">Introduction to Controllers →</a>
+    </div>
 </div>
 
 <style>
     .container {
         max-width: 800px;
+        margin: 0 auto;
     }
 
-    h1, h2, h3 {
+    h1, h2 {
         font-weight: bold;
         color: #333;
+        margin-top: 20px;
     }
 
     .container ul {
@@ -107,24 +108,41 @@
     }
 
     .container li {
-        margin-bottom: 5px;
+        margin-bottom: 8px;
     }
 
     hr {
         border-top: 1px solid #ddd;
+        margin: 20px 0;
+    }
+
+    .btn-primary, .btn-outline-primary {
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin: 5px;
     }
 
     .btn-primary {
         background-color: #007bff;
         color: white;
-        text-decoration: none;
-        padding: 10px 20px;
-        border-radius: 5px;
+        border: none;
     }
 
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-outline-primary {
+        border: 1px solid #007bff;
+        color: #007bff;
+        background-color: transparent;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: #007bff;
+        color: white;
+    }
 
     pre code {
         background-color: #f8f9fa;
@@ -133,5 +151,11 @@
         border-radius: 5px;
         display: block;
         margin-bottom: 20px;
+    }
+
+    .navigation-buttons {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
     }
 </style>

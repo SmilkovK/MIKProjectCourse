@@ -2,17 +2,20 @@
     ViewData["Title"] = "Controller Example with Code";
 }
 
-<div class="container mt-4">
-    <h1 class="text-primary">💻 Example Controller Explained</h1>
+<div class="container">
+    <h1>💻 Example Controller Explained</h1>
 
-    <p class="lead">
+    <p>
         Let's look at a simple example of a controller and understand what each part does.
     </p>
 
     <hr />
 
-    <h2 class="text-secondary">🔹 Example Controller</h2>
-    <pre><code class="language-csharp">
+    <h2>🔹 Example Controller</h2>
+    <div class="code-container">
+        <div class="code-header">C# Controller Example</div>
+        <div class="code-content">
+            <pre><code class="language-csharp">
 using Microsoft.AspNetCore.Mvc;
 
 namespace MyApp.Controllers
@@ -33,114 +36,125 @@ namespace MyApp.Controllers
         }
     }
 }
-    </code></pre>
+            </code></pre>
+        </div>
+    </div>
 
-    <h2 class="text-secondary">🔹 What This Code Does</h2>
-    <ul class="list-group mb-3">
-        <li class="list-group-item"><b>using Microsoft.AspNetCore.Mvc;</b> → Imports MVC library for controllers & views.</li>
-        <li class="list-group-item"><b>namespace MyApp.Controllers</b> → Organizes your controllers in a namespace.</li>
-        <li class="list-group-item"><b>public class HomeController : Controller</b> → Defines a controller class inheriting from Controller.</li>
-        <li class="list-group-item"><b>public IActionResult Index()</b> → Handles requests for the home page.</li>
-        <li class="list-group-item"><b>return View();</b> → Returns the view (web page) to the browser.</li>
-        <li class="list-group-item"><b>public IActionResult About()</b> → Handles requests for the About page.</li>
-        <li class="list-group-item"><b>ViewData["Message"]</b> → Passes data to the view.</li>
+    <h2>🔹 What This Code Does</h2>
+    <ul>
+        <li><strong>using Microsoft.AspNetCore.Mvc;</strong> → Imports MVC library for controllers & views.</li>
+        <li><strong>namespace MyApp.Controllers</strong> → Organizes your controllers in a namespace.</li>
+        <li><strong>public class HomeController : Controller</strong> → Defines a controller class inheriting from Controller.</li>
+        <li><strong>public IActionResult Index()</strong> → Handles requests for the home page.</li>
+        <li><strong>return View();</strong> → Returns the view (web page) to the browser.</li>
+        <li><strong>public IActionResult About()</strong> → Handles requests for the About page.</li>
+        <li><strong>ViewData["Message"]</strong> → Passes data to the view.</li>
     </ul>
 
-    <h2 class="text-secondary">🔹 How It Works Step by Step</h2>
-    <ul class="list-group mb-3">
-        <li>1️⃣ User goes to <code>/Home/Index</code> → <b>Index</b> action runs → Index View is displayed.</li>
-        <li>2️⃣ User goes to <code>/Home/About</code> → <b>About</b> action runs → About View is displayed with the message.</li>
+    <h2>🔹 How It Works Step by Step</h2>
+    <ul>
+        <li>1️⃣ User goes to <code>/Home/Index</code> → <strong>Index</strong> action runs → Index View is displayed.</li>
+        <li>2️⃣ User goes to <code>/Home/About</code> → <strong>About</strong> action runs → About View is displayed with the message.</li>
         <li>3️⃣ The controller decides which page and data to show → acts as a bridge between user and app.</li>
     </ul>
 
-    <p class="text-muted text-center">
-        ✅ Controllers manage requests, interact with models if needed, and return the appropriate views or data.
-    </p>
+    <p><strong>✅ In short:</strong> Controllers manage requests, interact with models if needed, and return the appropriate views or data.</p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("Controllers", "Web")" class="btn btn-outline-primary ajax-link">← Introduction to Controllers</a>
+        <a href="@Url.Action("Models", "Web")" class="btn btn-primary ajax-link">Introduction to models →</a>
+    </div>
 </div>
 
 <style>
-    :root {
-        --background-color: #ffffff;
-        --text-color: #333333;
-        --card-background: #f8f9fa;
-        --border-color: #ddd;
-        --primary-color: #007bff;
-        --secondary-color: #495057;
-        --muted-color: #6c757d;
-    }
-
-    @@media (prefers-color-scheme: dark) {
-        :root {
-            --background-color: #121212;
-            --text-color: #e0e0e0;
-            --card-background: #1e1e1e;
-            --border-color: #333333;
-            --primary-color: #3399ff;
-            --secondary-color: #bbbbbb;
-            --muted-color: #888888;
-        }
-    }
-
-    body {
-        background-color: var(--background-color);
-        color: var(--text-color);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
     .container {
         max-width: 800px;
-        margin: auto;
         padding: 20px;
+        background-color: var(--bs-body-bg);
     }
 
-    h1, h2, h3 {
-        font-weight: bold;
-        color: var(--text-color);
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
     }
 
-    .text-primary {
-        color: var(--primary-color);
+    h2 {
+        color: var(--bs-heading-color);
+        margin-top: 25px;
+        margin-bottom: 15px;
     }
 
-    .text-secondary {
-        color: var(--secondary-color);
+    .container p,
+    .container ul {
+        color: var(--bs-body-color);
+        line-height: 1.6;
     }
 
-    .list-group {
+    .container ul {
         list-style-type: none;
         padding-left: 0;
     }
 
-    .list-group-item {
-        padding: 10px 15px;
-        margin-bottom: 5px;
-        border: 1px solid var(--border-color);
-        border-radius: 5px;
-        background-color: var(--card-background);
-        color: var(--text-color);
+    .container li {
+        margin-bottom: 8px;
     }
 
     hr {
-        border-top: 1px solid var(--border-color);
+        border-top: 1px solid var(--bs-border-color);
         margin: 25px 0;
     }
 
-    pre code {
-        background-color: var(--card-background);
-        border: 1px solid var(--border-color);
-        padding: 10px;
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
         border-radius: 5px;
-        display: block;
-        margin-bottom: 20px;
-        font-family: Consolas, monospace;
-        color: var(--text-color);
+        overflow: hidden;
+        background-color: var(--code-bg);
     }
 
-    .lead {
-        font-size: 1.1rem;
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
     }
 
-    p.text-muted {
-        color: var(--muted-color);
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
     }
 </style>

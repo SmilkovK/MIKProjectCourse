@@ -2,42 +2,42 @@
     ViewData["Title"] = "Introduction to Models";
 }
 
-<div class="container mt-4">
-    <h1 class="text-primary">📌 Understanding Models in ASP.NET Core MVC</h1>
-    <p class="lead">
-        In ASP.NET Core MVC, <b>Models</b> are the part of your application that handles <b>data and business logic</b>.  
+<div class="container">
+    <h1>📌 Understanding Models in ASP.NET Core MVC</h1>
+
+    <p>
+        In ASP.NET Core MVC, <strong>Models</strong> are the part of your application that handles <strong>data and business logic</strong>.  
         They represent real-world things like users, products, or orders.
     </p>
 
     <hr />
 
-    <h2 class="text-secondary">🔹 What is a Model?</h2>
-    <div class="card mb-3 shadow">
+    <h2>🔹 What is a Model?</h2>
+    <div class="card">
         <div class="card-body">
             <p>
-                A <b>Model</b> is a C# class that defines the structure of your data.  
-                For example, a <b>User</b> model might have properties like <code>Name</code>, <code>Email</code>, and <code>Age</code>.
+                A <strong>Model</strong> is a C# class that defines the structure of your data.  
+                For example, a <strong>User</strong> model might have properties like <code>Name</code>, <code>Email</code>, and <code>Age</code>.
             </p>
             <p>
-                Think of a model like a <b>blueprint</b> for your data. It tells the application what information exists and how it is stored.
+                Think of a model like a <strong>blueprint</strong> for your data. It tells the application what information exists and how it is stored.
             </p>
         </div>
     </div>
 
-    <h2 class="text-secondary">🔹 Why Do We Need Models?</h2>
+    <h2>🔹 Why Do We Need Models?</h2>
     <ul class="list-group mb-3">
-        <li class="list-group-item">They define the <b>structure of data</b> in your application.</li>
-        <li class="list-group-item">They allow your app to <b>store, retrieve, and manipulate data</b> easily.</li>
-        <li class="list-group-item">They connect with <b>databases</b> using Entity Framework Core.</li>
+        <li class="list-group-item">They define the <strong>structure of data</strong> in your application.</li>
+        <li class="list-group-item">They allow your app to <strong>store, retrieve, and manipulate data</strong> easily.</li>
+        <li class="list-group-item">They connect with <strong>databases</strong> using Entity Framework Core.</li>
         <li class="list-group-item">They help keep your code organized by separating data logic from UI logic.</li>
     </ul>
 
-    <h2 class="text-secondary">🔹 Models and Controllers</h2>
-    <div class="card mb-3 shadow">
+    <h2>🔹 Models and Controllers</h2>
+    <div class="card">
         <div class="card-body">
             <p>
-                Controllers use models to <b>get or update data</b>.  
-                For example:
+                Controllers use models to <strong>get or update data</strong>. For example:
             </p>
             <ul>
                 <li>Controller asks the model for a list of users.</li>
@@ -45,19 +45,17 @@
             </ul>
             <p>
                 Think of it like a restaurant:  
-                <b>Model</b> = the kitchen (where the food/data is prepared),  
-                <b>Controller</b> = the waiter (who takes orders and delivers food),  
-                <b>View</b> = the plate and presentation (what the user sees).
+                <strong>Model</strong> = the kitchen (where the food/data is prepared),  
+                <strong>Controller</strong> = the waiter (who takes orders and delivers food),  
+                <strong>View</strong> = the plate and presentation (what the user sees).
             </p>
         </div>
     </div>
 
-    <h2 class="text-secondary">🔹 How Models Look in Code</h2>
-    <div class="card mb-3 shadow">
+    <h2>🔹 How Models Look in Code</h2>
+    <div class="card">
         <div class="card-body">
-            <p>
-                Here’s a simple example of a <b>User</b> model:
-            </p>
+            <p>Here’s a simple example of a <strong>User</strong> model:</p>
             <pre><code class="language-csharp">
 public class User
 {
@@ -69,117 +67,118 @@ public class User
             </code></pre>
             <p>
                 ✅ Each property represents a piece of information about the user.  
-                Controllers can use this model to <b>create, read, update, or delete users</b> in the database.
+                Controllers can use this model to <strong>create, read, update, or delete users</strong> in the database.
             </p>
         </div>
     </div>
 
-    <h2 class="text-secondary">🔹 Key Points About Models</h2>
+    <h2>🔹 Key Points About Models</h2>
     <ul class="list-group mb-3">
-        <li>Models represent the <b>data</b> in your app.</li>
-        <li>Models are usually plain C# classes (<b>POCOs</b> – Plain Old CLR Objects).</li>
-        <li>They work together with <b>Controllers</b> and <b>Views</b> to show and update information.</li>
-        <li>They often map to <b>database tables</b> when using Entity Framework Core.</li>
+        <li>Models represent the <strong>data</strong> in your app.</li>
+        <li>Models are usually plain C# classes (<strong>POCOs</strong> – Plain Old CLR Objects).</li>
+        <li>They work together with <strong>Controllers</strong> and <strong>Views</strong> to show and update information.</li>
+        <li>They often map to <strong>database tables</strong> when using Entity Framework Core.</li>
     </ul>
 
     <hr />
     <p class="text-center text-muted">
         ✅ In short: Models = your data, Controllers = the middle-man, Views = what the user sees.
     </p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("ControllersExample", "Web")" class="btn btn-outline-primary ajax-link">← Controller Example with code</a>
+        <a href="@Url.Action("Views_", "Web")" class="btn btn-primary ajax-link">Introduction to views →</a>
+    </div>
 </div>
 
 <style>
-    :root {
-        --background-color: #ffffff;
-        --text-color: #333333;
-        --card-background: #f8f9fa;
-        --border-color: #ddd;
-        --primary-color: #007bff;
-        --secondary-color: #495057;
-        --muted-color: #6c757d;
-    }
-
-    @@media (prefers-color-scheme: dark) {
-        :root {
-            --background-color: #121212;
-            --text-color: #e0e0e0;
-            --card-background: #1e1e1e;
-            --border-color: #333333;
-            --primary-color: #3399ff;
-            --secondary-color: #bbbbbb;
-            --muted-color: #888888;
-        }
-    }
-
-    body {
-        background-color: var(--background-color);
-        color: var(--text-color);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
     .container {
         max-width: 800px;
-        margin: auto;
         padding: 20px;
     }
 
-    h1, h2, h3 {
-        font-weight: bold;
-        color: var(--text-color);
+    h1 {
+        margin-bottom: 20px;
     }
 
-    .text-primary {
-        color: var(--primary-color);
+    h2 {
+        margin-top: 25px;
+        margin-bottom: 15px;
     }
 
-    .text-secondary {
-        color: var(--secondary-color);
+    p, ul {
+        line-height: 1.6;
     }
 
-    .list-group {
+    ul {
         list-style-type: none;
         padding-left: 0;
     }
 
-    .list-group-item {
-        padding: 10px 15px;
-        margin-bottom: 5px;
-        border: 1px solid var(--border-color);
-        border-radius: 5px;
-        background-color: var(--card-background);
-        color: var(--text-color);
+    ul li {
+        margin-bottom: 8px;
+    }
+
+    hr {
+        border-top: 1px solid #ddd;
+        margin: 25px 0;
     }
 
     .card {
         border-radius: 8px;
         margin-bottom: 20px;
+        border: 1px solid #ddd;
+        background-color: #f8f9fa;
     }
 
     .card-body {
         padding: 15px;
-        background-color: var(--card-background);
-    }
-
-    hr {
-        border-top: 1px solid var(--border-color);
-        margin: 25px 0;
-    }
-
-    .lead {
-        font-size: 1.1rem;
     }
 
     pre code {
-        background-color: var(--card-background);
-        border: 1px solid var(--border-color);
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
         padding: 10px;
         border-radius: 5px;
         display: block;
         margin-bottom: 20px;
-        color: var(--text-color);
+        color: #333;
+        font-family: Consolas, monospace;
+    }
+
+    .list-group-item {
+        padding: 10px 15px;
+        margin-bottom: 5px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        color: white;
+    }
+
+    .btn-outline-primary {
+        color: #007bff;
+        border-color: #007bff;
+        background-color: transparent;
     }
 
     p.text-muted {
-        color: var(--muted-color);
+        color: #6c757d;
     }
 </style>

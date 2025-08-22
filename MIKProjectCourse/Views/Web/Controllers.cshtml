@@ -2,190 +2,178 @@
     ViewData["Title"] = "Introduction to Controllers";
 }
 
-<div class="container mt-4">
-    <h1 class="text-primary">📌 Understanding Controllers in ASP.NET Core MVC</h1>
-    <p class="lead">
-        Controllers are one of the <b>main building blocks</b> of an ASP.NET Core MVC application. 
+<div class="container">
+    <h1>📌 Understanding Controllers in ASP.NET Core MVC</h1>
+    <p>
+        Controllers are one of the <b>main building blocks</b> of an ASP.NET Core MVC application.  
         They act as the “middle-man” between the <b>user (client)</b> and your <b>application logic & database (server)</b>.
     </p>
 
     <hr />
 
-    <h2 class="text-secondary">🔹 What is a Controller?</h2>
-    <div class="card mb-3 shadow">
-        <div class="card-body">
-            <p>
-                A <b>Controller</b> is a C# class that handles incoming <b>HTTP requests</b> (like when a user clicks a link or submits a form) 
-                and sends back a <b>response</b> (like showing a web page or returning data).
-            </p>
-            <p>
-                Think of it like a <b>traffic manager</b>: it decides what should happen when someone visits a page on your website.
-            </p>
-        </div>
+    <h2>🔹 What is a Controller?</h2>
+    <div class="info-box">
+        <p>
+            A <b>Controller</b> is a C# class that handles incoming <b>HTTP requests</b> (like when a user clicks a link or submits a form) 
+            and sends back a <b>response</b> (like showing a web page or returning data).
+        </p>
+        <p>
+            Think of it like a <b>traffic manager</b>: it decides what should happen when someone visits a page on your website.
+        </p>
     </div>
 
-    <h2 class="text-secondary">🔹 How Does It Work?</h2>
-    <ul class="list-group mb-3">
-        <li class="list-group-item">1️⃣ The <b>Client (browser)</b> sends a request (like going to <code>/Home/About</code>).</li>
-        <li class="list-group-item">2️⃣ The <b>Controller</b> receives that request.</li>
-        <li class="list-group-item">3️⃣ The Controller decides whether to use <b>Models</b> (data and logic) and then sends it to a <b>View</b>.</li>
-        <li class="list-group-item">4️⃣ The <b>View</b> creates HTML and sends it back to the client.</li>
+    <h2>🔹 How Does It Work?</h2>
+    <ul>
+        <li>1️⃣ The <b>Client (browser)</b> sends a request (like going to <code>/Home/About</code>).</li>
+        <li>2️⃣ The <b>Controller</b> receives that request.</li>
+        <li>3️⃣ The Controller decides whether to use <b>Models</b> (data and logic) and then sends it to a <b>View</b>.</li>
+        <li>4️⃣ The <b>View</b> creates HTML and sends it back to the client.</li>
     </ul>
 
-    <h2 class="text-secondary">🔹 Key Points About Controllers</h2>
-    <ul class="list-group mb-3">
+    <h2>🔹 Key Points About Controllers</h2>
+    <ul>
         <li><b>Controller = Class</b> (usually ends with “Controller”).</li>
         <li><b>Action = Method</b> inside the controller that does something.</li>
         <li>Actions usually <b>return Views</b> (HTML pages) or <b>data</b> (like JSON for APIs).</li>
         <li>Controllers <b>connect Models and Views</b>.</li>
     </ul>
 
-    <h2 class="text-secondary">🔹 Controller Names and URLs (Beginner-Friendly)</h2>
-    <div class="card mb-3 shadow">
-        <div class="card-body">
-            <p>
-                When you create a controller, its <b>name helps decide the website URL</b>.  
-                For beginners, here’s a simple way to remember:
-            </p>
-            <ul>
-                <li>Controller class = <b>HomeController</b> → URL prefix = <code>/Home</code></li>
-                <li>Action method = <b>Index()</b> → URL = <code>/Home/Index</code></li>
-                <li>Other method = <b>About()</b> → URL = <code>/Home/About</code></li>
-            </ul>
-            <p>
-                Tip: <b>Index()</b> is special – it’s the default action, so <code>/Home</code> will also show the Index page.
-            </p>
-            <p>
-                Think of it like a restaurant: <b>HomeController</b> is the restaurant building, <b>Index()</b> is the main door, and <b>About()</b> is a side door.
-            </p>
-        </div>
+    <h2>🔹 Controller Names and URLs (Beginner-Friendly)</h2>
+    <div class="info-box">
+        <p>
+            When you create a controller, its <b>name helps decide the website URL</b>.  
+            For beginners, here’s a simple way to remember:
+        </p>
+        <ul>
+            <li>Controller class = <b>HomeController</b> → URL prefix = <code>/Home</code></li>
+            <li>Action method = <b>Index()</b> → URL = <code>/Home/Index</code></li>
+            <li>Other method = <b>About()</b> → URL = <code>/Home/About</code></li>
+        </ul>
+        <p>
+            Tip: <b>Index()</b> is special – it’s the default action, so <code>/Home</code> will also show the Index page.
+        </p>
+        <p>
+            Think of it like a restaurant: <b>HomeController</b> is the restaurant building, <b>Index()</b> is the main door, and <b>About()</b> is a side door.
+        </p>
     </div>
 
-    <h2 class="text-secondary">🔹 How Controllers and Views Connect</h2>
-    <div class="card mb-3 shadow">
-        <div class="card-body">
-            <p>
-                Views are the HTML pages that users see. Controllers tell which view to show.  
-                By default:
-            </p>
-            <ul>
-                <li>Controller = folder inside <code>Views</code> (without “Controller”).</li>
-                <li>Action method = view file inside that folder.</li>
-            </ul>
-            <p>
-                Example:
-            </p>
-            <ul>
-                <li>Controller: <b>HomeController</b></li>
-                <li>Action: <b>About()</b></li>
-                <li>View file: <code>Views/Home/About.cshtml</code></li>
-            </ul>
-            <p>
-                Simple way to think: <b>Controller decides what to do, View shows it to the user</b>.
-            </p>
-        </div>
+    <h2>🔹 How Controllers and Views Connect</h2>
+    <div class="info-box">
+        <p>
+            Views are the HTML pages that users see. Controllers tell which view to show.  
+            By default:
+        </p>
+        <ul>
+            <li>Controller = folder inside <code>Views</code> (without “Controller”).</li>
+            <li>Action method = view file inside that folder.</li>
+        </ul>
+        <p>Example:</p>
+        <ul>
+            <li>Controller: <b>HomeController</b></li>
+            <li>Action: <b>About()</b></li>
+            <li>View file: <code>Views/Home/About.cshtml</code></li>
+        </ul>
+        <p>
+            Simple way to think: <b>Controller decides what to do, View shows it to the user</b>.
+        </p>
     </div>
 
-    <h2 class="text-secondary">🔹 Why Are Controllers Important?</h2>
-    <div class="card shadow">
-        <div class="card-body">
-            <ul>
-                <li>They organize your code so it’s easy to understand.</li>
-                <li>They help your app follow the MVC pattern (Model-View-Controller).</li>
-                <li>They let you handle different user actions (open pages, submit forms, etc.).</li>
-            </ul>
-        </div>
+    <h2>🔹 Why Are Controllers Important?</h2>
+    <div class="info-box">
+        <ul>
+            <li>They organize your code so it’s easy to understand.</li>
+            <li>They help your app follow the MVC pattern (Model-View-Controller).</li>
+            <li>They let you handle different user actions (open pages, submit forms, etc.).</li>
+        </ul>
     </div>
 
     <hr />
-    <p class="text-center text-muted">
+    <p class="highlight">
         ✅ In short: A Controller listens to the user → decides what to do → calls Models if needed → 
         then returns a View (page) or Data.
     </p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("Introduction", "Web")" class="btn btn-outline-primary ajax-link">← Introduction to Web Programing</a>
+        <a href="@Url.Action("ControllersExample", "Web")" class="btn btn-primary ajax-link">Controller Example with code →</a>
+    </div>
 </div>
 
 <style>
-    :root {
-        --background-color: #ffffff;
-        --text-color: #333333;
-        --card-background: #f8f9fa;
-        --border-color: #ddd;
-        --primary-color: #007bff;
-        --secondary-color: #495057;
-        --muted-color: #6c757d;
-    }
-
-    @@media (prefers-color-scheme: dark) {
-        :root {
-            --background-color: #121212;
-            --text-color: #e0e0e0;
-            --card-background: #1e1e1e;
-            --border-color: #333333;
-            --primary-color: #3399ff;
-            --secondary-color: #bbbbbb;
-            --muted-color: #888888;
-        }
-    }
-
-    body {
-        background-color: var(--background-color);
-        color: var(--text-color);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
     .container {
         max-width: 800px;
-        margin: auto;
-        padding: 20px;
+        margin: 0 auto;
     }
 
-    h1, h2, h3 {
+    h1, h2 {
         font-weight: bold;
-        color: var(--text-color);
+        color: #333;
+        margin-top: 20px;
     }
 
-    .text-primary {
-        color: var(--primary-color);
+    p {
+        margin-bottom: 15px;
     }
 
-    .text-secondary {
-        color: var(--secondary-color);
-    }
-
-    .list-group {
+    ul {
         list-style-type: none;
         padding-left: 0;
     }
 
-    .list-group-item {
-        padding: 10px 15px;
-        margin-bottom: 5px;
-        border: 1px solid var(--border-color);
-        border-radius: 5px;
-        background-color: var(--card-background);
-        color: var(--text-color);
+    ul li {
+        margin-bottom: 8px;
     }
 
-    .card {
+    .info-box {
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        padding: 15px;
         border-radius: 8px;
         margin-bottom: 20px;
     }
 
-    .card-body {
-        padding: 15px;
-        background-color: var(--card-background);
+    .highlight {
+        text-align: center;
+        color: #555;
+        font-style: italic;
     }
 
     hr {
-        border-top: 1px solid var(--border-color);
+        border-top: 1px solid #ddd;
         margin: 25px 0;
     }
 
-    .lead {
-        font-size: 1.1rem;
+    .btn-primary, .btn-outline-primary {
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin: 5px;
     }
 
-    p.text-muted {
-        color: var(--muted-color);
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-outline-primary {
+        border: 1px solid #007bff;
+        color: #007bff;
+        background-color: transparent;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .navigation-buttons {
+        margin-top: 30px;
+        display: flex;
+        justify-content: space-between;
     }
 </style>
