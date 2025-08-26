@@ -4,7 +4,11 @@
 
 <div class="container">
     <h1>Interfaces in Object-Oriented Programming (OOP)</h1>
-    <p>An <strong>interface</strong> is a contract that defines a set of methods and properties that a class must implement. Interfaces allow you to achieve abstraction and multiple inheritance in C#.</p>
+    <p>
+        An <strong>interface</strong> is a contract that defines a set of methods and properties that a class must implement.  
+        Interfaces allow you to achieve abstraction and simulate multiple inheritance in C#.  
+        This is a more advanced concept, and we will revisit interfaces in the <strong>Advanced Web</strong> section to explore them in greater detail.
+    </p>
 
     <h2>Example: Creating and Implementing an Interface</h2>
     <div class="code-container">
@@ -45,16 +49,29 @@ myCar.StopEngine();
         </div>
     </div>
 
+    <p>
+        In this example, the <strong>IVehicle</strong> interface defines the methods <strong>StartEngine</strong> and <strong>StopEngine</strong> without implementation.  
+        The <strong>Car</strong> class implements the interface and provides the actual behavior for both methods.  
+        When we call <code>myCar.StartEngine()</code> or <code>myCar.StopEngine()</code>, the corresponding method in the <strong>Car</strong> class executes.
+    </p>
+    <p><strong>Expected Output:</strong></p>
+    <pre>
+Car engine started.
+Car engine stopped.
+    </pre>
+
     <h2>Key Points About Interfaces</h2>
     <ul>
-        <li>An interface only contains method and property signatures, not implementation.</li>
-        <li>A class implementing an interface must provide implementation for all members.</li>
-        <li>Interfaces allow for flexible and maintainable code through abstraction.</li>
-        <li>Multiple interfaces can be implemented by a single class.</li>
+        <li>An interface contains only method and property signatures, not implementations.</li>
+        <li>A class implementing an interface must provide implementations for all its members.</li>
+        <li>Interfaces provide abstraction, which allows you to write flexible and maintainable code.</li>
+        <li>A class can implement multiple interfaces, allowing a form of multiple inheritance.</li>
+        <li>Interfaces are widely used in frameworks and design patterns to decouple code and increase flexibility.</li>
     </ul>
 
-    <h2>Exercise</h2>
-    <p>Create an interface <code>IPayment</code> with methods <code>Pay()</code> and <code>Refund()</code>. Then create a class <code>CreditCardPayment</code> that implements this interface and provides messages for each method.</p>
+    <p>
+        Note: Interfaces are a more complex topic in OOP. While this example gives a basic understanding, we will revisit and explore them in much greater depth in the <strong>Advanced Web</strong> section.
+    </p>
 
     <div class="navigation-buttons">
         <a href="@Url.Action("Abstraction", "OOP")" class="btn btn-outline-primary ajax-link">← Abstraction</a>

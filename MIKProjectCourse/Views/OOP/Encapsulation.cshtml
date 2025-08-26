@@ -3,65 +3,130 @@
 }
 
 <div class="container">
-    <h1>Encapsulation in Object-Oriented Programming (OOP)</h1>
-    <p><strong>Encapsulation</strong> is the concept of restricting direct access to some of an object's components, and providing controlled access through methods or properties. This helps protect the integrity of the data and prevents unintended modifications.</p>
+    <h1>Encapsulation in OOP</h1>
+    <p>
+        In Object-Oriented Programming, <strong>Encapsulation</strong> is about <em>controlling access</em> to the data inside a class.  
+        It helps us protect important information and make sure objects behave correctly.  
+        Remember how in the <a href="@Url.Action("Classes", "OOP")">Classes</a> section we used <code>public</code>?  
+        Encapsulation explains why and when we use <code>public</code>, <code>private</code>, or <code>protected</code>.
+    </p>
 
-    <h2>Example: Encapsulation in C#</h2>
+    <h2>Public</h2>
+    <p>
+        A <code>public</code> property or method can be accessed from <strong>anywhere</strong> in your program.  
+        We used <code>public</code> in previous examples to let objects share or display data:
+    </p>
     <div class="code-container">
-        <div class="code-header">Using Properties to Encapsulate Fields</div>
+        <div class="code-header">Example: Public Property</div>
         <div class="code-content">
 <pre><code class="language-csharp">
-public class BankAccount
+public class Product
 {
-    private decimal balance; // private field
-
-    public decimal Balance
-    {
-        get { return balance; }
-        private set { balance = value; } // controlled access
-    }
-
-    public BankAccount(decimal initialBalance)
-    {
-        balance = initialBalance;
-    }
-
-    public void Deposit(decimal amount)
-    {
-        if(amount > 0)
-            balance += amount;
-    }
-
-    public void Withdraw(decimal amount)
-    {
-        if(amount > 0 && amount <= balance)
-            balance -= amount;
-    }
+    public string Name { get; set; }
 }
 
-// Usage
-BankAccount account = new BankAccount(1000);
-account.Deposit(500);
-account.Withdraw(200);
-Console.WriteLine(account.Balance); // Output: 1300
+Product laptop = new Product();
+laptop.Name = "Dell XPS 13"; // ✅ Allowed: public property can be accessed
+Console.WriteLine(laptop.Name); // Output: Dell XPS 13
 </code></pre>
         </div>
     </div>
 
-    <h2>Key Points About Encapsulation</h2>
+    <h2>Private</h2>
+    <p>
+        A <code>private</code> property or method can only be accessed <strong>inside the class</strong>.  
+        This is useful to protect important data:
+    </p>
+    <div class="code-container">
+        <div class="code-header">Example: Private Field</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public class BankAccount
+{
+    private decimal balance; // Only accessible inside this class
+
+    public void Deposit(decimal amount)
+    {
+        balance += amount; // ✅ Allowed: inside the class
+    }
+
+    public decimal GetBalance()
+    {
+        return balance; // ✅ Access through method
+    }
+}
+
+// Using the class
+BankAccount account = new BankAccount();
+account.Deposit(100);
+Console.WriteLine(account.GetBalance()); // Output: 100
+</code></pre>
+        </div>
+    </div>
+    <p>❌ Failed Example:</p>
+    <div class="code-container">
+<pre><code class="language-csharp">
+// Trying to access private field directly will fail
+account.balance = 500; // Not allowed
+</code></pre>
+        </div>
+    <p>Explanation: Private fields cannot be accessed from outside the class. You must use public methods to interact with them.</p>
+
+    <h2>Protected</h2>
+    <p>
+        A <code>protected</code> property or method can be accessed inside the class and by classes that <strong>inherit from it</strong>.  
+        It's like a private area that subclasses are allowed to use:
+    </p>
+    <div class="code-container">
+        <div class="code-header">Example: Protected Field</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public class Employee
+{
+    protected int employeeId; // Accessible inside class and subclasses
+
+    public void ShowId()
+    {
+        Console.WriteLine(employeeId); // ✅ Allowed inside the class
+    }
+}
+
+public class Manager : Employee
+{
+    public void SetId(int id)
+    {
+        employeeId = id; // ✅ Allowed in subclass
+    }
+}
+
+// Using the class
+Manager m = new Manager();
+m.SetId(101);
+m.ShowId(); // Output: 101
+</code></pre>
+        </div>
+    </div>
+    <p>❌ Failed Example:</p>
+    <div class="code-container">
+<pre><code class="language-csharp">
+// Cannot access protected field directly from outside, even in inherited class
+m.employeeId = 500; // Not allowed
+</code></pre>
+        </div>
+    <p>Explanation: You can give the inherited class access to a protected field, but you <strong>cannot access the protected field directly from an instance of the inherited class</strong>. You must use a method inside the class or subclass.</p>
+
+    <h2>Key Takeaways</h2>
     <ul>
-        <li>Encapsulation hides internal data from outside classes using <code>private</code> fields.</li>
-        <li>Access to the data is provided through <code>public</code> methods or properties.</li>
-        <li>It helps maintain data integrity and prevents unwanted changes.</li>
-        <li>Encapsulation is a core principle of OOP along with inheritance, polymorphism, and abstraction.</li>
+        <li><strong>Encapsulation</strong> is about protecting your class data and controlling access.</li>
+        <li><code>public</code> → anyone can access.</li>
+        <li><code>private</code> → only the class itself can access.</li>
+        <li><code>protected</code> → the class and its subclasses can access.</li>
+        <li>Trying to access <code>private</code> or <code>protected</code> from outside the class will fail — that’s why encapsulation is important!</li>
     </ul>
 
-    <h2>Exercise</h2>
-    <p>Create a class <code>Student</code> with a private field <code>grade</code>. Add a public property <code>Grade</code> that allows reading the value but only allows setting it if the grade is between 0 and 100. Test your class by creating an object and setting different grades.</p>
-
     <div class="navigation-buttons">
-        <a href="@Url.Action("Objects", "OOP")" class="btn btn-outline-primary ajax-link">← Objects</a>
-        <a href="@Url.Action("Polymorphism", "OOP")" class="btn btn-primary ajax-link">Polymorphism →</a>
+        <a href="@Url.Action("Inheritance", "OOP")" class="btn btn-outline-primary ajax-link">← Inheritance</a>
+        <a href="@Url.Action("Polymorphism", "OOP")" class="btn btn-primary ajax-link">Next: Polymorphism →</a>
     </div>
 </div>
 

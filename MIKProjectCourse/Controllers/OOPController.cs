@@ -24,6 +24,10 @@ namespace MIKProjectCourse.Controllers
         {
             return View();
         }
+        public IActionResult Inheritance()
+        {
+            return View();
+        }
         public IActionResult Polymorphism()
         {
             return View();

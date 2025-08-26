@@ -4,7 +4,10 @@
 
 <div class="container">
     <h1>Polymorphism in Object-Oriented Programming (OOP)</h1>
-    <p><strong>Polymorphism</strong> allows objects to take many forms. In C#, polymorphism is achieved through <strong>method overloading</strong> (compile-time) and <strong>method overriding</strong> (runtime).</p>
+    <p>
+        <strong>Polymorphism</strong> allows objects to take many forms. In C#, it is achieved through <strong>method overloading</strong> (compile-time) and <strong>method overriding</strong> (runtime).  
+        Polymorphism helps make code more flexible, reusable, and easier to maintain.
+    </p>
 
     <h2>Example 1: Method Overloading (Compile-Time Polymorphism)</h2>
     <div class="code-container">
@@ -24,13 +27,23 @@ public class Calculator
     }
 }
 
-// Usage
 Calculator calc = new Calculator();
-Console.WriteLine(calc.Add(2, 3));      // Output: 5
-Console.WriteLine(calc.Add(2.5, 3.5));  // Output: 6
+Console.WriteLine(calc.Add(2, 3));
+Console.WriteLine(calc.Add(2.5, 3.5));
 </code></pre>
         </div>
     </div>
+
+    <p>
+        In this example, the <strong>Calculator</strong> class defines two <strong>Add</strong> methods with different parameter types: <code>int</code> and <code>double</code>.  
+        This is <strong>method overloading</strong>, which allows the same method name to handle different input types.  
+        When we call <code>calc.Add(2, 3)</code>, the compiler chooses the <code>int</code> version. When we call <code>calc.Add(2.5, 3.5)</code>, it chooses the <code>double</code> version.
+    </p>
+    <p><strong>Expected Output:</strong></p>
+    <pre>
+5
+6
+    </pre>
 
     <h2>Example 2: Method Overriding (Runtime Polymorphism)</h2>
     <div class="code-container">
@@ -53,23 +66,41 @@ public class Dog : Animal
     }
 }
 
-// Usage
-Animal myAnimal = new Dog();
-myAnimal.MakeSound(); // Output: Bark!
+public class Cat : Animal
+{
+    public override void MakeSound()
+    {
+        Console.WriteLine("Meow!");
+    }
+}
+
+Animal myAnimal1 = new Dog();
+Animal myAnimal2 = new Cat();
+myAnimal1.MakeSound();
+myAnimal2.MakeSound();
 </code></pre>
         </div>
     </div>
 
+    <p>
+        Here, the base class <strong>Animal</strong> defines a method <strong>MakeSound</strong> with the <code>virtual</code> keyword.  
+        The <strong>Dog</strong> and <strong>Cat</strong> classes <strong>override</strong> this method to provide their own implementations.  
+        This is <strong>runtime polymorphism</strong>: the actual method that runs depends on the object type at runtime, even if the reference type is <strong>Animal</strong>.
+    </p>
+    <p><strong>Expected Output:</strong></p>
+    <pre>
+Bark!
+Meow!
+    </pre>
+
     <h2>Key Points About Polymorphism</h2>
     <ul>
-        <li>Method overloading allows multiple methods with the same name but different parameters.</li>
-        <li>Method overriding allows derived classes to provide a specific implementation of a base class method.</li>
-        <li>Polymorphism improves code flexibility and reusability.</li>
-        <li>Use the <code>virtual</code> keyword in the base class and <code>override</code> in the derived class for runtime polymorphism.</li>
+        <li>Method overloading allows the same method name with different parameters. The compiler decides which method to call at compile time.</li>
+        <li>Method overriding allows a derived class to provide a specific implementation of a base class method. The runtime decides which method to call based on the actual object type.</li>
+        <li>Polymorphism makes your code flexible, reusable, and easier to maintain.</li>
+        <li>Use <code>virtual</code> in the base class and <code>override</code> in the derived class for runtime polymorphism.</li>
+        <li>You can mix multiple derived classes and call the same method on a base class reference to get different behaviors.</li>
     </ul>
-
-    <h2>Exercise</h2>
-    <p>Create a base class <code>Shape</code> with a virtual method <code>Draw()</code>. Create two derived classes <code>Circle</code> and <code>Rectangle</code> that override the <code>Draw()</code> method to display specific messages. Test by calling <code>Draw()</code> on each object.</p>
 
     <div class="navigation-buttons">
         <a href="@Url.Action("Encapsulation", "OOP")" class="btn btn-outline-primary ajax-link">← Encapsulation</a>
@@ -97,3 +128,59 @@ myAnimal.MakeSound(); // Output: Bark!
     ul {
         margin-left: 20px;
         padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

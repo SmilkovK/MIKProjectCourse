@@ -4,7 +4,9 @@
 
 <div class="container">
     <h1>Introduction to Object-Oriented Programming (OOP)</h1>
-    <p><strong>Object-Oriented Programming</strong> is a programming paradigm based on the concept of <strong>objects</strong>, which represent real-world entities. Objects contain <strong>data</strong> (properties) and <strong>behavior</strong> (methods).</p>
+    <p>
+        <strong>Object-Oriented Programming</strong> is a programming paradigm based on the concept of <strong>objects</strong>, which represent real-world entities. Objects contain <strong>data</strong> (properties) and <strong>behavior</strong> (methods).
+    </p>
 
     <h2>Key Concepts of OOP</h2>
     <ul>
@@ -16,33 +18,36 @@
         <li><strong>Abstraction:</strong> Hiding complex implementation details and exposing only essential features.</li>
     </ul>
 
+    <p>Each concept will be explained in detail in the following subchapters. Things will become much clearer if you go through all the sections in order.</p>
+
     <h2>Example: Simple OOP in C#</h2>
     <div class="code-container">
         <div class="code-header">Creating a Class and Object</div>
         <div class="code-content">
 <pre><code class="language-csharp">
-public class Dog
+public class Student
 {
     public string Name { get; set; }
-    public string Breed { get; set; }
+    public int Age { get; set; }
 
-    public void Bark()
+    public void Study()
     {
-        Console.WriteLine($"{Name} is barking!");
+        Console.WriteLine($"{Name} is studying.");
     }
 }
 
-// Using the class
-Dog myDog = new Dog();
-myDog.Name = "Buddy";
-myDog.Breed = "Golden Retriever";
-myDog.Bark(); // Output: Buddy is barking!
+Student student1 = new Student();
+student1.Name = "Alice";
+student1.Age = 20;
+student1.Study();
 </code></pre>
         </div>
     </div>
 
-    <h2>Exercise</h2>
-    <p>Create a class <code>Person</code> with properties <code>Name</code> and <code>Age</code>. Add a method <code>Introduce()</code> that prints a message like: "Hello, my name is [Name] and I am [Age] years old." Create at least two objects and call their <code>Introduce()</code> methods.</p>
+    <p>
+        In this example, we created a class <strong>Student</strong> with properties <strong>Name</strong> and <strong>Age</strong> and a method <strong>Study()</strong>.  
+        We then created an object of the class and called its method. Everything in this example will be explained in the upcoming subchapters.
+    </p>
 
     <div class="navigation-buttons">
         <a href="@Url.Action("Index", "OOP")" class="btn btn-outline-primary ajax-link">← Object Oriented Programming</a>
