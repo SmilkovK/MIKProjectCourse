@@ -1,5 +1,146 @@
-﻿<p>This is the authentication page</p>
+﻿@{
+    ViewData["Title"] = "Advanced Web App - Authentication";
+}
+
+<div class="container">
+    <h1>Authentication in Web Applications</h1>
+    <p><strong>Authentication</strong> is the process of verifying who a user is. In other words, it answers the question: <em>"Are you really who you say you are?"</em></p>
+
+    <h2>Why Authentication is Important</h2>
+    <ul>
+        <li>Protects sensitive information.</li>
+        <li>Allows users to access personalized content.</li>
+        <li>Prevents unauthorized access to your application.</li>
+    </ul>
+
+    <h2>Example: Simple Login in ASP.NET Core</h2>
+    <p>In ASP.NET Core, you can use <strong>Identity</strong> to handle authentication easily. Here’s a simplified example:</p>
+
+    <div class="code-container">
+        <div class="code-header">Registering a User</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+// Model
+public class RegisterModel
+{
+    public string Email { get; set; }
+    public string Password { get; set; }
+}
+
+// Controller
+[HttpPost]
+public async Task<IActionResult> Register(RegisterModel model)
+{
+    if (ModelState.IsValid)
+    {
+        var user = new IdentityUser { UserName = model.Email, Email = model.Email };
+        var result = await _userManager.CreateAsync(user, model.Password);
+        if (result.Succeeded)
+        {
+            await _signInManager.SignInAsync(user, isPersistent: false);
+            return RedirectToAction("Index", "Home");
+        }
+    }
+    return View(model);
+}
+</code></pre>
+        </div>
+    </div>
+
+    <h2>How It Works</h2>
+    <ul>
+        <li>User provides their email and password.</li>
+        <li>ASP.NET Identity checks if the user exists and if the password is correct.</li>
+        <li>If valid, the user is logged in and can access protected pages.</li>
+    </ul>
+
+    <h2>Exercise</h2>
+    <p>Create a simple login page:</p>
+    <ul>
+        <li>Use a form with Email and Password fields.</li>
+        <li>Implement registration and login logic using ASP.NET Identity.</li>
+        <li>Protect a page so only logged-in users can access it.</li>
+    </ul>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("IdentityRoles", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← .NET Identity Roles</a>
         <a href="@Url.Action("Authorization", "AdvancedWebApp")" class="btn btn-primary ajax-link">Authorization →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

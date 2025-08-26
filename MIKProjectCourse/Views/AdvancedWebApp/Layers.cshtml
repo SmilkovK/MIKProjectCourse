@@ -1,5 +1,189 @@
-﻿<p>This is the layers page</p>
+﻿@{
+    ViewData["Title"] = "Advanced Web App - Layers";
+}
+
+<div class="container">
+    <h1>Layers in Advanced Web Applications</h1>
+    <p>In modern web apps, separating code into layers helps keep it clean, organized, and easier to maintain. The main layers are:</p>
+
+    <ul>
+        <li><strong>Controller Layer:</strong> Handles user requests and returns responses.</li>
+        <li><strong>Service Layer:</strong> Contains business logic and processes data before sending it to the controller.</li>
+        <li><strong>Repository Layer:</strong> Manages data access (like fetching from a database).</li>
+    </ul>
+
+    <h2>Why Use Layers?</h2>
+    <ul>
+        <li>Makes the code easier to read and maintain.</li>
+        <li>Helps separate responsibilities (UI, business logic, data access).</li>
+        <li>Improves reusability of code.</li>
+        <li>Makes testing easier.</li>
+    </ul>
+
+    <h2>Example: Layers in Action</h2>
+    <p>Suppose we have a web app that displays products:</p>
+
+    <div class="code-container">
+        <div class="code-header">Repository Layer</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public interface IProductRepository
+{
+    List<Product> GetProducts();
+}
+
+public class ProductRepository : IProductRepository
+{
+    public List<Product> GetProducts()
+    {
+        return new List<Product>
+        {
+            new Product { Id = 1, Name = "Laptop" },
+            new Product { Id = 2, Name = "Mouse" }
+        };
+    }
+}
+</code></pre>
+        </div>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">Service Layer</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public interface IProductService
+{
+    List<Product> GetAllProducts();
+}
+
+public class ProductService : IProductService
+{
+    private readonly IProductRepository _repository;
+
+    public ProductService(IProductRepository repository)
+    {
+        _repository = repository;
+    }
+
+    public List<Product> GetAllProducts()
+    {
+        return _repository.GetProducts();
+    }
+}
+</code></pre>
+        </div>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">Controller Layer</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public class ProductController : Controller
+{
+    private readonly IProductService _service;
+
+    public ProductController(IProductService service)
+    {
+        _service = service;
+    }
+
+    public IActionResult Index()
+    {
+        var products = _service.GetAllProducts();
+        return View(products);
+    }
+}
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Exercise</h2>
+    <ul>
+        <li>Create a small ASP.NET Core project with three layers: Repository, Service, Controller.</li>
+        <li>Create a simple model (e.g., Product) and display a list of products on a page.</li>
+        <li>Try adding a method in the service layer to filter products by name.</li>
+        <li>Test your app to ensure data flows correctly from repository → service → controller → view.</li>
+    </ul>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("Introduction", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← Introduction to advanced web app</a>
         <a href="@Url.Action("ControllerLayer", "AdvancedWebApp")" class="btn btn-primary ajax-link">ControllerLayer →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

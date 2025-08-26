@@ -1,5 +1,128 @@
-﻿<p>This is the introduction oop page</p>
+﻿@{
+    ViewData["Title"] = "OOP - Introduction";
+}
+
+<div class="container">
+    <h1>Introduction to Object-Oriented Programming (OOP)</h1>
+    <p><strong>Object-Oriented Programming</strong> is a programming paradigm based on the concept of <strong>objects</strong>, which represent real-world entities. Objects contain <strong>data</strong> (properties) and <strong>behavior</strong> (methods).</p>
+
+    <h2>Key Concepts of OOP</h2>
+    <ul>
+        <li><strong>Classes:</strong> Blueprints for creating objects.</li>
+        <li><strong>Objects:</strong> Instances of classes that hold data and behavior.</li>
+        <li><strong>Encapsulation:</strong> Restricting access to internal data and providing controlled access.</li>
+        <li><strong>Inheritance:</strong> Creating new classes based on existing ones to reuse code.</li>
+        <li><strong>Polymorphism:</strong> Allowing objects to take many forms (method overloading/overriding).</li>
+        <li><strong>Abstraction:</strong> Hiding complex implementation details and exposing only essential features.</li>
+    </ul>
+
+    <h2>Example: Simple OOP in C#</h2>
+    <div class="code-container">
+        <div class="code-header">Creating a Class and Object</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public class Dog
+{
+    public string Name { get; set; }
+    public string Breed { get; set; }
+
+    public void Bark()
+    {
+        Console.WriteLine($"{Name} is barking!");
+    }
+}
+
+// Using the class
+Dog myDog = new Dog();
+myDog.Name = "Buddy";
+myDog.Breed = "Golden Retriever";
+myDog.Bark(); // Output: Buddy is barking!
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Exercise</h2>
+    <p>Create a class <code>Person</code> with properties <code>Name</code> and <code>Age</code>. Add a method <code>Introduce()</code> that prints a message like: "Hello, my name is [Name] and I am [Age] years old." Create at least two objects and call their <code>Introduce()</code> methods.</p>
+
     <div class="navigation-buttons">
-        <a href="@Url.Action("Index", "OOP")" class="btn btn-outline-primary ajax-link">← Object Oriented Programing</a>
+        <a href="@Url.Action("Index", "OOP")" class="btn btn-outline-primary ajax-link">← Object Oriented Programming</a>
         <a href="@Url.Action("Classes", "OOP")" class="btn btn-primary ajax-link">Introduction to classes in .NET →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

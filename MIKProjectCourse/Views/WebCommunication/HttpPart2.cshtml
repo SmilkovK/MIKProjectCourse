@@ -1,5 +1,99 @@
-﻿<p>This is the http part 2 page</p>
+﻿@{
+    ViewData["Title"] = "HTTP Part 2 - Advanced Concepts";
+}
+
+<div class="container">
+    <h1>HTTP Part 2</h1>
+    <p>This section expands on the basics of HTTP by explaining headers, query parameters, POST requests, and how clients send data to the server.</p>
+
+    <h2>HTTP Headers</h2>
+    <p>Headers provide metadata about the request or response. Examples include:</p>
+    <ul>
+        <li><strong>User-Agent:</strong> identifies the client software (browser, app, etc.).</li>
+        <li><strong>Content-Type:</strong> specifies the type of data sent in a request or received in a response.</li>
+        <li><strong>Authorization:</strong> used for sending authentication tokens.</li>
+    </ul>
+
+    <h2>Query Parameters</h2>
+    <p>Clients can pass data via the URL using query parameters:</p>
+    <pre><code class="language-http">
+GET /search?query=weather&city=Skopje HTTP/1.1
+Host: www.example.com
+    </code></pre>
+    <p>This request asks the server to search for "weather" in "Skopje".</p>
+
+    <h2>POST Requests</h2>
+    <p>POST is used to send data to the server, often for creating or updating resources:</p>
+    <pre><code class="language-http">
+POST /users HTTP/1.1
+Host: www.example.com
+Content-Type: application/json
+
+{
+    "name": "John Doe",
+    "email": "john@example.com"
+}
+    </code></pre>
+    <p>The server will process this JSON data and respond accordingly.</p>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("HttpPart1", "WebCommunication")" class="btn btn-outline-primary ajax-link">← Http Part 1</a>
         <a href="@Url.Action("ClientSide", "WebCommunication")" class="btn btn-primary ajax-link">Client-Side Communication →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    pre {
+        background-color: var(--code-bg);
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

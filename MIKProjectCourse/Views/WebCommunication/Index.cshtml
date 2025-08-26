@@ -1,5 +1,70 @@
-﻿<p>This is the INDEX page</p>
+﻿@{
+    ViewData["Title"] = "Web Communication - Index";
+}
+
+<div class="container">
+    <h1>Welcome to Web Communication</h1>
+    <p>This chapter will introduce you to the fundamentals of how web applications communicate over the internet. You will learn about clients, servers, browsers, HTTP protocols, client-side and server-side communication, and APIs.</p>
+
+    <h2>What You Will Learn</h2>
+    <ul>
+        <li><strong>The Client:</strong> Understanding the role of the client in web communication.</li>
+        <li><strong>The Server:</strong> How servers respond to client requests.</li>
+        <li><strong>The Browser:</strong> How web browsers display content and interact with servers.</li>
+        <li><strong>HTTP Protocol:</strong> How requests and responses work over the web.</li>
+        <li><strong>Client-Side & Server-Side:</strong> Differences, responsibilities, and examples.</li>
+        <li><strong>APIs:</strong> How applications exchange data using APIs.</li>
+    </ul>
+
+    <p>Use the navigation below to start exploring the chapter topics one by one.</p>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("ArrayForLoop", "Exercises")" class="btn btn-outline-primary ajax-link">← Previous Chapter</a>
         <a href="@Url.Action("Introduction", "WebCommunication")" class="btn btn-primary ajax-link">Introduction to Web Communication →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

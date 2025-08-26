@@ -1,5 +1,171 @@
-﻿<p>This is the service layer page</p>
+﻿@{
+    ViewData["Title"] = "Advanced Web App - Service Layer";
+}
+
+<div class="container">
+    <h1>Service Layer in Web Applications</h1>
+    <p>The <strong>Service Layer</strong> contains the business logic of your application. It sits between the Controller Layer and the Repository Layer. Its job is to process data, apply rules, and ensure your app behaves correctly.</p>
+
+    <h2>Why Use a Service Layer?</h2>
+    <ul>
+        <li>Keeps business logic separate from controllers and repositories.</li>
+        <li>Makes your code easier to read, test, and maintain.</li>
+        <li>Allows multiple controllers to reuse the same business logic.</li>
+    </ul>
+
+    <h2>Example: Product Service</h2>
+    <p>Suppose we want to manage products in a web app:</p>
+
+    <div class="code-container">
+        <div class="code-header">IProductService Interface</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public interface IProductService
+{
+    List<Product> GetAllProducts();
+    Product GetProductById(int id);
+    void AddProduct(Product product);
+    void UpdateProduct(Product product);
+    void DeleteProduct(int id);
+}
+</code></pre>
+        </div>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">ProductService Implementation</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public class ProductService : IProductService
+{
+    private readonly IProductRepository _repository;
+
+    public ProductService(IProductRepository repository)
+    {
+        _repository = repository;
+    }
+
+    public List<Product> GetAllProducts()
+    {
+        // Example of adding business logic
+        var products = _repository.GetProducts();
+        return products.Where(p => p.Price > 0).ToList();
+    }
+
+    public Product GetProductById(int id)
+    {
+        return _repository.GetProductById(id);
+    }
+
+    public void AddProduct(Product product)
+    {
+        if(string.IsNullOrWhiteSpace(product.Name))
+            throw new Exception("Product name is required.");
+
+        _repository.AddProduct(product);
+    }
+
+    public void UpdateProduct(Product product)
+    {
+        _repository.UpdateProduct(product);
+    }
+
+    public void DeleteProduct(int id)
+    {
+        _repository.DeleteProduct(id);
+    }
+}
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Exercise</h2>
+    <ul>
+        <li>Create an <code>IProductService</code> interface and <code>ProductService</code> class for your project.</li>
+        <li>Add at least one piece of business logic in the service layer (e.g., check product price or name before adding).</li>
+        <li>Connect your Service Layer to your Controller and Repository to display products on a page.</li>
+        <li>Test that the rules you implemented in the Service Layer are working correctly.</li>
+    </ul>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("RepositoryLayer", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← RepositoryLayer</a>
         <a href="@Url.Action("Identity", "AdvancedWebApp")" class="btn btn-primary ajax-link">.NET Identity →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

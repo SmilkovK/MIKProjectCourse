@@ -1,5 +1,139 @@
-﻿<p>This is the classes oop page</p>
+﻿@{
+    ViewData["Title"] = "OOP - Classes";
+}
+
+<div class="container">
+    <h1>Classes in Object-Oriented Programming (OOP)</h1>
+    <p>A <strong>class</strong> is a blueprint for creating objects. It defines the properties (fields) and behaviors (methods) that the objects created from the class will have.</p>
+
+    <h2>Defining a Class in C#</h2>
+    <div class="code-container">
+        <div class="code-header">Example: Basic Class</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public class Student
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+
+    public void Study()
+    {
+        Console.WriteLine($"{Name} is studying.");
+    }
+}
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Creating Objects from a Class</h2>
+    <p>You can create multiple objects from a single class, each with its own data:</p>
+    <div class="code-container">
+        <div class="code-header">Example: Creating Objects</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+Student student1 = new Student();
+student1.Name = "Alice";
+student1.Age = 20;
+student1.Study();
+
+Student student2 = new Student();
+student2.Name = "Bob";
+student2.Age = 22;
+student2.Study();
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Key Points About Classes</h2>
+    <ul>
+        <li>A class is a template; objects are instances of a class.</li>
+        <li>Properties store object data, methods define behaviors.</li>
+        <li>Access modifiers (public, private, protected) control visibility.</li>
+        <li>Classes can have constructors to initialize objects (we’ll cover this next).</li>
+    </ul>
+
+    <h2>Exercise</h2>
+    <p>Create a class <code>Car</code> with properties <code>Make</code>, <code>Model</code>, and <code>Year</code>. Add a method <code>StartEngine()</code> that prints a message including the car’s make and model.</p>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("Introduction", "OOP")" class="btn btn-outline-primary ajax-link">← Introduction to OOP</a>
         <a href="@Url.Action("Constructors", "OOP")" class="btn btn-primary ajax-link">Introduction to Constructors →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

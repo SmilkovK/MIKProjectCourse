@@ -1,5 +1,151 @@
-﻿<p>This is the introduction page</p>
+﻿@{
+    ViewData["Title"] = "Advanced Web App - Introduction";
+}
+
+<div class="container">
+    <h1>Introduction to Advanced Web Applications</h1>
+    <p>In this chapter, we will learn how to build more complex and secure web applications using ASP.NET Core. We will cover:</p>
+
+    <ul>
+        <li><strong>Layers:</strong> Organizing your app into different layers (Controller, Service, Repository) to keep code clean and maintainable.</li>
+        <li><strong>Authentication:</strong> Allowing users to securely log in and access your app.</li>
+        <li><strong>Authorization:</strong> Controlling which users can access which parts of your app.</li>
+        <li><strong>Identity:</strong> Using ASP.NET Core Identity to manage users, passwords, and roles.</li>
+    </ul>
+
+    <h2>Why Layers Are Important</h2>
+    <p>Breaking your app into layers helps:</p>
+    <ul>
+        <li>Keep business logic separate from UI logic.</li>
+        <li>Make it easier to test and maintain your app.</li>
+        <li>Reuse code across different parts of your application.</li>
+    </ul>
+
+    <h2>Example: Layered Structure</h2>
+    <pre><code class="language-csharp">
+// Controller Layer: Handles user requests
+public class ProductController : Controller
+{
+    private readonly IProductService _productService;
+
+    public ProductController(IProductService productService)
+    {
+        _productService = productService;
+    }
+
+    public IActionResult Index()
+    {
+        var products = _productService.GetAllProducts();
+        return View(products);
+    }
+}
+
+// Service Layer: Business logic
+public interface IProductService
+{
+    List<Product> GetAllProducts();
+}
+
+public class ProductService : IProductService
+{
+    private readonly IProductRepository _repository;
+
+    public ProductService(IProductRepository repository)
+    {
+        _repository = repository;
+    }
+
+    public List<Product> GetAllProducts()
+    {
+        return _repository.GetProducts();
+    }
+}
+
+// Repository Layer: Data access
+public interface IProductRepository
+{
+    List<Product> GetProducts();
+}
+
+public class ProductRepository : IProductRepository
+{
+    public List<Product> GetProducts()
+    {
+        return new List<Product>
+        {
+            new Product { Id = 1, Name = "Laptop" },
+            new Product { Id = 2, Name = "Mouse" }
+        };
+    }
+}
+</code></pre>
+
+    <h2>Exercise</h2>
+    <ul>
+        <li>Create a small ASP.NET Core project with at least three layers: Controller, Service, and Repository.</li>
+        <li>Create a simple page that lists a few items (like products) using this layered structure.</li>
+        <li>Try adding a new method in the Service layer to filter items.</li>
+    </ul>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("Index", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← Advanced Web App</a>
         <a href="@Url.Action("Layers", "AdvancedWebApp")" class="btn btn-primary ajax-link">Layers →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    pre {
+        padding: 15px;
+        background-color: var(--code-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow-x: auto;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

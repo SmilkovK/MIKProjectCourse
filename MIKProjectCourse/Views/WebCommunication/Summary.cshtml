@@ -1,5 +1,71 @@
-﻿<p>This is the summary page</p>
+﻿@{
+    ViewData["Title"] = "Web Communication - Summary";
+}
+
+<div class="container">
+    <h1>Chapter Summary: Web Communication</h1>
+    <p>This chapter introduced the fundamentals of web communication, including the roles of clients, servers, browsers, HTTP protocols, client-side and server-side operations, and APIs.</p>
+
+    <h2>Key Takeaways</h2>
+    <ul>
+        <li><strong>Client:</strong> Initiates requests and displays responses.</li>
+        <li><strong>Server:</strong> Processes requests, manages resources, and sends responses.</li>
+        <li><strong>Browser:</strong> Acts as the interface for the client to interact with web applications.</li>
+        <li><strong>HTTP Protocol:</strong> The standard for request/response communication between client and server.</li>
+        <li><strong>Client-Side Communication:</strong> Executes operations in the user’s browser (HTML, CSS, JavaScript).</li>
+        <li><strong>Server-Side Communication:</strong> Handles operations on the server, interacts with databases, and generates responses.</li>
+        <li><strong>APIs:</strong> Allow applications to exchange data programmatically.</li>
+    </ul>
+
+    <p>Understanding these concepts is crucial for developing modern web applications and integrating different systems efficiently.</p>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("API", "WebCommunication")" class="btn btn-outline-primary ajax-link">← API's</a>
         <a href="@Url.Action("Index", "Web")" class="btn btn-primary ajax-link">Next Chapter (Web) →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

@@ -1,5 +1,140 @@
-﻿<p>This is the controller layer page</p>
+﻿@{
+    ViewData["Title"] = "Advanced Web App - Controller Layer";
+}
+
+<div class="container">
+    <h1>The Controller Layer in Web Applications</h1>
+    <p>In an ASP.NET Core web application, the <strong>Controller Layer</strong> is responsible for handling user requests, interacting with the business logic or service layer, and returning the appropriate response (HTML, JSON, etc.).</p>
+
+    <h2>Why the Controller Layer is Important</h2>
+    <ul>
+        <li>Acts as the bridge between the user interface (views) and the data/business logic.</li>
+        <li>Organizes your application by separating responsibilities.</li>
+        <li>Makes your code easier to maintain and test.</li>
+    </ul>
+
+    <h2>Example: Simple Controller</h2>
+    <div class="code-container">
+        <div class="code-header">HomeController Example</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+using Microsoft.AspNetCore.Mvc;
+
+public class HomeController : Controller
+{
+    // Action method for the homepage
+    public IActionResult Index()
+    {
+        // You could get data from a service or repository here
+        ViewData["Message"] = "Welcome to the Controller Layer Example!";
+        return View();
+    }
+
+    // Action method for About page
+    public IActionResult About()
+    {
+        ViewData["Message"] = "This is the About page";
+        return View();
+    }
+}
+</code></pre>
+        </div>
+    </div>
+
+    <h2>How it Works</h2>
+    <ul>
+        <li>Each public method in a controller is called an <strong>action</strong> and can respond to a user request.</li>
+        <li>The controller can access models, services, or repositories to get or manipulate data.</li>
+        <li>It then returns a response, often a <code>View()</code> or <code>Json()</code>, which the browser can display.</li>
+    </ul>
+
+    <h2>Exercise</h2>
+    <ul>
+        <li>Create a controller named <code>ProductsController</code>.</li>
+        <li>Add two actions: <code>List()</code> to show all products and <code>Details(int id)</code> to show a single product.</li>
+        <li>Use <code>ViewData</code> or <code>ViewBag</code> to send some example product information to the views.</li>
+        <li>Test the actions by navigating to the corresponding URLs in your browser.</li>
+    </ul>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("Layers", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← Layers</a>
         <a href="@Url.Action("RepositoryLayer", "AdvancedWebApp")" class="btn btn-primary ajax-link">RepositoryLayer →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

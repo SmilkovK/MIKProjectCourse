@@ -1,5 +1,141 @@
-﻿<p>This is the summary oop page</p>
+﻿@{
+    ViewData["Title"] = "OOP - Chapter Summary";
+}
+
+<div class="container">
+    <h1>Summary of Object-Oriented Programming (OOP) Chapter</h1>
+
+    <h2>1. Classes and Objects</h2>
+    <p>- <strong>Class:</strong> Blueprint for objects.</p>
+    <p>- <strong>Object:</strong> Instance of a class containing data (properties) and behavior (methods).</p>
+    <pre><code class="language-csharp">
+// Example
+public class Dog { public string Name; public void Bark() { Console.WriteLine($"{Name} barks!"); } }
+Dog myDog = new Dog(); myDog.Name = "Buddy"; myDog.Bark();
+    </code></pre>
+
+    <h2>2. Constructors</h2>
+    <p>- Special methods used to initialize objects when they are created.</p>
+    <pre><code class="language-csharp">
+// Example
+public class Person
+{
+    public string Name;
+    public Person(string name) { Name = name; }
+}
+Person p = new Person("Alice");
+    </code></pre>
+
+    <h2>3. Encapsulation</h2>
+    <p>- Protects object data by using <code>private</code> fields and <code>public</code> getters/setters.</p>
+    <pre><code class="language-csharp">
+// Example
+public class BankAccount
+{
+    private double balance;
+    public void Deposit(double amount) { balance += amount; }
+    public double GetBalance() { return balance; }
+}
+    </code></pre>
+
+    <h2>4. Polymorphism</h2>
+    <p>- Allows objects to take many forms via method overloading and overriding.</p>
+    <pre><code class="language-csharp">
+// Overloading
+Calculator c = new Calculator();
+c.Add(2,3); c.Add(2.5,3.5);
+// Overriding
+Animal myAnimal = new Dog(); myAnimal.MakeSound(); // Bark!
+    </code></pre>
+
+    <h2>5. Abstraction</h2>
+    <p>- Hides complex implementation and exposes only essential features using <code>abstract</code> classes or interfaces.</p>
+    <pre><code class="language-csharp">
+public abstract class Shape { public abstract void Draw(); }
+public class Circle : Shape { public override void Draw() { Console.WriteLine("Draw Circle"); } }
+    </code></pre>
+
+    <h2>6. Interfaces</h2>
+    <p>- Define a contract that classes must implement.</p>
+    <pre><code class="language-csharp">
+public interface IVehicle { void StartEngine(); }
+public class Car : IVehicle { public void StartEngine() { Console.WriteLine("Car engine started"); } }
+    </code></pre>
+
+    <h2>7. Static, Readonly, and Const</h2>
+    <ul>
+        <li><strong>Static:</strong> Belongs to the class, shared by all instances.</li>
+        <li><strong>Readonly:</strong> Assigned once at runtime in constructor or declaration.</li>
+        <li><strong>Const:</strong> Compile-time constant that cannot change.</li>
+    </ul>
+
+    <h2>Exercises Recap</h2>
+    <ul>
+        <li>Create a <code>Person</code> class with <code>Introduce()</code> method.</li>
+        <li>Create a <code>Car</code> class with <code>StartEngine()</code> method.</li>
+        <li>Create <code>Shape</code> hierarchy using abstraction and overriding.</li>
+        <li>Create <code>IPayment</code> interface and implement it in a class.</li>
+        <li>Create <code>Earth</code> class using static, readonly, and const fields.</li>
+    </ul>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("StaticReadonlyConst", "OOP")" class="btn btn-outline-primary ajax-link">← Static, ReadOnly and Const</a>
         <a href="@Url.Action("Index", "Database")" class="btn btn-primary ajax-link">Next Chapter →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    pre {
+        background-color: var(--code-bg);
+        padding: 10px;
+        border-radius: 5px;
+        overflow-x: auto;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

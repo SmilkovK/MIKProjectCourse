@@ -1,5 +1,82 @@
-﻿<p>This is the summary page</p>
+﻿@{
+    ViewData["Title"] = "Advanced Web App - Chapter Summary";
+}
+
+<div class="container">
+    <h1>Advanced Web App - Chapter Summary</h1>
+
+    <p>In this chapter, we learned how to build more advanced web applications using ASP.NET Core. Here’s a recap of what we covered:</p>
+
+    <h2>Main Topics</h2>
+    <ul>
+        <li><strong>Layers:</strong> Organizing your app into Controller, Service, and Repository layers to separate responsibilities.</li>
+        <li><strong>Controller Layer:</strong> Handles user requests and returns responses.</li>
+        <li><strong>Service Layer:</strong> Contains business logic, processes data, and applies rules before passing it to controllers.</li>
+        <li><strong>Repository Layer:</strong> Manages data access and communicates with the database.</li>
+        <li><strong>Identity & Roles:</strong> Using ASP.NET Core Identity to manage users, passwords, and roles.</li>
+        <li><strong>Authentication:</strong> Securing your app by verifying users' identity.</li>
+        <li><strong>Authorization:</strong> Controlling which users can access which parts of the app.</li>
+        <li><strong>Identity Tutorial:</strong> Practical step-by-step guide to implement Identity in your app.</li>
+    </ul>
+
+    <h2>Exercises</h2>
+    <ul>
+        <li>Create a small web app that uses three layers: Controller, Service, and Repository.</li>
+        <li>Add a model (e.g., Product) and display a list of items on a page using the layers.</li>
+        <li>Implement a simple authentication system using ASP.NET Core Identity.</li>
+        <li>Add roles and authorization rules to restrict access to certain pages.</li>
+        <li>Test your app to ensure that data flows correctly through layers and that authentication/authorization works as expected.</li>
+    </ul>
+
+    <p>Once you complete these exercises, you will have a solid understanding of how advanced web applications are structured and secured.</p>
+
     <div class="navigation-buttons">
-        <a href="@Url.Action("IdentityTutorial", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← .NET Identiy Guide</a>
+        <a href="@Url.Action("IdentityTutorial", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← .NET Identity Guide</a>
         <a href="@Url.Action("Summary", "AdvancedWebApp")" class="btn btn-primary ajax-link">Next Chapter (404 for now) →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

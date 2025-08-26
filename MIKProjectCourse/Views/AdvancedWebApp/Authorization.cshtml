@@ -1,5 +1,134 @@
-﻿<p>This is the authorization page</p>
+﻿@{
+    ViewData["Title"] = "Advanced Web App - Authorization";
+}
+
+<div class="container">
+    <h1>Authorization in Web Applications</h1>
+    <p><strong>Authorization</strong> is the process of determining what a user is allowed to do. While authentication asks <em>"Who are you?"</em>, authorization asks <em>"What can you access?"</em></p>
+
+    <h2>Why Authorization is Important</h2>
+    <ul>
+        <li>Ensures only allowed users can access certain pages or features.</li>
+        <li>Protects sensitive data from unauthorized users.</li>
+        <li>Helps implement roles and permissions in your app.</li>
+    </ul>
+
+    <h2>Example: Role-Based Authorization in ASP.NET Core</h2>
+    <p>In ASP.NET Core, you can use roles to authorize users. For example:</p>
+
+    <div class="code-container">
+        <div class="code-header">Authorize Admin Users Only</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+using Microsoft.AspNetCore.Authorization;
+
+[Authorize(Roles = "Admin")]
+public class AdminController : Controller
+{
+    public IActionResult Dashboard()
+    {
+        return View();
+    }
+}
+</code></pre>
+        </div>
+    </div>
+
+    <h2>How It Works</h2>
+    <ul>
+        <li>The `[Authorize]` attribute checks if the user is logged in.</li>
+        <li>The `Roles` parameter ensures only users with the specified role can access the controller or action.</li>
+        <li>If a user does not meet the requirements, they are redirected to the login page or an "Access Denied" page.</li>
+    </ul>
+
+    <h2>Exercise</h2>
+    <p>Practice role-based authorization:</p>
+    <ul>
+        <li>Create two roles: `Admin` and `User`.</li>
+        <li>Protect an "Admin Dashboard" page so only users with the `Admin` role can access it.</li>
+        <li>Protect a "Profile" page so all logged-in users can access it.</li>
+        <li>Test logging in with different users and observe which pages they can access.</li>
+    </ul>
+
     <div class="navigation-buttons">
-        <a href="@Url.Action("Authentication", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← .NET Identity Roles</a>
+        <a href="@Url.Action("Authentication", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← Authentication</a>
         <a href="@Url.Action("IdentityTutorial", "AdvancedWebApp")" class="btn btn-primary ajax-link">Code tutorial to .NET Identity →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

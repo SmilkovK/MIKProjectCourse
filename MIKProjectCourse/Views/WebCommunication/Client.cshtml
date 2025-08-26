@@ -1,5 +1,120 @@
-﻿<p>This is the client page</p>
+﻿@{
+    ViewData["Title"] = "The Client in Web Communication";
+}
+
+<div class="container">
+    <h1>The Client</h1>
+    <p>In web communication, a <strong>client</strong> is the application or device that initiates a request to a server. The client can be a web browser, mobile app, or any software that interacts with a server to access data or services.</p>
+
+    <h2>Main Responsibilities</h2>
+    <ul>
+        <li><strong>Sending Requests:</strong> The client sends HTTP/HTTPS requests to the server to fetch or submit data.</li>
+        <li><strong>Displaying Responses:</strong> After receiving a response from the server, the client processes and displays the data to the user.</li>
+        <li><strong>Executing Local Code:</strong> Some clients can execute scripts locally (like JavaScript in a browser) to make the interface interactive.</li>
+        <li><strong>Maintaining State:</strong> Clients may use cookies, sessions, or local storage to keep track of user data between requests.</li>
+    </ul>
+
+    <h2>Example</h2>
+    <p>When you use a web browser to visit <code>www.example.com</code>:</p>
+    <ol>
+        <li>The browser (client) sends a <code>GET</code> request to the server hosting <code>example.com</code>.</li>
+        <li>The server responds with an HTML page, CSS, JavaScript, and images.</li>
+        <li>The client renders the page and allows you to interact with it.</li>
+    </ol>
+
+    <div class="code-container">
+        <div class="code-header">Simplified HTTP Request from Client</div>
+        <div class="code-content">
+<pre><code class="language-http">
+GET /index.html HTTP/1.1
+Host: www.example.com
+User-Agent: Chrome/Edge/Firefox
+Accept: text/html
+</code></pre>
+        </div>
+    </div>
+
+    <p>This demonstrates how the client initiates communication and how the server responds, completing the client-server cycle.</p>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("Introduction", "WebCommunication")" class="btn btn-outline-primary ajax-link">← Web Communication Introduction</a>
         <a href="@Url.Action("Server", "WebCommunication")" class="btn btn-primary ajax-link">Server →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul, ol {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

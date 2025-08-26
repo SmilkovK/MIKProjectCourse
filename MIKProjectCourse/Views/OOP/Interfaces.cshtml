@@ -1,5 +1,140 @@
-﻿<p>This is the interface oop page</p>
+﻿@{
+    ViewData["Title"] = "OOP - Interfaces";
+}
+
+<div class="container">
+    <h1>Interfaces in Object-Oriented Programming (OOP)</h1>
+    <p>An <strong>interface</strong> is a contract that defines a set of methods and properties that a class must implement. Interfaces allow you to achieve abstraction and multiple inheritance in C#.</p>
+
+    <h2>Example: Creating and Implementing an Interface</h2>
+    <div class="code-container">
+        <div class="code-header">Define an Interface</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public interface IVehicle
+{
+    void StartEngine();
+    void StopEngine();
+}
+</code></pre>
+        </div>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">Implement the Interface</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public class Car : IVehicle
+{
+    public void StartEngine()
+    {
+        Console.WriteLine("Car engine started.");
+    }
+
+    public void StopEngine()
+    {
+        Console.WriteLine("Car engine stopped.");
+    }
+}
+
+// Usage
+IVehicle myCar = new Car();
+myCar.StartEngine();
+myCar.StopEngine();
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Key Points About Interfaces</h2>
+    <ul>
+        <li>An interface only contains method and property signatures, not implementation.</li>
+        <li>A class implementing an interface must provide implementation for all members.</li>
+        <li>Interfaces allow for flexible and maintainable code through abstraction.</li>
+        <li>Multiple interfaces can be implemented by a single class.</li>
+    </ul>
+
+    <h2>Exercise</h2>
+    <p>Create an interface <code>IPayment</code> with methods <code>Pay()</code> and <code>Refund()</code>. Then create a class <code>CreditCardPayment</code> that implements this interface and provides messages for each method.</p>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("Abstraction", "OOP")" class="btn btn-outline-primary ajax-link">← Abstraction</a>
         <a href="@Url.Action("StaticReadonlyConst", "OOP")" class="btn btn-primary ajax-link">Static, Readonly and Const →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

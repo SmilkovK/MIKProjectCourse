@@ -1,5 +1,99 @@
-﻿<p>This is the polymoprhism oop page</p>
+﻿@{
+    ViewData["Title"] = "OOP - Polymorphism";
+}
+
+<div class="container">
+    <h1>Polymorphism in Object-Oriented Programming (OOP)</h1>
+    <p><strong>Polymorphism</strong> allows objects to take many forms. In C#, polymorphism is achieved through <strong>method overloading</strong> (compile-time) and <strong>method overriding</strong> (runtime).</p>
+
+    <h2>Example 1: Method Overloading (Compile-Time Polymorphism)</h2>
+    <div class="code-container">
+        <div class="code-header">Overloading Methods</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public class Calculator
+{
+    public int Add(int a, int b)
+    {
+        return a + b;
+    }
+
+    public double Add(double a, double b)
+    {
+        return a + b;
+    }
+}
+
+// Usage
+Calculator calc = new Calculator();
+Console.WriteLine(calc.Add(2, 3));      // Output: 5
+Console.WriteLine(calc.Add(2.5, 3.5));  // Output: 6
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Example 2: Method Overriding (Runtime Polymorphism)</h2>
+    <div class="code-container">
+        <div class="code-header">Overriding Methods</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public class Animal
+{
+    public virtual void MakeSound()
+    {
+        Console.WriteLine("Some generic sound");
+    }
+}
+
+public class Dog : Animal
+{
+    public override void MakeSound()
+    {
+        Console.WriteLine("Bark!");
+    }
+}
+
+// Usage
+Animal myAnimal = new Dog();
+myAnimal.MakeSound(); // Output: Bark!
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Key Points About Polymorphism</h2>
+    <ul>
+        <li>Method overloading allows multiple methods with the same name but different parameters.</li>
+        <li>Method overriding allows derived classes to provide a specific implementation of a base class method.</li>
+        <li>Polymorphism improves code flexibility and reusability.</li>
+        <li>Use the <code>virtual</code> keyword in the base class and <code>override</code> in the derived class for runtime polymorphism.</li>
+    </ul>
+
+    <h2>Exercise</h2>
+    <p>Create a base class <code>Shape</code> with a virtual method <code>Draw()</code>. Create two derived classes <code>Circle</code> and <code>Rectangle</code> that override the <code>Draw()</code> method to display specific messages. Test by calling <code>Draw()</code> on each object.</p>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("Encapsulation", "OOP")" class="btn btn-outline-primary ajax-link">← Encapsulation</a>
         <a href="@Url.Action("Abstraction", "OOP")" class="btn btn-primary ajax-link">Abstraction →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;

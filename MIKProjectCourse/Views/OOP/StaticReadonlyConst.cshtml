@@ -1,5 +1,161 @@
-﻿<p>This is the static readonly and const oop page</p>
+﻿@{
+    ViewData["Title"] = "OOP - Static, Readonly, and Const";
+}
+
+<div class="container">
+    <h1>Static, Readonly, and Const in C#</h1>
+    <p>In C#, <strong>static</strong>, <strong>readonly</strong>, and <strong>const</strong> are used to define values and members with specific behaviors:</p>
+
+    <h2>1. Static</h2>
+    <p>A <strong>static</strong> member belongs to the class rather than an instance. You can access it without creating an object.</p>
+    <div class="code-container">
+        <div class="code-header">Example: Static Member</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public class Calculator
+{
+    public static double Pi = 3.14159;
+}
+
+Console.WriteLine(Calculator.Pi); // Output: 3.14159
+</code></pre>
+        </div>
+    </div>
+
+    <h2>2. Readonly</h2>
+    <p>A <strong>readonly</strong> field can only be assigned during declaration or in a constructor. It cannot be modified elsewhere.</p>
+    <div class="code-container">
+        <div class="code-header">Example: Readonly Field</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public class Circle
+{
+    public readonly double Radius;
+
+    public Circle(double radius)
+    {
+        Radius = radius;
+    }
+}
+
+Circle c = new Circle(5);
+// c.Radius = 10; // Error: Cannot assign to readonly field
+</code></pre>
+        </div>
+    </div>
+
+    <h2>3. Const</h2>
+    <p>A <strong>const</strong> field is a compile-time constant and must be assigned during declaration. It cannot be changed later.</p>
+    <div class="code-container">
+        <div class="code-header">Example: Const Field</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public class MathConstants
+{
+    public const double Gravity = 9.81;
+}
+
+Console.WriteLine(MathConstants.Gravity); // Output: 9.81
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Key Points</h2>
+    <ul>
+        <li><strong>Static:</strong> Shared by all instances of a class.</li>
+        <li><strong>Readonly:</strong> Set at runtime but only once per instance.</li>
+        <li><strong>Const:</strong> Set at compile-time and cannot change.</li>
+        <li>Use static for shared utilities, readonly for values that are initialized once, and const for fixed constants.</li>
+    </ul>
+
+    <h2>Exercise</h2>
+    <p>Create a class <code>Earth</code> with:</p>
+    <ul>
+        <li>a <strong>const</strong> field <code>Radius</code> = 6371</li>
+        <li>a <strong>readonly</strong> field <code>CreationYear</code> set via constructor</li>
+        <li>a <strong>static</strong> field <code>PlanetCount</code> incremented each time an <code>Earth</code> object is created</li>
+    </ul>
+    <p>Test your class by creating multiple objects and printing all fields.</p>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("Interfaces", "OOP")" class="btn btn-outline-primary ajax-link">← Interfaces</a>
         <a href="@Url.Action("Summary", "OOP")" class="btn btn-primary ajax-link">Chapter Summary →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

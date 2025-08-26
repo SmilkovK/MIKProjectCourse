@@ -1,5 +1,173 @@
-﻿<p>This is the repository layer page</p>
+﻿@{
+    ViewData["Title"] = "Advanced Web App - Repository Layer";
+}
+
+<div class="container">
+    <h1>Repository Layer in Web Applications</h1>
+    <p>The <strong>Repository Layer</strong> is responsible for handling all data access. It acts as a bridge between your application and the database or other storage.</p>
+
+    <h2>Why Use a Repository Layer?</h2>
+    <ul>
+        <li>Keeps database logic separate from business logic.</li>
+        <li>Makes it easier to switch databases in the future.</li>
+        <li>Makes your code easier to read, test, and maintain.</li>
+    </ul>
+
+    <h2>Example: Repository Layer</h2>
+    <p>Suppose we want to fetch products from a database:</p>
+
+    <div class="code-container">
+        <div class="code-header">IProductRepository Interface</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public interface IProductRepository
+{
+    List<Product> GetProducts();
+    Product GetProductById(int id);
+    void AddProduct(Product product);
+    void UpdateProduct(Product product);
+    void DeleteProduct(int id);
+}
+</code></pre>
+        </div>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">ProductRepository Implementation</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public class ProductRepository : IProductRepository
+{
+    private readonly ApplicationDbContext _context;
+
+    public ProductRepository(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+
+    public List<Product> GetProducts()
+    {
+        return _context.Products.ToList();
+    }
+
+    public Product GetProductById(int id)
+    {
+        return _context.Products.Find(id);
+    }
+
+    public void AddProduct(Product product)
+    {
+        _context.Products.Add(product);
+        _context.SaveChanges();
+    }
+
+    public void UpdateProduct(Product product)
+    {
+        _context.Products.Update(product);
+        _context.SaveChanges();
+    }
+
+    public void DeleteProduct(int id)
+    {
+        var product = _context.Products.Find(id);
+        if (product != null)
+        {
+            _context.Products.Remove(product);
+            _context.SaveChanges();
+        }
+    }
+}
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Exercise</h2>
+    <ul>
+        <li>Create a <code>Product</code> model with properties like <code>Id</code>, <code>Name</code>, and <code>Price</code>.</li>
+        <li>Implement an <code>IProductRepository</code> interface and a <code>ProductRepository</code> class using an in-memory list or a database.</li>
+        <li>Test all CRUD operations: Add, Get, Update, Delete.</li>
+        <li>Connect it later to a Service Layer to fetch and manipulate data from a Controller.</li>
+    </ul>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("ControllerLayer", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← ControllerLayer</a>
         <a href="@Url.Action("ServiceLayer", "AdvancedWebApp")" class="btn btn-primary ajax-link">ServiceLayer →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

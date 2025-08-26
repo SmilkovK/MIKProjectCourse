@@ -1,5 +1,161 @@
-﻿<p>This is the identity roles page</p>
+﻿@{
+    ViewData["Title"] = "Advanced Web App - Identity Roles";
+}
+
+<div class="container">
+    <h1>Identity Roles in ASP.NET Core</h1>
+    <p><strong>Roles</strong> are a way to group users and control what parts of your web application they can access. They are a key part of authorization.</p>
+
+    <h2>Why Roles Are Important</h2>
+    <ul>
+        <li>Allow different users to have different permissions.</li>
+        <li>Make it easy to manage access for groups of users instead of individual accounts.</li>
+        <li>Enhance security by restricting sensitive areas of your app.</li>
+    </ul>
+
+    <h2>Example: Creating Roles</h2>
+    <p>You can create roles using the <code>RoleManager</code> in ASP.NET Core:</p>
+
+    <div class="code-container">
+        <div class="code-header">Adding Roles</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+using Microsoft.AspNetCore.Identity;
+
+public class SeedRoles
+{
+    public static async Task Initialize(RoleManager<IdentityRole> roleManager)
+    {
+        string[] roleNames = { "Admin", "User", "Manager" };
+
+        foreach (var roleName in roleNames)
+        {
+            var roleExist = await roleManager.RoleExistsAsync(roleName);
+            if (!roleExist)
+            {
+                await roleManager.CreateAsync(new IdentityRole(roleName));
+            }
+        }
+    }
+}
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Assigning a Role to a User</h2>
+    <div class="code-container">
+        <div class="code-header">Assign Role to User</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+var user = await _userManager.FindByEmailAsync("user@example.com");
+await _userManager.AddToRoleAsync(user, "Admin");
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Protecting Pages by Role</h2>
+    <div class="code-container">
+        <div class="code-header">Role-Based Authorization</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+using Microsoft.AspNetCore.Authorization;
+
+[Authorize(Roles = "Admin")]
+public IActionResult AdminDashboard()
+{
+    return View();
+}
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Exercise</h2>
+    <ul>
+        <li>Create two roles: <code>Admin</code> and <code>User</code>.</li>
+        <li>Register two users and assign them different roles.</li>
+        <li>Create a protected page that only the Admin role can access.</li>
+        <li>Test logging in with both users and verify access restrictions.</li>
+    </ul>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("Identity", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← .NET Identity</a>
         <a href="@Url.Action("Authentication", "AdvancedWebApp")" class="btn btn-primary ajax-link">Authentication →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

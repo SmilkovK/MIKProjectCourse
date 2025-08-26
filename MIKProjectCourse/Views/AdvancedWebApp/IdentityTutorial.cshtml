@@ -1,5 +1,174 @@
-﻿<p>This is the identity turtorial page</p>
+﻿@{
+    ViewData["Title"] = "Advanced Web App - Identity Tutorial";
+}
+
+<div class="container">
+    <h1>ASP.NET Core Identity Tutorial</h1>
+    <p>This tutorial will guide you through a simple implementation of ASP.NET Core Identity to handle user registration, login, and role-based access.</p>
+
+    <h2>Step 1: Add Identity to Your Project</h2>
+    <p>In your <code>Program.cs</code> or <code>Startup.cs</code>:</p>
+
+    <div class="code-container">
+        <div class="code-header">Configure Identity</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+// Add Identity services
+builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Step 2: Create a Registration Action</h2>
+    <p>Create an AccountController with a Register action:</p>
+
+    <div class="code-container">
+        <div class="code-header">Register Action</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+[HttpPost]
+public async Task<IActionResult> Register(string email, string password)
+{
+    var user = new IdentityUser { UserName = email, Email = email };
+    var result = await _userManager.CreateAsync(user, password);
+    if(result.Succeeded)
+    {
+        await _signInManager.SignInAsync(user, isPersistent: false);
+        return RedirectToAction("Index", "Home");
+    }
+    return View();
+}
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Step 3: Create a Login Action</h2>
+    <div class="code-container">
+        <div class="code-header">Login Action</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+[HttpPost]
+public async Task<IActionResult> Login(string email, string password)
+{
+    var result = await _signInManager.PasswordSignInAsync(email, password, false, false);
+    if(result.Succeeded)
+    {
+        return RedirectToAction("Index", "Home");
+    }
+    return View();
+}
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Step 4: Add Role-Based Authorization</h2>
+    <p>Use roles to protect certain pages:</p>
+    <div class="code-container">
+        <div class="code-header">Admin Page Example</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+[Authorize(Roles = "Admin")]
+public IActionResult AdminDashboard()
+{
+    return View();
+}
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Step 5: Exercise</h2>
+    <ul>
+        <li>Create a new ASP.NET Core project with Identity.</li>
+        <li>Register two users: one Admin and one regular User.</li>
+        <li>Create a protected Admin page that only Admin can access.</li>
+        <li>Create a normal page accessible by all logged-in users.</li>
+        <li>Test logging in as both users to see how access changes.</li>
+    </ul>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("Authorization", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← Authorization</a>
         <a href="@Url.Action("Summary", "AdvancedWebApp")" class="btn btn-primary ajax-link">Summary →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

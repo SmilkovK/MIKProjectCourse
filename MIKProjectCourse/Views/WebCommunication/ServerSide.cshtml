@@ -1,5 +1,123 @@
-﻿<p>This is the server-side page</p>
+﻿@{
+    ViewData["Title"] = "Server-Side Communication";
+}
+
+<div class="container">
+    <h1>Server-Side Communication</h1>
+    <p><strong>Server-side communication</strong> refers to operations that happen on the server in response to client requests. The server processes requests, interacts with databases or services, and sends back responses to the client.</p>
+
+    <h2>Main Responsibilities</h2>
+    <ul>
+        <li><strong>Processing Requests:</strong> Handling HTTP requests from clients (GET, POST, PUT, DELETE).</li>
+        <li><strong>Business Logic:</strong> Executing server-side code to process data or perform actions.</li>
+        <li><strong>Database Interaction:</strong> Reading from or writing to databases based on client requests.</li>
+        <li><strong>Generating Responses:</strong> Sending HTML, JSON, or other data back to the client.</li>
+        <li><strong>Security & Validation:</strong> Ensuring requests are valid and authenticated.</li>
+    </ul>
+
+    <h2>Example: Simple API Endpoint (C# ASP.NET Core)</h2>
+    <div class="code-container">
+        <div class="code-header">Server-Side Code Example</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+[ApiController]
+[Route("api/[controller]")]
+public class UsersController : ControllerBase
+{
+    [HttpGet("{id}")]
+    public IActionResult GetUser(int id)
+    {
+        var user = _userService.GetUserById(id); // Fetch from database
+        if(user == null)
+            return NotFound();
+        return Ok(user); // Return JSON response
+    }
+}
+</code></pre>
+        </div>
+    </div>
+
+    <p>In this example, the server receives a request for a user by ID, queries the database, and returns a JSON response to the client.</p>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("ClientSide", "WebCommunication")" class="btn btn-outline-primary ajax-link">← Client-Side Communication</a>
         <a href="@Url.Action("API", "WebCommunication")" class="btn btn-primary ajax-link">API's →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

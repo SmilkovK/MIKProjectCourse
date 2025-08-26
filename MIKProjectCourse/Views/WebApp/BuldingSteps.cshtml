@@ -1,5 +1,120 @@
-﻿<p>This is the buldingsteps page</p>
+﻿@{
+    ViewData["Title"] = "Building Steps for a Web App in Visual Studio";
+}
+
+<div class="container">
+    <h1>Building Steps for a Web App</h1>
+    <p>Here are the steps to create a simple web application using <strong>Microsoft Visual Studio</strong>. Follow them in order to set up your project, add code, and run the app.</p>
+
+    <h2>Steps</h2>
+    <ol>
+        <li><strong>Open Visual Studio</strong><br />Launch Microsoft Visual Studio from your computer.</li>
+        <li><strong>Create a new project</strong><br />Go to <code>File → New → Project</code>, then choose <code>ASP.NET Core Web App (Model-View-Controller)</code>.</li>
+        <li><strong>Configure the project</strong><br />Enter a project name, location, and solution name, then click <em>Create</em>.</li>
+        <li><strong>Select framework</strong><br />Pick the latest <code>.NET</code> version, then press <em>Create</em>.</li>
+        <li><strong>Explore project structure</strong><br />Notice the folders: <code>Controllers</code>, <code>Views</code>, <code>Models</code>, and <code>wwwroot</code>.</li>
+        <li><strong>Add a Controller</strong><br />Right-click the <code>Controllers</code> folder → <em>Add</em> → <em>Controller</em>. Choose <code>MVC Controller – Empty</code>, name it <code>HomeController</code>.</li>
+        <li><strong>Add a View</strong><br />Right-click the <code>Views</code> folder → <em>Add</em> → <em>New Folder</em> → name it <code>Home</code>. Inside, add a new <code>View</code> (e.g., <code>Index.cshtml</code>).</li>
+        <li><strong>Write your code</strong><br />In <code>HomeController.cs</code>, return the <code>Index</code> view. In <code>Index.cshtml</code>, add some HTML to display content.</li>
+        <li><strong>Run the application</strong><br />Click the green <em>Run</em> button (IIS Express). The browser will open your web app.</li>
+    </ol>
+
+    <div class="code-container">
+        <div class="code-header">Example Controller Code</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+public class HomeController : Controller
+{
+    public IActionResult Index()
+    {
+        return View();
+    }
+}
+</code></pre>
+        </div>
+    </div>
+
+    <p>After following these steps, you’ll have a working web app that you can expand with more controllers, models, and views.</p>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("Index", "WebApp")" class="btn btn-outline-primary ajax-link">← Intro to web app</a>
         <a href="@Url.Action("Summary", "WebApp")" class="btn btn-primary ajax-link">Summary of chapter →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ol {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

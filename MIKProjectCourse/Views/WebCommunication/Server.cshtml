@@ -1,5 +1,119 @@
-﻿<p>This is the server page</p>
+﻿@{
+    ViewData["Title"] = "The Server in Web Communication";
+}
+
+<div class="container">
+    <h1>The Server</h1>
+    <p>In web communication, a <strong>server</strong> is a system that listens for requests from clients and responds with the requested data or services. Servers host websites, APIs, and other web applications.</p>
+
+    <h2>Main Responsibilities</h2>
+    <ul>
+        <li><strong>Processing Requests:</strong> Servers receive and interpret requests from clients.</li>
+        <li><strong>Providing Responses:</strong> They send back data, HTML pages, or JSON responses depending on the request.</li>
+        <li><strong>Managing Resources:</strong> Servers handle databases, files, and other resources needed to fulfill requests.</li>
+        <li><strong>Authentication & Security:</strong> Servers verify user credentials and protect data.</li>
+    </ul>
+
+    <h2>Example</h2>
+    <p>If a client requests <code>www.example.com/index.html</code>:</p>
+    <ol>
+        <li>The server receives the request.</li>
+        <li>The server retrieves the <code>index.html</code> file from its storage.</li>
+        <li>The server sends the file back to the client, which displays it in the browser.</li>
+    </ol>
+
+    <div class="code-container">
+        <div class="code-header">Simplified Server Response (C# ASP.NET Core)</div>
+        <div class="code-content">
+<pre><code class="language-csharp">
+[HttpGet("/index.html")]
+public IActionResult GetIndex()
+{
+    return PhysicalFile("wwwroot/index.html", "text/html");
+}
+</code></pre>
+        </div>
+    </div>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("Client", "WebCommunication")" class="btn btn-outline-primary ajax-link">← Client</a>
         <a href="@Url.Action("Browser", "WebCommunication")" class="btn btn-primary ajax-link">Browser →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul, ol {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

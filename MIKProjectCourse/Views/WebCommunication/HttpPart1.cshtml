@@ -1,5 +1,120 @@
-﻿<p>This is the http part 1 page</p>
+﻿@{
+    ViewData["Title"] = "HTTP Part 1 - Basics of Web Communication";
+}
+
+<div class="container">
+    <h1>HTTP Part 1</h1>
+    <p><strong>HTTP (HyperText Transfer Protocol)</strong> is the protocol used by browsers (clients) to communicate with web servers. It defines how requests are sent and how responses are received.</p>
+
+    <h2>Main Concepts</h2>
+    <ul>
+        <li><strong>Request:</strong> The client sends an HTTP request to the server, specifying the method (GET, POST, etc.) and the resource.</li>
+        <li><strong>Response:</strong> The server processes the request and sends back a response containing the requested data, usually with a status code.</li>
+        <li>
+            <strong>Methods:</strong> Common HTTP methods include:
+            <ul>
+                <li><strong>GET:</strong> Retrieve data from the server.</li>
+                <li><strong>POST:</strong> Send data to the server.</li>
+                <li><strong>PUT:</strong> Update existing data.</li>
+                <li><strong>DELETE:</strong> Remove data.</li>
+            </ul>
+        </li>
+        <li><strong>Status Codes:</strong> Indicate the result of a request, e.g., <code>200 OK</code>, <code>404 Not Found</code>, <code>500 Internal Server Error</code>.</li>
+    </ul>
+
+    <div class="code-container">
+        <div class="code-header">Example: HTTP GET Request</div>
+        <div class="code-content">
+<pre><code class="language-http">
+GET /index.html HTTP/1.1
+Host: www.example.com
+User-Agent: Mozilla/5.0
+Accept: text/html
+</code></pre>
+        </div>
+    </div>
+
+    <p>This example shows a client requesting the <code>index.html</code> page from a server. The server will respond with the HTML content of that page.</p>
+
     <div class="navigation-buttons">
         <a href="@Url.Action("Browser", "WebCommunication")" class="btn btn-outline-primary ajax-link">← Browser</a>
         <a href="@Url.Action("HttpPart2", "WebCommunication")" class="btn btn-primary ajax-link">Http Part 2 →</a>
     </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    ul {
+        margin-left: 20px;
+        padding-left: 15px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    code {
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>
