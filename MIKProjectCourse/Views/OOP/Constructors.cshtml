@@ -4,13 +4,29 @@
 
 <div class="container">
     <h1>Constructors in Object-Oriented Programming (OOP)</h1>
-    <p>A <strong>constructor</strong> is a special method in a class used to initialize objects when they are created. It has the same name as the class and does not have a return type.</p>
+    <p>
+        Imagine you are building toys from a mold. 🧸 The <strong>class</strong> is the mold (blueprint),
+        and the <strong>constructor</strong> is like the special tool that helps you set up each toy when it's made.
+        It gives the toy its name, color, or size right when it's created!
+    </p>
 
-    <h2>Example: Constructor in C#</h2>
+    <h2>Example 1: Student Constructor</h2>
+
+    <!-- Code container -->
     <div class="code-container">
-        <div class="code-header">Basic Constructor Example</div>
+        <div class="code-header">
+            Student Example
+            <div class="toggle-wrapper">
+                <label class="toggle-label">C#</label>
+                <label class="switch">
+                    <input type="checkbox" id="studentToggle">
+                    <span class="slider round"></span>
+                </label>
+                <label class="toggle-label">C</label>
+            </div>
+        </div>
         <div class="code-content">
-<pre><code class="language-csharp">
+<pre><code class="language-csharp student-code">
 public class Student
 {
     public string Name { get; set; }
@@ -33,23 +49,142 @@ public class Student
 Student student1 = new Student("Alice", 20);
 student1.Study();
 </code></pre>
+
+<pre><code class="language-c student-code" style="display:none;">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+struct Student {
+    char Name[50];
+    int Age;
+};
+
+// "Constructor-like" function in C
+struct Student createStudent(char name[], int age) {
+    struct Student s;
+    strcpy(s.Name, name);
+    s.Age = age;
+    return s;
+}
+
+void Study(struct Student s) {
+    printf("%s is studying.\n", s.Name);
+}
+
+int main() {
+    struct Student student1 = createStudent("Alice", 20);
+    Study(student1);
+    return 0;
+}
+</code></pre>
         </div>
     </div>
+
+    <p>
+        👉 Explanation:
+        <ul>
+            <li>In C#, <code>Student("Alice", 20)</code> is calling the constructor to set up the new student with a name and age.</li>
+            <li>In C, we don’t have real constructors, so we use a helper function <code>createStudent</code> that does the same job.</li>
+            <li>When Alice is created, she is ready to <code>Study()</code> immediately.</li>
+        </ul>
+    </p>
+
+    <h2>Example 2: Car Constructor</h2>
+
+    <!-- Code container -->
+    <div class="code-container">
+        <div class="code-header">
+            Car Example
+            <div class="toggle-wrapper">
+                <label class="toggle-label">C#</label>
+                <label class="switch">
+                    <input type="checkbox" id="carToggle">
+                    <span class="slider round"></span>
+                </label>
+                <label class="toggle-label">C</label>
+            </div>
+        </div>
+        <div class="code-content">
+<pre><code class="language-csharp car-code">
+public class Car
+{
+    public string Brand { get; set; }
+    public string Color { get; set; }
+
+    // Constructor
+    public Car(string brand, string color)
+    {
+        Brand = brand;
+        Color = color;
+    }
+
+    public void Drive()
+    {
+        Console.WriteLine($"{Color} {Brand} is driving!");
+    }
+}
+
+// Using the constructor
+Car myCar = new Car("Toyota", "Red");
+myCar.Drive();
+</code></pre>
+
+<pre><code class="language-c car-code" style="display:none;">
+#include &lt;stdio.h&gt;
+#include &lt;string.h&gt;
+
+struct Car {
+    char Brand[50];
+    char Color[50];
+};
+
+// "Constructor-like" function
+struct Car createCar(char brand[], char color[]) {
+    struct Car c;
+    strcpy(c.Brand, brand);
+    strcpy(c.Color, color);
+    return c;
+}
+
+void Drive(struct Car c) {
+    printf("%s %s is driving!\n", c.Color, c.Brand);
+}
+
+int main() {
+    struct Car myCar = createCar("Toyota", "Red");
+    Drive(myCar);
+    return 0;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <p>
+        👉 Explanation:
+        <ul>
+            <li>The constructor <code>Car("Toyota", "Red")</code> makes sure our car already knows its brand and color when it’s born.</li>
+            <li>In C, we mimic this using <code>createCar</code>.</li>
+            <li>As soon as the car is created, it’s ready to <code>Drive()</code>.</li>
+        </ul>
+    </p>
 
     <h2>Key Points About Constructors</h2>
     <ul>
         <li>Constructors are called automatically when an object is created.</li>
         <li>You can have multiple constructors (constructor overloading) with different parameters.</li>
         <li>If no constructor is defined, C# provides a default parameterless constructor.</li>
-        <li>Constructors can be used to initialize properties with default values.</li>
+        <li>Constructors help make sure your object starts life in a proper, ready-to-use state.</li>
     </ul>
 
-    <h2>Exercise</h2>
-    <p>Create a class <code>Book</code> with properties <code>Title</code>, <code>Author</code>, and <code>Pages</code>. Add a constructor to initialize these properties and a method <code>ShowInfo()</code> that prints the book details.</p>
+    <p>
+        🔗 Remember: Constructors work together with <a href="@Url.Action("Classes", "OOP")">Classes</a>.
+        Classes are the <strong>blueprints</strong>, and constructors are the <strong>setup tools</strong> that prepare each object built from that blueprint.
+    </p>
 
+    <!-- Navigation -->
     <div class="navigation-buttons">
-        <a href="@Url.Action("Classes", "OOP")" class="btn btn-outline-primary ajax-link">← Classes in .NET</a>
-        <a href="@Url.Action("Objects", "OOP")" class="btn btn-primary ajax-link">Objects in OOP →</a>
+        <a href="@Url.Action("Classes", "OOP")" class="btn btn-outline-primary ajax-link">← Classes</a>
+        <a href="@Url.Action("Objects", "OOP")" class="btn btn-primary ajax-link">Objects →</a>
     </div>
 </div>
 
@@ -90,6 +225,9 @@ student1.Study();
         font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
         font-size: 0.9rem;
         color: var(--bs-body-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .code-content {
@@ -106,6 +244,66 @@ student1.Study();
     code {
         font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
+
+    /* Slider toggle styling */
+    .toggle-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .toggle-label {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--bs-body-color);
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 46px;
+        height: 24px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--bs-border-color);
+        transition: .4s;
+        border-radius: 24px;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+    input:checked + .slider {
+        background-color: var(--bs-primary);
+    }
+
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+
+    /* Navigation buttons */
 
     .navigation-buttons {
         display: flex;
@@ -128,4 +326,40 @@ student1.Study();
         color: var(--bs-primary);
         border-color: var(--bs-primary);
     }
+
+    .left-btn {
+        align-self: flex-start;
+    }
+
+    .right-btn {
+        align-self: flex-end;
+    }
 </style>
+
+<script>
+    // Toggle for student example
+    document.getElementById("studentToggle").addEventListener("change", function() {
+        const csharpCode = document.querySelector(".student-code.language-csharp");
+        const cCode = document.querySelector(".student-code.language-c");
+        if (this.checked) {
+            csharpCode.style.display = "none";
+            cCode.style.display = "block";
+        } else {
+            csharpCode.style.display = "block";
+            cCode.style.display = "none";
+        }
+    });
+
+    // Toggle for car example
+    document.getElementById("carToggle").addEventListener("change", function() {
+        const csharpCode = document.querySelector(".car-code.language-csharp");
+        const cCode = document.querySelector(".car-code.language-c");
+        if (this.checked) {
+            csharpCode.style.display = "none";
+            cCode.style.display = "block";
+        } else {
+            csharpCode.style.display = "block";
+            cCode.style.display = "none";
+        }
+    });
+</script>

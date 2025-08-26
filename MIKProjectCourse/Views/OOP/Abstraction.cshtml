@@ -4,54 +4,118 @@
 
 <div class="container">
     <h1>Abstraction in Object-Oriented Programming (OOP)</h1>
-    <p><strong>Abstraction</strong> allows you to hide the complex implementation details and expose only the essential functionality. In C#, this is achieved using <strong>abstract classes</strong> and <strong>interfaces</strong>.</p>
 
-    <h2>Example 1: Abstract Class</h2>
+    <p>
+        Imagine a <strong>TV remote</strong> 🎮.
+        You press a button to change the channel or adjust the volume, but you don’t need to know how the circuits inside the remote work.
+        This is <strong>Abstraction</strong> — hiding the <em>complex details</em> and showing only the <em>essential features</em> you need.
+    </p>
+
+    <p>
+        In programming, <strong>abstraction</strong> means focusing on <em>what an object does</em> instead of <em>how it does it</em>.
+        It helps simplify complex systems so you can use them without worrying about the internal logic.
+    </p>
+
+    <h2>How Abstraction Works</h2>
+    <ul>
+        <li>
+            In C#, we achieve abstraction mainly using:
+            <ul>
+                <li><strong>Abstract Classes</strong> – a blueprint with some rules (methods) that other classes must follow.</li>
+                <li><strong>Interfaces</strong> – a complete contract that classes agree to implement.</li>
+            </ul>
+        </li>
+        <li>You cannot create an object directly from an abstract class or interface.</li>
+        <li>Other classes (called <strong>derived classes</strong>) provide the actual details and behavior.</li>
+        <li>This way, the user only sees the “buttons” (methods) and not the hidden implementation.</li>
+    </ul>
+
+    <!-- Code container with toggle -->
     <div class="code-container">
-        <div class="code-header">Using Abstract Classes</div>
+        <div class="code-header">
+            Abstraction Example
+            <div class="toggle-wrapper">
+                <label class="toggle-label">C#</label>
+                <label class="switch">
+                    <input type="checkbox" id="abstractionToggle">
+                    <span class="slider round"></span>
+                </label>
+                <label class="toggle-label">C</label>
+            </div>
+        </div>
         <div class="code-content">
-<pre><code class="language-csharp">
-public abstract class Shape
+<pre><code class="language-csharp abstraction-code">
+public abstract class Vehicle
 {
-    public abstract void Draw(); // Abstract method has no body
+    public abstract void StartEngine(); // no body here
 }
 
-public class Circle : Shape
+public class Car : Vehicle
 {
-    public override void Draw()
+    public override void StartEngine()
     {
-        Console.WriteLine("Drawing a Circle");
-    }
-}
-
-public class Rectangle : Shape
-{
-    public override void Draw()
-    {
-        Console.WriteLine("Drawing a Rectangle");
+        Console.WriteLine("Car engine started!");
     }
 }
 
 // Usage
-Shape s1 = new Circle();
-Shape s2 = new Rectangle();
-s1.Draw(); // Output: Drawing a Circle
-s2.Draw(); // Output: Drawing a Rectangle
+Vehicle v = new Car();
+v.StartEngine(); // Output: Car engine started!
+</code></pre>
+
+<pre><code class="language-c abstraction-code" style="display:none;">
+#include &lt;stdio.h&gt;
+
+// In C we don't have "abstract classes".
+// We use function pointers to mimic abstraction.
+
+struct Vehicle {
+    void (*StartEngine)();
+};
+
+void CarEngine() {
+    printf("Car engine started!\n");
+}
+
+int main() {
+    struct Vehicle car;
+    car.StartEngine = CarEngine;
+    car.StartEngine(); // Output: Car engine started!
+    return 0;
+}
 </code></pre>
         </div>
     </div>
 
-    <h2>Key Points About Abstraction</h2>
+    <h2>Real-World Examples of Abstraction</h2>
     <ul>
-        <li>Abstract classes cannot be instantiated directly.</li>
-        <li>Derived classes must implement abstract methods.</li>
-        <li>Abstraction hides unnecessary details and shows only the relevant data and behavior.</li>
-        <li>Helps to reduce complexity and increase code maintainability.</li>
+        <li><strong>Car driving 🚗</strong>: You use the steering wheel and pedals, but don’t worry about how the engine works inside.</li>
+        <li><strong>ATM machine 🏦</strong>: You press buttons to withdraw cash, without knowing the banking software or money-counting mechanism inside.</li>
+        <li><strong>Smartphone 📱</strong>: You tap an app icon, and it opens, without needing to understand how the operating system launches it.</li>
     </ul>
 
-    <h2>Exercise</h2>
-    <p>Create an abstract class <code>Vehicle</code> with an abstract method <code>StartEngine()</code>. Then create two derived classes <code>Car</code> and <code>Motorcycle</code> that implement the <code>StartEngine()</code> method with appropriate messages. Test your objects by calling <code>StartEngine()</code>.</p>
+    <h2>Why Abstraction is Important</h2>
+    <ul>
+        <li><strong>Reduces complexity</strong> – makes large programs easier to understand.</li>
+        <li><strong>Improves reusability</strong> – different classes can use the same abstract idea in their own way.</li>
+        <li><strong>Supports flexibility</strong> – code is easier to extend and maintain when the details are hidden.</li>
+        <li><strong>Encourages cleaner design</strong> – forces developers to separate “what” something does from “how” it does it.</li>
+    </ul>
 
+    <h2>Key Points to Remember</h2>
+    <ul>
+        <li>Abstraction is about <strong>hiding details</strong> and showing only what’s important.</li>
+        <li>It is implemented using <strong>abstract classes</strong> and <strong>interfaces</strong> in C#.</li>
+        <li>You cannot create objects from abstract classes or interfaces directly.</li>
+        <li>Other classes must provide the hidden implementation (the “how”).</li>
+    </ul>
+
+    <p>
+        🔗 Next: Abstraction often goes hand in hand with <a href="@Url.Action("Interfaces", "OOP")">Interfaces</a>,
+        because interfaces are another way of enforcing abstraction in OOP.
+    </p>
+
+    <!-- Navigation -->
     <div class="navigation-buttons">
         <a href="@Url.Action("Polymorphism", "OOP")" class="btn btn-outline-primary ajax-link">← Polymorphism</a>
         <a href="@Url.Action("Interfaces", "OOP")" class="btn btn-primary ajax-link">Interfaces →</a>
@@ -95,6 +159,9 @@ s2.Draw(); // Output: Drawing a Rectangle
         font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
         font-size: 0.9rem;
         color: var(--bs-body-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .code-content {
@@ -111,6 +178,66 @@ s2.Draw(); // Output: Drawing a Rectangle
     code {
         font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
+
+    /* Toggle styling */
+    .toggle-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .toggle-label {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--bs-body-color);
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 46px;
+        height: 24px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--bs-border-color);
+        transition: .4s;
+        border-radius: 24px;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+    input:checked + .slider {
+        background-color: var(--bs-primary);
+    }
+
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+
+    /* Navigation buttons */
 
     .navigation-buttons {
         display: flex;
@@ -133,4 +260,29 @@ s2.Draw(); // Output: Drawing a Rectangle
         color: var(--bs-primary);
         border-color: var(--bs-primary);
     }
+
+    .left-btn {
+        align-self: flex-start;
+    }
+
+    .right-btn {
+        align-self: flex-end;
+    }
+
+
 </style>
+
+<script>
+    // Toggle for abstraction example
+    document.getElementById("abstractionToggle").addEventListener("change", function() {
+        const csharpCode = document.querySelector(".abstraction-code.language-csharp");
+        const cCode = document.querySelector(".abstraction-code.language-c");
+        if (this.checked) {
+            csharpCode.style.display = "none";
+            cCode.style.display = "block";
+        } else {
+            csharpCode.style.display = "block";
+            cCode.style.display = "none";
+        }
+    });
+</script>

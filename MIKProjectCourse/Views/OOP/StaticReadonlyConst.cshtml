@@ -4,78 +4,165 @@
 
 <div class="container">
     <h1>Static, Readonly, and Const in C#</h1>
-    <p>In C#, <strong>static</strong>, <strong>readonly</strong>, and <strong>const</strong> are used to define values and members with specific behaviors:</p>
+    <p>
+        In C#, you will often work with values that should not change or should be shared across
+        all objects of a class. For this purpose, we use <strong>static</strong>, <strong>readonly</strong>,
+        and <strong>const</strong>. While they may look similar at first, they behave differently.
+    </p>
 
     <h2>1. Static</h2>
-    <p>A <strong>static</strong> member belongs to the class rather than an instance. You can access it without creating an object.</p>
+    <p>
+        A <strong>static</strong> member belongs to the <em>class itself</em>, not to any single object.
+        This means you can use it without creating an object.
+        It is useful when something is common for all objects (like a counter, a utility method, or Pi in math).
+    </p>
+
+    <!-- Static Example -->
     <div class="code-container">
-        <div class="code-header">Example: Static Member</div>
+        <div class="code-header">
+            Example: Static Member
+            <div class="toggle-wrapper">
+                <label class="toggle-label">C#</label>
+                <label class="switch">
+                    <input type="checkbox" id="staticToggle">
+                    <span class="slider round"></span>
+                </label>
+                <label class="toggle-label">C</label>
+            </div>
+        </div>
         <div class="code-content">
-<pre><code class="language-csharp">
+<pre><code class="language-csharp static-code">
 public class Calculator
 {
     public static double Pi = 3.14159;
 }
 
+// Usage:
 Console.WriteLine(Calculator.Pi); // Output: 3.14159
+</code></pre>
+
+<pre><code class="language-c static-code" style="display:none;">
+#include &lt;stdio.h&gt;
+
+double Pi = 3.14159;
+
+int main() {
+    printf("%f\n", Pi); // Output: 3.14159
+    return 0;
+}
 </code></pre>
         </div>
     </div>
 
     <h2>2. Readonly</h2>
-    <p>A <strong>readonly</strong> field can only be assigned during declaration or in a constructor. It cannot be modified elsewhere.</p>
+    <p>
+        A <strong>readonly</strong> field can only be set:
+        <ul>
+            <li>When declaring the field, OR</li>
+            <li>Inside a constructor (when the object is created).</li>
+        </ul>
+        Once set, its value cannot be changed.
+        This is useful when each object should keep its own value that never changes after construction.
+    </p>
+
+    <!-- Readonly Example -->
     <div class="code-container">
-        <div class="code-header">Example: Readonly Field</div>
+        <div class="code-header">
+            Example: Readonly Field
+            <div class="toggle-wrapper">
+                <label class="toggle-label">C#</label>
+                <label class="switch">
+                    <input type="checkbox" id="readonlyToggle">
+                    <span class="slider round"></span>
+                </label>
+                <label class="toggle-label">C</label>
+            </div>
+        </div>
         <div class="code-content">
-<pre><code class="language-csharp">
+<pre><code class="language-csharp readonly-code">
 public class Circle
 {
     public readonly double Radius;
 
     public Circle(double radius)
     {
-        Radius = radius;
+        Radius = radius; // Set once when object is created
     }
 }
 
 Circle c = new Circle(5);
-// c.Radius = 10; // Error: Cannot assign to readonly field
+// c.Radius = 10; // ❌ Error: Cannot assign to readonly field
+</code></pre>
+
+<pre><code class="language-c readonly-code" style="display:none;">
+#include &lt;stdio.h&gt;
+
+struct Circle {
+    double Radius;
+};
+
+int main() {
+    struct Circle c;
+    c.Radius = 5;
+    // c.Radius = 10; // You can avoid changing by convention
+    printf("%f\n", c.Radius);
+    return 0;
+}
 </code></pre>
         </div>
     </div>
 
     <h2>3. Const</h2>
-    <p>A <strong>const</strong> field is a compile-time constant and must be assigned during declaration. It cannot be changed later.</p>
+    <p>
+        A <strong>const</strong> field is a constant value that never changes.
+        It must be assigned when declared, and the compiler replaces every usage with its value.
+        Use <code>const</code> for values that are absolutely fixed (like gravity, days in a week, etc.).
+    </p>
+
+    <!-- Const Example -->
     <div class="code-container">
-        <div class="code-header">Example: Const Field</div>
+        <div class="code-header">
+            Example: Const Field
+            <div class="toggle-wrapper">
+                <label class="toggle-label">C#</label>
+                <label class="switch">
+                    <input type="checkbox" id="constToggle">
+                    <span class="slider round"></span>
+                </label>
+                <label class="toggle-label">C</label>
+            </div>
+        </div>
         <div class="code-content">
-<pre><code class="language-csharp">
+<pre><code class="language-csharp const-code">
 public class MathConstants
 {
     public const double Gravity = 9.81;
 }
 
+// Usage:
 Console.WriteLine(MathConstants.Gravity); // Output: 9.81
+</code></pre>
+
+<pre><code class="language-c const-code" style="display:none;">
+#include &lt;stdio.h&gt;
+
+const double Gravity = 9.81;
+
+int main() {
+    printf("%f\n", Gravity);
+    return 0;
+}
 </code></pre>
         </div>
     </div>
 
     <h2>Key Points</h2>
     <ul>
-        <li><strong>Static:</strong> Shared by all instances of a class.</li>
-        <li><strong>Readonly:</strong> Set at runtime but only once per instance.</li>
-        <li><strong>Const:</strong> Set at compile-time and cannot change.</li>
-        <li>Use static for shared utilities, readonly for values that are initialized once, and const for fixed constants.</li>
+        <li><strong>Static:</strong> Belongs to the class, shared by all objects.</li>
+        <li><strong>Readonly:</strong> Set once per object, either at declaration or in constructor.</li>
+        <li><strong>Const:</strong> A compile-time constant, must be declared with a value.</li>
+        <li>Use <strong>static</strong> for shared values, <strong>readonly</strong> for values set once per object, and <strong>const</strong> for fixed constants.</li>
     </ul>
-
-    <h2>Exercise</h2>
-    <p>Create a class <code>Earth</code> with:</p>
-    <ul>
-        <li>a <strong>const</strong> field <code>Radius</code> = 6371</li>
-        <li>a <strong>readonly</strong> field <code>CreationYear</code> set via constructor</li>
-        <li>a <strong>static</strong> field <code>PlanetCount</code> incremented each time an <code>Earth</code> object is created</li>
-    </ul>
-    <p>Test your class by creating multiple objects and printing all fields.</p>
 
     <div class="navigation-buttons">
         <a href="@Url.Action("Interfaces", "OOP")" class="btn btn-outline-primary ajax-link">← Interfaces</a>
@@ -106,7 +193,7 @@ Console.WriteLine(MathConstants.Gravity); // Output: 9.81
     }
 
     .code-container {
-        margin: 25px 0;
+        margin: 20px 0;
         border: 1px solid var(--bs-border-color);
         border-radius: 5px;
         overflow: hidden;
@@ -120,6 +207,9 @@ Console.WriteLine(MathConstants.Gravity); // Output: 9.81
         font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
         font-size: 0.9rem;
         color: var(--bs-body-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 
     .code-content {
@@ -136,6 +226,64 @@ Console.WriteLine(MathConstants.Gravity); // Output: 9.81
     code {
         font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
+
+    /* Toggle styling */
+    .toggle-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .toggle-label {
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--bs-body-color);
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 46px;
+        height: 24px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--bs-border-color);
+        transition: .4s;
+        border-radius: 24px;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+    input:checked + .slider {
+        background-color: var(--bs-primary);
+    }
+
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
 
     .navigation-buttons {
         display: flex;
@@ -159,3 +307,44 @@ Console.WriteLine(MathConstants.Gravity); // Output: 9.81
         border-color: var(--bs-primary);
     }
 </style>
+
+<script>
+    // Toggle function for Static
+    document.getElementById("staticToggle").addEventListener("change", function() {
+        const csharp = document.querySelector(".static-code.language-csharp");
+        const c = document.querySelector(".static-code.language-c");
+        if(this.checked){
+            csharp.style.display = "none";
+            c.style.display = "block";
+        } else {
+            csharp.style.display = "block";
+            c.style.display = "none";
+        }
+    });
+
+    // Toggle function for Readonly
+    document.getElementById("readonlyToggle").addEventListener("change", function() {
+        const csharp = document.querySelector(".readonly-code.language-csharp");
+        const c = document.querySelector(".readonly-code.language-c");
+        if(this.checked){
+            csharp.style.display = "none";
+            c.style.display = "block";
+        } else {
+            csharp.style.display = "block";
+            c.style.display = "none";
+        }
+    });
+
+    // Toggle function for Const
+    document.getElementById("constToggle").addEventListener("change", function() {
+        const csharp = document.querySelector(".const-code.language-csharp");
+        const c = document.querySelector(".const-code.language-c");
+        if(this.checked){
+            csharp.style.display = "none";
+            c.style.display = "block";
+        } else {
+            csharp.style.display = "block";
+            c.style.display = "none";
+        }
+    });
+</script>
