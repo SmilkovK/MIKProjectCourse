@@ -1,0 +1,72 @@
+﻿@{
+    ViewData["Title"] = "3.1 Block vs. Inline Elements";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+ 
+
+    <p>Most elements are either block- or inline-level elements. What's the difference?</p>
+
+    <p><strong>Block-level elements</strong> begin on a new line, stacking one on top of the other, and occupy any available width. Block-level elements may be nested inside one another and may wrap inline-level elements. We'll most commonly see block-level elements used for larger pieces of content, such as paragraphs.</p>
+
+    <p><strong>Inline-level elements</strong> do not begin on a new line. They fall into the normal flow of a document, lining up one after the other, and only maintain the width of their content. Inline-level elements may be nested inside one another; however, they cannot wrap block-level elements. We'll usually see inline-level elements with smaller pieces of content, such as a few words.</p>
+
+    <div class="image-example text-center my-4">
+        <!-- Replace with your actual image path or URL -->
+        <img src="~/images/block-inline.jpg" alt="Block vs Inline Elements" class="img-fluid rounded shadow" style="max-width: 600px;" />
+        <p class="text-muted mt-2">Example illustration of block vs. inline elements.</p>
+    </div>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("DivisionsAndSpans", "WebDesign")" class="btn btn-outline-primary">← Identifying Divisions & Spans</a>
+        <a href="@Url.Action("Elements", "WebDesign")" class="btn btn-primary">HTML Elements →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-top: 25px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .image-example img {
+        border: 1px solid var(--bs-border-color);
+        background-color: #f8f9fa;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

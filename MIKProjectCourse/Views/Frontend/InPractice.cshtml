@@ -1,0 +1,182 @@
+﻿@{
+    ViewData["Title"] = "13. In Practice";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>Currently, our Styles Conference website lacks real structure–and content for that matter. Let's take some time to flesh out our home page a bit.</p>
+
+    <p>Using our existing index.html file, let's add in a <code>&lt;header&gt;</code> element. Our <code>&lt;header&gt;</code> element should include our existing <code>&lt;h1&gt;</code> element; let's also add an <code>&lt;h3&gt;</code> element as a tagline to support our <code>&lt;h1&gt;</code> element.</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML Code</div>
+        <div class="code-content">
+            <pre><code class="language-html">
+&lt;header&gt;
+  &lt;h1&gt;Styles Conference&lt;/h1&gt;
+  &lt;h3&gt;August 24&ndash;26th &mdash; Chicago, IL&lt;/h3&gt;
+&lt;/header&gt;
+            </code></pre>
+        </div>
+    </div>
+
+    <h2>Result:</h2>
+    <header class="demo-header">
+        <h1>Styles Conference</h1>
+        <h3>August 24–26th — Chicago, IL</h3>
+    </header>
+
+    <p>After our <code>&lt;header&gt;</code> element, let's add a new group of content, using the <code>&lt;section&gt;</code> element, that introduces our conference. We'll begin this section with a new <code>&lt;h2&gt;</code> element and end it with our existing paragraph.</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML Code</div>
+        <div class="code-content">
+            <pre><code class="language-html">
+&lt;section&gt;
+  &lt;h2&gt;Dedicated to the Craft of Building Websites&lt;/h2&gt;
+  &lt;p&gt;Every year the brightest web designers and front-end developers descend on Chicago to discuss the latest technologies. Join us this August!&lt;/p&gt;
+&lt;/section&gt;
+            </code></pre>
+        </div>
+    </div>
+
+    <h2>Result:</h2>
+    <section class="demo-section">
+        <h2>Dedicated to the Craft of Building Websites</h2>
+        <p>Every year the brightest web designers and front-end developers descend on Chicago to discuss the latest technologies. Join us this August!</p>
+    </section>
+
+    <p>Following the introduction to our conference, let's add another group of content that teases a few of the pages we'll be adding, specifically the Speakers, Schedule, and Venue pages. Each of the pages we're teasing should also reside within its own section and include supporting text. We'll group all of the teasers inside a <code>&lt;section&gt;</code> element, and each individual teaser will be wrapped within a <code>&lt;section&gt;</code> element as well. In all, we'll have three <code>&lt;section&gt;</code> elements inside another <code>&lt;section&gt;</code> element, which is all right.</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML Code</div>
+        <div class="code-content">
+            <pre><code class="language-html">
+&lt;section&gt;
+  &lt;section&gt;
+    &lt;h5&gt;Speakers&lt;/h5&gt;
+    &lt;h3&gt;World-Class Speakers&lt;/h3&gt;
+    &lt;p&gt;Joining us from all around the world are over twenty fantastic speakers, here to share their stories.&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;section&gt;
+    &lt;h5&gt;Schedule&lt;/h5&gt;
+    &lt;h3&gt;Event Schedule&lt;/h3&gt;
+    &lt;p&gt;Explore our schedule to find the sessions that interest you the most.&lt;/p&gt;
+  &lt;/section&gt;
+  &lt;section&gt;
+    &lt;h5&gt;Venue&lt;/h5&gt;
+    &lt;h3&gt;Conference Venue&lt;/h3&gt;
+    &lt;p&gt;Located in downtown Chicago, the venue offers great amenities.&lt;/p&gt;
+  &lt;/section&gt;
+&lt;/section&gt;
+            </code></pre>
+        </div>
+    </div>
+
+    <h2>Result:</h2>
+    <section class="demo-section nested-section">
+        <section>
+            <h5>Speakers</h5>
+            <h3>World-Class Speakers</h3>
+            <p>Joining us from all around the world are over twenty fantastic speakers, here to share their stories.</p>
+        </section>
+        <section>
+            <h5>Schedule</h5>
+            <h3>Event Schedule</h3>
+            <p>Explore our schedule to find the sessions that interest you the most.</p>
+        </section>
+        <section>
+            <h5>Venue</h5>
+            <h3>Conference Venue</h3>
+            <p>Located in downtown Chicago, the venue offers great amenities.</p>
+        </section>
+    </section>
+
+    <p>Lastly, let's add our copyright within the <code>&lt;footer&gt;</code> element at the end of our page. To do so let's use the <code>&lt;small&gt;</code> element, which semantically represents side comments and small print–perfect for our copyright.</p>
+
+    <p>Generally, content within the <code>&lt;small&gt;</code> element will be rendered as, well, small, but our CSS reset will prevent that from happening.</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML Code</div>
+        <div class="code-content">
+            <pre><code class="language-html">
+&lt;footer&gt;
+  &lt;small&gt;&amp;copy; Styles Conference&lt;/small&gt;
+&lt;/footer&gt;
+            </code></pre>
+        </div>
+    </div>
+
+    <footer class="demo-footer">
+        <small>&copy; Styles Conference</small>
+    </footer>
+</div>
+
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #eef;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        overflow-x: auto;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

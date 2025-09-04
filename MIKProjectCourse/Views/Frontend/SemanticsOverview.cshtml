@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "2. Semantics Overview";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>So what exactly are semantics? Semantics within HTML is the practice of giving content on the page meaning and structure by using the proper element. Semantic code describes the value of content on a page, regardless of the style or appearance of that content.</p>
+
+    <p>There are several benefits to using semantic elements, including enabling computers, screen readers, search engines, and other devices to adequately read and understand the content on a web page. Additionally, semantic HTML is easier to manage and work with, as it shows clearly what each piece of content is about.</p>
+
+    <p>Moving forward, as new elements are introduced, we'll talk about what those elements actually mean and the type of content they best represent. Before we do that, though, let's look at two elements <span class="text-danger">&lt;div&gt;</span> and <span class="text-danger">&lt;span&gt;</span> that actually don't hold any semantic value. They exist for styling purposes only.</p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("IntroToHtml", "WebDesign")" class="btn btn-outline-primary">← Intro to HTML</a>
+        <a href="@Url.Action("Elements", "WebDesign")" class="btn btn-primary">HTML Elements →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-top: 25px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .text-danger {
+        color: #dc3545;
+        font-weight: bold;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Types of Frontend Technologies";
+}
+
+<div class="container">
+    <h1>Types of Frontend Technologies</h1>
+    <p>Now that you know what the frontend is, let’s look at some of the tools and technologies used to build the things we see and use on a website or app.</p>
+
+    <h2>1. HTML (HyperText Markup Language)</h2>
+    <p>This is the basic building block of any webpage. It tells the browser what to show – like text, images, and links.</p>
+    <p><strong>Use for:</strong> Creating the structure of the page.</p>
+
+    <h2>2. CSS (Cascading Style Sheets)</h2>
+    <p>CSS makes everything look nice! It changes the colors, fonts, layout, and animations of the page.</p>
+    <p><strong>Use for:</strong> Styling and making the page beautiful and fun.</p>
+
+    <h2>3. JavaScript</h2>
+    <p>This is the magic behind interactions. It lets you click buttons, show pop-ups, and update the page without reloading.</p>
+    <p><strong>Use for:</strong> Making the page dynamic and interactive.</p>
+
+    <h2>4. Frontend Frameworks</h2>
+    <p>These are special tools that help developers build websites faster and more easily. Examples include:</p>
+    <ul>
+        <li>React.js</li>
+        <li>Angular</li>
+        <li>Vue.js</li>
+    </ul>
+    <p><strong>Use for:</strong> Creating large, interactive web apps more efficiently.</p>
+
+    <h2>5. Responsive Design Tools</h2>
+    <p>These help make sure the website works well on phones, tablets, and computers. Tools like Bootstrap or Tailwind CSS help with this.</p>
+    <p><strong>Use for:</strong> Making the website look good on all screen sizes.</p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("WhyFrontend", "Frontend")" class="btn btn-outline-primary">← Why Do We Need Frontend?</a>
+        <a href="@Url.Action("HowFrontendWorks", "Frontend")" class="btn btn-primary">How Frontend Works →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+
+    .container p,
+    .container ul {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    .container ul {
+        margin-left: 20px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

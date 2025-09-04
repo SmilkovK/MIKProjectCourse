@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Why Do We Need Frontend?";
+}
+
+<div class="container">
+    <h1>Why Do We Need Frontend?</h1>
+    <p>Imagine you want to use a website or an app. Without a frontend, it would be like having a book with all the information inside, but no pictures, colors, or buttons to help you understand or use it.</p>
+
+    <p>The <strong>frontend</strong> makes websites and apps easy and fun to use. It shows you the information in a nice way and lets you click buttons, fill forms, and interact with everything.</p>
+
+    <h2>Why Frontend is Important</h2>
+    <ul>
+        <li><strong>Easy to Use:</strong> Helps people find what they need quickly.</li>
+        <li><strong>Interactive:</strong> Lets you click, play, and get instant responses.</li>
+        <li><strong>Attractive:</strong> Makes websites look colorful and inviting.</li>
+        <li><strong>Works on Any Device:</strong> Makes sure the website looks good on phones, tablets, and computers.</li>
+    </ul>
+
+    <p>Every website and app you use has a frontend that helps you understand and enjoy the content.</p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("Index", "Frontend")" class="btn btn-outline-primary">← What is Frontend?</a>
+        <a href="@Url.Action("FrontendTechnologies", "Frontend")" class="btn btn-primary">Next: Frontend Technologies →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    .container p,
+    .container ul {
+        line-height: 1.6;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

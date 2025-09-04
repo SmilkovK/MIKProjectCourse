@@ -1,0 +1,92 @@
+﻿@{
+    ViewData["Title"] = "HTML and CSS";
+}
+
+<div class="container">
+    <h1>All Websites Use <span class="highlight-red">HTML</span> and <span class="highlight-red">CSS</span></h1>
+
+    <p>
+        <span class="highlight-red">HTML</span> – <strong>Hypertext Markup Language</strong><br />
+        &bull; <em>not a programming language</em><br />
+        &bull; consists of <strong>HTML <span class="highlight-red">elements</span></strong> called <strong><span class="highlight-red">tags</span></strong> or
+        <strong><span class="highlight-marker">markers</span></strong><br />
+        &bull; these <span class="highlight-red">tags</span> instruct web browsers how to render the web page structure<br />
+        &bull; HTML documents are stored as text files with the extension <strong><span class="highlight-ext">.html</span></strong> or <strong><span class="highlight-ext">.htm</span></strong>
+    </p>
+
+    <p>
+        <span class="highlight-red">CSS</span> – <strong>Cascading Style Sheets</strong><br />
+        &bull; is a presentation language created to style the appearance of content<br />
+        &bull; CSS should not be written inside of an HTML document and vice versa<br />
+        <strong><span class="highlight-rule">As a rule, HTML will always represent content, and CSS will always represent the appearance of that content.</span></strong>
+    </p>
+
+    <hr />
+
+    <h2>More Advanced Technologies</h2>
+    <p>
+        Larger websites often make use of more complex technologies on the web server:<br />
+        &bull; usage of a <strong>database</strong> to store data<br />
+        &bull; <strong>programming languages</strong> such as PHP, ASP.Net, Java, or Ruby…<br />
+        &bull; these technologies are actually used to produce HTML and CSS that is then sent to the browser
+    </p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("NextTopic", "WebBasics")" class="btn btn-primary">Next &raquo;</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .highlight-red {
+        color: red;
+        font-weight: bold;
+    }
+
+    .highlight-marker {
+        color: #008080; /* teal-like for contrast */
+        font-weight: bold;
+    }
+
+    .highlight-ext {
+        color: #6c757d; /* gray for file extensions */
+        font-weight: bold;
+    }
+
+    .highlight-rule {
+        color: red;
+        font-weight: bold;
+    }
+</style>

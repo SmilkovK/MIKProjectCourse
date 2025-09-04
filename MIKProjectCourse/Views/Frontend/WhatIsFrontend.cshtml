@@ -1,0 +1,51 @@
+﻿@{
+    ViewData["Title"] = "What is Frontend?";
+}
+
+<div class="container">
+    <h1>What is Frontend?</h1>
+    <p><strong>Frontend</strong> is everything you see and interact with on a website or app — the buttons, pictures, text, and colors.</p>
+
+    <p>Imagine you are drawing a picture. The drawing is what everyone sees and enjoys. Frontend is like that picture — it shows what the website looks like and lets you click and play with it.</p>
+
+    <p>So, Frontend helps us <strong>show</strong> information and <strong>interact</strong> with the website in a fun and easy way.</p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("WhyFrontend", "Frontend")" class="btn btn-primary">Next &raquo;</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

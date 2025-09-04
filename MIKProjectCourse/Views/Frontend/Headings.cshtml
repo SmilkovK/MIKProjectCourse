@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "Headings";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>Headings are block-level elements, and they come in six different rankings, <code>&lt;h1&gt;</code> through <code>&lt;h6&gt;</code>. Headings help to quickly break up content and establish hierarchy, and they are key identifiers for users reading a page. They also help search engines to index and determine the content on a page.</p>
+
+    <p>Headings should be used in an order that is relevant to the content of a page. The primary heading of a page or section should be marked up with an <code>&lt;h1&gt;</code> element, and subsequent headings should use <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;h4&gt;</code>, <code>&lt;h5&gt;</code>, and <code>&lt;h6&gt;</code> elements as necessary.</p>
+
+    <p>Each heading level should be used where it is semantically valued, and should not be used to make text bold or big, there are other, better ways to do that.</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML Example</div>
+        <div class="code-content">
+<pre><code class="language-html">
+&lt;h1&gt;Heading Level 1&lt;/h1&gt;
+&lt;h2&gt;Heading Level 2&lt;/h2&gt;
+&lt;h3&gt;Heading Level 3&lt;/h3&gt;
+&lt;h4&gt;Heading Level 4&lt;/h4&gt;
+&lt;h5&gt;Heading Level 5&lt;/h5&gt;
+&lt;h6&gt;Heading Level 6&lt;/h6&gt;
+</code></pre>
+        </div>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">Result</div>
+        <div class="code-content result-preview">
+            <h1>Heading Level 1</h1>
+            <h2>Heading Level 2</h2>
+            <h3>Heading Level 3</h3>
+            <h4>Heading Level 4</h4>
+            <h5>Heading Level 5</h5>
+            <h6>Heading Level 6</h6>
+        </div>
+    </div>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("UsingTextBasedElements", "Frontend")" class="btn btn-outline-primary">← Using Text-Based Elements</a>
+        <a href="@Url.Action("Paragraphs", "Frontend")" class="btn btn-primary">Paragraphs →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #eef;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: #f9f9f9;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    .result-preview h1,
+    .result-preview h2,
+    .result-preview h3,
+    .result-preview h4,
+    .result-preview h5,
+    .result-preview h6 {
+        margin: 0 0 10px 0;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

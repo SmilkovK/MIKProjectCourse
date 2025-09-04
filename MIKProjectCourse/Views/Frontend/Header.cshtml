@@ -1,0 +1,113 @@
+﻿@{
+    ViewData["Title"] = "6. Header Element";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>The <code>&lt;header&gt;</code> element, like it sounds, is used to identify the top of a page, article, section, or other segment of a page. In general, the <code>&lt;header&gt;</code> element may include a heading, introductory text, and even navigation.</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML Example</div>
+        <div class="code-content">
+<pre><code class="language-html">
+&lt;header&gt;
+  &lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+  &lt;p&gt;Your source for all things HTML&lt;/p&gt;
+&lt;/header&gt;
+</code></pre>
+        </div>
+    </div>
+
+    <h2>&lt;header&gt; vs. &lt;head&gt; vs. &lt;h1&gt; - &lt;h6&gt; Elements</h2>
+
+    <ul>
+        <li>
+            The <code>&lt;header&gt;</code> element is a <strong>structural element</strong> that outlines the heading of a segment of a page. It falls within the <code>&lt;body&gt;</code> element.
+        </li>
+        <li>
+            The <code>&lt;head&gt;</code> element is <strong>not displayed</strong> on a page and is used to outline metadata, including the document title and links to external files. It falls directly within the <code>&lt;html&gt;</code> element.
+        </li>
+        <li>
+            Heading elements, <code>&lt;h1&gt;</code> through <code>&lt;h6&gt;</code>, are used to designate <strong>multiple levels of text headings</strong> throughout a page.
+        </li>
+    </ul>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("BuildingStructure", "Frontend")" class="btn btn-outline-primary">← Building Structure</a>
+        <a href="@Url.Action("NavElement", "Frontend")" class="btn btn-primary">Navigation Element →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, ul {
+        color: var(--bs-body-color);
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #eef;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: #f9f9f9;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

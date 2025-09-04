@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "5. Building Structure";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>For the longest time the structure of a web page was built using <code>&lt;div&gt;</code> elements. The problem was that divisions provide no semantic value, and it was fairly difficult to determine the intention of these divisions.</p>
+
+    <p>Fortunately, HTML5 introduced new structurally based elements, including the <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code>, and <code>&lt;footer&gt;</code> elements.</p>
+
+    <p>All of these new elements are intended to give meaning to the organization of our pages and improve our structural semantics. They are all block-level elements and do not have any implied position or style. Additionally, all of these elements may be used multiple times per page, so long as each use reflects the proper semantic meaning.</p>
+
+    <p>Let’s roll up our sleeves and take a closer look.</p>
+
+    <div class="image-container mt-4 mb-4 text-center">
+        <img src="https://learn.shayhowe.com/assets/images/courses/html-css/getting-to-know-html/building-structure.png" alt="Building Structure HTML5 Elements Diagram" class="img-fluid shadow rounded" style="max-width: 100%; height: auto;" />
+    </div>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("ItalicTextEmphasis", "Frontend")" class="btn btn-outline-primary">← Italicize Text</a>
+        <a href="@Url.Action("HeaderElement", "Frontend")" class="btn btn-primary">Header Element →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #eef;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    .image-container img {
+        border: 1px solid var(--bs-border-color);
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

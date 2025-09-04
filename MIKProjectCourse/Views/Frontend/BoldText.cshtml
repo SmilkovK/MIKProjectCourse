@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "4.3 Bold Text with Strong";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>To make text bold and place a strong importance on it, we'll use the <code>&lt;strong&gt;</code> inline-level element. There are two elements that will bold text for us: the <code>&lt;strong&gt;</code> and <code>&lt;b&gt;</code> elements. It is important to understand the semantic difference between the two.</p>
+
+    <p>The <code>&lt;strong&gt;</code> element is semantically used to give strong importance to text, and is thus the most popular option for bolding text. The <code>&lt;b&gt;</code> element, on the other hand, semantically means to stylistically offset text, which isn't always the best choice for text deserving prominent attention. We have to gauge the significance of the text we wish to set as bold and to choose an element accordingly.</p>
+
+    <p>Here are the two HTML options for creating bold text in action:</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML Example</div>
+        <div class="code-content">
+<pre><code class="language-html">
+&lt;!-- Strong importance --&gt;
+&lt;p&gt;&lt;strong&gt;Caution:&lt;/strong&gt; Falling rocks.&lt;/p&gt;
+
+&lt;!-- Stylistically offset --&gt;
+&lt;p&gt;This recipe calls for &lt;b&gt;bacon&lt;/b&gt; and &lt;b&gt;baconnaise&lt;/b&gt;.&lt;/p&gt;
+</code></pre>
+        </div>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">Result</div>
+        <div class="code-content result-preview">
+            <p><strong>Caution:</strong> Falling rocks.</p>
+            <p>This recipe calls for <b>bacon</b> and <b>baconnaise</b>.</p>
+        </div>
+    </div>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("Paragraphs", "Frontend")" class="btn btn-outline-primary">← Paragraphs</a>
+        <a href="@Url.Action("ItalicTextEmphasis", "Frontend")" class="btn btn-primary">Italic Text with Emphasis →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #eef;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: #f9f9f9;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    .result-preview p:first-of-type {
+        margin-top: 0;
+    }
+
+    .result-preview p:last-of-type {
+        margin-bottom: 0;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

@@ -1,0 +1,74 @@
+﻿@{
+    ViewData["Title"] = "10. Deciding Between <article>, <section>, or <div> Elements";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>At times it becomes fairly difficult to decide which element – <code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, or <code>&lt;div&gt;</code> – is the best element for the job based on its semantic meaning. The trick here, as with every semantic decision, is to look at the content.</p>
+
+    <p>Both the <code>&lt;article&gt;</code> and <code>&lt;section&gt;</code> elements contribute to a document's structure and help to outline a document. If the content is being grouped solely for styling purposes and doesn't provide value to the outline of a document, use the <code>&lt;div&gt;</code> element.</p>
+
+    <ul>
+        <li>If the content adds to the document outline and it can be independently redistributed or syndicated, use the <code>&lt;article&gt;</code> element.</li>
+        <li>If the content adds to the document outline and represents a thematic group of content, use the <code>&lt;section&gt;</code> element.</li>
+    </ul>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("SectionElement", "Frontend")" class="btn btn-outline-primary">← Section Element</a>
+        <a href="@Url.Action("HeaderElement", "Frontend")" class="btn btn-primary">Header Element →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p, ul {
+        color: var(--bs-body-color);
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #eef;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>
+

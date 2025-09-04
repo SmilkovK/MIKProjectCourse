@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Intro to HTML";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <h2>1. Getting to Know HTML</h2>
+
+    <p>With our introduction to HTML and CSS complete, it's time to dig a little deeper into HTML and examine the different components that make up this language.</p>
+
+    <p>In order to start building websites, we need to learn a little about which HTML elements are best used to display different types of content. It's also important to understand how elements are visually displayed on a web page, as well as what different elements mean semantically.</p>
+
+    <p>Using the proper element for the job goes a long way, and we'll want to make well-informed decisions in the process.</p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("Index", "WebDesign")" class="btn btn-outline-primary">← Home</a>
+        <a href="@Url.Action("Elements", "WebDesign")" class="btn btn-primary">HTML Elements →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-top: 25px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

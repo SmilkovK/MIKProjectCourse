@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Identifying Divisions & Spans";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <h2>3. Identifying Divisions & Spans</h2>
+
+    <p>Divisions, or <span class="text-danger">&lt;div&gt;</span>, and <span class="text-danger">&lt;span&gt;</span> are HTML elements that act as containers solely for styling purposes.</p>
+
+    <p>As generic containers, they do not come with any overarching meaning or semantic value. Paragraphs are semantic in that content wrapped within a <span class="text-danger">&lt;p&gt;</span> element is known and understood as a paragraph. <span class="text-danger">&lt;div&gt;</span> and <span class="text-danger">&lt;span&gt;</span> do not hold any such meaning and are simply containers.</p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("SemanticsOverview", "WebDesign")" class="btn btn-outline-primary">← Semantics Overview</a>
+        <a href="@Url.Action("Elements", "WebDesign")" class="btn btn-primary">HTML Elements →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-top: 25px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .text-danger {
+        color: #dc3545;
+        font-weight: bold;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

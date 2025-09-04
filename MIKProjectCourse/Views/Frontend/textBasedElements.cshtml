@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Using Text-Based Elements";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>Many different forms of media and content exist online; however, text is predominant. Accordingly, there are a number of different elements for displaying text on a web page. For now we'll focus on the more popular elements, including headings, paragraphs, bold text to show importance, and italics for emphasis. Later, we'll take a closer look at how to style text.</p>
+
+    <div class="code-container">
+        <div class="code-header">Example</div>
+        <div class="code-content">
+            <pre><code class="language-html">
+&lt;h1&gt;Main Heading&lt;/h1&gt;
+&lt;p&gt;This is a paragraph.&lt;/p&gt;
+&lt;strong&gt;Important text&lt;/strong&gt;
+&lt;em&gt;Emphasized text&lt;/em&gt;
+            </code></pre>
+        </div>
+    </div>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("HtmlElements", "Frontend")" class="btn btn-outline-primary">← HTML Elements</a>
+        <a href="@Url.Action("TextStructureElements", "Frontend")" class="btn btn-primary">Text Structure Elements →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #eef;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: #f9f9f9;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "11. Aside ";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>The <code>&lt;aside&gt;</code> element holds content, such as sidebars, inserts, or brief explanations, that is tangentially related to the content surrounding it. When used within an <code>&lt;article&gt;</code> element, for example, the <code>&lt;aside&gt;</code> element may identify content related to the author of the article.</p>
+
+    <p>We may instinctively think of an <code>&lt;aside&gt;</code> element as an element that appears off to the left or right side of a page. We have to remember, though, that all of the structural elements, including the <code>&lt;aside&gt;</code> element, are block-level elements and as such will appear on a new line, occupying the full available width of the page or of the element they are nested within, also known as their parent element.</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML Example</div>
+        <div class="code-content">
+<pre><code class="language-html">
+&lt;article&gt;
+  &lt;h2&gt;My Travel Story&lt;/h2&gt;
+  &lt;p&gt;I visited several countries last summer and had amazing experiences.&lt;/p&gt;
+
+  &lt;aside&gt;
+    &lt;h3&gt;About the Author&lt;/h3&gt;
+    &lt;p&gt;John Doe is a passionate traveler and blogger.&lt;/p&gt;
+  &lt;/aside&gt;
+&lt;/article&gt;
+</code></pre>
+        </div>
+    </div>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("SectionElement", "Frontend")" class="btn btn-outline-primary">← Section Element</a>
+        <a href="@Url.Action("FooterElement", "Frontend")" class="btn btn-primary">Footer Element →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #eef;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        overflow-x: auto;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "7. Navigation";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>The <code>&lt;nav&gt;</code> element identifies a section of major navigational links on a page. The <code>&lt;nav&gt;</code> element should be reserved for primary navigation sections only, such as global navigation, a table of contents, previous/next links, or other noteworthy groups of navigational links.</p>
+
+    <p>Most commonly, links included within the <code>&lt;nav&gt;</code> element will link to other pages within the same website or to parts of the same web page. Miscellaneous one-off links should not be wrapped within the <code>&lt;nav&gt;</code> element; they should use the anchor element, <code>&lt;a&gt;</code>, and the anchor element alone.</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML Example</div>
+        <div class="code-content">
+<pre><code class="language-html">
+&lt;nav&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="/"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/about"&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/services"&gt;Services&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/contact"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+</code></pre>
+        </div>
+    </div>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("HeaderElement", "Frontend")" class="btn btn-outline-primary">← Header Element</a>
+        <a href="@Url.Action("ArticleElement", "Frontend")" class="btn btn-primary">Article Element →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #eef;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: #f9f9f9;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

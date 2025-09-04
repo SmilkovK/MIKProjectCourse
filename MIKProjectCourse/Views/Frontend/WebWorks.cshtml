@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "How the Web Works";
+}
+
+<div class="container">
+    <h1>How the Web Works</h1>
+
+    <ol>
+        <li>
+            When you connect to the web, you do so via an <strong>Internet Service Provider (ISP)</strong>.
+        </li>
+        <li>
+            You type a domain name (like <em>example.com</em>) into your browser. Your computer contacts a network of servers called the <strong>Domain Name System (DNS)</strong>, which tells your computer the IP address of the website.
+        </li>
+        <li>
+            Using this IP address, your browser sends a request to the <strong>web server</strong> that hosts the website.
+        </li>
+        <li>
+            The web server then responds by sending the requested web page back to your browser, and you see the website.
+        </li>
+    </ol>
+
+    <div class="image-container">
+        <img src="https://vertex-academy.com/tutorials/wp-content/uploads/2016/08/Vertex_web_scheme1.jpg" alt="How the Web Works" class="img-fluid" />
+    </div>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("NextTopic", "WebBasics")" class="btn btn-primary">Next &raquo;</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    ol {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+        padding-left: 20px;
+    }
+
+    .image-container {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .img-fluid {
+        max-width: 100%;
+        height: auto;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "3.3 Comments within HTML & CSS";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>The previous code includes exclamation points within the HTML, and that's all right. Those are not elements, those are comments.</p>
+
+    <p>HTML and CSS give us the ability to leave comments within our code, and any content wrapped within a comment will not be displayed on the web page. Comments help keep our files organized, allow us to set reminders, and provide a way for us to more effectively manage our code. Comments become especially useful when there are multiple people working on the same files.</p>
+
+    <p><strong>HTML comments</strong> start with <code>&lt;!--</code> and end with <code>--&gt;</code>.</p>
+    <p><strong>CSS comments</strong> start with <code>/*</code> and end with <code>*/</code>.</p>
+
+    <div class="code-container">
+        <div class="code-header">Example: HTML Comment</div>
+        <div class="code-content">
+            <pre><code class="language-html">
+&lt;!-- This is an HTML comment --&gt;
+&lt;p&gt;This is visible content.&lt;/p&gt;
+            </code></pre>
+        </div>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">Example: CSS Comment</div>
+        <div class="code-content">
+            <pre><code class="language-css">
+/* This is a CSS comment */
+p {
+    color: blue;
+}
+            </code></pre>
+        </div>
+    </div>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("BlockInlineElements", "Frontend")" class="btn btn-outline-primary">← Block vs Inline Elements</a>
+        <a href="@Url.Action("HtmlElements", "Frontend")" class="btn btn-primary">HTML Elements →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #eef;
+        padding: 2px 4px;
+        border-radius: 3px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: #f9f9f9;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>
