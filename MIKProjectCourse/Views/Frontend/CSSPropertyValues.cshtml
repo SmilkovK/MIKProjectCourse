@@ -1,0 +1,187 @@
+﻿@{
+    ViewData["Title"] = "4 Common CSS Property Values";
+}
+
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>We've used a handful of common CSS property values already, such as the keyword color values of red and green. You may not have thought too much about them; that's okay. We're going to take time now to go over some previously used property values as well as to explore some of the more common property values that we'll soon be using. Specifically, we'll look at property values that relate to colors and length measurements.</p>
+
+    <h2>4.1 Colors</h2>
+    <p>All color values within CSS are defined on an sRGB (or standard red, green, and blue) color space. Colors within this space are formed by mixing red, green, and blue color channels together, mirroring the way that televisions and monitors generate all the different colors they display. By mixing different levels of red, green, and blue, we can create millions of colors—and find nearly any color we'd like. Currently there are four primary ways to represent sRGB colors within CSS: keywords, hexadecimal notation, and RGB and HSL values.</p>
+
+    <h2>4.2 Keyword Colors</h2>
+    <p>Keyword color values are names (such as red, green, or blue) that map to a given color. These keyword names and their corresponding colors are determined by the CSS specification. Most common colors, along with a few oddities, have keyword names. A complete list of these keyword names can be found within the CSS specification.</p>
+
+    <table>
+        <tr>
+            <th>Color Name</th>
+            <th>Hex Value</th>
+            <th>RGB Value</th>
+            <th>HSL Value</th>
+        </tr>
+        <tr><td>black</td><td>#000000</td><td>rgb(0, 0, 0)</td><td>hsl(0, 0%, 0%)</td></tr>
+        <tr><td>silver</td><td>#c0c0c0</td><td>rgb(192, 192, 192)</td><td>hsl(0, 0%, 75%)</td></tr>
+        <tr><td>gray</td><td>#808080</td><td>rgb(128, 128, 128)</td><td>hsl(0, 0%, 50%)</td></tr>
+        <tr><td>white</td><td>#ffffff</td><td>rgb(255, 255, 255)</td><td>hsl(0, 100%, 100%)</td></tr>
+        <tr><td>maroon</td><td>#800000</td><td>rgb(128, 0, 0)</td><td>hsl(0, 100%, 25%)</td></tr>
+        <tr><td>red</td><td>#ff0000</td><td>rgb(255, 0, 0)</td><td>hsl(0, 100%, 50%)</td></tr>
+        <tr><td>purple</td><td>#800080</td><td>rgb(128, 0, 128)</td><td>hsl(300, 100%, 25%)</td></tr>
+        <tr><td>fuchsia</td><td>#ff00ff</td><td>rgb(255, 0, 255)</td><td>hsl(300, 100%, 50%)</td></tr>
+        <tr><td>green</td><td>#008000</td><td>rgb(0, 128, 0)</td><td>hsl(120, 100%, 25%)</td></tr>
+        <tr><td>olive</td><td>#808000</td><td>rgb(128, 128, 0)</td><td>hsl(60, 100%, 25%)</td></tr>
+        <tr><td>lime</td><td>#00ff00</td><td>rgb(0, 255, 0)</td><td>hsl(120, 100%, 50%)</td></tr>
+        <tr><td>yellow</td><td>#ffff00</td><td>rgb(255, 255, 0)</td><td>hsl(60, 100%, 50%)</td></tr>
+        <tr><td>navy</td><td>#000080</td><td>rgb(0, 0, 128)</td><td>hsl(240, 100%, 25%)</td></tr>
+        <tr><td>blue</td><td>#0000ff</td><td>rgb(0, 0, 255)</td><td>hsl(240, 100%, 50%)</td></tr>
+        <tr><td>teal</td><td>#008080</td><td>rgb(0, 128, 128)</td><td>hsl(180, 100%, 25%)</td></tr>
+        <tr><td>aqua</td><td>#00ffff</td><td>rgb(0, 255, 255)</td><td>hsl(180, 100%, 50%)</td></tr>
+    </table>
+
+    <div class="code-container">
+        <div class="code-header">CSS</div>
+        <div class="code-content">
+            .task { background: maroon; }<br>
+            .count { background: yellow; }
+        </div>
+    </div>
+
+    <h2>4.2.1 Hexadecimal Colors</h2>
+    <p>Hexadecimal color values consist of a pound, or hash, #, followed by a three- or six-character figure...</p>
+
+   
+
+    <div class="code-container">
+        <div class="code-header">CSS</div>
+        <div class="code-content">
+            .task { background: #800000; }<br>
+            .count { background: #ff0; }
+        </div>
+    </div>
+
+    <div class="figure">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7yY-zImw32uM2ukRqiAhCTHlzAKZMbYbzzQ&s" alt="Figure 2: Photoshop Color Picker">
+        <div class="figure-caption">Figure 2: The color picker of Photoshop showing hexadecimal and RGB values</div>
+    </div>
+
+    <h2>4.2.3 RGB & RGBa Colors</h2>
+    <div class="code-container">
+        <div class="code-header">CSS</div>
+        <div class="code-content">
+            .task { background: rgb(128, 0, 0); }<br>
+            .count { background: rgb(255, 255, 0); }<br>
+            .task { background: rgba(128, 0, 0, .25); }<br>
+            .count { background: rgba(255, 255, 0, 1); }
+        </div>
+    </div>
+
+    <h2>4.2.4 HSL & HSLa Colors</h2>
+    <div class="code-container">
+        <div class="code-header">CSS</div>
+        <div class="code-content">
+            .task { background: hsl(0, 100%, 25%); }<br>
+            .count { background: hsl(60, 100%, 50%); }<br>
+            .task { background: hsla(0, 100%, 25%, .25); }<br>
+            .count { background: hsla(60, 100%, 50%, 1); }
+        </div>
+    </div>
+
+    <h2>4.3 Lengths</h2>
+    <p>Length values within CSS are similar to colors in that there are a handful of different types of values for length...</p>
+
+    <h3>4.3.1 Absolute Lengths</h3>
+    <p>Absolute length values are the simplest length values, as they are fixed to a physical measurement, such as inches, centimeters, or millimeters. The most popular absolute unit of measurement is known as the pixel and is represented by the px unit notation.</p>
+
+    <div class="code-container">
+        <div class="code-header">CSS</div>
+        <div class="code-content">
+            p { font-size: 14px; }
+        </div>
+    </div>
+
+    <h3>4.4 Relative Lengths</h3>
+    <h4>4.4.1 Percentages</h4>
+    <div class="code-container">
+        <div class="code-header">CSS</div>
+        <div class="code-content">
+            .col { width: 50%; }
+        </div>
+    </div>
+
+    <h4>4.4.2 Em</h4>
+    <div class="code-container">
+        <div class="code-header">CSS</div>
+        <div class="code-content">
+            .banner { font-size: 14px; width: 5em; }
+        </div>
+    </div>
+
+</div>
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #eef;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        overflow-x: auto;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

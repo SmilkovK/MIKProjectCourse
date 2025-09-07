@@ -1,0 +1,232 @@
+﻿@{
+    ViewData["Title"] = " Attribute Selectors";
+}
+
+<div class="container dark">
+    <h1>9. Attribute Selectors</h1>
+    <p>Attribute selectors allow you to target elements based on their attributes, not just classes or IDs. They are very powerful and became more versatile with CSS3.</p>
+
+    <h2>5.1 Attribute Present Selector</h2>
+    <div class="code-container">
+        <div class="code-header">CSS</div>
+        <div class="code-content">
+            a[target] { color: #eee; }
+        </div>
+    </div>
+    <div class="code-container">
+        <div class="code-header">HTML</div>
+        <div class="code-content">
+            &lt;a href="#" target="_blank"&gt;Link&lt;/a&gt;
+        </div>
+    </div>
+
+    <h2>5.2 Attribute Equals Selector</h2>
+    <div class="code-container">
+        <div class="code-header">CSS</div>
+        <div class="code-content">
+            a[href="http://google.com/"] { color: #eee; }
+        </div>
+    </div>
+    <div class="code-container">
+        <div class="code-header">HTML</div>
+        <div class="code-content">
+            &lt;a href="http://google.com/"&gt;Google&lt;/a&gt;
+        </div>
+    </div>
+
+    <h2>5.3 Attribute Contains Selector</h2>
+    <div class="code-container">
+        <div class="code-header">CSS</div>
+        <div class="code-content">
+            a[href*="login"] { color: #eee; }
+        </div>
+    </div>
+    <div class="code-container">
+        <div class="code-header">HTML</div>
+        <div class="code-content">
+            &lt;a href="/login.php"&gt;Login&lt;/a&gt;
+        </div>
+    </div>
+
+    <h2>5.4 Attribute Begins With Selector</h2>
+    <div class="code-container">
+        <div class="code-header">CSS</div>
+        <div class="code-content">
+            a[href^="https://"] { color: #eee; }
+        </div>
+    </div>
+    <div class="code-container">
+        <div class="code-header">HTML</div>
+        <div class="code-content">
+            &lt;a href="https://chase.com/"&gt;Chase&lt;/a&gt;
+        </div>
+    </div>
+
+    <h2>5.5 Attribute Ends With Selector</h2>
+    <div class="code-container">
+        <div class="code-header">CSS</div>
+        <div class="code-content">
+            a[href$=".pdf"] { color: #eee; }
+        </div>
+    </div>
+    <div class="code-container">
+        <div class="code-header">HTML</div>
+        <div class="code-content">
+            &lt;a href="/docs/menu.pdf"&gt;PDF Document&lt;/a&gt;
+        </div>
+    </div>
+
+    <h2>5.6 Attribute Spaced Selector</h2>
+    <div class="code-container">
+        <div class="code-header">CSS</div>
+        <div class="code-content">
+            a[rel~="tag"] { color: #eee; }
+        </div>
+    </div>
+    <div class="code-container">
+        <div class="code-header">HTML</div>
+        <div class="code-content">
+            &lt;a href="#" rel="tag nofollow"&gt;Tagged Link&lt;/a&gt;
+        </div>
+    </div>
+
+    <h2>5.7 Attribute Hyphenated Selector</h2>
+    <div class="code-container">
+        <div class="code-header">CSS</div>
+        <div class="code-content">
+            a[lang|="en"] { color: #eee; }
+        </div>
+    </div>
+    <div class="code-container">
+        <div class="code-header">HTML</div>
+        <div class="code-content">
+            &lt;a href="#" lang="en-US"&gt;English Link&lt;/a&gt;
+        </div>
+    </div>
+
+    <h2>5.8 Attribute Selectors Example</h2>
+    <ul>
+        <li><a href="#.pdf">PDF Document</a></li>
+        <li><a href="#.doc">Word Document</a></li>
+        <li><a href="#.jpg">Image File</a></li>
+        <li><a href="#.mp3">Audio File</a></li>
+        <li><a href="#.mp4">Video File</a></li>
+    </ul>
+
+    <h2>5.8.1 Attribute Selectors Overview</h2>
+    <table class="selector-table">
+        <thead>
+            <tr>
+                <th>Example</th>
+                <th>Classification</th>
+                <th>Explanation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>a[target]</td>
+                <td>Attribute Present Selector</td>
+                <td>Selects an element if the given attribute is present</td>
+            </tr>
+            <tr>
+                <td>a[href="http://google.com/"]</td>
+                <td>Attribute Equals Selector</td>
+                <td>Selects an element if the attribute exactly matches the stated value</td>
+            </tr>
+            <tr>
+                <td>a[href*="login"]</td>
+                <td>Attribute Contains Selector</td>
+                <td>Selects an element if the attribute contains the stated value at least once</td>
+            </tr>
+            <tr>
+                <td>a[href^="https://"]</td>
+                <td>Attribute Begins With Selector</td>
+                <td>Selects an element if the attribute begins with the stated value</td>
+            </tr>
+            <tr>
+                <td>a[href$=".pdf"]</td>
+                <td>Attribute Ends With Selector</td>
+                <td>Selects an element if the attribute ends with the stated value</td>
+            </tr>
+            <tr>
+                <td>a[rel~="tag"]</td>
+                <td>Attribute Spaced Selector</td>
+                <td>Selects an element if the attribute contains a whitespace-separated value matching exactly</td>
+            </tr>
+            <tr>
+                <td>a[lang|="en"]</td>
+                <td>Attribute Hyphenated Selector</td>
+                <td>Selects an element if the attribute is hyphen-separated and starts with the stated word</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #eef;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        overflow-x: auto;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>
+

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Query.Internal;
+using Microsoft.VisualBasic;
+using System.Reflection.Metadata.Ecma335;
 
 namespace MIKProjectCourse.Controllers
 {
@@ -102,8 +104,43 @@ namespace MIKProjectCourse.Controllers
         {
             return View();
         }
+        public IActionResult WhatIsCSS()
+        {
+            return View();
+        }
+        public IActionResult TheCascade()
+        {
+            return View();
+        }
+        public IActionResult LayeringStyles()
+        {
+            return View();
+        }
+        public IActionResult CSSPropertyValues()
+        {
+            return View();
+        }
+        public IActionResult ComplexSelector()
+        {
+            return View();
+        }
 
-
+        public IActionResult CommonSelector()
+        {
+            return View();
+        }
+        public IActionResult ChildSelector()
+        {
+            return View();
+        }
+        public IActionResult SiblingSelector()
+        {
+            return View();
+        }
+        public IActionResult AttributeSelectors()
+        {
+            return View();
+        }
     }
 
 }

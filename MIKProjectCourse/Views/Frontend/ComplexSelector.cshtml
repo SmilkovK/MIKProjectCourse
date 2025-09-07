@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "5. Complex Selectors";
+}
+
+<div class="container">
+    <h1>5. Complex Selectors</h1>
+
+    <p>Selectors are one of, if not, the most important parts of CSS. They shape the cascade and determine how styles are to be applied to elements on a page.</p>
+
+    <p>Up until recently the focus of CSS never really touched on selectors. Occasionally there would be incremental updates within the selectors specification, but never any real ground-breaking improvements. Fortunately, more attention has been given to selectors as of late, taking a look at how to select different types of elements and elements in different states of use.</p>
+
+    <p>CSS3 brought new selectors, opening a whole new world of opportunities and improvements to existing practices. Here we'll discuss selectors, old and new, and how to best put them to use.</p>
+
+  
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    .container p,
+    .container ul {
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    ul {
+        padding-left: 20px;
+    }
+
+    .code-container {
+        margin: 20px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #000;
+        white-space: pre-wrap;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

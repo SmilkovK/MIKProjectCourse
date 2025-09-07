@@ -1,0 +1,105 @@
+﻿@{
+    ViewData["Title"] = "1. Getting to know CSS";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>CSS is a complex language that packs quite a bit of power.</p>
+
+    <p>It allows us to add layout and design to our pages, and it allows us to share those styles from element to element and page to page. Before we can unlock all of its features, though, there are a few aspects of the language we must fully understand.</p>
+
+    <p>First, it's crucial to know exactly how styles are rendered. Specifically, we'll need to know how different types of selectors work and how the order of those selectors can affect how our styles are rendered. We'll also want to understand a few common property values that continually appear within CSS, particularly those that deal with color and length.</p>
+
+    <p>Let's look under the hood of CSS to see exactly what is going on.</p>
+
+    <div class="code-container">
+        <div class="code-header">CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+/* A simple CSS example */
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+h1 {
+  color: #0066cc;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("Index", "Frontend")" class="btn btn-outline-primary">← Home</a>
+        <a href="@Url.Action("NextLesson", "Frontend")" class="btn btn-primary">Next Lesson →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #eef;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        overflow-x: auto;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

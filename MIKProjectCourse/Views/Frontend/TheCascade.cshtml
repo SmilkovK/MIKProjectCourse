@@ -1,0 +1,326 @@
+﻿@{
+    ViewData["Title"] = "2. The Cascade";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>We'll begin breaking down exactly how styles are rendered by looking at what is known as the cascade and studying a few examples of the cascade in action. Within CSS, all styles cascade from the top of a style sheet to the bottom, allowing different styles to be added or overwritten as the style sheet progresses.</p>
+
+    <p>For example, say we select all paragraph elements at the top of our style sheet and set their background color to orange and their font size to 24 pixels. Then towards the bottom of our style sheet, we select all paragraph elements again and set their background color to green, as seen here.</p>
+
+    <div class="code-container">
+        <div class="code-header">CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+p {
+  background: orange;
+  font-size: 24px;
+}
+p {
+  background: green;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <p>Because the paragraph selector that sets the background color to green comes after the paragraph selector that sets the background color to orange, it will take precedence in the cascade. All of the paragraphs will appear with a green background. The font size will remain 24 pixels because the second paragraph selector didn't identify a new font size.</p>
+
+    <h2>2.1 Cascading properties</h2>
+    <p>The cascade also works with properties inside individual selectors. Again, for example, say we select all the paragraph elements and set their background color to orange. Then directly below the orange background property and value declaration, we add another property and value declaration setting the background color to green, as seen here.</p>
+
+    <div class="code-container">
+        <div class="code-header">CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+p {
+  background: orange;
+  background: green;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <p>Because the green background color declaration comes after the orange background color declaration, it will overrule the orange background, and, as before, our paragraphs will appear with a green background.</p>
+
+    <p>All styles will cascade from the top of our style sheet to the bottom of our style sheet. There are, however, times where the cascade doesn't play so nicely. Those times occur when different types of selectors are used and the specificity of those selectors breaks the cascade. Let'r take a look.</p>
+
+    <h2>2.2 Calculating Specificity</h2>
+    <p>Every selector in CSS has a specificity weight. A selector's specificity weight, along with its placement in the cascade, identifies how its styles will be rendered.</p>
+
+    <p>We already talked about three different types of selectors: the type, class, and ID selectors. Each of these selectors has a different specificity weight.</p>
+
+    <ul>
+        <li>The type selector has the lowest specificity weight and holds a point value of 0-0-1.</li>
+        <li>The class selector has a medium specificity weight and holds a point value of 0-1-0.</li>
+        <li>The ID selector has a high specificity weight and holds a point value of 1-0-0.</li>
+    </ul>
+
+    <p>As we can see, specificity points are calculated using three columns. The first column counts ID selectors, the second column counts class selectors, and the third column counts type selectors.</p>
+
+    <p>What's important to note here is that the ID selector has a higher specificity weight than the class selector, and the class selector has a higher specificity weight than the type selector.</p>
+
+    <h3>2.2.1 Specificity Points</h3>
+    <p>Specificity points are intentionally hyphenated, as their values are not computed from a base of 10. Class selectors do not hold a point value of 10, and ID selectors do not hold a point value of 100. Instead, these points should be read as 0-1-0 and 1-0-0 respectively. We'll take a closer look at why these point values are hyphenated shortly, when we combine selectors.</p>
+
+    <p>The higher the specificity weight of a selector, the more superiority the selector is given when a styling conflict occurs. For example, if a paragraph element is selected using a type selector in one place and an ID selector in another, the ID selector will take precedence over the type selector regardless of where the ID selector appears in the cascade.</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML & CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-html">
+&lt;p id="food"&gt;...&lt;/p&gt;
+</code></pre>
+<pre><code class="language-css">
+#food {
+  background: green;
+}
+p {
+  background: orange;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <p>Here we have a paragraph element with an id attribute value of food. Within our CSS, that paragraph is being selected by two different kinds of selectors: one type selector and one ID selector. Although the type selector comes after the ID selector in the cascade, the ID selector takes precedence over the type selector because it has a higher specificity weight; consequently the paragraph will appear with a green background.</p>
+
+    <p>The specificity weights of different types of selectors are incredibly important to remember. At times styles may not appear on elements as intended, and chances are the specificity weights of our selectors are breaking the cascade, therefore our styles are not appearing properly.</p>
+
+    <p>Understanding how the cascade and specificity work is a huge hurdle, and we’ll continue to cover this topic. For now, let’s look at how to be a little more particular and intentional with our selectors by combining them. Keep in mind that as we combine selectors, we’ll also be changing their specificity.</p>
+
+    <h2>2.3 Combining Selectors</h2>
+    <p>So far we’ve looked at how to use different types of selectors individually, but we also need to know how to use these selectors together. By combining selectors we can be more specific about which element or group of elements we’d like to select.</p>
+
+    <p>For example, say we want to select all paragraph elements that reside within an element with a class attribute value of hotdog and set their background color to brown. However, if one of those paragraphs happens to have the class attribute value of mustard, we want to set its background color to yellow. Our HTML and CSS may look like the following:</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML & CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-html">
+&lt;div class="hotdog"&gt;
+  &lt;p&gt;...&lt;/p&gt;
+  &lt;p&gt;...&lt;/p&gt;
+  &lt;p class="mustard"&gt;...&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-css">
+.hotdog p {
+  background: brown;
+}
+.hotdog p.mustard {
+  background: yellow;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <p>When selectors are combined they should be read from right to left. The selector farthest to the right, directly before the opening curly bracket, is known as the key selector. The key selector identifies exactly which element the styles will be applied to. Any selector to the left of the key selector will serve as a prequalifier.</p>
+
+    <p>The first combined selector above, .hotdog p, includes two selectors: a class and a type selector. These two selectors are separated by a single space. The key selector is a type selector targeting paragraph elements. And because this type selector is prequalified with a class selector of hotdog, the full combined selector will only select paragraph elements that reside within an element with a class attribute value of hotdog.</p>
+
+    <p>The second selector above, .hotdog p.mustard, includes three selectors: two class selectors and one type selector. The only difference between the second selector and the first selector is the addition of the class selector of mustard to the end of the paragraph type selector. Because the new class selector, mustard, falls all the way to the right of the combined selector, it is the key selector, and all of the individual selectors coming before it are now prequalifiers.</p>
+
+    <p>Reading the combined selector from right to left, it is targeting paragraphs with a class attribute value of mustard that reside within an element with the class attribute value of hotdog.</p>
+
+    <p>Different types of selectors can be combined to target any given element on a page. As we continue to write different combined selectors, we'll see their powers come to life. Before we do that, though, let's take a look at how combining selectors changes a selector's specificity weight.</p>
+
+    <h3>2.3.1 Spaces Within Selectors</h3>
+    <p>Within the previous combined selector, .hotdog p.mustard, there is a space between the hotdog class selector and the paragraph type selector but not between the paragraph type selector and the mustard class selector. The use, and omission, of spaces makes a large difference in selectors.</p>
+
+    <p>Since there isn't a space between the paragraph type selector and the mustard class selector that means the selector will only select paragraph elements with the class of mustard. If the paragraph type selector was removed, and the mustard class selector had spaces on both sides of it, it would select any element with the class of mustard, not just paragraphs.</p>
+
+    <p>The best practice is to not prefix a class selector with a type selector. Generally we want to select any element with a given class, not just one type of element. And following this best practice, our new combined selector would be better as .hotdog .mustard.</p>
+
+    <h2>2.4 Most common combinators</h2>
+
+    <h3>2.4.1 Descendant selector</h3>
+    <p>As we saw before, the blank space between selectors represents descendants.</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML & CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+span {
+  background-color: white;
+}
+div span {
+  background-color: blue;
+}
+</code></pre>
+<pre><code class="language-html">
+&lt;div&gt;
+  &lt;p&gt;
+    &lt;span&gt; Span 1. &lt;/span&gt;
+    &lt;span&gt; Span 2. &lt;/span&gt;
+  &lt;/p&gt;
+  &lt;span&gt; Span 3. &lt;/span&gt;
+&lt;/div&gt;
+&lt;span&gt; Span 4. &lt;/span&gt;
+</code></pre>
+        </div>
+    </div>
+
+    <p>The previous example illustrates that the selector div span is applied to every span that is a descendant of an div element (that means the span is a child, grandchild, grand-grandchild, etc. of the div)</p>
+
+    <h3>2.4.2 Child selector</h3>
+    <p>The child selector &gt; is similar to the descendant selector except that it strictly targets only the children.</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML & CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+span {
+  background-color: white;
+}
+div > span {
+  background-color: blue;
+}
+</code></pre>
+<pre><code class="language-html">
+&lt;div&gt;
+  &lt;p&gt;
+    &lt;span&gt; Span 1. &lt;/span&gt;
+    &lt;span&gt; Span 2. &lt;/span&gt;
+  &lt;/p&gt;
+  &lt;span&gt; Span 3. &lt;/span&gt;
+&lt;/div&gt;
+&lt;span&gt; Span 4. &lt;/span&gt;
+</code></pre>
+        </div>
+    </div>
+
+    <p>In this example, the div &gt; span properties will be applied only to Span 3.</p>
+
+    <h3>2.4.3 Adjacent sibling selector</h3>
+    <p>The adjacent sibling selector + selects all elements that are the adjacent siblings of a specified element. Sibling elements must have the same parent element, and "adjacent" means "immediately following".</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML & CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+span {
+  background-color: white;
+}
+span + span {
+  background-color: blue;
+}
+</code></pre>
+<pre><code class="language-html">
+&lt;div&gt;
+  &lt;p&gt;
+    &lt;span&gt; Span 1. &lt;/span&gt;
+    &lt;span&gt; Span 2. &lt;/span&gt;
+  &lt;/p&gt;
+  &lt;span&gt; Span 3. &lt;/span&gt;
+&lt;/div&gt;
+&lt;span&gt; Span 4. &lt;/span&gt;
+</code></pre>
+        </div>
+    </div>
+
+    <p>In this example, only Span 2 will be with blue background color.</p>
+
+    <h2>2.5 Specificity Within Combined Selectors</h2>
+    <p>When selectors are combined, so are the specificity weights of the individual selectors. These combined specificity weights can be calculated by counting each different type of selector within a combined selector. Looking at our combined selectors from before, the first selector, .hotdog p, had both a class selector and a type selector. Knowing that the point value of a class selector is 0-1-0 and the point value of a type selector is 0-0-1, the total combined point value would be 0-1-1, found by adding up each kind of selector.</p>
+
+    <p>The second selector, .hotdog p.mustard, had two class selectors and one type selector. Combined, the selector has a specificity point value of 0-2-1. The 0 in the first column is for zero ID selectors, the 2 in the second column is for two class selectors, and the 1 in the last column is for one type selector.</p>
+
+    <p>Comparing the two selectors, the second selector, with its two classes, has a noticeably higher specificity weight and point value. As such it will take precedence within the cascade. If we were to flip the order of these selectors within our style sheet, placing the higher-weighted selector above the lower-weighted selector as shown here, the appearance of their styles would not be affected due to each selector's specificity weight.</p>
+
+    <div class="code-container">
+        <div class="code-header">CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+.hotdog p.mustard {
+  background: yellow;
+}
+.hotdog p {
+  background: brown;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <p>In general we want to always keep an eye on the specificity weights of our selectors. The higher our specificity weights rise, the more likely our cascade is to break.</p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("GettingToKnowCSS", "Frontend")" class="btn btn-outline-primary">← Getting to know CSS</a>
+        <a href="@Url.Action("NextLesson", "Frontend")" class="btn btn-primary">Next Lesson →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2, h3 {
+        color: var(--bs-heading-color);
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    ul {
+        margin-left: 20px;
+    }
+
+    /* Syntax Highlighting */
+    code.language-css {
+        color: #d63384;
+    }
+
+    code.language-html {
+        color: #0d6efd;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        overflow-x: auto;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>
+

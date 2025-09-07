@@ -1,0 +1,141 @@
+﻿@{
+    ViewData["Title"] = "6 Common Selectors";
+}
+
+<div class="container">
+    <h1>6. Common Selectors</h1>
+
+    <p>Before exploring more complex CSS selectors, it's important to understand the most commonly used selectors today: <strong>type</strong>, <strong>class</strong>, and <strong>ID</strong>. These are the building blocks for targeting elements on your web page.</p>
+
+    <h2>Selector Examples</h2>
+    <div class="code-container">
+        <div class="code-header">HTML</div>
+        <div class="code-content">
+            &lt;section id="intro"&gt;<br>
+            &nbsp;&nbsp;&lt;h1&gt;Welcome&lt;/h1&gt;<br>
+            &nbsp;&nbsp;&lt;h2 class="tagline"&gt;Learn CSS Selectors&lt;/h2&gt;<br>
+            &lt;/section&gt;
+        </div>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">CSS</div>
+        <div class="code-content">
+            h1 { font-size: 24px; color: #333; }<br>
+            .tagline { font-style: italic; color: #555; }<br>
+            #intro { padding: 20px; background-color: #f0f0f0; }
+        </div>
+    </div>
+
+    <h2>Common Selectors Overview</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Example</th>
+                <th>Selector Type</th>
+                <th>Explanation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>h1</td>
+                <td>Type Selector</td>
+                <td>Targets elements by their HTML tag name.</td>
+            </tr>
+            <tr>
+                <td>.tagline</td>
+                <td>Class Selector</td>
+                <td>Targets elements by their class attribute. Can be reused on multiple elements.</td>
+            </tr>
+            <tr>
+                <td>#intro</td>
+                <td>ID Selector</td>
+                <td>Targets a single element by its unique ID. Should only appear once per page.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("PreviousPage", "Frontend")" class="btn btn-outline-primary">← Previous Topic</a>
+        <a href="@Url.Action("NextPage", "Frontend")" class="btn btn-primary">Next: Complex Selectors →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    .container p {
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    .code-container {
+        margin: 20px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #000;
+        white-space: pre-wrap;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin: 15px 0;
+    }
+
+    th, td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #e9ecef;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

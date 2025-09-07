@@ -1,0 +1,152 @@
+﻿@{
+    ViewData["Title"] = " Child Selectors";
+}
+
+<div class="container">
+    <h1>7. Child Selectors</h1>
+
+    <p>Child selectors allow you to target elements that are nested within other elements, referred to as children of their parent element. There are two primary ways to do this: <strong>descendant selectors</strong> and <strong>direct child selectors</strong>.</p>
+
+    <h2>3.1 Descendant Selector</h2>
+    <p>The descendant selector matches all elements that fall within a specified ancestor element, regardless of depth. This selector is created simply by spacing elements in the CSS rule.</p>
+
+    <div class="code-container">
+        <div class="code-header">CSS</div>
+        <div class="code-content">
+            article h2 { color: #333; font-size: 20px; }
+        </div>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">HTML</div>
+        <div class="code-content">
+            &lt;h2&gt;Not selected&lt;/h2&gt;<br>
+            &lt;article&gt;<br>
+            &nbsp;&nbsp;&lt;h2&gt;This heading will be selected&lt;/h2&gt;<br>
+            &nbsp;&nbsp;&lt;div&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;This heading will be selected&lt;/h2&gt;<br>
+            &nbsp;&nbsp;&lt;/div&gt;<br>
+            &lt;/article&gt;
+        </div>
+    </div>
+
+    <h2>3.2 Direct Child Selector</h2>
+    <p>The direct child selector only targets elements that are immediate children of a parent element. This is done by using the greater than <code>&gt;</code> symbol between parent and child selectors.</p>
+
+    <div class="code-container">
+        <div class="code-header">CSS</div>
+        <div class="code-content">
+            article &gt; p { color: #333; font-size: 16px; }
+        </div>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">HTML</div>
+        <div class="code-content">
+            &lt;p&gt;Not selected&lt;/p&gt;<br>
+            &lt;article&gt;<br>
+            &nbsp;&nbsp;&lt;p&gt;This paragraph will be selected&lt;/p&gt;<br>
+            &nbsp;&nbsp;&lt;div&gt;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Not selected&lt;/p&gt;<br>
+            &nbsp;&nbsp;&lt;/div&gt;<br>
+            &lt;/article&gt;
+        </div>
+    </div>
+
+    <h2>3.2.1 Child Selectors Overview</h2>
+    <table class="selector-table">
+        <thead>
+            <tr>
+                <th>Example</th>
+                <th>Selector Type</th>
+                <th>Explanation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>article h2</td>
+                <td>Descendant Selector</td>
+                <td>Selects an element anywhere inside the identified ancestor.</td>
+            </tr>
+            <tr>
+                <td>article &gt; p</td>
+                <td>Direct Child Selector</td>
+                <td>Selects an element immediately inside the identified parent element.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("PreviousPage", "Frontend")" class="btn btn-outline-primary">← Previous Topic</a>
+        <a href="@Url.Action("NextPage", "Frontend")" class="btn btn-primary">Next: Complex Selectors →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #eef;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        overflow-x: auto;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>
+

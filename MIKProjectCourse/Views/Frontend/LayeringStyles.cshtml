@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "3. Layering Styles with Multiple Classes";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>One way to keep the specificity weights of our selectors low is to be as modular as possible, sharing similar styles from element to element. And one way to be as modular as possible is to layer on different styles by using multiple classes.</p>
+
+    <p>Elements within HTML can have more than one class attribute value so long as each value is space separated. With that, we can place certain styles on all elements of one sort while placing other styles only on specific elements of that sort.</p>
+
+    <p>We can tie styles we want to continually reuse to one class and layer on additional styles from another class.</p>
+
+    <p>Let's take a look at buttons, for example. Say we want all of our buttons to have a font size of 16 pixels, but we want the background color of our buttons to vary depending on where the buttons are used. We can create a few classes and layer them on an element as necessary to apply the desired styles.</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML Example</div>
+        <div class="code-content">
+<pre><code class="language-html">
+&lt;a class="btn btn-danger"&gt;...&lt;/a&gt;
+&lt;a class="btn btn-success"&gt;...&lt;/a&gt;
+</code></pre>
+        </div>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+.btn {
+  font-size: 16px;
+}
+.btn-danger {
+  background: red;
+}
+.btn-success {
+  background: green;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <p>Here you can see two anchor elements, both with multiple class attribute values. The first class, <code>btn</code>, is used to apply a font size of 16 pixels to each of the elements. Then, the first anchor element uses an additional class of <code>btn-danger</code> to apply a red background color while the second anchor element uses an additional class of <code>btn-success</code> to apply a green background color. Our styles here are clean and modular.</p>
+
+    <p>Using multiple classes, we can layer on as many styles as we wish, keeping our code lean and our specificity weights low. Much like understanding the cascade and calculating specificity, this is a practice that will take time to fully absorb, but we'll get better with each lesson.</p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("Cascade", "Frontend")" class="btn btn-outline-primary">← Previous Lesson</a>
+        <a href="@Url.Action("NextLesson", "Frontend")" class="btn btn-primary">Next Lesson →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    /* Syntax Highlighting */
+    code.language-css {
+        color: #d63384;
+    }
+
+    code.language-html {
+        color: #0d6efd;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        overflow-x: auto;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>
