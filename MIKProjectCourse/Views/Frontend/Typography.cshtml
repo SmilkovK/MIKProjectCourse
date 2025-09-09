@@ -1,0 +1,163 @@
+﻿@{
+    ViewData["Title"] = "Working with Typography";
+}
+
+<div class="container">
+    <h1>Working with Typography</h1>
+    <p>The field of web typography has grown substantially over time. There are a couple of different reasons for its rise in popularity; one widely acknowledged reason is the development of a system for embedding our own web fonts on a website.</p>
+
+    <p>In the past we were limited to a small number of typefaces that we could use on a website. These typefaces were the most commonly installed fonts on computers, so they were the most likely to render properly on-screen. If a font wasn't installed on a computer, it wouldn't render on the website either. Now, with the ability to embed fonts, we have a much larger palette of typefaces to choose from, including those that we add to a website.</p>
+
+    <p>While the ability to embed fonts gives us access to countless new typefaces, it's also important for us to know the basic principles of typography. In this lesson we're going to take a look at some of these basic principles and how to apply them to our web pages using HTML and CSS.</p>
+
+    <h2>Typeface vs. Font</h2>
+    <p>The terms "typeface" and "font" are often interchanged, causing confusion. A <strong>typeface</strong> is what we see. It is the artistic impression of how text looks, feels, and reads. A <strong>font</strong> is a file that contains a typeface. Using a font on a computer allows the computer to access the typeface.</p>
+
+    <h2>Adding Color to Text</h2>
+    <p>The only property we need to set the color of text is the <code>color</code> property. Hexadecimal values are the most prevalent, as they provide the most control with the least amount of effort.</p>
+
+    <pre><code>html {           
+  color: #555;   
+}</code></pre>
+
+    <h2>Changing Font Properties</h2>
+    <h3>Font Family</h3>
+    <pre><code>body {                                                           
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;   
+}</code></pre>
+
+    <h3>Font Size</h3>
+    <pre><code>body {               
+  font-size: 14px;   
+}</code></pre>
+
+    <h3>Font Style</h3>
+    <pre><code>.special {              
+  font-style: italic;   
+}</code></pre>
+
+    <h3>Font Variant</h3>
+    <pre><code>.firm {                       
+  font-variant: small-caps;   
+}</code></pre>
+
+    <h3>Font Weight</h3>
+    <pre><code>.daring {              
+  font-weight: bold;   
+}</code></pre>
+
+    <h3>Line Height</h3>
+    <pre><code>body {                 
+  line-height: 22px;   
+}</code></pre>
+
+    <h3>Shorthand Font Properties</h3>
+    <pre><code>html {                                                                                     
+  font: italic small-caps bold 14px/22px "Helvetica Neue", Helvetica, Arial, sans-serif;   
+}</code></pre>
+
+    <h2>Applying Text Properties</h2>
+    <p>We can also align, decorate, indent, transform, and space text.</p>
+    <h3>Text Align</h3>
+    <pre><code>p {                     
+  text-align: center;   
+}</code></pre>
+
+    <h3>Text Decoration</h3>
+    <pre><code>.note {                         
+  text-decoration: underline;   
+}</code></pre>
+
+    <h3>Text Indent</h3>
+    <pre><code>p {                    
+  text-indent: 20px;   
+}</code></pre>
+
+    <h3>Text Shadow</h3>
+    <pre><code>p {                                             
+  text-shadow: 3px 6px 2px rgba(0, 0, 0, .3);   
+}</code></pre>
+
+    <h3>Text Transform</h3>
+    <pre><code>p {                            
+  text-transform: uppercase;   
+}</code></pre>
+
+    <h3>Letter & Word Spacing</h3>
+    <pre><code>p {                        
+  letter-spacing: -.5em;   
+  word-spacing: .25em;   
+}</code></pre>
+
+    <h2>Citing & Quotations</h2>
+    <p>For citations, we can use <code>&lt;cite&gt;</code>, <code>&lt;q&gt;</code>, and <code>&lt;blockquote&gt;</code> semantically.</p>
+    <p>The book <cite><a href="http://www.amazon.com/Steve-Jobs-Walter-Isaacson/dp/1451648537">Steve Jobs</a></cite> is truly inspirational.</p>
+    <p>Steve Jobs once said, <q>One home run is much better than two doubles.</q></p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("Index", "Frontend")" class="btn btn-outline-primary">← Previous: Frontend</a>
+        <a href="@Url.Action("NextLesson", "Typography")" class="btn btn-primary">Next: Typography in Practice →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 900px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2, h3, h4, h5 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    .container p,
+    .container ul,
+    .container pre {
+        line-height: 1.6;
+        margin-bottom: 16px;
+    }
+
+    pre {
+        background-color: #f8f9fa;
+        padding: 12px;
+        border-radius: 6px;
+        overflow-x: auto;
+    }
+
+    code {
+        font-family: Consolas, monospace;
+        font-size: 0.9em;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+</style>

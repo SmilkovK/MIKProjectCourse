@@ -1,0 +1,215 @@
+﻿@{
+    ViewData["Title"] = "In practice 1";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>Let's start by adjusting our box size to use the <code>border-box</code> version of the box model. This makes sizing all of our elements much easier.</p>
+
+    <div class="code-container">
+        <div class="code-header">CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+/*
+========================================
+Grid
+========================================
+*/
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.container {
+  margin: 0 auto;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 960px;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <p>Next, apply the <code>container</code> class to <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, and <code>&lt;section&gt;</code> elements throughout your pages to center content:</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML Example</div>
+        <div class="code-content">
+<pre><code class="language-html">
+<header class="container">...</header>
+<footer class="container">...</footer>
+
+<section class="container hero">...</section>
+</code></pre>
+        </div>
+    </div>
+
+    <p>For vertical spacing, you can add bottom margins to your headings and paragraphs:</p>
+
+    <div class="code-container">
+        <div class="code-header">CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+/*
+========================================
+Typography
+========================================
+*/
+
+h1, h3, h4, h5, p {
+  margin-bottom: 22px;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <p>To style buttons, use <code>btn</code> and <code>btn-alt</code> classes:</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML Example</div>
+        <div class="code-content">
+<pre><code class="language-html">
+<a class="btn btn-alt">Click Me</a>
+</code></pre>
+        </div>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+/*
+========================================
+Buttons
+========================================
+*/
+
+.btn {
+  border-radius: 5px;
+  display: inline-block;
+  margin: 0;
+}
+
+.btn-alt {
+  border: 1px solid #dfe2e5;
+  padding: 10px 30px;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <p>For the home page hero section, add padding around the section:</p>
+
+    <div class="code-container">
+        <div class="code-header">CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+/*
+========================================
+Home
+========================================
+*/
+
+.hero {
+  padding: 22px 80px 66px 80px;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <p>Example full structure with a hero section and button:</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML Example</div>
+        <div class="code-content">
+<pre><code class="language-html">
+<section class="hero container">
+            <h1>Welcome to the Styles Conference</h1>
+            <p>Learn the latest in web design and development!</p>
+            <a class="btn btn-alt">Register Now</a>
+</section>
+</code></pre>
+        </div>
+    </div>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("PreviousPage", "Home")" class="btn btn-outline-primary">← Previous</a>
+        <a href="@Url.Action("NextPage", "Home")" class="btn btn-primary">Next →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 960px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+        margin: 0 auto;
+    }
+
+    h1, h3, h4, h5, p {
+        margin-bottom: 22px;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #eef;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        overflow-x: auto;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+    }
+
+    .btn {
+        border-radius: 5px;
+        display: inline-block;
+        margin: 0;
+        padding: 10px 30px;
+        font-weight: 500;
+    }
+
+    .btn-alt {
+        border: 1px solid #dfe2e5;
+        background-color: white;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        color: white;
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        background-color: transparent;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+</style>

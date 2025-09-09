@@ -1,0 +1,146 @@
+﻿@{
+    ViewData["Title"] = "Introduction to the Cascade";
+}
+
+<div class="container">
+    <h1>Introduction to the Cascade</h1>
+
+    <h2>Multiple Sources</h2>
+    <p>
+        The most common scenario authors will be concerned with are the style rules which are declared by the author,
+        but a style sheet may originate from several different sources:
+    </p>
+    <ul>
+        <li><strong>The Author</strong> may specify style rules for a document</li>
+        <li>
+            <strong>The User</strong> may also specify style behaviors for viewing one or more documents –
+            possibly through a special user interface or through a special external stylesheet.
+        </li>
+        <li>
+            <strong>The Browser</strong> will also have its own set of default rendering behaviors which, whether specified using
+            an ACTUAL style sheet or by some other means accomplishes the same goal – behaving as if the browser has its own
+            "default style sheet." This default style sheet is the base set of rendering rules – applied whether the user and
+            author specify their own style sheet rules or not.
+        </li>
+    </ul>
+
+    <h2> Multiple Methods</h2>
+    <p>
+        In addition, style sheet rules may be specified using several different methods, any of which are legal:
+    </p>
+
+    <h3>External Style Sheets (using the HTML LINK element)</h3>
+    <pre><code>&lt;link rel="stylesheet" type="text/css" href="Path To stylesheet.css" /&gt;</code></pre>
+
+    <h3>Embedded Style Sheets (using the HTML STYLE element)</h3>
+    <pre><code>&lt;style type="text/css"&gt;
+body {
+  font-size: 14px;
+}
+&lt;/style&gt;</code></pre>
+
+    <h3>Imported Style Sheets (@@import)</h3>
+    <pre><code>&lt;style type="text/css"&gt;
+  @@import url(Path To stylesheet.css);
+&lt;/style&gt;</code></pre>
+
+    <h3>Inline Style Rules (using the HTML STYLE attribute)</h3>
+    <pre><code>&lt;p style="font-size:14px;color:red;"&gt;Some text here...&lt;/p&gt;</code></pre>
+
+    <h3>Non-CSS rendering rules (eg: the HTML FONT element, that is deprecated in HTML5)</h3>
+    <pre><code>&lt;font size="3" color="red"&gt;This is some text!&lt;/font&gt;
+&lt;!-- Not Supported in HTML5. --&gt;</code></pre>
+
+    <p>
+        When more than one style rule is specified for a single CSS selector or element, using any of these sources or methods,
+        and they are in direct conflict with one another, what should happen?
+    </p>
+    <p>
+        When all is said and done, CSS generates a single, cohesive "virtual" style sheet using all the style rules
+        (explicitly stated or not) from all of these disparate sources; CSS "cascades" (combines) all of them together.
+        When conflicts arise between style rules, resolution is determined using a weighted scale.
+        Each style rule will carry a specific weight on this scale; when two or more rules are in conflict,
+        the rule with the highest weight will "win" and be rendered.
+    </p>
+
+    <h2>Importance Hierarchy</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Lowest Importance</th>
+                <th></th>
+                <th>Highest Importance</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Browser Defaults</td>
+                <td>→</td>
+                <td>Reader's Style Sheet</td>
+                <td>→</td>
+                <td>Author's Style Sheet</td>
+            </tr>
+            <tr>
+                <td>Linked Style Sheet</td>
+                <td>→</td>
+                <td>Embedded Style Sheet</td>
+                <td>→</td>
+                <td>Inline Styles</td>
+            </tr>
+            <tr>
+                <td>Contextual Selector Depth</td>
+                <td>→</td>
+                <td>Class</td>
+                <td>→</td>
+                <td>ID</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .container {
+        max-width: 900px;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+    }
+
+    h1, h2, h3 {
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    ul {
+        margin-bottom: 20px;
+    }
+
+    pre {
+        background: #f8f9fa;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+        overflow-x: auto;
+    }
+
+    code {
+        color: #d63384;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+    }
+
+        .table th, .table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .table th {
+            background: #f1f1f1;
+        }
+</style>

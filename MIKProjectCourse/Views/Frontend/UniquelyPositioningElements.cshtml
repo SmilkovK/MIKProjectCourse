@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "Uniquely Positioning Elements";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>Every now and then we'll want to precisely position an element, but floats or inline-block elements won't do the trick. Floats, which remove an element from the flow of a page, often produce unwanted results as surrounding elements flow around the floated element. Inline-block elements, unless we're creating columns, can be fairly awkward to get into the proper position. For these situations we can use the position property in connection with box offset properties.</p>
+
+    <p>The <strong>position</strong> property identifies how an element is positioned on a page and whether or not it will appear within the normal flow of a document. This is used in conjunction with the box offset properties—<code>top</code>, <code>right</code>, <code>bottom</code>, and <code>left</code>—which identify exactly where an element will be positioned by moving elements in a number of different directions.</p>
+
+    <p>By default every element has a position value of <code>static</code>, which means that it exists in the normal flow of a document and it doesn't accept any box offset properties. The static value is most commonly overwritten with a <code>relative</code> or <code>absolute</code> value, which we'll examine next.</p>
+
+    <h2>Relative Positioning</h2>
+
+    <p>The <code>relative</code> value for the <code>position</code> property allows elements to appear within the normal flow a page, leaving space for an element as intended while not allowing other elements to flow around it; however, it also allows an element's display position to be modified with the box offset properties. For example:</p>
+
+    <pre><code>&lt;div&gt;...&lt;/div&gt;
+&lt;div class="offset"&gt;...&lt;/div&gt;
+&lt;div&gt;...&lt;/div&gt;
+
+div {
+  height: 100px;
+  width: 100px;
+}
+.offset {
+  left: 20px;
+  position: relative;
+  top: 20px;
+}</code></pre>
+
+    <div class="demo demo-relative">
+        <div></div>
+        <div class="offset"></div>
+        <div></div>
+    </div>
+
+    <p>Here the second <code>&lt;div&gt;</code> element with the class <code>offset</code> has a position value of <code>relative</code> and box offset properties <code>left</code> and <code>top</code>. This preserves the original position of the element, and other elements are not allowed to move into this space. The left and top properties move the element 20 pixels from its original position.</p>
+
+    <h2>Absolute Positioning</h2>
+
+    <p>The <code>absolute</code> value is different from <code>relative</code> in that the element will not appear within the normal flow, and the original space is not preserved. It is positioned relative to its closest relatively positioned parent:</p>
+
+    <pre><code>&lt;section&gt;
+  &lt;div class="offset"&gt;...&lt;/div&gt;
+&lt;/section&gt;
+
+section {
+  position: relative;
+}
+div {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}</code></pre>
+
+    <div class="demo demo-absolute">
+        <section>
+            <div class="offset"></div>
+        </section>
+    </div>
+
+    <p>Here the <code>&lt;section&gt;</code> element is relatively positioned, and the <code>&lt;div&gt;</code> element inside is absolutely positioned 20 pixels from the right and top of the <code>&lt;section&gt;</code>. The absolutely positioned element overlaps surrounding elements and does not preserve its original space.</p>
+
+    <p>Typically, most positioning can be handled without the <code>position</code> property, but in certain cases, <code>relative</code> and <code>absolute</code> positioning is extremely helpful.</p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("CreatingReusableLayouts", "Frontend")" class="btn btn-outline-primary">← Creating Reusable Layouts</a>
+        <a href="@Url.Action("NextLesson", "Frontend")" class="btn btn-primary">Next Lesson →</a>
+    </div>
+</div>
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    .container p,
+    .container ul {
+        line-height: 1.6;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

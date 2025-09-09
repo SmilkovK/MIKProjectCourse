@@ -1,0 +1,239 @@
+﻿@{
+    ViewData["Title"] = "Pseudo-classes Example";
+}
+
+<div class="container">
+    <h1>Pseudo-classes Example</h1>
+
+    <h2>Players Table</h2>
+    <table class="players">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Player</th>
+                <th>Position</th>
+                <th>Height</th>
+                <th>Weight</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>8</td>
+                <td>Marco Belinelli</td>
+                <td>G</td>
+                <td>6-5</td>
+                <td>195</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Carlos Boozer</td>
+                <td>F</td>
+                <td>6-9</td>
+                <td>266</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Derrick Rose</td>
+                <td>G</td>
+                <td>6-3</td>
+                <td>190</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td>Joakim Noah</td>
+                <td>C</td>
+                <td>6-11</td>
+                <td>232</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Pseudo-classes Overview</h2>
+    <table class="overview">
+        <thead>
+            <tr>
+                <th>Example</th>
+                <th>Classification</th>
+                <th>Explanation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>a:link</td>
+                <td>Link Pseudo-class</td>
+                <td>Selects a link that has not been visited by a user</td>
+            </tr>
+            <tr>
+                <td>a:visited</td>
+                <td>Link Pseudo-class</td>
+                <td>Selects a link that has been visited by a user</td>
+            </tr>
+            <tr>
+                <td>a:hover</td>
+                <td>Action Pseudo-class</td>
+                <td>Selects an element when a user has hovered their cursor over it</td>
+            </tr>
+            <tr>
+                <td>a:active</td>
+                <td>Action Pseudo-class</td>
+                <td>Selects an element when a user has engaged it</td>
+            </tr>
+            <tr>
+                <td>a:focus</td>
+                <td>Action Pseudo-class</td>
+                <td>Selects an element when a user has made it their focus point</td>
+            </tr>
+            <tr>
+                <td>input:enabled</td>
+                <td>State Pseudo-class</td>
+                <td>Selects an element in the default enabled state</td>
+            </tr>
+            <tr>
+                <td>input:disabled</td>
+                <td>State Pseudo-class</td>
+                <td>Selects an element in the disabled state, by way of the disabled attribute</td>
+            </tr>
+            <tr>
+                <td>input:checked</td>
+                <td>State Pseudo-class</td>
+                <td>Selects a checkbox or radio button that has been checked</td>
+            </tr>
+            <tr>
+                <td>input:indeterminate</td>
+                <td>State Pseudo-class</td>
+                <td>Selects a checkbox or radio button that neither been checked or unchecked, leaving it in an indeterminate state</td>
+            </tr>
+            <tr>
+                <td>li:first-child</td>
+                <td>Structural Pseudo-class</td>
+                <td>Selects an element that is the first within a parent</td>
+            </tr>
+            <tr>
+                <td>li:last-child</td>
+                <td>Structural Pseudo-class</td>
+                <td>Selects an element that is the last within a parent</td>
+            </tr>
+            <tr>
+                <td>div:only-child</td>
+                <td>Structural Pseudo-class</td>
+                <td>Selects an element that is the only element within a parent</td>
+            </tr>
+            <tr>
+                <td>p:first-of-type</td>
+                <td>Structural Pseudo-class</td>
+                <td>Selects an element that is the first of it's type within a parent</td>
+            </tr>
+            <tr>
+                <td>p:last-of-type</td>
+                <td>Structural Pseudo-class</td>
+                <td>Selects an element that is the last of it's type within a parent</td>
+            </tr>
+            <tr>
+                <td>img:only-of-type</td>
+                <td>Structural Pseudo-class</td>
+                <td>Selects an element that is the only of it's type within a parent</td>
+            </tr>
+            <tr>
+                <td>li:nth-child(2n+3)</td>
+                <td>Structural Pseudo-class</td>
+                <td>Selects an element that matches the given number or expression, counting all elements from the beginning of the document tree</td>
+            </tr>
+            <tr>
+                <td>li:nth-last-child(3n+2)</td>
+                <td>Structural Pseudo-class</td>
+                <td>Selects an element that matches the given number or expression, counting all elements from the end of the document tree</td>
+            </tr>
+            <tr>
+                <td>p:nth-of-type(3n)</td>
+                <td>Structural Pseudo-class</td>
+                <td>Selects an element that matches the given number or expression, counting only elements of it's type from the beginning of the document tree</td>
+            </tr>
+            <tr>
+                <td>p:nth-last-of-type(2n+1)</td>
+                <td>Structural Pseudo-class</td>
+                <td>Selects an element that matches the given number or expression, counting only elements of it's type from the end of the document tree</td>
+            </tr>
+            <tr>
+                <td>section:target</td>
+                <td>Target Pseudo-class</td>
+                <td>Selects an element whose ID attribute value matches that of the URI fragment identifier</td>
+            </tr>
+            <tr>
+                <td>div:empty</td>
+                <td>Empty Pseudo-class</td>
+                <td>Selects an element that does not contain any children or text nodes</td>
+            </tr>
+            <tr>
+                <td>div:not(.awesome)</td>
+                <td>Negation Pseudo-class</td>
+                <td>Selects an element not represented by the stated argument</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .container {
+        max-width: 900px;
+        padding: 20px;
+    }
+
+    h1, h2 {
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    table {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    th, td {
+        padding: 6px 15px;
+    }
+
+    th {
+        background: #42444e;
+        color: #fff;
+        text-align: left;
+    }
+
+    tr:first-child th:first-child {
+        border-top-left-radius: 6px;
+    }
+
+    tr:first-child th:last-child {
+        border-top-right-radius: 6px;
+    }
+
+    td {
+        border-right: 1px solid #c6c9cc;
+        border-bottom: 1px solid #c6c9cc;
+    }
+
+        td:first-child {
+            border-left: 1px solid #c6c9cc;
+        }
+
+    tr:nth-child(even) td {
+        background: #eaeaed;
+    }
+
+    tr:last-child td:first-child {
+        border-bottom-left-radius: 6px;
+    }
+
+    tr:last-child td:last-child {
+        border-bottom-right-radius: 6px;
+    }
+
+    .overview th {
+        background: #2b6cb0;
+    }
+
+    .overview tr:nth-child(even) td {
+        background: #ebf8ff;
+    }
+</style>

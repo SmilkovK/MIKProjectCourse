@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Creating Reusable Layouts";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>When building a website, it is always best to write modular styles that may be reused elsewhere, and reusable layouts are high on the list of reusable code. Layouts can be created using either floats or inline-block elements, but which works best and why?</p>
+
+    <p>Whether it's better to use floats or inline-block elements to lay out the structure of a page is open to debate. My approach is to use inline-block elements to create the grid—or layout—of a page and to then use floats when I want content to wrap around a given element (as floats were intended to do with images). Generally, I also find inline-block elements easier to work with.</p>
+
+    <p>That said, use whatever works best for you. If you are comfortable with one approach over the other, then go for it.</p>
+
+    <p>Currently there are new CSS specifications in the works—specifically flex- and grid- based properties—that will help address how to best lay out pages. Keep an eye out for these methods as they begin to surface.</p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("PositioningWithFloats", "Frontend")" class="btn btn-outline-primary">← Positioning with Floats</a>
+        <a href="@Url.Action("NextLesson", "Frontend")" class="btn btn-primary">Next Lesson →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

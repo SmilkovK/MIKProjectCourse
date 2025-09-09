@@ -1,0 +1,191 @@
+﻿@{
+    ViewData["Title"] = "In practice 2";
+}
+
+<div class="container">
+    <h1>Styles Conference Tutorial</h1>
+
+    <p>August 24–26th — Chicago, IL</p>
+
+    <pre class="code-block">
+<!-- Header HTML -->
+<header class="container">
+  <a href="#">Styles Conference</a>
+  <p>August 24–26th — Chicago, IL</p>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Speakers</a>
+    <a href="#">Schedule</a>
+    <a href="#">Venue</a>
+    <a href="#">Register</a>
+  </nav>
+</header>
+    </pre>
+
+    <p>Dedicated to the Craft of Building Websites. Every year the brightest web designers and front-end developers descend on Chicago to discuss the latest technologies. Join us this August!</p>
+
+    <pre class="code-block">
+<!-- Hero Section -->
+<section class="hero container">
+  <p>Dedicated to the Craft of Building Websites</p>
+  <p>Every year the brightest web designers and front-end developers descend on Chicago to discuss the latest technologies. Join us this August!</p>
+  <a class="btn btn-alt" href="#">Register Now</a>
+</section>
+    </pre>
+
+    <p>Speakers Section: Joining us from all around the world are over twenty fantastic speakers, here to share their stories.</p>
+
+    <pre class="code-block">
+<!-- Speakers Section -->
+<section class="container">
+  <h3>Speakers</h3>
+  <p>Joining us from all around the world are over twenty fantastic speakers, here to share their stories.</p>
+</section>
+    </pre>
+
+    <p>Schedule Section: Enjoy three inspiring and action-packed days of talks, gatherings, and all-around good times.</p>
+
+    <pre class="code-block">
+<!-- Schedule Section -->
+<section class="container">
+  <h3>Schedule</h3>
+  <p>Enjoy three inspiring and action-packed days of talks, gatherings, and all-around good times.</p>
+</section>
+    </pre>
+
+    <p>Venue Section: Within the heart of downtown Chicago, The Chicago Theatre will provide a beautiful conference venue.</p>
+
+    <pre class="code-block">
+<!-- Venue Section -->
+<section class="container">
+  <h3>Venue</h3>
+  <p>The Chicago Theatre</p>
+  <p>Within the heart of downtown Chicago, The Chicago Theatre will provide a beautiful conference venue.</p>
+</section>
+    </pre>
+
+    <p>Footer Section</p>
+
+    <pre class="code-block">
+<!-- Footer HTML -->
+<footer class="container">
+  <p>© Styles Conference</p>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Speakers</a>
+    <a href="#">Schedule</a>
+    <a href="#">Venue</a>
+    <a href="#">Register</a>
+  </nav>
+</footer>
+    </pre>
+
+    <hr />
+
+    
+
+</div>
+
+<style>
+    .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 20px 30px;
+        font-family: 'Courier New', monospace;
+        background-color: #f9f9f9;
+    }
+
+    .code-block {
+        background-color: #272822;
+        color: #f8f8f2;
+        padding: 15px;
+        border-radius: 5px;
+        overflow-x: auto;
+        margin-bottom: 20px;
+        font-family: 'Courier New', monospace;
+        font-size: 0.95rem;
+    }
+
+    h1 {
+        margin-bottom: 20px;
+    }
+
+    p {
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+
+    hr {
+        margin: 30px 0;
+        border: none;
+        border-top: 2px solid #ccc;
+    }
+</style>
+
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #eef;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        overflow-x: auto;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

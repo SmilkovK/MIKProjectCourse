@@ -1,0 +1,192 @@
+﻿@{
+    ViewData["Title"] = "Pseudo-classes";
+}
+
+<div class="container">
+    <h1>10. Pseudo-classes</h1>
+
+    <p>
+        Pseudo-classes are similar to regular classes in HTML however they are not directly stated within the markup, instead they are a dynamically populated as a result of users actions or the document structure.
+        The most common pseudo-class, and one you've likely seen before, is <code>:hover</code>. Notice how this pseudo-class begins with the colon character, <code>:</code>, as will all other pseudo-classes.
+    </p>
+
+    <h2>10.1 Link Pseudo-classes</h2>
+    <p>
+        Some of the more basic pseudo-classes include two revolving around links specifically.
+        The <code>:link</code> and <code>:visited</code> pseudo-classes define if a link has or hasn't been visited.
+        To style an anchor which has not been visited the <code>:link</code> pseudo-class comes into play, where the <code>:visited</code> pseudo-class styles links that a user has already visited based on their browsing history.
+    </p>
+    <pre><code>a:link {...}
+a:visited {...}</code></pre>
+
+    <h2>10.2 User Action Pseudo-classes</h2>
+    <p>
+        Based on a users actions different pseudo-classes may be dynamically applied to an element, of which include the <code>:hover</code>, <code>:active</code>, and <code>:focus</code> pseudo-classes.
+        The <code>:hover</code> pseudo-class is applied to an element when a user moves their cursor over the element, most commonly used with anchor elements.
+        The <code>:active</code> pseudo-class is applied to an element when a user engages an element, such as clicking on an element.
+        Lastly, the <code>:focus</code> pseudo-class is applied to an element when a user has made an element the focus point of the page, often by using the keyboard to tab from one element to another.
+    </p>
+    <pre><code>a:hover {...}
+a:active {...}
+a:focus {...}</code></pre>
+
+    <h2>10.3 User Interface State Pseudo-classes</h2>
+    <p>
+        As with the link pseudo-classes there are also some pseudo-classes generated around the user interface state of elements, particularly within form elements.
+        These user interface element state pseudo-classes include <code>:enabled</code>, <code>:disabled</code>, <code>:checked</code>, and <code>:indeterminate</code>.
+    </p>
+    <p>
+        The <code>:enabled</code> pseudo-class selects an input that is in the default state of enabled and available for use, where the <code>:disabled</code> pseudo-class selects an input that has the disabled attribute tied to it.
+        Many browsers by default will fade out disabled inputs to inform users that the input is not available for interaction, however those styles may be adjusted as wished with the <code>:disabled</code> pseudo-class.
+    </p>
+    <p>
+        The last two user interface element state pseudo-classes of <code>:checked</code> and <code>:indeterminate</code> revolve around checkbox and radio button input elements.
+        The <code>:checked</code> pseudo-class selects checkboxes or radio buttons that are, as you may expect, checked.
+        When a checkbox or radio button has neither been selected or unselected it lives in an indeterminate state, from which the <code>:indeterminate</code> pseudo-class can be used to target these elements.
+    </p>
+    <pre><code>input:enabled {...}
+input:disabled {...}
+input:checked {...}
+input:indeterminate {...}</code></pre>
+
+    <h2>10.4 Structural &amp; Position Pseudo-classes</h2>
+
+    <h3>10.4.1 :first-child, :last-child, &amp; :only-child</h3>
+    <p>
+        The first structural and position based pseudo-classes one is likely to come across are the <code>:first-child</code>, <code>:last-child</code>, and <code>:only-child</code> pseudo-classes.
+        The <code>:first-child</code> pseudo-class will select an element if it's the first child within its parent, while the <code>:last-child</code> pseudo-class will select an element if it's the last element within its parent.
+        These pseudo-classes are prefect for selecting the first or last items in a list and so forth.
+        Additionally, the <code>:only-child</code> will select an element if it is the only element within a parent. Alternately, the <code>:only-child</code> pseudo-class could be written as <code>:first-child:last-child</code>, however <code>:only-child</code> holds a lower specificity.
+    </p>
+    <pre><code>li:first-child {...}
+li:last-child {...}
+div:only-child {...}</code></pre>
+    <pre><code>&lt;ul&gt;
+  &lt;li&gt;This list item will be selected&lt;/li&gt;
+  &lt;li&gt;
+    &lt;div&gt;This div will be selected&lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;div&gt;...&lt;/div&gt;
+    &lt;div&gt;...&lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;This list item will be selected&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+    <h3>10.4.2 :first-of-type, :last-of-type, &amp; :only-of-type</h3>
+    <p>
+        The <code>:first-of-type</code> pseudo-class will select the first element of its type within a parent, while the <code>:last-of-type</code> pseudo-class will select the last element of its type within a parent.
+        The <code>:only-of-type</code> pseudo-class will select an element if it is the only of its type within a parent.
+    </p>
+    <pre><code>p:first-of-type {...}
+p:last-of-type {...}
+img:only-of-type {...}</code></pre>
+    <pre><code>&lt;article&gt;
+  &lt;h1&gt;...&lt;/h1&gt;
+  &lt;p&gt;This paragraph will be selected&lt;/p&gt;
+  &lt;p&gt;...&lt;/p&gt;
+  &lt;img src="#"&gt;&lt;!-- This image will be selected --&gt;
+  &lt;p&gt;This paragraph will be selected&lt;/p&gt;
+  &lt;h6&gt;...&lt;/h6&gt;
+&lt;/article&gt;</code></pre>
+
+    <h3>10.4.3 Using Pseudo-class Numbers &amp; Expressions</h3>
+   
+
+    <h3>10.4.4 :nth-child(n) &amp; :nth-last-child(n)</h3>
+    <pre><code>li:nth-child(3n) {...}
+&lt;ul&gt;
+  &lt;li&gt;...&lt;/li&gt;
+  &lt;li&gt;...&lt;/li&gt;
+  &lt;li&gt;This list item will be selected&lt;/li&gt;
+  ...
+&lt;/ul&gt;</code></pre>
+
+    <h3>10.4.5 :nth-of-type(n) &amp; :nth-last-of-type(n)</h3>
+    <pre><code>p:nth-of-type(3n) {...}
+&lt;article&gt;
+  &lt;h1&gt;...&lt;/h1&gt;
+  &lt;p&gt;...&lt;/p&gt;
+  &lt;p&gt;...&lt;/p&gt;
+  &lt;p&gt;This paragraph will be selected&lt;/p&gt;
+  ...
+&lt;/article&gt;</code></pre>
+
+    <h2>10.5 Target Pseudo-class</h2>
+    <pre><code>section:target {...}
+&lt;section id="hello"&gt;...&lt;/section&gt;</code></pre>
+
+    <h2>10.6 Empty Pseudo-class</h2>
+    <pre><code>div:empty {...}
+&lt;div&gt;Hello&lt;/div&gt;
+&lt;div&gt;&lt;!-- Coming soon --&gt;&lt;/div&gt; &lt;!-- This div will be selected --&gt;
+&lt;div&gt;&lt;/div&gt; &lt;!-- This div will be selected --&gt;
+&lt;div&gt; &lt;/div&gt;
+&lt;div&gt;&lt;strong&gt;&lt;/strong&gt;&lt;/div&gt;</code></pre>
+
+    <h2>10.7 Negation Pseudo-class</h2>
+    <pre><code>div:not(.awesome) {...}
+:not(div) {...}
+&lt;div&gt;This div will be selected&lt;/div&gt;
+&lt;div class="awesome"&gt;...&lt;/div&gt;
+&lt;section&gt;This section will be selected&lt;/section&gt;
+&lt;section class="awesome"&gt;This section will be selected&lt;/section&gt;</code></pre>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("NextTopic", "CssBasics")" class="btn btn-primary">Next &raquo;</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 900px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    h2, h3 {
+        margin-top: 25px;
+        color: var(--bs-primary);
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+        margin-bottom: 15px;
+    }
+
+    pre {
+        background: #f8f9fa;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        font-size: 0.95rem;
+        overflow-x: auto;
+    }
+
+    code {
+        color: #d63384;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

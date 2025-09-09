@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Inheritance";
+}
+
+<div class="container">
+    <h1>Inheritance</h1>
+
+    <p>Some values are inherited by the children of an element in the document tree, as described above. Each property defines whether it is inherited or not.</p>
+
+    <p>Suppose there is an H1 element with an emphasizing element (EM) inside:</p>
+
+    <pre><code>&lt;h1&gt;The headline &lt;em&gt;is&lt;/em&gt; important!&lt;/h1&gt;</code></pre>
+
+    <p>If no color has been assigned to the EM element, the emphasized "is" will inherit the color of the parent element, so if H1 has the color blue, the EM element will likewise be in blue.</p>
+
+    <p>When inheritance occurs, elements inherit computed values. The computed value from the parent element becomes both the specified value and the computed value on the child.</p>
+
+    <p>For example, given the following style sheet:</p>
+
+    <pre><code>body { font-size: 10pt }
+h1 { font-size: 130% }
+&lt;body&gt;
+  &lt;h1&gt;A &lt;em&gt;large&lt;/em&gt; heading&lt;/h1&gt;
+&lt;/body&gt;</code></pre>
+
+    <p>The 'font-size' property for the H1 element will have the computed value '13pt' (130% times 10pt, the parent's value). Since the computed value of 'font-size' is inherited, the EM element will have the computed value '13pt' as well. If the user agent does not have the 13pt font available, the actual value.</p>
+
+    <h2>The !important value</h2>
+
+    <p>The <code>!important</code> keyword makes a declaration take precedence over normal declarations—those that are not tagged with the <code>!important</code> keyword. So:</p>
+
+    <pre><code>p { color: red !important }</code></pre>
+
+    <p>takes precedence over:</p>
+
+    <pre><code>p { color: green }</code></pre>
+
+    <p>The syntax for an important declaration is:</p>
+
+    <pre><code>property: value !important;</code></pre>
+
+    <p>The relative importance of a rule also depends on its source: whether it comes from a style sheet specified by the document author, the user, or the user agent (default stylesheet).</p>
+
+    <p>The order of declarations from least important to most important:</p>
+    <ul>
+        <li>User agent declarations</li>
+        <li>User normal declarations</li>
+        <li>Author normal declarations</li>
+        <li>Author important declarations</li>
+        <li>User important declarations</li>
+    </ul>
+
+    <p>User important declarations take precedence over everything else. This allows users to override the page designer's presentation to meet their needs. For example, a user could override the text colors to be yellow on black in a large font to make the text easier to read.</p>
+
+    <h2> The inherit value</h2>
+
+    <p>Each property may also have a cascaded value of <code>inherit</code>, which means that, for a given element, the property takes the same specified value as the property for the element's parent. The <code>inherit</code> value can be used to enforce inheritance of values, and it can also be used on properties that are not normally inherited.</p>
+
+    <p>If the <code>inherit</code> value is set on the root element, the property is assigned its initial value.</p>
+
+    <p>In the example below, the <code>color</code> and <code>background</code> properties are set on the body element. On all other elements, the <code>color</code> value will be inherited and the background will be transparent. If these rules are part of the user's style sheet, black text on a white background will be enforced throughout the document.</p>
+
+    <pre><code>body {
+  color: black !important;
+  background: white !important;
+}
+
+* {
+  color: inherit !important;
+  background: transparent !important;
+}</code></pre>
+</div>
+
+<style>
+    .container {
+        max-width: 900px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+        color: var(--bs-body-color);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        margin-bottom: 16px;
+        line-height: 1.6;
+    }
+
+    pre {
+        background: #f4f4f4;
+        padding: 12px;
+        border-radius: 6px;
+        overflow-x: auto;
+        margin-bottom: 20px;
+    }
+
+    code {
+        font-family: Consolas, Monaco, monospace;
+        color: #d6336c;
+    }
+
+    ul {
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+</style>

@@ -1,0 +1,184 @@
+﻿@{
+    ViewData["Title"] = "CSS: Setting Backgrounds & Gradients";
+}
+
+<div class="container" style="font-family: Arial, sans-serif; line-height:1.6; padding:20px; max-width:1000px; margin:auto;">
+
+    <h1 style="color:#2E8B57;">@ViewData["Title"]</h1>
+    <p>Learn how to make your web pages colorful and attractive using <strong>background colors</strong>, <strong>images</strong>, and <strong>gradients</strong>. We will also explore new background properties and practice what you learn!</p>
+
+    <hr>
+
+    <h2 style="color:#4682B4;">1. Adding Background Color</h2>
+    <p>You can set a solid color as the background of your webpage using <code>background-color</code>.</p>
+    <pre style="background:#f4f4f4; padding:10px; border:1px solid #ccc;">
+<code>
+body {
+    background-color: lightblue;
+}
+</code>
+</pre>
+    <div style="background-color: lightblue; width:300px; height:150px; display:flex; align-items:center; justify-content:center; border:1px solid #000; margin-bottom:20px;">
+        <span>Light Blue Background</span>
+    </div>
+
+    <hr>
+
+    <h2 style="color:#4682B4;">2. Background Image</h2>
+    <p>You can set an image as the background using <code>background-image</code>. Let's explore some options:</p>
+
+    <h3>2.1 Image Position</h3>
+    <pre style="background:#f4f4f4; padding:10px; border:1px solid #ccc;">
+<code>
+body {
+    background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=400&q=80');
+    background-position: center;
+    background-size: cover;
+}
+</code>
+</pre>
+    <div style="background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=400&q=80'); width:300px; height:150px; background-position:center; background-size:cover; border:1px solid #000; margin-bottom:20px;"></div>
+
+    <h3>2.2 Image Repeat</h3>
+    <pre style="background:#f4f4f4; padding:10px; border:1px solid #ccc;">
+<code>
+body {
+    background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=400&q=80');
+    background-repeat: no-repeat;
+}
+</code>
+</pre>
+
+    <h3>2.3 Image Size</h3>
+    <pre style="background:#f4f4f4; padding:10px; border:1px solid #ccc;">
+<code>
+body {
+    background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=400&q=80');
+    background-size: cover; /* cover or contain */
+}
+</code>
+</pre>
+
+    <h3>2.4 Image Attachment</h3>
+    <pre style="background:#f4f4f4; padding:10px; border:1px solid #ccc;">
+<code>
+body {
+    background-image: url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=400&q=80');
+    background-attachment: fixed; /* scroll or fixed */
+}
+</code>
+</pre>
+
+    <hr>
+
+    <h2 style="color:#4682B4;">3. Practice Section</h2>
+    <p>Try creating your own page with:</p>
+    <ul>
+        <li>A background color you like</li>
+        <li>An image positioned in the center</li>
+        <li>Using background-size: cover</li>
+    </ul>
+
+    <hr>
+
+    <h2 style="color:#4682B4;">4. Linear Gradient Background</h2>
+    <p>Linear gradients transition smoothly from one color to another in a straight line.</p>
+    <pre style="background:#f4f4f4; padding:10px; border:1px solid #ccc;">
+<code>
+body {
+    background: linear-gradient(to right, red, yellow);
+}
+</code>
+</pre>
+    <div style="background: linear-gradient(to right, red, yellow); width:300px; height:150px; border:1px solid #000; margin-bottom:20px;"></div>
+
+    <hr>
+
+    <h2 style="color:#4682B4;">5. Radial Gradient Background</h2>
+    <p>Radial gradients start from the center and radiate outwards.</p>
+    <pre style="background:#f4f4f4; padding:10px; border:1px solid #ccc;">
+<code>
+body {
+    background: radial-gradient(circle, red, yellow, green);
+}
+</code>
+</pre>
+    <div style="background: radial-gradient(circle, red, yellow, green); width:300px; height:150px; border:1px solid #000; margin-bottom:20px;"></div>
+
+    <hr>
+
+    <h2 style="color:#4682B4;">6. Using Multiple Background Images</h2>
+    <p>You can layer multiple backgrounds on top of each other:</p>
+    <pre style="background:#f4f4f4; padding:10px; border:1px solid #ccc;">
+<code>
+body {
+    background-image: 
+        url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=400&q=80'),
+        url('https://images.unsplash.com/photo-1499084732479-de2c02d45fc4?auto=format&fit=crop&w=400&q=80');
+    background-position: center, top right;
+    background-size: cover, 200px 200px;
+}
+</code>
+</pre>
+
+    <hr>
+
+    <h2 style="color:#4682B4;">7. Exploring New Background Properties</h2>
+    <ul>
+        <li><code>background-clip</code>: controls whether the background extends under padding or border</li>
+        <li><code>background-origin</code>: controls where the background starts (padding, border, or content)</li>
+        <li><code>background-blend-mode</code>: blend multiple backgrounds like Photoshop</li>
+    </ul>
+
+    <hr>
+
+    <h2 style="color:#4682B4;">Tips & Tricks</h2>
+    <ul>
+        <li>Use gradients for buttons, headers, or full pages.</li>
+        <li>Make sure text is readable on top of colorful backgrounds.</li>
+        <li>Experiment with multiple layers and blend modes for creative effects.</li>
+    </ul>
+
+    <p style="font-style:italic;">Now it's your turn! Try combining colors, images, and gradients to make your web page unique and fun.</p>
+
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    .container p,
+    .container ul {
+        line-height: 1.6;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

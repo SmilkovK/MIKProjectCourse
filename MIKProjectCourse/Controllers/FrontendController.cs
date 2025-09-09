@@ -141,6 +141,79 @@ namespace MIKProjectCourse.Controllers
         {
             return View();
         }
+        public IActionResult PseudoClasses()
+        {
+            return View();
+        }
+        public IActionResult PseudoClassesExample()
+        {
+            return View();
+        }
+        public IActionResult PseudoElements()
+        {
+            return View();
+        }
+        public IActionResult PseudoElementsExample()
+        {
+            return View();
+        }
+        public IActionResult IntroductionCascade()
+        {
+            return View();
+        }
+        public IActionResult Inheritance()
+        {
+            return View();
+        }
+       public IActionResult BoxModel()
+        {
+            return View();
+        }
+        public IActionResult DeveloperTools()
+        {
+            return View();
+        }
+        public IActionResult BoxModelPractice()
+        {
+            return View();
+        }
+        public IActionResult BoxModelPractice1()
+        {
+            return View();
+        }
+        public IActionResult UniversalSelector()
+        {
+            return View();
+        }
+        public IActionResult PositioningContent()
+        {
+            return View();
+        }
+        public IActionResult PositioningFloats()
+        {
+            return View();
+        }
+        public IActionResult CreatingReusableLayouts()
+        {
+            return View();
+        }
+        public IActionResult UniquelyPositioningElements()
+        {
+            return View();
+        }
+
+        public IActionResult Flexboxlayout()
+        {
+            return View();
+        }
+        public IActionResult Typography()
+        {
+            return View();
+        }
+        public IActionResult Backgrounds()
+        {
+            return View();
+        }
     }
 
 }

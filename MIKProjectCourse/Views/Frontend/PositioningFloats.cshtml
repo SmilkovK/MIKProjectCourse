@@ -1,0 +1,220 @@
+﻿@{
+    ViewData["Title"] = "Positioning with Floats";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>One way to position elements on a page is with the <strong>float</strong> property. The float property is pretty versatile and can be used in a number of different ways.</p>
+
+    <p>Essentially, the float property allows us to take an element, remove it from the normal flow of a page, and position it to the left or right of its parent element. All other elements on the page will then flow around the floated element. An <code>&lt;img&gt;</code> element floated to the side of a few paragraphs of text, for example, will allow the paragraphs to wrap around the image as necessary.</p>
+
+    <p>When the float property is used on multiple elements at the same time, it provides the ability to create a layout by floating elements directly next to or opposite each other, as seen in multiple-column layouts.</p>
+
+    <p>The float property accepts a few values; the two most popular values are <code>left</code> and <code>right</code>, which allow elements to be floated to the left or right of their parent element.</p>
+
+    <div class="code-container">
+        <div class="code-header">CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+img {
+  float: left;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Floats in Practice</h2>
+    <p>Let's create a common page layout with a header at the top, two columns in the center, and a footer at the bottom. Ideally this page would be marked up using the <code>&lt;header&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;aside&gt;</code>, and <code>&lt;footer&gt;</code> elements. Inside the <code>&lt;body&gt;</code> element, the HTML may look like this:</p>
+
+    <div class="code-container">
+        <div class="code-header">HTML Example</div>
+        <div class="code-content">
+<pre><code class="language-html">
+&lt;header&gt;...&lt;/header&gt;
+&lt;section&gt;...&lt;/section&gt;
+&lt;aside&gt;...&lt;/aside&gt;
+&lt;footer&gt;...&lt;/footer&gt;
+</code></pre>
+        </div>
+    </div>
+
+    <p>By floating <code>&lt;section&gt;</code> to the left and <code>&lt;aside&gt;</code> to the right, we can position them as two columns sitting opposite one another:</p>
+
+    <div class="code-container">
+        <div class="code-header">CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+section {
+  float: left;
+}
+aside {
+  float: right;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Adding Width and Margin</h2>
+    <p>To prevent floated elements from touching one another and to better shape our layout, we can add width and margin:</p>
+
+    <div class="code-container">
+        <div class="code-header">CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+section {
+  float: left;
+  margin: 0 1.5%;
+  width: 63%;
+}
+aside {
+  float: right;
+  margin: 0 1.5%;
+  width: 30%;
+}
+footer {
+  clear: both;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Floats May Change an Element's Display Value</h2>
+    <p>When floating an element, the element is removed from the normal flow, which may change its default <code>display</code> value. Inline elements like <code>&lt;span&gt;</code> become block-level when floated.</p>
+
+    <h2>Three-column Layout</h2>
+    <p>For three columns, we can float all <code>&lt;section&gt;</code> elements to the left and adjust their width:</p>
+
+    <div class="code-container">
+        <div class="code-header">CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+section {
+  float: left;
+  margin: 0 1.5%;
+  width: 30%;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Clearing Floats</h2>
+    <p>To prevent content from wrapping around floated elements, we use the <code>clear</code> property:</p>
+
+    <div class="code-container">
+        <div class="code-header">CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+footer {
+  clear: both;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <h2>Containing Floats (Clearfix)</h2>
+    <p>Instead of clearing floats individually, we can contain them in a parent container using a clearfix technique:</p>
+
+    <div class="code-container">
+        <div class="code-header">CSS Example</div>
+        <div class="code-content">
+<pre><code class="language-css">
+.group:before,
+.group:after {
+  content: "";
+  display: table;
+}
+.group:after {
+  clear: both;
+}
+.group {
+  clear: both;
+  *zoom: 1;
+}
+</code></pre>
+        </div>
+    </div>
+
+    <p>This ensures floated elements inside <code>.group</code> do not affect elements outside the container.</p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("Cascade", "Frontend")" class="btn btn-outline-primary">← Previous Lesson</a>
+        <a href="@Url.Action("NextLesson", "Frontend")" class="btn btn-primary">Next Lesson →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2, h3 {
+        color: var(--bs-heading-color);
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    ul {
+        margin-left: 20px;
+    }
+
+    code {
+        background: #2db34a;
+        border-radius: 6px;
+        color: #fff;
+        display: block;
+        font: 14px/24px "Source Code Pro", Inconsolata, "Lucida Console", Terminal, "Courier New", Courier;
+        padding: 24px 15px;
+        text-align: center;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        overflow-x: auto;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

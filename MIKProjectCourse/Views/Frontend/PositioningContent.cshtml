@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "Positioning Content";
+}
+
+<div class="container">
+    <h1>@ViewData["Title"]</h1>
+
+    <p>One of the best things about CSS is that it gives us the ability to position content and elements on a page in nearly any imaginable way, bringing structure to our designs and helping make content more digestible.</p>
+
+    <p>There are a few different types of positioning within CSS, and each has its own application. In this chapter we're going to take a look at a few different use cases—creating reusable layouts and uniquely positioning one-off elements—and describe a few ways to go about each.</p>
+
+    <div class="code-container">
+        <div class="code-header">CSS Positioning Examples</div>
+        <div class="code-content">
+<pre><code class="language-css">
+/* Static positioning (default) */
+.static-box {
+    position: static;
+}
+
+/* Relative positioning */
+.relative-box {
+    position: relative;
+    top: 10px;
+    left: 20px;
+}
+
+/* Absolute positioning */
+.absolute-box {
+    position: absolute;
+    top: 50px;
+    right: 30px;
+}
+
+/* Fixed positioning */
+.fixed-box {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+/* Sticky positioning */
+.sticky-box {
+    position: sticky;
+    top: 0;
+}
+</code></pre>
+        </div>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 850px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+        margin: 0 auto;
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.7;
+        margin-bottom: 15px;
+    }
+
+    code {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #eef;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+        overflow-x: auto;
+    }
+
+    .code-header {
+        background-color: #e9ecef;
+        padding: 10px 15px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        color: #333;
+    }
+
+    .code-content {
+        padding: 15px;
+    }
+</style>
