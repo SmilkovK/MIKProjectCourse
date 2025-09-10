@@ -1,0 +1,249 @@
+﻿@{
+    ViewData["Title"] = "Lists in CSS";
+}
+
+<div class="container">
+    <h1>Lists in CSS</h1>
+
+    <p>
+        Lists are everywhere — task lists, recipes, directions...
+        Just like in everyday life, we often use lists on web pages to organize information.
+        In HTML there are three types of lists: <strong>unordered (ul)</strong>, <strong>ordered (ol)</strong>, and <strong>description (dl)</strong>.
+        With CSS we can style them and make them look nicer and easier to read.
+    </p>
+
+    <h2>Unordered Lists</h2>
+    <p>An unordered list is used when the order doesn't matter. By default it uses bullets (disc).</p>
+
+    <pre><code>&lt;ul&gt;
+  &lt;li&gt;Orange&lt;/li&gt;
+  &lt;li&gt;Green&lt;/li&gt;
+  &lt;li&gt;Blue&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+    <div class="demo">
+        <ul style="list-style: disc; padding-left: 40px;">
+            <li>Orange</li>
+            <li>Green</li>
+            <li>Blue</li>
+        </ul>
+    </div>
+
+    <h2>Ordered Lists</h2>
+    <p>Ordered lists are used when order matters. Instead of bullets, they use numbers.</p>
+
+    <pre><code>&lt;ol&gt;
+  &lt;li&gt;Head north&lt;/li&gt;
+  &lt;li&gt;Turn right&lt;/li&gt;
+  &lt;li&gt;Turn left&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+    <div class="demo">
+        <ol>
+            <li>Head north</li>
+            <li>Turn right</li>
+            <li>Turn left</li>
+        </ol>
+    </div>
+
+    <h3>Start Attribute</h3>
+    <pre><code>&lt;ol start="5"&gt;
+  &lt;li&gt;Item one&lt;/li&gt;
+  &lt;li&gt;Item two&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+    <div class="demo">
+        <ol start="5">
+            <li>Item one</li>
+            <li>Item two</li>
+        </ol>
+    </div>
+
+    <h3>Reversed Attribute</h3>
+    <pre><code>&lt;ol reversed&gt;
+  &lt;li&gt;First step&lt;/li&gt;
+  &lt;li&gt;Second step&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+    <div class="demo">
+        <ol reversed>
+            <li>First step</li>
+            <li>Second step</li>
+        </ol>
+    </div>
+
+    <h3>Value Attribute</h3>
+    <pre><code>&lt;ol&gt;
+  &lt;li&gt;Step 1&lt;/li&gt;
+  &lt;li value="10"&gt;Special step&lt;/li&gt;
+  &lt;li&gt;Next step&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+    <div class="demo">
+        <ol>
+            <li>Step 1</li>
+            <li value="10">Special step</li>
+            <li>Next step</li>
+        </ol>
+    </div>
+
+    <h2>Description Lists</h2>
+    <pre><code>&lt;dl&gt;
+  &lt;dt&gt;HTML&lt;/dt&gt;
+  &lt;dd&gt;The language for marking up web content&lt;/dd&gt;
+  &lt;dt&gt;CSS&lt;/dt&gt;
+  &lt;dd&gt;The language for styling web pages&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+
+    <div class="demo">
+        <dl>
+            <dt>HTML</dt>
+            <dd>The language for marking up web content</dd>
+            <dt>CSS</dt>
+            <dd>The language for styling web pages</dd>
+        </dl>
+    </div>
+
+    <h2>Nesting Lists</h2>
+    <pre><code>&lt;ol&gt;
+  &lt;li&gt;Shopping&lt;/li&gt;
+  &lt;li&gt;Homework
+    &lt;ul&gt;
+      &lt;li&gt;Math&lt;/li&gt;
+      &lt;li&gt;History&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+
+    <div class="demo">
+        <ol>
+            <li>Shopping</li>
+            <li>
+                Homework
+                <ul>
+                    <li>Math</li>
+                    <li>History</li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+
+    <h2>Styling List Items</h2>
+    <h3>List Style Type</h3>
+    <pre><code>ul {
+  list-style-type: square;
+}</code></pre>
+
+    <div class="demo">
+        <ul style="list-style-type: square;">
+            <li>Apple</li>
+            <li>Banana</li>
+            <li>Grapes</li>
+        </ul>
+    </div>
+
+    <h3>Custom Image Marker</h3>
+    <pre><code>li {
+  list-style-type: none;
+  background: url("arrow.png") no-repeat left center;
+  padding-left: 20px;
+}</code></pre>
+
+    <div class="demo">
+        <ul style="list-style-type: none;">
+            <li style="list-style-type:none;background:url('https://cdn-icons-png.flaticon.com/512/271/271220.png') no-repeat left center;padding-left:25px;">Custom marker 1</li>
+            <li style="list-style-type:none;background:url('https://cdn-icons-png.flaticon.com/512/271/271220.png') no-repeat left center;padding-left:25px;">Custom marker 2</li>
+        </ul>
+    </div>
+
+    <h3>List Style Position</h3>
+    <pre><code>ul {
+  list-style-position: inside;
+}</code></pre>
+
+    <div class="demo">
+        <ul style="list-style-position: inside;">
+            <li>This is a longer list item that wraps to the next line to show inside alignment.</li>
+            <li>Second item</li>
+        </ul>
+    </div>
+
+    <h2>Horizontal Lists</h2>
+    <pre><code>ul li {
+  display: inline-block;
+  margin: 0 10px;
+}</code></pre>
+
+    <div class="demo">
+        <ul style="padding:0; margin:0; list-style:none;">
+            <li style="display:inline-block;margin:0 10px;">Home</li>
+            <li style="display:inline-block;margin:0 10px;">About</li>
+            <li style="display:inline-block;margin:0 10px;">Contact</li>
+        </ul>
+    </div>
+
+    <h2>Navigation List Example</h2>
+    <pre><code>&lt;nav&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+
+    <div class="demo">
+        <nav>
+            <ul style="padding:0; margin:0; list-style:none; display:flex; gap:15px;">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("FrontendTechnologies", "Frontend")" class="btn btn-outline-primary">← Previous Lesson</a>
+        <a href="@Url.Action("LinksInCSS", "Frontend")" class="btn btn-primary">Next: Links in CSS →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    .container p,
+    .container ul {
+        line-height: 1.6;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>
+

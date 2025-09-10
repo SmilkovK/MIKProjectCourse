@@ -214,6 +214,22 @@ namespace MIKProjectCourse.Controllers
         {
             return View();
         }
+        public IActionResult Lists()
+        {
+            return View();
+        }
+        public IActionResult AddingMedia()
+        {
+            return View();
+        }
+        public IActionResult BuildingForms()
+        {
+            return View();
+        }
+        public IActionResult Tables()
+        {
+            return View();
+        }
     }
 
 }

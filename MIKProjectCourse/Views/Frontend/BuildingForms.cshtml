@@ -1,0 +1,223 @@
+﻿@{
+    ViewData["Title"] = "Building Forms with CSS";
+}
+
+<div class="container">
+    <h1>Building Forms with CSS</h1>
+
+    <h2>Text Fields</h2>
+    <p>Single-line text input fields with placeholders and required attributes.</p>
+    <pre><code>input[type="text"], input[type="email"], input[type="password"] {
+    border: 1px solid #c6c9cc;
+    border-radius: 5px;
+    padding: 5px 8px;
+    width: 100%;
+    margin-bottom: 20px;
+}</code></pre>
+    <div class="example">
+        <label>
+            Name:
+            <input type="text" placeholder="Full Name" required>
+        </label>
+        <label>
+            Email:
+            <input type="email" placeholder="name@domain.com" required>
+        </label>
+        <label>
+            Password:
+            <input type="password" placeholder="Password">
+        </label>
+    </div>
+
+    <h2>Textarea</h2>
+    <p>Multi-line text input.</p>
+    <pre><code>textarea {
+    border: 1px solid #c6c9cc;
+    border-radius: 5px;
+    width: 100%;
+    height: 80px;
+    padding: 5px 8px;
+    margin-bottom: 20px;
+}</code></pre>
+    <div class="example">
+        <label>
+            Comments:
+            <textarea placeholder="Write your comment here..."></textarea>
+        </label>
+    </div>
+
+    <h2>Radio Buttons</h2>
+    <p>Select one option from a group.</p>
+    <pre><code>input[type="radio"] {
+    margin-right: 5px;
+}</code></pre>
+    <div class="example">
+        <label><input type="radio" name="day" checked> Friday</label>
+        <label><input type="radio" name="day"> Saturday</label>
+        <label><input type="radio" name="day"> Sunday</label>
+    </div>
+
+    <h2>Check Boxes</h2>
+    <p>Select multiple options.</p>
+    <pre><code>input[type="checkbox"] {
+    margin-right: 5px;
+}</code></pre>
+    <div class="example">
+        <label><input type="checkbox" checked> Friday</label>
+        <label><input type="checkbox"> Saturday</label>
+        <label><input type="checkbox"> Sunday</label>
+    </div>
+
+    <h2>Drop-Down Lists</h2>
+    <p>Select one or multiple options.</p>
+    <pre><code>select {
+    border: 1px solid #c6c9cc;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 20px;
+}</code></pre>
+    <div class="example">
+        <label>
+            Number of Passes:
+            <select>
+                <option selected>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </label>
+        <label>
+            Multiple selection:
+            <select multiple size="3">
+                <option selected>Option 1</option>
+                <option>Option 2</option>
+                <option>Option 3</option>
+            </select>
+        </label>
+    </div>
+
+    <h2>Buttons</h2>
+    <p>Submit buttons using input or button elements.</p>
+    <pre><code>input[type="submit"], button {
+    background: #648880;
+    color: #fff;
+    border: 0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+input[type="submit"]:hover, button:hover {
+    background: #77a198;
+}</code></pre>
+    <div class="example">
+        <input type="submit" value="Submit Form">
+        <button>Send Message</button>
+    </div>
+
+    <h2>Fieldsets & Legends</h2>
+    <p>Group related form controls.</p>
+    <pre><code>fieldset {
+    border: 1px solid #cecfd5;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+legend {
+    font-weight: bold;
+    padding: 0 5px;
+}</code></pre>
+    <div class="example">
+        <fieldset>
+            <legend>Login</legend>
+            <label>Username: <input type="text"></label>
+            <label>Password: <input type="password"></label>
+        </fieldset>
+    </div>
+
+    <h2>Form Layout Example</h2>
+    <p>Simple registration form combining all elements:</p>
+    <pre><code>form {
+    border: 1px solid #c6c7cc;
+    border-radius: 5px;
+    padding: 20px;
+    width: 300px;
+    font-family: Arial, sans-serif;
+}
+label {
+    display: block;
+    margin-bottom: 10px;
+    color: #395870;
+}
+input, textarea, select {
+    margin-top: 5px;
+}</code></pre>
+    <div class="example">
+        <form>
+            <fieldset class="register-group">
+                <label>
+                    Name
+                    <input type="text" placeholder="Full name" required>
+                </label>
+                <label>
+                    Email
+                    <input type="email" placeholder="Email address" required>
+                </label>
+                <label>
+                    Number of Passes
+                    <select required>
+                        <option selected>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                    </select>
+                </label>
+                <label>
+                    Comments
+                    <textarea></textarea>
+                </label>
+            </fieldset>
+            <input type="submit" class="btn btn-default" value="Purchase">
+        </form>
+    </div>
+</div>
+
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    .container p,
+    .container ul {
+        line-height: 1.6;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>

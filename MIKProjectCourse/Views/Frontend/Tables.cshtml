@@ -1,0 +1,174 @@
+﻿@{
+    ViewData["Title"] = "CSS Tables - Interactive Tutorial";
+}
+
+<div class="container">
+    <h1>CSS Tables - Interactive Tutorial</h1>
+    <p>In this tutorial, we'll learn how to style HTML tables using CSS. Each example includes code and the result displayed below it.</p>
+
+    <hr />
+
+    <h2>1. Basic Styled Table</h2>
+    <p>We can style borders, padding, and text alignment using CSS.</p>
+
+    <h3>Code Example:</h3>
+    <pre><code>
+table {
+    border-collapse: collapse;
+    width: 80%;
+}
+
+th, td {
+    border: 1px solid #333;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+    </code></pre>
+
+    <h3>Result:</h3>
+    <table style="border-collapse: collapse; width: 80%;">
+        <tr>
+            <th style="border: 1px solid #333; padding: 10px; background-color: #4CAF50; color: white;">Book</th>
+            <th style="border: 1px solid #333; padding: 10px; background-color: #4CAF50; color: white;">Availability</th>
+            <th style="border: 1px solid #333; padding: 10px; background-color: #4CAF50; color: white;">Qty</th>
+            <th style="border: 1px solid #333; padding: 10px; background-color: #4CAF50; color: white;">Price</th>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #333; padding: 10px;">HTML & CSS Design</td>
+            <td style="border: 1px solid #333; padding: 10px;">In Stock</td>
+            <td style="border: 1px solid #333; padding: 10px;">3</td>
+            <td style="border: 1px solid #333; padding: 10px;">$25.00</td>
+        </tr>
+    </table>
+
+    <hr />
+
+    <h2>2. Striped Table</h2>
+    <p>Alternate row colors for better readability.</p>
+
+    <h3>Code Example:</h3>
+    <pre><code>
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+tr:hover {
+    background-color: #ddd;
+}
+    </code></pre>
+
+    <h3>Result:</h3>
+    <table style="border-collapse: collapse; width: 80%;">
+        <tr style="background-color:#4CAF50; color:white;">
+            <th style="border: 1px solid #333; padding: 10px;">Book</th>
+            <th style="border: 1px solid #333; padding: 10px;">Availability</th>
+            <th style="border: 1px solid #333; padding: 10px;">Qty</th>
+            <th style="border: 1px solid #333; padding: 10px;">Price</th>
+        </tr>
+        <tr style="background-color:#f2f2f2;">
+            <td style="border: 1px solid #333; padding: 10px;">JavaScript Guide</td>
+            <td style="border: 1px solid #333; padding: 10px;">In Stock</td>
+            <td style="border: 1px solid #333; padding: 10px;">5</td>
+            <td style="border: 1px solid #333; padding: 10px;">$30.00</td>
+        </tr>
+        <tr>
+            <td style="border: 1px solid #333; padding: 10px;">CSS Mastery</td>
+            <td style="border: 1px solid #333; padding: 10px;">Out of Stock</td>
+            <td style="border: 1px solid #333; padding: 10px;">0</td>
+            <td style="border: 1px solid #333; padding: 10px;">$40.00</td>
+        </tr>
+    </table>
+
+    <hr />
+
+    <h2>3. Centered Table with Rounded Borders</h2>
+    <p>Use <code>margin</code> and <code>border-radius</code> to improve appearance.</p>
+
+    <h3>Code Example:</h3>
+    <pre><code>
+table {
+    margin: auto;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+}
+th, td {
+    border: 1px solid #333;
+    padding: 12px;
+}
+th {
+    background-color: #2196F3;
+    color: white;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+    </code></pre>
+
+    <h3>Result:</h3>
+    <table style="margin:auto; border-collapse: collapse; border-radius:10px; overflow:hidden;">
+        <tr style="background-color:#2196F3; color:white;">
+            <th style="border:1px solid #333; padding:12px;">Book</th>
+            <th style="border:1px solid #333; padding:12px;">Availability</th>
+            <th style="border:1px solid #333; padding:12px;">Qty</th>
+            <th style="border:1px solid #333; padding:12px;">Price</th>
+        </tr>
+        <tr style="background-color:#f9f9f9;">
+            <td style="border:1px solid #333; padding:12px;">Python Crash Course</td>
+            <td style="border:1px solid #333; padding:12px;">In Stock</td>
+            <td style="border:1px solid #333; padding:12px;">7</td>
+            <td style="border:1px solid #333; padding:12px;">$35.00</td>
+        </tr>
+        <tr>
+            <td style="border:1px solid #333; padding:12px;">React Basics</td>
+            <td style="border:1px solid #333; padding:12px;">In Stock</td>
+            <td style="border:1px solid #333; padding:12px;">10</td>
+            <td style="border:1px solid #333; padding:12px;">$28.00</td>
+        </tr>
+    </table>
+
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    .container p,
+    .container ul {
+        line-height: 1.6;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>
