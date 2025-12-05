@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css" id="hljs-theme">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <style>
-        /* ===== Theme Variables ===== */
         :root {
             --dark-bg: #1a1a1a;
             --darker-bg: #121212;
@@ -48,7 +47,6 @@
             --bs-link-color: var(--light-primary);
         }
 
-        /* ===== Layout ===== */
         .sidebar {
             position: fixed;
             top: 0;
@@ -222,6 +220,8 @@
                     <div class="chapter-title" data-id="1">@Localizer["Introduction"]</div>
                     <ul class="subchapter-list">
                         <li><a class="ajax-link" asp-controller="Introduction" asp-action="Index">@Localizer["Introduction"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Introduction" asp-action="Guide">@Localizer["Guide"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Introduction" asp-action="TaskGuide">@Localizer["TaskGuide"]</a></li>
                     </ul>
                 </li>
                 <li>
@@ -355,7 +355,6 @@ $(document).ready(function() {
     const hljsTheme = $('#hljs-theme')[0];
     const savedTheme = localStorage.getItem('theme') || 'dark';
 
-    // Apply saved theme
     htmlEl.setAttribute('data-bs-theme', savedTheme);
     themeSelect.value = savedTheme;
 
@@ -367,7 +366,6 @@ $(document).ready(function() {
     }
     updateCodeTheme(savedTheme);
 
-    // Sidebar state
     let sidebarState = localStorage.getItem('sidebarState') || 'open';
     function applySidebarState() {
         if (sidebarState === 'closed') {
@@ -384,7 +382,6 @@ $(document).ready(function() {
         applySidebarState();
     });
 
-    // Theme switcher
     themeSelect.addEventListener('change', function() {
         const selected = this.value;
         htmlEl.setAttribute('data-bs-theme', selected);
@@ -392,7 +389,6 @@ $(document).ready(function() {
         updateCodeTheme(selected);
     });
 
-    // Expanded chapter
     let expandedChapter = localStorage.getItem('expandedChapter') || null;
     function updateExpandedChapters() {
         $('.chapter-title').each(function() {
@@ -410,45 +406,33 @@ $(document).ready(function() {
 
     $('.chapter-title').click(function() {
         const id = $(this).data('id');
-        expandedChapter = (expandedChapter == id) ? null : id;
+        expandedChapter = expandedChapter === id ? null : id;
         localStorage.setItem('expandedChapter', expandedChapter);
         updateExpandedChapters();
     });
 
-    // Highlight current page in sidebar
-    function highlightCurrentPage() {
-        const currentPath = window.location.pathname;
-        $('.chapter-list a').removeClass('current-page');
-        $('.chapter-list a').each(function() {
-            if (this.pathname === currentPath) {
-                $(this).addClass('current-page');
-                const parentChapterId = $(this).closest('.subchapter-list').prev('.chapter-title').data('id');
-                expandedChapter = parentChapterId;
-                localStorage.setItem('expandedChapter', expandedChapter);
-                updateExpandedChapters();
-            }
-        });
-    }
-    highlightCurrentPage();
-
     function attachDynamicHandlers() {
-        $('#page-content .ajax-link').off('click').on('click', function(e) {
+        $('.ajax-link').off('click').on('click', function(e) {
             e.preventDefault();
             const url = $(this).attr('href');
             if (url && url !== '#') loadPage(url);
         });
     }
-    attachDynamicHandlers();
 
     function loadPage(url, addToHistory = true) {
-        $(window).scrollTop(0);
-
         $.ajax({
             url: url,
             type: 'GET',
             dataType: 'html',
             success: function(data) {
-                const html = $(data).find('#page-content').html();
+                const tempDiv = $('<div>').html(data);
+                const html = tempDiv.find('#page-content').html(); 
+                
+                if (!html) {
+                    console.error("Could not find '#page-content' in the AJAX response.");
+                    return; 
+                }
+
                 $('#page-content').stop(true, true).fadeOut(50, function() {
                     $(this).html(html).fadeIn(50, function() {
                         hljs.highlightAll();
@@ -463,14 +447,22 @@ $(document).ready(function() {
         });
     }
 
-    window.onpopstate = function(e) {
-        if (e.state && e.state.url) loadPage(e.state.url, false);
-    };
+    function highlightCurrentPage() {
+        const currentPage = window.location.pathname;
+        $('.chapter-list a').each(function() {
+            const link = $(this);
+            const linkPath = link.attr('href');
+            
+            if (linkPath === currentPage) {
+                link.addClass('current-page');
+            } else {
+                link.removeClass('current-page');
+            }
+        });
+    }
 
-    hljs.highlightAll();
+    attachDynamicHandlers();
 });
 </script>
-
-@await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -1,6 +1,81 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Course Guide";
 }
-<p>test</p>
+
+<div class="container">
+    <h1>Course Guide</h1>
+
+    <p>
+        The course has xx chapters and each chapter has subchapters.
+    </p>
+
+    <p>
+        Some chapters or subchapters might contain a star (*) next to their name.
+    </p>
+
+    <p>
+        If the chapter/subchapter doesn't contain a star, that means it is absolutely necessary for the course.  
+        If it contains (*) 1 star, it is recommended to read and understand the concept, but not strictly required.  
+        If it contains (**) 2 stars, it is advanced. It is optional and mainly for expanding knowledge.
+    </p>
+
+    <p>
+        After each main chapter there will be an exercise page. The exercise page will contain tests to check your knowledge on that chapter.  
+        You can answer single-choice questions or perform coding tasks.  
+        There will always be an option to reveal the answer if you get stuck.
+    </p>
+
+    <p>
+        In the next chapter, we will take a look at how your code should be structured so that the automatic checker can evaluate it correctly.  
+        Make sure to follow the instructions strictly.
+    </p>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("Index", "Introduction")" class="btn btn-secondary ajax-link">← Introduction</a>
+        <a href="@Url.Action("TaskGuide", "Introduction")" class="btn btn-primary ajax-link">Task Guide →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+        margin: 0 auto;
+    }
+
+    h1 {
+        color: var(--bs-body-color);
+        margin-bottom: 20px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        color: #fff;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        color: #fff;
+    }
+</style>

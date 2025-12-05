@@ -12,5 +12,9 @@ namespace MIKProjectCourse.Controllers
         {
             return View();
         }
+        public IActionResult TaskGuide()
+        {
+            return View();
+        }
     }
 }
