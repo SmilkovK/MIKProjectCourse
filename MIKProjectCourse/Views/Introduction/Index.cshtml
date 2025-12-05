@@ -1,1 +1,91 @@
-﻿<p>Test</p>
+﻿@{
+    ViewData["Title"] = "Course Introduction";
+}
+
+<div class="container">
+    <h1>Course Introduction</h1>
+
+    <p>
+        In this course we are going to learn the basics of programming. Topics such as structured programming and object-oriented programming
+        will be covered first. After that, we will take a look at web programming and how to create your first basic website.  
+        The course uses Visual Studio Community 2022, which is explained in more detail in later chapters.
+    </p>
+
+    <p>
+        You can take a look at the guide for clarifications and explanations regarding the course.  
+        This page exists simply to motivate you and help you start your first programming lesson.
+    </p>
+
+    <p>
+        For this course, you do not need any background knowledge. If you have some, that's a bonus.
+        The course is aimed at all people aged 1 to infinity — maybe someday we will get a super baby
+        who learns programming at the age of 1.
+    </p>
+
+    <p>
+        On a scale from 1 to 10, where 1 means absolute beginner and 10 means senior-level programmer,
+        this course is made for people at level 1.
+    </p>
+
+    <p>
+        However, if you have had programming lessons before, you can still use this course for free
+        to catch up or to relearn things you may have forgotten.  
+        So basically, it is aimed at complete beginners and as a refresher for newly started programmers.
+    </p>
+
+    <h2>Quick Note</h2>
+
+    <p>
+        From this course, you will not become a professional programmer.  
+        The goal is simply to help you test the waters of programming and see whether you like it.  
+        You will gain a basic understanding of structural programming, object-oriented programming,
+        and web programming / web design.  
+        This course is meant to get you into flow and motivate you to learn more.
+    </p>
+
+    <div class="navigation-buttons">
+        <span></span>
+        <a href="@Url.Action("Guide", "Introduction")" class="btn btn-primary ajax-link">Next: Guide →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        color: var(--bs-heading-color);
+        margin-top: 25px;
+        margin-bottom: 15px;
+    }
+
+    p {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+</style>
