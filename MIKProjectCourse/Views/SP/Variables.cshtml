@@ -2,73 +2,148 @@
     ViewData["Title"] = "Variables";
 }
 
-<div class="container">
-    <h1>Variables</h1>
+<div class="container page-container">
+    <h1>Variables: Naming and Storing Information</h1>
+    <BR>
+        <BR>
     <p>
-        Variables are like boxes where we can keep information. They can hold numbers, letters, or words.
-        Think of a variable like a school locker. You give it a name, and you can put something inside.
-        Later, you can open it and use what's inside or change it.
+        Variables are the fundamental components for storing and managing data in any computer program. They are essentially <strong>reserved spots in your computer's memory</strong> that hold a specific type of information.
+    </p>
+    <p>
+        Think of a variable like a <strong>labeled post-it note</strong> that you stick onto a file cabinet drawer: the <strong>label</strong> is the <strong>variable name</strong> (<code>score</code>), the <strong>drawer type</strong> is the <strong>variable type</strong> (<code>int</code>, <code>string</code>), and the <strong>information written</strong> is the <strong>value</strong> (<code>100</code>).
     </p>
 
-    <h2>Types of Variables</h2>
-    <p>Here are some types of variables:</p>
-    <ul>
-        <li><strong>int</strong> - whole numbers (like 1, 2, 100)</li>
-        <li><strong>float</strong> - numbers with decimal points (like 1.5, 3.14)</li>
-        <li><strong>char</strong> - a single letter (like 'A')</li>
-        <li><strong>string</strong> - a group of letters or words (like "Hello")</li>
-    </ul>
+    <hr />
 
-    <h2>Example</h2>
+    <h2>Creating a Variable: Declaration and Assignment</h2>
+    <p>When you use a variable, you generally follow two steps:</p>
+    <BR>
+
+    <h3>1. Declaration (Naming the Spot)</h3>
+    <p>You tell the computer the <strong>type</strong> of information you will store and what <strong>name</strong> you want to call it.</p>
+
+    <div class="code-container">
+        <div class="code-header">Syntax Example</div>
+        <div class="code-content">
+<pre style="white-space: pre-wrap;">
+int score;      // Tells the computer to save a spot for an integer named 'score'.
+string message; // Saves a spot for a string named 'message'.
+</pre>
+        </div>
+    </div>
+
+    <h3>2. Assignment / Initialization (Putting the Value In)</h3>
+    <p>This is when you put the first value into the variable or change it later using <strong>=</strong>, which means assignment.</p>
+    <p>Most often, we combine these steps into one line, called <strong>Initialization</strong>.</p>
+
+    <hr />
+
+    <h2>📋 Extended Types of Variables (Data Types)</h2>
+    <p>The data type is crucial because it tells the computer how to manage the data. Here are the core types:</p>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Data Type</th>
+                <th>What It Stores</th>
+                <th>Example Value</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>int</strong></td>
+                <td><strong>Whole numbers</strong></td>
+                <td><code>15</code>, <code>-200</code></td>
+                <td>Used for counts, age, and scores.</td>
+            </tr>
+            <tr>
+                <td><strong>float</strong></td>
+                <td><strong>Decimal numbers</strong></td>
+                <td><code>3.14</code>, <code>1.5</code></td>
+                <td>Requires <code>f</code> suffix in C#.</td>
+            </tr>
+            <tr>
+                <td><strong>char</strong></td>
+                <td><strong>A single character</strong></td>
+                <td><code>'A'</code>, <code>'$'</code></td>
+                <td>Only holds one symbol.</td>
+            </tr>
+            <tr>
+                <td><strong>string</strong></td>
+                <td><strong>Words or sentences</strong></td>
+                <td><code>"Hello"</code>, <code>"Anna"</code></td>
+                <td>Used for text.</td>
+            </tr>
+            <tr>
+                <td><strong>bool</strong></td>
+                <td><strong>true/false</strong></td>
+                <td><code>true</code>, <code>false</code></td>
+                <td>Used for yes/no states.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr />
+
+    <h2>💻 Complete Code Examples</h2>
+
     <div class="form-check form-switch mb-3">
         <input class="form-check-input" type="checkbox" id="languageToggle" onchange="convertCode()">
         <label class="form-check-label" for="languageToggle">Convert to C#</label>
     </div>
 
     <div class="code-container">
-        <div class="code-header">Code Example</div>
+        <div class="code-header">Code Example (C++)</div>
         <div class="code-content">
-            <pre id="codeBlock" style="white-space: pre-wrap;">
+<pre id="codeBlock" style="white-space: pre-wrap;">
+// Initializing variables (Declaration + Assignment)
 int age = 13;
 float height = 1.55;
 char grade = 'A';
-string name = "Tom";
-            </pre>
+string name = "Alex";
+bool hasLicense = false;
+
+// Using variables in an operation
+int yearBorn = 2025 - age;
+
+// Outputting the result (Conceptually)
+// print("Alex was born in: " + yearBorn);
+</pre>
         </div>
     </div>
 
-    <p>
-        In this example:
-        <ul>
-            <li><code>age</code> is storing a number.</li>
-            <li><code>height</code> is storing a number with decimals.</li>
-            <li><code>grade</code> is storing one letter.</li>
-            <li><code>name</code> is storing a name, which is a string.</li>
-        </ul>
-    </p>
+    <p>In this example, the computer uses the value stored in <strong>age</strong> to calculate <strong>yearBorn</strong>.</p>
 
-    <p>You can also change the value later, like this:</p>
+    <h3>Changing the Value (Re-Assignment)</h3>
+    <p>Since variables are designed to <strong>vary</strong>, you can update them anytime:</p>
+
     <div class="code-container">
         <div class="code-header">Code Example</div>
         <div class="code-content">
-            <pre style="white-space: pre-wrap;">
+<pre style="white-space: pre-wrap;">
+// Original values from above...
 age = 15;
 name = "Anna";
-            </pre>
+
+hasLicense = true;
+</pre>
         </div>
     </div>
 
-    <p>🌟 <strong>Fun Example:</strong> Let’s say you want to store your favorite number and color.</p>
+    <p><strong>Fun Example:</strong></p>
+
     <div class="code-container">
-        <div class="code-header">Code Example</div>
+        <div class="code-header">Game Stats</div>
         <div class="code-content">
-            <pre style="white-space: pre-wrap;">
-int favNumber = 7;
-string favColor = "Blue";
-            </pre>
+<pre style="white-space: pre-wrap;">
+string userName = "TheCoder7";
+int healthPoints = 100;
+float speed = 5.5;
+bool isAlive = true;
+</pre>
         </div>
     </div>
-    <p>Now you’ve told the computer what your favorite number and color are!</p>
 
     <div class="navigation-buttons">
         <a href="@Url.Action("Index", "Introduction")" class="btn btn-outline-primary ajax-link">⬅ Introduction</a>
@@ -77,32 +152,25 @@ string favColor = "Blue";
 </div>
 
 <style>
-    .container {
+    .page-container {
         max-width: 800px;
+        margin: 0 auto;
         padding: 20px;
-        background-color: var(--bs-body-bg);
+        text-align: center;
     }
 
-    h1, h2 {
+    .page-container p,
+    .page-container table,
+    .page-container ul,
+    .page-container li {
+        text-align: left;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    h1, h2, h3 {
         color: var(--bs-heading-color);
-    }
-
-    h1 {
-        margin-bottom: 20px;
-    }
-
-    h2 {
-        margin-top: 25px;
-        margin-bottom: 15px;
-    }
-
-    p, ul, li {
-        color: var(--bs-body-color);
-        line-height: 1.6;
-    }
-
-    ul {
-        padding-left: 20px;
+        text-align: center;
     }
 
     .code-container {
@@ -110,57 +178,23 @@ string favColor = "Blue";
         border: 1px solid var(--bs-border-color);
         border-radius: 5px;
         overflow: hidden;
-        background-color: var(--code-bg);
     }
 
     .code-header {
         background-color: var(--code-header-bg);
         padding: 10px 15px;
         border-bottom: 1px solid var(--bs-border-color);
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-        font-size: 0.9rem;
-        color: var(--bs-body-color);
     }
 
     .code-content {
         padding: 15px;
         overflow-x: auto;
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    }
-
-    pre {
-        margin: 0;
-        background-color: transparent;
     }
 
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
         margin-top: 30px;
-    }
-
-    .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
-        font-weight: 500;
-    }
-
-    .btn-primary {
-        background-color: var(--bs-primary);
-        border-color: var(--bs-primary);
-        color: #fff;
-        text-decoration: none;
-    }
-
-    .btn-outline-primary {
-        color: var(--bs-primary);
-        border-color: var(--bs-primary);
-        background-color: transparent;
-        text-decoration: none;
-    }
-
-    .form-check {
-        margin-bottom: 20px;
     }
 </style>
 
@@ -169,16 +203,32 @@ string favColor = "Blue";
         const isChecked = document.getElementById("languageToggle").checked;
         const codeBlock = document.getElementById("codeBlock");
 
-        const cppCode = `int age = 13;
+        const cppCode = `// Initializing variables (Declaration + Assignment)
+int age = 13;
 float height = 1.55;
 char grade = 'A';
-string name = "Alex";`;
+string name = "Alex";
+bool hasLicense = false;
 
-        const csharpCode = `int age = 13;
-float height = 1.55f;
+int yearBorn = 2025 - age;
+
+// print("Alex was born in: " + yearBorn);`;
+
+        const csharpCode = `// Initializing variables (Declaration + Assignment)
+int age = 13;
+float height = 1.55f; // C# float requires 'f'
 char grade = 'A';
-string name = "Alex";`;
+string name = "Alex";
+bool hasLicense = false;
+
+int yearBorn = 2025 - age;
+
+// Console.WriteLine("Alex was born in: " + yearBorn);`;
 
         codeBlock.textContent = isChecked ? csharpCode : cppCode;
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        convertCode();
+    });
 </script>

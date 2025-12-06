@@ -3,51 +3,180 @@
 }
 
 <body data-topic="loops">
-    <div class="container mt-4">
-        <h1 class="mb-4">🔁 For Loops</h1>
-        <p>Loops help you repeat things without writing them many times.</p>
-        <p>A <strong>for loop</strong> repeats a block of code as many times as you want.</p>
+    <div class="container">
+        <h1 class="mb-4">🔁 For Loops: Repeating Actions</h1>
+        
+        <p>Loops are one of the most powerful tools in programming, allowing you to <strong>repeat actions</strong> without having to rewrite the same code many times. The <strong>for loop</strong> is perfect for situations where you know exactly how many times you need to repeat the action.</p>
 
-        <p>Example: Count from 1 to 5.</p>
-
-        <div class="form-check form-switch mb-3">
-            <input class="form-check-input" type="checkbox" id="languageToggle" onchange="convertCode()">
-            <label class="form-check-label" for="languageToggle">Convert to C#</label>
-        </div>
-
-        <div class="code-container mb-3">
-            <div class="code-header">Code Example</div>
+        <h2>📘 The Structure of a For Loop</h2>
+        <p>A <strong>for loop</strong> is defined by three control statements inside the parentheses, separated by semicolons (<code>;</code>):</p>
+        
+        <div class="code-container">
+            <div class="code-header">For Loop Syntax</div>
             <div class="code-content">
-<pre id="codeBlock">
+<pre>
+for (<span style="color: green;">initialization</span>; <span style="color: red;">condition</span>; <span style="color: blue;">increment</span>) {
+    // code to repeat (the loop body)
+}
+</pre>
+            </div>
+        </div>
+        
+        <ul>
+            <li>1. <strong style="color: green;">Initialization</strong>: Runs <strong>once</strong> at the very start. Sets up the counting variable (e.g., <code>int i = 0</code>).</li>
+            <li>2. <strong style="color: red;">Condition</strong>: Checked <strong>before every repetition</strong>. If this is <code>true</code>, the loop body runs. If <code>false</code>, the loop stops.</li>
+            <li>3. <strong style="color: blue;">Increment/Decrement</strong>: Runs <strong>after every repetition</strong>. Updates the counting variable (e.g., <code>i++</code> to increase or <code>i--</code> to decrease).</li>
+        </ul>
+
+        <h2>🎯 Example 1: Counting Up (Increment)</h2>
+        <p>This is the most common use: counting from a low number up to a high number.</p>
+        
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="convertCode('example1')">
+                <label class="form-check-label" for="example1Toggle">Convert to C#</label>
+            </div>
+            <div class="code-content">
+<pre class="codeBlock" id="example1Code">
 for (int i = 1; i <= 5; i++) {
     cout << "Clap " << i << endl;
 }
 </pre>
             </div>
+            <div class="result-box" id="example1Result">
+                ➡ <strong>Result:</strong> Clap 1<br>Clap 2<br>Clap 3<br>Clap 4<br>Clap 5<br>
+                <em>Explanation:</em> The loop starts at 1 and runs while <code>i</code> is less than or equal to 5. Each iteration prints "Clap" and the current number.
+            </div>
         </div>
 
-        <p>This loop says:</p>
-        <ul>
-            <li>Start with <code>i = 1</code></li>
-            <li>Keep going while <code>i &lt;= 5</code></li>
-            <li>Each time, add 1 to <code>i</code></li>
-        </ul>
-
-        <p>Another example: Print numbers from 10 to 1</p>
-
-        <div class="code-container mb-3">
-            <div class="code-header">Code Example</div>
+        <h2>🎯 Example 2: Counting Down (Decrement)</h2>
+        <p>You can also use loops to count backward, such as for a countdown.</p>
+        
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="convertCode('example2')">
+                <label class="form-check-label" for="example2Toggle">Convert to C#</label>
+            </div>
             <div class="code-content">
-<pre>
+<pre class="codeBlock" id="example2Code">
 for (int i = 10; i >= 1; i--) {
     cout << i << " ";
 }
 </pre>
             </div>
+            <div class="result-box" id="example2Result">
+                ➡ <strong>Result:</strong> 10 9 8 7 6 5 4 3 2 1<br>
+                <em>Explanation:</em> The loop starts at 10. The condition is <code>i >= 1</code>, and the update is <code>i--</code> (decrement), which reduces <code>i</code> by 1 each time.
+            </div>
         </div>
 
-        <div class="navigation-buttons mt-4">
-            <a href="@Url.Action("IfElse", "SP")" class="btn btn-outline-primary ajax-link">← IfElse</a>
+        <h2>🎯 Example 3: Processing Data (Calculating Sums)</h2>
+        <p>Loops are often used to process data, such as calculating totals. We use a separate variable (<code>sum</code>) outside the loop to store the running total.</p>
+        
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="convertCode('example3')">
+                <label class="form-check-label" for="example3Toggle">Convert to C#</label>
+            </div>
+            <div class="code-content">
+<pre class="codeBlock" id="example3Code">
+int sum = 0;
+for (int i = 1; i <= 5; i++) {
+    sum += i; // Shorthand for: sum = sum + i;
+}
+cout << "Sum = " << sum;
+</pre>
+            </div>
+            <div class="result-box" id="example3Result">
+                ➡ <strong>Result:</strong> Sum = 15<br>
+                <em>Explanation:</em> The loop adds each number from 1 to 5 into the variable <code>sum</code>. The total is 15.
+            </div>
+        </div>
+
+        <h2>🧠 Interactive Walkthrough: Following the Code</h2>
+        <p>Watch the code (Example 3) execute step-by-step. The <strong>Active Code</strong> below shows which line is currently running, and the <strong>Variable State</strong> tracks the changes.</p>
+
+        <div class="code-container">
+            <div class="code-header">Active Code (C++)</div>
+            <div class="code-content">
+<pre id="walkthroughCodeBase">
+int sum = 0;
+// for (int i = 1; i <= 5; i++) {
+//     sum += i;
+// }
+// cout << "Sum = " << sum;
+</pre>
+            </div>
+        </div>
+
+        <div class="code-container">
+            <div class="code-header">Variable State</div>
+            <div class="code-content">
+<pre id="walkthroughVariables">i = ?, sum = 0</pre>
+            </div>
+            <div class="result-box" id="walkthroughExplanation">
+                <em>Click <strong>Next</strong> to begin the trace:</em>
+            </div>
+            <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
+        </div>
+
+        <h2>🎯 Example 4: Looping Through Text (Strings)</h2>
+        <p>You can use the loop's counter variable to access individual parts of text. We start the counter at 0 because in programming, we often start counting from zero.</p>
+        
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example4Toggle" onchange="convertCode('example4')">
+                <label class="form-check-label" for="example4Toggle">Convert to C#</label>
+            </div>
+            <div class="code-content">
+<pre class="codeBlock" id="example4Code">
+string word = "CODE";
+for (int i = 0; i < word.length(); i++) {
+    cout << word[i] << endl;
+}
+</pre>
+            </div>
+            <div class="result-box" id="example4Result">
+                ➡ <strong>Result:</strong><br> C<br>O<br>D<br>E<br>
+                <em>Explanation:</em> The loop runs 4 times (the length of "CODE"). It prints the character at index 0 ('C'), then index 1 ('O'), and so on.
+            </div>
+        </div>
+
+        <h2>🧠 Visual Diagram</h2>
+        <p>This diagram illustrates the flow of a <strong>For Loop</strong> from start to finish.</p>
+        
+        <div class="code-container">
+            <div class="code-header">Loop Execution Flow</div>
+            <div class="code-content">
+<pre>
+      [START: Initialization] 
+               | 
+               ↓
+       [Check Condition?] 
+               |
+        Yes /       \ No
+           |         | 
+           ↓         ↓
+   [Run Loop Body]   [EXIT Loop]
+           ↓
+     [Increment/Decrement] 
+           |
+           -------------------
+                         ↑ 
+                     (Return to Condition)
+</pre>
+            </div>
+        </div>
+
+        <h2>🎉 Summary</h2>
+        <ul>
+            <li>A <strong>for loop</strong> is best when you know the number of repetitions.</li>
+            <li>The three parts control <strong>start</strong> (initialization), <strong>stop</strong> (condition), and <strong>step</strong> (increment/decrement).</li>
+            <li>Loops are essential for tasks like counting, calculating sums, and iterating over data structures like strings.</li>
+        </ul>
+
+        <div class="navigation-buttons">
+            <a href="@Url.Action("IfElse", "SP")" class="btn btn-outline-primary ajax-link">← If Else</a>
             <a href="@Url.Action("Arrays", "SP")" class="btn btn-primary ajax-link">Arrays →</a>
         </div>
     </div>
@@ -59,9 +188,9 @@ for (int i = 10; i >= 1; i--) {
             background-color: var(--bs-body-bg);
         }
 
-        h1 {
+        h1, h2 {
             color: var(--bs-heading-color);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         p, li, code {
@@ -69,12 +198,8 @@ for (int i = 10; i >= 1; i--) {
             line-height: 1.6;
         }
 
-        ul {
-            padding-left: 20px;
-        }
-
         .code-container {
-            margin: 20px 0;
+            margin: 25px 0;
             border: 1px solid var(--bs-border-color);
             border-radius: 5px;
             overflow: hidden;
@@ -93,18 +218,31 @@ for (int i = 10; i >= 1; i--) {
         .code-content {
             padding: 15px;
             overflow-x: auto;
-            font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
 
         pre {
             margin: 0;
             white-space: pre-wrap;
             background-color: transparent;
+            font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+
+        .result-box {
+            padding: 10px 15px;
+            background-color: rgba(0, 123, 255, 0.1);
+            border-top: 1px solid var(--bs-border-color);
+            font-size: 0.95rem;
+        }
+
+        .fade {
+            opacity: 0;
+            transition: opacity 0.25s ease;
         }
 
         .navigation-buttons {
             display: flex;
             justify-content: space-between;
+            margin-top: 30px;
         }
 
         .btn {
@@ -128,25 +266,132 @@ for (int i = 10; i >= 1; i--) {
     </style>
 
     <script>
-        function convertCode() {
-            const topic = document.body.getAttribute("data-topic");
-            const isChecked = document.getElementById("languageToggle").checked;
-            const codeBlock = document.getElementById("codeBlock");
+        const fullCodeLines = [
+            'int sum = 0;',
+            'for (int i = 1; i <= 5; i++) {',
+            '    sum += i; // ⬅ Run Code Block',
+            '}',
+            'cout << "Sum = " << sum;'
+        ];
+        
+        const traceSteps = [
+            { line: 0, vars: 'i = ?, sum = 0', exp: 'Initializes the variable <code>sum</code> to 0.' },
+            { line: 1, vars: 'i = 1, sum = 0', exp: 'Initializes loop: <code>i = 1</code>. Checks condition: (1 <= 5) is TRUE.' },
+            { line: 2, vars: 'i = 1, sum = 1', exp: 'Iteration 1 (i=1): Body runs. <code>sum = 0 + 1</code>.' },
+            { line: 1, vars: 'i = 2, sum = 1', exp: 'End of loop body. Runs increment: <code>i++</code> (i is now 2). Checks condition: (2 <= 5) is TRUE.' },
+            { line: 2, vars: 'i = 2, sum = 3', exp: 'Iteration 2 (i=2): Body runs. <code>sum = 1 + 2</code>.' },
+            { line: 1, vars: 'i = 3, sum = 3', exp: 'End of loop body. Runs increment: <code>i++</code> (i is now 3). Checks condition: (3 <= 5) is TRUE.' },
+            { line: 2, vars: 'i = 3, sum = 6', exp: 'Iteration 3 (i=3): Body runs. <code>sum = 3 + 3</code>.' },
+            { line: 1, vars: 'i = 4, sum = 6', exp: 'End of loop body. Runs increment: <code>i++</code> (i is now 4). Checks condition: (4 <= 5) is TRUE.' },
+            { line: 2, vars: 'i = 4, sum = 10', exp: 'Iteration 4 (i=4): Body runs. <code>sum = 6 + 4</code>.' },
+            { line: 1, vars: 'i = 5, sum = 10', exp: 'End of loop body. Runs increment: <code>i++</code> (i is now 5). Checks condition: (5 <= 5) is TRUE.' },
+            { line: 2, vars: 'i = 5, sum = 15', exp: 'Iteration 5 (i=5): Body runs. <code>sum = 10 + 5</code>.' },
+            { line: 1, vars: 'i = 6, sum = 15', exp: 'End of loop body. Runs increment: <code>i++</code> (i is now 6). Checks condition: (6 <= 5) is FALSE. Loop ends.' },
+            { line: 4, vars: 'i = 6, sum = 15', exp: 'Code proceeds after the loop, printing the final result.' }
+        ];
+        
+        let currentTraceStep = 0;
+        const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
+        const walkthroughVariables = document.getElementById('walkthroughVariables');
+        const walkthroughExplanation = document.getElementById('walkthroughExplanation');
+        const nextStepBtn = document.getElementById('nextStepBtn');
 
-            const cppCode = {
-                loops: `for (int i = 1; i <= 5; i++) {
+        function updateWalkthrough(step) {
+            const data = traceSteps[step];
+            let codeContent = '';
+            const activeLineIndex = data.line;
+            
+            fullCodeLines.forEach((line, index) => {
+                if (index === activeLineIndex) {
+                    codeContent += `<span style="background-color: yellow; color: black;">${line.replace('// ⬅ Run Code Block', '⬅ ACTIVE')}</span>\n`;
+                } else if (line.includes('// ⬅ Run Code Block')) {
+                    codeContent += `// ${line.replace('// ⬅ Run Code Block', '').trim()}\n`;
+                } else if (index === 1 && activeLineIndex !== 1 && activeLineIndex !== 2) {
+                    codeContent += `// ${line.trim()}\n`;
+                } else if (activeLineIndex >= 1 && activeLineIndex <= 3 && index > 3) {
+                    codeContent += `// ${line.trim()}\n`;
+                } else if (index !== activeLineIndex) {
+                    codeContent += `${line}\n`;
+                }
+            });
+            
+            walkthroughCodeBase.innerHTML = codeContent;
+            walkthroughVariables.textContent = data.vars;
+            walkthroughExplanation.innerHTML = `<em>Explanation:</em> ${data.exp}`;
+            
+            if (step === traceSteps.length - 1) {
+                walkthroughExplanation.innerHTML += '<br><strong>Trace finished! Final output is "Sum = 15".</strong>';
+                nextStepBtn.disabled = true;
+            }
+        }
+
+        nextStepBtn.addEventListener('click', () => {
+            if (currentTraceStep < traceSteps.length) {
+                updateWalkthrough(currentTraceStep);
+                currentTraceStep++;
+            }
+        });
+
+        const cppSnippets = {
+            example1: `for (int i = 1; i <= 5; i++) {
     cout << "Clap " << i << endl;
+}`,
+            example2: `for (int i = 10; i >= 1; i--) {
+    cout << i << " ";
+}`,
+            example3: `int sum = 0;
+for (int i = 1; i <= 5; i++) {
+    sum += i; // Shorthand for: sum = sum + i;
+}
+cout << "Sum = " << sum;`,
+            example4: `string word = "CODE";
+for (int i = 0; i < word.length(); i++) {
+    cout << word[i] << endl;
 }`
-            };
+        };
 
-            const csharpCode = {
-                loops: `for (int i = 1; i <= 5; i++)
+        const csharpSnippets = {
+            example1: `for (int i = 1; i <= 5; i++)
 {
     Console.WriteLine("Clap " + i);
+}`,
+            example2: `for (int i = 10; i >= 1; i--)
+{
+    Console.Write(i + " ");
+}`,
+            example3: `int sum = 0;
+for (int i = 1; i <= 5; i++)
+{
+    sum += i;
+}
+Console.WriteLine("Sum = " + sum);`,
+            example4: `string word = "CODE";
+for (int i = 0; i < word.Length; i++)
+{
+    Console.WriteLine(word[i]);
 }`
-            };
+        };
 
-            codeBlock.textContent = isChecked ? csharpCode[topic] : cppCode[topic];
+        function convertCode(id) {
+            const toggle = document.getElementById(id + "Toggle");
+            const isCSharp = toggle.checked;
+            const codeBlock = document.getElementById(id + "Code");
+
+            codeBlock.classList.add("fade");
+            setTimeout(() => {
+                codeBlock.textContent = isCSharp ? csharpSnippets[id] : cppSnippets[id];
+                codeBlock.classList.remove("fade");
+            }, 250);
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            convertCode('example1');
+            convertCode('example2');
+            convertCode('example3');
+            convertCode('example4'); 
+            
+            updateWalkthrough(0); 
+            currentTraceStep = 1;
+        });
     </script>
 </body>

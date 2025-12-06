@@ -3,49 +3,239 @@
 }
 
 <body data-topic="arrays">
-    <div class="container mt-4">
-        <h1 class="mb-4">📦 Arrays</h1>
-        <p>An array stores a list of things in one place, like a row of boxes.</p>
+    <div class="container">
+        <h1 class="mb-4">📦 Arrays: Storing Multiple Values</h1>
+        
+        <p>An <strong>array</strong> is like a row of boxes where you can store multiple values of the same type in one place. Instead of creating many separate variables, you can use one array to hold all your data.</p>
 
-        <p>Example: Store 5 numbers.</p>
+        <h2>📘 What is an Array?</h2>
+        <p>Think of an array as a <strong>numbered list</strong> or <strong>collection of boxes</strong>, each with a position number (called an <strong>index</strong>). In programming, we usually start counting from <strong>0</strong>, not 1.</p>
 
-        <div class="form-check form-switch mb-3">
-            <input class="form-check-input" type="checkbox" id="languageToggle" onchange="convertCode()">
-            <label class="form-check-label" for="languageToggle">Convert to C#</label>
-        </div>
-
-        <div class="code-container mb-3">
-            <div class="code-header">Code Example</div>
+        <div class="code-container">
+            <div class="code-header">Visual Representation</div>
             <div class="code-content">
-<pre id="codeBlock">
-int numbers[5] = {10, 20, 30, 40, 50};
-cout << numbers[0]; // 10
+<pre>
+Index:  [0]    [1]    [2]    [3]    [4]
+Value:   10     20     30     40     50
+Name:   numbers[0]  numbers[1]  numbers[2] ...
 </pre>
             </div>
         </div>
 
-        <p>Array items start at index 0. So:</p>
-        <ul>
-            <li><code>numbers[0]</code> is 10</li>
-            <li><code>numbers[1]</code> is 20</li>
-        </ul>
-
-        <p>We can also use loops with arrays:</p>
-
-        <div class="code-container mb-3">
-            <div class="code-header">Code Example</div>
+        <h2>🎯 Example 1: Creating and Accessing an Array</h2>
+        <p>Here's how to create an array and access its elements:</p>
+        
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="convertCode('example1')">
+                <label class="form-check-label" for="example1Toggle">Convert to C#</label>
+            </div>
             <div class="code-content">
-<pre>
+<pre class="codeBlock" id="example1Code">
+// Create an array with 5 numbers
+int numbers[5] = {10, 20, 30, 40, 50};
+
+// Access individual elements
+cout << "First number: " << numbers[0] << endl;  // Index 0 = 10
+cout << "Third number: " << numbers[2] << endl;  // Index 2 = 30
+</pre>
+            </div>
+            <div class="result-box" id="example1Result">
+                ➡ <strong>Result:</strong><br>First number: 10<br>Third number: 30<br>
+                <em>Explanation:</em> Arrays start at index 0, so <code>numbers[0]</code> is the first element (10) and <code>numbers[2]</code> is the third element (30).
+            </div>
+        </div>
+
+        <h2>🎯 Example 2: Changing Array Values</h2>
+        <p>You can change the value at any position in the array:</p>
+        
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="convertCode('example2')">
+                <label class="form-check-label" for="example2Toggle">Convert to C#</label>
+            </div>
+            <div class="code-content">
+<pre class="codeBlock" id="example2Code">
+int scores[3] = {85, 90, 78};
+
+// Change the second score
+scores[1] = 95;  // Update index 1 from 90 to 95
+
+// Display all scores
+cout << "Scores: ";
+cout << scores[0] << " ";  // 85
+cout << scores[1] << " ";  // 95
+cout << scores[2];         // 78
+</pre>
+            </div>
+            <div class="result-box" id="example2Result">
+                ➡ <strong>Result:</strong> Scores: 85 95 78<br>
+                <em>Explanation:</em> We created an array with 3 scores, then changed the value at index 1 from 90 to 95.
+            </div>
+        </div>
+
+        <h2>🎯 Example 3: Arrays + Loops = Power!</h2>
+        <p>Combining arrays with <code>for</code> loops lets you easily process all elements. This is much better than writing separate code for each element!</p>
+        
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="convertCode('example3')">
+                <label class="form-check-label" for="example3Toggle">Convert to C#</label>
+            </div>
+            <div class="code-content">
+<pre class="codeBlock" id="example3Code">
+int numbers[5] = {10, 20, 30, 40, 50};
+int sum = 0;
+
+// Loop through all array elements
 for (int i = 0; i < 5; i++) {
-    cout << numbers[i] << " ";
+    sum += numbers[i];  // Add each number to sum
+    cout << "Adding " << numbers[i] << endl;
+}
+
+cout << "Total sum: " << sum << endl;
+</pre>
+            </div>
+            <div class="result-box" id="example3Result">
+                ➡ <strong>Result:</strong><br>Adding 10<br>Adding 20<br>Adding 30<br>Adding 40<br>Adding 50<br>Total sum: 150<br>
+                <em>Explanation:</em> The loop goes from i=0 to i=4, accessing each element with <code>numbers[i]</code>. It adds all numbers together.
+            </div>
+        </div>
+
+        <h2>🧠 Interactive Walkthrough: Following Array + Loop Code</h2>
+        <p>Watch how the array and loop work together step-by-step:</p>
+
+        <div class="code-container">
+            <div class="code-header">Active Code (C++)</div>
+            <div class="code-content">
+<pre id="walkthroughCodeBase">
+int numbers[5] = {10, 20, 30, 40, 50};
+int sum = 0;
+// for (int i = 0; i < 5; i++) {
+//     sum += numbers[i];
+// }
+// cout << "Total: " << sum;
+</pre>
+            </div>
+        </div>
+
+        <div class="code-container">
+            <div class="code-header">Variable State</div>
+            <div class="code-content">
+<pre id="walkthroughVariables">i = ?, sum = 0, numbers = [10, 20, 30, 40, 50]</pre>
+            </div>
+            <div class="result-box" id="walkthroughExplanation">
+                <em>Click <strong>Next</strong> to begin the trace:</em>
+            </div>
+            <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
+        </div>
+
+        <h2>🎯 Example 4: Finding the Largest Value</h2>
+        <p>Arrays are perfect for tasks like finding the maximum or minimum value:</p>
+        
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example4Toggle" onchange="convertCode('example4')">
+                <label class="form-check-label" for="example4Toggle">Convert to C#</label>
+            </div>
+            <div class="code-content">
+<pre class="codeBlock" id="example4Code">
+int temperatures[6] = {22, 25, 19, 28, 23, 27};
+int maxTemp = temperatures[0];  // Start with first temperature
+
+// Check each temperature
+for (int i = 1; i < 6; i++) {
+    if (temperatures[i] > maxTemp) {
+        maxTemp = temperatures[i];  // Found a higher temperature
+    }
+}
+
+cout << "Highest temperature: " << maxTemp << "°C" << endl;
+</pre>
+            </div>
+            <div class="result-box" id="example4Result">
+                ➡ <strong>Result:</strong> Highest temperature: 28°C<br>
+                <em>Explanation:</em> We start with the first temperature (22°C) as the maximum. Then we check each other temperature. When we find 28°C (at index 3), it becomes the new maximum.
+            </div>
+        </div>
+
+        <h2>🎯 Example 5: String Arrays</h2>
+        <p>Arrays can also hold text (strings):</p>
+        
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example5Toggle" onchange="convertCode('example5')">
+                <label class="form-check-label" for="example5Toggle">Convert to C#</label>
+            </div>
+            <div class="code-content">
+<pre class="codeBlock" id="example5Code">
+string fruits[4] = {"apple", "banana", "orange", "grape"};
+
+// Display all fruits
+for (int i = 0; i < 4; i++) {
+    cout << "Fruit " << (i + 1) << ": " << fruits[i] << endl;
 }
 </pre>
             </div>
+            <div class="result-box" id="example5Result">
+                ➡ <strong>Result:</strong><br>Fruit 1: apple<br>Fruit 2: banana<br>Fruit 3: orange<br>Fruit 4: grape<br>
+                <em>Explanation:</em> The array stores 4 fruit names. The loop displays each one with a number (adding 1 to the index so we show 1-4 instead of 0-3).
+            </div>
         </div>
 
-        <div class="navigation-buttons mt-4">
-            <a href="@Url.Action("ForLoops", "SP")" class="btn btn-outline-primary ajax-link">← ForLoops</a>
-            <a href="@Url.Action("StringArrays", "SP")" class="btn btn-primary ajax-link">StringArrays →</a>
+        <h2>🧠 Visual Diagram: Array in Memory</h2>
+        
+        <div class="code-container">
+            <div class="code-header">How Arrays Work in Memory</div>
+            <div class="code-content">
+<pre>
+Memory Address:  1000  1004  1008  1012  1016
+Index:          [0]    [1]    [2]    [3]    [4]
+Value:           10     20     30     40     50
+Variable:      numbers[0]  numbers[1]  numbers[2] ...
+
+The computer calculates positions:
+numbers[0] = address 1000
+numbers[1] = address 1004 (1000 + 4 bytes for int)
+numbers[2] = address 1008 (1000 + 8 bytes for int)
+...
+</pre>
+            </div>
+        </div>
+
+        <h2>⚠️ Common Mistakes to Avoid</h2>
+        <div class="code-container">
+            <div class="code-header">Error Examples</div>
+            <div class="code-content">
+<pre>
+// ❌ WRONG: Accessing outside array bounds
+int arr[3] = {1, 2, 3};
+cout << arr[5];  // ERROR! Index 5 doesn't exist
+
+// ❌ WRONG: Wrong initialization
+int arr[3];
+arr = {1, 2, 3};  // ERROR! Can only initialize at declaration
+
+// ✅ CORRECT: Proper usage
+int arr[3] = {1, 2, 3};  // Good!
+cout << arr[0];          // Good!
+arr[1] = 5;              // Good!
+</pre>
+            </div>
+        </div>
+
+        <h2>🎉 Summary</h2>
+        <ul>
+            <li>Arrays store <strong>multiple values</strong> of the same type in one variable</li>
+            <li>Elements are accessed using an <strong>index</strong> starting at 0</li>
+            <li>Arrays + loops are a <strong>powerful combination</strong> for processing data</li>
+            <li>Common uses: storing lists, calculating totals, finding min/max values</li>
+            <li>Be careful not to access <strong>outside array bounds</strong> (e.g., arr[5] for a 3-element array)</li>
+        </ul>
+
+        <div class="navigation-buttons">
+            <a href="@Url.Action("ForLoops", "SP")" class="btn btn-outline-primary ajax-link">← For Loops</a>
+            <a href="@Url.Action("StringArrays", "SP")" class="btn btn-primary ajax-link">String Arrays →</a>
         </div>
     </div>
 
@@ -56,9 +246,9 @@ for (int i = 0; i < 5; i++) {
             background-color: var(--bs-body-bg);
         }
 
-        h1 {
+        h1, h2 {
             color: var(--bs-heading-color);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
 
         p, li, code {
@@ -66,12 +256,8 @@ for (int i = 0; i < 5; i++) {
             line-height: 1.6;
         }
 
-        ul {
-            padding-left: 20px;
-        }
-
         .code-container {
-            margin: 20px 0;
+            margin: 25px 0;
             border: 1px solid var(--bs-border-color);
             border-radius: 5px;
             overflow: hidden;
@@ -90,18 +276,31 @@ for (int i = 0; i < 5; i++) {
         .code-content {
             padding: 15px;
             overflow-x: auto;
-            font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         }
 
         pre {
             margin: 0;
             white-space: pre-wrap;
             background-color: transparent;
+            font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+
+        .result-box {
+            padding: 10px 15px;
+            background-color: rgba(0, 123, 255, 0.1);
+            border-top: 1px solid var(--bs-border-color);
+            font-size: 0.95rem;
+        }
+
+        .fade {
+            opacity: 0;
+            transition: opacity 0.25s ease;
         }
 
         .navigation-buttons {
             display: flex;
             justify-content: space-between;
+            margin-top: 30px;
         }
 
         .btn {
@@ -122,29 +321,198 @@ for (int i = 0; i < 5; i++) {
             border-color: var(--bs-primary);
             background-color: transparent;
         }
-
-        .form-check {
-            margin-bottom: 20px;
-        }
     </style>
 
     <script>
-        function convertCode() {
-            const topic = document.body.getAttribute("data-topic");
-            const isChecked = document.getElementById("languageToggle").checked;
-            const codeBlock = document.getElementById("codeBlock");
+        // --- INTERACTIVE WALKTHROUGH DATA ---
+        const fullCodeLines = [
+            'int numbers[5] = {10, 20, 30, 40, 50};',
+            'int sum = 0;',
+            'for (int i = 0; i < 5; i++) {',
+            '    sum += numbers[i]; // ⬅ Run Code Block',
+            '}',
+            'cout << "Total: " << sum;'
+        ];
+        
+        const traceSteps = [
+            { line: 0, vars: 'i = ?, sum = 0, numbers = [10,20,30,40,50]', exp: 'Creates an array with 5 numbers.' },
+            { line: 1, vars: 'i = ?, sum = 0, numbers = [10,20,30,40,50]', exp: 'Initializes <code>sum</code> to 0.' },
+            { line: 2, vars: 'i = 0, sum = 0, numbers = [10,20,30,40,50]', exp: 'Initializes loop: <code>i = 0</code>. Checks condition: (0 < 5) is TRUE.' },
+            { line: 3, vars: 'i = 0, sum = 10, numbers = [10,20,30,40,50]', exp: 'Iteration 1: <code>sum = 0 + numbers[0]</code> (which is 10).' },
+            { line: 2, vars: 'i = 1, sum = 10, numbers = [10,20,30,40,50]', exp: 'Increment: <code>i++</code> (i is now 1). Check: (1 < 5) is TRUE.' },
+            { line: 3, vars: 'i = 1, sum = 30, numbers = [10,20,30,40,50]', exp: 'Iteration 2: <code>sum = 10 + numbers[1]</code> (which is 20).' },
+            { line: 2, vars: 'i = 2, sum = 30, numbers = [10,20,30,40,50]', exp: 'Increment: <code>i++</code> (i is now 2). Check: (2 < 5) is TRUE.' },
+            { line: 3, vars: 'i = 2, sum = 60, numbers = [10,20,30,40,50]', exp: 'Iteration 3: <code>sum = 30 + numbers[2]</code> (which is 30).' },
+            { line: 2, vars: 'i = 3, sum = 60, numbers = [10,20,30,40,50]', exp: 'Increment: <code>i++</code> (i is now 3). Check: (3 < 5) is TRUE.' },
+            { line: 3, vars: 'i = 3, sum = 100, numbers = [10,20,30,40,50]', exp: 'Iteration 4: <code>sum = 60 + numbers[3]</code> (which is 40).' },
+            { line: 2, vars: 'i = 4, sum = 100, numbers = [10,20,30,40,50]', exp: 'Increment: <code>i++</code> (i is now 4). Check: (4 < 5) is TRUE.' },
+            { line: 3, vars: 'i = 4, sum = 150, numbers = [10,20,30,40,50]', exp: 'Iteration 5: <code>sum = 100 + numbers[4]</code> (which is 50).' },
+            { line: 2, vars: 'i = 5, sum = 150, numbers = [10,20,30,40,50]', exp: 'Increment: <code>i++</code> (i is now 5). Check: (5 < 5) is FALSE. Loop ends.' },
+            { line: 5, vars: 'i = 5, sum = 150, numbers = [10,20,30,40,50]', exp: 'Prints the final total sum.' }
+        ];
+        
+        // --- WALKTHROUGH LOGIC ---
+        let currentTraceStep = 0;
+        const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
+        const walkthroughVariables = document.getElementById('walkthroughVariables');
+        const walkthroughExplanation = document.getElementById('walkthroughExplanation');
+        const nextStepBtn = document.getElementById('nextStepBtn');
 
-            const cppCode = {
-                arrays: `int numbers[5] = {10, 20, 30, 40, 50};
-cout << numbers[0];`
-            };
-
-            const csharpCode = {
-                arrays: `int[] numbers = {10, 20, 30, 40, 50};
-Console.WriteLine(numbers[0]);`
-            };
-
-            codeBlock.textContent = isChecked ? csharpCode[topic] : cppCode[topic];
+        function updateWalkthrough(step) {
+            const data = traceSteps[step];
+            let codeContent = '';
+            const activeLineIndex = data.line;
+            
+            fullCodeLines.forEach((line, index) => {
+                if (index === activeLineIndex) {
+                    codeContent += `<span style="background-color: yellow; color: black;">${line.replace('// ⬅ Run Code Block', '⬅ ACTIVE')}</span>\n`;
+                } else if (line.includes('// ⬅ Run Code Block')) {
+                    codeContent += `// ${line.replace('// ⬅ Run Code Block', '').trim()}\n`;
+                } else if (index === 2 && activeLineIndex !== 2 && activeLineIndex !== 3) {
+                    codeContent += `// ${line.trim()}\n`;
+                } else if (activeLineIndex >= 2 && activeLineIndex <= 4 && index > 4) {
+                    codeContent += `// ${line.trim()}\n`;
+                } else if (index !== activeLineIndex) {
+                    codeContent += `${line}\n`;
+                }
+            });
+            
+            walkthroughCodeBase.innerHTML = codeContent;
+            walkthroughVariables.textContent = data.vars;
+            walkthroughExplanation.innerHTML = `<em>Explanation:</em> ${data.exp}`;
+            
+            if (step === traceSteps.length - 1) {
+                walkthroughExplanation.innerHTML += '<br><strong>Trace finished! Final output is "Total: 150".</strong>';
+                nextStepBtn.disabled = true;
+            }
         }
+
+        nextStepBtn.addEventListener('click', () => {
+            if (currentTraceStep < traceSteps.length) {
+                updateWalkthrough(currentTraceStep);
+                currentTraceStep++;
+            }
+        });
+
+        // C++ / C# toggle code
+        const cppSnippets = {
+            example1: `// Create an array with 5 numbers
+int numbers[5] = {10, 20, 30, 40, 50};
+
+// Access individual elements
+cout << "First number: " << numbers[0] << endl;  // Index 0 = 10
+cout << "Third number: " << numbers[2] << endl;  // Index 2 = 30`,
+            example2: `int scores[3] = {85, 90, 78};
+
+// Change the second score
+scores[1] = 95;  // Update index 1 from 90 to 95
+
+// Display all scores
+cout << "Scores: ";
+cout << scores[0] << " ";  // 85
+cout << scores[1] << " ";  // 95
+cout << scores[2];         // 78`,
+            example3: `int numbers[5] = {10, 20, 30, 40, 50};
+int sum = 0;
+
+// Loop through all array elements
+for (int i = 0; i < 5; i++) {
+    sum += numbers[i];  // Add each number to sum
+    cout << "Adding " << numbers[i] << endl;
+}
+
+cout << "Total sum: " << sum << endl;`,
+            example4: `int temperatures[6] = {22, 25, 19, 28, 23, 27};
+int maxTemp = temperatures[0];  // Start with first temperature
+
+// Check each temperature
+for (int i = 1; i < 6; i++) {
+    if (temperatures[i] > maxTemp) {
+        maxTemp = temperatures[i];  // Found a higher temperature
+    }
+}
+
+cout << "Highest temperature: " << maxTemp << "°C" << endl;`,
+            example5: `string fruits[4] = {"apple", "banana", "orange", "grape"};
+
+// Display all fruits
+for (int i = 0; i < 4; i++) {
+    cout << "Fruit " << (i + 1) << ": " << fruits[i] << endl;
+}`
+        };
+
+        const csharpSnippets = {
+            example1: `// Create an array with 5 numbers
+int[] numbers = {10, 20, 30, 40, 50};
+
+// Access individual elements
+Console.WriteLine("First number: " + numbers[0]);  // Index 0 = 10
+Console.WriteLine("Third number: " + numbers[2]);  // Index 2 = 30`,
+            example2: `int[] scores = {85, 90, 78};
+
+// Change the second score
+scores[1] = 95;  // Update index 1 from 90 to 95
+
+// Display all scores
+Console.Write("Scores: ");
+Console.Write(scores[0] + " ");  // 85
+Console.Write(scores[1] + " ");  // 95
+Console.Write(scores[2]);         // 78`,
+            example3: `int[] numbers = {10, 20, 30, 40, 50};
+int sum = 0;
+
+// Loop through all array elements
+for (int i = 0; i < numbers.Length; i++)
+{
+    sum += numbers[i];  // Add each number to sum
+    Console.WriteLine("Adding " + numbers[i]);
+}
+
+Console.WriteLine("Total sum: " + sum);`,
+            example4: `int[] temperatures = {22, 25, 19, 28, 23, 27};
+int maxTemp = temperatures[0];  // Start with first temperature
+
+// Check each temperature
+for (int i = 1; i < temperatures.Length; i++)
+{
+    if (temperatures[i] > maxTemp)
+    {
+        maxTemp = temperatures[i];  // Found a higher temperature
+    }
+}
+
+Console.WriteLine("Highest temperature: " + maxTemp + "°C");`,
+            example5: `string[] fruits = {"apple", "banana", "orange", "grape"};
+
+// Display all fruits
+for (int i = 0; i < fruits.Length; i++)
+{
+    Console.WriteLine("Fruit " + (i + 1) + ": " + fruits[i]);
+}`
+        };
+
+        function convertCode(id) {
+            const toggle = document.getElementById(id + "Toggle");
+            const isCSharp = toggle.checked;
+            const codeBlock = document.getElementById(id + "Code");
+
+            codeBlock.classList.add("fade");
+            setTimeout(() => {
+                codeBlock.textContent = isCSharp ? csharpSnippets[id] : cppSnippets[id];
+                codeBlock.classList.remove("fade");
+            }, 250);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            convertCode('example1');
+            convertCode('example2');
+            convertCode('example3');
+            convertCode('example4');
+            convertCode('example5');
+            
+            // Initial state for the walkthrough
+            updateWalkthrough(0); 
+            currentTraceStep = 1;
+        });
     </script>
 </body>
