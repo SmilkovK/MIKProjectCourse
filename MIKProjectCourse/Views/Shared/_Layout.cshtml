@@ -15,6 +15,7 @@
     <title>@(ViewData["Title"] ?? Localizer["Home"]) - @Localizer["ApplicationName"]</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css" id="hljs-theme">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <style>
         :root {
@@ -135,7 +136,12 @@
             background-color: var(--light-hover);
         }
 
-        .chapter-title::after {
+        .chapter-title.active::after {
+            content: '-';
+            float: right;
+        }
+
+        .chapter-title:not(.active)::after {
             content: '+';
             float: right;
         }
@@ -187,6 +193,69 @@
             max-width: 900px;
         }
 
+        .theme-toggle {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 2000;
+            background: none;
+            border: none;
+            font-size: 22px;
+            color: var(--bs-body-color);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        [data-bs-theme="light"] .theme-toggle {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        [data-bs-theme="light"] .theme-toggle:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle .fa-sun {
+            display: none;
+        }
+
+        .theme-toggle .fa-moon {
+            display: inline-block;
+        }
+
+        [data-bs-theme="light"] .theme-toggle .fa-sun {
+            display: inline-block;
+            color: #ff9800;
+        }
+
+        [data-bs-theme="light"] .theme-toggle .fa-moon {
+            display: none;
+        }
+
+        [data-bs-theme="dark"] .theme-toggle .fa-moon {
+            color: #bb86fc;
+        }
+
+        @@keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .page-content {
+            animation: fadeIn 0.3s ease-in;
+        }
+
         @@media (max-width: 992px) {
             .sidebar {
                 width: 100%;
@@ -198,143 +267,145 @@
             .main-content {
                 margin-left: 0;
             }
+
+            .theme-toggle {
+                top: 70px;
+            }
         }
     </style>
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
     <button id="sidebarToggle" class="sidebar-hamburger">☰</button>
+    <button id="themeToggle" class="theme-toggle" title="Toggle theme">
+        <i class="fas fa-moon"></i>
+        <i class="fas fa-sun"></i>
+    </button>
+    
     <div class="sidebar">
-        <div class="theme-switcher">
-            <label for="themeSelect" class="visually-hidden">Theme</label>
-            <select class="theme-select" id="themeSelect">
-                <option value="dark" selected>🌙 Dark</option>
-                <option value="light">☀️ Light</option>
-            </select>
-        </div>
-
         <div class="chapters-dropdown">
             <h5 style="color: var(--bs-body-color);">@Localizer["Chapters"]</h5>
             <ul class="chapter-list">
                 <li>
                     <div class="chapter-title" data-id="1">@Localizer["Introduction"]</div>
                     <ul class="subchapter-list">
-                        <li><a class="ajax-link" asp-controller="Introduction" asp-action="Index">@Localizer["Introduction"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Introduction" asp-action="Guide">@Localizer["Guide"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Introduction" asp-action="TaskGuide">@Localizer["TaskGuide"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Introduction" asp-action="Index" data-path="/Introduction/Index">@Localizer["Introduction"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Introduction" asp-action="Guide" data-path="/Introduction/Guide">@Localizer["Guide"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Introduction" asp-action="TaskGuide" data-path="/Introduction/TaskGuide">@Localizer["TaskGuide"]</a></li>
                     </ul>
                 </li>
                 <li>
                     <div class="chapter-title" data-id="2">@Localizer["C# Basics"]</div>
                     <ul class="subchapter-list">
-                        <li><a class="ajax-link" asp-controller="SP" asp-action="Variables">@Localizer["Variables"]</a></li>
-                        <li><a class="ajax-link" asp-controller="SP" asp-action="IfElse">@Localizer["If / Else Statements"]</a></li>
-                        <li><a class="ajax-link" asp-controller="SP" asp-action="ForLoops">@Localizer["For Loops"]</a></li>
-                        <li><a class="ajax-link" asp-controller="SP" asp-action="Arrays">@Localizer["Arrays"]</a></li>
-                        <li><a class="ajax-link" asp-controller="SP" asp-action="StringArrays">@Localizer["String Arrays"]</a></li>
+                        <li><a class="ajax-link" asp-controller="SP" asp-action="Variables" data-path="/SP/Variables">@Localizer["Variables"]</a></li>
+                        <li><a class="ajax-link" asp-controller="SP" asp-action="InputOutput" data-path="/SP/InputOutput">@Localizer["Input-Output"]</a></li>
+                        <li><a class="ajax-link" asp-controller="SP" asp-action="IfElse" data-path="/SP/IfElse">@Localizer["If / Else Statements"]</a></li>
+                        <li><a class="ajax-link" asp-controller="SP" asp-action="ForLoops" data-path="/SP/ForLoops">@Localizer["For Loops"]</a></li>
+                        <li><a class="ajax-link" asp-controller="SP" asp-action="Arrays" data-path="/SP/Arrays">@Localizer["Arrays"]</a></li>
+                        <li><a class="ajax-link" asp-controller="SP" asp-action="StringArrays" data-path="/SP/StringArrays">@Localizer["String Arrays"]</a></li>
                     </ul>
                 </li>
                 <li>
                     <div class="chapter-title" data-id="3">@Localizer["Object Oriented Programming"]</div>
                     <ul class="subchapter-list">
-                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Index">@Localizer["Chapter Introduction"]</a></li>
-                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Introduction">@Localizer["Introduction to OOP"]</a></li>
-                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Classes">@Localizer["Classes"]</a></li>
-                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Constructors">@Localizer["Constructors"]</a></li>
-                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Objects">@Localizer["Objects"]</a></li>
-                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Inheritance">@Localizer["Inheritance"]</a></li>
-                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Encapsulation">@Localizer["Encapsulation"]</a></li>
-                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Polymorphism">@Localizer["Polymorphism"]</a></li>
-                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Abstraction">@Localizer["Abstraction"]</a></li>
-                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Interfaces">@Localizer["Interfaces"]</a></li>
-                        <li><a class="ajax-link" asp-controller="OOP" asp-action="StaticReadonlyConst">@Localizer["Static / Readonly / Const"]</a></li>
-                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Summary">@Localizer["Chapter Summary"]</a></li>
+                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Index" data-path="/OOP/Index">@Localizer["Chapter Introduction"]</a></li>
+                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Introduction" data-path="/OOP/Introduction">@Localizer["Introduction to OOP"]</a></li>
+                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Classes" data-path="/OOP/Classes">@Localizer["Classes"]</a></li>
+                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Constructors" data-path="/OOP/Constructors">@Localizer["Constructors"]</a></li>
+                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Objects" data-path="/OOP/Objects">@Localizer["Objects"]</a></li>
+                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Inheritance" data-path="/OOP/Inheritance">@Localizer["Inheritance"]</a></li>
+                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Encapsulation" data-path="/OOP/Encapsulation">@Localizer["Encapsulation"]</a></li>
+                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Polymorphism" data-path="/OOP/Polymorphism">@Localizer["Polymorphism"]</a></li>
+                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Abstraction" data-path="/OOP/Abstraction">@Localizer["Abstraction"]</a></li>
+                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Interfaces" data-path="/OOP/Interfaces">@Localizer["Interfaces"]</a></li>
+                        <li><a class="ajax-link" asp-controller="OOP" asp-action="StaticReadonlyConst" data-path="/OOP/StaticReadonlyConst">@Localizer["Static / Readonly / Const"]</a></li>
+                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Summary" data-path="/OOP/Summary">@Localizer["Chapter Summary"]</a></li>
                     </ul>
                 </li>
                 <li>
                     <div class="chapter-title" data-id="4">@Localizer["Databases"]</div>
                     <ul class="subchapter-list">
-                        <li><a class="ajax-link" asp-controller="Database" asp-action="Index">@Localizer["What is a Database?"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Database" asp-action="WhyDatabase">@Localizer["Why Use a Database?"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Database" asp-action="TypesOfDatabase">@Localizer["Types of Databases"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Database" asp-action="HowDatabaseWorks">@Localizer["How Databases Work"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Database" asp-action="RelationalDatabase">@Localizer["Relational Databases"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Database" asp-action="Example">@Localizer["Example"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Database" asp-action="Summary">@Localizer["Chapter Summary"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Database" asp-action="Index" data-path="/Database/Index">@Localizer["What is a Database?"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Database" asp-action="WhyDatabase" data-path="/Database/WhyDatabase">@Localizer["Why Use a Database?"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Database" asp-action="TypesOfDatabase" data-path="/Database/TypesOfDatabase">@Localizer["Types of Databases"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Database" asp-action="HowDatabaseWorks" data-path="/Database/HowDatabaseWorks">@Localizer["How Databases Work"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Database" asp-action="RelationalDatabase" data-path="/Database/RelationalDatabase">@Localizer["Relational Databases"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Database" asp-action="Example" data-path="/Database/Example">@Localizer["Example"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Database" asp-action="Summary" data-path="/Database/Summary">@Localizer["Chapter Summary"]</a></li>
                     </ul>
                 </li>
                 <li>
                     <div class="chapter-title" data-id="5">@Localizer["Database Relationships"]</div>
                     <ul class="subchapter-list">
-                        <li><a class="ajax-link" asp-controller="DataBaseRelations" asp-action="Index">@Localizer["Introduction to Database Relations"]</a></li>
-                        <li><a class="ajax-link" asp-controller="DataBaseRelations" asp-action="OneToOne">@Localizer["One-to-One"]</a></li>
-                        <li><a class="ajax-link" asp-controller="DataBaseRelations" asp-action="OneToMany">@Localizer["One-to-Many"]</a></li>
-                        <li><a class="ajax-link" asp-controller="DataBaseRelations" asp-action="ManyToMany">@Localizer["Many-to-Many"]</a></li>
-                        <li><a class="ajax-link" asp-controller="DataBaseRelations" asp-action="ManyToManyWithJoin">@Localizer["Many-to-Many with Join Table"]</a></li>
+                        <li><a class="ajax-link" asp-controller="DataBaseRelations" asp-action="Index" data-path="/DataBaseRelations/Index">@Localizer["Introduction to Database Relations"]</a></li>
+                        <li><a class="ajax-link" asp-controller="DataBaseRelations" asp-action="OneToOne" data-path="/DataBaseRelations/OneToOne">@Localizer["One-to-One"]</a></li>
+                        <li><a class="ajax-link" asp-controller="DataBaseRelations" asp-action="OneToMany" data-path="/DataBaseRelations/OneToMany">@Localizer["One-to-Many"]</a></li>
+                        <li><a class="ajax-link" asp-controller="DataBaseRelations" asp-action="ManyToMany" data-path="/DataBaseRelations/ManyToMany">@Localizer["Many-to-Many"]</a></li>
+                        <li><a class="ajax-link" asp-controller="DataBaseRelations" asp-action="ManyToManyWithJoin" data-path="/DataBaseRelations/ManyToManyWithJoin">@Localizer["Many-to-Many with Join Table"]</a></li>
                     </ul>
                 </li>
                 <li>
                     <div class="chapter-title" data-id="6">@Localizer["Exercises"]</div>
                     <ul class="subchapter-list">
-                        <li><a class="ajax-link" asp-controller="Exercises" asp-action="Info">@Localizer["Code Formatting Info"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Exercises" asp-action="Index">@Localizer["Exercise 1"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Exercises" asp-action="ArrayForLoop">@Localizer["Exercise 2"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Exercises" asp-action="Info" data-path="/Exercises/Info">@Localizer["Code Formatting Info"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Exercises" asp-action="Index" data-path="/Exercises/Index">@Localizer["Exercise 1"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Exercises" asp-action="ArrayForLoop" data-path="/Exercises/ArrayForLoop">@Localizer["Exercise 2"]</a></li>
                     </ul>
                 </li>
                 <li>
                     <div class="chapter-title" data-id="7">@Localizer["Web Communication"]</div>
                     <ul class="subchapter-list">
-                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="Index">@Localizer["Chapter Introduction"]</a></li>
-                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="Introduction">@Localizer["What is Web Communication?"]</a></li>
-                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="Client">@Localizer["Client"]</a></li>
-                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="Server">@Localizer["Server"]</a></li>
-                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="Browser">@Localizer["Browser"]</a></li>
-                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="HttpPart1">@Localizer["HTTP - Part 1"]</a></li>
-                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="HttpPart2">@Localizer["HTTP - Part 2"]</a></li>
-                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="ClientSide">@Localizer["Client-Side Communication"]</a></li>
-                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="ServerSide">@Localizer["Server-Side Communication"]</a></li>
-                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="API">@Localizer["APIs"]</a></li>
-                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="Summary">@Localizer["Chapter Summary"]</a></li>
+                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="Index" data-path="/WebCommunication/Index">@Localizer["Chapter Introduction"]</a></li>
+                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="Introduction" data-path="/WebCommunication/Introduction">@Localizer["What is Web Communication?"]</a></li>
+                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="Client" data-path="/WebCommunication/Client">@Localizer["Client"]</a></li>
+                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="Server" data-path="/WebCommunication/Server">@Localizer["Server"]</a></li>
+                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="Browser" data-path="/WebCommunication/Browser">@Localizer["Browser"]</a></li>
+                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="HttpPart1" data-path="/WebCommunication/HttpPart1">@Localizer["HTTP - Part 1"]</a></li>
+                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="HttpPart2" data-path="/WebCommunication/HttpPart2">@Localizer["HTTP - Part 2"]</a></li>
+                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="ClientSide" data-path="/WebCommunication/ClientSide">@Localizer["Client-Side Communication"]</a></li>
+                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="ServerSide" data-path="/WebCommunication/ServerSide">@Localizer["Server-Side Communication"]</a></li>
+                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="API" data-path="/WebCommunication/API">@Localizer["APIs"]</a></li>
+                        <li><a class="ajax-link" asp-controller="WebCommunication" asp-action="Summary" data-path="/WebCommunication/Summary">@Localizer["Chapter Summary"]</a></li>
                     </ul>
                 </li>
                 <li>
                     <div class="chapter-title" data-id="8">@Localizer["Intro to Web"]</div>
                     <ul class="subchapter-list">
-                        <li><a class="ajax-link" asp-controller="Web" asp-action="Index">@Localizer["Chapter Introduction"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Web" asp-action="Instalation">@Localizer["Installation"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Web" asp-action="Introduction">@Localizer["Introduction to .NET Programming"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Web" asp-action="Controllers">@Localizer["Controller Basics"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Web" asp-action="ControllersExample">@Localizer["Controller Example"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Web" asp-action="Models">@Localizer["Model Basics"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Web" asp-action="Views_">@Localizer["View Basics"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Web" asp-action="Database">@Localizer["Database in .NET"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Web" asp-action="Programcs">@Localizer["Program.cs Overview"]</a></li>
-                        <li><a class="ajax-link" asp-controller="Web" asp-action="Summary">@Localizer["Chapter Summary"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Web" asp-action="Index" data-path="/Web/Index">@Localizer["Chapter Introduction"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Web" asp-action="Instalation" data-path="/Web/Instalation">@Localizer["Installation"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Web" asp-action="Introduction" data-path="/Web/Introduction">@Localizer["Introduction to .NET Programming"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Web" asp-action="Controllers" data-path="/Web/Controllers">@Localizer["Controller Basics"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Web" asp-action="ControllersExample" data-path="/Web/ControllersExample">@Localizer["Controller Example"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Web" asp-action="Models" data-path="/Web/Models">@Localizer["Model Basics"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Web" asp-action="Views_" data-path="/Web/Views_">@Localizer["View Basics"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Web" asp-action="Database" data-path="/Web/Database">@Localizer["Database in .NET"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Web" asp-action="Programcs" data-path="/Web/Programcs">@Localizer["Program.cs Overview"]</a></li>
+                        <li><a class="ajax-link" asp-controller="Web" asp-action="Summary" data-path="/Web/Summary">@Localizer["Chapter Summary"]</a></li>
                     </ul>
                 </li>
                 <li>
                     <div class="chapter-title" data-id="9">@Localizer["WebApp"]</div>
                     <ul class="subchapter-list">
-                        <li><a class="ajax-link" asp-controller="WebApp" asp-action="Index">@Localizer["Chapter Introduction"]</a></li>
-                        <li><a class="ajax-link" asp-controller="WebApp" asp-action="BuldingSteps">@Localizer["Building Our First Basic App"]</a></li>
-                        <li><a class="ajax-link" asp-controller="WebApp" asp-action="Summary">@Localizer["Chapter Summary"]</a></li>
+                        <li><a class="ajax-link" asp-controller="WebApp" asp-action="Index" data-path="/WebApp/Index">@Localizer["Chapter Introduction"]</a></li>
+                        <li><a class="ajax-link" asp-controller="WebApp" asp-action="BuldingSteps" data-path="/WebApp/BuldingSteps">@Localizer["Building Our First Basic App"]</a></li>
+                        <li><a class="ajax-link" asp-controller="WebApp" asp-action="Summary" data-path="/WebApp/Summary">@Localizer["Chapter Summary"]</a></li>
                     </ul>
                 </li>
                 <li>
                     <div class="chapter-title" data-id="10">@Localizer["Advanced Web"]</div>
                     <ul class="subchapter-list">
-                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="Index">@Localizer["Chapter Introduction"]</a></li>
-                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="Introduction">@Localizer["First Steps"]</a></li>
-                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="Layers">@Localizer["Introduction to .NET Layering"]</a></li>
-                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="ControllerLayer">@Localizer["Controller Layer"]</a></li>
-                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="RepositoryLayer">@Localizer["Repository Layer"]</a></li>
-                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="ServiceLayer">@Localizer["Service Layer"]</a></li>
-                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="Identity">@Localizer[".NET Identity Introduction"]</a></li>
-                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="IdentityRoles">@Localizer["Identity Roles Overview"]</a></li>
-                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="Authentication">@Localizer["Authentication"]</a></li>
-                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="Authorization">@Localizer["Authorization"]</a></li>
-                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="IdentityTutorial">@Localizer[".NET Identity Guide"]</a></li>
-                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="Summary">@Localizer["Chapter Summary"]</a></li>
+                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="Index" data-path="/AdvancedWebApp/Index">@Localizer["Chapter Introduction"]</a></li>
+                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="Introduction" data-path="/AdvancedWebApp/Introduction">@Localizer["First Steps"]</a></li>
+                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="Layers" data-path="/AdvancedWebApp/Layers">@Localizer["Introduction to .NET Layering"]</a></li>
+                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="ControllerLayer" data-path="/AdvancedWebApp/ControllerLayer">@Localizer["Controller Layer"]</a></li>
+                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="RepositoryLayer" data-path="/AdvancedWebApp/RepositoryLayer">@Localizer["Repository Layer"]</a></li>
+                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="ServiceLayer" data-path="/AdvancedWebApp/ServiceLayer">@Localizer["Service Layer"]</a></li>
+                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="Identity" data-path="/AdvancedWebApp/Identity">@Localizer[".NET Identity Introduction"]</a></li>
+                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="IdentityRoles" data-path="/AdvancedWebApp/IdentityRoles">@Localizer["Identity Roles Overview"]</a></li>
+                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="Authentication" data-path="/AdvancedWebApp/Authentication">@Localizer["Authentication"]</a></li>
+                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="Authorization" data-path="/AdvancedWebApp/Authorization">@Localizer["Authorization"]</a></li>
+                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="IdentityTutorial" data-path="/AdvancedWebApp/IdentityTutorial">@Localizer[".NET Identity Guide"]</a></li>
+                        <li><a class="ajax-link" asp-controller="AdvancedWebApp" asp-action="Summary" data-path="/AdvancedWebApp/Summary">@Localizer["Chapter Summary"]</a></li>
                     </ul>
                 </li>
             </ul>
@@ -350,14 +421,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
 <script>
 $(document).ready(function() {
-    const themeSelect = $('#themeSelect')[0];
     const htmlEl = document.documentElement;
     const hljsTheme = $('#hljs-theme')[0];
     const savedTheme = localStorage.getItem('theme') || 'dark';
 
     htmlEl.setAttribute('data-bs-theme', savedTheme);
-    themeSelect.value = savedTheme;
-
+    
     function updateCodeTheme(theme) {
         hljsTheme.href = theme === 'dark'
             ? 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/github-dark.min.css'
@@ -365,6 +434,18 @@ $(document).ready(function() {
         hljs.highlightAll();
     }
     updateCodeTheme(savedTheme);
+
+    function setupThemeToggle() {
+        $('#themeToggle').off('click.theme');
+        $('#themeToggle').on('click.theme', function() {
+            const currentTheme = htmlEl.getAttribute('data-bs-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-bs-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateCodeTheme(newTheme);
+        });
+    }
+    setupThemeToggle();
 
     let sidebarState = localStorage.getItem('sidebarState') || 'open';
     function applySidebarState() {
@@ -376,50 +457,95 @@ $(document).ready(function() {
     }
     applySidebarState();
 
-    $('#sidebarToggle').click(function () {
-        sidebarState = sidebarState === 'open' ? 'closed' : 'open';
-        localStorage.setItem('sidebarState', sidebarState);
-        applySidebarState();
-    });
-
-    themeSelect.addEventListener('change', function() {
-        const selected = this.value;
-        htmlEl.setAttribute('data-bs-theme', selected);
-        localStorage.setItem('theme', selected);
-        updateCodeTheme(selected);
-    });
+    function setupSidebarToggle() {
+        $('#sidebarToggle').off('click.sidebar').on('click.sidebar', function() {
+            sidebarState = sidebarState === 'open' ? 'closed' : 'open';
+            localStorage.setItem('sidebarState', sidebarState);
+            applySidebarState();
+        });
+    }
+    setupSidebarToggle();
 
     let expandedChapter = localStorage.getItem('expandedChapter') || null;
+    
     function updateExpandedChapters() {
         $('.chapter-title').each(function() {
             const id = $(this).data('id');
             if (id == expandedChapter) {
-                $(this).addClass('active');
-                $(this).siblings('.subchapter-list').show();
+                $(this).addClass('active').next('.subchapter-list').show();
             } else {
-                $(this).removeClass('active');
-                $(this).siblings('.subchapter-list').hide();
+                $(this).removeClass('active').next('.subchapter-list').hide();
             }
         });
     }
+
+    function autoExpandCurrentChapter() {
+        const currentPage = window.location.pathname;
+        let foundMatch = false;
+        
+        $('.sidebar a').each(function() {
+            const link = $(this);
+            const linkPath = link.attr('href');
+            
+            if (linkPath && currentPage === linkPath) {
+                const chapterTitle = link.closest('li').parent().prev('.chapter-title');
+                if (chapterTitle.length) {
+                    const chapterId = chapterTitle.data('id');
+                    expandedChapter = chapterId;
+                    localStorage.setItem('expandedChapter', expandedChapter);
+                    updateExpandedChapters();
+                    foundMatch = true;
+                }
+            }
+        });
+        
+        if (!foundMatch) {
+            expandedChapter = null;
+            localStorage.removeItem('expandedChapter');
+            updateExpandedChapters();
+        }
+    }
+    
     updateExpandedChapters();
+    autoExpandCurrentChapter();
 
-    $('.chapter-title').click(function() {
-        const id = $(this).data('id');
-        expandedChapter = expandedChapter === id ? null : id;
-        localStorage.setItem('expandedChapter', expandedChapter);
-        updateExpandedChapters();
-    });
-
-    function attachDynamicHandlers() {
-        $('.ajax-link').off('click').on('click', function(e) {
+    function setupChapterTitleClicks() {
+        $(document).off('click.chapter').on('click.chapter', '.chapter-title', function(e) {
             e.preventDefault();
-            const url = $(this).attr('href');
-            if (url && url !== '#') loadPage(url);
+            e.stopPropagation();
+            const id = $(this).data('id');
+            expandedChapter = expandedChapter === id ? null : id;
+            localStorage.setItem('expandedChapter', expandedChapter);
+            updateExpandedChapters();
         });
     }
+    setupChapterTitleClicks();
+
+    function setupAjaxNavigation() {
+        $(document).off('click.ajax').on('click.ajax', 'a.ajax-link', function(e) {
+            const href = $(this).attr('href');
+            if (!href || href === '#' || href.includes('javascript:')) {
+                return;
+            }
+            
+            e.preventDefault();
+            e.stopPropagation();
+            
+            loadPage(href);
+            return false;
+        });
+    }
+    setupAjaxNavigation();
 
     function loadPage(url, addToHistory = true) {
+        if ($('#page-content').hasClass('loading') || url === window.location.pathname) {
+            return;
+        }
+
+        $('#page-content').addClass('loading').css('opacity', '0.7');
+        
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        
         $.ajax({
             url: url,
             type: 'GET',
@@ -427,41 +553,121 @@ $(document).ready(function() {
             success: function(data) {
                 const tempDiv = $('<div>').html(data);
                 const html = tempDiv.find('#page-content').html(); 
+                const title = tempDiv.find('title').text() || document.title;
                 
                 if (!html) {
                     console.error("Could not find '#page-content' in the AJAX response.");
+                    window.location.href = url;
                     return; 
                 }
 
-                $('#page-content').stop(true, true).fadeOut(50, function() {
-                    $(this).html(html).fadeIn(50, function() {
+                document.title = title;
+                
+                if (addToHistory) {
+                    window.history.pushState({ url: url }, title, url);
+                }
+                
+                $('#page-content').fadeOut(150, function() {
+                    $(this).html(html).fadeIn(150, function() {
+                        $(this).removeClass('loading').css('opacity', '1');
+                        
                         hljs.highlightAll();
                         highlightCurrentPage();
-                        updateExpandedChapters();
-                        attachDynamicHandlers();
+                        autoExpandCurrentChapter();
+                        
+                        setupThemeToggle();
+                        setupSidebarToggle();
+                        setupChapterTitleClicks();
+                        setupAjaxNavigation();
+
+                        const scripts = tempDiv.find('script:not([src])');
+                        scripts.each(function() {
+                            try {
+                                const scriptContent = $(this).text();
+                                if (scriptContent.trim()) {
+                                    const script = document.createElement('script');
+                                    script.textContent = scriptContent;
+                                    document.body.appendChild(script).remove();
+                                }
+                            } catch(e) {
+                                console.warn('Script execution warning:', e.message);
+                            }
+                        });
+
+                        setTimeout(() => {
+                            if (typeof window.initializePage === 'function') {
+                                try {
+                                    window.initializePage();
+                                } catch(e) {
+                                    console.warn('initializePage error:', e.message);
+                                }
+                            }
+                        }, 100);
                     });
                 });
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX error:', error);
+                window.location.href = url;
+            },
+            complete: function() {
+                $('#page-content').removeClass('loading').css('opacity', '1');
             }
-        }).done(function() {
-            if (addToHistory) window.history.pushState({ url: url }, '', url);
         });
     }
 
     function highlightCurrentPage() {
         const currentPage = window.location.pathname;
-        $('.chapter-list a').each(function() {
+        $('.sidebar a').each(function() {
             const link = $(this);
             const linkPath = link.attr('href');
             
-            if (linkPath === currentPage) {
+            link.removeClass('current-page');
+            
+            if (linkPath && currentPage === linkPath) {
                 link.addClass('current-page');
-            } else {
-                link.removeClass('current-page');
             }
         });
     }
 
-    attachDynamicHandlers();
+    window.addEventListener('popstate', function(event) {
+        if (event.state && event.state.url) {
+            loadPage(event.state.url, false);
+        }
+    });
+
+    highlightCurrentPage();
+
+    if (!$('#ajax-loading-style').length) {
+        $('<style id="ajax-loading-style">')
+            .text(`
+                #page-content.loading { 
+                    position: relative; 
+                    min-height: 200px;
+                }
+                #page-content.loading::after { 
+                    content: ""; 
+                    position: absolute; 
+                    top: 50%; 
+                    left: 50%; 
+                    width: 30px; 
+                    height: 30px; 
+                    margin: -15px 0 0 -15px; 
+                    border: 3px solid var(--bs-primary); 
+                    border-radius: 50%; 
+                    border-top-color: transparent; 
+                    animation: spin 1s linear infinite; 
+                    z-index: 1000;
+                }
+                #page-content.loading > * {
+                    opacity: 0.5;
+                }
+                @@keyframes spin { 
+                    to { transform: rotate(360deg); } 
+                }
+            `)
+            .appendTo('head');
+    }
 });
 </script>
 </body>

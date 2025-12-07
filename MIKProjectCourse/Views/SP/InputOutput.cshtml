@@ -1,0 +1,781 @@
+﻿@{
+    ViewData["Title"] = "Input and Output";
+}
+
+<div class="container">
+    <h1 class="mb-4">📝 Input and Output: Communicating with Programs</h1>
+
+    <p><strong>Input and Output (I/O)</strong> are how programs communicate with users. <strong>Input</strong> is information the user gives to the program (like typing their name), and <strong>Output</strong> is information the program shows to the user (like displaying a welcome message).</p>
+
+    <p>Think of it like a conversation:</p>
+    <ul>
+        <li><strong>Program asks</strong> → "What's your name?" (Output)</li>
+        <li><strong>User answers</strong> → "Alice" (Input)</li>
+        <li><strong>Program responds</strong> → "Hello, Alice!" (Output)</li>
+    </ul>
+
+    <h2>📘 Output: Showing Information</h2>
+    <p>Output is how your program displays information to the user. In C++, we use <code>cout</code> (pronounced "see-out"), and in C#, we use <code>Console.WriteLine()</code>.</p>
+
+    <div class="code-container">
+        <div class="code-header">Output Syntax</div>
+        <div class="code-content">
+<pre>
+C++:    cout << "Text to display" << endl;
+C#:     Console.WriteLine("Text to display");
+
+// Displaying variables:
+C++:    cout << "Your age: " << age << endl;
+C#:     Console.WriteLine("Your age: " + age);
+</pre>
+        </div>
+    </div>
+
+    <h2>🎯 Example 1: Basic Output</h2>
+    <p>Displaying simple messages and text:</p>
+    
+    <div class="code-container">
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="convertCode('example1')">
+            <label class="form-check-label" for="example1Toggle">Convert to C#</label>
+        </div>
+        <div class="code-content">
+<pre class="codeBlock" id="example1Code">
+// Simple text output
+cout << "Welcome to Programming!" << endl;
+cout << "This is line 1." << endl;
+cout << "This is line 2." << endl;
+
+// Text with special characters
+cout << "Use \\n for new line: First line\nSecond line" << endl;
+cout << "Use \\t for tab: Name:\tJohn" << endl;
+cout << "Quotes: She said, \"Hello!\"" << endl;
+</pre>
+        </div>
+        <div class="result-box" id="example1Result">
+            ➡ <strong>Result:</strong><br>Welcome to Programming!<br>This is line 1.<br>This is line 2.<br>Use \n for new line: First line<br>Second line<br>Use \t for tab: Name:&nbsp;&nbsp;&nbsp;&nbsp;John<br>Quotes: She said, "Hello!"<br>
+            <em>Explanation:</em> <code>endl</code> (C++) or <code>WriteLine</code> (C#) creates a new line. Special characters like <code>\n</code> (new line) and <code>\t</code> (tab) help format text.
+        </div>
+    </div>
+
+    <h2>🎯 Example 2: Output with Variables</h2>
+    <p>Displaying variable values along with text:</p>
+    
+    <div class="code-container">
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="convertCode('example2')">
+            <label class="form-check-label" for="example2Toggle">Convert to C#</label>
+        </div>
+        <div class="code-content">
+<pre class="codeBlock" id="example2Code">
+string name = "Sarah";
+int age = 25;
+float height = 1.68;
+bool isStudent = true;
+
+// Displaying variable values
+cout << "Name: " << name << endl;
+cout << "Age: " << age << " years" << endl;
+cout << "Height: " << height << " meters" << endl;
+cout << "Student: " << (isStudent ? "Yes" : "No") << endl;
+
+// Multiple variables in one line
+cout << name << " is " << age << " years old and " << height << " meters tall." << endl;
+</pre>
+        </div>
+        <div class="result-box" id="example2Result">
+            ➡ <strong>Result:</strong><br>Name: Sarah<br>Age: 25 years<br>Height: 1.68 meters<br>Student: Yes<br>Sarah is 25 years old and 1.68 meters tall.<br>
+            <em>Explanation:</em> You can combine text and variables using <code><<</code> in C++ or <code>+</code> in C#. The computer replaces variables with their actual values when displaying.
+        </div>
+    </div>
+
+    <h2>📘 Input: Getting Information from Users</h2>
+    <p>Input allows users to provide information to your program. In C++, we use <code>cin</code> (pronounced "see-in"), and in C#, we use <code>Console.ReadLine()</code>.</p>
+
+    <div class="code-container">
+        <div class="code-header">Input Syntax</div>
+        <div class="code-content">
+<pre>
+C++:    cin >> variableName;
+C#:     variableName = Console.ReadLine();
+
+// For numbers (C# needs conversion):
+C#:     age = Convert.ToInt32(Console.ReadLine());
+</pre>
+        </div>
+    </div>
+
+    <h2>🎯 Example 3: Basic Input</h2>
+    <p>Getting user input and storing it in variables:</p>
+    
+    <div class="code-container">
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="convertCode('example3')">
+            <label class="form-check-label" for="example3Toggle">Convert to C#</label>
+        </div>
+        <div class="code-content">
+<pre class="codeBlock" id="example3Code">
+string userName;
+int userAge;
+
+// Ask for input
+cout << "What is your name? ";
+cin >> userName;
+
+cout << "How old are you? ";
+cin >> userAge;
+
+// Display what was entered
+cout << "Hello, " << userName << "!" << endl;
+cout << "You are " << userAge << " years old." << endl;
+
+// Calculate based on input
+int birthYear = 2025 - userAge;
+cout << "You were born around " << birthYear << "." << endl;
+</pre>
+        </div>
+        <div class="result-box" id="example3Result">
+            ➡ <strong>Result (if user enters "John" and "20"):</strong><br>What is your name? John<br>How old are you? 20<br>Hello, John!<br>You are 20 years old.<br>You were born around 2005.<br>
+            <em>Explanation:</em> The program waits for user input when it reaches <code>cin</code>. Whatever the user types gets stored in the variable, then can be used in calculations or displayed back.
+        </div>
+    </div>
+
+    <h2>🧠 Interactive Walkthrough: Following Input/Output Code</h2>
+    <p>Watch how the program interacts with the user step-by-step:</p>
+
+    <div class="code-container">
+        <div class="code-header">Active Code (C++)</div>
+        <div class="code-content">
+<pre id="walkthroughCodeBase">
+string name;
+int score;
+// cout << "Enter your name: ";
+// cin >> name;
+// cout << "Enter your score: ";
+// cin >> score;
+// cout << "Hello " << name << ", your score is " << score << endl;
+</pre>
+        </div>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">Variable State</div>
+        <div class="code-content">
+<pre id="walkthroughVariables">name = ?, score = ?</pre>
+        </div>
+        <div class="result-box" id="walkthroughExplanation">
+            <em>Click <strong>Next</strong> to begin the trace (assume user enters "Alice" and "95"):</em>
+        </div>
+        <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
+    </div>
+
+    <h2>🎯 Example 4: Multiple Inputs and Calculations</h2>
+    <p>Getting multiple pieces of information and performing calculations:</p>
+    
+    <div class="code-container">
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example4Toggle" onchange="convertCode('example4')">
+            <label class="form-check-label" for="example4Toggle">Convert to C#</label>
+        </div>
+        <div class="code-content">
+<pre class="codeBlock" id="example4Code">
+int num1, num2, num3;
+
+cout << "=== CALCULATOR ===" << endl;
+cout << "Enter first number: ";
+cin >> num1;
+
+cout << "Enter second number: ";
+cin >> num2;
+
+cout << "Enter third number: ";
+cin >> num3;
+
+// Perform calculations
+int sum = num1 + num2 + num3;
+int average = sum / 3;
+int product = num1 * num2 * num3;
+
+// Display results
+cout << "\n=== RESULTS ===" << endl;
+cout << "Numbers: " << num1 << ", " << num2 << ", " << num3 << endl;
+cout << "Sum: " << sum << endl;
+cout << "Average: " << average << endl;
+cout << "Product: " << product << endl;
+</pre>
+        </div>
+        <div class="result-box" id="example4Result">
+            ➡ <strong>Result (if user enters 10, 20, 30):</strong><br>=== CALCULATOR ===<br>Enter first number: 10<br>Enter second number: 20<br>Enter third number: 30<br><br>=== RESULTS ===<br>Numbers: 10, 20, 30<br>Sum: 60<br>Average: 20<br>Product: 6000<br>
+            <em>Explanation:</em> The program collects three numbers from the user, stores them in variables, then uses those variables in calculations. The results are displayed back to the user.
+        </div>
+    </div>
+
+    <h2>🎯 Example 5: String Input with Spaces</h2>
+    <p>Getting text input that contains spaces (like full names):</p>
+    
+    <div class="code-container">
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example5Toggle" onchange="convertCode('example5')">
+            <label class="form-check-label" for="example5Toggle">Convert to C#</label>
+        </div>
+        <div class="code-content">
+<pre class="codeBlock" id="example5Code">
+// For strings with spaces in C++, we need getline
+string fullName;
+int age;
+
+// Clear input buffer first
+cin.ignore();
+
+cout << "Enter your full name: ";
+getline(cin, fullName);  // Gets entire line including spaces
+
+cout << "Enter your age: ";
+cin >> age;
+
+cout << "\n=== PROFILE ===" << endl;
+cout << "Name: " << fullName << endl;
+cout << "Age: " << age << endl;
+cout << "Initial: " << fullName[0] << endl;  // First character
+</pre>
+        </div>
+        <div class="result-box" id="example5Result">
+            ➡ <strong>Result (if user enters "John Smith" and "30"):</strong><br>Enter your full name: John Smith<br>Enter your age: 30<br><br>=== PROFILE ===<br>Name: John Smith<br>Age: 30<br>Initial: J<br>
+            <em>Explanation:</em> Regular <code>cin >></code> stops at spaces, so for full names we use <code>getline()</code> in C++. C# handles this automatically with <code>ReadLine()</code>.
+        </div>
+    </div>
+
+    <h2>🎯 Example 6: Simple Greeting Program</h2>
+    <p>A complete interactive program using both input and output:</p>
+    
+    <div class="code-container">
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example6Toggle" onchange="convertCode('example6')">
+            <label class="form-check-label" for="example6Toggle">Convert to C#</label>
+        </div>
+        <div class="code-content">
+<pre class="codeBlock" id="example6Code">
+string firstName;
+string lastName;
+int birthYear;
+int currentYear = 2025;
+
+cout << "=== PERSONAL GREETING ===" << endl;
+
+cout << "Enter your first name: ";
+cin >> firstName;
+
+cout << "Enter your last name: ";
+cin >> lastName;
+
+cout << "Enter your birth year: ";
+cin >> birthYear;
+
+// Calculate age
+int age = currentYear - birthYear;
+
+// Create greeting message
+cout << "\n=== WELCOME ===" << endl;
+cout << "Hello, " << firstName << " " << lastName << "!" << endl;
+cout << "You are " << age << " years old." << endl;
+cout << "Nice to meet you!" << endl;
+</pre>
+        </div>
+        <div class="result-box" id="example6Result">
+            ➡ <strong>Result (if user enters "Alex", "Johnson", and "2005"):</strong><br>=== PERSONAL GREETING ===<br>Enter your first name: Alex<br>Enter your last name: Johnson<br>Enter your birth year: 2005<br><br>=== WELCOME ===<br>Hello, Alex Johnson!<br>You are 20 years old.<br>Nice to meet you!<br>
+            <em>Explanation:</em> This complete program collects user information, performs a simple calculation (age), and displays a personalized greeting. All using only input and output operations.
+        </div>
+    </div>
+
+    <h2>⚠️ Common Mistakes to Avoid</h2>
+    <div class="code-container">
+        <div class="code-header">Input/Output Errors and Solutions</div>
+        <div class="code-content">
+<pre>
+// ❌ WRONG: Forgetting to prompt the user
+cin >> age;  // User sees nothing - what should they enter?
+
+// ✅ CORRECT: Always show a prompt first
+cout << "Enter your age: ";
+cin >> age;
+
+// ❌ WRONG: Wrong conversion in C#
+string input = Console.ReadLine();
+int age = input;  // ERROR: Can't assign string to int
+
+// ✅ CORRECT: Convert properly in C#
+string input = Console.ReadLine();
+int age = Convert.ToInt32(input);
+
+// ❌ WRONG: Using wrong operator in C#
+Console.WriteLine("Age: " << age);  // ERROR: C# uses +
+
+// ✅ CORRECT: Use + in C#
+Console.WriteLine("Age: " + age);
+
+// ❌ WRONG: Missing semicolon
+cout << "Hello"  // ERROR: Missing ;
+
+// ✅ CORRECT: Always end statements with ;
+cout << "Hello";
+</pre>
+        </div>
+    </div>
+
+    <h2>🧠 Visual Diagram: Input/Output Flow</h2>
+    
+    <div class="code-container">
+        <div class="code-header">How Programs Communicate with Users</div>
+        <div class="code-content">
+<pre>
+Program Flow:
+1. [Program] → Output: "What's your name?"
+2. [User]    → Input: Types "Alice" and presses Enter
+3. [Program] → Stores "Alice" in 'name' variable
+4. [Program] → Output: "Hello, Alice!"
+5. [Program] → Does calculations with the data
+6. [Program] → Output: Shows results
+
+Memory View:
+Variables store what users enter:
+name = "Alice"
+age = 25
+score = 95
+
+Output combines variables and text:
+"Hello, Alice! You are 25 years old."
+</pre>
+        </div>
+    </div>
+
+    <h2>🔤 Special Characters for Formatting</h2>
+    <div class="code-container">
+        <div class="code-header">Common Escape Sequences</div>
+        <div class="code-content">
+<pre>
+\n      New line           "Line 1\nLine 2"
+\t      Tab (indent)      "Name:\tJohn"
+\\      Backslash         "Path: C:\\Users"
+\"      Double quote      "She said, \"Hi!\""
+\'      Single quote      "It's raining"
+</pre>
+        </div>
+    </div>
+
+    <h2>📊 Input/Output Summary Table</h2>
+    <div class="code-container">
+        <div class="code-header">C++ vs C# Comparison</div>
+        <div class="code-content">
+<pre>
+OPERATION          C++                          C#
+-----------        ---------------------------- -------------------------
+Display text       cout << "Hello" << endl;     Console.WriteLine("Hello");
+Display variable   cout << age;                 Console.WriteLine(age);
+Combine text+var   cout << "Age: " << age;      Console.WriteLine("Age: " + age);
+Get text input     cin >> name;                 name = Console.ReadLine();
+Get number input   cin >> age;                  age = Convert.ToInt32(Console.ReadLine());
+Get line with spaces getline(cin, name);        name = Console.ReadLine();
+New line           endl or "\n"                 "\n" or WriteLine()
+Tab                "\t"                         "\t"
+</pre>
+        </div>
+    </div>
+
+    <h2>🎉 Summary</h2>
+    <ul>
+        <li><strong>Output (<code>cout</code>/<code>Console.WriteLine</code>)</strong> displays information to users</li>
+        <li><strong>Input (<code>cin</code>/<code>Console.ReadLine</code>)</strong> gets information from users</li>
+        <li>Always use <strong>prompts</strong> to tell users what to enter</li>
+        <li>Combine text and variables in output using <code><<</code> (C++) or <code>+</code> (C#)</li>
+        <li>Use <code>getline()</code> for string input with spaces in C++</li>
+        <li>Convert input properly in C# using <code>Convert.ToInt32()</code> etc.</li>
+        <li>Use special characters (<code>\n</code>, <code>\t</code>) to format output</li>
+        <li>Input/output make programs interactive and useful for real tasks</li>
+    </ul>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("Variables", "SP")" class="btn btn-outline-primary ajax-link">← Variables</a>
+        <a href="@Url.Action("IfElse", "SP")" class="btn btn-primary ajax-link">If-Else →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 15px;
+    }
+
+    p, li, code {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    .code-container {
+        margin: 25px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: var(--code-bg);
+    }
+
+    .code-header {
+        background-color: var(--code-header-bg);
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .result-box {
+        padding: 10px 15px;
+        background-color: rgba(0, 123, 255, 0.1);
+        border-top: 1px solid var(--bs-border-color);
+        font-size: 0.95rem;
+    }
+
+    .fade {
+        opacity: 0;
+        transition: opacity 0.25s ease;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 30px;
+    }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        color: #fff;
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        background-color: transparent;
+    }
+</style>
+
+<script>
+    // --- INTERACTIVE WALKTHROUGH DATA ---
+    const fullCodeLines = [
+        'string name;',
+        'int score;',
+        'cout << "Enter your name: "; // ⬅ Run Code Block',
+        'cin >> name;',
+        'cout << "Enter your score: ";',
+        'cin >> score;',
+        'cout << "Hello " << name << ", your score is " << score << endl;'
+    ];
+    
+    const traceSteps = [
+        { line: 0, vars: 'name = ?, score = ?', exp: 'Declares a string variable <code>name</code> to store the user\'s name.' },
+        { line: 1, vars: 'name = ?, score = ?', exp: 'Declares an integer variable <code>score</code> to store the user\'s score.' },
+        { line: 2, vars: 'name = ?, score = ?', exp: 'Displays prompt: "Enter your name: " (User sees this).' },
+        { line: 3, vars: 'name = "Alice", score = ?', exp: 'Waits for user input. User types "Alice" and presses Enter. Value "Alice" is stored in <code>name</code>.' },
+        { line: 4, vars: 'name = "Alice", score = ?', exp: 'Displays prompt: "Enter your score: " (User sees this).' },
+        { line: 5, vars: 'name = "Alice", score = 95', exp: 'Waits for user input. User types "95" and presses Enter. Value 95 is stored in <code>score</code>.' },
+        { line: 6, vars: 'name = "Alice", score = 95', exp: 'Displays: "Hello Alice, your score is 95". Uses the values stored in the variables.' }
+    ];
+    
+    // --- WALKTHROUGH LOGIC ---
+    let currentTraceStep = 0;
+    const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
+    const walkthroughVariables = document.getElementById('walkthroughVariables');
+    const walkthroughExplanation = document.getElementById('walkthroughExplanation');
+    const nextStepBtn = document.getElementById('nextStepBtn');
+
+    function updateWalkthrough(step) {
+        const data = traceSteps[step];
+        let codeContent = '';
+        const activeLineIndex = data.line;
+        
+        fullCodeLines.forEach((line, index) => {
+            if (index === activeLineIndex) {
+                codeContent += `<span style="background-color: yellow; color: black;">${line.replace('// ⬅ Run Code Block', '⬅ ACTIVE')}</span>\n`;
+            } else if (line.includes('// ⬅ Run Code Block')) {
+                codeContent += `// ${line.replace('// ⬅ Run Code Block', '').trim()}\n`;
+            } else if (activeLineIndex >= 2 && activeLineIndex <= 6 && index < 2) {
+                codeContent += `${line}\n`;
+            } else if (index !== activeLineIndex) {
+                codeContent += `// ${line.trim()}\n`;
+            }
+        });
+        
+        walkthroughCodeBase.innerHTML = codeContent;
+        walkthroughVariables.textContent = data.vars;
+        walkthroughExplanation.innerHTML = `<em>Explanation:</em> ${data.exp}`;
+        
+        if (step === traceSteps.length - 1) {
+            walkthroughExplanation.innerHTML += '<br><strong>Trace finished! Program displays: "Hello Alice, your score is 95"</strong>';
+            nextStepBtn.disabled = true;
+        }
+    }
+
+    nextStepBtn.addEventListener('click', () => {
+        if (currentTraceStep < traceSteps.length) {
+            updateWalkthrough(currentTraceStep);
+            currentTraceStep++;
+        }
+    });
+
+    const cppSnippets = {
+        example1: `// Simple text output
+cout << "Welcome to Programming!" << endl;
+cout << "This is line 1." << endl;
+cout << "This is line 2." << endl;
+
+// Text with special characters
+cout << "Use \\n for new line: First line\nSecond line" << endl;
+cout << "Use \\t for tab: Name:\tJohn" << endl;
+cout << "Quotes: She said, \"Hello!\"" << endl;`,
+        example2: `string name = "Sarah";
+int age = 25;
+float height = 1.68;
+bool isStudent = true;
+
+// Displaying variable values
+cout << "Name: " << name << endl;
+cout << "Age: " << age << " years" << endl;
+cout << "Height: " << height << " meters" << endl;
+cout << "Student: " << (isStudent ? "Yes" : "No") << endl;
+
+// Multiple variables in one line
+cout << name << " is " << age << " years old and " << height << " meters tall." << endl;`,
+        example3: `string userName;
+int userAge;
+
+// Ask for input
+cout << "What is your name? ";
+cin >> userName;
+
+cout << "How old are you? ";
+cin >> userAge;
+
+// Display what was entered
+cout << "Hello, " << userName << "!" << endl;
+cout << "You are " << userAge << " years old." << endl;
+
+// Calculate based on input
+int birthYear = 2025 - userAge;
+cout << "You were born around " << birthYear << "." << endl;`,
+        example4: `int num1, num2, num3;
+
+cout << "=== CALCULATOR ===" << endl;
+cout << "Enter first number: ";
+cin >> num1;
+
+cout << "Enter second number: ";
+cin >> num2;
+
+cout << "Enter third number: ";
+cin >> num3;
+
+// Perform calculations
+int sum = num1 + num2 + num3;
+int average = sum / 3;
+int product = num1 * num2 * num3;
+
+// Display results
+cout << "\n=== RESULTS ===" << endl;
+cout << "Numbers: " << num1 << ", " << num2 << ", " << num3 << endl;
+cout << "Sum: " << sum << endl;
+cout << "Average: " << average << endl;
+cout << "Product: " << product << endl;`,
+        example5: `// For strings with spaces in C++, we need getline
+string fullName;
+int age;
+
+// Clear input buffer first
+cin.ignore();
+
+cout << "Enter your full name: ";
+getline(cin, fullName);  // Gets entire line including spaces
+
+cout << "Enter your age: ";
+cin >> age;
+
+cout << "\n=== PROFILE ===" << endl;
+cout << "Name: " << fullName << endl;
+cout << "Age: " << age << endl;
+cout << "Initial: " << fullName[0] << endl;  // First character`,
+        example6: `string firstName;
+string lastName;
+int birthYear;
+int currentYear = 2025;
+
+cout << "=== PERSONAL GREETING ===" << endl;
+
+cout << "Enter your first name: ";
+cin >> firstName;
+
+cout << "Enter your last name: ";
+cin >> lastName;
+
+cout << "Enter your birth year: ";
+cin >> birthYear;
+
+// Calculate age
+int age = currentYear - birthYear;
+
+// Create greeting message
+cout << "\n=== WELCOME ===" << endl;
+cout << "Hello, " << firstName << " " << lastName << "!" << endl;
+cout << "You are " << age << " years old." << endl;
+cout << "Nice to meet you!" << endl;`
+    };
+
+    const csharpSnippets = {
+        example1: `// Simple text output
+Console.WriteLine("Welcome to Programming!");
+Console.WriteLine("This is line 1.");
+Console.WriteLine("This is line 2.");
+
+// Text with special characters
+Console.WriteLine("Use \\n for new line: First line\nSecond line");
+Console.WriteLine("Use \\t for tab: Name:\tJohn");
+Console.WriteLine("Quotes: She said, \"Hello!\"");`,
+        example2: `string name = "Sarah";
+int age = 25;
+float height = 1.68f;
+bool isStudent = true;
+
+// Displaying variable values
+Console.WriteLine("Name: " + name);
+Console.WriteLine("Age: " + age + " years");
+Console.WriteLine("Height: " + height + " meters");
+Console.WriteLine("Student: " + (isStudent ? "Yes" : "No"));
+
+// Multiple variables in one line
+Console.WriteLine(name + " is " + age + " years old and " + height + " meters tall.");`,
+        example3: `string userName;
+int userAge;
+
+// Ask for input
+Console.Write("What is your name? ");
+userName = Console.ReadLine();
+
+Console.Write("How old are you? ");
+userAge = Convert.ToInt32(Console.ReadLine());
+
+// Display what was entered
+Console.WriteLine("Hello, " + userName + "!");
+Console.WriteLine("You are " + userAge + " years old.");
+
+// Calculate based on input
+int birthYear = 2025 - userAge;
+Console.WriteLine("You were born around " + birthYear + ".");`,
+        example4: `int num1, num2, num3;
+
+Console.WriteLine("=== CALCULATOR ===");
+Console.Write("Enter first number: ");
+num1 = Convert.ToInt32(Console.ReadLine());
+
+Console.Write("Enter second number: ");
+num2 = Convert.ToInt32(Console.ReadLine());
+
+Console.Write("Enter third number: ");
+num3 = Convert.ToInt32(Console.ReadLine());
+
+// Perform calculations
+int sum = num1 + num2 + num3;
+int average = sum / 3;
+int product = num1 * num2 * num3;
+
+// Display results
+Console.WriteLine("\n=== RESULTS ===");
+Console.WriteLine("Numbers: " + num1 + ", " + num2 + ", " + num3);
+Console.WriteLine("Sum: " + sum);
+Console.WriteLine("Average: " + average);
+Console.WriteLine("Product: " + product);`,
+        example5: `// C# handles spaces automatically with ReadLine
+string fullName;
+int age;
+
+Console.Write("Enter your full name: ");
+fullName = Console.ReadLine();  // Gets entire line including spaces
+
+Console.Write("Enter your age: ");
+age = Convert.ToInt32(Console.ReadLine());
+
+Console.WriteLine("\n=== PROFILE ===");
+Console.WriteLine("Name: " + fullName);
+Console.WriteLine("Age: " + age);
+Console.WriteLine("Initial: " + fullName[0]);  // First character`,
+        example6: `string firstName;
+string lastName;
+int birthYear;
+int currentYear = 2025;
+
+Console.WriteLine("=== PERSONAL GREETING ===");
+
+Console.Write("Enter your first name: ");
+firstName = Console.ReadLine();
+
+Console.Write("Enter your last name: ");
+lastName = Console.ReadLine();
+
+Console.Write("Enter your birth year: ");
+birthYear = Convert.ToInt32(Console.ReadLine());
+
+// Calculate age
+int age = currentYear - birthYear;
+
+// Create greeting message
+Console.WriteLine("\n=== WELCOME ===");
+Console.WriteLine("Hello, " + firstName + " " + lastName + "!");
+Console.WriteLine("You are " + age + " years old.");
+Console.WriteLine("Nice to meet you!");`
+    };
+
+    function convertCode(id) {
+        const toggle = document.getElementById(id + "Toggle");
+        const isCSharp = toggle.checked;
+        const codeBlock = document.getElementById(id + "Code");
+
+        codeBlock.classList.add("fade");
+        setTimeout(() => {
+            codeBlock.textContent = isCSharp ? csharpSnippets[id] : cppSnippets[id];
+            codeBlock.classList.remove("fade");
+        }, 250);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        convertCode('example1');
+        convertCode('example2');
+        convertCode('example3');
+        convertCode('example4');
+        convertCode('example5');
+        convertCode('example6');
+        
+        updateWalkthrough(0); 
+        currentTraceStep = 1;
+    });
+</script>

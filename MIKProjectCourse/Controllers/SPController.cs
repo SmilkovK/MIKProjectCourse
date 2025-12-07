@@ -28,5 +28,9 @@ namespace MIKProjectCourse.Controllers
         {
             return View();
         }
+        public IActionResult InputOutput()
+        {
+            return View();
+        }
     }
 }

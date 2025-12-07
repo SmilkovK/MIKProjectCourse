@@ -4,181 +4,319 @@
 
 <body data-topic="ifelse">
     <div class="container">
-        <h1 class="mb-4">🔀 If - Else</h1>
+        <h1 class="mb-4">🔀 If - Else: Making Decisions in Code</h1>
 
-        <p><strong>If - Else</strong> statements allow your program to <strong>make decisions</strong>. They tell your computer: “If this is true, do this. Otherwise, do something else.”</p>
+        <p><strong>If-Else statements</strong> are the decision-makers of programming. They allow your program to <strong>choose different paths</strong> based on conditions, just like you make decisions in daily life.</p>
 
-        <p>You already use this logic in real life:</p>
+        <p>You already use this logic every day:</p>
         <ul>
-            <li>If it rains → take an umbrella</li>
-            <li>If you are hungry → eat</li>
+            <li>If it's raining → take an umbrella</li>
+            <li>If you're hungry → eat something</li>
+            <li>If the traffic light is red → stop</li>
             <li>If it's your birthday → celebrate!</li>
         </ul>
 
-        <h2>📘 What is an If Statement?</h2>
-        <p>An <strong>if</strong> checks a condition. If the condition is true, the code inside the block runs.</p>
+        <h2>📘 The Basic Structure</h2>
+        <p>An <strong>if statement</strong> checks a condition inside parentheses <code>()</code>. If the condition is true, the code inside the curly braces <code>{}</code> runs.</p>
 
         <div class="code-container">
-            <div class="code-header">Basic Example</div>
+            <div class="code-header">If Statement Syntax</div>
             <div class="code-content">
 <pre>
 if (condition) {
-    // code that runs if the condition is true
+    // Code that runs ONLY if condition is true
 }
 </pre>
             </div>
         </div>
 
-        <h2>📘 What is an Else Statement?</h2>
-        <p><strong>else</strong> runs only when the condition in <strong>if</strong> is NOT true.</p>
-
         <div class="code-container">
-            <div class="code-header">If + Else Example</div>
+            <div class="code-header">If-Else Statement Syntax</div>
             <div class="code-content">
 <pre>
 if (condition) {
-    // true branch
+    // Code that runs if condition is TRUE
 } else {
-    // false branch
+    // Code that runs if condition is FALSE
 }
 </pre>
             </div>
         </div>
 
-        <h2>🎯 Real Example: Teenager Check</h2>
-        <p>If the person is 13 or older → they are a teenager.</p>
-
+        <h2>🎯 Example 1: Basic Age Check</h2>
+        <p>Checking if someone is old enough to vote:</p>
+        
         <div class="code-container">
             <div class="form-check form-switch mb-2">
-                <input class="form-check-input" type="checkbox" id="teenagerToggle" onchange="convertCode('teenager')">
-                <label class="form-check-label" for="teenagerToggle">Convert to C#</label>
+                <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="convertCode('example1')">
+                <label class="form-check-label" for="example1Toggle">Convert to C#</label>
             </div>
             <div class="code-content">
-<pre class="codeBlock" id="teenagerCode">
-int age = 14;
-if (age >= 13) {
-    cout << "You are a teenager!";
-} else {
-    cout << "You are not a teenager.";
-}
-</pre>
-            </div>
-            <div class="result-box" id="teenagerResult">
-                ➡ <strong>Result:</strong> You are a teenager!<br>
-                <em>Explanation:</em> The variable <code>age</code> is 14, which is greater than or equal to 13, so the code inside the <strong>if</strong> block runs.
-            </div>
-        </div>
-
-        <h2>🟦 Only If (No Else)</h2>
-        <p>Sometimes you only want to run code when something is true.</p>
-
-        <div class="code-container">
-            <div class="form-check form-switch mb-2">
-                <input class="form-check-input" type="checkbox" id="ifOnlyToggle" onchange="convertCode('ifonly')">
-                <label class="form-check-label" for="ifOnlyToggle">Convert to C#</label>
-            </div>
-            <div class="code-content">
-<pre class="codeBlock" id="ifOnlyCode">
+<pre class="codeBlock" id="example1Code">
 int age = 20;
-if (age > 18) {
-    cout << "You can vote!";
+
+if (age >= 18) {
+    cout << "You can vote!" << endl;
+} else {
+    cout << "You cannot vote yet." << endl;
 }
 </pre>
             </div>
-            <div class="result-box" id="ifOnlyResult">
+            <div class="result-box" id="example1Result">
                 ➡ <strong>Result:</strong> You can vote!<br>
-                <em>Explanation:</em> The variable <code>age</code> is 20, which is greater than 18, so the <strong>if</strong> block executes.
+                <em>Explanation:</em> The condition <code>age >= 18</code> is true (20 ≥ 18), so the code inside the <strong>if</strong> block runs.
             </div>
         </div>
 
-        <h2>🟨 Multiple Conditions (Else If)</h2>
-        <p>Use <strong>else if</strong> when you need more than two choices.</p>
-
+        <h2>🎯 Example 2: Simple If (No Else)</h2>
+        <p>Sometimes you only want to do something when a condition is true, and do nothing when it's false.</p>
+        
         <div class="code-container">
             <div class="form-check form-switch mb-2">
-                <input class="form-check-input" type="checkbox" id="elseifToggle" onchange="convertCode('elseif')">
-                <label class="form-check-label" for="elseifToggle">Convert to C#</label>
+                <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="convertCode('example2')">
+                <label class="form-check-label" for="example2Toggle">Convert to C#</label>
             </div>
             <div class="code-content">
-<pre class="codeBlock" id="elseifCode">
+<pre class="codeBlock" id="example2Code">
+int score = 85;
+int passingScore = 60;
+
+if (score >= passingScore) {
+    cout << "Congratulations! You passed!" << endl;
+}
+
+// This code runs regardless of the if statement
+cout << "Your score: " << score << endl;
+</pre>
+            </div>
+            <div class="result-box" id="example2Result">
+                ➡ <strong>Result:</strong><br>Congratulations! You passed!<br>Your score: 85<br>
+                <em>Explanation:</em> Since 85 ≥ 60, the congratulatory message prints. The second line always prints because it's outside the if block.
+            </div>
+        </div>
+
+        <h2>🧠 Interactive Walkthrough: Following the Decision</h2>
+        <p>Watch how the program makes a decision step-by-step:</p>
+
+        <div class="code-container">
+            <div class="code-header">Active Code (C++)</div>
+            <div class="code-content">
+<pre id="walkthroughCodeBase">
+int temperature = 25;
+// if (temperature > 20) {
+//     cout << "Nice weather!" << endl;
+// } else {
+//     cout << "It's cold!" << endl;
+// }
+</pre>
+            </div>
+        </div>
+
+        <div class="code-container">
+            <div class="code-header">Variable State</div>
+            <div class="code-content">
+<pre id="walkthroughVariables">temperature = 25</pre>
+            </div>
+            <div class="result-box" id="walkthroughExplanation">
+                <em>Click <strong>Next</strong> to begin the trace:</em>
+            </div>
+            <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
+        </div>
+
+        <h2>🎯 Example 3: Multiple Conditions (Else If)</h2>
+        <p>When you have more than two possible outcomes, use <strong>else if</strong> to check additional conditions.</p>
+        
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="convertCode('example3')">
+                <label class="form-check-label" for="example3Toggle">Convert to C#</label>
+            </div>
+            <div class="code-content">
+<pre class="codeBlock" id="example3Code">
 int grade = 85;
 
 if (grade >= 90) {
-    cout << "Excellent!";
+    cout << "Grade: A - Excellent!" << endl;
 }
-else if (grade >= 75) {
-    cout << "Good job!";
+else if (grade >= 80) {
+    cout << "Grade: B - Very Good!" << endl;
+}
+else if (grade >= 70) {
+    cout << "Grade: C - Good!" << endl;
 }
 else if (grade >= 60) {
-    cout << "You passed!";
+    cout << "Grade: D - Pass" << endl;
 }
 else {
-    cout << "Try again!";
+    cout << "Grade: F - Try again!" << endl;
 }
 </pre>
             </div>
-            <div class="result-box" id="elseifResult">
-                ➡ <strong>Result:</strong> Good job!<br>
-                <em>Explanation:</em> <code>grade</code> is 85, which is >= 75 but < 90, so the second <strong>else if</strong> block runs.
+            <div class="result-box" id="example3Result">
+                ➡ <strong>Result:</strong> Grade: B - Very Good!<br>
+                <em>Explanation:</em> The program checks conditions from top to bottom. Since 85 ≥ 80 but < 90, it executes the second <strong>else if</strong> block and stops checking other conditions.
             </div>
         </div>
 
-        <h2>📚 Example: Checking Temperature</h2>
-
+        <h2>🎯 Example 4: Temperature Check</h2>
+        <p>A practical example using temperature ranges:</p>
+        
         <div class="code-container">
             <div class="form-check form-switch mb-2">
-                <input class="form-check-input" type="checkbox" id="tempToggle" onchange="convertCode('temp')">
-                <label class="form-check-label" for="tempToggle">Convert to C#</label>
+                <input class="form-check-input" type="checkbox" id="example4Toggle" onchange="convertCode('example4')">
+                <label class="form-check-label" for="example4Toggle">Convert to C#</label>
             </div>
             <div class="code-content">
-<pre class="codeBlock" id="tempCode">
-int temp = 30;
+<pre class="codeBlock" id="example4Code">
+int temperature = 30;
 
-if (temp > 35) {
-    cout << "It's very hot!";
+if (temperature > 35) {
+    cout << "It's very hot! Stay hydrated." << endl;
 }
-else if (temp > 20) {
-    cout << "Nice weather!";
+else if (temperature > 25) {
+    cout << "Nice and warm. Perfect weather!" << endl;
 }
-else if (temp > 5) {
-    cout << "It's cold!";
+else if (temperature > 15) {
+    cout << "Pleasant weather. Enjoy!" << endl;
+}
+else if (temperature > 0) {
+    cout << "It's cold. Wear a jacket." << endl;
 }
 else {
-    cout << "It's freezing!";
+    cout << "Freezing! Stay warm." << endl;
 }
 </pre>
             </div>
-            <div class="result-box" id="tempResult">
-                ➡ <strong>Result:</strong> Nice weather!<br>
-                <em>Explanation:</em> <code>temp</code> is 30, which is > 20 but ≤ 35, so the second <strong>else if</strong> block runs.
+            <div class="result-box" id="example4Result">
+                ➡ <strong>Result:</strong> Nice and warm. Perfect weather!<br>
+                <em>Explanation:</em> Temperature is 30°C. Since 30 > 25 but ≤ 35, the second <strong>else if</strong> block executes.
             </div>
         </div>
 
-        <h2>🧠 Visual Diagram</h2>
-
+        <h2>🎯 Example 5: String Comparisons</h2>
+        <p>You can also compare text (strings) in conditions:</p>
+        
         <div class="code-container">
-            <div class="code-header">Decision Flow</div>
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example5Toggle" onchange="convertCode('example5')">
+                <label class="form-check-label" for="example5Toggle">Convert to C#</label>
+            </div>
+            <div class="code-content">
+<pre class="codeBlock" id="example5Code">
+string day = "Saturday";
+
+if (day == "Saturday" || day == "Sunday") {
+    cout << "It's the weekend! Time to relax." << endl;
+} else if (day == "Friday") {
+    cout << "TGIF! Almost weekend." << endl;
+} else {
+    cout << "It's a weekday. Time to work!" << endl;
+}
+</pre>
+            </div>
+            <div class="result-box" id="example5Result">
+                ➡ <strong>Result:</strong> It's the weekend! Time to relax.<br>
+                <em>Explanation:</em> The <code>||</code> means "OR". The condition is true if day equals "Saturday" OR "Sunday". Since day is "Saturday", the first block runs.
+            </div>
+        </div>
+
+        <h2>🎯 Example 6: Complex Conditions</h2>
+        <p>Using logical operators (<code>&&</code> for AND, <code>||</code> for OR) to create more complex conditions:</p>
+        
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example6Toggle" onchange="convertCode('example6')">
+                <label class="form-check-label" for="example6Toggle">Convert to C#</label>
+            </div>
+            <div class="code-content">
+<pre class="codeBlock" id="example6Code">
+int age = 16;
+bool hasPermission = true;
+
+// Check multiple conditions with &&
+if (age >= 18) {
+    cout << "You can watch any movie." << endl;
+}
+else if (age >= 13 && hasPermission) {
+    cout << "You can watch PG-13 movies with permission." << endl;
+}
+else if (age >= 13) {
+    cout << "You need permission for PG-13 movies." << endl;
+}
+else {
+    cout << "You can only watch PG movies." << endl;
+}
+</pre>
+            </div>
+            <div class="result-box" id="example6Result">
+                ➡ <strong>Result:</strong> You can watch PG-13 movies with permission.<br>
+                <em>Explanation:</em> <code>&&</code> means "AND". The condition <code>age >= 13 && hasPermission</code> is true because both parts are true (16 ≥ 13 AND hasPermission is true).
+            </div>
+        </div>
+
+        <h2>🧠 Visual Diagram: Decision Flow</h2>
+        
+        <div class="code-container">
+            <div class="code-header">If-Else-If Decision Tree</div>
             <div class="code-content">
 <pre>
-         [Condition True?]
+         [Check First Condition]
                 |
-          Yes /   \ No
+          True / \ False
           |         |
-   Run IF code   Run ELSE code
+   [Execute If Block]  [Check Else If Condition]
+                           |
+                    True / \ False
+                    |         |
+           [Execute Else If]  [Check Next Else If...]
+                                     |
+                              ... → [Execute Else Block]
+</pre>
+            </div>
+        </div>
+
+        <h2>⚠️ Common Mistakes to Avoid</h2>
+        <div class="code-container">
+            <div class="code-header">Error Examples</div>
+            <div class="code-content">
+<pre>
+// ❌ WRONG: Using = instead of == for comparison
+if (age = 18) {  // This ASSIGNS 18 to age, doesn't compare!
+    cout << "You're 18";
+}
+
+// ✅ CORRECT: Use == for comparison
+if (age == 18) {
+    cout << "You're 18";
+}
+
+// ❌ WRONG: Missing braces for multiple statements
+if (score > 50)
+    cout << "Good job!";
+    cout << "Keep it up!";  // This ALWAYS runs!
+
+// ✅ CORRECT: Use braces for multiple statements
+if (score > 50) {
+    cout << "Good job!";
+    cout << "Keep it up!";
+}
 </pre>
             </div>
         </div>
 
         <h2>🎉 Summary</h2>
         <ul>
-            <li><strong>If</strong> runs only when a condition is true</li>
-            <li><strong>Else</strong> runs when false</li>
-            <li><strong>Else if</strong> checks more possibilities</li>
-            <li>Used for decisions like age, temperature, grades…</li>
+            <li><strong>If statements</strong> run code only when a condition is true</li>
+            <li><strong>Else statements</strong> provide an alternative when the condition is false</li>
+            <li><strong>Else if statements</strong> allow multiple conditions to be checked in order</li>
+            <li>Use <strong>comparison operators</strong>: <code>==</code> (equal), <code>!=</code> (not equal), <code>></code>, <code><</code>, <code>>=</code>, <code><=</code></li>
+            <li>Use <strong>logical operators</strong>: <code>&&</code> (AND), <code>||</code> (OR) for complex conditions</li>
+            <li>Always use <strong>braces <code>{}</code></strong> for code blocks, especially with multiple statements</li>
+            <li>Conditions are checked <strong>from top to bottom</strong> - the first true condition wins</li>
         </ul>
 
         <div class="navigation-buttons">
-            <a href="@Url.Action("Variables", "SP")" class="btn btn-outline-primary ajax-link">⬅ Variables</a>
+            <a href="@Url.Action("InputOutput", "SP")" class="btn btn-outline-primary ajax-link">← Input - Output</a>
             <a href="@Url.Action("ForLoops", "SP")" class="btn btn-primary ajax-link">For Loops →</a>
         </div>
     </div>
@@ -268,97 +406,241 @@ else {
     </style>
 
     <script>
+        // --- INTERACTIVE WALKTHROUGH DATA ---
+        const fullCodeLines = [
+            'int temperature = 25;',
+            'if (temperature > 20) {',
+            '    cout << "Nice weather!" << endl; // ⬅ Run Code Block',
+            '} else {',
+            '    cout << "It\'s cold!" << endl;',
+            '}'
+        ];
+        
+        const traceSteps = [
+            { line: 0, vars: 'temperature = 25', exp: 'Sets the temperature variable to 25.' },
+            { line: 1, vars: 'temperature = 25', exp: 'Checks condition: is <code>temperature > 20</code>? 25 > 20 is <strong>TRUE</strong>.' },
+            { line: 2, vars: 'temperature = 25', exp: 'Condition is TRUE, so this code runs. Prints "Nice weather!"' },
+            { line: 4, vars: 'temperature = 25', exp: 'Skips the else block because the if condition was true.' }
+        ];
+        
+        let currentTraceStep = 0;
+        const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
+        const walkthroughVariables = document.getElementById('walkthroughVariables');
+        const walkthroughExplanation = document.getElementById('walkthroughExplanation');
+        const nextStepBtn = document.getElementById('nextStepBtn');
+
+        function updateWalkthrough(step) {
+            const data = traceSteps[step];
+            let codeContent = '';
+            const activeLineIndex = data.line;
+            
+            fullCodeLines.forEach((line, index) => {
+                if (index === activeLineIndex) {
+                    codeContent += `<span style="background-color: yellow; color: black;">${line.replace('// ⬅ Run Code Block', '⬅ ACTIVE')}</span>\n`;
+                } else if (line.includes('// ⬅ Run Code Block')) {
+                    codeContent += `// ${line.replace('// ⬅ Run Code Block', '').trim()}\n`;
+                } else if (index === 1 && activeLineIndex !== 1 && activeLineIndex !== 2) {
+                    codeContent += `// ${line.trim()}\n`;
+                } else if (index > 1 && activeLineIndex < 2) {
+                    codeContent += `// ${line.trim()}\n`;
+                } else if (index !== activeLineIndex) {
+                    codeContent += `${line}\n`;
+                }
+            });
+            
+            walkthroughCodeBase.innerHTML = codeContent;
+            walkthroughVariables.textContent = data.vars;
+            walkthroughExplanation.innerHTML = `<em>Explanation:</em> ${data.exp}`;
+            
+            if (step === traceSteps.length - 1) {
+                walkthroughExplanation.innerHTML += '<br><strong>Trace finished! Output: "Nice weather!"</strong>';
+                nextStepBtn.disabled = true;
+            }
+        }
+
+        nextStepBtn.addEventListener('click', () => {
+            if (currentTraceStep < traceSteps.length) {
+                updateWalkthrough(currentTraceStep);
+                currentTraceStep++;
+            }
+        });
+
         const cppSnippets = {
-            teenager: `int age = 14;
-if (age >= 13) {
-    cout << "You are a teenager!";
+            example1: `int age = 20;
+
+if (age >= 18) {
+    cout << "You can vote!" << endl;
 } else {
-    cout << "You are not a teenager.";
+    cout << "You cannot vote yet." << endl;
 }`,
-            ifonly: `int age = 20;
-if (age > 18) {
-    cout << "You can vote!";
-}`,
-            elseif: `int grade = 85;
+            example2: `int score = 85;
+int passingScore = 60;
+
+if (score >= passingScore) {
+    cout << "Congratulations! You passed!" << endl;
+}
+
+// This code runs regardless of the if statement
+cout << "Your score: " << score << endl;`,
+            example3: `int grade = 85;
 
 if (grade >= 90) {
-    cout << "Excellent!";
+    cout << "Grade: A - Excellent!" << endl;
 }
-else if (grade >= 75) {
-    cout << "Good job!";
+else if (grade >= 80) {
+    cout << "Grade: B - Very Good!" << endl;
+}
+else if (grade >= 70) {
+    cout << "Grade: C - Good!" << endl;
 }
 else if (grade >= 60) {
-    cout << "You passed!";
+    cout << "Grade: D - Pass" << endl;
 }
 else {
-    cout << "Try again!";
+    cout << "Grade: F - Try again!" << endl;
 }`,
-            temp: `int temp = 30;
+            example4: `int temperature = 30;
 
-if (temp > 35) {
-    cout << "It's very hot!";
+if (temperature > 35) {
+    cout << "It's very hot! Stay hydrated." << endl;
 }
-else if (temp > 20) {
-    cout << "Nice weather!";
+else if (temperature > 25) {
+    cout << "Nice and warm. Perfect weather!" << endl;
 }
-else if (temp > 5) {
-    cout << "It's cold!";
+else if (temperature > 15) {
+    cout << "Pleasant weather. Enjoy!" << endl;
+}
+else if (temperature > 0) {
+    cout << "It's cold. Wear a jacket." << endl;
 }
 else {
-    cout << "It's freezing!";
+    cout << "Freezing! Stay warm." << endl;
+}`,
+            example5: `string day = "Saturday";
+
+if (day == "Saturday" || day == "Sunday") {
+    cout << "It's the weekend! Time to relax." << endl;
+} else if (day == "Friday") {
+    cout << "TGIF! Almost weekend." << endl;
+} else {
+    cout << "It's a weekday. Time to work!" << endl;
+}`,
+            example6: `int age = 16;
+bool hasPermission = true;
+
+// Check multiple conditions with &&
+if (age >= 18) {
+    cout << "You can watch any movie." << endl;
+}
+else if (age >= 13 && hasPermission) {
+    cout << "You can watch PG-13 movies with permission." << endl;
+}
+else if (age >= 13) {
+    cout << "You need permission for PG-13 movies." << endl;
+}
+else {
+    cout << "You can only watch PG movies." << endl;
 }`
         };
 
         const csharpSnippets = {
-            teenager: `int age = 14;
-if (age >= 13)
+            example1: `int age = 20;
+
+if (age >= 18)
 {
-    Console.WriteLine("You are a teenager!");
+    Console.WriteLine("You can vote!");
 }
 else
 {
-    Console.WriteLine("You are not a teenager.");
+    Console.WriteLine("You cannot vote yet.");
 }`,
-            ifonly: `int age = 20;
-if (age > 18)
+            example2: `int score = 85;
+int passingScore = 60;
+
+if (score >= passingScore)
 {
-    Console.WriteLine("You can vote!");
-}`,
-            elseif: `int grade = 85;
+    Console.WriteLine("Congratulations! You passed!");
+}
+
+// This code runs regardless of the if statement
+Console.WriteLine("Your score: " + score);`,
+            example3: `int grade = 85;
 
 if (grade >= 90)
 {
-    Console.WriteLine("Excellent!");
+    Console.WriteLine("Grade: A - Excellent!");
 }
-else if (grade >= 75)
+else if (grade >= 80)
 {
-    Console.WriteLine("Good job!");
+    Console.WriteLine("Grade: B - Very Good!");
+}
+else if (grade >= 70)
+{
+    Console.WriteLine("Grade: C - Good!");
 }
 else if (grade >= 60)
 {
-    Console.WriteLine("You passed!");
+    Console.WriteLine("Grade: D - Pass");
 }
 else
 {
-    Console.WriteLine("Try again!");
+    Console.WriteLine("Grade: F - Try again!");
 }`,
-            temp: `int temp = 30;
+            example4: `int temperature = 30;
 
-if (temp > 35)
+if (temperature > 35)
 {
-    Console.WriteLine("It's very hot!");
+    Console.WriteLine("It's very hot! Stay hydrated.");
 }
-else if (temp > 20)
+else if (temperature > 25)
 {
-    Console.WriteLine("Nice weather!");
+    Console.WriteLine("Nice and warm. Perfect weather!");
 }
-else if (temp > 5)
+else if (temperature > 15)
 {
-    Console.WriteLine("It's cold!");
+    Console.WriteLine("Pleasant weather. Enjoy!");
+}
+else if (temperature > 0)
+{
+    Console.WriteLine("It's cold. Wear a jacket.");
 }
 else
 {
-    Console.WriteLine("It's freezing!");
+    Console.WriteLine("Freezing! Stay warm.");
+}`,
+            example5: `string day = "Saturday";
+
+if (day == "Saturday" || day == "Sunday")
+{
+    Console.WriteLine("It's the weekend! Time to relax.");
+}
+else if (day == "Friday")
+{
+    Console.WriteLine("TGIF! Almost weekend.");
+}
+else
+{
+    Console.WriteLine("It's a weekday. Time to work!");
+}`,
+            example6: `int age = 16;
+bool hasPermission = true;
+
+// Check multiple conditions with &&
+if (age >= 18)
+{
+    Console.WriteLine("You can watch any movie.");
+}
+else if (age >= 13 && hasPermission)
+{
+    Console.WriteLine("You can watch PG-13 movies with permission.");
+}
+else if (age >= 13)
+{
+    Console.WriteLine("You need permission for PG-13 movies.");
+}
+else
+{
+    Console.WriteLine("You can only watch PG movies.");
 }`
         };
 
@@ -373,5 +655,17 @@ else
                 codeBlock.classList.remove("fade");
             }, 250);
         }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            convertCode('example1');
+            convertCode('example2');
+            convertCode('example3');
+            convertCode('example4');
+            convertCode('example5');
+            convertCode('example6');
+            
+            updateWalkthrough(0); 
+            currentTraceStep = 1;
+        });
     </script>
 </body>

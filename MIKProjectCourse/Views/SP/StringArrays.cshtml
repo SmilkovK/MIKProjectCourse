@@ -2,140 +2,583 @@
     ViewData["Title"] = "String Arrays";
 }
 
-<div class="container">
-    <h1>String Arrays</h1>
-    <p>A string array holds a list of words or names.</p>
+<body data-topic="stringarrays">
+    <div class="container">
+        <h1 class="mb-4">📝 String Arrays: Working with Text Collections</h1>
+        
+        <p><strong>String arrays</strong> are special arrays that store collections of text (words, names, sentences) instead of numbers. They're perfect for managing lists of names, menu options, or any group of text items.</p>
 
-    <h2>Example: List of fruits</h2>
+        <h2>📘 What are String Arrays?</h2>
+        <p>A string array is like a list of labeled boxes, where each box contains a piece of text. Just like with number arrays, we use <strong>indexes</strong> starting from 0 to access each item.</p>
 
-    <div class="form-check form-switch mb-3">
-        <input class="form-check-input" type="checkbox" id="languageToggle" onchange="convertCode()">
-        <label class="form-check-label" for="languageToggle">Convert to C#</label>
-    </div>
-
-    <div class="code-container">
-        <div class="code-header">Code Example</div>
-        <div class="code-content">
-<pre id="codeBlock">
-string fruits[3] = {"Apple", "Banana", "Cherry"};
-cout << fruits[0];
-</pre>
-        </div>
-    </div>
-
-    <p><code>fruits[0]</code> gives you "Apple"</p>
-
-    <h2>Loop through all the fruits:</h2>
-
-    <div class="code-container">
-        <div class="code-header">Code Example</div>
-        <div class="code-content">
+        <div class="code-container">
+            <div class="code-header">Visual Representation</div>
+            <div class="code-content">
 <pre>
-for (int i = 0; i < 3; i++)
-{
-    cout << fruits[i] << endl;
+Index:      [0]        [1]        [2]        [3]
+Content:  "Apple"   "Banana"   "Cherry"   "Date"
+Access:   fruits[0] fruits[1] fruits[2] fruits[3]
+</pre>
+            </div>
+        </div>
+
+        <h2>🎯 Example 1: Basic String Array Creation</h2>
+        <p>Creating and accessing a simple string array:</p>
+        
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="convertCode('example1')">
+                <label class="form-check-label" for="example1Toggle">Convert to C#</label>
+            </div>
+            <div class="code-content">
+<pre class="codeBlock" id="example1Code">
+// Create an array of fruits
+string fruits[4] = {"Apple", "Banana", "Cherry", "Date"};
+
+// Access individual fruits
+cout << "First fruit: " << fruits[0] << endl;   // Apple
+cout << "Third fruit: " << fruits[2] << endl;   // Cherry
+cout << "Last fruit: " << fruits[3] << endl;    // Date
+</pre>
+            </div>
+            <div class="result-box" id="example1Result">
+                ➡ <strong>Result:</strong><br>First fruit: Apple<br>Third fruit: Cherry<br>Last fruit: Date<br>
+                <em>Explanation:</em> The array stores 4 fruit names. We access them using their index positions (0, 2, and 3).
+            </div>
+        </div>
+
+        <h2>🎯 Example 2: Looping Through String Arrays</h2>
+        <p>Using a <code>for</code> loop to process all items in a string array:</p>
+        
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="convertCode('example2')">
+                <label class="form-check-label" for="example2Toggle">Convert to C#</label>
+            </div>
+            <div class="code-content">
+<pre class="codeBlock" id="example2Code">
+string colors[5] = {"Red", "Green", "Blue", "Yellow", "Purple"};
+
+// Loop through all colors
+cout << "My favorite colors:" << endl;
+for (int i = 0; i < 5; i++) {
+    cout << (i + 1) << ". " << colors[i] << endl;
 }
 </pre>
+            </div>
+            <div class="result-box" id="example2Result">
+                ➡ <strong>Result:</strong><br>My favorite colors:<br>1. Red<br>2. Green<br>3. Blue<br>4. Yellow<br>5. Purple<br>
+                <em>Explanation:</em> The loop goes through each color. We use <code>(i + 1)</code> to display numbers 1-5 instead of 0-4.
+            </div>
+        </div>
+
+        <h2>🎯 Example 3: Modifying String Arrays</h2>
+        <p>You can change items in a string array just like number arrays:</p>
+        
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="convertCode('example3')">
+                <label class="form-check-label" for="example3Toggle">Convert to C#</label>
+            </div>
+            <div class="code-content">
+<pre class="codeBlock" id="example3Code">
+string weekdays[3] = {"Monday", "Tuesday", "Wednesday"};
+
+// Change the second weekday
+weekdays[1] = "Fantastic Tuesday";
+
+// Display all weekdays
+cout << "Modified weekdays:" << endl;
+for (int i = 0; i < 3; i++) {
+    cout << weekdays[i] << endl;
+}
+</pre>
+            </div>
+            <div class="result-box" id="example3Result">
+                ➡ <strong>Result:</strong><br>Modified weekdays:<br>Monday<br>Fantastic Tuesday<br>Wednesday<br>
+                <em>Explanation:</em> We changed the value at index 1 from "Tuesday" to "Fantastic Tuesday". The other values remain unchanged.
+            </div>
+        </div>
+
+        <h2>🧠 Interactive Walkthrough: Following String Array Code</h2>
+        <p>Watch how the string array and loop work together step-by-step:</p>
+
+        <div class="code-container">
+            <div class="code-header">Active Code (C++)</div>
+            <div class="code-content">
+<pre id="walkthroughCodeBase">
+string colors[3] = {"Red", "Green", "Blue"};
+// for (int i = 0; i < 3; i++) {
+//     cout << "Color " << i << ": " << colors[i] << endl;
+// }
+</pre>
+            </div>
+        </div>
+
+        <div class="code-container">
+            <div class="code-header">Variable State</div>
+            <div class="code-content">
+<pre id="walkthroughVariables">i = ?, colors = ["Red", "Green", "Blue"]</pre>
+            </div>
+            <div class="result-box" id="walkthroughExplanation">
+                <em>Click <strong>Next</strong> to begin the trace:</em>
+            </div>
+            <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
+        </div>
+
+        <h2>🎯 Example 4: Searching in String Arrays</h2>
+        <p>Find specific items in a string array:</p>
+        
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example4Toggle" onchange="convertCode('example4')">
+                <label class="form-check-label" for="example4Toggle">Convert to C#</label>
+            </div>
+            <div class="code-content">
+<pre class="codeBlock" id="example4Code">
+string animals[6] = {"Dog", "Cat", "Elephant", "Lion", "Cat", "Giraffe"};
+string searchFor = "Cat";
+int count = 0;
+
+// Search for "Cat" in the array
+for (int i = 0; i < 6; i++) {
+    if (animals[i] == searchFor) {
+        count++;
+        cout << "Found " << searchFor << " at position " << i << endl;
+    }
+}
+
+cout << "Total " << searchFor << "s found: " << count << endl;
+</pre>
+            </div>
+            <div class="result-box" id="example4Result">
+                ➡ <strong>Result:</strong><br>Found Cat at position 1<br>Found Cat at position 4<br>Total Cats found: 2<br>
+                <em>Explanation:</em> The program searches through the array and counts how many times "Cat" appears. It finds "Cat" at positions 1 and 4 (remember: positions start at 0).
+            </div>
+        </div>
+
+        <h2>🎯 Example 5: Real-World Example - Student Names</h2>
+        <p>A practical example using string arrays for a classroom:</p>
+        
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example5Toggle" onchange="convertCode('example5')">
+                <label class="form-check-label" for="example5Toggle">Convert to C#</label>
+            </div>
+            <div class="code-content">
+<pre class="codeBlock" id="example5Code">
+string students[5] = {"Alice", "Bob", "Charlie", "Diana", "Ethan"};
+int studentNumber;
+
+cout << "Enter student number (1-5): ";
+cin >> studentNumber;
+
+// Convert to 0-based index
+int index = studentNumber - 1;
+
+if (index >= 0 && index < 5) {
+    cout << "Student " << studentNumber << " is: " << students[index] << endl;
+} else {
+    cout << "Invalid student number!" << endl;
+}
+</pre>
+            </div>
+            <div class="result-box" id="example5Result">
+                ➡ <strong>Result (if user enters 3):</strong> Student 3 is: Charlie<br>
+                <em>Explanation:</em> The program asks for a student number (1-5), converts it to a 0-based index (0-4), and displays the corresponding student name. Input validation ensures the number is valid.
+            </div>
+        </div>
+
+        <h2>🎯 Example 6: String Arrays with Length Property</h2>
+        <p>Using the array's length in loops (more flexible approach):</p>
+        
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example6Toggle" onchange="convertCode('example6')">
+                <label class="form-check-label" for="example6Toggle">Convert to C#</label>
+            </div>
+            <div class="code-content">
+<pre class="codeBlock" id="example6Code">
+string cities[] = {"London", "Paris", "Tokyo", "New York", "Sydney"};
+int arraySize = 5;  // We know the size is 5
+
+// Better: use arraySize instead of hardcoded number
+cout << "World cities:" << endl;
+for (int i = 0; i < arraySize; i++) {
+    cout << "- " << cities[i] << endl;
+}
+
+cout << "Total cities: " << arraySize << endl;
+</pre>
+            </div>
+            <div class="result-box" id="example6Result">
+                ➡ <strong>Result:</strong><br>World cities:<br>- London<br>- Paris<br>- Tokyo<br>- New York<br>- Sydney<br>Total cities: 5<br>
+                <em>Explanation:</em> Using a variable (<code>arraySize</code>) makes the code more flexible. If we change the array, we only need to update <code>arraySize</code> in one place.
+            </div>
+        </div>
+
+        <h2>⚠️ Important Notes About String Arrays</h2>
+        <div class="code-container">
+            <div class="code-header">Key Differences from Number Arrays</div>
+            <div class="code-content">
+<pre>
+// String arrays store TEXT
+string names[3] = {"John", "Jane", "Jack"};
+
+// Number arrays store NUMBERS
+int scores[3] = {95, 87, 92};
+
+// Access is the same
+cout << names[0];   // "John"
+cout << scores[0];  // 95
+
+// Comparison uses == (for equality)
+if (names[1] == "Jane") {
+    cout << "Found Jane!";
+}
+
+// String arrays often need more memory
+// Each string can have different lengths
+</pre>
+            </div>
+        </div>
+
+        <h2>🧠 Visual Diagram: How String Arrays Work</h2>
+        
+        <div class="code-container">
+            <div class="code-header">Memory Representation</div>
+            <div class="code-content">
+<pre>
+Array in Memory:
+[0] → Address 1000 → "Apple"   (5 characters + null)
+[1] → Address 1010 → "Banana"  (6 characters + null)
+[2] → Address 1020 → "Cherry"  (6 characters + null)
+
+Each string:
+- Has its own memory location
+- Can be different lengths
+- Ends with a special null character (\0)
+- Is accessed through its index
+</pre>
+            </div>
+        </div>
+
+        <h2>🎉 Summary</h2>
+        <ul>
+            <li><strong>String arrays</strong> store collections of text (words, names)</li>
+            <li>Use <strong>indexes starting at 0</strong> to access items</li>
+            <li><strong>Combine with loops</strong> to process all items efficiently</li>
+            <li>You can <strong>modify</strong> string array elements after creation</li>
+            <li>Common uses: lists of names, menu options, searchable collections</li>
+            <li>String arrays are essential for <strong>real-world applications</strong> like student records, inventory lists, and menu systems</li>
+        </ul>
+
+        <div class="navigation-buttons">
+            <a href="@Url.Action("Arrays", "SP")" class="btn btn-outline-primary ajax-link">← Arrays</a>
+            <a href="@Url.Action("Index", "OOP")" class="btn btn-primary ajax-link">Next Chapter →</a>
         </div>
     </div>
 
-    <p>This is how we print all items in a string array.</p>
+    <style>
+        .container {
+            max-width: 800px;
+            padding: 20px;
+            background-color: var(--bs-body-bg);
+        }
 
-    <div class="navigation-buttons">
-        <a href="@Url.Action("Arrays", "SP")" class="btn btn-outline-primary ajax-link">← Arrays</a>
-        <a href="@Url.Action("Index", "OOP")" class="btn btn-primary ajax-link">Next Chapter →</a>
-    </div>
-</div>
+        h1, h2 {
+            color: var(--bs-heading-color);
+            margin-bottom: 15px;
+        }
 
-<style>
-    .container {
-        max-width: 800px;
-        padding: 20px;
-        background-color: var(--bs-body-bg);
+        p, li, code {
+            color: var(--bs-body-color);
+            line-height: 1.6;
+        }
+
+        .code-container {
+            margin: 25px 0;
+            border: 1px solid var(--bs-border-color);
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: var(--code-bg);
+        }
+
+        .code-header {
+            background-color: var(--code-header-bg);
+            padding: 10px 15px;
+            border-bottom: 1px solid var(--bs-border-color);
+            font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-size: 0.9rem;
+            color: var(--bs-body-color);
+        }
+
+        .code-content {
+            padding: 15px;
+            overflow-x: auto;
+        }
+
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            background-color: transparent;
+            font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+
+        .result-box {
+            padding: 10px 15px;
+            background-color: rgba(0, 123, 255, 0.1);
+            border-top: 1px solid var(--bs-border-color);
+            font-size: 0.95rem;
+        }
+
+        .fade {
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-weight: 500;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: var(--bs-primary);
+            border-color: var(--bs-primary);
+            color: #fff;
+        }
+
+        .btn-outline-primary {
+            color: var(--bs-primary);
+            border-color: var(--bs-primary);
+            background-color: transparent;
+        }
+    </style>
+
+    <script>
+        const fullCodeLines = [
+            'string colors[3] = {"Red", "Green", "Blue"};',
+            'for (int i = 0; i < 3; i++) {',
+            '    cout << "Color " << i << ": " << colors[i] << endl; // ⬅ Run Code Block',
+            '}'
+        ];
+        
+        const traceSteps = [
+            { line: 0, vars: 'i = ?, colors = ["Red","Green","Blue"]', exp: 'Creates a string array with 3 color names.' },
+            { line: 1, vars: 'i = 0, colors = ["Red","Green","Blue"]', exp: 'Initializes loop: <code>i = 0</code>. Checks condition: (0 < 3) is TRUE.' },
+            { line: 2, vars: 'i = 0, colors = ["Red","Green","Blue"]', exp: 'Iteration 1: Prints "Color 0: Red".' },
+            { line: 1, vars: 'i = 1, colors = ["Red","Green","Blue"]', exp: 'Increment: <code>i++</code> (i is now 1). Check: (1 < 3) is TRUE.' },
+            { line: 2, vars: 'i = 1, colors = ["Red","Green","Blue"]', exp: 'Iteration 2: Prints "Color 1: Green".' },
+            { line: 1, vars: 'i = 2, colors = ["Red","Green","Blue"]', exp: 'Increment: <code>i++</code> (i is now 2). Check: (2 < 3) is TRUE.' },
+            { line: 2, vars: 'i = 2, colors = ["Red","Green","Blue"]', exp: 'Iteration 3: Prints "Color 2: Blue".' },
+            { line: 1, vars: 'i = 3, colors = ["Red","Green","Blue"]', exp: 'Increment: <code>i++</code> (i is now 3). Check: (3 < 3) is FALSE. Loop ends.' }
+        ];
+        
+        let currentTraceStep = 0;
+        const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
+        const walkthroughVariables = document.getElementById('walkthroughVariables');
+        const walkthroughExplanation = document.getElementById('walkthroughExplanation');
+        const nextStepBtn = document.getElementById('nextStepBtn');
+
+        function updateWalkthrough(step) {
+            const data = traceSteps[step];
+            let codeContent = '';
+            const activeLineIndex = data.line;
+            
+            fullCodeLines.forEach((line, index) => {
+                if (index === activeLineIndex) {
+                    codeContent += `<span style="background-color: yellow; color: black;">${line.replace('// ⬅ Run Code Block', '⬅ ACTIVE')}</span>\n`;
+                } else if (line.includes('// ⬅ Run Code Block')) {
+                    codeContent += `// ${line.replace('// ⬅ Run Code Block', '').trim()}\n`;
+                } else if (index === 1 && activeLineIndex !== 1 && activeLineIndex !== 2) {
+                    codeContent += `// ${line.trim()}\n`;
+                } else if (index !== activeLineIndex) {
+                    codeContent += `${line}\n`;
+                }
+            });
+            
+            walkthroughCodeBase.innerHTML = codeContent;
+            walkthroughVariables.textContent = data.vars;
+            walkthroughExplanation.innerHTML = `<em>Explanation:</em> ${data.exp}`;
+            
+            if (step === traceSteps.length - 1) {
+                walkthroughExplanation.innerHTML += '<br><strong>Trace finished! Output shows all 3 colors.</strong>';
+                nextStepBtn.disabled = true;
+            }
+        }
+
+        nextStepBtn.addEventListener('click', () => {
+            if (currentTraceStep < traceSteps.length) {
+                updateWalkthrough(currentTraceStep);
+                currentTraceStep++;
+            }
+        });
+
+        const cppSnippets = {
+            example1: `// Create an array of fruits
+string fruits[4] = {"Apple", "Banana", "Cherry", "Date"};
+
+// Access individual fruits
+cout << "First fruit: " << fruits[0] << endl;   // Apple
+cout << "Third fruit: " << fruits[2] << endl;   // Cherry
+cout << "Last fruit: " << fruits[3] << endl;    // Date`,
+            example2: `string colors[5] = {"Red", "Green", "Blue", "Yellow", "Purple"};
+
+// Loop through all colors
+cout << "My favorite colors:" << endl;
+for (int i = 0; i < 5; i++) {
+    cout << (i + 1) << ". " << colors[i] << endl;
+}`,
+            example3: `string weekdays[3] = {"Monday", "Tuesday", "Wednesday"};
+
+// Change the second weekday
+weekdays[1] = "Fantastic Tuesday";
+
+// Display all weekdays
+cout << "Modified weekdays:" << endl;
+for (int i = 0; i < 3; i++) {
+    cout << weekdays[i] << endl;
+}`,
+            example4: `string animals[6] = {"Dog", "Cat", "Elephant", "Lion", "Cat", "Giraffe"};
+string searchFor = "Cat";
+int count = 0;
+
+// Search for "Cat" in the array
+for (int i = 0; i < 6; i++) {
+    if (animals[i] == searchFor) {
+        count++;
+        cout << "Found " << searchFor << " at position " << i << endl;
     }
+}
 
-    h1 {
-        color: var(--bs-heading-color);
-        margin-bottom: 20px;
+cout << "Total " << searchFor << "s found: " << count << endl;`,
+            example5: `string students[5] = {"Alice", "Bob", "Charlie", "Diana", "Ethan"};
+int studentNumber;
+
+cout << "Enter student number (1-5): ";
+cin >> studentNumber;
+
+// Convert to 0-based index
+int index = studentNumber - 1;
+
+if (index >= 0 && index < 5) {
+    cout << "Student " << studentNumber << " is: " << students[index] << endl;
+} else {
+    cout << "Invalid student number!" << endl;
+}`,
+            example6: `string cities[] = {"London", "Paris", "Tokyo", "New York", "Sydney"};
+int arraySize = 5;  // We know the size is 5
+
+// Better: use arraySize instead of hardcoded number
+cout << "World cities:" << endl;
+for (int i = 0; i < arraySize; i++) {
+    cout << "- " << cities[i] << endl;
+}
+
+cout << "Total cities: " << arraySize << endl;`
+        };
+
+        const csharpSnippets = {
+            example1: `// Create an array of fruits
+string[] fruits = {"Apple", "Banana", "Cherry", "Date"};
+
+// Access individual fruits
+Console.WriteLine("First fruit: " + fruits[0]);   // Apple
+Console.WriteLine("Third fruit: " + fruits[2]);   // Cherry
+Console.WriteLine("Last fruit: " + fruits[3]);    // Date`,
+            example2: `string[] colors = {"Red", "Green", "Blue", "Yellow", "Purple"};
+
+// Loop through all colors
+Console.WriteLine("My favorite colors:");
+for (int i = 0; i < colors.Length; i++)
+{
+    Console.WriteLine((i + 1) + ". " + colors[i]);
+}`,
+            example3: `string[] weekdays = {"Monday", "Tuesday", "Wednesday"};
+
+// Change the second weekday
+weekdays[1] = "Fantastic Tuesday";
+
+// Display all weekdays
+Console.WriteLine("Modified weekdays:");
+for (int i = 0; i < weekdays.Length; i++)
+{
+    Console.WriteLine(weekdays[i]);
+}`,
+            example4: `string[] animals = {"Dog", "Cat", "Elephant", "Lion", "Cat", "Giraffe"};
+string searchFor = "Cat";
+int count = 0;
+
+// Search for "Cat" in the array
+for (int i = 0; i < animals.Length; i++)
+{
+    if (animals[i] == searchFor)
+    {
+        count++;
+        Console.WriteLine("Found " + searchFor + " at position " + i);
     }
+}
 
-    h2 {
-        color: var(--bs-heading-color);
-        margin-top: 25px;
-        margin-bottom: 15px;
-    }
+Console.WriteLine("Total " + searchFor + "s found: " + count);`,
+            example5: `string[] students = {"Alice", "Bob", "Charlie", "Diana", "Ethan"};
+int studentNumber;
 
-    p, code {
-        color: var(--bs-body-color);
-        line-height: 1.6;
-    }
+Console.Write("Enter student number (1-5): ");
+studentNumber = Convert.ToInt32(Console.ReadLine());
 
-    .code-container {
-        margin: 25px 0;
-        border: 1px solid var(--bs-border-color);
-        border-radius: 5px;
-        overflow: hidden;
-        background-color: var(--code-bg);
-    }
+// Convert to 0-based index
+int index = studentNumber - 1;
 
-    .code-header {
-        background-color: var(--code-header-bg);
-        padding: 10px 15px;
-        border-bottom: 1px solid var(--bs-border-color);
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-        font-size: 0.9rem;
-        color: var(--bs-body-color);
-    }
+if (index >= 0 && index < students.Length)
+{
+    Console.WriteLine("Student " + studentNumber + " is: " + students[index]);
+}
+else
+{
+    Console.WriteLine("Invalid student number!");
+}`,
+            example6: `string[] cities = {"London", "Paris", "Tokyo", "New York", "Sydney"};
 
-    .code-content {
-        padding: 15px;
-        overflow-x: auto;
-    }
+// Use array's Length property
+Console.WriteLine("World cities:");
+for (int i = 0; i < cities.Length; i++)
+{
+    Console.WriteLine("- " + cities[i]);
+}
 
-    pre {
-        margin: 0;
-        white-space: pre-wrap;
-        background-color: transparent;
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    }
+Console.WriteLine("Total cities: " + cities.Length);`
+        };
 
-    .navigation-buttons {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 30px;
-    }
+        function convertCode(id) {
+            const toggle = document.getElementById(id + "Toggle");
+            const isCSharp = toggle.checked;
+            const codeBlock = document.getElementById(id + "Code");
 
-    .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
-        font-weight: 500;
-        text-decoration: none;
-    }
+            codeBlock.classList.add("fade");
+            setTimeout(() => {
+                codeBlock.textContent = isCSharp ? csharpSnippets[id] : cppSnippets[id];
+                codeBlock.classList.remove("fade");
+            }, 250);
+        }
 
-    .btn-primary {
-        background-color: var(--bs-primary);
-        border-color: var(--bs-primary);
-        color: #fff;
-    }
+        document.addEventListener('DOMContentLoaded', () => {
+            convertCode('example1');
+            convertCode('example2');
+            convertCode('example3');
+            convertCode('example4');
+            convertCode('example5');
+            convertCode('example6');
 
-    .btn-outline-primary {
-        color: var(--bs-primary);
-        border-color: var(--bs-primary);
-        background-color: transparent;
-    }
-</style>
-
-<script>
-    function convertCode() {
-        const isChecked = document.getElementById("languageToggle").checked;
-        const codeBlock = document.getElementById("codeBlock");
-
-        const cppCode = `string fruits[3] = {"Apple", "Banana", "Cherry"};
-cout << fruits[0];`;
-
-        const csharpCode = `string[] fruits = {"Apple", "Banana", "Cherry"};
-Console.WriteLine(fruits[0]);`;
-
-        codeBlock.textContent = isChecked ? csharpCode : cppCode;
-    }
-</script>
+            updateWalkthrough(0); 
+            currentTraceStep = 1;
+        });
+    </script>
+</body>

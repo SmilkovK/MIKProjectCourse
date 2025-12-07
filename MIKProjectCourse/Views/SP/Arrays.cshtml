@@ -324,7 +324,6 @@ arr[1] = 5;              // Good!
     </style>
 
     <script>
-        // --- INTERACTIVE WALKTHROUGH DATA ---
         const fullCodeLines = [
             'int numbers[5] = {10, 20, 30, 40, 50};',
             'int sum = 0;',
@@ -351,7 +350,6 @@ arr[1] = 5;              // Good!
             { line: 5, vars: 'i = 5, sum = 150, numbers = [10,20,30,40,50]', exp: 'Prints the final total sum.' }
         ];
         
-        // --- WALKTHROUGH LOGIC ---
         let currentTraceStep = 0;
         const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
         const walkthroughVariables = document.getElementById('walkthroughVariables');
@@ -394,7 +392,6 @@ arr[1] = 5;              // Good!
             }
         });
 
-        // C++ / C# toggle code
         const cppSnippets = {
             example1: `// Create an array with 5 numbers
 int numbers[5] = {10, 20, 30, 40, 50};
@@ -510,7 +507,6 @@ for (int i = 0; i < fruits.Length; i++)
             convertCode('example4');
             convertCode('example5');
             
-            // Initial state for the walkthrough
             updateWalkthrough(0); 
             currentTraceStep = 1;
         });

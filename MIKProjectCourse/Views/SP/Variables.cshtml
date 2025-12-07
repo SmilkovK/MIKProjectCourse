@@ -2,175 +2,407 @@
     ViewData["Title"] = "Variables";
 }
 
-<div class="container page-container">
-    <h1>Variables: Naming and Storing Information</h1>
-    <BR>
-        <BR>
-    <p>
-        Variables are the fundamental components for storing and managing data in any computer program. They are essentially <strong>reserved spots in your computer's memory</strong> that hold a specific type of information.
-    </p>
-    <p>
-        Think of a variable like a <strong>labeled post-it note</strong> that you stick onto a file cabinet drawer: the <strong>label</strong> is the <strong>variable name</strong> (<code>score</code>), the <strong>drawer type</strong> is the <strong>variable type</strong> (<code>int</code>, <code>string</code>), and the <strong>information written</strong> is the <strong>value</strong> (<code>100</code>).
-    </p>
+<div class="container">
+    <h1 class="mb-4">📦 Variables: Storing Information in Programs</h1>
 
-    <hr />
+    <p><strong>Variables</strong> are the building blocks of programming. They act like <strong>labeled containers</strong> that hold data your program needs to work with. Think of them as boxes with names where you can store different types of information.</p>
 
-    <h2>Creating a Variable: Declaration and Assignment</h2>
-    <p>When you use a variable, you generally follow two steps:</p>
-    <BR>
+    <p>You use variables every day without realizing it:</p>
+    <ul>
+        <li>Your <strong>age</strong> is a number variable</li>
+        <li>Your <strong>name</strong> is a text variable</li>
+        <li>Whether you're <strong>logged in</strong> is a true/false variable</li>
+        <li>Your <strong>test score</strong> is a number variable</li>
+    </ul>
 
-    <h3>1. Declaration (Naming the Spot)</h3>
-    <p>You tell the computer the <strong>type</strong> of information you will store and what <strong>name</strong> you want to call it.</p>
-
+    <h2>📘 What is a Variable?</h2>
+    <p>A variable has three essential parts:</p>
+    
     <div class="code-container">
-        <div class="code-header">Syntax Example</div>
+        <div class="code-header">Variable Anatomy</div>
         <div class="code-content">
-<pre style="white-space: pre-wrap;">
-int score;      // Tells the computer to save a spot for an integer named 'score'.
-string message; // Saves a spot for a string named 'message'.
+<pre>
+         Data Type     Variable Name     Value
+            ↓               ↓             ↓
+         <strong>int</strong>           <strong>age</strong>          =     <strong>25</strong>;
+         <strong>string</strong>        <strong>name</strong>         =     <strong>"Sarah"</strong>;
+         <strong>bool</strong>         <strong>isStudent</strong>    =     <strong>true</strong>;
 </pre>
         </div>
     </div>
 
-    <h3>2. Assignment / Initialization (Putting the Value In)</h3>
-    <p>This is when you put the first value into the variable or change it later using <strong>=</strong>, which means assignment.</p>
-    <p>Most often, we combine these steps into one line, called <strong>Initialization</strong>.</p>
+    <p>Think of it like this:</p>
+    <ul>
+        <li><strong>Data Type</strong> → What kind of container is it? (Number box, Text box, Yes/No box)</li>
+        <li><strong>Variable Name</strong> → The label on the container</li>
+        <li><strong>Value</strong> → What's actually inside the container</li>
+    </ul>
 
-    <hr />
-
-    <h2>📋 Extended Types of Variables (Data Types)</h2>
-    <p>The data type is crucial because it tells the computer how to manage the data. Here are the core types:</p>
-
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Data Type</th>
-                <th>What It Stores</th>
-                <th>Example Value</th>
-                <th>Notes</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><strong>int</strong></td>
-                <td><strong>Whole numbers</strong></td>
-                <td><code>15</code>, <code>-200</code></td>
-                <td>Used for counts, age, and scores.</td>
-            </tr>
-            <tr>
-                <td><strong>float</strong></td>
-                <td><strong>Decimal numbers</strong></td>
-                <td><code>3.14</code>, <code>1.5</code></td>
-                <td>Requires <code>f</code> suffix in C#.</td>
-            </tr>
-            <tr>
-                <td><strong>char</strong></td>
-                <td><strong>A single character</strong></td>
-                <td><code>'A'</code>, <code>'$'</code></td>
-                <td>Only holds one symbol.</td>
-            </tr>
-            <tr>
-                <td><strong>string</strong></td>
-                <td><strong>Words or sentences</strong></td>
-                <td><code>"Hello"</code>, <code>"Anna"</code></td>
-                <td>Used for text.</td>
-            </tr>
-            <tr>
-                <td><strong>bool</strong></td>
-                <td><strong>true/false</strong></td>
-                <td><code>true</code>, <code>false</code></td>
-                <td>Used for yes/no states.</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <hr />
-
-    <h2>💻 Complete Code Examples</h2>
-
-    <div class="form-check form-switch mb-3">
-        <input class="form-check-input" type="checkbox" id="languageToggle" onchange="convertCode()">
-        <label class="form-check-label" for="languageToggle">Convert to C#</label>
+    <h2>📋 Common Data Types</h2>
+    
+    <div class="code-container">
+        <div class="code-header">Essential Variable Types</div>
+        <div class="code-content">
+<pre>
+<strong>int</strong>       → Stores whole numbers        → <code>15</code>, <code>-3</code>, <code>1000</code>
+<strong>float</strong>     → Stores decimal numbers      → <code>3.14</code>, <code>1.5</code>, <code>99.9</code>
+<strong>char</strong>      → Stores single characters    → <code>'A'</code>, <code>'$'</code>, <code>'7'</code>
+<strong>string</strong>    → Stores text                 → <code>"Hello"</code>, <code>"John"</code>, <code>"C# Rules!"</code>
+<strong>bool</strong>     → Stores true/false values    → <code>true</code>, <code>false</code>
+</pre>
+        </div>
     </div>
 
+    <h2>🎯 Example 1: Basic Variable Creation</h2>
+    <p>Creating and using simple variables:</p>
+    
     <div class="code-container">
-        <div class="code-header">Code Example (C++)</div>
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="convertCode('example1')">
+            <label class="form-check-label" for="example1Toggle">Convert to C#</label>
+        </div>
         <div class="code-content">
-<pre id="codeBlock" style="white-space: pre-wrap;">
-// Initializing variables (Declaration + Assignment)
-int age = 13;
-float height = 1.55;
-char grade = 'A';
+<pre class="codeBlock" id="example1Code">
+// Creating variables
+int age = 15;
+float height = 1.65;
 string name = "Alex";
-bool hasLicense = false;
+bool isStudent = true;
+char grade = 'A';
 
-// Using variables in an operation
-int yearBorn = 2025 - age;
+// Using the variables
+cout << "Name: " << name << endl;
+cout << "Age: " << age << " years" << endl;
+cout << "Height: " << height << " meters" << endl;
+cout << "Student: " << (isStudent ? "Yes" : "No") << endl;
+cout << "Grade: " << grade << endl;
+</pre>
+        </div>
+        <div class="result-box" id="example1Result">
+            ➡ <strong>Result:</strong><br>Name: Alex<br>Age: 15 years<br>Height: 1.65 meters<br>Student: Yes<br>Grade: A<br>
+            <em>Explanation:</em> Each variable stores a different type of data. We then use these variables to display information.
+        </div>
+    </div>
 
-// Outputting the result (Conceptually)
-// print("Alex was born in: " + yearBorn);
+    <h2>🎯 Example 2: Variable Operations</h2>
+    <p>Variables can be used in calculations and operations:</p>
+    
+    <div class="code-container">
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="convertCode('example2')">
+            <label class="form-check-label" for="example2Toggle">Convert to C#</label>
+        </div>
+        <div class="code-content">
+<pre class="codeBlock" id="example2Code">
+int apples = 5;
+int oranges = 3;
+
+// Basic arithmetic with variables
+int totalFruits = apples + oranges;
+int difference = apples - oranges;
+int doubleApples = apples * 2;
+
+cout << "Apples: " << apples << endl;
+cout << "Oranges: " << oranges << endl;
+cout << "Total fruits: " << totalFruits << endl;
+cout << "More apples than oranges: " << difference << endl;
+cout << "Double apples: " << doubleApples << endl;
+</pre>
+        </div>
+        <div class="result-box" id="example2Result">
+            ➡ <strong>Result:</strong><br>Apples: 5<br>Oranges: 3<br>Total fruits: 8<br>More apples than oranges: 2<br>Double apples: 10<br>
+            <em>Explanation:</em> Variables can be used in mathematical operations just like regular numbers. The computer uses the values stored in the variables.
+        </div>
+    </div>
+
+    <h2>🧠 Interactive Walkthrough: Following Variable Execution</h2>
+    <p>Watch how the program stores and uses variables step-by-step:</p>
+
+    <div class="code-container">
+        <div class="code-header">Active Code (C++)</div>
+        <div class="code-content">
+<pre id="walkthroughCodeBase">
+int score = 85;
+int bonus = 15;
+// int total = score + bonus;
+// cout << "Total: " << total << endl;
 </pre>
         </div>
     </div>
 
-    <p>In this example, the computer uses the value stored in <strong>age</strong> to calculate <strong>yearBorn</strong>.</p>
-
-    <h3>Changing the Value (Re-Assignment)</h3>
-    <p>Since variables are designed to <strong>vary</strong>, you can update them anytime:</p>
-
     <div class="code-container">
-        <div class="code-header">Code Example</div>
+        <div class="code-header">Variable State</div>
         <div class="code-content">
-<pre style="white-space: pre-wrap;">
-// Original values from above...
-age = 15;
-name = "Anna";
+<pre id="walkthroughVariables">score = 85, bonus = 15, total = ?</pre>
+        </div>
+        <div class="result-box" id="walkthroughExplanation">
+            <em>Click <strong>Next</strong> to begin the trace:</em>
+        </div>
+        <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
+    </div>
 
-hasLicense = true;
+    <h2>🎯 Example 3: Changing Variable Values</h2>
+    <p>Variables are called "variables" because their values can <strong>vary</strong> (change):</p>
+    
+    <div class="code-container">
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="convertCode('example3')">
+            <label class="form-check-label" for="example3Toggle">Convert to C#</label>
+        </div>
+        <div class="code-content">
+<pre class="codeBlock" id="example3Code">
+int counter = 0;
+cout << "Counter starts at: " << counter << endl;
+
+// Change the value
+counter = 10;
+cout << "Counter changed to: " << counter << endl;
+
+// Increase by 5
+counter = counter + 5;  // Same as: counter += 5
+cout << "Counter increased to: " << counter << endl;
+
+// Decrease by 3
+counter = counter - 3;  // Same as: counter -= 3
+cout << "Counter decreased to: " << counter << endl;
+
+// Multiply by 2
+counter = counter * 2;  // Same as: counter *= 2
+cout << "Counter doubled to: " << counter << endl;
 </pre>
+        </div>
+        <div class="result-box" id="example3Result">
+            ➡ <strong>Result:</strong><br>Counter starts at: 0<br>Counter changed to: 10<br>Counter increased to: 15<br>Counter decreased to: 12<br>Counter doubled to: 24<br>
+            <em>Explanation:</em> You can change a variable's value at any time. The new value replaces the old one. Special operators like <code>+=</code> and <code>-=</code> provide shortcuts for common operations.
         </div>
     </div>
 
-    <p><strong>Fun Example:</strong></p>
-
+    <h2>🎯 Example 4: String Operations</h2>
+    <p>Text variables (strings) can also be combined and modified:</p>
+    
     <div class="code-container">
-        <div class="code-header">Game Stats</div>
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example4Toggle" onchange="convertCode('example4')">
+            <label class="form-check-label" for="example4Toggle">Convert to C#</label>
+        </div>
         <div class="code-content">
-<pre style="white-space: pre-wrap;">
-string userName = "TheCoder7";
-int healthPoints = 100;
+<pre class="codeBlock" id="example4Code">
+string firstName = "John";
+string lastName = "Smith";
+int age = 25;
+
+// Combining strings (concatenation)
+string fullName = firstName + " " + lastName;
+cout << "Full Name: " << fullName << endl;
+
+// Creating messages with variables
+string greeting = "Hello, " + firstName + "!";
+string info = firstName + " is " + to_string(age) + " years old.";
+
+cout << greeting << endl;
+cout << info << endl;
+
+// Changing a string
+firstName = "Jonathan";
+cout << "New first name: " << firstName << endl;
+</pre>
+        </div>
+        <div class="result-box" id="example4Result">
+            ➡ <strong>Result:</strong><br>Full Name: John Smith<br>Hello, John!<br>John is 25 years old.<br>New first name: Jonathan<br>
+            <em>Explanation:</em> Strings can be combined using <code>+</code> (concatenation). When combining strings with numbers, you need to convert the number to a string first.
+        </div>
+    </div>
+
+    <h2>🎯 Example 5: Real-World Application - Game Stats</h2>
+    <p>Variables are essential for tracking game information:</p>
+    
+    <div class="code-container">
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example5Toggle" onchange="convertCode('example5')">
+            <label class="form-check-label" for="example5Toggle">Convert to C#</label>
+        </div>
+        <div class="code-content">
+<pre class="codeBlock" id="example5Code">
+string playerName = "GameMaster";
+int health = 100;
+int score = 0;
 float speed = 5.5;
 bool isAlive = true;
+
+cout << "=== GAME STATS ===" << endl;
+cout << "Player: " << playerName << endl;
+cout << "Health: " << health << endl;
+cout << "Score: " << score << endl;
+cout << "Speed: " << speed << endl;
+cout << "Alive: " << (isAlive ? "Yes" : "No") << endl;
+
+// Game actions
+score = score + 50;      // Player scored points
+health = health - 20;    // Player took damage
+
+cout << "\n=== AFTER ACTION ===" << endl;
+cout << "New Score: " << score << endl;
+cout << "New Health: " << health << endl;
+
+if (health <= 0) {
+    isAlive = false;
+    cout << "Player has been defeated!" << endl;
+}
+</pre>
+        </div>
+        <div class="result-box" id="example5Result">
+            ➡ <strong>Result:</strong><br>=== GAME STATS ===<br>Player: GameMaster<br>Health: 100<br>Score: 0<br>Speed: 5.5<br>Alive: Yes<br><br>=== AFTER ACTION ===<br>New Score: 50<br>New Health: 80<br>
+            <em>Explanation:</em> Games use variables to track player state. As the game progresses, variable values change to reflect what's happening.
+        </div>
+    </div>
+
+    <h2>🎯 Example 6: Temperature Converter</h2>
+    <p>A practical example using variables for unit conversion:</p>
+    
+    <div class="code-container">
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example6Toggle" onchange="convertCode('example6')">
+            <label class="form-check-label" for="example6Toggle">Convert to C#</label>
+        </div>
+        <div class="code-content">
+<pre class="codeBlock" id="example6Code">
+float celsius = 25.0;
+float fahrenheit;
+
+// Convert Celsius to Fahrenheit
+fahrenheit = (celsius * 9.0 / 5.0) + 32.0;
+
+cout << "Temperature Converter" << endl;
+cout << "====================" << endl;
+cout << celsius << "°C = " << fahrenheit << "°F" << endl;
+
+// Now let's convert back
+celsius = (fahrenheit - 32.0) * 5.0 / 9.0;
+cout << fahrenheit << "°F = " << celsius << "°C" << endl;
+</pre>
+        </div>
+        <div class="result-box" id="example6Result">
+            ➡ <strong>Result:</strong><br>Temperature Converter<br>====================<br>25°C = 77°F<br>77°F = 25°C<br>
+            <em>Explanation:</em> Variables store the temperature values, and mathematical formulas convert between units. The same variable (<code>celsius</code>) can be reused with a new value.
+        </div>
+    </div>
+
+    <h2>⚠️ Common Mistakes to Avoid</h2>
+    <div class="code-container">
+        <div class="code-header">Variable Errors and Solutions</div>
+        <div class="code-content">
+<pre>
+// ❌ WRONG: Using variable before giving it a value
+int count;
+cout << count;  // ERROR: What's the value?
+
+// ✅ CORRECT: Initialize before use
+int count = 0;
+cout << count;  // GOOD: Value is 0
+
+// ❌ WRONG: Wrong type for the value
+int price = 19.99;  // ERROR: 19.99 is not a whole number
+
+// ✅ CORRECT: Use correct type
+float price = 19.99;  // GOOD: float for decimals
+
+// ❌ WRONG: Using wrong quotes for char
+char letter = "A";  // ERROR: "A" is string, 'A' is char
+
+// ✅ CORRECT: Use single quotes for char
+char letter = 'A';  // GOOD: char uses ' '
+
+// ❌ WRONG: Using reserved words as names
+int int = 5;  // ERROR: 'int' is reserved
+
+// ✅ CORRECT: Use descriptive names
+int score = 5;  // GOOD: Clear and allowed
 </pre>
         </div>
     </div>
 
+    <h2>🧠 Visual Diagram: How Variables Work in Memory</h2>
+    
+    <div class="code-container">
+        <div class="code-header">Memory Representation</div>
+        <div class="code-content">
+<pre>
+Code:         int age = 25;
+              string name = "Alice";
+
+Memory:
+Address      Variable    Value
+1000         age         25
+1004         name        "Alice"
+
+When you use 'age' in code:
+- Computer looks for variable named 'age'
+- Finds it at address 1000
+- Gets the value 25
+- Uses it in calculations or displays
+</pre>
+        </div>
+    </div>
+
+    <h2>🎯 Naming Rules & Best Practices</h2>
+    <div class="code-container">
+        <div class="code-header">Good vs Bad Variable Names</div>
+        <div class="code-content">
+<pre>
+// ✅ GOOD NAMES: Clear and descriptive
+int studentCount = 30;
+float averageScore = 85.5;
+string userName = "player123";
+bool isGameOver = false;
+
+// ❌ BAD NAMES: Unclear or confusing
+int x = 30;              // What does x represent?
+float asdf = 85.5;       // Meaningless
+string n = "player123";  // Too short
+bool b = false;          // Not descriptive
+
+// ✅ FOLLOW THESE RULES:
+// 1. Start with letter or underscore
+// 2. Can contain letters, numbers, underscores
+// 3. Case sensitive (age ≠ Age ≠ AGE)
+// 4. Cannot use reserved words (int, if, for, etc.)
+// 5. Use camelCase for multi-word names
+</pre>
+        </div>
+    </div>
+
+    <h2>🎉 Summary</h2>
+    <ul>
+        <li><strong>Variables</strong> are containers that store data in your program</li>
+        <li>Every variable has a <strong>type</strong> (int, float, string, bool, char)</li>
+        <li>Variables must be <strong>declared</strong> (created) before use</li>
+        <li>You can <strong>assign values</strong> using <code>=</code> (equals sign)</li>
+        <li>Variable values can <strong>change</strong> throughout the program</li>
+        <li>Use <strong>descriptive names</strong> that explain what the variable stores</li>
+        <li>Variables are essential for storing user input, calculation results, game states, and more</li>
+    </ul>
+
     <div class="navigation-buttons">
-        <a href="@Url.Action("Index", "Introduction")" class="btn btn-outline-primary ajax-link">⬅ Introduction</a>
-        <a href="@Url.Action("IfElse", "SP")" class="btn btn-primary ajax-link">SPIfElse →</a>
+        <a href="@Url.Action("Index", "Introduction")" class="btn btn-outline-primary ajax-link">← Introduction</a>
+        <a href="@Url.Action("InputOutput", "SP")" class="btn btn-primary ajax-link">Input - Output →</a>
     </div>
 </div>
 
 <style>
-    .page-container {
+    .container {
         max-width: 800px;
-        margin: 0 auto;
         padding: 20px;
-        text-align: center;
+        background-color: var(--bs-body-bg);
     }
 
-    .page-container p,
-    .page-container table,
-    .page-container ul,
-    .page-container li {
-        text-align: left;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    h1, h2, h3 {
+    h1, h2 {
         color: var(--bs-heading-color);
-        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    p, li, code {
+        color: var(--bs-body-color);
+        line-height: 1.6;
     }
 
     .code-container {
@@ -178,12 +410,16 @@ bool isAlive = true;
         border: 1px solid var(--bs-border-color);
         border-radius: 5px;
         overflow: hidden;
+        background-color: var(--code-bg);
     }
 
     .code-header {
         background-color: var(--code-header-bg);
         padding: 10px 15px;
         border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
     }
 
     .code-content {
@@ -191,44 +427,367 @@ bool isAlive = true;
         overflow-x: auto;
     }
 
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .result-box {
+        padding: 10px 15px;
+        background-color: rgba(0, 123, 255, 0.1);
+        border-top: 1px solid var(--bs-border-color);
+        font-size: 0.95rem;
+    }
+
+    .fade {
+        opacity: 0;
+        transition: opacity 0.25s ease;
+    }
+
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
         margin-top: 30px;
     }
+
+    .btn {
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        color: #fff;
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        background-color: transparent;
+    }
 </style>
 
 <script>
-    function convertCode() {
-        const isChecked = document.getElementById("languageToggle").checked;
-        const codeBlock = document.getElementById("codeBlock");
-
-        const cppCode = `// Initializing variables (Declaration + Assignment)
-int age = 13;
-float height = 1.55;
-char grade = 'A';
+    const fullCodeLines = [
+        'int score = 85;',
+        'int bonus = 15;',
+        'int total = score + bonus; // ⬅ Run Code Block',
+        'cout << "Total: " << total << endl;'
+    ];
+    
+    const traceSteps = [
+        { line: 0, vars: 'score = 85, bonus = ?, total = ?', exp: 'Creates variable <code>score</code> and assigns it the value 85.' },
+        { line: 1, vars: 'score = 85, bonus = 15, total = ?', exp: 'Creates variable <code>bonus</code> and assigns it the value 15.' },
+        { line: 2, vars: 'score = 85, bonus = 15, total = 100', exp: 'Creates variable <code>total</code> and calculates its value: <code>85 + 15 = 100</code>.' },
+        { line: 3, vars: 'score = 85, bonus = 15, total = 100', exp: 'Displays the result: "Total: 100".' }
+    ];
+    
+    const cppSnippets = {
+        example1: `// Creating variables
+int age = 15;
+float height = 1.65;
 string name = "Alex";
-bool hasLicense = false;
-
-int yearBorn = 2025 - age;
-
-// print("Alex was born in: " + yearBorn);`;
-
-        const csharpCode = `// Initializing variables (Declaration + Assignment)
-int age = 13;
-float height = 1.55f; // C# float requires 'f'
+bool isStudent = true;
 char grade = 'A';
+
+// Using the variables
+cout << "Name: " << name << endl;
+cout << "Age: " << age << " years" << endl;
+cout << "Height: " << height << " meters" << endl;
+cout << "Student: " << (isStudent ? "Yes" : "No") << endl;
+cout << "Grade: " << grade << endl;`,
+        example2: `int apples = 5;
+int oranges = 3;
+
+// Basic arithmetic with variables
+int totalFruits = apples + oranges;
+int difference = apples - oranges;
+int doubleApples = apples * 2;
+
+cout << "Apples: " << apples << endl;
+cout << "Oranges: " << oranges << endl;
+cout << "Total fruits: " << totalFruits << endl;
+cout << "More apples than oranges: " << difference << endl;
+cout << "Double apples: " << doubleApples << endl;`,
+        example3: `int counter = 0;
+cout << "Counter starts at: " << counter << endl;
+
+// Change the value
+counter = 10;
+cout << "Counter changed to: " << counter << endl;
+
+// Increase by 5
+counter = counter + 5;  // Same as: counter += 5
+cout << "Counter increased to: " << counter << endl;
+
+// Decrease by 3
+counter = counter - 3;  // Same as: counter -= 3
+cout << "Counter decreased to: " << counter << endl;
+
+// Multiply by 2
+counter = counter * 2;  // Same as: counter *= 2
+cout << "Counter doubled to: " << counter << endl;`,
+        example4: `string firstName = "John";
+string lastName = "Smith";
+int age = 25;
+
+// Combining strings (concatenation)
+string fullName = firstName + " " + lastName;
+cout << "Full Name: " << fullName << endl;
+
+// Creating messages with variables
+string greeting = "Hello, " + firstName + "!";
+string info = firstName + " is " + to_string(age) + " years old.";
+
+cout << greeting << endl;
+cout << info << endl;
+
+// Changing a string
+firstName = "Jonathan";
+cout << "New first name: " << firstName << endl;`,
+        example5: `string playerName = "GameMaster";
+int health = 100;
+int score = 0;
+float speed = 5.5;
+bool isAlive = true;
+
+cout << "=== GAME STATS ===" << endl;
+cout << "Player: " << playerName << endl;
+cout << "Health: " << health << endl;
+cout << "Score: " << score << endl;
+cout << "Speed: " << speed << endl;
+cout << "Alive: " << (isAlive ? "Yes" : "No") << endl;
+
+// Game actions
+score = score + 50;      // Player scored points
+health = health - 20;    // Player took damage
+
+cout << "\n=== AFTER ACTION ===" << endl;
+cout << "New Score: " << score << endl;
+cout << "New Health: " << health << endl;
+
+if (health <= 0) {
+    isAlive = false;
+    cout << "Player has been defeated!" << endl;
+}`,
+        example6: `float celsius = 25.0;
+float fahrenheit;
+
+// Convert Celsius to Fahrenheit
+fahrenheit = (celsius * 9.0 / 5.0) + 32.0;
+
+cout << "Temperature Converter" << endl;
+cout << "====================" << endl;
+cout << celsius << "°C = " << fahrenheit << "°F" << endl;
+
+// Now let's convert back
+celsius = (fahrenheit - 32.0) * 5.0 / 9.0;
+cout << fahrenheit << "°F = " << celsius << "°C" << endl;`
+    };
+
+    const csharpSnippets = {
+        example1: `// Creating variables
+int age = 15;
+float height = 1.65f;
 string name = "Alex";
-bool hasLicense = false;
+bool isStudent = true;
+char grade = 'A';
 
-int yearBorn = 2025 - age;
+// Using the variables
+Console.WriteLine("Name: " + name);
+Console.WriteLine("Age: " + age + " years");
+Console.WriteLine("Height: " + height + " meters");
+Console.WriteLine("Student: " + (isStudent ? "Yes" : "No"));
+Console.WriteLine("Grade: " + grade);`,
+        example2: `int apples = 5;
+int oranges = 3;
 
-// Console.WriteLine("Alex was born in: " + yearBorn);`;
+// Basic arithmetic with variables
+int totalFruits = apples + oranges;
+int difference = apples - oranges;
+int doubleApples = apples * 2;
 
-        codeBlock.textContent = isChecked ? csharpCode : cppCode;
+Console.WriteLine("Apples: " + apples);
+Console.WriteLine("Oranges: " + oranges);
+Console.WriteLine("Total fruits: " + totalFruits);
+Console.WriteLine("More apples than oranges: " + difference);
+Console.WriteLine("Double apples: " + doubleApples);`,
+        example3: `int counter = 0;
+Console.WriteLine("Counter starts at: " + counter);
+
+// Change the value
+counter = 10;
+Console.WriteLine("Counter changed to: " + counter);
+
+// Increase by 5
+counter = counter + 5;  // Same as: counter += 5
+Console.WriteLine("Counter increased to: " + counter);
+
+// Decrease by 3
+counter = counter - 3;  // Same as: counter -= 3
+Console.WriteLine("Counter decreased to: " + counter);
+
+// Multiply by 2
+counter = counter * 2;  // Same as: counter *= 2
+Console.WriteLine("Counter doubled to: " + counter);`,
+        example4: `string firstName = "John";
+string lastName = "Smith";
+int age = 25;
+
+// Combining strings (concatenation)
+string fullName = firstName + " " + lastName;
+Console.WriteLine("Full Name: " + fullName);
+
+// Creating messages with variables
+string greeting = "Hello, " + firstName + "!";
+string info = firstName + " is " + age + " years old.";
+
+Console.WriteLine(greeting);
+Console.WriteLine(info);
+
+// Changing a string
+firstName = "Jonathan";
+Console.WriteLine("New first name: " + firstName);`,
+        example5: `string playerName = "GameMaster";
+int health = 100;
+int score = 0;
+float speed = 5.5f;
+bool isAlive = true;
+
+Console.WriteLine("=== GAME STATS ===");
+Console.WriteLine("Player: " + playerName);
+Console.WriteLine("Health: " + health);
+Console.WriteLine("Score: " + score);
+Console.WriteLine("Speed: " + speed);
+Console.WriteLine("Alive: " + (isAlive ? "Yes" : "No"));
+
+// Game actions
+score = score + 50;      // Player scored points
+health = health - 20;    // Player took damage
+
+Console.WriteLine("\n=== AFTER ACTION ===");
+Console.WriteLine("New Score: " + score);
+Console.WriteLine("New Health: " + health);
+
+if (health <= 0)
+{
+    isAlive = false;
+    Console.WriteLine("Player has been defeated!");
+}`,
+        example6: `float celsius = 25.0f;
+float fahrenheit;
+
+// Convert Celsius to Fahrenheit
+fahrenheit = (celsius * 9.0f / 5.0f) + 32.0f;
+
+Console.WriteLine("Temperature Converter");
+Console.WriteLine("====================");
+Console.WriteLine(celsius + "°C = " + fahrenheit + "°F");
+
+// Now let's convert back
+celsius = (fahrenheit - 32.0f) * 5.0f / 9.0f;
+Console.WriteLine(fahrenheit + "°F = " + celsius + "°C");`
+    };
+
+    function convertCode(id) {
+        const toggle = document.getElementById(id + "Toggle");
+        const isCSharp = toggle ? toggle.checked : false;
+        const codeBlock = document.getElementById(id + "Code");
+
+        if (codeBlock && toggle) {
+            codeBlock.classList.add("fade");
+            setTimeout(() => {
+                codeBlock.textContent = isCSharp ? csharpSnippets[id] : cppSnippets[id];
+                codeBlock.classList.remove("fade");
+            }, 250);
+        }
     }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        convertCode();
-    });
+    function initializeCodeExamples() {
+        if (document.getElementById('example1Code')) {
+            convertCode('example1');
+            convertCode('example2');
+            convertCode('example3');
+            convertCode('example4');
+            convertCode('example5');
+            convertCode('example6');
+        }
+        
+        const toggles = document.querySelectorAll('.form-check-input[type="checkbox"]');
+        toggles.forEach(toggle => {
+            const id = toggle.id.replace('Toggle', '');
+            if (id) {
+                toggle.addEventListener('change', () => convertCode(id));
+            }
+        });
+    }
+
+    function initializeWalkthrough() {
+        const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
+        const walkthroughVariables = document.getElementById('walkthroughVariables');
+        const walkthroughExplanation = document.getElementById('walkthroughExplanation');
+        const nextStepBtn = document.getElementById('nextStepBtn');
+
+        if (!nextStepBtn || !walkthroughCodeBase) return;
+
+        let currentTraceStep = 0;
+        
+        function updateWalkthrough(step) {
+            const data = traceSteps[step];
+            let codeContent = '';
+            const activeLineIndex = data.line;
+            
+            fullCodeLines.forEach((line, index) => {
+                if (index === activeLineIndex) {
+                    codeContent += `<span style="background-color: yellow; color: black;">${line.replace('// ⬅ Run Code Block', '⬅ ACTIVE')}</span>\n`;
+                } else if (line.includes('// ⬅ Run Code Block')) {
+                    codeContent += `// ${line.replace('// ⬅ Run Code Block', '').trim()}\n`;
+                } else if (index === 2 && activeLineIndex !== 2) {
+                    codeContent += `// ${line.trim()}\n`;
+                } else if (index === 3 && activeLineIndex !== 3) {
+                    codeContent += `// ${line.trim()}\n`;
+                } else if (index !== activeLineIndex) {
+                    codeContent += `${line}\n`;
+                }
+            });
+            
+            if (walkthroughCodeBase && walkthroughVariables && walkthroughExplanation) {
+                walkthroughCodeBase.innerHTML = codeContent;
+                walkthroughVariables.textContent = data.vars;
+                walkthroughExplanation.innerHTML = `<em>Explanation:</em> ${data.exp}`;
+                
+                if (step === traceSteps.length - 1) {
+                    walkthroughExplanation.innerHTML += '<br><strong>Trace finished! Output: "Total: 100"</strong>';
+                    nextStepBtn.disabled = true;
+                }
+            }
+        }
+
+        const newButton = nextStepBtn.cloneNode(true);
+        nextStepBtn.parentNode.replaceChild(newButton, nextStepBtn);
+        
+        newButton.addEventListener('click', () => {
+            if (currentTraceStep < traceSteps.length) {
+                updateWalkthrough(currentTraceStep);
+                currentTraceStep++;
+            }
+        });
+
+        updateWalkthrough(0);
+        currentTraceStep = 1;
+    }
+
+    function initializePage() {
+        initializeCodeExamples();
+        initializeWalkthrough();
+    }
+
+    initializePage();
+
+    document.addEventListener('DOMContentLoaded', initializePage);
 </script>
