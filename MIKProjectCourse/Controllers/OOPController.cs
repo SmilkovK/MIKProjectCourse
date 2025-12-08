@@ -4,10 +4,6 @@ namespace MIKProjectCourse.Controllers
 {
     public class OOPController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
         public IActionResult Introduction()
         {
             return View();

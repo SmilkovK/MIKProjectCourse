@@ -2,139 +2,501 @@
     ViewData["Title"] = "OOP - Classes";
 }
 
+<body data-topic="classes">
 <div class="container">
-    <h1>Understanding Classes in OOP</h1>
-    <p>
-        In Object-Oriented Programming, a <strong>class</strong> is like a <em>blueprint</em> or a <em>recipe</em>.  
-        It defines what data (properties) and actions (methods) an object will have.  
-        But remember: the class itself is just the plan — the actual things we create from it are called <strong>objects</strong>.
-    </p>
+    <h1 class="mb-4">Classes: Blueprints for Your Code</h1>
 
-    <h2>A Very Simple Class</h2>
+    <p><strong>Classes</strong> are like <strong>blueprints</strong> or <strong>templates</strong> in programming. Just like architects use blueprints to build houses, programmers use classes to create objects in their code.</p>
+
+    <p>You use "classes" in real life all the time:</p>
+    <ul>
+        <li>A <strong>recipe</strong> is a blueprint for cooking a dish</li>
+        <li>A <strong>cookie cutter</strong> is a template for making cookies</li>
+        <li>A <strong>car design</strong> is a plan for manufacturing cars</li>
+        <li>A <strong>student enrollment form</strong> is a template for student information</li>
+    </ul>
+
+    <h2>📘 What is a Class?</h2>
+    <p>A class has three essential parts:</p>
+    
     <div class="code-container">
-        <div class="code-header">Example: Car Class</div>
+        <div class="code-header">Class Anatomy</div>
         <div class="code-content">
-<pre><code class="language-csharp">
+<pre>
+         Class Name      Properties      Methods
+            ↓               ↓              ↓
+      <strong>public class Car</strong>
+      {
+          <strong>public string Brand;</strong>      ← Property
+          <strong>public string Color;</strong>      ← Property
+          
+          <strong>public void Drive()</strong>      ← Method
+          {
+              Console.WriteLine("Vroom!");
+          }
+      }
+</pre>
+        </div>
+    </div>
+
+    <p>Think of it like this:</p>
+    <ul>
+        <li><strong>Class Name</strong> → What kind of blueprint is it? (Car, Student, Product)</li>
+        <li><strong>Properties</strong> → What information it stores (Brand, Color, Name)</li>
+        <li><strong>Methods</strong> → What actions it can perform (Drive, Study, Display)</li>
+    </ul>
+
+    <h2>📋 Understanding the Car Blueprint</h2>
+    
+    <div class="code-container">
+        <div class="code-header">Car Class Example</div>
+        <div class="code-content">
+<pre>
+// BLUEPRINT (Class)
 public class Car
 {
+    // Properties - what a car HAS
     public string Brand;
     public string Color;
-}
-</code></pre>
-        </div>
-    </div>
-    <p>
-        👉 This class <code>Car</code> has two fields:  
-        <ul>
-            <li><code>Brand</code> → stores the car’s brand (like Toyota, BMW)</li>
-            <li><code>Color</code> → stores the car’s color (like Red, Blue)</li>
-        </ul>
-        This is just a definition — it tells us that every car will have a brand and a color.
-    </p>
-
-    <h2>Adding Behavior with Methods</h2>
-    <div class="code-container">
-        <div class="code-header">Example: Calculator Class</div>
-        <div class="code-content">
-<pre><code class="language-csharp">
-public class Calculator
-{
-    public int Add(int a, int b)
+    public int Year;
+    
+    // Method - what a car CAN DO
+    public void Honk()
     {
-        return a + b;
+        Console.WriteLine("Beep beep!");
     }
 }
-</code></pre>
+</pre>
         </div>
     </div>
-    <p>
-        👉 This <code>Calculator</code> class has a method <code>Add</code>:  
-        <ul>
-            <li>It takes two numbers as input.</li>
-            <li>It returns the result of adding them.</li>
-        </ul>
-        Methods represent <strong>actions</strong> a class can perform.
-    </p>
 
-    <h2>Classes with Properties</h2>
+    <div class="result-box">
+        ➡ <strong>Important:</strong> This is just the blueprint!<br>
+        It's like saying "All cars will have a Brand, Color, and Year, and they can Honk."<br>
+        But we haven't created any actual cars yet!
+    </div>
+
+    <h2>🎯 Example 1: Creating Your First Class</h2>
+    <p>Let's create a simple Student class:</p>
+    
     <div class="code-container">
-        <div class="code-header">Example: Student Class</div>
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="oopClasses.convertCode('example1')">
+            <label class="form-check-label" for="example1Toggle">Show Full Example</label>
+        </div>
         <div class="code-content">
-<pre><code class="language-csharp">
+<pre class="codeBlock" id="example1Code">
+// Step 1: Create the Blueprint (Class)
 public class Student
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
-
+    // Properties - what a student HAS
+    public string Name;
+    public int Age;
+    public string Major;
+    
+    // Method - what a student CAN DO
     public void Study()
     {
-        Console.WriteLine($"{Name} is studying.");
+        Console.WriteLine(Name + " is studying " + Major);
     }
 }
-</code></pre>
+
+// Step 2: Create actual students from the blueprint
+Student student1 = new Student();
+student1.Name = "Alex";
+student1.Age = 20;
+student1.Major = "Computer Science";
+
+Student student2 = new Student();
+student2.Name = "Maria";
+student2.Age = 21;
+student2.Major = "Mathematics";
+</pre>
+        </div>
+        <div class="result-box" id="example1Result">
+            ➡ <strong>What happened:</strong><br>
+            1. We created a <strong>Student blueprint</strong> (class)<br>
+            2. We made <strong>two actual students</strong> (objects) from that blueprint<br>
+            3. Each student has their own Name, Age, and Major<br>
+            <em>Think:</em> One recipe (class) → Many cakes (objects)!
         </div>
     </div>
-    <p>
-        👉 In this example:  
-        <ul>
-            <li><code>Id</code> and <code>Name</code> are <strong>properties</strong> (they store information).</li>
-            <li><code>Study()</code> is a <strong>method</strong> (an action the student can perform).</li>
-        </ul>
-        Properties are commonly used in C# when defining classes because they allow controlled access to data.
-    </p>
 
-    <h2>Where Do We Use Classes?</h2>
-    <p>
-        Classes are used everywhere in real applications. For example, in an online shopping system you might have:
-    </p>
+    <h2>🧠 Interactive Walkthrough: From Blueprint to Object</h2>
+    <p>Watch how we go from class definition to actual objects:</p>
 
-        <div class="code-container">
-        <div class="code-header">Example: Product Class in E-Commerce</div>
+    <div class="code-container">
+        <div class="code-header">Step-by-Step Creation</div>
         <div class="code-content">
-<pre><code class="language-csharp">
+<pre id="walkthroughCodeBase">
+// 1. Define the blueprint
+public class Book
+{
+    public string Title;
+    public string Author;
+}
+
+// 2. Create books from blueprint
+Book book1 = new Book();
+// Book book2 = new Book();
+</pre>
+        </div>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">What We Created</div>
+        <div class="code-content">
+<pre id="walkthroughVariables">Class: Book (Blueprint)<br>Objects: book1, book2 (Actual books)</pre>
+        </div>
+        <div class="result-box" id="walkthroughExplanation">
+            <em>Click <strong>Next</strong> to see each step:</em>
+        </div>
+        <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
+    </div>
+
+    <h2>🎯 Example 2: Using Methods in Classes</h2>
+    <p>Methods give classes the ability to DO things:</p>
+    
+    <div class="code-container">
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="oopClasses.convertCode('example2')">
+            <label class="form-check-label" for="example2Toggle">Show Complete Code</label>
+        </div>
+        <div class="code-content">
+<pre class="codeBlock" id="example2Code">
+public class Calculator
+{
+    // Method to add two numbers
+    public int Add(int number1, int number2)
+    {
+        int result = number1 + number2;
+        return result;
+    }
+    
+    // Method to multiply two numbers
+    public int Multiply(int number1, int number2)
+    {
+        return number1 * number2;
+    }
+}
+
+// Using the calculator
+Calculator myCalc = new Calculator();
+
+int sum = myCalc.Add(5, 3);        // Result: 8
+int product = myCalc.Multiply(4, 6); // Result: 24
+
+Console.WriteLine("5 + 3 = " + sum);
+Console.WriteLine("4 × 6 = " + product);
+</pre>
+        </div>
+        <div class="result-box" id="example2Result">
+            ➡ <strong>Key Points:</strong><br>
+            1. <strong>Methods are actions</strong> (Add, Multiply)<br>
+            2. They can <strong>take inputs</strong> (numbers to calculate)<br>
+            3. They can <strong>return results</strong> (the answer)<br>
+            4. Each calculator object can perform these actions
+        </div>
+    </div>
+
+    <h2>🎯 Example 3: Real-World Product Class</h2>
+    <p>Let's create something you might see in an online store:</p>
+    
+    <div class="code-container">
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="oopClasses.convertCode('example3')">
+            <label class="form-check-label" for="example3Toggle">Show with Output</label>
+        </div>
+        <div class="code-content">
+<pre class="codeBlock" id="example3Code">
 public class Product
 {
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public decimal Price { get; set; }
-
+    // Properties
+    public string Name;
+    public decimal Price;
+    public int Stock;
+    
+    // Method to display product info
     public void DisplayInfo()
     {
-        Console.WriteLine($"{Name} - ${Price}");
+        Console.WriteLine("=== Product Info ===");
+        Console.WriteLine("Name: " + Name);
+        Console.WriteLine("Price: $" + Price);
+        Console.WriteLine("In Stock: " + Stock);
+        Console.WriteLine("===================");
+    }
+    
+    // Method to check if product is available
+    public bool IsAvailable()
+    {
+        return Stock > 0;  // true if stock > 0, false otherwise
     }
 }
 
-// Using the class in a program:
+// Creating products
 Product laptop = new Product();
-laptop.Id = 1;
 laptop.Name = "Dell XPS 13";
 laptop.Price = 999.99m;
+laptop.Stock = 10;
 
-laptop.DisplayInfo(); 
-// Output: Dell XPS 13 - $999.99
-</code></pre>
+Product phone = new Product();
+phone.Name = "iPhone 15";
+phone.Price = 799.99m;
+phone.Stock = 0;  // Out of stock!
+
+// Using the products
+laptop.DisplayInfo();
+Console.WriteLine("Available: " + laptop.IsAvailable());
+
+phone.DisplayInfo();
+Console.WriteLine("Available: " + phone.IsAvailable());
+</pre>
+        </div>
+        <div class="result-box" id="example3Result">
+            ➡ <strong>Output:</strong><br>
+            === Product Info ===<br>
+            Name: Dell XPS 13<br>
+            Price: $999.99<br>
+            In Stock: 10<br>
+            ===================<br>
+            Available: True<br><br>
+            === Product Info ===<br>
+            Name: iPhone 15<br>
+            Price: $799.99<br>
+            In Stock: 0<br>
+            ===================<br>
+            Available: False
         </div>
     </div>
 
-    <p>
-        👉 Let’s break down these important lines for beginners:
-        <ul>
-            <li><code>Product laptop = new Product();</code> → We are creating a new <strong>object</strong> of type <code>Product</code> and calling it <code>laptop</code>. Think of it as making one "real item" from the blueprint.</li>
-            <li><code>laptop.Id = 1;</code> → We set the <strong>Id</strong> of this laptop to <code>1</code>. This is like giving it a unique number.</li>
-            <li><code>laptop.Name = "Dell XPS 13";</code> → We set the <strong>Name</strong> property to a text value — here it’s the product’s name.</li>
-            <li><code>laptop.Price = 999.99m;</code> → We give it a <strong>Price</strong>. The <code>m</code> at the end tells C# that this is a <em>decimal</em>, which is the correct type for money.</li>
-        </ul>
-        So together, these lines mean we created a laptop product with Id = 1, Name = "Dell XPS 13", and Price = $999.99.
-    </p>
+    <h2>🎯 Example 4: Bank Account Class</h2>
+    <p>A practical example for managing money:</p>
+    
+    <div class="code-container">
+        <div class="code-header">Bank Account Simulation</div>
+        <div class="code-content">
+<pre>
+public class BankAccount
+{
+    // Properties
+    public string Owner;
+    public decimal Balance;
+    
+    // Constructor (special method - we'll learn this next!)
+    public BankAccount(string ownerName, decimal startingBalance)
+    {
+        Owner = ownerName;
+        Balance = startingBalance;
+    }
+    
+    // Method to deposit money
+    public void Deposit(decimal amount)
+    {
+        Balance = Balance + amount;
+        Console.WriteLine(Owner + " deposited: $" + amount);
+    }
+    
+    // Method to withdraw money
+    public bool Withdraw(decimal amount)
+    {
+        if (amount <= Balance)
+        {
+            Balance = Balance - amount;
+            Console.WriteLine(Owner + " withdrew: $" + amount);
+            return true;  // Success
+        }
+        else
+        {
+            Console.WriteLine("Insufficient funds!");
+            return false;
+        }
+    }
+    
+    // Method to check balance
+    public void CheckBalance()
+    {
+        Console.WriteLine(Owner + "'s balance: $" + Balance);
+    }
+}
 
+// Using the bank account
+BankAccount johnAccount = new BankAccount("John", 1000.00m);
+BankAccount sarahAccount = new BankAccount("Sarah", 500.00m);
 
-    <h2>Key Takeaways</h2>
+johnAccount.CheckBalance();
+johnAccount.Deposit(200.00m);
+johnAccount.Withdraw(300.00m);
+johnAccount.CheckBalance();
+</pre>
+        </div>
+    </div>
+
+    <h2>📊 Visual Diagram: How Classes and Objects Work</h2>
+    
+    <div class="code-container">
+        <div class="code-header">Memory Representation</div>
+        <div class="code-content">
+<pre>
+Class Definition (Blueprint):
+┌─────────────────────────┐
+│     Student Class       │
+├─────────────────────────┤
+│ - string Name           │ 
+│ - int Age               │
+│ - string Major          │
+│                         │
+│ + void Study()          │
+└─────────────────────────┘
+
+Objects Created (Actual Instances):
+┌─────────────────────────┐    ┌─────────────────────────┐
+│    Student Object 1     │    │    Student Object 2     │
+├─────────────────────────┤    ├─────────────────────────┤
+│ Name = "Alex"           │    │ Name = "Maria"          │
+│ Age = 20                │    │ Age = 21                │
+│ Major = "CS"            │    │ Major = "Math"          │
+└─────────────────────────┘    └─────────────────────────┘
+
+When you call: student1.Study()
+- Computer finds student1 object
+- Uses the Study() method from the blueprint
+- Runs: "Alex is studying CS"
+</pre>
+        </div>
+    </div>
+
+    <h2>⚠️ Common Mistakes to Avoid</h2>
+    <div class="code-container">
+        <div class="code-header">Class Errors and Solutions</div>
+        <div class="code-content">
+<pre>
+// ❌ WRONG: Using class without creating object
+Student.Name = "Alex";  // ERROR: Need to create object first!
+
+// ✅ CORRECT: Create object first
+Student student = new Student();
+student.Name = "Alex";  // GOOD!
+
+// ❌ WRONG: Forgetting the 'new' keyword
+Student student;         // Just declared, not created
+student.Name = "Alex";   // ERROR: Object not created!
+
+// ✅ CORRECT: Use 'new' to create object
+Student student = new Student();  // Actually creates it
+student.Name = "Alex";            // Now it works!
+
+// ❌ WRONG: Confusing class with object
+// Class is blueprint, object is actual thing
+Car myCar = Car;  // ERROR: Can't assign class to variable
+
+// ✅ CORRECT: Create object from class
+Car myCar = new Car();  // GOOD: Creates actual car
+</pre>
+        </div>
+    </div>
+
+    <h2>🎯 Naming Rules & Best Practices</h2>
+    <div class="code-container">
+        <div class="code-header">Good Class Design</div>
+        <div class="code-content">
+<pre>
+// ✅ GOOD CLASS NAMES: Clear and singular
+public class Car {}          // Not: Cars
+public class Student {}      // Not: Students
+public class Product {}      // Not: Products
+public class BankAccount {}  // Not: BankAccounts
+
+// ✅ GOOD PROPERTY NAMES: Descriptive
+public string Brand;         // Not: b
+public string Model;         // Not: m
+public int Year;             // Not: y
+public decimal Price;        // Not: p
+
+// ✅ GOOD METHOD NAMES: Action-oriented
+public void Drive() {}       // Not: doSomething()
+public void Study() {}       // Not: action1()
+public void DisplayInfo() {} // Not: show()
+
+// ✅ FOLLOW THESE RULES:
+// 1. Class names start with Capital letter
+// 2. Use PascalCase for class names (MyClassName)
+// 3. Use camelCase for properties/methods (myProperty)
+// 4. One class = One responsibility (Car drives, Student studies)
+// 5. Keep classes focused and simple
+</pre>
+        </div>
+    </div>
+
+    <h2>🔑 Key Differences: Class vs Object</h2>
+    <div class="code-container">
+        <div class="code-header">Blueprint vs Actual Thing</div>
+        <div class="code-content">
+<pre>
+CLASS (Blueprint)                    OBJECT (Actual Thing)
+─────────────────────────────────────────────────────────────
+Recipe for cookies                  Actual cookie you eat
+Car design blueprint                Actual car you drive
+Student enrollment form             Actual student Alex
+Cookie cutter                      Cookie shaped by cutter
+
+ONE class can create                MANY different objects
+─────────────────────────────────────────────────────────────
+Example:
+public class Car {}                 Car myCar = new Car();
+                                    Car yourCar = new Car();
+                                    Car momsCar = new Car();
+
+Think of it this way:
+• Class = Mold for making toys
+• Object = Actual toy made from mold
+• You can make many toys from one mold!
+</pre>
+        </div>
+    </div>
+
+    <h2>🎉 Summary</h2>
     <ul>
-        <li>A <strong>class</strong> is a <em>blueprint</em> for creating objects.</li>
-        <li>Classes can contain <strong>fields</strong>, <strong>properties</strong>, and <strong>methods</strong>.</li>
-        <li>By itself, a class does nothing — we use it to create <strong>objects</strong> in our programs.</li>
-        <li>Real-world applications (like e-commerce, school systems, banking apps) are built with classes representing real entities.</li>
+        <li><strong>Class</strong> = <strong>Blueprint</strong> or <strong>Template</strong></li>
+        <li><strong>Object</strong> = <strong>Actual thing</strong> created from the blueprint</li>
+        <li>Classes contain <strong>Properties</strong> (what they have) and <strong>Methods</strong> (what they do)</li>
+        <li>Use <code>new</code> keyword to create objects from classes</li>
+        <li>One class can create <strong>many different objects</strong></li>
+        <li>Each object has its <strong>own values</strong> for properties</li>
+        <li>Classes make your code <strong>organized</strong> and <strong>reusable</strong></li>
+        <li>Real-world applications use classes to represent things like Users, Products, Orders, etc.</li>
     </ul>
+
+    <div class="practice-exercise">
+        <h3>Try It Yourself!</h3>
+        <p>Create a <strong>Pet</strong> class with these features:</p>
+        <ul>
+            <li>Properties: Name (string), Type (string), Age (int)</li>
+            <li>Method: MakeSound() that prints the pet's sound</li>
+            <li>Create if-else statement for two types a dog and a cat inside the method</li>
+            <li>Make each pet make their sound!</li>
+        </ul>
+        <div class="code-container hint">
+            <div class="code-header">Hint (Click to reveal)</div>
+            <div class="code-content">
+<pre>
+public class Pet
+{
+    public string Name;
+    public string Type;
+    public int Age;
+    
+    public void MakeSound()
+    {
+        if (Type == "Dog")
+            Console.WriteLine("Woof!");
+        else if (Type == "Cat")
+            Console.WriteLine("Meow!");
+    }
+}
+</pre>
+            </div>
+        </div>
+    </div>
 
     <div class="navigation-buttons">
         <a href="@Url.Action("Introduction", "OOP")" class="btn btn-outline-primary ajax-link">← Introduction to OOP</a>
@@ -149,19 +511,19 @@ laptop.DisplayInfo();
         background-color: var(--bs-body-bg);
     }
 
-    h1, h2 {
+    h1, h2, h3 {
         color: var(--bs-heading-color);
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
-    p, li {
+    h1 {
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
+    }
+
+    p, li, code {
         color: var(--bs-body-color);
         line-height: 1.6;
-    }
-
-    ul {
-        margin-left: 20px;
-        padding-left: 15px;
     }
 
     .code-container {
@@ -176,7 +538,7 @@ laptop.DisplayInfo();
         background-color: var(--code-header-bg);
         padding: 10px 15px;
         border-bottom: 1px solid var(--bs-border-color);
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         font-size: 0.9rem;
         color: var(--bs-body-color);
     }
@@ -190,10 +552,30 @@ laptop.DisplayInfo();
         margin: 0;
         white-space: pre-wrap;
         background-color: transparent;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
 
-    code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    .result-box {
+        padding: 10px 15px;
+        background-color: rgba(0, 123, 255, 0.1);
+        border-top: 1px solid var(--bs-border-color);
+        font-size: 0.95rem;
+    }
+
+    .hint .code-content {
+        display: none;
+    }
+
+    .hint:hover .code-content {
+        display: block;
+    }
+
+    .practice-exercise {
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 5px;
+        padding: 15px;
+        margin: 20px 0;
     }
 
     .navigation-buttons {
@@ -206,15 +588,365 @@ laptop.DisplayInfo();
         padding: 8px 20px;
         border-radius: 4px;
         font-weight: 500;
+        text-decoration: none;
     }
 
     .btn-primary {
         background-color: var(--bs-primary);
         border-color: var(--bs-primary);
+        color: #fff;
     }
 
     .btn-outline-primary {
         color: var(--bs-primary);
         border-color: var(--bs-primary);
+        background-color: transparent;
     }
 </style>
+
+<script>
+    // Create a namespace for OOP Classes page
+    window.oopClasses = {
+        // Interactive walkthrough for class creation
+        classSteps: [
+            {
+                code: `// 1. Define the blueprint
+public class Book
+{
+    public string Title;
+    public string Author;
+}
+
+// 2. Create books from blueprint
+// Book book1 = new Book();
+// Book book2 = new Book();`,
+                vars: "Class: Book (Blueprint)\nObjects: None created yet",
+                exp: "First we define the Book class blueprint. It tells us what every book will have: Title and Author."
+            },
+            {
+                code: `// 1. Define the blueprint
+public class Book
+{
+    public string Title;
+    public string Author;
+}
+
+// 2. Create books from blueprint
+Book book1 = new Book();
+// Book book2 = new Book();`,
+                vars: "Class: Book (Blueprint)\nObjects: book1 (empty book)",
+                exp: "Now we create the first book object using 'new Book()'. Think of it as making the first actual book from our blueprint."
+            },
+            {
+                code: `// 1. Define the blueprint
+public class Book
+{
+    public string Title;
+    public string Author;
+}
+
+// 2. Create books from blueprint
+Book book1 = new Book();
+Book book2 = new Book();`,
+                vars: "Class: Book (Blueprint)\nObjects: book1, book2 (two empty books)",
+                exp: "We create a second book object. Both books are empty right now - they don't have titles or authors yet."
+            },
+            {
+                code: `// 1. Define the blueprint
+public class Book
+{
+    public string Title;
+    public string Author;
+}
+
+// 2. Create books from blueprint
+Book book1 = new Book();
+Book book2 = new Book();
+
+// 3. Give books their properties
+book1.Title = "Harry Potter";
+book1.Author = "J.K. Rowling";`,
+                vars: "Class: Book (Blueprint)\nObjects:\nbook1: Title='Harry Potter', Author='J.K. Rowling'\nbook2: (empty)",
+                exp: "Now we fill the first book with actual information. Each book object gets its own values for Title and Author."
+            },
+            {
+                code: `// 1. Define the blueprint
+public class Book
+{
+    public string Title;
+    public string Author;
+}
+
+// 2. Create books from blueprint
+Book book1 = new Book();
+Book book2 = new Book();
+
+// 3. Give books their properties
+book1.Title = "Harry Potter";
+book1.Author = "J.K. Rowling";
+book2.Title = "The Hobbit";
+book2.Author = "J.R.R. Tolkien";`,
+                vars: "Class: Book (Blueprint)\nObjects:\nbook1: Title='Harry Potter', Author='J.K. Rowling'\nbook2: Title='The Hobbit', Author='J.R.R. Tolkien'",
+                exp: "Both books now have their own unique information. From one blueprint (class), we created two different books (objects)!"
+            }
+        ],
+
+        // Code examples for toggles
+        simpleExamples: {
+            example1: `// Step 1: Create the Blueprint (Class)
+public class Student
+{
+    public string Name;
+    public int Age;
+    public string Major;
+    
+    public void Study()
+    {
+        Console.WriteLine(Name + " is studying " + Major);
+    }
+}`,
+            example2: `public class Calculator
+{
+    public int Add(int number1, int number2)
+    {
+        int result = number1 + number2;
+        return result;
+    }
+}`,
+            example3: `public class Product
+{
+    public string Name;
+    public decimal Price;
+    public int Stock;
+}`,
+        },
+
+        completeExamples: {
+            example1: `// Step 1: Create the Blueprint (Class)
+public class Student
+{
+    // Properties - what a student HAS
+    public string Name;
+    public int Age;
+    public string Major;
+    
+    // Method - what a student CAN DO
+    public void Study()
+    {
+        Console.WriteLine(Name + " is studying " + Major);
+    }
+}
+
+// Step 2: Create actual students from the blueprint
+Student student1 = new Student();
+student1.Name = "Alex";
+student1.Age = 20;
+student1.Major = "Computer Science";
+
+Student student2 = new Student();
+student2.Name = "Maria";
+student2.Age = 21;
+student2.Major = "Mathematics";
+
+// Using the students
+student1.Study();  // Output: Alex is studying Computer Science
+student2.Study();  // Output: Maria is studying Mathematics`,
+            example2: `public class Calculator
+{
+    // Method to add two numbers
+    public int Add(int number1, int number2)
+    {
+        int result = number1 + number2;
+        return result;
+    }
+    
+    // Method to multiply two numbers
+    public int Multiply(int number1, int number2)
+    {
+        return number1 * number2;
+    }
+}
+
+// Using the calculator
+Calculator myCalc = new Calculator();
+
+int sum = myCalc.Add(5, 3);        // Result: 8
+int product = myCalc.Multiply(4, 6); // Result: 24
+
+Console.WriteLine("5 + 3 = " + sum);
+Console.WriteLine("4 × 6 = " + product);`,
+            example3: `public class Product
+{
+    // Properties
+    public string Name;
+    public decimal Price;
+    public int Stock;
+    
+    // Method to display product info
+    public void DisplayInfo()
+    {
+        Console.WriteLine("=== Product Info ===");
+        Console.WriteLine("Name: " + Name);
+        Console.WriteLine("Price: $" + Price);
+        Console.WriteLine("In Stock: " + Stock);
+        Console.WriteLine("===================");
+    }
+    
+    // Method to check if product is available
+    public bool IsAvailable()
+    {
+        return Stock > 0;  // true if stock > 0, false otherwise
+    }
+}
+
+// Creating products
+Product laptop = new Product();
+laptop.Name = "Dell XPS 13";
+laptop.Price = 999.99m;
+laptop.Stock = 10;
+
+Product phone = new Product();
+phone.Name = "iPhone 15";
+phone.Price = 799.99m;
+phone.Stock = 0;  // Out of stock!
+
+// Using the products
+laptop.DisplayInfo();
+Console.WriteLine("Available: " + laptop.IsAvailable());
+
+phone.DisplayInfo();
+Console.WriteLine("Available: " + phone.IsAvailable());`,
+        },
+
+        currentStep: 0,
+        currentWalkthrough: null,
+
+        // Function to convert code between simple and complete versions
+        convertCode: function(id) {
+            const toggle = document.getElementById(id + "Toggle");
+            const isComplete = toggle ? toggle.checked : false;
+            const codeBlock = document.getElementById(id + "Code");
+
+            if (codeBlock && toggle) {
+                codeBlock.style.transition = 'opacity 0.3s ease';
+                codeBlock.style.opacity = '0.5';
+                setTimeout(() => {
+                    codeBlock.textContent = isComplete ? this.completeExamples[id] : this.simpleExamples[id];
+                    codeBlock.style.opacity = '1';
+                    
+                    const resultBox = document.getElementById(id + "Result");
+                    if (resultBox) {
+                        if (id === 'example1') {
+                            resultBox.innerHTML = isComplete ? 
+                                '➡ <strong>Full Output:</strong><br>Alex is studying Computer Science<br>Maria is studying Mathematics<br><em>Two students, one blueprint!</em>' :
+                                '➡ <strong>What happened:</strong><br>1. We created a <strong>Student blueprint</strong> (class)<br>2. We made <strong>two actual students</strong> (objects) from that blueprint<br>3. Each student has their own Name, Age, and Major<br><em>Think:</em> One recipe (class) → Many cakes (objects)!';
+                        }
+                    }
+                }, 300);
+            }
+        },
+
+        // Function to update walkthrough display
+        updateWalkthrough: function(step) {
+            const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
+            const walkthroughVariables = document.getElementById('walkthroughVariables');
+            const walkthroughExplanation = document.getElementById('walkthroughExplanation');
+            const nextStepBtn = document.getElementById('nextStepBtn');
+
+            if (!walkthroughCodeBase || !walkthroughVariables || !walkthroughExplanation) return;
+
+            const data = this.classSteps[step];
+            
+            walkthroughCodeBase.textContent = data.code;
+            walkthroughVariables.textContent = data.vars;
+            walkthroughExplanation.innerHTML = `<em>Step ${step + 1}:</em> ${data.exp}`;
+            
+            if (step === this.classSteps.length - 1 && nextStepBtn) {
+                walkthroughExplanation.innerHTML += '<br><strong>✅ Complete! We created 2 book objects from 1 class blueprint.</strong>';
+                nextStepBtn.disabled = true;
+            }
+        },
+
+        // Function to handle walkthrough step
+        nextStep: function() {
+            if (this.currentStep < this.classSteps.length) {
+                this.updateWalkthrough(this.currentStep);
+                this.currentStep++;
+            }
+        },
+
+        // Initialize walkthrough
+        initWalkthrough: function() {
+            const nextStepBtn = document.getElementById('nextStepBtn');
+            if (nextStepBtn) {
+                // Reset state
+                this.currentStep = 0;
+                
+                // Remove existing event listener
+                const newButton = nextStepBtn.cloneNode(true);
+                nextStepBtn.parentNode.replaceChild(newButton, nextStepBtn);
+                
+                // Add new event listener
+                newButton.addEventListener('click', () => this.nextStep());
+                newButton.disabled = false;
+                
+                // Show first step
+                this.updateWalkthrough(0);
+                this.currentStep = 1;
+            }
+        },
+
+        // Initialize code examples
+        initCodeExamples: function() {
+            const toggles = document.querySelectorAll('.form-check-input[type="checkbox"]');
+            toggles.forEach(toggle => {
+                const id = toggle.id.replace('Toggle', '');
+                if (id && this.simpleExamples[id]) {
+                    this.convertCode(id);
+                    // Set up event listener directly
+                    toggle.addEventListener('change', () => this.convertCode(id));
+                }
+            });
+        },
+
+        initHint: function() {
+            const hintContainer = document.querySelector('.hint');
+            if (hintContainer) {
+                hintContainer.addEventListener('mouseenter', function() {
+                    const content = this.querySelector('.code-content');
+                    if (content) {
+                        content.style.display = 'block';
+                    }
+                });
+                
+                hintContainer.addEventListener('mouseleave', function() {
+                    const content = this.querySelector('.code-content');
+                    if (content) {
+                        content.style.display = 'none';
+                    }
+                });
+            }
+        },
+
+        init: function() {
+            console.log('Initializing OOP Classes page');
+            this.initCodeExamples();
+            this.initWalkthrough();
+            this.initHint();
+            
+            if (typeof hljs !== 'undefined') {
+                hljs.highlightAll();
+            }
+        }
+    };
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.oopClasses.init();
+        });
+    } else {
+        window.oopClasses.init();
+    }
+</script>
+</body>

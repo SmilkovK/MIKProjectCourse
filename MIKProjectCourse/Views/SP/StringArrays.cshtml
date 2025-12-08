@@ -27,7 +27,7 @@ Access:   fruits[0] fruits[1] fruits[2] fruits[3]
         
         <div class="code-container">
             <div class="form-check form-switch mb-2">
-                <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="convertCode('example1')">
+                <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="stringArrays.convertCode('example1')">
                 <label class="form-check-label" for="example1Toggle">Convert to C#</label>
             </div>
             <div class="code-content">
@@ -52,7 +52,7 @@ cout << "Last fruit: " << fruits[3] << endl;    // Date
         
         <div class="code-container">
             <div class="form-check form-switch mb-2">
-                <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="convertCode('example2')">
+                <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="stringArrays.convertCode('example2')">
                 <label class="form-check-label" for="example2Toggle">Convert to C#</label>
             </div>
             <div class="code-content">
@@ -77,7 +77,7 @@ for (int i = 0; i < 5; i++) {
         
         <div class="code-container">
             <div class="form-check form-switch mb-2">
-                <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="convertCode('example3')">
+                <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="stringArrays.convertCode('example3')">
                 <label class="form-check-label" for="example3Toggle">Convert to C#</label>
             </div>
             <div class="code-content">
@@ -131,7 +131,7 @@ string colors[3] = {"Red", "Green", "Blue"};
         
         <div class="code-container">
             <div class="form-check form-switch mb-2">
-                <input class="form-check-input" type="checkbox" id="example4Toggle" onchange="convertCode('example4')">
+                <input class="form-check-input" type="checkbox" id="example4Toggle" onchange="stringArrays.convertCode('example4')">
                 <label class="form-check-label" for="example4Toggle">Convert to C#</label>
             </div>
             <div class="code-content">
@@ -162,7 +162,7 @@ cout << "Total " << searchFor << "s found: " << count << endl;
         
         <div class="code-container">
             <div class="form-check form-switch mb-2">
-                <input class="form-check-input" type="checkbox" id="example5Toggle" onchange="convertCode('example5')">
+                <input class="form-check-input" type="checkbox" id="example5Toggle" onchange="stringArrays.convertCode('example5')">
                 <label class="form-check-label" for="example5Toggle">Convert to C#</label>
             </div>
             <div class="code-content">
@@ -194,7 +194,7 @@ if (index >= 0 && index < 5) {
         
         <div class="code-container">
             <div class="form-check form-switch mb-2">
-                <input class="form-check-input" type="checkbox" id="example6Toggle" onchange="convertCode('example6')">
+                <input class="form-check-input" type="checkbox" id="example6Toggle" onchange="stringArrays.convertCode('example6')">
                 <label class="form-check-label" for="example6Toggle">Convert to C#</label>
             </div>
             <div class="code-content">
@@ -364,80 +364,46 @@ Each string:
     </style>
 
     <script>
-        const fullCodeLines = [
-            'string colors[3] = {"Red", "Green", "Blue"};',
-            'for (int i = 0; i < 3; i++) {',
-            '    cout << "Color " << i << ": " << colors[i] << endl; // ⬅ Run Code Block',
-            '}'
-        ];
-        
-        const traceSteps = [
-            { line: 0, vars: 'i = ?, colors = ["Red","Green","Blue"]', exp: 'Creates a string array with 3 color names.' },
-            { line: 1, vars: 'i = 0, colors = ["Red","Green","Blue"]', exp: 'Initializes loop: <code>i = 0</code>. Checks condition: (0 < 3) is TRUE.' },
-            { line: 2, vars: 'i = 0, colors = ["Red","Green","Blue"]', exp: 'Iteration 1: Prints "Color 0: Red".' },
-            { line: 1, vars: 'i = 1, colors = ["Red","Green","Blue"]', exp: 'Increment: <code>i++</code> (i is now 1). Check: (1 < 3) is TRUE.' },
-            { line: 2, vars: 'i = 1, colors = ["Red","Green","Blue"]', exp: 'Iteration 2: Prints "Color 1: Green".' },
-            { line: 1, vars: 'i = 2, colors = ["Red","Green","Blue"]', exp: 'Increment: <code>i++</code> (i is now 2). Check: (2 < 3) is TRUE.' },
-            { line: 2, vars: 'i = 2, colors = ["Red","Green","Blue"]', exp: 'Iteration 3: Prints "Color 2: Blue".' },
-            { line: 1, vars: 'i = 3, colors = ["Red","Green","Blue"]', exp: 'Increment: <code>i++</code> (i is now 3). Check: (3 < 3) is FALSE. Loop ends.' }
-        ];
-        
-        let currentTraceStep = 0;
-        const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
-        const walkthroughVariables = document.getElementById('walkthroughVariables');
-        const walkthroughExplanation = document.getElementById('walkthroughExplanation');
-        const nextStepBtn = document.getElementById('nextStepBtn');
-
-        function updateWalkthrough(step) {
-            const data = traceSteps[step];
-            let codeContent = '';
-            const activeLineIndex = data.line;
+        // Create a namespace for String Arrays page to avoid conflicts
+        window.stringArrays = {
+            // Data for walkthrough
+            fullCodeLines: [
+                'string colors[3] = {"Red", "Green", "Blue"};',
+                'for (int i = 0; i < 3; i++) {',
+                '    cout << "Color " << i << ": " << colors[i] << endl; // ⬅ Run Code Block',
+                '}'
+            ],
             
-            fullCodeLines.forEach((line, index) => {
-                if (index === activeLineIndex) {
-                    codeContent += `<span style="background-color: yellow; color: black;">${line.replace('// ⬅ Run Code Block', '⬅ ACTIVE')}</span>\n`;
-                } else if (line.includes('// ⬅ Run Code Block')) {
-                    codeContent += `// ${line.replace('// ⬅ Run Code Block', '').trim()}\n`;
-                } else if (index === 1 && activeLineIndex !== 1 && activeLineIndex !== 2) {
-                    codeContent += `// ${line.trim()}\n`;
-                } else if (index !== activeLineIndex) {
-                    codeContent += `${line}\n`;
-                }
-            });
+            traceSteps: [
+                { line: 0, vars: 'i = ?, colors = ["Red","Green","Blue"]', exp: 'Creates a string array with 3 color names.' },
+                { line: 1, vars: 'i = 0, colors = ["Red","Green","Blue"]', exp: 'Initializes loop: <code>i = 0</code>. Checks condition: (0 < 3) is TRUE.' },
+                { line: 2, vars: 'i = 0, colors = ["Red","Green","Blue"]', exp: 'Iteration 1: Prints "Color 0: Red".' },
+                { line: 1, vars: 'i = 1, colors = ["Red","Green","Blue"]', exp: 'Increment: <code>i++</code> (i is now 1). Check: (1 < 3) is TRUE.' },
+                { line: 2, vars: 'i = 1, colors = ["Red","Green","Blue"]', exp: 'Iteration 2: Prints "Color 1: Green".' },
+                { line: 1, vars: 'i = 2, colors = ["Red","Green","Blue"]', exp: 'Increment: <code>i++</code> (i is now 2). Check: (2 < 3) is TRUE.' },
+                { line: 2, vars: 'i = 2, colors = ["Red","Green","Blue"]', exp: 'Iteration 3: Prints "Color 2: Blue".' },
+                { line: 1, vars: 'i = 3, colors = ["Red","Green","Blue"]', exp: 'Increment: <code>i++</code> (i is now 3). Check: (3 < 3) is FALSE. Loop ends.' }
+            ],
             
-            walkthroughCodeBase.innerHTML = codeContent;
-            walkthroughVariables.textContent = data.vars;
-            walkthroughExplanation.innerHTML = `<em>Explanation:</em> ${data.exp}`;
+            currentTraceStep: 0,
             
-            if (step === traceSteps.length - 1) {
-                walkthroughExplanation.innerHTML += '<br><strong>Trace finished! Output shows all 3 colors.</strong>';
-                nextStepBtn.disabled = true;
-            }
-        }
-
-        nextStepBtn.addEventListener('click', () => {
-            if (currentTraceStep < traceSteps.length) {
-                updateWalkthrough(currentTraceStep);
-                currentTraceStep++;
-            }
-        });
-
-        const cppSnippets = {
-            example1: `// Create an array of fruits
+            // Code snippets for conversion
+            cppSnippets: {
+                example1: `// Create an array of fruits
 string fruits[4] = {"Apple", "Banana", "Cherry", "Date"};
 
 // Access individual fruits
 cout << "First fruit: " << fruits[0] << endl;   // Apple
 cout << "Third fruit: " << fruits[2] << endl;   // Cherry
 cout << "Last fruit: " << fruits[3] << endl;    // Date`,
-            example2: `string colors[5] = {"Red", "Green", "Blue", "Yellow", "Purple"};
+                example2: `string colors[5] = {"Red", "Green", "Blue", "Yellow", "Purple"};
 
 // Loop through all colors
 cout << "My favorite colors:" << endl;
 for (int i = 0; i < 5; i++) {
     cout << (i + 1) << ". " << colors[i] << endl;
 }`,
-            example3: `string weekdays[3] = {"Monday", "Tuesday", "Wednesday"};
+                example3: `string weekdays[3] = {"Monday", "Tuesday", "Wednesday"};
 
 // Change the second weekday
 weekdays[1] = "Fantastic Tuesday";
@@ -447,7 +413,7 @@ cout << "Modified weekdays:" << endl;
 for (int i = 0; i < 3; i++) {
     cout << weekdays[i] << endl;
 }`,
-            example4: `string animals[6] = {"Dog", "Cat", "Elephant", "Lion", "Cat", "Giraffe"};
+                example4: `string animals[6] = {"Dog", "Cat", "Elephant", "Lion", "Cat", "Giraffe"};
 string searchFor = "Cat";
 int count = 0;
 
@@ -460,7 +426,7 @@ for (int i = 0; i < 6; i++) {
 }
 
 cout << "Total " << searchFor << "s found: " << count << endl;`,
-            example5: `string students[5] = {"Alice", "Bob", "Charlie", "Diana", "Ethan"};
+                example5: `string students[5] = {"Alice", "Bob", "Charlie", "Diana", "Ethan"};
 int studentNumber;
 
 cout << "Enter student number (1-5): ";
@@ -474,7 +440,7 @@ if (index >= 0 && index < 5) {
 } else {
     cout << "Invalid student number!" << endl;
 }`,
-            example6: `string cities[] = {"London", "Paris", "Tokyo", "New York", "Sydney"};
+                example6: `string cities[] = {"London", "Paris", "Tokyo", "New York", "Sydney"};
 int arraySize = 5;  // We know the size is 5
 
 // Better: use arraySize instead of hardcoded number
@@ -484,17 +450,17 @@ for (int i = 0; i < arraySize; i++) {
 }
 
 cout << "Total cities: " << arraySize << endl;`
-        };
+            },
 
-        const csharpSnippets = {
-            example1: `// Create an array of fruits
+            csharpSnippets: {
+                example1: `// Create an array of fruits
 string[] fruits = {"Apple", "Banana", "Cherry", "Date"};
 
 // Access individual fruits
 Console.WriteLine("First fruit: " + fruits[0]);   // Apple
 Console.WriteLine("Third fruit: " + fruits[2]);   // Cherry
 Console.WriteLine("Last fruit: " + fruits[3]);    // Date`,
-            example2: `string[] colors = {"Red", "Green", "Blue", "Yellow", "Purple"};
+                example2: `string[] colors = {"Red", "Green", "Blue", "Yellow", "Purple"};
 
 // Loop through all colors
 Console.WriteLine("My favorite colors:");
@@ -502,7 +468,7 @@ for (int i = 0; i < colors.Length; i++)
 {
     Console.WriteLine((i + 1) + ". " + colors[i]);
 }`,
-            example3: `string[] weekdays = {"Monday", "Tuesday", "Wednesday"};
+                example3: `string[] weekdays = {"Monday", "Tuesday", "Wednesday"};
 
 // Change the second weekday
 weekdays[1] = "Fantastic Tuesday";
@@ -513,7 +479,7 @@ for (int i = 0; i < weekdays.Length; i++)
 {
     Console.WriteLine(weekdays[i]);
 }`,
-            example4: `string[] animals = {"Dog", "Cat", "Elephant", "Lion", "Cat", "Giraffe"};
+                example4: `string[] animals = {"Dog", "Cat", "Elephant", "Lion", "Cat", "Giraffe"};
 string searchFor = "Cat";
 int count = 0;
 
@@ -528,7 +494,7 @@ for (int i = 0; i < animals.Length; i++)
 }
 
 Console.WriteLine("Total " + searchFor + "s found: " + count);`,
-            example5: `string[] students = {"Alice", "Bob", "Charlie", "Diana", "Ethan"};
+                example5: `string[] students = {"Alice", "Bob", "Charlie", "Diana", "Ethan"};
 int studentNumber;
 
 Console.Write("Enter student number (1-5): ");
@@ -545,7 +511,7 @@ else
 {
     Console.WriteLine("Invalid student number!");
 }`,
-            example6: `string[] cities = {"London", "Paris", "Tokyo", "New York", "Sydney"};
+                example6: `string[] cities = {"London", "Paris", "Tokyo", "New York", "Sydney"};
 
 // Use array's Length property
 Console.WriteLine("World cities:");
@@ -555,30 +521,90 @@ for (int i = 0; i < cities.Length; i++)
 }
 
 Console.WriteLine("Total cities: " + cities.Length);`
+            },
+
+            // Function to convert code between C++ and C#
+            convertCode: function(id) {
+                const toggle = document.getElementById(id + "Toggle");
+                const isCSharp = toggle.checked;
+                const codeBlock = document.getElementById(id + "Code");
+
+                if (codeBlock) {
+                    codeBlock.classList.add("fade");
+                    setTimeout(() => {
+                        codeBlock.textContent = isCSharp ? this.csharpSnippets[id] : this.cppSnippets[id];
+                        codeBlock.classList.remove("fade");
+                    }, 250);
+                }
+            },
+
+            // Function to update walkthrough display
+            updateWalkthrough: function(step) {
+                const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
+                const walkthroughVariables = document.getElementById('walkthroughVariables');
+                const walkthroughExplanation = document.getElementById('walkthroughExplanation');
+                const nextStepBtn = document.getElementById('nextStepBtn');
+
+                if (!walkthroughCodeBase || !walkthroughVariables || !walkthroughExplanation) return;
+
+                const data = this.traceSteps[step];
+                let codeContent = '';
+                const activeLineIndex = data.line;
+                
+                this.fullCodeLines.forEach((line, index) => {
+                    if (index === activeLineIndex) {
+                        codeContent += `<span style="background-color: yellow; color: black;">${line.replace('// ⬅ Run Code Block', '⬅ ACTIVE')}</span>\n`;
+                    } else if (line.includes('// ⬅ Run Code Block')) {
+                        codeContent += `// ${line.replace('// ⬅ Run Code Block', '').trim()}\n`;
+                    } else if (index === 1 && activeLineIndex !== 1 && activeLineIndex !== 2) {
+                        codeContent += `// ${line.trim()}\n`;
+                    } else if (index !== activeLineIndex) {
+                        codeContent += `${line}\n`;
+                    }
+                });
+                
+                walkthroughCodeBase.innerHTML = codeContent;
+                walkthroughVariables.textContent = data.vars;
+                walkthroughExplanation.innerHTML = `<em>Explanation:</em> ${data.exp}`;
+                
+                if (step === this.traceSteps.length - 1 && nextStepBtn) {
+                    walkthroughExplanation.innerHTML += '<br><strong>Trace finished! Output shows all 3 colors.</strong>';
+                    nextStepBtn.disabled = true;
+                }
+            },
+
+            nextStep: function() {
+                if (this.currentTraceStep < this.traceSteps.length) {
+                    this.updateWalkthrough(this.currentTraceStep);
+                    this.currentTraceStep++;
+                }
+            },
+
+            init: function() {
+                // Initialize code examples
+                for (let i = 1; i <= 6; i++) {
+                    this.convertCode('example' + i);
+                }
+
+                const nextStepBtn = document.getElementById('nextStepBtn');
+                if (nextStepBtn) {
+                    // Reset state
+                    this.currentTraceStep = 0;
+                    this.updateWalkthrough(0);
+                    this.currentTraceStep = 1;
+                    
+                    nextStepBtn.addEventListener('click', () => this.nextStep());
+                    nextStepBtn.disabled = false;
+                }
+            }
         };
 
-        function convertCode(id) {
-            const toggle = document.getElementById(id + "Toggle");
-            const isCSharp = toggle.checked;
-            const codeBlock = document.getElementById(id + "Code");
-
-            codeBlock.classList.add("fade");
-            setTimeout(() => {
-                codeBlock.textContent = isCSharp ? csharpSnippets[id] : cppSnippets[id];
-                codeBlock.classList.remove("fade");
-            }, 250);
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                window.stringArrays.init();
+            });
+        } else {
+            window.stringArrays.init();
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            convertCode('example1');
-            convertCode('example2');
-            convertCode('example3');
-            convertCode('example4');
-            convertCode('example5');
-            convertCode('example6');
-
-            updateWalkthrough(0); 
-            currentTraceStep = 1;
-        });
     </script>
 </body>

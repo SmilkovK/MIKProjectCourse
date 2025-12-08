@@ -3,188 +3,539 @@
 }
 
 <div class="container">
-    <h1>Constructors in Object-Oriented Programming (OOP)</h1>
-    <p>
-        Imagine you are building toys from a mold. 🧸 The <strong>class</strong> is the mold (blueprint),
-        and the <strong>constructor</strong> is like the special tool that helps you set up each toy when it's made.
-        It gives the toy its name, color, or size right when it's created!
-    </p>
+    <h1 class="mb-4">🔨 Constructors: Setting Up Your Objects</h1>
 
-    <h2>Example 1: Student Constructor</h2>
+    <p><strong>Constructors</strong> are like the <strong>setup crew</strong> or <strong>initialization team</strong> for your objects. When you create a new object from a class, the constructor makes sure it's ready to go with all its starting values!</p>
 
-    <!-- Code container -->
+    <p>You see constructors in action all around you:</p>
+    <ul>
+        <li>When you <strong>order a pizza</strong>, you specify toppings right away - that's like constructor parameters!</li>
+        <li>When you <strong>buy a new phone</strong>, it comes with default apps already installed</li>
+        <li>When you <strong>fill out a new student registration form</strong>, you provide name and age immediately</li>
+        <li>When you <strong>build a Lego set</strong>, you follow the first page of instructions to get started</li>
+    </ul>
+
+    <h2>📘 What is a Constructor?</h2>
+    <p>A constructor has three important features:</p>
+    
     <div class="code-container">
-        <div class="code-header">
-            Student Example
-            <div class="toggle-wrapper">
-                <label class="toggle-label">C#</label>
-                <label class="switch">
-                    <input type="checkbox" id="studentToggle">
-                    <span class="slider round"></span>
-                </label>
-                <label class="toggle-label">C</label>
-            </div>
-        </div>
+        <div class="code-header">Constructor Anatomy</div>
         <div class="code-content">
-<pre><code class="language-csharp student-code">
+<pre>
+         Constructor Name    Parameters      Setup Code
+               ↓                ↓                ↓
+      <strong>public Student</strong>(<strong>string name, int age</strong>)
+      {
+          <strong>Name = name;</strong>     ← Sets up the Name
+          <strong>Age = age;</strong>       ← Sets up the Age
+      }
+</pre>
+        </div>
+    </div>
+
+    <p>Think of it like this:</p>
+    <ul>
+        <li><strong>Same name as class</strong> → It's the "setup method" for the class</li>
+        <li><strong>Parameters</strong> → What information you need to provide</li>
+        <li><strong>Setup Code</strong> → What happens when the object is created</li>
+    </ul>
+
+    <h2>📋 The Problem: Empty Objects</h2>
+    <div class="code-container">
+        <div class="code-header">Without Constructor (The Hard Way)</div>
+        <div class="code-content">
+<pre class="language-csharp">
 public class Student
 {
-    public string Name { get; set; }
-    public int Age { get; set; }
+    public string Name;
+    public int Age;
+}
 
+// Creating and setting up a student
+Student s = new Student();  // Empty student
+s.Name = "Alex";            // Set name manually
+s.Age = 20;                 // Set age manually
+
+// Problem: What if we forget to set Age?
+Student s2 = new Student();
+s2.Name = "Maria";
+// Oops! Forgot s2.Age = 21;
+</pre>
+        </div>
+    </div>
+    <div class="result-box">
+        ➡ <strong>Problem:</strong> We have to remember to set every property!<br>
+        It's easy to forget, and we might end up with incomplete objects.<br>
+        <em>Solution: Use a constructor to make sure everything is set up right away!</em>
+    </div>
+
+    <h2>🎯 Example 1: Student Constructor</h2>
+    <p>Let's create a student that's ready to go from the start:</p>
+    
+    <div class="code-container">
+        <div class="code-header">Student Class with Constructor</div>
+        <div class="code-content">
+<pre class="language-csharp">
+// WITH CONSTRUCTOR (The Right Way!)
+public class Student
+{
+    public string Name;
+    public int Age;
+    
+    // Constructor - called automatically when creating object
+    public Student(string studentName, int studentAge)
+    {
+        Name = studentName;  // Set the name
+        Age = studentAge;    // Set the age
+    }
+    
+    public void Study()
+    {
+        Console.WriteLine(Name + " (age " + Age + ") is studying.");
+    }
+}
+
+// Creating students - EASY and SAFE!
+Student alex = new Student("Alex", 20);
+Student maria = new Student("Maria", 21);
+
+alex.Study();
+maria.Study();
+</pre>
+        </div>
+        <div class="result-box">
+            ➡ <strong>Output:</strong><br>
+            Alex (age 20) is studying.<br>
+            Maria (age 21) is studying.<br><br>
+            <strong>How it works:</strong><br>
+            1. When we write <code>new Student("Alex", 20)</code>, the constructor is called automatically<br>
+            2. The constructor sets <code>Name = "Alex"</code> and <code>Age = 20</code><br>
+            3. The object is created with all properties already set<br>
+            4. We can immediately use the object without any manual setup<br><br>
+            <strong>Key Benefit:</strong> No manual property setting needed! The object is ready to use immediately.
+        </div>
+    </div>
+
+    <h2>🧠 Step-by-Step: How a Constructor Works</h2>
+    
+    <div class="code-container">
+        <div class="code-header">Creating a Book with Constructor</div>
+        <div class="code-content">
+<pre class="language-csharp">
+public class Book
+{
+    public string Title;
+    public string Author;
+    public int Pages;
+    
     // Constructor
-    public Student(string name, int age)
+    public Book(string title, string author, int pages)
+    {
+        Title = title;
+        Author = author;
+        Pages = pages;
+    }
+    
+    public void DisplayInfo()
+    {
+        Console.WriteLine($"Book: {Title}");
+        Console.WriteLine($"Author: {Author}");
+        Console.WriteLine($"Pages: {Pages}");
+    }
+}
+
+// Creating a book object
+Book myBook = new Book("Harry Potter", "J.K. Rowling", 400);
+myBook.DisplayInfo();
+</pre>
+        </div>
+        <div class="result-box">
+            ➡ <strong>Output:</strong><br>
+            Book: Harry Potter<br>
+            Author: J.K. Rowling<br>
+            Pages: 400<br><br>
+            <strong>Step-by-Step Execution:</strong><br>
+            <strong>Step 1:</strong> <code>new Book("Harry Potter", "J.K. Rowling", 400)</code> is called<br>
+            <strong>Step 2:</strong> Constructor runs with parameters: title="Harry Potter", author="J.K. Rowling", pages=400<br>
+            <strong>Step 3:</strong> Constructor sets: <code>Title = "Harry Potter"</code>, <code>Author = "J.K. Rowling"</code>, <code>Pages = 400</code><br>
+            <strong>Step 4:</strong> Object is created with all properties already set<br>
+            <strong>Step 5:</strong> We can immediately call <code>myBook.DisplayInfo()</code> because the object is ready
+        </div>
+    </div>
+
+    <h2>🎯 Example 2: Constructor Overloading</h2>
+    <p>You can have multiple constructors for different situations (this is called "overloading"):</p>
+    
+    <div class="code-container">
+        <div class="code-header">GameCharacter Class with Multiple Constructors</div>
+        <div class="code-content">
+<pre class="language-csharp">
+public class GameCharacter
+{
+    public string Name;
+    public int Health;
+    public string Weapon;
+    
+    // Constructor 1: Full setup
+    public GameCharacter(string name, int health, string weapon)
+    {
+        Name = name;
+        Health = health;
+        Weapon = weapon;
+        Console.WriteLine("Character created with weapon: " + weapon);
+    }
+    
+    // Constructor 2: Just name and health (no weapon)
+    public GameCharacter(string name, int health)
+    {
+        Name = name;
+        Health = health;
+        Weapon = "Fists";  // Default weapon
+        Console.WriteLine("Character created with default weapon");
+    }
+    
+    // Constructor 3: Just name (everything else default)
+    public GameCharacter(string name)
+    {
+        Name = name;
+        Health = 100;      // Default health
+        Weapon = "Fists";  // Default weapon
+        Console.WriteLine("Character created with all defaults");
+    }
+    
+    public void ShowInfo()
+    {
+        Console.WriteLine($"{Name} - Health: {Health}, Weapon: {Weapon}");
+    }
+}
+
+// Using different constructors
+Console.WriteLine("=== Creating Characters ===");
+GameCharacter warrior = new GameCharacter("Thor", 150, "Hammer");
+GameCharacter mage = new GameCharacter("Merlin", 80);
+GameCharacter newbie = new GameCharacter("Player1");
+
+Console.WriteLine("\n=== Character Information ===");
+warrior.ShowInfo();
+mage.ShowInfo();
+newbie.ShowInfo();
+</pre>
+        </div>
+        <div class="result-box">
+            ➡ <strong>Output:</strong><br>
+            === Creating Characters ===<br>
+            Character created with weapon: Hammer<br>
+            Character created with default weapon<br>
+            Character created with all defaults<br><br>
+            === Character Information ===<br>
+            Thor - Health: 150, Weapon: Hammer<br>
+            Merlin - Health: 80, Weapon: Fists<br>
+            Player1 - Health: 100, Weapon: Fists<br><br>
+            <strong>How Constructor Overloading Works:</strong><br>
+            C# automatically chooses the right constructor based on the parameters you provide:<br>
+            • <code>new GameCharacter("Thor", 150, "Hammer")</code> → Uses constructor with 3 parameters<br>
+            • <code>new GameCharacter("Merlin", 80)</code> → Uses constructor with 2 parameters (defaults Weapon)<br>
+            • <code>new GameCharacter("Player1")</code> → Uses constructor with 1 parameter (defaults Health and Weapon)<br><br>
+            <strong>Benefit:</strong> Flexible object creation - users can provide as much or as little information as they have.
+        </div>
+    </div>
+
+    <h2>🎯 Example 3: Constructor with Validation</h2>
+    <p>Constructors can validate input to prevent invalid objects:</p>
+    
+    <div class="code-container">
+        <div class="code-header">BankAccount Class with Validation</div>
+        <div class="code-content">
+<pre class="language-csharp">
+public class BankAccount
+{
+    public string Owner;
+    public decimal Balance;
+    
+    // Constructor with validation
+    public BankAccount(string owner, decimal startingBalance)
+    {
+        // Validate starting balance
+        if (startingBalance < 0)
+        {
+            Console.WriteLine("ERROR: Starting balance cannot be negative!");
+            Console.WriteLine("Setting balance to 0 instead.");
+            Balance = 0; // Set to zero instead of throwing error
+        }
+        else
+        {
+            Balance = startingBalance;
+        }
+        
+        // Validate owner name
+        if (string.IsNullOrEmpty(owner))
+        {
+            Console.WriteLine("ERROR: Owner name is required!");
+            Console.WriteLine("Setting owner to 'Unknown'.");
+            Owner = "Unknown";
+        }
+        else
+        {
+            Owner = owner;
+        }
+        
+        Console.WriteLine($"✓ Account created for {Owner} with ${Balance}");
+    }
+    
+    public void DisplayInfo()
+    {
+        Console.WriteLine($"{Owner}'s balance: ${Balance}");
+    }
+}
+
+// Creating bank accounts
+Console.WriteLine("=== Creating Bank Accounts ===");
+BankAccount johnAccount = new BankAccount("John Smith", 1000.00m);
+BankAccount invalidAccount = new BankAccount("", -100.00m);
+BankAccount sarahAccount = new BankAccount("Sarah Johnson", 500.00m);
+
+Console.WriteLine("\n=== Account Information ===");
+johnAccount.DisplayInfo();
+invalidAccount.DisplayInfo();
+sarahAccount.DisplayInfo();
+</pre>
+        </div>
+        <div class="result-box">
+            ➡ <strong>Output:</strong><br>
+            === Creating Bank Accounts ===<br>
+            ✓ Account created for John Smith with $1000.00<br>
+            ERROR: Starting balance cannot be negative!<br>
+            Setting balance to 0 instead.<br>
+            ERROR: Owner name is required!<br>
+            Setting owner to 'Unknown'.<br>
+            ✓ Account created for Unknown with $0<br>
+            ✓ Account created for Sarah Johnson with $500.00<br><br>
+            === Account Information ===<br>
+            John Smith's balance: $1000.00<br>
+            Unknown's balance: $0<br>
+            Sarah Johnson's balance: $500.00<br><br>
+            <strong>How Validation Works in Constructors:</strong><br>
+            1. <strong>Balance validation:</strong> Checks if startingBalance is negative<br>
+            &nbsp;&nbsp;&nbsp;• If negative: Shows error, sets Balance = 0<br>
+            &nbsp;&nbsp;&nbsp;• If positive: Sets Balance = startingBalance<br><br>
+            2. <strong>Owner validation:</strong> Checks if owner name is empty<br>
+            &nbsp;&nbsp;&nbsp;• If empty: Shows error, sets Owner = "Unknown"<br>
+            &nbsp;&nbsp;&nbsp;• If not empty: Sets Owner = owner<br><br>
+            <strong>Benefit:</strong> Prevents creating invalid objects. Even with bad input, we get a valid (though default) object.
+        </div>
+    </div>
+
+    <h2>🎯 Example 4: Default Constructor</h2>
+    <p>When you don't write any constructor, C# gives you a free one:</p>
+    
+    <div class="code-container">
+        <div class="code-header">Automatic Default Constructor</div>
+        <div class="code-content">
+<pre class="language-csharp">
+// You write this class without any constructor:
+public class Product
+{
+    public string Name;
+    public decimal Price;
+    
+    public void Show()
+    {
+        Console.WriteLine($"{Name} - ${Price}");
+    }
+}
+
+// C# automatically adds this hidden constructor:
+// public Product() { }
+
+// So you can create objects like this:
+Product laptop = new Product();  // Uses the default constructor
+laptop.Name = "Laptop";
+laptop.Price = 999.99m;
+
+Product phone = new Product();
+phone.Name = "Phone";
+phone.Price = 799.99m;
+
+laptop.Show();
+phone.Show();
+</pre>
+        </div>
+        <div class="result-box">
+            ➡ <strong>Output:</strong><br>
+            Laptop - $999.99<br>
+            Phone - $799.99<br><br>
+            <strong>Important Rule:</strong><br>
+            The default constructor goes away if you write ANY constructor yourself!<br><br>
+            <strong>Example:</strong><br>
+            <code>
+            public class Product<br>
+            {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;public string Name;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;public decimal Price;<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;// If you add this constructor:<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;public Product(string name)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;{<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name = name;<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+            }<br>
+            </code><br>
+            Then <code>new Product()</code> won't work anymore! You must use <code>new Product("Laptop")</code><br><br>
+            <strong>Why:</strong> Once you define your own constructor, C# assumes you want full control and doesn't provide the default one.
+        </div>
+    </div>
+
+    <h2>Visual Diagram: How Constructors Work</h2>
+    
+    <div class="code-container">
+        <div class="code-header">Constructor Flow</div>
+        <div class="code-content">
+<pre>
+1. You write:      Student s = new Student("Alex", 20);
+
+2. Computer finds constructor:
+   public Student(string name, int age)
+   {
+       Name = name;   // ← Sets Name = "Alex"
+       Age = age;     // ← Sets Age = 20
+   }
+
+3. Memory is allocated:
+   ┌─────────────────┐
+   │ Student Object  │
+   ├─────────────────┤
+   │ Name = "Alex"   │  ← Set by constructor
+   │ Age = 20        │  ← Set by constructor
+   └─────────────────┘
+
+4. Object is ready to use!
+
+Key: Constructor runs BEFORE you can use the object.
+     It prepares everything automatically.
+</pre>
+        </div>
+    </div>
+
+    <h2>⚠️ Common Mistakes to Avoid</h2>
+    <div class="code-container">
+        <div class="code-header">Constructor Errors</div>
+        <div class="code-content">
+<pre class="language-csharp">
+// ❌ WRONG: Wrong constructor name
+public class Car
+{
+    public CarSetup(string brand)  // ERROR: Should be Car, not CarSetup
+    {
+        Brand = brand;
+    }
+}
+
+// ✅ CORRECT: Constructor name must match class
+public class Car
+{
+    public string Brand;
+    
+    public Car(string brand)  // GOOD: Same name as class
+    {
+        Brand = brand;
+    }
+}
+
+// ❌ WRONG: Forgetting to set properties
+public class Student
+{
+    public string Name;
+    public int Age;
+    
+    public Student(string name)  // ERROR: Forgot to set Age!
+    {
+        Name = name;
+    }
+}
+
+// ✅ CORRECT: Set all properties
+public class Student
+{
+    public string Name;
+    public int Age;
+    
+    public Student(string name, int age)  // GOOD: Sets both
     {
         Name = name;
         Age = age;
     }
-
-    public void Study()
-    {
-        Console.WriteLine($"{Name} is studying.");
-    }
 }
 
-// Creating an object using the constructor
-Student student1 = new Student("Alice", 20);
-student1.Study();
-</code></pre>
+// ❌ WRONG: Calling constructor without 'new'
+Student s = Student("Alex", 20);  // ERROR: Missing 'new'
 
-<pre><code class="language-c student-code" style="display:none;">
-#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-
-struct Student {
-    char Name[50];
-    int Age;
-};
-
-// "Constructor-like" function in C
-struct Student createStudent(char name[], int age) {
-    struct Student s;
-    strcpy(s.Name, name);
-    s.Age = age;
-    return s;
-}
-
-void Study(struct Student s) {
-    printf("%s is studying.\n", s.Name);
-}
-
-int main() {
-    struct Student student1 = createStudent("Alice", 20);
-    Study(student1);
-    return 0;
-}
-</code></pre>
+// ✅ CORRECT: Always use 'new'
+Student s = new Student("Alex", 20);  // GOOD: With 'new'
+</pre>
         </div>
     </div>
 
-    <p>
-        👉 Explanation:
-        <ul>
-            <li>In C#, <code>Student("Alice", 20)</code> is calling the constructor to set up the new student with a name and age.</li>
-            <li>In C, we don’t have real constructors, so we use a helper function <code>createStudent</code> that does the same job.</li>
-            <li>When Alice is created, she is ready to <code>Study()</code> immediately.</li>
-        </ul>
-    </p>
-
-    <h2>Example 2: Car Constructor</h2>
-
-    <!-- Code container -->
+    <h2>🎯 Constructor Types Summary</h2>
     <div class="code-container">
-        <div class="code-header">
-            Car Example
-            <div class="toggle-wrapper">
-                <label class="toggle-label">C#</label>
-                <label class="switch">
-                    <input type="checkbox" id="carToggle">
-                    <span class="slider round"></span>
-                </label>
-                <label class="toggle-label">C</label>
-            </div>
-        </div>
+        <div class="code-header">Three Types of Constructors</div>
         <div class="code-content">
-<pre><code class="language-csharp car-code">
-public class Car
-{
-    public string Brand { get; set; }
-    public string Color { get; set; }
+<pre>
+1. DEFAULT CONSTRUCTOR (Automatic)
+   -------------------------------
+   public class Student
+   {
+       // C# automatically provides:
+       // public Student() { }
+   }
 
-    // Constructor
-    public Car(string brand, string color)
-    {
-        Brand = brand;
-        Color = color;
-    }
+2. PARAMETERIZED CONSTRUCTOR (Your custom one)
+   -------------------------------------------
+   public class Student
+   {
+       public string Name;
+       public int Age;
+       
+       public Student(string name, int age)
+       {
+           Name = name;
+           Age = age;
+       }
+   }
 
-    public void Drive()
-    {
-        Console.WriteLine($"{Color} {Brand} is driving!");
-    }
-}
-
-// Using the constructor
-Car myCar = new Car("Toyota", "Red");
-myCar.Drive();
-</code></pre>
-
-<pre><code class="language-c car-code" style="display:none;">
-#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-
-struct Car {
-    char Brand[50];
-    char Color[50];
-};
-
-// "Constructor-like" function
-struct Car createCar(char brand[], char color[]) {
-    struct Car c;
-    strcpy(c.Brand, brand);
-    strcpy(c.Color, color);
-    return c;
-}
-
-void Drive(struct Car c) {
-    printf("%s %s is driving!\n", c.Color, c.Brand);
-}
-
-int main() {
-    struct Car myCar = createCar("Toyota", "Red");
-    Drive(myCar);
-    return 0;
-}
-</code></pre>
+3. COPY CONSTRUCTOR (Advanced - creates copy)
+   ------------------------------------------
+   public class Student
+   {
+       public string Name;
+       public int Age;
+       
+       // Copy constructor
+       public Student(Student otherStudent)
+       {
+           Name = otherStudent.Name;
+           Age = otherStudent.Age;
+       }
+   }
+</pre>
         </div>
     </div>
 
-    <p>
-        👉 Explanation:
-        <ul>
-            <li>The constructor <code>Car("Toyota", "Red")</code> makes sure our car already knows its brand and color when it’s born.</li>
-            <li>In C, we mimic this using <code>createCar</code>.</li>
-            <li>As soon as the car is created, it’s ready to <code>Drive()</code>.</li>
-        </ul>
-    </p>
-
-    <h2>Key Points About Constructors</h2>
+    <h2>🎉 Summary</h2>
     <ul>
-        <li>Constructors are called automatically when an object is created.</li>
-        <li>You can have multiple constructors (constructor overloading) with different parameters.</li>
-        <li>If no constructor is defined, C# provides a default parameterless constructor.</li>
-        <li>Constructors help make sure your object starts life in a proper, ready-to-use state.</li>
+        <li><strong>Constructor</strong> = <strong>Setup method</strong> that runs when object is created</li>
+        <li>Constructor name must be <strong>exactly the same as class name</strong></li>
+        <li>Use constructors to <strong>initialize properties automatically</strong></li>
+        <li>Prevents <strong>incomplete objects</strong> - everything is set up immediately</li>
+        <li>You can have <strong>multiple constructors</strong> with different parameters (overloading)</li>
+        <li>If you don't write any constructor, C# gives you a <strong>default empty one</strong></li>
+        <li>Always use <code>new</code> keyword to call a constructor</li>
+        <li>Constructors help ensure <strong>valid, ready-to-use objects</strong></li>
+        <li>Constructors can include <strong>validation logic</strong> to prevent invalid objects</li>
+        <li>Constructors run <strong>automatically</strong> when objects are created</li>
     </ul>
 
-    <p>
-        🔗 Remember: Constructors work together with <a href="@Url.Action("Classes", "OOP")">Classes</a>.
-        Classes are the <strong>blueprints</strong>, and constructors are the <strong>setup tools</strong> that prepare each object built from that blueprint.
-    </p>
-
-    <!-- Navigation -->
     <div class="navigation-buttons">
         <a href="@Url.Action("Classes", "OOP")" class="btn btn-outline-primary ajax-link">← Classes</a>
-        <a href="@Url.Action("Objects", "OOP")" class="btn btn-primary ajax-link">Objects →</a>
+        <a href="@Url.Action("Objects", "OOP")" class="btn btn-primary ajax-link">Next: Objects →</a>
     </div>
 </div>
 
@@ -195,19 +546,19 @@ int main() {
         background-color: var(--bs-body-bg);
     }
 
-    h1, h2 {
+    h1, h2, h3 {
         color: var(--bs-heading-color);
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
-    p, li {
+    h1 {
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
+    }
+
+    p, li, code {
         color: var(--bs-body-color);
         line-height: 1.6;
-    }
-
-    ul {
-        margin-left: 20px;
-        padding-left: 15px;
     }
 
     .code-container {
@@ -222,12 +573,9 @@ int main() {
         background-color: var(--code-header-bg);
         padding: 10px 15px;
         border-bottom: 1px solid var(--bs-border-color);
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         font-size: 0.9rem;
         color: var(--bs-body-color);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
     }
 
     .code-content {
@@ -239,71 +587,15 @@ int main() {
         margin: 0;
         white-space: pre-wrap;
         background-color: transparent;
-    }
-
-    code {
         font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
 
-    /* Slider toggle styling */
-    .toggle-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+    .result-box {
+        padding: 10px 15px;
+        background-color: rgba(0, 123, 255, 0.1);
+        border-top: 1px solid var(--bs-border-color);
+        font-size: 0.95rem;
     }
-
-    .toggle-label {
-        font-size: 0.9rem;
-        font-weight: 500;
-        color: var(--bs-body-color);
-    }
-
-    .switch {
-        position: relative;
-        display: inline-block;
-        width: 46px;
-        height: 24px;
-    }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-    .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: var(--bs-border-color);
-        transition: .4s;
-        border-radius: 24px;
-    }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-    input:checked + .slider {
-        background-color: var(--bs-primary);
-    }
-
-        input:checked + .slider:before {
-            transform: translateX(22px);
-        }
-
-    /* Navigation buttons */
 
     .navigation-buttons {
         display: flex;
@@ -315,51 +607,33 @@ int main() {
         padding: 8px 20px;
         border-radius: 4px;
         font-weight: 500;
+        text-decoration: none;
     }
 
     .btn-primary {
         background-color: var(--bs-primary);
         border-color: var(--bs-primary);
+        color: #fff;
     }
 
     .btn-outline-primary {
         color: var(--bs-primary);
         border-color: var(--bs-primary);
-    }
-
-    .left-btn {
-        align-self: flex-start;
-    }
-
-    .right-btn {
-        align-self: flex-end;
+        background-color: transparent;
     }
 </style>
 
 <script>
-    // Toggle for student example
-    document.getElementById("studentToggle").addEventListener("change", function() {
-        const csharpCode = document.querySelector(".student-code.language-csharp");
-        const cCode = document.querySelector(".student-code.language-c");
-        if (this.checked) {
-            csharpCode.style.display = "none";
-            cCode.style.display = "block";
-        } else {
-            csharpCode.style.display = "block";
-            cCode.style.display = "none";
+    // Simple script to highlight code when page loads
+    function initializePage() {
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightAll();
         }
-    });
+    }
 
-    // Toggle for car example
-    document.getElementById("carToggle").addEventListener("change", function() {
-        const csharpCode = document.querySelector(".car-code.language-csharp");
-        const cCode = document.querySelector(".car-code.language-c");
-        if (this.checked) {
-            csharpCode.style.display = "none";
-            cCode.style.display = "block";
-        } else {
-            csharpCode.style.display = "block";
-            cCode.style.display = "none";
-        }
-    });
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializePage);
+    } else {
+        initializePage();
+    }
 </script>

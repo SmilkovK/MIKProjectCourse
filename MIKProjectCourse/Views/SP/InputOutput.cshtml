@@ -2,7 +2,7 @@
     ViewData["Title"] = "Input and Output";
 }
 
-<div class="container">
+<div class="container" data-topic="inputoutput">
     <h1 class="mb-4">📝 Input and Output: Communicating with Programs</h1>
 
     <p><strong>Input and Output (I/O)</strong> are how programs communicate with users. <strong>Input</strong> is information the user gives to the program (like typing their name), and <strong>Output</strong> is information the program shows to the user (like displaying a welcome message).</p>
@@ -36,7 +36,7 @@ C#:     Console.WriteLine("Your age: " + age);
     
     <div class="code-container">
         <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="convertCode('example1')">
+            <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="window.convertCode('example1')">
             <label class="form-check-label" for="example1Toggle">Convert to C#</label>
         </div>
         <div class="code-content">
@@ -63,7 +63,7 @@ cout << "Quotes: She said, \"Hello!\"" << endl;
     
     <div class="code-container">
         <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="convertCode('example2')">
+            <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="window.convertCode('example2')">
             <label class="form-check-label" for="example2Toggle">Convert to C#</label>
         </div>
         <div class="code-content">
@@ -110,7 +110,7 @@ C#:     age = Convert.ToInt32(Console.ReadLine());
     
     <div class="code-container">
         <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="convertCode('example3')">
+            <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="window.convertCode('example3')">
             <label class="form-check-label" for="example3Toggle">Convert to C#</label>
         </div>
         <div class="code-content">
@@ -174,7 +174,7 @@ int score;
     
     <div class="code-container">
         <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example4Toggle" onchange="convertCode('example4')">
+            <input class="form-check-input" type="checkbox" id="example4Toggle" onchange="window.convertCode('example4')">
             <label class="form-check-label" for="example4Toggle">Convert to C#</label>
         </div>
         <div class="code-content">
@@ -215,7 +215,7 @@ cout << "Product: " << product << endl;
     
     <div class="code-container">
         <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example5Toggle" onchange="convertCode('example5')">
+            <input class="form-check-input" type="checkbox" id="example5Toggle" onchange="window.convertCode('example5')">
             <label class="form-check-label" for="example5Toggle">Convert to C#</label>
         </div>
         <div class="code-content">
@@ -250,7 +250,7 @@ cout << "Initial: " << fullName[0] << endl;  // First character
     
     <div class="code-container">
         <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example6Toggle" onchange="convertCode('example6')">
+            <input class="form-check-input" type="checkbox" id="example6Toggle" onchange="window.convertCode('example6')">
             <label class="form-check-label" for="example6Toggle">Convert to C#</label>
         </div>
         <div class="code-content">
@@ -484,70 +484,29 @@ Tab                "\t"                         "\t"
 </style>
 
 <script>
-    // --- INTERACTIVE WALKTHROUGH DATA ---
-    const fullCodeLines = [
-        'string name;',
-        'int score;',
-        'cout << "Enter your name: "; // ⬅ Run Code Block',
-        'cin >> name;',
-        'cout << "Enter your score: ";',
-        'cin >> score;',
-        'cout << "Hello " << name << ", your score is " << score << endl;'
-    ];
-    
-    const traceSteps = [
-        { line: 0, vars: 'name = ?, score = ?', exp: 'Declares a string variable <code>name</code> to store the user\'s name.' },
-        { line: 1, vars: 'name = ?, score = ?', exp: 'Declares an integer variable <code>score</code> to store the user\'s score.' },
-        { line: 2, vars: 'name = ?, score = ?', exp: 'Displays prompt: "Enter your name: " (User sees this).' },
-        { line: 3, vars: 'name = "Alice", score = ?', exp: 'Waits for user input. User types "Alice" and presses Enter. Value "Alice" is stored in <code>name</code>.' },
-        { line: 4, vars: 'name = "Alice", score = ?', exp: 'Displays prompt: "Enter your score: " (User sees this).' },
-        { line: 5, vars: 'name = "Alice", score = 95', exp: 'Waits for user input. User types "95" and presses Enter. Value 95 is stored in <code>score</code>.' },
-        { line: 6, vars: 'name = "Alice", score = 95', exp: 'Displays: "Hello Alice, your score is 95". Uses the values stored in the variables.' }
-    ];
-    
-    // --- WALKTHROUGH LOGIC ---
-    let currentTraceStep = 0;
-    const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
-    const walkthroughVariables = document.getElementById('walkthroughVariables');
-    const walkthroughExplanation = document.getElementById('walkthroughExplanation');
-    const nextStepBtn = document.getElementById('nextStepBtn');
+// Make all functions and data available globally
+window.fullCodeLines = [
+    'string name;',
+    'int score;',
+    'cout << "Enter your name: "; // ⬅ Run Code Block',
+    'cin >> name;',
+    'cout << "Enter your score: ";',
+    'cin >> score;',
+    'cout << "Hello " << name << ", your score is " << score << endl;'
+];
 
-    function updateWalkthrough(step) {
-        const data = traceSteps[step];
-        let codeContent = '';
-        const activeLineIndex = data.line;
-        
-        fullCodeLines.forEach((line, index) => {
-            if (index === activeLineIndex) {
-                codeContent += `<span style="background-color: yellow; color: black;">${line.replace('// ⬅ Run Code Block', '⬅ ACTIVE')}</span>\n`;
-            } else if (line.includes('// ⬅ Run Code Block')) {
-                codeContent += `// ${line.replace('// ⬅ Run Code Block', '').trim()}\n`;
-            } else if (activeLineIndex >= 2 && activeLineIndex <= 6 && index < 2) {
-                codeContent += `${line}\n`;
-            } else if (index !== activeLineIndex) {
-                codeContent += `// ${line.trim()}\n`;
-            }
-        });
-        
-        walkthroughCodeBase.innerHTML = codeContent;
-        walkthroughVariables.textContent = data.vars;
-        walkthroughExplanation.innerHTML = `<em>Explanation:</em> ${data.exp}`;
-        
-        if (step === traceSteps.length - 1) {
-            walkthroughExplanation.innerHTML += '<br><strong>Trace finished! Program displays: "Hello Alice, your score is 95"</strong>';
-            nextStepBtn.disabled = true;
-        }
-    }
+window.traceSteps = [
+    { line: 0, vars: 'name = ?, score = ?', exp: 'Declares a string variable <code>name</code> to store the user\'s name.' },
+    { line: 1, vars: 'name = ?, score = ?', exp: 'Declares an integer variable <code>score</code> to store the user\'s score.' },
+    { line: 2, vars: 'name = ?, score = ?', exp: 'Displays prompt: "Enter your name: " (User sees this).' },
+    { line: 3, vars: 'name = "Alice", score = ?', exp: 'Waits for user input. User types "Alice" and presses Enter. Value "Alice" is stored in <code>name</code>.' },
+    { line: 4, vars: 'name = "Alice", score = ?', exp: 'Displays prompt: "Enter your score: " (User sees this).' },
+    { line: 5, vars: 'name = "Alice", score = 95', exp: 'Waits for user input. User types "95" and presses Enter. Value 95 is stored in <code>score</code>.' },
+    { line: 6, vars: 'name = "Alice", score = 95', exp: 'Displays: "Hello Alice, your score is 95". Uses the values stored in the variables.' }
+];
 
-    nextStepBtn.addEventListener('click', () => {
-        if (currentTraceStep < traceSteps.length) {
-            updateWalkthrough(currentTraceStep);
-            currentTraceStep++;
-        }
-    });
-
-    const cppSnippets = {
-        example1: `// Simple text output
+window.cppSnippets = {
+    example1: `// Simple text output
 cout << "Welcome to Programming!" << endl;
 cout << "This is line 1." << endl;
 cout << "This is line 2." << endl;
@@ -556,7 +515,7 @@ cout << "This is line 2." << endl;
 cout << "Use \\n for new line: First line\nSecond line" << endl;
 cout << "Use \\t for tab: Name:\tJohn" << endl;
 cout << "Quotes: She said, \"Hello!\"" << endl;`,
-        example2: `string name = "Sarah";
+    example2: `string name = "Sarah";
 int age = 25;
 float height = 1.68;
 bool isStudent = true;
@@ -569,7 +528,7 @@ cout << "Student: " << (isStudent ? "Yes" : "No") << endl;
 
 // Multiple variables in one line
 cout << name << " is " << age << " years old and " << height << " meters tall." << endl;`,
-        example3: `string userName;
+    example3: `string userName;
 int userAge;
 
 // Ask for input
@@ -586,7 +545,7 @@ cout << "You are " << userAge << " years old." << endl;
 // Calculate based on input
 int birthYear = 2025 - userAge;
 cout << "You were born around " << birthYear << "." << endl;`,
-        example4: `int num1, num2, num3;
+    example4: `int num1, num2, num3;
 
 cout << "=== CALCULATOR ===" << endl;
 cout << "Enter first number: ";
@@ -609,7 +568,7 @@ cout << "Numbers: " << num1 << ", " << num2 << ", " << num3 << endl;
 cout << "Sum: " << sum << endl;
 cout << "Average: " << average << endl;
 cout << "Product: " << product << endl;`,
-        example5: `// For strings with spaces in C++, we need getline
+    example5: `// For strings with spaces in C++, we need getline
 string fullName;
 int age;
 
@@ -626,7 +585,7 @@ cout << "\n=== PROFILE ===" << endl;
 cout << "Name: " << fullName << endl;
 cout << "Age: " << age << endl;
 cout << "Initial: " << fullName[0] << endl;  // First character`,
-        example6: `string firstName;
+    example6: `string firstName;
 string lastName;
 int birthYear;
 int currentYear = 2025;
@@ -650,10 +609,10 @@ cout << "\n=== WELCOME ===" << endl;
 cout << "Hello, " << firstName << " " << lastName << "!" << endl;
 cout << "You are " << age << " years old." << endl;
 cout << "Nice to meet you!" << endl;`
-    };
+};
 
-    const csharpSnippets = {
-        example1: `// Simple text output
+window.csharpSnippets = {
+    example1: `// Simple text output
 Console.WriteLine("Welcome to Programming!");
 Console.WriteLine("This is line 1.");
 Console.WriteLine("This is line 2.");
@@ -662,7 +621,7 @@ Console.WriteLine("This is line 2.");
 Console.WriteLine("Use \\n for new line: First line\nSecond line");
 Console.WriteLine("Use \\t for tab: Name:\tJohn");
 Console.WriteLine("Quotes: She said, \"Hello!\"");`,
-        example2: `string name = "Sarah";
+    example2: `string name = "Sarah";
 int age = 25;
 float height = 1.68f;
 bool isStudent = true;
@@ -675,7 +634,7 @@ Console.WriteLine("Student: " + (isStudent ? "Yes" : "No"));
 
 // Multiple variables in one line
 Console.WriteLine(name + " is " + age + " years old and " + height + " meters tall.");`,
-        example3: `string userName;
+    example3: `string userName;
 int userAge;
 
 // Ask for input
@@ -692,7 +651,7 @@ Console.WriteLine("You are " + userAge + " years old.");
 // Calculate based on input
 int birthYear = 2025 - userAge;
 Console.WriteLine("You were born around " + birthYear + ".");`,
-        example4: `int num1, num2, num3;
+    example4: `int num1, num2, num3;
 
 Console.WriteLine("=== CALCULATOR ===");
 Console.Write("Enter first number: ");
@@ -715,7 +674,7 @@ Console.WriteLine("Numbers: " + num1 + ", " + num2 + ", " + num3);
 Console.WriteLine("Sum: " + sum);
 Console.WriteLine("Average: " + average);
 Console.WriteLine("Product: " + product);`,
-        example5: `// C# handles spaces automatically with ReadLine
+    example5: `// C# handles spaces automatically with ReadLine
 string fullName;
 int age;
 
@@ -729,7 +688,7 @@ Console.WriteLine("\n=== PROFILE ===");
 Console.WriteLine("Name: " + fullName);
 Console.WriteLine("Age: " + age);
 Console.WriteLine("Initial: " + fullName[0]);  // First character`,
-        example6: `string firstName;
+    example6: `string firstName;
 string lastName;
 int birthYear;
 int currentYear = 2025;
@@ -753,29 +712,123 @@ Console.WriteLine("\n=== WELCOME ===");
 Console.WriteLine("Hello, " + firstName + " " + lastName + "!");
 Console.WriteLine("You are " + age + " years old.");
 Console.WriteLine("Nice to meet you!");`
-    };
+};
 
-    function convertCode(id) {
-        const toggle = document.getElementById(id + "Toggle");
-        const isCSharp = toggle.checked;
-        const codeBlock = document.getElementById(id + "Code");
-
-        codeBlock.classList.add("fade");
-        setTimeout(() => {
-            codeBlock.textContent = isCSharp ? csharpSnippets[id] : cppSnippets[id];
-            codeBlock.classList.remove("fade");
-        }, 250);
+// Function to convert code between C++ and C#
+window.convertCode = function(id) {
+    console.log("Converting code for:", id);
+    const toggle = document.getElementById(id + "Toggle");
+    const isCSharp = toggle ? toggle.checked : false;
+    const codeBlock = document.getElementById(id + "Code");
+    
+    if (!codeBlock) {
+        console.error("Code block not found for:", id);
+        return;
     }
+    
+    codeBlock.classList.add("fade");
+    setTimeout(() => {
+        const newCode = isCSharp ? window.csharpSnippets[id] : window.cppSnippets[id];
+        if (newCode) {
+            codeBlock.textContent = newCode;
+        }
+        codeBlock.classList.remove("fade");
+    }, 250);
+};
 
-    document.addEventListener('DOMContentLoaded', () => {
-        convertCode('example1');
-        convertCode('example2');
-        convertCode('example3');
-        convertCode('example4');
-        convertCode('example5');
-        convertCode('example6');
-        
-        updateWalkthrough(0); 
-        currentTraceStep = 1;
+window.updateWalkthrough = function(step) {
+    const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
+    const walkthroughVariables = document.getElementById('walkthroughVariables');
+    const walkthroughExplanation = document.getElementById('walkthroughExplanation');
+    
+    if (!walkthroughCodeBase || !walkthroughVariables || !walkthroughExplanation) return;
+    
+    const data = window.traceSteps[step];
+    let codeContent = '';
+    const activeLineIndex = data.line;
+    
+    window.fullCodeLines.forEach((line, index) => {
+        if (index === activeLineIndex) {
+            codeContent += `<span style="background-color: yellow; color: black;">${line.replace('// ⬅ Run Code Block', '⬅ ACTIVE')}</span>\n`;
+        } else if (line.includes('// ⬅ Run Code Block')) {
+            codeContent += `// ${line.replace('// ⬅ Run Code Block', '').trim()}\n`;
+        } else if (activeLineIndex >= 2 && activeLineIndex <= 6 && index < 2) {
+            codeContent += `${line}\n`;
+        } else if (index !== activeLineIndex) {
+            codeContent += `// ${line.trim()}\n`;
+        }
     });
+    
+    walkthroughCodeBase.innerHTML = codeContent;
+    walkthroughVariables.textContent = data.vars;
+    walkthroughExplanation.innerHTML = `<em>Explanation:</em> ${data.exp}`;
+    
+    if (step === window.traceSteps.length - 1) {
+        walkthroughExplanation.innerHTML += '<br><strong>Trace finished! Program displays: "Hello Alice, your score is 95"</strong>';
+        const nextStepBtn = document.getElementById('nextStepBtn');
+        if (nextStepBtn) {
+            nextStepBtn.disabled = true;
+        }
+    }
+};
+
+window.nextStepHandler = function() {
+    if (window.currentTraceStep < window.traceSteps.length) {
+        if (typeof window.updateWalkthrough === 'function') {
+            window.updateWalkthrough(window.currentTraceStep);
+            window.currentTraceStep++;
+        }
+    }
+};
+
+// Initialize all code examples on page load
+function initializeCodeExamples() {
+    console.log("Initializing Input/Output page code examples");
+    for (let i = 1; i <= 6; i++) {
+        const toggle = document.getElementById(`example${i}Toggle`);
+        const codeBlock = document.getElementById(`example${i}Code`);
+        if (toggle && codeBlock) {
+            const isCSharp = toggle.checked;
+            const newCode = isCSharp ? window.csharpSnippets[`example${i}`] : window.cppSnippets[`example${i}`];
+            if (newCode) {
+                codeBlock.textContent = newCode;
+            }
+        }
+    }
+}
+
+function initializeWalkthrough() {
+    console.log("Initializing Input/Output walkthrough");
+    const nextStepBtn = document.getElementById('nextStepBtn');
+    if (nextStepBtn) {
+        window.currentTraceStep = 0;
+        
+        if (typeof window.updateWalkthrough === 'function') {
+            window.updateWalkthrough(0);
+            window.currentTraceStep = 1;
+        }
+        
+        nextStepBtn.disabled = false;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM loaded, initializing Input/Output page");
+    initializeCodeExamples();
+    initializeWalkthrough();
+});
+
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(function() {
+        console.log("Document ready, initializing Input/Output page");
+        initializeCodeExamples();
+        initializeWalkthrough();
+    }, 100);
+}
+
+window.initializeInputOutputPage = function() {
+    console.log("Initializing Input/Output page via global function");
+    initializeCodeExamples();
+    initializeWalkthrough();
+};
 </script>

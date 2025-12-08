@@ -58,7 +58,7 @@
     
     <div class="code-container">
         <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="convertCode('example1')">
+            <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="window.convertCode('example1')">
             <label class="form-check-label" for="example1Toggle">Convert to C#</label>
         </div>
         <div class="code-content">
@@ -89,7 +89,7 @@ cout << "Grade: " << grade << endl;
     
     <div class="code-container">
         <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="convertCode('example2')">
+            <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="window.convertCode('example2')">
             <label class="form-check-label" for="example2Toggle">Convert to C#</label>
         </div>
         <div class="code-content">
@@ -146,7 +146,7 @@ int bonus = 15;
     
     <div class="code-container">
         <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="convertCode('example3')">
+            <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="window.convertCode('example3')">
             <label class="form-check-label" for="example3Toggle">Convert to C#</label>
         </div>
         <div class="code-content">
@@ -182,7 +182,7 @@ cout << "Counter doubled to: " << counter << endl;
     
     <div class="code-container">
         <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example4Toggle" onchange="convertCode('example4')">
+            <input class="form-check-input" type="checkbox" id="example4Toggle" onchange="window.convertCode('example4')">
             <label class="form-check-label" for="example4Toggle">Convert to C#</label>
         </div>
         <div class="code-content">
@@ -218,7 +218,7 @@ cout << "New first name: " << firstName << endl;
     
     <div class="code-container">
         <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example5Toggle" onchange="convertCode('example5')">
+            <input class="form-check-input" type="checkbox" id="example5Toggle" onchange="window.convertCode('example5')">
             <label class="form-check-label" for="example5Toggle">Convert to C#</label>
         </div>
         <div class="code-content">
@@ -261,7 +261,7 @@ if (health <= 0) {
     
     <div class="code-container">
         <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example6Toggle" onchange="convertCode('example6')">
+            <input class="form-check-input" type="checkbox" id="example6Toggle" onchange="window.convertCode('example6')">
             <label class="form-check-label" for="example6Toggle">Convert to C#</label>
         </div>
         <div class="code-content">
@@ -473,22 +473,23 @@ bool b = false;          // Not descriptive
 </style>
 
 <script>
-    const fullCodeLines = [
-        'int score = 85;',
-        'int bonus = 15;',
-        'int total = score + bonus; // ⬅ Run Code Block',
-        'cout << "Total: " << total << endl;'
-    ];
-    
-    const traceSteps = [
-        { line: 0, vars: 'score = 85, bonus = ?, total = ?', exp: 'Creates variable <code>score</code> and assigns it the value 85.' },
-        { line: 1, vars: 'score = 85, bonus = 15, total = ?', exp: 'Creates variable <code>bonus</code> and assigns it the value 15.' },
-        { line: 2, vars: 'score = 85, bonus = 15, total = 100', exp: 'Creates variable <code>total</code> and calculates its value: <code>85 + 15 = 100</code>.' },
-        { line: 3, vars: 'score = 85, bonus = 15, total = 100', exp: 'Displays the result: "Total: 100".' }
-    ];
-    
-    const cppSnippets = {
-        example1: `// Creating variables
+// Make all functions and data available globally
+window.fullCodeLines = [
+    'int score = 85;',
+    'int bonus = 15;',
+    'int total = score + bonus; // ⬅ Run Code Block',
+    'cout << "Total: " << total << endl;'
+];
+
+window.traceSteps = [
+    { line: 0, vars: 'score = 85, bonus = ?, total = ?', exp: 'Creates variable <code>score</code> and assigns it the value 85.' },
+    { line: 1, vars: 'score = 85, bonus = 15, total = ?', exp: 'Creates variable <code>bonus</code> and assigns it the value 15.' },
+    { line: 2, vars: 'score = 85, bonus = 15, total = 100', exp: 'Creates variable <code>total</code> and calculates its value: <code>85 + 15 = 100</code>.' },
+    { line: 3, vars: 'score = 85, bonus = 15, total = 100', exp: 'Displays the result: "Total: 100".' }
+];
+
+window.cppSnippets = {
+    example1: `// Creating variables
 int age = 15;
 float height = 1.65;
 string name = "Alex";
@@ -501,7 +502,7 @@ cout << "Age: " << age << " years" << endl;
 cout << "Height: " << height << " meters" << endl;
 cout << "Student: " << (isStudent ? "Yes" : "No") << endl;
 cout << "Grade: " << grade << endl;`,
-        example2: `int apples = 5;
+    example2: `int apples = 5;
 int oranges = 3;
 
 // Basic arithmetic with variables
@@ -514,7 +515,7 @@ cout << "Oranges: " << oranges << endl;
 cout << "Total fruits: " << totalFruits << endl;
 cout << "More apples than oranges: " << difference << endl;
 cout << "Double apples: " << doubleApples << endl;`,
-        example3: `int counter = 0;
+    example3: `int counter = 0;
 cout << "Counter starts at: " << counter << endl;
 
 // Change the value
@@ -532,7 +533,7 @@ cout << "Counter decreased to: " << counter << endl;
 // Multiply by 2
 counter = counter * 2;  // Same as: counter *= 2
 cout << "Counter doubled to: " << counter << endl;`,
-        example4: `string firstName = "John";
+    example4: `string firstName = "John";
 string lastName = "Smith";
 int age = 25;
 
@@ -550,7 +551,7 @@ cout << info << endl;
 // Changing a string
 firstName = "Jonathan";
 cout << "New first name: " << firstName << endl;`,
-        example5: `string playerName = "GameMaster";
+    example5: `string playerName = "GameMaster";
 int health = 100;
 int score = 0;
 float speed = 5.5;
@@ -575,7 +576,7 @@ if (health <= 0) {
     isAlive = false;
     cout << "Player has been defeated!" << endl;
 }`,
-        example6: `float celsius = 25.0;
+    example6: `float celsius = 25.0;
 float fahrenheit;
 
 // Convert Celsius to Fahrenheit
@@ -588,10 +589,10 @@ cout << celsius << "°C = " << fahrenheit << "°F" << endl;
 // Now let's convert back
 celsius = (fahrenheit - 32.0) * 5.0 / 9.0;
 cout << fahrenheit << "°F = " << celsius << "°C" << endl;`
-    };
+};
 
-    const csharpSnippets = {
-        example1: `// Creating variables
+window.csharpSnippets = {
+    example1: `// Creating variables
 int age = 15;
 float height = 1.65f;
 string name = "Alex";
@@ -604,7 +605,7 @@ Console.WriteLine("Age: " + age + " years");
 Console.WriteLine("Height: " + height + " meters");
 Console.WriteLine("Student: " + (isStudent ? "Yes" : "No"));
 Console.WriteLine("Grade: " + grade);`,
-        example2: `int apples = 5;
+    example2: `int apples = 5;
 int oranges = 3;
 
 // Basic arithmetic with variables
@@ -617,7 +618,7 @@ Console.WriteLine("Oranges: " + oranges);
 Console.WriteLine("Total fruits: " + totalFruits);
 Console.WriteLine("More apples than oranges: " + difference);
 Console.WriteLine("Double apples: " + doubleApples);`,
-        example3: `int counter = 0;
+    example3: `int counter = 0;
 Console.WriteLine("Counter starts at: " + counter);
 
 // Change the value
@@ -635,7 +636,7 @@ Console.WriteLine("Counter decreased to: " + counter);
 // Multiply by 2
 counter = counter * 2;  // Same as: counter *= 2
 Console.WriteLine("Counter doubled to: " + counter);`,
-        example4: `string firstName = "John";
+    example4: `string firstName = "John";
 string lastName = "Smith";
 int age = 25;
 
@@ -653,7 +654,7 @@ Console.WriteLine(info);
 // Changing a string
 firstName = "Jonathan";
 Console.WriteLine("New first name: " + firstName);`,
-        example5: `string playerName = "GameMaster";
+    example5: `string playerName = "GameMaster";
 int health = 100;
 int score = 0;
 float speed = 5.5f;
@@ -679,7 +680,7 @@ if (health <= 0)
     isAlive = false;
     Console.WriteLine("Player has been defeated!");
 }`,
-        example6: `float celsius = 25.0f;
+    example6: `float celsius = 25.0f;
 float fahrenheit;
 
 // Convert Celsius to Fahrenheit
@@ -692,102 +693,126 @@ Console.WriteLine(celsius + "°C = " + fahrenheit + "°F");
 // Now let's convert back
 celsius = (fahrenheit - 32.0f) * 5.0f / 9.0f;
 Console.WriteLine(fahrenheit + "°F = " + celsius + "°C");`
-    };
+};
 
-    function convertCode(id) {
-        const toggle = document.getElementById(id + "Toggle");
-        const isCSharp = toggle ? toggle.checked : false;
-        const codeBlock = document.getElementById(id + "Code");
-
-        if (codeBlock && toggle) {
-            codeBlock.classList.add("fade");
-            setTimeout(() => {
-                codeBlock.textContent = isCSharp ? csharpSnippets[id] : cppSnippets[id];
-                codeBlock.classList.remove("fade");
-            }, 250);
-        }
+// Function to convert code between C++ and C#
+window.convertCode = function(id) {
+    console.log("Converting code for:", id);
+    const toggle = document.getElementById(id + "Toggle");
+    const isCSharp = toggle ? toggle.checked : false;
+    const codeBlock = document.getElementById(id + "Code");
+    
+    if (!codeBlock) {
+        console.error("Code block not found for:", id);
+        return;
     }
-
-    function initializeCodeExamples() {
-        if (document.getElementById('example1Code')) {
-            convertCode('example1');
-            convertCode('example2');
-            convertCode('example3');
-            convertCode('example4');
-            convertCode('example5');
-            convertCode('example6');
+    
+    codeBlock.classList.add("fade");
+    setTimeout(() => {
+        const newCode = isCSharp ? window.csharpSnippets[id] : window.cppSnippets[id];
+        if (newCode) {
+            codeBlock.textContent = newCode;
         }
-        
-        const toggles = document.querySelectorAll('.form-check-input[type="checkbox"]');
-        toggles.forEach(toggle => {
-            const id = toggle.id.replace('Toggle', '');
-            if (id) {
-                toggle.addEventListener('change', () => convertCode(id));
-            }
-        });
-    }
+        codeBlock.classList.remove("fade");
+    }, 250);
+};
 
-    function initializeWalkthrough() {
-        const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
-        const walkthroughVariables = document.getElementById('walkthroughVariables');
-        const walkthroughExplanation = document.getElementById('walkthroughExplanation');
+// Function to update walkthrough
+window.updateWalkthrough = function(step) {
+    const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
+    const walkthroughVariables = document.getElementById('walkthroughVariables');
+    const walkthroughExplanation = document.getElementById('walkthroughExplanation');
+    
+    if (!walkthroughCodeBase || !walkthroughVariables || !walkthroughExplanation) return;
+    
+    const data = window.traceSteps[step];
+    let codeContent = '';
+    const activeLineIndex = data.line;
+    
+    window.fullCodeLines.forEach((line, index) => {
+        if (index === activeLineIndex) {
+            codeContent += `<span style="background-color: yellow; color: black;">${line.replace('// ⬅ Run Code Block', '⬅ ACTIVE')}</span>\n`;
+        } else if (line.includes('// ⬅ Run Code Block')) {
+            codeContent += `// ${line.replace('// ⬅ Run Code Block', '').trim()}\n`;
+        } else if (index === 2 && activeLineIndex !== 2) {
+            codeContent += `// ${line.trim()}\n`;
+        } else if (index === 3 && activeLineIndex !== 3) {
+            codeContent += `// ${line.trim()}\n`;
+        } else if (index !== activeLineIndex) {
+            codeContent += `${line}\n`;
+        }
+    });
+    
+    walkthroughCodeBase.innerHTML = codeContent;
+    walkthroughVariables.textContent = data.vars;
+    walkthroughExplanation.innerHTML = `<em>Explanation:</em> ${data.exp}`;
+    
+    if (step === window.traceSteps.length - 1) {
+        walkthroughExplanation.innerHTML += '<br><strong>Trace finished! Output: "Total: 100"</strong>';
         const nextStepBtn = document.getElementById('nextStepBtn');
+        if (nextStepBtn) {
+            nextStepBtn.disabled = true;
+        }
+    }
+};
 
-        if (!nextStepBtn || !walkthroughCodeBase) return;
+window.nextStepHandler = function() {
+    if (window.currentTraceStep < window.traceSteps.length) {
+        if (typeof window.updateWalkthrough === 'function') {
+            window.updateWalkthrough(window.currentTraceStep);
+            window.currentTraceStep++;
+        }
+    }
+};
 
-        let currentTraceStep = 0;
-        
-        function updateWalkthrough(step) {
-            const data = traceSteps[step];
-            let codeContent = '';
-            const activeLineIndex = data.line;
-            
-            fullCodeLines.forEach((line, index) => {
-                if (index === activeLineIndex) {
-                    codeContent += `<span style="background-color: yellow; color: black;">${line.replace('// ⬅ Run Code Block', '⬅ ACTIVE')}</span>\n`;
-                } else if (line.includes('// ⬅ Run Code Block')) {
-                    codeContent += `// ${line.replace('// ⬅ Run Code Block', '').trim()}\n`;
-                } else if (index === 2 && activeLineIndex !== 2) {
-                    codeContent += `// ${line.trim()}\n`;
-                } else if (index === 3 && activeLineIndex !== 3) {
-                    codeContent += `// ${line.trim()}\n`;
-                } else if (index !== activeLineIndex) {
-                    codeContent += `${line}\n`;
-                }
-            });
-            
-            if (walkthroughCodeBase && walkthroughVariables && walkthroughExplanation) {
-                walkthroughCodeBase.innerHTML = codeContent;
-                walkthroughVariables.textContent = data.vars;
-                walkthroughExplanation.innerHTML = `<em>Explanation:</em> ${data.exp}`;
-                
-                if (step === traceSteps.length - 1) {
-                    walkthroughExplanation.innerHTML += '<br><strong>Trace finished! Output: "Total: 100"</strong>';
-                    nextStepBtn.disabled = true;
-                }
+function initializeCodeExamples() {
+    console.log("Initializing Variables page code examples");
+    for (let i = 1; i <= 6; i++) {
+        const toggle = document.getElementById(`example${i}Toggle`);
+        const codeBlock = document.getElementById(`example${i}Code`);
+        if (toggle && codeBlock) {
+            const isCSharp = toggle.checked;
+            const newCode = isCSharp ? window.csharpSnippets[`example${i}`] : window.cppSnippets[`example${i}`];
+            if (newCode) {
+                codeBlock.textContent = newCode;
             }
         }
-
-        const newButton = nextStepBtn.cloneNode(true);
-        nextStepBtn.parentNode.replaceChild(newButton, nextStepBtn);
-        
-        newButton.addEventListener('click', () => {
-            if (currentTraceStep < traceSteps.length) {
-                updateWalkthrough(currentTraceStep);
-                currentTraceStep++;
-            }
-        });
-
-        updateWalkthrough(0);
-        currentTraceStep = 1;
     }
+}
 
-    function initializePage() {
+function initializeWalkthrough() {
+    console.log("Initializing Variables walkthrough");
+    const nextStepBtn = document.getElementById('nextStepBtn');
+    if (nextStepBtn) {
+        window.currentTraceStep = 0;
+        
+        if (typeof window.updateWalkthrough === 'function') {
+            window.updateWalkthrough(0);
+            window.currentTraceStep = 1;
+        }
+        
+        nextStepBtn.disabled = false;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM loaded, initializing Variables page");
+    initializeCodeExamples();
+    initializeWalkthrough();
+});
+
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(function() {
+        console.log("Document ready, initializing Variables page");
         initializeCodeExamples();
         initializeWalkthrough();
-    }
+    }, 100);
+}
 
-    initializePage();
-
-    document.addEventListener('DOMContentLoaded', initializePage);
+window.initializeVariablesPage = function() {
+    console.log("Initializing Variables page via global function");
+    initializeCodeExamples();
+    initializeWalkthrough();
+};
 </script>
+</body>

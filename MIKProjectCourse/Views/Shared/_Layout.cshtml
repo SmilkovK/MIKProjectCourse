@@ -308,7 +308,6 @@
                 <li>
                     <div class="chapter-title" data-id="3">@Localizer["Object Oriented Programming"]</div>
                     <ul class="subchapter-list">
-                        <li><a class="ajax-link" asp-controller="OOP" asp-action="Index" data-path="/OOP/Index">@Localizer["Chapter Introduction"]</a></li>
                         <li><a class="ajax-link" asp-controller="OOP" asp-action="Introduction" data-path="/OOP/Introduction">@Localizer["Introduction to OOP"]</a></li>
                         <li><a class="ajax-link" asp-controller="OOP" asp-action="Classes" data-path="/OOP/Classes">@Localizer["Classes"]</a></li>
                         <li><a class="ajax-link" asp-controller="OOP" asp-action="Constructors" data-path="/OOP/Constructors">@Localizer["Constructors"]</a></li>
@@ -436,8 +435,7 @@ $(document).ready(function() {
     updateCodeTheme(savedTheme);
 
     function setupThemeToggle() {
-        $('#themeToggle').off('click.theme');
-        $('#themeToggle').on('click.theme', function() {
+        $('#themeToggle').off('click.theme').on('click.theme', function() {
             const currentTheme = htmlEl.getAttribute('data-bs-theme');
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             htmlEl.setAttribute('data-bs-theme', newTheme);
@@ -580,28 +578,36 @@ $(document).ready(function() {
                         setupChapterTitleClicks();
                         setupAjaxNavigation();
 
-                        const scripts = tempDiv.find('script:not([src])');
+                        const scripts = tempDiv.find('script');
                         scripts.each(function() {
-                            try {
-                                const scriptContent = $(this).text();
-                                if (scriptContent.trim()) {
-                                    const script = document.createElement('script');
-                                    script.textContent = scriptContent;
-                                    document.body.appendChild(script).remove();
+                            const scriptElement = $(this);
+                            
+                            if (scriptElement.attr('src')) {
+                                const src = scriptElement.attr('src');
+                                if (!src.includes('jquery') && 
+                                    !src.includes('bootstrap') && 
+                                    !src.includes('highlight.js')) {
+                                    $.getScript(src).fail(function() {
+                                        console.warn('Failed to load script:', src);
+                                    });
                                 }
-                            } catch(e) {
-                                console.warn('Script execution warning:', e.message);
+                            } else {
+                                try {
+                                    const scriptContent = scriptElement.text();
+                                    if (scriptContent.trim()) {
+                                        const script = document.createElement('script');
+                                        script.textContent = scriptContent;
+                                        document.body.appendChild(script).remove();
+                                    }
+                                } catch(e) {
+                                    console.warn('Script execution warning:', e.message);
+                                }
                             }
                         });
 
                         setTimeout(() => {
-                            if (typeof window.initializePage === 'function') {
-                                try {
-                                    window.initializePage();
-                                } catch(e) {
-                                    console.warn('initializePage error:', e.message);
-                                }
-                            }
+                            setupGlobalEventDelegation();
+                            initializeCurrentPage();
                         }, 100);
                     });
                 });
@@ -668,6 +674,150 @@ $(document).ready(function() {
             `)
             .appendTo('head');
     }
+    
+    function setupGlobalEventDelegation() {
+        console.log("Setting up global event delegation");
+        
+        $(document).off('change.codeToggle').on('change.codeToggle', '.form-check-input[onchange*="convertCode"]', function() {
+            try {
+                const onchangeAttr = $(this).attr('onchange') || '';
+                const match = onchangeAttr.match(/convertCode\('([^']+)'\)/);
+                if (match && match[1]) {
+                    const exampleId = match[1];
+                    console.log("Toggle changed for:", exampleId);
+                    
+                    if (typeof window.convertCode === 'function') {
+                        window.convertCode(exampleId);
+                    } else if (typeof convertCode === 'function') {
+                        convertCode(exampleId);
+                    } else {
+                        console.error("convertCode function not found");
+                    }
+                }
+            } catch(e) {
+                console.error("Error handling toggle change:", e);
+            }
+        });
+        
+        $(document).off('click.walkthroughBtn').on('click.walkthroughBtn', '#nextStepBtn', function() {
+            if (typeof window.nextStepHandler === 'function') {
+                window.nextStepHandler();
+            }
+        });
+    }
+    
+    function initializeCurrentPage() {
+        const topic = document.body?.dataset?.topic;
+        const currentPath = window.location.pathname;
+        
+        console.log("Checking initialization for topic:", topic, "path:", currentPath);
+
+        if (topic === 'variables' || currentPath.includes('/SP/Variables')) {
+            console.log("Initializing Variables page functionality");
+            
+            if (typeof window.currentTraceStep !== 'undefined') {
+                window.currentTraceStep = 0;
+            }
+            
+            if (typeof window.initializeVariablesPage === 'function') {
+                try {
+                    window.initializeVariablesPage();
+                } catch(e) {
+                    console.warn('initializeVariablesPage error:', e.message);
+                }
+            }
+        }
+
+        if (topic === 'inputoutput' || currentPath.includes('/SP/InputOutput')) {
+            console.log("Initializing Input/Output page functionality");
+            
+            if (typeof window.currentTraceStep !== 'undefined') {
+                window.currentTraceStep = 0;
+            }
+            
+            if (typeof window.initializeInputOutputPage === 'function') {
+                try {
+                    window.initializeInputOutputPage();
+                } catch(e) {
+                    console.warn('initializeInputOutputPage error:', e.message);
+                }
+            }
+        }
+
+        // For If-Else page
+        if (topic === 'ifelse' || currentPath.includes('/SP/IfElse')) {
+            console.log("Initializing If-Else page functionality");
+            
+            // Reset global state
+            if (typeof window.currentTraceStep !== 'undefined') {
+                window.currentTraceStep = 0;
+            }
+            
+            if (typeof window.initializeIfElsePage === 'function') {
+                try {
+                    window.initializeIfElsePage();
+                } catch(e) {
+                    console.warn('initializeIfElsePage error:', e.message);
+                }
+            }
+        }
+
+        if (topic === 'loops' || currentPath.includes('/SP/ForLoops')) {
+            console.log("Initializing For Loops page functionality");
+            
+            if (typeof window.currentTraceStep !== 'undefined') {
+                window.currentTraceStep = 0;
+            }
+            
+            if (typeof window.initializeForLoopsPage === 'function') {
+                try {
+                    window.initializeForLoopsPage();
+                } catch(e) {
+                    console.warn('initializeForLoopsPage error:', e.message);
+                }
+            }
+        }
+
+        if (topic === 'arrays' || currentPath.includes('/SP/Arrays')) {
+            console.log("Initializing Arrays page functionality");
+
+            if (typeof window.currentTraceStep !== 'undefined') {
+                window.currentTraceStep = 0;
+            }
+
+            if (typeof window.initializeArraysPage === 'function') {
+                try {
+                    window.initializeArraysPage();
+                } catch(e) {
+                    console.warn('initializeArraysPage error:', e.message);
+                }
+            }
+        }
+
+        if (topic === 'classes' || currentPath.includes('/OOP/Classes')) {
+            console.log("Initializing OOP Classes page functionality");
+    
+            if (typeof window.oopClasses !== 'undefined' && typeof window.oopClasses.init === 'function') {
+                try {
+                    window.oopClasses.init();
+                } catch(e) {
+                    console.warn('oopClasses.init error:', e.message);
+                }
+            }
+        }
+        
+        if (typeof window.initializePage === 'function') {
+            try {
+                window.initializePage();
+            } catch(e) {
+                console.warn('initializePage error:', e.message);
+            }
+        }
+    }
+    
+    setupGlobalEventDelegation();
+    
+    initializeCurrentPage();
 });
 </script>
 </body>

@@ -158,7 +158,7 @@ else {
             </div>
         </div>
 
-        <h2>🎯 Example 4: Temperature Check</h2>
+        <h2>Example 4: Temperature Check</h2>
         <p>A practical example using temperature ranges:</p>
         
         <div class="code-container">
@@ -405,84 +405,41 @@ if (score > 50) {
         }
     </style>
 
-    <script>
-        // --- INTERACTIVE WALKTHROUGH DATA ---
-        const fullCodeLines = [
-            'int temperature = 25;',
-            'if (temperature > 20) {',
-            '    cout << "Nice weather!" << endl; // ⬅ Run Code Block',
-            '} else {',
-            '    cout << "It\'s cold!" << endl;',
-            '}'
-        ];
-        
-        const traceSteps = [
-            { line: 0, vars: 'temperature = 25', exp: 'Sets the temperature variable to 25.' },
-            { line: 1, vars: 'temperature = 25', exp: 'Checks condition: is <code>temperature > 20</code>? 25 > 20 is <strong>TRUE</strong>.' },
-            { line: 2, vars: 'temperature = 25', exp: 'Condition is TRUE, so this code runs. Prints "Nice weather!"' },
-            { line: 4, vars: 'temperature = 25', exp: 'Skips the else block because the if condition was true.' }
-        ];
-        
-        let currentTraceStep = 0;
-        const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
-        const walkthroughVariables = document.getElementById('walkthroughVariables');
-        const walkthroughExplanation = document.getElementById('walkthroughExplanation');
-        const nextStepBtn = document.getElementById('nextStepBtn');
+<script>
+// Make all functions and data available globally
+window.fullCodeLines = [
+    'int temperature = 25;',
+    'if (temperature > 20) {',
+    '    cout << "Nice weather!" << endl; // ⬅ Run Code Block',
+    '} else {',
+    '    cout << "It\'s cold!" << endl;',
+    '}'
+];
 
-        function updateWalkthrough(step) {
-            const data = traceSteps[step];
-            let codeContent = '';
-            const activeLineIndex = data.line;
-            
-            fullCodeLines.forEach((line, index) => {
-                if (index === activeLineIndex) {
-                    codeContent += `<span style="background-color: yellow; color: black;">${line.replace('// ⬅ Run Code Block', '⬅ ACTIVE')}</span>\n`;
-                } else if (line.includes('// ⬅ Run Code Block')) {
-                    codeContent += `// ${line.replace('// ⬅ Run Code Block', '').trim()}\n`;
-                } else if (index === 1 && activeLineIndex !== 1 && activeLineIndex !== 2) {
-                    codeContent += `// ${line.trim()}\n`;
-                } else if (index > 1 && activeLineIndex < 2) {
-                    codeContent += `// ${line.trim()}\n`;
-                } else if (index !== activeLineIndex) {
-                    codeContent += `${line}\n`;
-                }
-            });
-            
-            walkthroughCodeBase.innerHTML = codeContent;
-            walkthroughVariables.textContent = data.vars;
-            walkthroughExplanation.innerHTML = `<em>Explanation:</em> ${data.exp}`;
-            
-            if (step === traceSteps.length - 1) {
-                walkthroughExplanation.innerHTML += '<br><strong>Trace finished! Output: "Nice weather!"</strong>';
-                nextStepBtn.disabled = true;
-            }
-        }
+window.traceSteps = [
+    { line: 0, vars: 'temperature = 25', exp: 'Sets the temperature variable to 25.' },
+    { line: 1, vars: 'temperature = 25', exp: 'Checks condition: is <code>temperature > 20</code>? 25 > 20 is <strong>TRUE</strong>.' },
+    { line: 2, vars: 'temperature = 25', exp: 'Condition is TRUE, so this code runs. Prints "Nice weather!"' },
+    { line: 4, vars: 'temperature = 25', exp: 'Skips the else block because the if condition was true.' }
+];
 
-        nextStepBtn.addEventListener('click', () => {
-            if (currentTraceStep < traceSteps.length) {
-                updateWalkthrough(currentTraceStep);
-                currentTraceStep++;
-            }
-        });
-
-        const cppSnippets = {
-            example1: `int age = 20;
+window.cppSnippets = {
+    example1: `int age = 20;
 
 if (age >= 18) {
     cout << "You can vote!" << endl;
 } else {
     cout << "You cannot vote yet." << endl;
 }`,
-            example2: `int score = 85;
+    example2: `int score = 85;
 int passingScore = 60;
 
 if (score >= passingScore) {
     cout << "Congratulations! You passed!" << endl;
 }
 
-// This code runs regardless of the if statement
 cout << "Your score: " << score << endl;`,
-            example3: `int grade = 85;
+    example3: `int grade = 85;
 
 if (grade >= 90) {
     cout << "Grade: A - Excellent!" << endl;
@@ -499,7 +456,7 @@ else if (grade >= 60) {
 else {
     cout << "Grade: F - Try again!" << endl;
 }`,
-            example4: `int temperature = 30;
+    example4: `int temperature = 30;
 
 if (temperature > 35) {
     cout << "It's very hot! Stay hydrated." << endl;
@@ -516,7 +473,7 @@ else if (temperature > 0) {
 else {
     cout << "Freezing! Stay warm." << endl;
 }`,
-            example5: `string day = "Saturday";
+    example5: `string day = "Saturday";
 
 if (day == "Saturday" || day == "Sunday") {
     cout << "It's the weekend! Time to relax." << endl;
@@ -525,10 +482,9 @@ if (day == "Saturday" || day == "Sunday") {
 } else {
     cout << "It's a weekday. Time to work!" << endl;
 }`,
-            example6: `int age = 16;
+    example6: `int age = 16;
 bool hasPermission = true;
 
-// Check multiple conditions with &&
 if (age >= 18) {
     cout << "You can watch any movie." << endl;
 }
@@ -541,10 +497,10 @@ else if (age >= 13) {
 else {
     cout << "You can only watch PG movies." << endl;
 }`
-        };
+};
 
-        const csharpSnippets = {
-            example1: `int age = 20;
+window.csharpSnippets = {
+    example1: `int age = 20;
 
 if (age >= 18)
 {
@@ -554,7 +510,7 @@ else
 {
     Console.WriteLine("You cannot vote yet.");
 }`,
-            example2: `int score = 85;
+    example2: `int score = 85;
 int passingScore = 60;
 
 if (score >= passingScore)
@@ -562,9 +518,8 @@ if (score >= passingScore)
     Console.WriteLine("Congratulations! You passed!");
 }
 
-// This code runs regardless of the if statement
 Console.WriteLine("Your score: " + score);`,
-            example3: `int grade = 85;
+    example3: `int grade = 85;
 
 if (grade >= 90)
 {
@@ -586,7 +541,7 @@ else
 {
     Console.WriteLine("Grade: F - Try again!");
 }`,
-            example4: `int temperature = 30;
+    example4: `int temperature = 30;
 
 if (temperature > 35)
 {
@@ -608,7 +563,7 @@ else
 {
     Console.WriteLine("Freezing! Stay warm.");
 }`,
-            example5: `string day = "Saturday";
+    example5: `string day = "Saturday";
 
 if (day == "Saturday" || day == "Sunday")
 {
@@ -622,10 +577,9 @@ else
 {
     Console.WriteLine("It's a weekday. Time to work!");
 }`,
-            example6: `int age = 16;
+    example6: `int age = 16;
 bool hasPermission = true;
 
-// Check multiple conditions with &&
 if (age >= 18)
 {
     Console.WriteLine("You can watch any movie.");
@@ -642,30 +596,111 @@ else
 {
     Console.WriteLine("You can only watch PG movies.");
 }`
-        };
+};
 
-        function convertCode(id) {
-            const toggle = document.getElementById(id + "Toggle");
-            const isCSharp = toggle.checked;
-            const codeBlock = document.getElementById(id + "Code");
+window.currentTraceStep = 0;
 
-            codeBlock.classList.add("fade");
-            setTimeout(() => {
-                codeBlock.textContent = isCSharp ? csharpSnippets[id] : cppSnippets[id];
-                codeBlock.classList.remove("fade");
-            }, 250);
+window.convertCode = function(id) {
+    console.log("Converting code for:", id);
+    const toggle = document.getElementById(id + "Toggle");
+    const isCSharp = toggle ? toggle.checked : false;
+    const codeBlock = document.getElementById(id + "Code");
+    
+    if (!codeBlock) {
+        console.error("Code block not found for:", id);
+        return;
+    }
+    
+    codeBlock.classList.add("fade");
+    setTimeout(() => {
+        const newCode = isCSharp ? window.csharpSnippets[id] : window.cppSnippets[id];
+        if (newCode) {
+            codeBlock.textContent = newCode;
         }
+        codeBlock.classList.remove("fade");
+    }, 250);
+};
 
-        document.addEventListener('DOMContentLoaded', () => {
-            convertCode('example1');
-            convertCode('example2');
-            convertCode('example3');
-            convertCode('example4');
-            convertCode('example5');
-            convertCode('example6');
-            
-            updateWalkthrough(0); 
-            currentTraceStep = 1;
-        });
-    </script>
+window.updateWalkthrough = function(step) {
+    const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
+    const walkthroughVariables = document.getElementById('walkthroughVariables');
+    const walkthroughExplanation = document.getElementById('walkthroughExplanation');
+    
+    if (!walkthroughCodeBase || !walkthroughVariables || !walkthroughExplanation) return;
+    
+    const data = window.traceSteps[step];
+    let codeContent = '';
+    const activeLineIndex = data.line;
+    
+    window.fullCodeLines.forEach((line, index) => {
+        if (index === activeLineIndex) {
+            codeContent += `<span style="background-color: yellow; color: black;">${line.replace('// ⬅ Run Code Block', '⬅ ACTIVE')}</span>\n`;
+        } else if (line.includes('// ⬅ Run Code Block')) {
+            codeContent += `// ${line.replace('// ⬅ Run Code Block', '').trim()}\n`;
+        } else if (index === 1 && activeLineIndex !== 1 && activeLineIndex !== 2) {
+            codeContent += `// ${line.trim()}\n`;
+        } else if (index > 1 && activeLineIndex < 2) {
+            codeContent += `// ${line.trim()}\n`;
+        } else if (index !== activeLineIndex) {
+            codeContent += `${line}\n`;
+        }
+    });
+    
+    walkthroughCodeBase.innerHTML = codeContent;
+    walkthroughVariables.textContent = data.vars;
+    walkthroughExplanation.innerHTML = `<em>Explanation:</em> ${data.exp}`;
+    
+    if (step === window.traceSteps.length - 1) {
+        walkthroughExplanation.innerHTML += '<br><strong>Trace finished! Output: "Nice weather!"</strong>';
+        const nextStepBtn = document.getElementById('nextStepBtn');
+        if (nextStepBtn) {
+            nextStepBtn.disabled = true;
+        }
+    }
+};
+
+function initializeCodeExamples() {
+    console.log("Initializing code examples");
+    for (let i = 1; i <= 6; i++) {
+        const toggle = document.getElementById(`example${i}Toggle`);
+        const codeBlock = document.getElementById(`example${i}Code`);
+        if (toggle && codeBlock) {
+            const isCSharp = toggle.checked;
+            const newCode = isCSharp ? window.csharpSnippets[`example${i}`] : window.cppSnippets[`example${i}`];
+            if (newCode) {
+                codeBlock.textContent = newCode;
+            }
+        }
+    }
+}
+
+function initializeWalkthrough() {
+    console.log("Initializing walkthrough");
+    const nextStepBtn = document.getElementById('nextStepBtn');
+    if (nextStepBtn) {
+        window.currentTraceStep = 0;
+        
+        if (typeof window.updateWalkthrough === 'function') {
+            window.updateWalkthrough(0);
+            window.currentTraceStep = 1;
+        }
+        
+        nextStepBtn.disabled = false;
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("DOM loaded, initializing If-Else page");
+    initializeCodeExamples();
+    initializeWalkthrough();
+});
+
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(function() {
+        console.log("Document ready, initializing If-Else page");
+        initializeCodeExamples();
+        initializeWalkthrough();
+    }, 100);
+}
+</script>
 </body>
