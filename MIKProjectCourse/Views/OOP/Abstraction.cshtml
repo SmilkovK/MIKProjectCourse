@@ -2,120 +2,682 @@
     ViewData["Title"] = "OOP - Abstraction";
 }
 
+<body data-topic="abstraction">
 <div class="container">
-    <h1>Abstraction in Object-Oriented Programming (OOP)</h1>
+    <h1 class="mb-4">🎭 Abstraction: Hiding Complexity, Showing Simplicity</h1>
 
-    <p>
-        Imagine a <strong>TV remote</strong> 🎮.
-        You press a button to change the channel or adjust the volume, but you don’t need to know how the circuits inside the remote work.
-        This is <strong>Abstraction</strong> — hiding the <em>complex details</em> and showing only the <em>essential features</em> you need.
-    </p>
+    <p><strong>Abstraction</strong> is like using a <strong>TV remote</strong> - you press buttons to change channels or adjust volume without knowing about the circuits inside. In programming, abstraction hides complex details and shows only what's necessary.</p>
 
-    <p>
-        In programming, <strong>abstraction</strong> means focusing on <em>what an object does</em> instead of <em>how it does it</em>.
-        It helps simplify complex systems so you can use them without worrying about the internal logic.
-    </p>
-
-    <h2>How Abstraction Works</h2>
+    <p>You use abstraction in real life every day:</p>
     <ul>
-        <li>
-            In C#, we achieve abstraction mainly using:
-            <ul>
-                <li><strong>Abstract Classes</strong> – a blueprint with some rules (methods) that other classes must follow.</li>
-                <li><strong>Interfaces</strong> – a complete contract that classes agree to implement.</li>
-            </ul>
-        </li>
-        <li>You cannot create an object directly from an abstract class or interface.</li>
-        <li>Other classes (called <strong>derived classes</strong>) provide the actual details and behavior.</li>
-        <li>This way, the user only sees the “buttons” (methods) and not the hidden implementation.</li>
+        <li>A <strong>car's dashboard</strong> - shows speed, fuel level, but hides engine complexity</li>
+        <li>A <strong>smartphone</strong> - you tap apps, but don't see the millions of lines of code</li>
+        <li>An <strong>ATM machine</strong> - you get cash without knowing banking software details</li>
+        <li>A <strong>microwave</strong> - you set time, but don't see radiation generation</li>
     </ul>
 
-    <!-- Code container with toggle -->
+    <h2>📘 What is Abstraction?</h2>
+    <p>Abstraction has TWO main tools in C#:</p>
+    
     <div class="code-container">
-        <div class="code-header">
-            Abstraction Example
-            <div class="toggle-wrapper">
-                <label class="toggle-label">C#</label>
-                <label class="switch">
-                    <input type="checkbox" id="abstractionToggle">
-                    <span class="slider round"></span>
-                </label>
-                <label class="toggle-label">C</label>
-            </div>
-        </div>
+        <div class="code-header">Two Tools for Abstraction</div>
         <div class="code-content">
-<pre><code class="language-csharp abstraction-code">
-public abstract class Vehicle
-{
-    public abstract void StartEngine(); // no body here
-}
+<pre>
+TOOL 1: ABSTRACT CLASSES
+────────────────────────
+• CAN have SOME implementation (some methods have code)
+• CAN have abstract methods (no code, must be implemented)
+• Example: Vehicle class with some common code + abstract Drive()
 
-public class Car : Vehicle
-{
-    public override void StartEngine()
-    {
-        Console.WriteLine("Car engine started!");
-    }
-}
+TOOL 2: INTERFACES
+────────────────────────
+• CANNOT have implementation (just method signatures)
+• Pure contract, no code
+• Example: IDrivable with Drive(), Stop() signatures
 
-// Usage
-Vehicle v = new Car();
-v.StartEngine(); // Output: Car engine started!
-</code></pre>
+BOTH:
+• Cannot create objects directly (can't do: new AbstractClass())
+• Force child classes to implement certain methods
+• Hide complexity behind simple interfaces
 
-<pre><code class="language-c abstraction-code" style="display:none;">
-#include &lt;stdio.h&gt;
-
-// In C we don't have "abstract classes".
-// We use function pointers to mimic abstraction.
-
-struct Vehicle {
-    void (*StartEngine)();
-};
-
-void CarEngine() {
-    printf("Car engine started!\n");
-}
-
-int main() {
-    struct Vehicle car;
-    car.StartEngine = CarEngine;
-    car.StartEngine(); // Output: Car engine started!
-    return 0;
-}
-</code></pre>
+Think of it as:
+Abstract Class = Recipe with some steps filled in
+Interface = List of ingredients needed
+</pre>
         </div>
     </div>
 
-    <h2>Real-World Examples of Abstraction</h2>
+    <h2>1. Abstract Classes (Partial Abstraction)</h2>
+    <p>Abstract classes can have BOTH implemented and abstract methods:</p>
+    
+    <div class="code-container">
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="oopAbstraction.convertCode('example1')">
+            <label class="form-check-label" for="example1Toggle">Show Complete Shape System</label>
+        </div>
+        <div class="code-content">
+<pre class="codeBlock" id="example1Code">
+// Abstract class: Defines what shapes ARE, some HOW
+public abstract class Shape
+{
+    // Abstract method - MUST be implemented by children
+    public abstract double CalculateArea();
+    
+    // Abstract method - MUST be implemented
+    public abstract double CalculatePerimeter();
+    
+    // Concrete method - ALREADY implemented here
+    public void DisplayInfo()
+    {
+        Console.WriteLine("Shape Type: " + GetType().Name);
+        Console.WriteLine("Area: " + CalculateArea());
+        Console.WriteLine("Perimeter: " + CalculatePerimeter());
+        Console.WriteLine("---");
+    }
+    
+    // Another concrete method
+    public virtual string GetDescription()
+    {
+        return "This is a geometric shape.";
+    }
+}
+
+// Concrete class: Circle implements Shape
+public class Circle : Shape
+{
+    public double Radius;
+    
+    // MUST implement abstract methods
+    public override double CalculateArea()
+    {
+        return Math.PI * Radius * Radius;
+    }
+    
+    public override double CalculatePerimeter()
+    {
+        return 2 * Math.PI * Radius;
+    }
+    
+    // CAN override virtual method (optional)
+    public override string GetDescription()
+    {
+        return "A circle with radius " + Radius;
+    }
+}
+
+// Concrete class: Rectangle implements Shape
+public class Rectangle : Shape
+{
+    public double Width;
+    public double Height;
+    
+    // MUST implement abstract methods
+    public override double CalculateArea()
+    {
+        return Width * Height;
+    }
+    
+    public override double CalculatePerimeter()
+    {
+        return 2 * (Width + Height);
+    }
+    
+    // Uses default GetDescription() from Shape
+}
+
+// Concrete class: Triangle implements Shape
+public class Triangle : Shape
+{
+    public double Base;
+    public double Height;
+    public double SideA;
+    public double SideB;
+    public double SideC;
+    
+    public override double CalculateArea()
+    {
+        return 0.5 * Base * Height;
+    }
+    
+    public override double CalculatePerimeter()
+    {
+        return SideA + SideB + SideC;
+    }
+    
+    public override string GetDescription()
+    {
+        return "A triangle with base " + Base + " and height " + Height;
+    }
+}
+
+// Using the abstraction
+Console.WriteLine("=== Shape Calculations ===");
+
+// Can't create Shape directly: ❌ Shape s = new Shape();
+// But can store children in Shape variables
+
+Shape circle = new Circle() { Radius = 5 };
+Shape rectangle = new Rectangle() { Width = 4, Height = 6 };
+Shape triangle = new Triangle() { Base = 3, Height = 4, SideA = 3, SideB = 4, SideC = 5 };
+
+// Same method calls, different implementations
+circle.DisplayInfo();      // Uses Circle's CalculateArea/Perimeter
+rectangle.DisplayInfo();   // Uses Rectangle's CalculateArea/Perimeter  
+triangle.DisplayInfo();    // Uses Triangle's CalculateArea/Perimeter
+
+// All shapes have GetDescription() from Shape class
+Console.WriteLine("Descriptions:");
+Console.WriteLine(circle.GetDescription());
+Console.WriteLine(rectangle.GetDescription());  // Uses Shape's version
+Console.WriteLine(triangle.GetDescription());
+</pre>
+        </div>
+        <div class="result-box" id="example1Result">
+            ➡ <strong>Output:</strong><br>
+            === Shape Calculations ===<br>
+            Shape Type: Circle<br>
+            Area: 78.53981633974483<br>
+            Perimeter: 31.41592653589793<br>
+            ---<br>
+            Shape Type: Rectangle<br>
+            Area: 24<br>
+            Perimeter: 20<br>
+            ---<br>
+            Shape Type: Triangle<br>
+            Area: 6<br>
+            Perimeter: 12<br>
+            ---<br><br>
+            Descriptions:<br>
+            A circle with radius 5<br>
+            This is a geometric shape.<br>
+            A triangle with base 3 and height 4<br><br>
+            <em>Abstraction in Action:</em> The Shape class hides HOW area/perimeter are calculated. Circle, Rectangle, Triangle each implement their own formulas. Users just call CalculateArea() without knowing the math behind it!
+        </div>
+    </div>
+
+    <h2>Interactive Walkthrough: How Abstraction Works</h2>
+    <p>Watch abstraction hide complexity step by step:</p>
+
+    <div class="code-container">
+        <div class="code-header">Abstraction Layer by Layer</div>
+        <div class="code-content">
+<pre id="walkthroughCodeBase">
+public abstract class PaymentProcessor
+{
+    // Abstract - children must implement
+    public abstract bool Process(decimal amount);
+    
+    // Concrete - already implemented  
+    public void PrintReceipt(decimal amount)
+    {
+        Console.WriteLine("Receipt for: $" + amount);
+        Console.WriteLine("Date: " + DateTime.Now);
+    }
+    
+    // Virtual - can be overridden
+    public virtual string GetProcessorName()
+    {
+        return "Generic Payment Processor";
+    }
+}
+
+// public class CreditCardProcessor : PaymentProcessor
+// {
+//     public override bool Process(decimal amount)
+//     {
+//         Console.WriteLine("Processing credit card: $" + amount);
+//         return true;
+//     }
+// }
+
+// PaymentProcessor processor = new CreditCardProcessor();
+// processor.Process(100);
+// processor.PrintReceipt(100);
+</pre>
+        </div>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">Abstraction Levels</div>
+        <div class="code-content">
+<pre id="walkthroughVariables">
+PaymentProcessor (Abstract Class):
+- Process() method: ABSTRACT (no implementation)
+- PrintReceipt() method: CONCRETE (has implementation)
+- GetProcessorName() method: VIRTUAL (has default, can override)
+
+Child classes get PrintReceipt() for free, must implement Process().
+</pre>
+        </div>
+        <div class="result-box" id="walkthroughExplanation">
+            <em>Click <strong>Next</strong> to see abstraction unfold:</em>
+        </div>
+        <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
+    </div>
+
+    <h2>📊 Visual Diagram: Abstraction Layers</h2>
+    
+    <div class="code-container">
+        <div class="code-header">How Abstraction Hides Complexity</div>
+<div class="code-content">
+<pre>
+USER'S VIEW (Simple Interface):
+─────────────────────────────────────────────
+Shape shape = new Circle(5);
+double area = shape.CalculateArea();  // "Just give me the area"
+shape.DisplayInfo();                   // "Show me shape info"
+
+USER DOESN'T SEE (Hidden Complexity):
+─────────────────────────────────────────────
+ABSTRACT CLASS LAYER:
+public abstract class Shape
+{
+    public abstract double CalculateArea();  ← "Must be implemented"
+    public void DisplayInfo() { ... }       ← "Here's some common code"
+}
+
+CONCRETE IMPLEMENTATION LAYER:
+public class Circle : Shape
+{
+    private double radius;
+    private const double PI = 3.14159265358979;
+    
+    public override double CalculateArea()
+    {
+        // Complex math hidden from user
+        return PI * radius * radius;
+    }
+}
+
+public class Rectangle : Shape
+{
+    private double width, height;
+    
+    public override double CalculateArea()
+    {
+        // Different math, also hidden
+        return width * height;
+    }
+}
+
+BENEFIT OF ABSTRACTION:
+─────────────────────────────────────────────
+User Code:                                |   Hidden Complexity:
+─────────────────────────────────────────────
+Shape s = GetShape();                     |   Circle: πr²
+double a = s.CalculateArea();             |   Rectangle: w×h
+                                          |   Triangle: ½bh
+                                          |   Pentagon: complex formula
+                                          |
+SIMPLE INTERFACE                          |   COMPLEX IMPLEMENTATIONS
+(same for all shapes)                     |   (different for each shape)
+</pre>
+        </div>
+    </div>
+
+    <h2>🎯 Example 2: Database Abstraction</h2>
+    <p>Abstract classes are perfect for database operations - same interface, different databases:</p>
+    
+    <div class="code-container">
+        <div class="code-header">Database Connection Abstraction</div>
+        <div class="code-content">
+<pre>
+public abstract class DatabaseConnection
+{
+    // Abstract methods - each database implements differently
+    public abstract void Connect();
+    public abstract void Disconnect();
+    public abstract void ExecuteQuery(string query);
+    
+    // Concrete method - same for all databases
+    public void LogOperation(string operation)
+    {
+        Console.WriteLine($"[{DateTime.Now}] {operation}");
+    }
+    
+    // Virtual method - default, can be overridden
+    public virtual int GetTimeout()
+    {
+        return 30;  // Default 30 seconds
+    }
+    
+    // Abstract property
+    public abstract string ConnectionString { get; set; }
+}
+
+public class SqlServerConnection : DatabaseConnection
+{
+    private string connectionString;
+    
+    public override string ConnectionString
+    {
+        get { return connectionString; }
+        set { connectionString = value; }
+    }
+    
+    public override void Connect()
+    {
+        LogOperation("Connecting to SQL Server...");
+        Console.WriteLine("SQL Server connection established.");
+        // Real code would use SqlConnection, etc.
+    }
+    
+    public override void Disconnect()
+    {
+        LogOperation("Disconnecting from SQL Server...");
+        Console.WriteLine("SQL Server connection closed.");
+    }
+    
+    public override void ExecuteQuery(string query)
+    {
+        LogOperation("Executing SQL query: " + query);
+        Console.WriteLine("Query executed on SQL Server.");
+    }
+    
+    public override int GetTimeout()
+    {
+        return 60;  // SQL Server needs more time
+    }
+}
+
+public class MySqlConnection : DatabaseConnection
+{
+    private string connectionString;
+    
+    public override string ConnectionString
+    {
+        get { return connectionString; }
+        set { connectionString = value; }
+    }
+    
+    public override void Connect()
+    {
+        LogOperation("Connecting to MySQL...");
+        Console.WriteLine("MySQL connection established.");
+        // Real code would use MySqlConnection
+    }
+    
+    public override void Disconnect()
+    {
+        LogOperation("Disconnecting from MySQL...");
+        Console.WriteLine("MySQL connection closed.");
+    }
+    
+    public override void ExecuteQuery(string query)
+    {
+        LogOperation("Executing MySQL query: " + query);
+        Console.WriteLine("Query executed on MySQL.");
+    }
+    // Uses default GetTimeout() from base class
+}
+
+// Using the abstraction
+Console.WriteLine("=== Database Operations ===");
+
+DatabaseConnection db1 = new SqlServerConnection();
+db1.ConnectionString = "Server=myServer;Database=myDB;";
+db1.Connect();
+db1.ExecuteQuery("SELECT * FROM Users");
+db1.Disconnect();
+
+Console.WriteLine();
+
+DatabaseConnection db2 = new MySqlConnection();
+db2.ConnectionString = "Server=localhost;Database=test;";
+db2.Connect();
+db2.ExecuteQuery("SELECT * FROM Products");
+Console.WriteLine("Timeout: " + db2.GetTimeout() + " seconds");
+db2.Disconnect();
+</pre>
+        </div>
+    </div>
+
+    <h2>🔑 Abstract vs Concrete Classes</h2>
+    <div class="code-container">
+        <div class="code-header">Key Differences</div>
+        <div class="code-content">
+<pre>
+                  ABSTRACT CLASS           CONCRETE CLASS
+─────────────────────────────────────────────────────────────
+Instantiation   CANNOT create objects     CAN create objects
+                ❌ new Shape()            ✅ new Circle()
+
+Implementation  Can have BOTH:            Must have FULL:
+                • Abstract methods        • All methods implemented
+                • Concrete methods        • No abstract methods
+                • Virtual methods
+
+Purpose         • Define base structure   • Ready-to-use objects
+                • Force implementation    • Complete functionality
+                • Share common code       • Specific behavior
+
+Inheritance     Meant to be inherited     Can be inherited OR standalone
+                (base class)              (can be base or leaf)
+
+Example         Shape (abstract)          Circle, Rectangle, Triangle
+                • CalculateArea() abstract • Circle.CalculateArea() = πr²
+                • DisplayInfo() concrete  • Rectangle.CalculateArea() = w×h
+
+Real Analogy    Employee handbook         Actual employee
+                (some rules, some blanks) (doing actual work)
+
+When to Use     • Creating frameworks     • Creating objects
+                • Defining contracts      • Implementing logic
+                • Sharing code            • Final implementation
+                • When multiple related   • When no need to extend
+                  classes share behavior
+
+C# Keywords     abstract class            class
+                abstract method           (no keyword needed)
+                override in children
+</pre>
+        </div>
+    </div>
+
+    <h2>Common Abstraction Mistakes</h2>
+    <div class="code-container">
+        <div class="code-header">Abstraction Pitfalls</div>
+        <div class="code-content">
+<pre>
+// ❌ MISTAKE 1: Creating abstract class with no abstract members
+public abstract class Logger
+{
+    public void Log(string message)  // All methods concrete
+    {
+        Console.WriteLine(message);
+    }
+    // ❌ No abstract methods - should be regular class!
+
+    // Can't do: new Logger() - but also can't force implementation
+}
+
+// ✅ SOLUTION: Use abstract class only when you need abstraction
+public abstract class Logger
+{
+    public abstract void Log(string message);  // ✅ Abstract
+    public virtual string GetSource() { return "Unknown"; }  // ✅ Virtual
+}
+
+// ❌ MISTAKE 2: Forgetting to implement abstract methods
+public abstract class Animal
+{
+    public abstract void MakeSound();
+}
+
+public class Dog : Animal
+{
+    // ❌ Forgot to implement MakeSound() - COMPILER ERROR!
+}
+
+// ✅ SOLUTION: Implement ALL abstract methods
+public class Dog : Animal
+{
+    public override void MakeSound()  // ✅ Implemented
+    {
+        Console.WriteLine("Woof!");
+    }
+}
+
+// ❌ MISTAKE 3: Too many abstract methods
+public abstract class SwissArmyKnife  // ❌ Too abstract!
+{
+    public abstract void Cut();
+    public abstract void Screw();
+    public abstract void OpenBottle();
+    public abstract void FileNails();
+    // ... 20 more abstract methods
+}
+
+// ✅ SOLUTION: Split into focused abstractions
+public abstract class Cutter { public abstract void Cut(); }
+public abstract class Screwdriver { public abstract void Screw(); }
+// Classes implement only what they need
+
+// ❌ MISTAKE 4: Using abstract when interface is better
+public abstract class IPayment  // ❌ Wrong! Should be interface
+{
+    public abstract void Process();
+}
+
+// ✅ SOLUTION: Use interface for pure contracts
+public interface IPayment  // ✅ Correct
+{
+    void Process();
+}
+
+// Use abstract class when you need to share code
+public abstract class PaymentBase  // ✅ Has common code
+{
+    protected decimal CalculateTax(decimal amount)
+    {
+        return amount * 0.20m;  // Shared implementation
+    }
+    public abstract void Process();  // Still abstract
+}
+</pre>
+        </div>
+    </div>
+
+    <h2>🎯 When to Use Abstraction</h2>
+    <div class="code-container">
+        <div class="code-header">Abstraction Guidelines</div>
+        <div class="code-content">
+<pre>
+USE ABSTRACT CLASSES WHEN:
+✅ You need to share code between related classes
+   - Shape with DisplayInfo() used by Circle, Rectangle, Triangle
+   - DatabaseConnection with LogOperation() for all DB types
+
+✅ You have a base implementation with some variations
+   - PaymentProcessor with common receipt printing + abstract Process()
+   - GameCharacter with common health system + abstract Attack()
+
+✅ You want to provide default behavior that can be overridden
+   - Vehicle with default Start() + abstract Drive()
+   - Logger with default timestamp format + abstract Log()
+
+✅ Creating a framework or library base class
+   - Web controllers in ASP.NET
+   - UI controls in Windows Forms
+   - Entity Framework DbContext
+
+USE INTERFACES (Pure Abstraction) WHEN:
+✅ You need a pure contract with no implementation
+✅ Multiple unrelated classes need same capability
+✅ You need multiple "inheritance" of behavior
+✅ Defining plugin/extensibility points
+
+DON'T USE ABSTRACTION WHEN:
+❌ Class is complete and ready to use (use concrete class)
+❌ Only one implementation exists (YAGNI - You Ain't Gonna Need It)
+❌ The abstraction doesn't simplify anything
+❌ You're creating simple data containers (DTOs)
+
+BEST PRACTICES:
+1. Start with concrete classes, abstract when patterns emerge
+2. Keep abstract classes focused (Single Responsibility)
+3. Use meaningful abstract method names that clearly state what's required
+4. Document what implementers should do
+5. Provide useful default implementations when possible
+6. Test abstract classes through concrete implementations
+
+REAL-WORLD ABSTRACTION EXAMPLES:
+• Graphics: Shape → Circle, Rectangle, Triangle (area calculations)
+• Payments: PaymentProcessor → CreditCard, PayPal, Bitcoin
+• Databases: DbConnection → SqlConnection, MySqlConnection, OracleConnection
+• Logging: Logger → FileLogger, DatabaseLogger, ConsoleLogger
+• Game: Character → Warrior, Mage, Archer (attack methods)
+</pre>
+        </div>
+    </div>
+
+    <h2>🔗 Connection to Other OOP Concepts</h2>
+    <div class="code-container">
+        <div class="code-header">How Abstraction Relates</div>
+        <div class="code-content">
+<pre>
+ABSTRACTION + INHERITANCE:
+─────────────────────────────
+Abstract classes ARE inherited
+• Shape (abstract) ← Circle inherits
+• Forces Circle to implement abstract methods
+• Circle gets concrete methods for free
+
+ABSTRACTION + ENCAPSULATION:
+─────────────────────────────
+Abstraction hides complexity
+Encapsulation protects data
+• DatabaseConnection abstracts connection details
+• Private fields encapsulate connection strings
+• User just calls Connect(), doesn't see internals
+
+ABSTRACTION + POLYMORPHISM:
+─────────────────────────────
+Abstraction defines the interface
+Polymorphism provides implementations
+• Shape.CalculateArea() (abstract)
+• Circle.CalculateArea() = πr² (polymorphism)
+• Rectangle.CalculateArea() = w×h (polymorphism)
+• Same method call, different behaviors
+
+ABSTRACTION + INTERFACES:
+─────────────────────────────
+Both provide abstraction, but differently:
+Abstract Classes              Interfaces
+• Can have implementation    • No implementation
+• Single inheritance         • Multiple interfaces
+• Constructors allowed       • No constructors
+• Fields allowed             • No fields (before C# 8)
+• Partial abstraction        • Pure abstraction
+
+Often used together:
+public abstract class DbConnection : IDisposable
+{
+    public abstract void Open();  // Abstract method
+    public void Dispose() { ... } // From interface
+}
+</pre>
+        </div>
+    </div>
+
+    <h2>🎉 Summary: The Power of Abstraction</h2>
     <ul>
-        <li><strong>Car driving 🚗</strong>: You use the steering wheel and pedals, but don’t worry about how the engine works inside.</li>
-        <li><strong>ATM machine 🏦</strong>: You press buttons to withdraw cash, without knowing the banking software or money-counting mechanism inside.</li>
-        <li><strong>Smartphone 📱</strong>: You tap an app icon, and it opens, without needing to understand how the operating system launches it.</li>
+        <li><strong>Abstraction</strong> = Hiding complex details, showing simple interface</li>
+        <li>Implemented via <strong>abstract classes</strong> (partial abstraction) and <strong>interfaces</strong> (pure abstraction)</li>
+        <li><strong>Abstract classes</strong>: Can have both abstract (must implement) and concrete (already implemented) methods</li>
+        <li>Cannot create objects from abstract classes: <code>❌ new Shape()</code></li>
+        <li>Child classes MUST implement all abstract methods using <code>override</code></li>
+        <li><strong>Benefits</strong>: Reduces complexity, increases reusability, improves maintenance, enables polymorphism</li>
+        <li><strong>Real-world analogy</strong>: Car dashboard (shows speed, hides engine), TV remote (buttons hide circuits)</li>
+        <li>Without abstraction: Users would need to understand ALL implementation details = overwhelmed!</li>
+        <li>Abstraction enables: Frameworks, libraries, plugins, clean architecture</li>
     </ul>
 
-    <h2>Why Abstraction is Important</h2>
-    <ul>
-        <li><strong>Reduces complexity</strong> – makes large programs easier to understand.</li>
-        <li><strong>Improves reusability</strong> – different classes can use the same abstract idea in their own way.</li>
-        <li><strong>Supports flexibility</strong> – code is easier to extend and maintain when the details are hidden.</li>
-        <li><strong>Encourages cleaner design</strong> – forces developers to separate “what” something does from “how” it does it.</li>
-    </ul>
+    <div class="note-box">
+        <h3>🔗 Next Up: Interfaces</h3>
+        <p>Now that you understand abstraction with abstract classes, you're ready for <strong>interfaces</strong> - the purest form of abstraction that defines contracts without any implementation!</p>
+    </div>
 
-    <h2>Key Points to Remember</h2>
-    <ul>
-        <li>Abstraction is about <strong>hiding details</strong> and showing only what’s important.</li>
-        <li>It is implemented using <strong>abstract classes</strong> and <strong>interfaces</strong> in C#.</li>
-        <li>You cannot create objects from abstract classes or interfaces directly.</li>
-        <li>Other classes must provide the hidden implementation (the “how”).</li>
-    </ul>
-
-    <p>
-        🔗 Next: Abstraction often goes hand in hand with <a href="@Url.Action("Interfaces", "OOP")">Interfaces</a>,
-        because interfaces are another way of enforcing abstraction in OOP.
-    </p>
-
-    <!-- Navigation -->
     <div class="navigation-buttons">
         <a href="@Url.Action("Polymorphism", "OOP")" class="btn btn-outline-primary ajax-link">← Polymorphism</a>
         <a href="@Url.Action("Interfaces", "OOP")" class="btn btn-primary ajax-link">Interfaces →</a>
@@ -129,19 +691,27 @@ int main() {
         background-color: var(--bs-body-bg);
     }
 
-    h1, h2 {
+    h1, h2, h3 {
         color: var(--bs-heading-color);
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
-    p, li {
+    h1 {
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
+    }
+
+    p, li, code {
         color: var(--bs-body-color);
         line-height: 1.6;
     }
 
-    ul {
-        margin-left: 20px;
-        padding-left: 15px;
+    .note-box {
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 5px;
+        padding: 15px;
+        margin: 20px 0;
     }
 
     .code-container {
@@ -156,12 +726,9 @@ int main() {
         background-color: var(--code-header-bg);
         padding: 10px 15px;
         border-bottom: 1px solid var(--bs-border-color);
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         font-size: 0.9rem;
         color: var(--bs-body-color);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
     }
 
     .code-content {
@@ -173,71 +740,15 @@ int main() {
         margin: 0;
         white-space: pre-wrap;
         background-color: transparent;
-    }
-
-    code {
         font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
 
-    /* Toggle styling */
-    .toggle-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+    .result-box {
+        padding: 10px 15px;
+        background-color: rgba(0, 123, 255, 0.1);
+        border-top: 1px solid var(--bs-border-color);
+        font-size: 0.95rem;
     }
-
-    .toggle-label {
-        font-size: 0.9rem;
-        font-weight: 500;
-        color: var(--bs-body-color);
-    }
-
-    .switch {
-        position: relative;
-        display: inline-block;
-        width: 46px;
-        height: 24px;
-    }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-    .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: var(--bs-border-color);
-        transition: .4s;
-        border-radius: 24px;
-    }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-    input:checked + .slider {
-        background-color: var(--bs-primary);
-    }
-
-        input:checked + .slider:before {
-            transform: translateX(22px);
-        }
-
-    /* Navigation buttons */
 
     .navigation-buttons {
         display: flex;
@@ -249,40 +760,502 @@ int main() {
         padding: 8px 20px;
         border-radius: 4px;
         font-weight: 500;
+        text-decoration: none;
     }
 
     .btn-primary {
         background-color: var(--bs-primary);
         border-color: var(--bs-primary);
+        color: #fff;
     }
 
     .btn-outline-primary {
         color: var(--bs-primary);
         border-color: var(--bs-primary);
+        background-color: transparent;
     }
-
-    .left-btn {
-        align-self: flex-start;
-    }
-
-    .right-btn {
-        align-self: flex-end;
-    }
-
-
 </style>
 
 <script>
-    // Toggle for abstraction example
-    document.getElementById("abstractionToggle").addEventListener("change", function() {
-        const csharpCode = document.querySelector(".abstraction-code.language-csharp");
-        const cCode = document.querySelector(".abstraction-code.language-c");
-        if (this.checked) {
-            csharpCode.style.display = "none";
-            cCode.style.display = "block";
-        } else {
-            csharpCode.style.display = "block";
-            cCode.style.display = "none";
+    window.oopAbstraction = {
+        abstractionSteps: [
+            {
+                code: `public abstract class PaymentProcessor
+{
+    // Abstract - children must implement
+    public abstract bool Process(decimal amount);
+    
+    // Concrete - already implemented  
+    public void PrintReceipt(decimal amount)
+    {
+        Console.WriteLine("Receipt for: $" + amount);
+        Console.WriteLine("Date: " + DateTime.Now);
+    }
+    
+    // Virtual - can be overridden
+    public virtual string GetProcessorName()
+    {
+        return "Generic Payment Processor";
+    }
+}
+
+// public class CreditCardProcessor : PaymentProcessor
+// {
+//     public override bool Process(decimal amount)
+//     {
+//         Console.WriteLine("Processing credit card: $" + amount);
+//         return true;
+//     }
+// }
+
+// PaymentProcessor processor = new CreditCardProcessor();
+// processor.Process(100);
+// processor.PrintReceipt(100);`,
+                vars: `PaymentProcessor (Abstract Class):
+- Process() method: ABSTRACT (no code, MUST be implemented)
+- PrintReceipt() method: CONCRETE (has code, ready to use)
+- GetProcessorName() method: VIRTUAL (has code, CAN be overridden)
+
+Cannot create: new PaymentProcessor() ❌
+Can inherit and use as base class.`,
+                exp: "We define an abstract PaymentProcessor class. It has a mix of abstract (must implement), concrete (already implemented), and virtual (can override) methods. This is partial abstraction - some details are hidden, some are provided."
+            },
+            {
+                code: `public abstract class PaymentProcessor
+{
+    // Abstract - children must implement
+    public abstract bool Process(decimal amount);
+    
+    // Concrete - already implemented  
+    public void PrintReceipt(decimal amount)
+    {
+        Console.WriteLine("Receipt for: $" + amount);
+        Console.WriteLine("Date: " + DateTime.Now);
+    }
+    
+    // Virtual - can be overridden
+    public virtual string GetProcessorName()
+    {
+        return "Generic Payment Processor";
+    }
+}
+
+public class CreditCardProcessor : PaymentProcessor
+{
+    public override bool Process(decimal amount)
+    {
+        Console.WriteLine("Processing credit card: $" + amount);
+        return true;
+    }
+}
+
+// PaymentProcessor processor = new CreditCardProcessor();
+// processor.Process(100);
+// processor.PrintReceipt(100);`,
+                vars: `CreditCardProcessor (Concrete Class):
+- Inherits from PaymentProcessor (: PaymentProcessor)
+- MUST implement abstract Process() method ✅
+- Gets PrintReceipt() for FREE (from parent)
+- Gets GetProcessorName() for FREE (can override)
+
+Now we CAN create: new CreditCardProcessor() ✅`,
+                exp: "CreditCardProcessor inherits from PaymentProcessor. It MUST implement the abstract Process() method (that's the contract). It automatically gets PrintReceipt() and GetProcessorName() methods from the parent class for free!"
+            },
+            {
+                code: `public abstract class PaymentProcessor
+{
+    // Abstract - children must implement
+    public abstract bool Process(decimal amount);
+    
+    // Concrete - already implemented  
+    public void PrintReceipt(decimal amount)
+    {
+        Console.WriteLine("Receipt for: $" + amount);
+        Console.WriteLine("Date: " + DateTime.Now);
+    }
+    
+    // Virtual - can be overridden
+    public virtual string GetProcessorName()
+    {
+        return "Generic Payment Processor";
+    }
+}
+
+public class CreditCardProcessor : PaymentProcessor
+{
+    public override bool Process(decimal amount)
+    {
+        Console.WriteLine("Processing credit card: $" + amount);
+        return true;
+    }
+}
+
+PaymentProcessor processor = new CreditCardProcessor();
+// processor.Process(100);
+// processor.PrintReceipt(100);`,
+                vars: `Variable created:
+- Type: PaymentProcessor (abstract class type)
+- Object: new CreditCardProcessor() (concrete object)
+
+This is KEY abstraction: We use the abstract type to hide the concrete implementation.
+Caller only knows PaymentProcessor interface, not CreditCardProcessor details.`,
+                exp: "We create a PaymentProcessor variable but assign a CreditCardProcessor object. The variable type is abstract, hiding the concrete implementation. This is abstraction in action - hiding the 'how' (CreditCardProcessor) behind the 'what' (PaymentProcessor)."
+            },
+            {
+                code: `public abstract class PaymentProcessor
+{
+    // Abstract - children must implement
+    public abstract bool Process(decimal amount);
+    
+    // Concrete - already implemented  
+    public void PrintReceipt(decimal amount)
+    {
+        Console.WriteLine("Receipt for: $" + amount);
+        Console.WriteLine("Date: " + DateTime.Now);
+    }
+    
+    // Virtual - can be overridden
+    public virtual string GetProcessorName()
+    {
+        return "Generic Payment Processor";
+    }
+}
+
+public class CreditCardProcessor : PaymentProcessor
+{
+    public override bool Process(decimal amount)
+    {
+        Console.WriteLine("Processing credit card: $" + amount);
+        return true;
+    }
+}
+
+PaymentProcessor processor = new CreditCardProcessor();
+processor.Process(100);  // Calls CreditCardProcessor's implementation
+// processor.PrintReceipt(100);`,
+                vars: `Calling: processor.Process(100)
+- processor is PaymentProcessor type
+- PaymentProcessor has abstract Process() method
+- Actual object is CreditCardProcessor
+- Calls CreditCardProcessor.Process() implementation
+
+Output: "Processing credit card: $100"
+
+The abstract method is implemented by the concrete class.`,
+                exp: "We call Process(100). Even though the variable is PaymentProcessor type, it calls CreditCardProcessor's implementation. The abstraction hides WHICH processor is used, but ensures Process() exists and works."
+            },
+            {
+                code: `public abstract class PaymentProcessor
+{
+    // Abstract - children must implement
+    public abstract bool Process(decimal amount);
+    
+    // Concrete - already implemented  
+    public void PrintReceipt(decimal amount)
+    {
+        Console.WriteLine("Receipt for: $" + amount);
+        Console.WriteLine("Date: " + DateTime.Now);
+    }
+    
+    // Virtual - can be overridden
+    public virtual string GetProcessorName()
+    {
+        return "Generic Payment Processor";
+    }
+}
+
+public class CreditCardProcessor : PaymentProcessor
+{
+    public override bool Process(decimal amount)
+    {
+        Console.WriteLine("Processing credit card: $" + amount);
+        return true;
+    }
+}
+
+PaymentProcessor processor = new CreditCardProcessor();
+processor.Process(100);
+processor.PrintReceipt(100);  // Uses parent's implementation`,
+                vars: `Calling: processor.PrintReceipt(100)
+- PrintReceipt() is CONCRETE in PaymentProcessor
+- CreditCardProcessor didn't override it
+- Uses PaymentProcessor.PrintReceipt() implementation
+
+Output:
+"Receipt for: $100"
+"Date: [current date/time]"
+
+The concrete method from abstract class works without child implementation.`,
+                exp: "We call PrintReceipt(100). This method is already implemented in the abstract PaymentProcessor class. CreditCardProcessor gets it for free! This shows abstraction's power: common code in abstract class, specific behavior in child classes."
+            }
+        ],
+
+        simpleExamples: {
+            example1: `// Abstract class: Defines what shapes ARE, some HOW
+public abstract class Shape
+{
+    // Abstract method - MUST be implemented by children
+    public abstract double CalculateArea();
+    
+    // Abstract method - MUST be implemented
+    public abstract double CalculatePerimeter();
+    
+    // Concrete method - ALREADY implemented here
+    public void DisplayInfo()
+    {
+        Console.WriteLine("Shape Type: " + GetType().Name);
+        Console.WriteLine("Area: " + CalculateArea());
+        Console.WriteLine("Perimeter: " + CalculatePerimeter());
+    }
+}
+
+// Concrete class: Circle implements Shape
+public class Circle : Shape
+{
+    public double Radius;
+    
+    // MUST implement abstract methods
+    public override double CalculateArea()
+    {
+        return Math.PI * Radius * Radius;
+    }
+    
+    public override double CalculatePerimeter()
+    {
+        return 2 * Math.PI * Radius;
+    }
+}
+
+// Concrete class: Rectangle implements Shape
+public class Rectangle : Shape
+{
+    public double Width;
+    public double Height;
+    
+    // MUST implement abstract methods
+    public override double CalculateArea()
+    {
+        return Width * Height;
+    }
+    
+    public override double CalculatePerimeter()
+    {
+        return 2 * (Width + Height);
+    }
+}`
+        },
+
+        completeExamples: {
+            example1: `// Abstract class: Defines what shapes ARE, some HOW
+public abstract class Shape
+{
+    // Abstract method - MUST be implemented by children
+    public abstract double CalculateArea();
+    
+    // Abstract method - MUST be implemented
+    public abstract double CalculatePerimeter();
+    
+    // Concrete method - ALREADY implemented here
+    public void DisplayInfo()
+    {
+        Console.WriteLine("Shape Type: " + GetType().Name);
+        Console.WriteLine("Area: " + CalculateArea());
+        Console.WriteLine("Perimeter: " + CalculatePerimeter());
+        Console.WriteLine("---");
+    }
+    
+    // Another concrete method
+    public virtual string GetDescription()
+    {
+        return "This is a geometric shape.";
+    }
+}
+
+// Concrete class: Circle implements Shape
+public class Circle : Shape
+{
+    public double Radius;
+    
+    // MUST implement abstract methods
+    public override double CalculateArea()
+    {
+        return Math.PI * Radius * Radius;
+    }
+    
+    public override double CalculatePerimeter()
+    {
+        return 2 * Math.PI * Radius;
+    }
+    
+    // CAN override virtual method (optional)
+    public override string GetDescription()
+    {
+        return "A circle with radius " + Radius;
+    }
+}
+
+// Concrete class: Rectangle implements Shape
+public class Rectangle : Shape
+{
+    public double Width;
+    public double Height;
+    
+    // MUST implement abstract methods
+    public override double CalculateArea()
+    {
+        return Width * Height;
+    }
+    
+    public override double CalculatePerimeter()
+    {
+        return 2 * (Width + Height);
+    }
+    
+    // Uses default GetDescription() from Shape
+}
+
+// Concrete class: Triangle implements Shape
+public class Triangle : Shape
+{
+    public double Base;
+    public double Height;
+    public double SideA;
+    public double SideB;
+    public double SideC;
+    
+    public override double CalculateArea()
+    {
+        return 0.5 * Base * Height;
+    }
+    
+    public override double CalculatePerimeter()
+    {
+        return SideA + SideB + SideC;
+    }
+    
+    public override string GetDescription()
+    {
+        return "A triangle with base " + Base + " and height " + Height;
+    }
+}
+
+// Using the abstraction
+Console.WriteLine("=== Shape Calculations ===");
+
+// Can't create Shape directly: ❌ Shape s = new Shape();
+// But can store children in Shape variables
+
+Shape circle = new Circle() { Radius = 5 };
+Shape rectangle = new Rectangle() { Width = 4, Height = 6 };
+Shape triangle = new Triangle() { Base = 3, Height = 4, SideA = 3, SideB = 4, SideC = 5 };
+
+// Same method calls, different implementations
+circle.DisplayInfo();      // Uses Circle's CalculateArea/Perimeter
+rectangle.DisplayInfo();   // Uses Rectangle's CalculateArea/Perimeter  
+triangle.DisplayInfo();    // Uses Triangle's CalculateArea/Perimeter
+
+// All shapes have GetDescription() from Shape class
+Console.WriteLine("Descriptions:");
+Console.WriteLine(circle.GetDescription());
+Console.WriteLine(rectangle.GetDescription());  // Uses Shape's version
+Console.WriteLine(triangle.GetDescription());`
+        },
+
+        currentStep: 0,
+
+        convertCode: function(id) {
+            const toggle = document.getElementById(id + "Toggle");
+            const isComplete = toggle ? toggle.checked : false;
+            const codeBlock = document.getElementById(id + "Code");
+            const resultBox = document.getElementById(id + "Result");
+
+            if (codeBlock && toggle) {
+                codeBlock.style.transition = 'opacity 0.3s ease';
+                codeBlock.style.opacity = '0.5';
+                setTimeout(() => {
+                    codeBlock.textContent = isComplete ? this.completeExamples[id] : this.simpleExamples[id];
+                    codeBlock.style.opacity = '1';
+
+                    if (resultBox && id === 'example1') {
+                        resultBox.innerHTML = isComplete ? 
+                            '➡ <strong>Output:</strong><br>=== Shape Calculations ===<br>Shape Type: Circle<br>Area: 78.53981633974483<br>Perimeter: 31.41592653589793<br>---<br>Shape Type: Rectangle<br>Area: 24<br>Perimeter: 20<br>---<br>Shape Type: Triangle<br>Area: 6<br>Perimeter: 12<br>---<br><br>Descriptions:<br>A circle with radius 5<br>This is a geometric shape.<br>A triangle with base 3 and height 4<br><br><em>Abstraction in Action:</em> The Shape class hides HOW area/perimeter are calculated. Circle, Rectangle, Triangle each implement their own formulas. Users just call CalculateArea() without knowing the math behind it!' :
+                            '➡ <strong>Code Structure:</strong><br>Abstract Shape class with CalculateArea() and CalculatePerimeter() methods.<br>Circle class implements Shape with circle formulas (πr²).<br>Rectangle class implements Shape with rectangle formulas (w×h).<br>All shapes share DisplayInfo() method from Shape class.<br><br><em>Toggle to see the complete example with Triangle and descriptions!</em>';
+                    }
+                }, 300);
+            }
+        },
+
+        updateWalkthrough: function(step) {
+            const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
+            const walkthroughVariables = document.getElementById('walkthroughVariables');
+            const walkthroughExplanation = document.getElementById('walkthroughExplanation');
+            const nextStepBtn = document.getElementById('nextStepBtn');
+
+            if (!walkthroughCodeBase || !walkthroughVariables || !walkthroughExplanation) return;
+
+            const data = this.abstractionSteps[step];
+            
+            walkthroughCodeBase.textContent = data.code;
+            walkthroughVariables.textContent = data.vars;
+            walkthroughExplanation.innerHTML = `<em>Step ${step + 1}:</em> ${data.exp}`;
+            
+            if (step === this.abstractionSteps.length - 1 && nextStepBtn) {
+                walkthroughExplanation.innerHTML += '<br><strong>✅ Complete! Abstraction hides implementation details behind a simple interface.</strong>';
+                nextStepBtn.disabled = true;
+            }
+        },
+
+        nextStep: function() {
+            if (this.currentStep < this.abstractionSteps.length) {
+                this.updateWalkthrough(this.currentStep);
+                this.currentStep++;
+            }
+        },
+
+        initWalkthrough: function() {
+            const nextStepBtn = document.getElementById('nextStepBtn');
+            if (nextStepBtn) {
+                this.currentStep = 0;
+
+                const newButton = nextStepBtn.cloneNode(true);
+                nextStepBtn.parentNode.replaceChild(newButton, nextStepBtn);
+                
+                newButton.addEventListener('click', () => this.nextStep());
+                newButton.disabled = false;
+                
+                this.updateWalkthrough(0);
+                this.currentStep = 1;
+            }
+        },
+
+        initCodeExamples: function() {
+            const toggles = document.querySelectorAll('.form-check-input[type="checkbox"]');
+            toggles.forEach(toggle => {
+                const id = toggle.id.replace('Toggle', '');
+                if (id && this.simpleExamples[id]) {
+                    this.convertCode(id);
+                    toggle.addEventListener('change', () => this.convertCode(id));
+                }
+            });
+        },
+
+        init: function() {
+            console.log('Initializing OOP Abstraction page');
+            this.initCodeExamples();
+            this.initWalkthrough();
+
+            if (typeof hljs !== 'undefined') {
+                hljs.highlightAll();
+            }
         }
-    });
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.oopAbstraction.init();
+        });
+    } else {
+        window.oopAbstraction.init();
+    }
 </script>
+</body>

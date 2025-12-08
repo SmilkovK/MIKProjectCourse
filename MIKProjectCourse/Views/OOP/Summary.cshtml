@@ -1,131 +1,384 @@
 ﻿@{
-    ViewData["Title"] = "OOP - Chapter Summary";
+    ViewData["Title"] = "OOP - Complete Chapter Summary";
 }
 
 <div class="container">
-    <h1>Summary of Object-Oriented Programming (OOP) Chapter</h1>
+    <h1 class="mb-4">🎓 Complete Object-Oriented Programming (OOP) Summary</h1>
+    <p class="lead">You've completed the entire OOP chapter! Let's review all the concepts and test your understanding with 25 quiz questions.</p>
 
-    <h2>1. Classes and Objects</h2>
-    <p>- <strong>Class:</strong> Blueprint for objects.</p>
-    <p>- <strong>Object:</strong> Instance of a class containing data (properties) and behavior (methods).</p>
-    <pre><code class="language-csharp">
-// Example
-public class Dog { public string Name; public void Bark() { Console.WriteLine($"{Name} barks!"); } }
-Dog myDog = new Dog(); myDog.Name = "Buddy"; myDog.Bark();
-    </code></pre>
+    <div class="summary-table">
+        <h2>📚 All OOP Concepts at a Glance</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Key Idea</th>
+                        <th>Real-World Analogy</th>
+                        <th>Main Keywords</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Classes</strong></td>
+                        <td>Blueprints for creating objects</td>
+                        <td>Cookie cutter, Recipe</td>
+                        <td><code>class</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Objects</strong></td>
+                        <td>Actual instances created from classes</td>
+                        <td>Actual cookie, Baked cake</td>
+                        <td><code>new</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Constructors</strong></td>
+                        <td>Special methods that initialize objects</td>
+                        <td>Setup crew, Building foundation</td>
+                        <td><code>ClassName()</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Inheritance</strong></td>
+                        <td>Child classes get properties/methods from parent</td>
+                        <td>Family tree, Smartphone inheriting from basic phone</td>
+                        <td><code>: ParentClass</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Encapsulation</strong></td>
+                        <td>Hiding data and controlling access</td>
+                        <td>Bank vault, Diary with lock</td>
+                        <td><code>private</code>, <code>public</code>, <code>protected</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Polymorphism</strong></td>
+                        <td>Same name, different implementations</td>
+                        <td>Remote control power button, Word "bank"</td>
+                        <td><code>virtual</code>, <code>override</code>, <code>overload</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Abstraction</strong></td>
+                        <td>Hiding complexity, showing essentials</td>
+                        <td>Car dashboard, TV remote</td>
+                        <td><code>abstract</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Interfaces</strong></td>
+                        <td>Contracts that classes must implement</td>
+                        <td>USB port standard, Job description</td>
+                        <td><code>interface</code>, <code>implement</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Static/Readonly/Const</strong></td>
+                        <td>Different ways to store and protect data</td>
+                        <td>Company whiteboard, Birth certificate, Speed of light</td>
+                        <td><code>static</code>, <code>readonly</code>, <code>const</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    <h2>2. Constructors</h2>
-    <p>- Special methods used to initialize objects when they are created.</p>
-    <pre><code class="language-csharp">
-// Example
-public class Person
+    <div class="detailed-summary">
+        <h2>📘 Detailed Concept Review</h2>
+
+        <div class="concept-card">
+            <h3>1. Classes and Objects</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Classes (Blueprint)</h4>
+                    <pre><code class="language-csharp">public class Car
+{
+    public string Brand;
+    public void Drive() { }
+}</code></pre>
+                </div>
+                <div class="col-md-6">
+                    <h4>Objects (Instance)</h4>
+                    <pre><code class="language-csharp">Car myCar = new Car();
+myCar.Brand = "Toyota";
+myCar.Drive();</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h3>2. Constructors</h3>
+            <pre><code class="language-csharp">public class Student
 {
     public string Name;
-    public Person(string name) { Name = name; }
+    public int Age;
+    
+    public Student(string name, int age)
+    {
+        Name = name;
+        Age = age;
+    }
 }
-Person p = new Person("Alice");
-    </code></pre>
 
-    <h2>3. Encapsulation</h2>
-    <p>- Protects object data by using <code>private</code> fields and <code>public</code> getters/setters.</p>
-    <pre><code class="language-csharp">
-// Example
-public class BankAccount
+Student s = new Student("Alice", 20);</code></pre>
+        </div>
+
+        <div class="concept-card">
+            <h3>3. Inheritance Hierarchy</h3>
+            <pre><code class="language-csharp">public class Animal { }
+public class Dog : Animal { }
+public class Cat : Animal { }
+
+Animal myPet = new Dog();</code></pre>
+        </div>
+
+        <div class="concept-card">
+            <h3>4. Encapsulation Levels</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Public</h5>
+                    <pre><code class="language-csharp">public int Score;</code></pre>
+                    <p>Anyone can access</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Private</h5>
+                    <pre><code class="language-csharp">private string password;</code></pre>
+                    <p>Only class can access</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Protected</h5>
+                    <pre><code class="language-csharp">protected int health;</code></pre>
+                    <p>Class + children can access</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h3>5. Polymorphism Types</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Overloading (Compile-time)</h4>
+                    <pre><code class="language-csharp">public int Add(int a, int b)
+public double Add(double a, double b)
+public int Add(int a, int b, int c)</code></pre>
+                </div>
+                <div class="col-md-6">
+                    <h4>Overriding (Runtime)</h4>
+                    <pre><code class="language-csharp">public class Animal {
+    public virtual void MakeSound() { }
+}
+public class Dog : Animal {
+    public override void MakeSound() {
+        Console.WriteLine("Woof!");
+    }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h3>6. Abstraction vs Interfaces</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Abstract Classes</h4>
+                    <pre><code class="language-csharp">public abstract class Shape
 {
-    private double balance;
-    public void Deposit(double amount) { balance += amount; }
-    public double GetBalance() { return balance; }
-}
-    </code></pre>
+    public abstract double Area();
+    public void Display() { }
+}</code></pre>
+                    <p>Can have some implementation</p>
+                </div>
+                <div class="col-md-6">
+                    <h4>Interfaces</h4>
+                    <pre><code class="language-csharp">public interface IDrivable
+{
+    void Drive();
+    void Stop();
+}</code></pre>
+                    <p>Pure contract, no implementation</p>
+                </div>
+            </div>
+        </div>
 
-    <h2>4. Polymorphism</h2>
-    <p>- Allows objects to take many forms via method overloading and overriding.</p>
-    <pre><code class="language-csharp">
-// Overloading
-Calculator c = new Calculator();
-c.Add(2,3); c.Add(2.5,3.5);
-// Overriding
-Animal myAnimal = new Dog(); myAnimal.MakeSound(); // Bark!
-    </code></pre>
+        <div class="concept-card">
+            <h3>7. Static, Readonly, Const</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Static</h5>
+                    <pre><code class="language-csharp">public static int count;</code></pre>
+                    <p>Shared by all objects</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Readonly</h5>
+                    <pre><code class="language-csharp">public readonly string id;</code></pre>
+                    <p>Set once, never change</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Const</h5>
+                    <pre><code class="language-csharp">public const double PI = 3.14;</code></pre>
+                    <p>Never changes, compile-time</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h2>5. Abstraction</h2>
-    <p>- Hides complex implementation and exposes only essential features using <code>abstract</code> classes or interfaces.</p>
-    <pre><code class="language-csharp">
-public abstract class Shape { public abstract void Draw(); }
-public class Circle : Shape { public override void Draw() { Console.WriteLine("Draw Circle"); } }
-    </code></pre>
+    <div class="quiz-section">
+        <h2>🧠 25-Question OOP Mastery Quiz</h2>
+        <p>Test your understanding of all OOP concepts. Choose the best answer for each question.</p>
 
-    <h2>6. Interfaces</h2>
-    <p>- Define a contract that classes must implement.</p>
-    <pre><code class="language-csharp">
-public interface IVehicle { void StartEngine(); }
-public class Car : IVehicle { public void StartEngine() { Console.WriteLine("Car engine started"); } }
-    </code></pre>
+        <div class="quiz-container" id="quizContainer">
+        </div>
 
-    <h2>7. Static, Readonly, and Const</h2>
-    <ul>
-        <li><strong>Static:</strong> Belongs to the class, shared by all instances.</li>
-        <li><strong>Readonly:</strong> Assigned once at runtime in constructor or declaration.</li>
-        <li><strong>Const:</strong> Compile-time constant that cannot change.</li>
-    </ul>
+        <div class="quiz-results" id="quizResults" style="display: none;">
+            <h3>📊 Your Results</h3>
+            <div class="progress" style="height: 30px;">
+                <div id="scoreBar" class="progress-bar" role="progressbar" style="width: 0%">0%</div>
+            </div>
+            <p id="scoreText" class="mt-3"></p>
+            <button class="btn btn-secondary mt-2" id="restartQuizBtn">Restart Quiz</button>
+        </div>
 
-    <h2>Exercises Recap</h2>
-    <ul>
-        <li>Create a <code>Person</code> class with <code>Introduce()</code> method.</li>
-        <li>Create a <code>Car</code> class with <code>StartEngine()</code> method.</li>
-        <li>Create <code>Shape</code> hierarchy using abstraction and overriding.</li>
-        <li>Create <code>IPayment</code> interface and implement it in a class.</li>
-        <li>Create <code>Earth</code> class using static, readonly, and const fields.</li>
-    </ul>
+        <button class="btn btn-primary btn-lg mt-4" id="startQuizBtn">Start Quiz</button>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("StaticReadonlyConst", "OOP")" class="btn btn-outline-primary ajax-link">← Static, ReadOnly and Const</a>
-        <a href="@Url.Action("Index", "Database")" class="btn btn-primary ajax-link">Next Chapter →</a>
+        <a href="@Url.Action("StaticReadonlyConst", "OOP")" class="btn btn-outline-primary">← Static, Readonly, Const</a>
+        <a href="@Url.Action("Index", "Database")" class="btn btn-primary">Next Chapter: Database →</a>
     </div>
 </div>
 
 <style>
     .container {
-        max-width: 800px;
-        padding: 20px;
+        max-width: 1200px;
+        padding: 30px;
         background-color: var(--bs-body-bg);
     }
 
-    h1, h2 {
+    h1, h2, h3, h4 {
         color: var(--bs-heading-color);
         margin-bottom: 20px;
     }
 
-    p, li {
-        color: var(--bs-body-color);
-        line-height: 1.6;
+    h1 {
+        border-bottom: 3px solid var(--bs-primary);
+        padding-bottom: 15px;
     }
 
-    ul {
-        margin-left: 20px;
-        padding-left: 15px;
+    .summary-table {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: var(--summary-table-bg, rgba(13, 110, 253, 0.05));
+        border-radius: 10px;
+        border: 1px solid var(--bs-border-color);
     }
 
-    pre {
+    .detailed-summary {
+        margin: 40px 0;
+    }
+
+    .concept-card {
+        background-color: var(--concept-card-bg, white);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 4px var(--shadow-color, rgba(0,0,0,0.1));
+    }
+
+    .concept-card h3 {
+        color: var(--bs-primary);
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
+    }
+
+    .concept-card pre {
         background-color: var(--code-bg);
-        padding: 10px;
+        padding: 15px;
         border-radius: 5px;
-        overflow-x: auto;
+        margin: 15px 0;
+        border: 1px solid var(--bs-border-color);
     }
 
-    code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+    .concept-card p {
+        color: var(--bs-body-color);
+    }
+
+    .quiz-section {
+        margin: 50px 0;
+        padding: 30px;
+        background-color: var(--quiz-section-bg, rgba(111, 66, 193, 0.05));
+        border-radius: 10px;
+        border: 1px solid var(--bs-border-color);
+    }
+
+    .quiz-container {
+        margin: 30px 0;
+    }
+
+    .quiz-question {
+        background-color: var(--quiz-question-bg, white);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        display: none;
+    }
+
+    .quiz-question.active {
+        display: block;
+        animation: fadeIn 0.5s;
+    }
+
+    .quiz-options {
+        margin: 20px 0;
+    }
+
+    .quiz-option {
+        display: block;
+        padding: 12px 15px;
+        margin: 8px 0;
+        border: 2px solid var(--bs-border-color);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s;
+        color: var(--bs-body-color);
+        background-color: var(--quiz-option-bg, transparent);
+    }
+
+    .quiz-option:hover {
+        background-color: var(--quiz-option-hover, rgba(13, 110, 253, 0.1));
+        border-color: var(--bs-primary);
+    }
+
+    .quiz-option.selected {
+        background-color: var(--quiz-option-selected, rgba(13, 110, 253, 0.2));
+        border-color: var(--bs-primary);
+    }
+
+    .quiz-option.correct {
+        background-color: var(--quiz-option-correct, rgba(40, 167, 69, 0.2));
+        border-color: var(--bs-success);
+    }
+
+    .quiz-option.incorrect {
+        background-color: var(--quiz-option-incorrect, rgba(220, 53, 69, 0.2));
+        border-color: var(--bs-danger);
+    }
+
+    .quiz-results {
+        background-color: var(--quiz-results-bg, white);
+        padding: 25px;
+        border-radius: 8px;
+        border: 1px solid var(--bs-border-color);
+        margin-top: 30px;
     }
 
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
 
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
     }
 
@@ -138,4 +391,522 @@ public class Car : IVehicle { public void StartEngine() { Console.WriteLine("Car
         color: var(--bs-primary);
         border-color: var(--bs-primary);
     }
+
+    .btn-outline-primary:hover {
+        background-color: var(--bs-primary);
+        color: white;
+    }
+
+    .progress {
+        background-color: var(--progress-bg, #e9ecef);
+    }
+
+    .progress-bar {
+        background-color: var(--bs-primary);
+    }
+
+    .alert-info {
+        background-color: var(--alert-info-bg, rgba(13, 202, 240, 0.1));
+        border-color: var(--alert-info-border, rgba(13, 202, 240, 0.3));
+        color: var(--alert-info-color, var(--bs-info));
+    }
+
+    @@keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    [data-bs-theme="dark"] {
+        --summary-table-bg: rgba(13, 110, 253, 0.1);
+        --concept-card-bg: rgba(255, 255, 255, 0.05);
+        --shadow-color: rgba(0, 0, 0, 0.3);
+        --quiz-section-bg: rgba(111, 66, 193, 0.1);
+        --quiz-question-bg: rgba(255, 255, 255, 0.05);
+        --quiz-results-bg: rgba(255, 255, 255, 0.05);
+        --quiz-option-bg: rgba(255, 255, 255, 0.03);
+        --quiz-option-hover: rgba(110, 168, 254, 0.2);
+        --quiz-option-selected: rgba(110, 168, 254, 0.3);
+        --quiz-option-correct: rgba(40, 167, 69, 0.3);
+        --quiz-option-incorrect: rgba(220, 53, 69, 0.3);
+        --progress-bg: rgba(255, 255, 255, 0.1);
+        --alert-info-bg: rgba(13, 202, 240, 0.2);
+        --alert-info-border: rgba(13, 202, 240, 0.4);
+        --alert-info-color: #6ea8fe;
+    }
+
+    [data-bs-theme="light"] {
+        --summary-table-bg: rgba(13, 110, 253, 0.05);
+        --concept-card-bg: white;
+        --shadow-color: rgba(0, 0, 0, 0.1);
+        --quiz-section-bg: rgba(111, 66, 193, 0.05);
+        --quiz-question-bg: white;
+        --quiz-results-bg: white;
+        --quiz-option-bg: transparent;
+        --quiz-option-hover: rgba(13, 110, 253, 0.1);
+        --quiz-option-selected: rgba(13, 110, 253, 0.2);
+        --quiz-option-correct: rgba(40, 167, 69, 0.2);
+        --quiz-option-incorrect: rgba(220, 53, 69, 0.2);
+        --progress-bg: #e9ecef;
+        --alert-info-bg: rgba(13, 202, 240, 0.1);
+        --alert-info-border: rgba(13, 202, 240, 0.3);
+        --alert-info-color: #0dcaf0;
+    }
+
+    [data-bs-theme="dark"] .language-csharp {
+        background-color: #1e1e1e !important;
+        color: #d4d4d4 !important;
+    }
+
+    [data-bs-theme="light"] .language-csharp {
+        background-color: #f6f8fa !important;
+        color: #24292e !important;
+    }
+
+    .table {
+        --bs-table-color: var(--bs-body-color);
+        --bs-table-bg: transparent;
+        --bs-table-border-color: var(--bs-border-color);
+    }
+
+    .table-striped>tbody>tr:nth-of-type(odd)>* {
+        --bs-table-accent-bg: var(--table-striped-bg);
+    }
+
+    [data-bs-theme="dark"] .table-striped>tbody>tr:nth-of-type(odd)>* {
+        --table-striped-bg: rgba(255, 255, 255, 0.05);
+    }
+
+    [data-bs-theme="light"] .table-striped>tbody>tr:nth-of-type(odd)>* {
+        --table-striped-bg: rgba(0, 0, 0, 0.02);
+    }
 </style>
+
+<script>
+    const quizQuestions = [
+        {
+            question: "1. What is a Class in OOP?",
+            options: [
+                "A) An actual object you can use",
+                "B) A blueprint for creating objects",
+                "C) A method that initializes objects",
+                "D) A variable that stores data"
+            ],
+            correct: 1,
+            explanation: "A class is a blueprint or template for creating objects. It defines what properties and methods objects will have."
+        },
+        {
+            question: "2. How do you create an object from a class?",
+            options: [
+                "A) ClassName object;",
+                "B) new ClassName();",
+                "C) ClassName.createObject();",
+                "D) object = ClassName;"
+            ],
+            correct: 1,
+            explanation: "You use the 'new' keyword followed by the class name and parentheses to create an object: new ClassName();"
+        },
+        {
+            question: "3. What is a constructor?",
+            options: [
+                "A) A method that destroys objects",
+                "B) A special method that initializes objects",
+                "C) A method that only static classes have",
+                "D) Another name for a class"
+            ],
+            correct: 1,
+            explanation: "A constructor is a special method that runs automatically when an object is created, used to initialize the object's properties."
+        },
+        {
+            question: "4. If Car inherits from Vehicle, what relationship is this?",
+            options: [
+                "A) Car HAS A Vehicle",
+                "B) Car IS A Vehicle",
+                "C) Car USES A Vehicle",
+                "D) Car CREATES A Vehicle"
+            ],
+            correct: 1,
+            explanation: "Inheritance creates an 'is-a' relationship. If Car inherits from Vehicle, then a Car IS A Vehicle."
+        },
+        {
+            question: "5. Which access modifier allows only the class itself to access a member?",
+            options: [
+                "A) public",
+                "B) protected",
+                "C) private",
+                "D) internal"
+            ],
+            correct: 2,
+            explanation: "The 'private' access modifier restricts access to only within the class itself."
+        },
+        {
+            question: "6. What is encapsulation?",
+            options: [
+                "A) Hiding implementation details",
+                "B) Creating multiple methods with same name",
+                "C) Inheriting from parent classes",
+                "D) Creating abstract classes"
+            ],
+            correct: 0,
+            explanation: "Encapsulation is about bundling data and methods together and restricting access to internal details."
+        },
+        {
+            question: "7. Which keyword allows a method to be overridden in a child class?",
+            options: [
+                "A) sealed",
+                "B) override",
+                "C) virtual",
+                "D) abstract"
+            ],
+            correct: 2,
+            explanation: "The 'virtual' keyword in the parent class allows a method to be overridden in child classes using 'override'."
+        },
+        {
+            question: "8. What is method overloading?",
+            options: [
+                "A) Same method name, same parameters, different classes",
+                "B) Same method name, different parameters, same class",
+                "C) Different method name, same parameters",
+                "D) Inheriting methods from parent"
+            ],
+            correct: 1,
+            explanation: "Method overloading means having multiple methods with the same name but different parameters in the same class."
+        },
+        {
+            question: "9. What is abstraction?",
+            options: [
+                "A) Showing all implementation details",
+                "B) Hiding complexity, showing only essentials",
+                "C) Making everything public",
+                "D) Creating multiple objects"
+            ],
+            correct: 1,
+            explanation: "Abstraction is about hiding complex implementation details and showing only the essential features to the user."
+        },
+        {
+            question: "10. What is the main difference between abstract classes and interfaces?",
+            options: [
+                "A) Abstract classes can't have methods",
+                "B) Interfaces can have implementation",
+                "C) Abstract classes can have some implementation",
+                "D) Interfaces use 'abstract' keyword"
+            ],
+            correct: 2,
+            explanation: "Abstract classes can have both abstract methods (no implementation) and concrete methods (with implementation), while interfaces traditionally couldn't have implementation (until C# 8.0)."
+        },
+        {
+            question: "11. What does the 'static' keyword mean?",
+            options: [
+                "A) The value never changes",
+                "B) It belongs to the class, not objects",
+                "C) It's only accessible in constructors",
+                "D) It can't be inherited"
+            ],
+            correct: 1,
+            explanation: "Static members belong to the class itself, not to individual objects. All objects share the same static members."
+        },
+        {
+            question: "12. How is 'readonly' different from 'const'?",
+            options: [
+                "A) readonly can change, const can't",
+                "B) const is set at runtime, readonly at compile time",
+                "C) readonly can be set in constructor, const at declaration",
+                "D) They're the same thing"
+            ],
+            correct: 2,
+            explanation: "readonly fields can be set in the constructor or at declaration, while const must be set at declaration and can never change."
+        },
+        {
+            question: "13. If Shape is abstract with abstract Draw() method, and Circle inherits from Shape, what must Circle do?",
+            options: [
+                "A) Nothing - it inherits Draw()",
+                "B) Provide implementation for Draw()",
+                "C) Make Draw() private",
+                "D) Create a new abstract method"
+            ],
+            correct: 1,
+            explanation: "When a class inherits from an abstract class with abstract methods, it MUST implement all abstract methods."
+        },
+        {
+            question: "14. What is polymorphism?",
+            options: [
+                "A) Many classes having same name",
+                "B) One interface, multiple implementations",
+                "C) Hiding data from users",
+                "D) Creating blueprints"
+            ],
+            correct: 1,
+            explanation: "Polymorphism means 'many forms' - the same interface can have different implementations."
+        },
+        {
+            question: "15. Which of these is NOT a valid constructor?",
+            options: [
+                "A) public Car() { }",
+                "B) public Car(string brand) { }",
+                "C) public void Car() { }",
+                "D) public Car(string brand, int year) { }"
+            ],
+            correct: 2,
+            explanation: "Constructors don't have a return type, not even void. Option C has 'void' which makes it a regular method, not a constructor."
+        },
+        {
+            question: "16. What happens when you try to change a const value?",
+            options: [
+                "A) Runtime error",
+                "B) Compile-time error",
+                "C) It changes successfully",
+                "D) Warning but it works"
+            ],
+            correct: 1,
+            explanation: "const values cannot be changed. Attempting to change them results in a compile-time error."
+        },
+        {
+            question: "17. What does the 'protected' access modifier allow?",
+            options: [
+                "A) Access from anywhere",
+                "B) Access only within same class",
+                "C) Access within class and child classes",
+                "D) Access from same assembly"
+            ],
+            correct: 2,
+            explanation: "protected allows access within the class and any child (derived) classes."
+        },
+        {
+            question: "18. Which is an example of method overriding?",
+            options: [
+                "A) Animal.MakeSound() and Dog.MakeSound()",
+                "B) Calculator.Add(int, int) and Calculator.Add(double, double)",
+                "C) Printer.Print() and Printer.Print(int)",
+                "D) Car.Start() and Engine.Start()"
+            ],
+            correct: 0,
+            explanation: "Method overriding is when a child class provides its own implementation of a method defined in the parent class."
+        },
+        {
+            question: "19. What is the purpose of interfaces?",
+            options: [
+                "A) To provide complete implementation",
+                "B) To define contracts that classes must implement",
+                "C) To hide all methods",
+                "D) To replace all classes"
+            ],
+            correct: 1,
+            explanation: "Interfaces define a contract - they specify what methods and properties implementing classes must have, but don't provide implementation."
+        },
+        {
+            question: "20. How many parent classes can a class inherit from in C#?",
+            options: [
+                "A) Unlimited",
+                "B) One",
+                "C) Two",
+                "D) Three"
+            ],
+            correct: 1,
+            explanation: "C# supports single inheritance - a class can inherit from only one parent class."
+        },
+        {
+            question: "21. What is the 'base' keyword used for?",
+            options: [
+                "A) To call parent class methods",
+                "B) To create new objects",
+                "C) To make methods static",
+                "D) To define constants"
+            ],
+            correct: 0,
+            explanation: "The 'base' keyword is used in child classes to call methods or access members of the parent class."
+        },
+        {
+            question: "22. Which is true about static methods?",
+            options: [
+                "A) They can access instance variables directly",
+                "B) They belong to objects, not class",
+                "C) They can be called without creating objects",
+                "D) They're always private"
+            ],
+            correct: 2,
+            explanation: "Static methods belong to the class, not objects, so they can be called without creating an object: ClassName.MethodName();"
+        },
+        {
+            question: "23. What is the difference between value types and reference types?",
+            options: [
+                "A) Value types store the actual data, reference types store memory address",
+                "B) Value types are always larger",
+                "C) Reference types can't be null",
+                "D) There's no difference"
+            ],
+            correct: 0,
+            explanation: "Value types store the actual value, reference types store a reference (memory address) to where the value is stored."
+        },
+        {
+            question: "24. What does the 'sealed' keyword do?",
+            options: [
+                "A) Makes a class abstract",
+                "B) Prevents inheritance",
+                "C) Makes all methods static",
+                "D) Hides the class"
+            ],
+            correct: 1,
+            explanation: "The 'sealed' keyword prevents a class from being inherited by other classes."
+        },
+        {
+            question: "25. Why use properties instead of public fields?",
+            options: [
+                "A) Properties are faster",
+                "B) Properties allow validation and control",
+                "C) Properties use less memory",
+                "D) Properties are required for inheritance"
+            ],
+            correct: 1,
+            explanation: "Properties allow you to add validation, control access, and execute code when values are set or retrieved, unlike public fields."
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let userAnswers = [];
+
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightAll();
+        }
+
+        document.getElementById('startQuizBtn').addEventListener('click', startQuiz);
+        document.getElementById('restartQuizBtn').addEventListener('click', resetQuiz);
+    });
+
+    function startQuiz() {
+        document.getElementById('startQuizBtn').style.display = 'none';
+        document.getElementById('quizContainer').innerHTML = '';
+        document.getElementById('quizResults').style.display = 'none';
+        
+        currentQuestionIndex = 0;
+        score = 0;
+        userAnswers = [];
+        
+        loadQuestion(currentQuestionIndex);
+    }
+
+    function loadQuestion(index) {
+        const container = document.getElementById('quizContainer');
+        const question = quizQuestions[index];
+        
+        let html = `
+            <div class="quiz-question active">
+                <h4>${question.question}</h4>
+                <div class="quiz-options">
+        `;
+        
+        question.options.forEach((option, optionIndex) => {
+            html += `
+                <div class="quiz-option" onclick="selectAnswer(${optionIndex})" id="option${optionIndex}">
+                    ${option}
+                </div>
+            `;
+        });
+        
+        html += `
+                </div>
+                <div id="explanation${index}" class="mt-3" style="display: none;">
+                    <div class="alert alert-info">
+                        <strong>Explanation:</strong> ${question.explanation}
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <button class="btn btn-primary" onclick="handleNext()" id="nextBtn${index}" disabled>
+                        ${index === quizQuestions.length - 1 ? 'See Results' : 'Next Question'}
+                    </button>
+                    <span class="ms-3">Question ${index + 1} of ${quizQuestions.length}</span>
+                </div>
+            </div>
+        `;
+        
+        container.innerHTML = html;
+    }
+
+    function selectAnswer(index) {
+        for (let i = 0; i < 4; i++) {
+            const option = document.getElementById(`option${i}`);
+            if (option) {
+                option.classList.remove('selected');
+            }
+        }
+        
+        const option = document.getElementById(`option${index}`);
+        option.classList.add('selected');
+        
+        document.getElementById(`nextBtn${currentQuestionIndex}`).disabled = false;
+        
+        userAnswers[currentQuestionIndex] = index;
+    }
+
+    function handleNext() {
+        const question = quizQuestions[currentQuestionIndex];
+        const userAnswer = userAnswers[currentQuestionIndex];
+        
+        document.getElementById(`explanation${currentQuestionIndex}`).style.display = 'block';
+        
+        for (let i = 0; i < 4; i++) {
+            const option = document.getElementById(`option${i}`);
+            if (option) {
+                option.classList.remove('selected');
+                if (i === question.correct) {
+                    option.classList.add('correct');
+                } else if (i === userAnswer && i !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+                option.style.pointerEvents = 'none';
+            }
+        }
+        
+        if (userAnswer === question.correct) {
+            score++;
+        }
+        
+        document.getElementById(`nextBtn${currentQuestionIndex}`).disabled = true;
+        
+        setTimeout(() => {
+            currentQuestionIndex++;
+            
+            if (currentQuestionIndex < quizQuestions.length) {
+                loadQuestion(currentQuestionIndex);
+            } else {
+                showResults();
+            }
+        }, 2000);
+    }
+
+    function showResults() {
+        document.getElementById('quizContainer').innerHTML = '';
+        document.getElementById('quizResults').style.display = 'block';
+        
+        const percentage = Math.round((score / quizQuestions.length) * 100);
+        const scoreBar = document.getElementById('scoreBar');
+        scoreBar.style.width = `${percentage}%`;
+        scoreBar.textContent = `${percentage}%`;
+        
+        let message = '';
+        if (percentage >= 90) {
+            message = '🎉 Excellent! You\'re an OOP master!';
+            scoreBar.className = 'progress-bar bg-success';
+        } else if (percentage >= 70) {
+            message = '👍 Great job! You have a solid understanding of OOP.';
+            scoreBar.className = 'progress-bar bg-info';
+        } else if (percentage >= 50) {
+            message = '📚 Good effort! Review the concepts and try again.';
+            scoreBar.className = 'progress-bar bg-warning';
+        } else {
+            message = '📖 Keep learning! Review the chapter and try the quiz again.';
+            scoreBar.className = 'progress-bar bg-danger';
+        }
+        
+        document.getElementById('scoreText').innerHTML = `
+            <h4>${message}</h4>
+            <p>You scored ${score} out of ${quizQuestions.length} questions correctly.</p>
+            <p>Percentage: ${percentage}%</p>
+        `;
+    }
+
+    function resetQuiz() {
+        document.getElementById('quizResults').style.display = 'none';
+        document.getElementById('startQuizBtn').style.display = 'inline-block';
+    }
+</script>

@@ -2,131 +2,669 @@
     ViewData["Title"] = "OOP - Encapsulation";
 }
 
+<body data-topic="encapsulation">
 <div class="container">
-    <h1>Encapsulation in OOP</h1>
-    <p>
-        In Object-Oriented Programming, <strong>Encapsulation</strong> is about <em>controlling access</em> to the data inside a class.  
-        It helps us protect important information and make sure objects behave correctly.  
-        Remember how in the <a href="@Url.Action("Classes", "OOP")">Classes</a> section we used <code>public</code>?  
-        Encapsulation explains why and when we use <code>public</code>, <code>private</code>, or <code>protected</code>.
-    </p>
+    <h1 class="mb-4 text-center">Encapsulation: Protecting Your Data</h1>
 
-    <h2>Public</h2>
-    <p>
-        A <code>public</code> property or method can be accessed from <strong>anywhere</strong> in your program.  
-        We used <code>public</code> in previous examples to let objects share or display data:
-    </p>
+    <p><strong>Encapsulation</strong> is like having a <strong>lock on your diary</strong>. You control who can read it, who can write in it, and who can't touch it at all. In programming, encapsulation controls access to your class's data and methods.</p>
+
+    <p>You see encapsulation in real life every day:</p>
+    <ul>
+        <li>Your <strong>bank account balance</strong> is private - you can't just change it, you use deposits/withdrawals</li>
+        <li>A <strong>car's engine</strong> is hidden under the hood - you use pedals and steering wheel to control it</li>
+        <li>Your <strong>social media password</strong> is private - you use login methods to access your account</li>
+        <li>A <strong>medicine bottle</strong> has a child-proof cap - controls who can access the medicine</li>
+    </ul>
+
+    <div class="note-box">
+        <strong>Connection:</strong> In our <a href="@Url.Action("Classes", "OOP")" class="ajax-link"><strong>Classes lesson</strong></a>, we always used <code>public</code>. Now you'll learn WHY we sometimes use <code>private</code> and <code>protected</code> instead!
+    </div>
+
+    <h2 class="text-center">What is Encapsulation?</h2>
+    <p>Encapsulation has three access levels (like security clearance):</p>
+    
     <div class="code-container">
-        <div class="code-header">Example: Public Property</div>
+        <div class="code-header">Access Modifiers - The Security System</div>
         <div class="code-content">
-<pre><code class="language-csharp">
-public class Product
-{
-    public string Name { get; set; }
-}
+<pre>
+ACCESS LEVEL     WHO CAN ACCESS?                    REAL-WORLD EXAMPLE
+────────────────────────────────────────────────────────────────────────────
+public          EVERYONE (anywhere in code)        Public park - anyone can enter
+private         ONLY THIS CLASS                    Your diary - only you can read
+protected       THIS CLASS + CHILD CLASSES         Family photo album - family only
 
-Product laptop = new Product();
-laptop.Name = "Dell XPS 13"; // ✅ Allowed: public property can be accessed
-Console.WriteLine(laptop.Name); // Output: Dell XPS 13
-</code></pre>
+Think of it as:
+public = Open door
+private = Locked door
+protected = Door with family key
+</pre>
         </div>
     </div>
 
-    <h2>Private</h2>
-    <p>
-        A <code>private</code> property or method can only be accessed <strong>inside the class</strong>.  
-        This is useful to protect important data:
-    </p>
+    <h2 class="text-center">1. Public: The Open Door</h2>
+    <p><code>public</code> means anyone can access it from anywhere. We've been using this all along!</p>
+    
     <div class="code-container">
-        <div class="code-header">Example: Private Field</div>
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="oopEncapsulation.convertCode('example1')">
+            <label class="form-check-label" for="example1Toggle">Show Problem with Public</label>
+        </div>
         <div class="code-content">
-<pre><code class="language-csharp">
+<pre class="codeBlock" id="example1Code">
+// Example: Public Bank Account (DANGEROUS!)
 public class BankAccount
 {
-    private decimal balance; // Only accessible inside this class
+    // WARNING: Public properties = Anyone can change!
+    public decimal Balance;
+    public string Owner;
+    
+    public void ShowBalance()
+    {
+        Console.WriteLine(Owner + "'s balance: $" + Balance);
+    }
+}
 
+// Using the account
+BankAccount account = new BankAccount();
+account.Owner = "Alice";
+account.Balance = 1000.00m;
+
+account.ShowBalance();  // Alice's balance: $1000
+
+// PROBLEM: Anyone can change the balance directly!
+account.Balance = -5000.00m;  // Setting negative balance? That's bad!
+account.Balance = 9999999.99m;  // Creating free money? That's worse!
+
+account.ShowBalance();  // Now shows crazy amounts
+</pre>
+        </div>
+        <div class="result-box" id="example1Result">
+            <strong>Output:</strong><br>
+            Alice's balance: $1000<br>
+            Alice's balance: $9999999.99<br><br>
+            <em>The Problem:</em> With <code>public Balance</code>, ANY code can set it to ANY value - negative, billion dollars, anything! This breaks the rules of how bank accounts should work. Real banks don't let you just change your balance number!
+        </div>
+    </div>
+
+    <h2 class="text-center">2. Private: The Locked Door</h2>
+    <p><code>private</code> means only code INSIDE the class can access it. This protects your data!</p>
+    
+    <div class="code-container">
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="oopEncapsulation.convertCode('example2')">
+            <label class="form-check-label" for="example2Toggle">Show Private with Getters/Setters</label>
+        </div>
+        <div class="code-content">
+<pre class="codeBlock" id="example2Code">
+// Example: Private Bank Account (SAFE!)
+public class BankAccount
+{
+    // SAFE: Private fields - only this class can access
+    private decimal balance;
+    private string owner;
+    
+    // Public methods to CONTROL access (getters/setters)
+    public string Owner
+    {
+        get { return owner; }
+        set 
+        { 
+            if (!string.IsNullOrEmpty(value))
+                owner = value;
+        }
+    }
+    
+    // Public method to deposit (with validation)
     public void Deposit(decimal amount)
     {
-        balance += amount; // ✅ Allowed: inside the class
+        if (amount > 0)
+        {
+            balance += amount;
+            Console.WriteLine("Deposited: $" + amount);
+        }
+        else
+        {
+            Console.WriteLine("Deposit amount must be positive!");
+        }
     }
-
+    
+    // Public method to withdraw (with validation)
+    public bool Withdraw(decimal amount)
+    {
+        if (amount > 0 && amount <= balance)
+        {
+            balance -= amount;
+            Console.WriteLine("Withdrew: $" + amount);
+            return true;
+        }
+        else
+        {
+            Console.WriteLine("Withdrawal failed!");
+            return false;
+        }
+    }
+    
+    // Public method to check balance
     public decimal GetBalance()
     {
-        return balance; // ✅ Access through method
+        return balance;
     }
 }
 
-// Using the class
+// Using the safe account
 BankAccount account = new BankAccount();
-account.Deposit(100);
-Console.WriteLine(account.GetBalance()); // Output: 100
-</code></pre>
+account.Owner = "Alice";
+account.Deposit(1000.00m);
+
+// SAFE operations through methods
+account.Deposit(500.00m);     // Works: adds $500
+account.Withdraw(300.00m);    // Works: has enough money
+
+// CAN'T do bad things anymore!
+// account.balance = -5000.00m;      // ERROR: private!
+// account.balance = 9999999.99m;    // ERROR: private!
+
+Console.WriteLine("Final balance: $" + account.GetBalance());
+</pre>
+        </div>
+        <div class="result-box" id="example2Result">
+            <strong>Output:</strong><br>
+            Deposited: $1000<br>
+            Deposited: $500<br>
+            Withdrew: $300<br>
+            Final balance: $1200<br><br>
+            <em>The Protection:</em> The <code>balance</code> field is <code>private</code>, so no outside code can touch it directly. All access goes through our controlled methods (<code>Deposit()</code>, <code>Withdraw()</code>, <code>GetBalance()</code>) that have validation rules. This is REAL encapsulation!
         </div>
     </div>
-    <p>❌ Failed Example:</p>
-    <div class="code-container">
-<pre><code class="language-csharp">
-// Trying to access private field directly will fail
-account.balance = 500; // Not allowed
-</code></pre>
-        </div>
-    <p>Explanation: Private fields cannot be accessed from outside the class. You must use public methods to interact with them.</p>
 
-    <h2>Protected</h2>
-    <p>
-        A <code>protected</code> property or method can be accessed inside the class and by classes that <strong>inherit from it</strong>.  
-        It's like a private area that subclasses are allowed to use:
-    </p>
+    <h2 class="text-center">Interactive Walkthrough: Public vs Private</h2>
+    <p>See the difference between public and private access:</p>
+
     <div class="code-container">
-        <div class="code-header">Example: Protected Field</div>
+        <div class="code-header">Access Control in Action</div>
         <div class="code-content">
-<pre><code class="language-csharp">
-public class Employee
+<pre id="walkthroughCodeBase">
+public class Student
 {
-    protected int employeeId; // Accessible inside class and subclasses
-
-    public void ShowId()
+    public string Name;           // Public - anyone can access
+    private int grade;           // Private - only class can access
+    
+    public void SetGrade(int newGrade)
     {
-        Console.WriteLine(employeeId); // ✅ Allowed inside the class
+        if (newGrade >= 0 && newGrade <= 100)
+            grade = newGrade;    // Can access private here
+    }
+    
+    public string GetGradeLetter()
+    {
+        if (grade >= 90) return "A";
+        if (grade >= 80) return "B";
+        return "C or below";
     }
 }
 
-public class Manager : Employee
-{
-    public void SetId(int id)
-    {
-        employeeId = id; // ✅ Allowed in subclass
-    }
-}
-
-// Using the class
-Manager m = new Manager();
-m.SetId(101);
-m.ShowId(); // Output: 101
-</code></pre>
+// Student student = new Student();
+// student.Name = "Alex";
+// student.SetGrade(85);
+// Console.WriteLine(student.GetGradeLetter());
+// student.grade = 200;  // What happens?
+</pre>
         </div>
     </div>
-    <p>❌ Failed Example:</p>
-    <div class="code-container">
-<pre><code class="language-csharp">
-// Cannot access protected field directly from outside, even in inherited class
-m.employeeId = 500; // Not allowed
-</code></pre>
-        </div>
-    <p>Explanation: You can give the inherited class access to a protected field, but you <strong>cannot access the protected field directly from an instance of the inherited class</strong>. You must use a method inside the class or subclass.</p>
 
-    <h2>Key Takeaways</h2>
+    <div class="code-container">
+        <div class="code-header">Access Attempts</div>
+        <div class="code-content">
+<pre id="walkthroughVariables">
+Student object created:
+- Name: (public, can be set)
+- grade: (private, hidden)
+- Methods: SetGrade, GetGradeLetter
+</pre>
+        </div>
+        <div class="result-box" id="walkthroughExplanation">
+            <em>Click <strong>Next</strong> to see encapsulation in action:</em>
+        </div>
+        <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
+    </div>
+
+    <h2 class="text-center">3. Protected: The Family-Only Door</h2>
+    <p><code>protected</code> means this class AND any child classes (from inheritance) can access it. It's like a family secret!</p>
+    
+    <div class="code-container">
+        <div class="code-header">Protected Access Example</div>
+        <div class="code-content">
+<pre>
+public class Animal
+{
+    // Protected - Animal and its children can access
+    protected string species;
+    protected int age;
+    
+    // Private - Only Animal can access
+    private string internalId;
+    
+    // Public - Everyone can access
+    public string Name;
+    
+    // Protected method - children can use
+    protected void GrowOlder()
+    {
+        age++;
+        Console.WriteLine(Name + " is now " + age + " years old.");
+    }
+}
+
+public class Dog : Animal
+{
+    public void SetDogInfo(string dogSpecies, int dogAge)
+    {
+        // Can access protected members from parent
+        species = dogSpecies;   // Allowed: protected in Animal
+        age = dogAge;           // Allowed: protected in Animal
+        
+        // Can't access private members from parent
+        // internalId = "123";  // ERROR: private in Animal!
+    }
+    
+    public void Bark()
+    {
+        // Can call protected method from parent
+        GrowOlder();  // Allowed: protected in Animal
+        Console.WriteLine(Name + " the " + species + " says: Woof!");
+    }
+}
+
+// Using the classes
+Dog myDog = new Dog();
+myDog.Name = "Buddy";           // Public: anyone can access
+
+myDog.SetDogInfo("Golden Retriever", 3);
+myDog.Bark();
+
+// Can't access protected members from outside
+// myDog.species = "Poodle";     // ERROR: protected!
+// myDog.GrowOlder();            // ERROR: protected!
+</pre>
+        </div>
+    </div>
+
+    <h2 class="text-center">Visual Diagram: The Three Doors</h2>
+    
+    <div class="code-container">
+        <div class="code-header">Access Modifiers as Security Levels</div>
+        <div class="code-content">
+<pre>
+CLASS HOUSE:
+┌─────────────────────────────────────┐
+│          BankAccount Class          │
+├─────────────────────────────────────┤
+│  PUBLIC DOOR (Everyone)             │
+│  • Owner property                   │
+│  • Deposit() method                 │
+│  • Withdraw() method                │
+│  • GetBalance() method              │
+│                                     │
+│  PRIVATE ROOM (Class Only)          │
+│  • balance field                    │ ← Hidden treasure!
+│  • CalculateInterest() method       │ ← Secret formula!
+│                                     │
+│  PROTECTED FAMILY ROOM              │
+│  (Class + Children Only)            │
+│  • internalAccountNumber            │
+│  • ValidateTransaction() method     │
+└─────────────────────────────────────┘
+
+OUTSIDE CODE trying to access:
+─────────────────────────────────────
+BankAccount account = new BankAccount();
+
+CAN DO (Public door):
+account.Owner = "Alice";
+account.Deposit(100);
+account.GetBalance();
+
+CAN'T DO (Private room):
+account.balance = 1000000;      // Locked out!
+account.CalculateInterest();    // Secret method!
+
+CAN'T DO (Protected room):
+account.internalAccountNumber = "123";  // Family only!
+</pre>
+        </div>
+    </div>
+
+    <h2 class="text-center">Real-World Example: Social Media Account</h2>
+    <p>Let's see encapsulation in a social media context:</p>
+    
+    <div class="code-container">
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="oopEncapsulation.convertCode('example3')">
+            <label class="form-check-label" for="example3Toggle">Show Complete Social Media Example</label>
+        </div>
+        <div class="code-content">
+<pre class="codeBlock" id="example3Code">
+public class SocialMediaAccount
+{
+    // Public info (like profile)
+    public string Username;
+    public string DisplayName;
+    public int PostCount;
+    
+    // Private info (like backend data)
+    private string password;
+    private string email;
+    private DateTime dateCreated;
+    private bool isVerified;
+    
+    // Protected info (for special features)
+    protected int adminLevel;  // For moderator/child classes
+    
+    // Constructor
+    public SocialMediaAccount(string user, string pass, string mail)
+    {
+        Username = user;
+        password = pass;        // Private - set once
+        email = mail;           // Private - hidden
+        dateCreated = DateTime.Now;
+        isVerified = false;
+        PostCount = 0;
+    }
+    
+    // Public methods for interaction
+    public bool Login(string enteredPassword)
+    {
+        if (enteredPassword == password)
+        {
+            Console.WriteLine(Username + " logged in successfully.");
+            return true;
+        }
+        else
+        {
+            Console.WriteLine("Login failed - wrong password.");
+            return false;
+        }
+    }
+    
+    public void ChangePassword(string oldPass, string newPass)
+    {
+        if (oldPass == password && newPass.Length >= 8)
+        {
+            password = newPass;  // Can access private field
+            Console.WriteLine("Password changed successfully.");
+        }
+        else
+        {
+            Console.WriteLine("Password change failed.");
+        }
+    }
+    
+    public void MakePost(string content)
+    {
+        PostCount++;            // Update public counter
+        Console.WriteLine(Username + " posted: " + content);
+        Console.WriteLine("Total posts: " + PostCount);
+    }
+    
+    // Private helper method
+    private void SendVerificationEmail()
+    {
+        Console.WriteLine("Verification email sent to " + email);
+    }
+    
+    // Public method that uses private method
+    public void RequestVerification()
+    {
+        if (!isVerified)
+        {
+            SendVerificationEmail();  // Can call private method
+            Console.WriteLine("Verification requested.");
+        }
+    }
+}
+
+// Using the social media account
+SocialMediaAccount myAccount = new SocialMediaAccount("alice123", "secret123", "alice@email.com");
+
+// Public access works
+myAccount.DisplayName = "Alice Wonderland";
+myAccount.MakePost("Hello world!");
+myAccount.Login("secret123");
+
+// Private access fails
+// myAccount.password = "hacked";      // ERROR: private!
+// myAccount.email = "hacker@evil.com"; // ERROR: private!
+// myAccount.SendVerificationEmail();  // ERROR: private!
+
+// Using public methods that control private data
+myAccount.ChangePassword("secret123", "newSecret456");
+myAccount.RequestVerification();
+</pre>
+        </div>
+        <div class="result-box" id="example3Result">
+            <strong>Output:</strong><br>
+            Alice Wonderland posted: Hello world!<br>
+            Total posts: 1<br>
+            alice123 logged in successfully.<br>
+            Password changed successfully.<br>
+            Verification email sent to alice@email.com<br>
+            Verification requested.<br><br>
+            <em>Perfect Encapsulation:</em> The user's password and email are <code>private</code> - completely hidden. Users can only change them through controlled methods (<code>ChangePassword()</code>, <code>Login()</code>) that have security checks. Private helper methods handle internal details safely.
+        </div>
+    </div>
+
+    <h2 class="text-center">Common Encapsulation Mistakes</h2>
+    <div class="code-container">
+        <div class="code-header">What NOT to Do</div>
+        <div class="code-content">
+<pre>
+<span style="color: red;">// MISTAKE 1: Making everything public</span>
+public class User
+{
+    public string Password;      <span style="color: red;">// DANGEROUS!</span>
+    public decimal BankBalance;  <span style="color: red;">// UNSAFE!</span>
+    public int Age;              <span style="color: red;">// No validation!</span>
+}
+// Anyone can: user.Password = "hacked", user.BankBalance = 9999999
+
+<span style="color: green;">// SOLUTION: Use private with controlled access</span>
+public class User
+{
+    private string password;
+    private decimal balance;
+    
+    public bool ChangePassword(string oldPass, string newPass)
+    {
+        // Validate old password, check new password strength
+        if (oldPass == password && newPass.Length >= 8)
+        {
+            password = newPass;
+            return true;
+        }
+        return false;
+    }
+}
+
+<span style="color: red;">// MISTAKE 2: Using private when you need protected</span>
+public class Animal
+{
+    private string species;  <span style="color: red;">// Children can't access</span>
+}
+
+public class Dog : Animal
+{
+    public void Bark() 
+    {
+        // species = "Dog";  <span style="color: red;">// ERROR: private!</span>
+    }
+}
+
+<span style="color: green;">// SOLUTION: Use protected for inheritance</span>
+public class Animal
+{
+    protected string species;  <span style="color: green;">// Children can access</span>
+}
+
+<span style="color: red;">// MISTAKE 3: Not providing ANY public access</span>
+public class SecretBox
+{
+    private string secret;
+    // No public methods to read or write secret
+    <span style="color: red;">// Completely useless class!</span>
+}
+
+<span style="color: green;">// SOLUTION: Provide controlled public access</span>
+public class SecretBox
+{
+    private string secret;
+    
+    public void SetSecret(string newSecret, string key)
+    {
+        if (key == "correctKey")
+            secret = newSecret;
+    }
+    
+    public string GetSecret(string key)
+    {
+        if (key == "correctKey")
+            return secret;
+        return "Access denied!";
+    }
+}
+</pre>
+        </div>
+    </div>
+
+    <h2 class="text-center">When to Use Each Access Modifier</h2>
+    <div class="code-container">
+        <div class="code-header">Encapsulation Guidelines</div>
+        <div class="code-content">
+<pre>
+<span style="color: green;">USE PUBLIC FOR:</span>
+Information meant to be public
+   - Product names in a store
+   - Usernames on social media
+   - Display information
+
+Actions users should directly perform
+   - Deposit() in BankAccount
+   - MakePost() in SocialMedia
+   - Drive() in Car
+
+<span style="color: green;">USE PRIVATE FOR:</span>
+Sensitive data that needs protection
+   - Passwords, credit card numbers
+   - Internal calculations
+   - Backend data structures
+
+Implementation details that might change
+   - How a search algorithm works
+   - Database connection details
+   - Caching mechanisms
+
+Helper methods for internal use
+   - FormatData() method
+   - ValidateInput() method
+   - CalculateTax() method
+
+<span style="color: green;">USE PROTECTED FOR:</span>
+Data/methods for inheritance hierarchies
+   - Animal properties that Mammal needs
+   - Base class methods that children override
+   - Template methods in parent classes
+
+<span style="color: green;">GENERAL RULE:</span> Start with PRIVATE, then:
+1. Make it PROTECTED if child classes need it
+2. Make it PUBLIC if outside code needs it
+3. Keep it PRIVATE if only this class needs it
+
+<span style="color: green;">THIS IS CALLED:</span> "Principle of Least Privilege"
+Give only the access that's absolutely needed!
+</pre>
+        </div>
+    </div>
+
+    <h2 class="text-center">The Getter/Setter Pattern (Properties)</h2>
+    <div class="code-container">
+        <div class="code-header">C# Properties - Smart Encapsulation</div>
+        <div class="code-content">
+<pre>
+// OLD WAY: Manual getter/setter methods
+public class Person
+{
+    private int age;
+    
+    public void SetAge(int newAge)
+    {
+        if (newAge >= 0 && newAge <= 150)
+            age = newAge;
+    }
+    
+    public int GetAge()
+    {
+        return age;
+    }
+}
+
+// C# WAY: Properties (much cleaner!)
+public class Person
+{
+    private int age;
+    
+    // Property with validation
+    public int Age
+    {
+        get { return age; }
+        set 
+        {
+            if (value >= 0 && value <= 150)
+                age = value;
+            else
+                Console.WriteLine("Invalid age!");
+        }
+    }
+    
+    // Auto-property (C# creates private field automatically)
+    public string Name { get; set; }
+    
+    // Read-only property (can only get, not set from outside)
+    public DateTime BirthDate { get; private set; }
+    
+    // Write-only property (rare, but possible)
+    private string password;
+    public string Password
+    {
+        set { password = value; }
+    }
+}
+
+// Using properties
+Person person = new Person();
+person.Age = 25;      // Calls set with validation
+person.Age = 200;     // Prints "Invalid age!" - rejected!
+int currentAge = person.Age;  // Calls get
+
+person.Name = "Alice";  // Auto-property works
+// person.BirthDate = new DateTime(...);  // ERROR: private set!
+</pre>
+        </div>
+    </div>
+
+    <h2 class="text-center">Summary: The Power of Encapsulation</h2>
     <ul>
-        <li><strong>Encapsulation</strong> is about protecting your class data and controlling access.</li>
-        <li><code>public</code> → anyone can access.</li>
-        <li><code>private</code> → only the class itself can access.</li>
-        <li><code>protected</code> → the class and its subclasses can access.</li>
-        <li>Trying to access <code>private</code> or <code>protected</code> from outside the class will fail — that’s why encapsulation is important!</li>
+        <li><strong>Encapsulation</strong> = Controlling access to class members (data + methods)</li>
+        <li><code>public</code> = Open door (everyone) → Use for public interface</li>
+        <li><code>private</code> = Locked door (class only) → Use for sensitive data, implementation details</li>
+        <li><code>protected</code> = Family door (class + children) → Use for inheritance hierarchies</li>
+        <li><strong>Benefits:</strong> Data protection, validation, easier maintenance, hidden complexity</li>
+        <li><strong>Real-world analogy:</strong> Bank (public tellers, private vaults), Car (public controls, private engine)</li>
+        <li><strong>Key principle:</strong> "Need to know basis" - only expose what's necessary</li>
+        <li>Without encapsulation: Anyone could change your bank balance, passwords, grades - chaos!</li>
     </ul>
 
     <div class="navigation-buttons">
         <a href="@Url.Action("Inheritance", "OOP")" class="btn btn-outline-primary ajax-link">← Inheritance</a>
-        <a href="@Url.Action("Polymorphism", "OOP")" class="btn btn-primary ajax-link">Next: Polymorphism →</a>
+        <a href="@Url.Action("Polymorphism", "OOP")" class="btn btn-primary ajax-link">Polymorphism →</a>
     </div>
 </div>
 
@@ -137,19 +675,32 @@ m.employeeId = 500; // Not allowed
         background-color: var(--bs-body-bg);
     }
 
-    h1, h2 {
+    h1, h2, h3 {
         color: var(--bs-heading-color);
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
-    p, li {
+    h1 {
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
+    }
+
+    p, li, code {
         color: var(--bs-body-color);
         line-height: 1.6;
     }
 
-    ul {
-        margin-left: 20px;
-        padding-left: 15px;
+    .note-box {
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid var(--bs-warning);
+        border-radius: 5px;
+        padding: 15px;
+        margin: 20px 0;
+    }
+
+    .note-box a {
+        color: var(--bs-warning);
+        text-decoration: underline;
     }
 
     .code-container {
@@ -164,7 +715,7 @@ m.employeeId = 500; // Not allowed
         background-color: var(--code-header-bg);
         padding: 10px 15px;
         border-bottom: 1px solid var(--bs-border-color);
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         font-size: 0.9rem;
         color: var(--bs-body-color);
     }
@@ -178,10 +729,14 @@ m.employeeId = 500; // Not allowed
         margin: 0;
         white-space: pre-wrap;
         background-color: transparent;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
 
-    code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    .result-box {
+        padding: 10px 15px;
+        background-color: rgba(0, 123, 255, 0.1);
+        border-top: 1px solid var(--bs-border-color);
+        font-size: 0.95rem;
     }
 
     .navigation-buttons {
@@ -194,15 +749,610 @@ m.employeeId = 500; // Not allowed
         padding: 8px 20px;
         border-radius: 4px;
         font-weight: 500;
+        text-decoration: none;
     }
 
     .btn-primary {
         background-color: var(--bs-primary);
         border-color: var(--bs-primary);
+        color: #fff;
     }
 
     .btn-outline-primary {
         color: var(--bs-primary);
         border-color: var(--bs-primary);
+        background-color: transparent;
+    }
+
+    .btn-outline-secondary {
+        color: var(--bs-secondary);
+        border-color: var(--bs-secondary);
+        background-color: transparent;
+    }
+
+    .btn-sm {
+        padding: 5px 10px;
+        font-size: 0.875rem;
     }
 </style>
+
+<script>
+    // Create a namespace for OOP Encapsulation page
+    window.oopEncapsulation = {
+        // Interactive walkthrough for encapsulation
+        encapsulationSteps: [
+            {
+                code: `public class Student
+{
+    public string Name;           // Public - anyone can access
+    private int grade;           // Private - only class can access
+    
+    public void SetGrade(int newGrade)
+    {
+        if (newGrade >= 0 && newGrade <= 100)
+            grade = newGrade;    // Can access private here
+    }
+    
+    public string GetGradeLetter()
+    {
+        if (grade >= 90) return "A";
+        if (grade >= 80) return "B";
+        return "C or below";
+    }
+}
+
+// Student student = new Student();
+// student.Name = "Alex";
+// student.SetGrade(85);
+// Console.WriteLine(student.GetGradeLetter());
+// student.grade = 200;  // What happens?`,
+                vars: `Student class defined:
+- Name: public (open door)
+- grade: private (locked door)
+- SetGrade(): public method
+- GetGradeLetter(): public method
+
+No student object created yet.`,
+                exp: "We define a Student class with mixed access: Name is public (anyone can see/set), grade is private (hidden), and we provide public methods to interact with the private grade."
+            },
+            {
+                code: `public class Student
+{
+    public string Name;           // Public - anyone can access
+    private int grade;           // Private - only class can access
+    
+    public void SetGrade(int newGrade)
+    {
+        if (newGrade >= 0 && newGrade <= 100)
+            grade = newGrade;    // Can access private here
+    }
+    
+    public string GetGradeLetter()
+    {
+        if (grade >= 90) return "A";
+        if (grade >= 80) return "B";
+        return "C or below";
+    }
+}
+
+Student student = new Student();
+// student.Name = "Alex";
+// student.SetGrade(85);
+// Console.WriteLine(student.GetGradeLetter());
+// student.grade = 200;  // What happens?`,
+                vars: `Student object created:
+- Name: (empty, can be set publicly)
+- grade: 0 (default, PRIVATE - hidden)
+- Can call: SetGrade(), GetGradeLetter()
+
+The private grade is safely hidden inside the object.`,
+                exp: "We create a Student object. Notice that even though we can't see or access the grade directly (it's private), it exists inside the object with default value 0."
+            },
+            {
+                code: `public class Student
+{
+    public string Name;           // Public - anyone can access
+    private int grade;           // Private - only class can access
+    
+    public void SetGrade(int newGrade)
+    {
+        if (newGrade >= 0 && newGrade <= 100)
+            grade = newGrade;    // Can access private here
+    }
+    
+    public string GetGradeLetter()
+    {
+        if (grade >= 90) return "A";
+        if (grade >= 80) return "B";
+        return "C or below";
+    }
+}
+
+Student student = new Student();
+student.Name = "Alex";           // Public: works
+student.SetGrade(85);            // Public method works
+// Console.WriteLine(student.GetGradeLetter());
+// student.grade = 200;  // What happens?`,
+                vars: `Student object now:
+- Name: "Alex" (set publicly)
+- grade: 85 (set via SetGrade() method)
+- SetGrade() validated: 85 is between 0-100
+
+The private grade was modified SAFELY through our controlled method.`,
+                exp: "We set the public Name directly (anyone can do this). We set the private grade through SetGrade() method, which validates the input (85 is valid). This is safe encapsulation!"
+            },
+            {
+                code: `public class Student
+{
+    public string Name;           // Public - anyone can access
+    private int grade;           // Private - only class can access
+    
+    public void SetGrade(int newGrade)
+    {
+        if (newGrade >= 0 && newGrade <= 100)
+            grade = newGrade;    // Can access private here
+    }
+    
+    public string GetGradeLetter()
+    {
+        if (grade >= 90) return "A";
+        if (grade >= 80) return "B";
+        return "C or below";
+    }
+}
+
+Student student = new Student();
+student.Name = "Alex";
+student.SetGrade(85);
+Console.WriteLine(student.GetGradeLetter());  // Gets grade letter
+// student.grade = 200;  // What happens?`,
+                vars: `Operations performed:
+1. Set public Name to "Alex"
+2. Set private grade to 85 via SetGrade()
+3. GetGradeLetter() checks private grade (85)
+   → 85 >= 80 → Returns "B"
+
+Output: "B"
+
+The private grade is used but never exposed directly.`,
+                exp: "GetGradeLetter() reads the private grade (85) and returns 'B'. Notice: We never see the actual grade number 85 from outside - we only see the letter 'B'. The grade is encapsulated (hidden) but we can get useful information about it."
+            },
+            {
+                code: `public class Student
+{
+    public string Name;           // Public - anyone can access
+    private int grade;           // Private - only class can access
+    
+    public void SetGrade(int newGrade)
+    {
+        if (newGrade >= 0 && newGrade <= 100)
+            grade = newGrade;    // Can access private here
+    }
+    
+    public string GetGradeLetter()
+    {
+        if (grade >= 90) return "A";
+        if (grade >= 80) return "B";
+        return "C or below";
+    }
+}
+
+Student student = new Student();
+student.Name = "Alex";
+student.SetGrade(85);
+Console.WriteLine(student.GetGradeLetter());
+student.grade = 200;  // What happens?  TRYING TO ACCESS PRIVATE!`,
+                vars: `Trying to access private field:
+- student.grade = 200; ← This line
+
+What happens? COMPILER ERROR!
+
+Error message: 
+'Student.grade' is inaccessible due to its protection level
+
+The private field is PROTECTED by encapsulation.`,
+                exp: "This line causes a COMPILE ERROR! The compiler stops us because 'grade' is private. This is encapsulation in action - preventing bad code from accessing data it shouldn't. Without encapsulation, someone could set grade to 200 (impossible!) or -50 (nonsense!)."
+            }
+        ],
+
+        simpleExamples: {
+            example1: `// Example: Public Bank Account (DANGEROUS!)
+public class BankAccount
+{
+    // WARNING: Public properties = Anyone can change!
+    public decimal Balance;
+    public string Owner;
+    
+    public void ShowBalance()
+    {
+        Console.WriteLine(Owner + "'s balance: $" + Balance);
+    }
+}
+
+// Using the account
+BankAccount account = new BankAccount();
+account.Owner = "Alice";
+account.Balance = 1000.00m;`,
+            example2: `// Example: Private Bank Account (SAFE!)
+public class BankAccount
+{
+    // SAFE: Private fields - only this class can access
+    private decimal balance;
+    private string owner;
+    
+    // Public methods to CONTROL access
+    public string Owner
+    {
+        get { return owner; }
+        set 
+        { 
+            if (!string.IsNullOrEmpty(value))
+                owner = value;
+        }
+    }
+    
+    public void Deposit(decimal amount)
+    {
+        if (amount > 0)
+        {
+            balance += amount;
+            Console.WriteLine("Deposited: $" + amount);
+        }
+    }
+    
+    public bool Withdraw(decimal amount)
+    {
+        if (amount > 0 && amount <= balance)
+        {
+            balance -= amount;
+            Console.WriteLine("Withdrew: $" + amount);
+            return true;
+        }
+        return false;
+    }
+    
+    public decimal GetBalance()
+    {
+        return balance;
+    }
+}`,
+            example3: `public class SocialMediaAccount
+{
+    // Public info
+    public string Username;
+    public string DisplayName;
+    public int PostCount;
+    
+    // Private info
+    private string password;
+    private string email;
+    
+    // Constructor
+    public SocialMediaAccount(string user, string pass, string mail)
+    {
+        Username = user;
+        password = pass;
+        email = mail;
+        PostCount = 0;
+    }
+    
+    // Public methods for interaction
+    public bool Login(string enteredPassword)
+    {
+        return enteredPassword == password;
+    }
+    
+    public void ChangePassword(string oldPass, string newPass)
+    {
+        if (oldPass == password && newPass.Length >= 8)
+        {
+            password = newPass;
+        }
+    }
+    
+    public void MakePost(string content)
+    {
+        PostCount++;
+        Console.WriteLine(Username + " posted: " + content);
+    }
+}`
+        },
+
+        completeExamples: {
+            example1: `// Example: Public Bank Account (DANGEROUS!)
+public class BankAccount
+{
+    // WARNING: Public properties = Anyone can change!
+    public decimal Balance;
+    public string Owner;
+    
+    public void ShowBalance()
+    {
+        Console.WriteLine(Owner + "'s balance: $" + Balance);
+    }
+}
+
+// Using the account
+BankAccount account = new BankAccount();
+account.Owner = "Alice";
+account.Balance = 1000.00m;
+
+account.ShowBalance();  // Alice's balance: $1000
+
+// PROBLEM: Anyone can change the balance directly!
+account.Balance = -5000.00m;  // Setting negative balance? That's bad!
+account.Balance = 9999999.99m;  // Creating free money? That's worse!
+
+account.ShowBalance();  // Now shows crazy amounts`,
+            example2: `// Example: Private Bank Account (SAFE!)
+public class BankAccount
+{
+    // SAFE: Private fields - only this class can access
+    private decimal balance;
+    private string owner;
+    
+    // Public methods to CONTROL access (getters/setters)
+    public string Owner
+    {
+        get { return owner; }
+        set 
+        { 
+            if (!string.IsNullOrEmpty(value))
+                owner = value;
+        }
+    }
+    
+    // Public method to deposit (with validation)
+    public void Deposit(decimal amount)
+    {
+        if (amount > 0)
+        {
+            balance += amount;
+            Console.WriteLine("Deposited: $" + amount);
+        }
+        else
+        {
+            Console.WriteLine("Deposit amount must be positive!");
+        }
+    }
+    
+    // Public method to withdraw (with validation)
+    public bool Withdraw(decimal amount)
+    {
+        if (amount > 0 && amount <= balance)
+        {
+            balance -= amount;
+            Console.WriteLine("Withdrew: $" + amount);
+            return true;
+        }
+        else
+        {
+            Console.WriteLine("Withdrawal failed!");
+            return false;
+        }
+    }
+    
+    // Public method to check balance
+    public decimal GetBalance()
+    {
+        return balance;
+    }
+}
+
+// Using the safe account
+BankAccount account = new BankAccount();
+account.Owner = "Alice";
+account.Deposit(1000.00m);
+
+// SAFE operations through methods
+account.Deposit(500.00m);     // Works: adds $500
+account.Withdraw(300.00m);    // Works: has enough money
+
+// CAN'T do bad things anymore!
+// account.balance = -5000.00m;      // ERROR: private!
+// account.balance = 9999999.99m;    // ERROR: private!
+
+Console.WriteLine("Final balance: $" + account.GetBalance());`,
+            example3: `public class SocialMediaAccount
+{
+    // Public info (like profile)
+    public string Username;
+    public string DisplayName;
+    public int PostCount;
+    
+    // Private info (like backend data)
+    private string password;
+    private string email;
+    private DateTime dateCreated;
+    private bool isVerified;
+    
+    // Protected info (for special features)
+    protected int adminLevel;  // For moderator/child classes
+    
+    // Constructor
+    public SocialMediaAccount(string user, string pass, string mail)
+    {
+        Username = user;
+        password = pass;        // Private - set once
+        email = mail;           // Private - hidden
+        dateCreated = DateTime.Now;
+        isVerified = false;
+        PostCount = 0;
+    }
+    
+    // Public methods for interaction
+    public bool Login(string enteredPassword)
+    {
+        if (enteredPassword == password)
+        {
+            Console.WriteLine(Username + " logged in successfully.");
+            return true;
+        }
+        else
+        {
+            Console.WriteLine("Login failed - wrong password.");
+            return false;
+        }
+    }
+    
+    public void ChangePassword(string oldPass, string newPass)
+    {
+        if (oldPass == password && newPass.Length >= 8)
+        {
+            password = newPass;  // Can access private field
+            Console.WriteLine("Password changed successfully.");
+        }
+        else
+        {
+            Console.WriteLine("Password change failed.");
+        }
+    }
+    
+    public void MakePost(string content)
+    {
+        PostCount++;            // Update public counter
+        Console.WriteLine(Username + " posted: " + content);
+        Console.WriteLine("Total posts: " + PostCount);
+    }
+    
+    // Private helper method
+    private void SendVerificationEmail()
+    {
+        Console.WriteLine("Verification email sent to " + email);
+    }
+    
+    // Public method that uses private method
+    public void RequestVerification()
+    {
+        if (!isVerified)
+        {
+            SendVerificationEmail();  // Can call private method
+            Console.WriteLine("Verification requested.");
+        }
+    }
+}
+
+// Using the social media account
+SocialMediaAccount myAccount = new SocialMediaAccount("alice123", "secret123", "alice@email.com");
+
+// Public access works
+myAccount.DisplayName = "Alice Wonderland";
+myAccount.MakePost("Hello world!");
+myAccount.Login("secret123");
+
+// Private access fails
+// myAccount.password = "hacked";      // ERROR: private!
+// myAccount.email = "hacker@evil.com"; // ERROR: private!
+// myAccount.SendVerificationEmail();  // ERROR: private!
+
+// Using public methods that control private data
+myAccount.ChangePassword("secret123", "newSecret456");
+myAccount.RequestVerification();`
+        },
+
+        currentStep: 0,
+
+        convertCode: function(id) {
+            const toggle = document.getElementById(id + "Toggle");
+            const isComplete = toggle ? toggle.checked : false;
+            const codeBlock = document.getElementById(id + "Code");
+            const resultBox = document.getElementById(id + "Result");
+
+            if (codeBlock && toggle) {
+                codeBlock.style.transition = 'opacity 0.3s ease';
+                codeBlock.style.opacity = '0.5';
+                setTimeout(() => {
+                    codeBlock.textContent = isComplete ? this.completeExamples[id] : this.simpleExamples[id];
+                    codeBlock.style.opacity = '1';
+
+                    if (resultBox && id === 'example1') {
+                        resultBox.innerHTML = isComplete ? 
+                            '<strong>Output:</strong><br>Alice\'s balance: $1000<br>Alice\'s balance: $9999999.99<br><br><em>The Problem:</em> With <code>public Balance</code>, ANY code can set it to ANY value - negative, billion dollars, anything! This breaks the rules of how bank accounts should work. Real banks don\'t let you just change your balance number!' :
+                            '<strong>Code Structure:</strong><br>Dangerous public BankAccount class.<br>Balance and Owner are public - anyone can modify them directly.<br>No protection against invalid values.<br><br><em>Toggle to see the full dangerous example!</em>';
+                    } else if (resultBox && id === 'example2') {
+                        resultBox.innerHTML = isComplete ?
+                            '<strong>Output:</strong><br>Deposited: $1000<br>Deposited: $500<br>Withdrew: $300<br>Final balance: $1200<br><br><em>The Protection:</em> The <code>balance</code> field is <code>private</code>, so no outside code can touch it directly. All access goes through our controlled methods (<code>Deposit()</code>, <code>Withdraw()</code>, <code>GetBalance()</code>) that have validation rules. This is REAL encapsulation!' :
+                            '<strong>Code Structure:</strong><br>Safe private BankAccount class.<br>balance and owner are private - hidden from outside.<br>Public methods provide controlled access with validation.<br><br><em>Toggle to see the full safe example!</em>';
+                    } else if (resultBox && id === 'example3') {
+                        resultBox.innerHTML = isComplete ?
+                            '<strong>Output:</strong><br>Alice Wonderland posted: Hello world!<br>Total posts: 1<br>alice123 logged in successfully.<br>Password changed successfully.<br>Verification email sent to alice@email.com<br>Verification requested.<br><br><em>Perfect Encapsulation:</em> The user\'s password and email are <code>private</code> - completely hidden. Users can only change them through controlled methods (<code>ChangePassword()</code>, <code>Login()</code>) that have security checks. Private helper methods handle internal details safely.' :
+                            '<strong>Code Structure:</strong><br>SocialMediaAccount with mixed access.<br>Public: Username, DisplayName, PostCount<br>Private: password, email (hidden)<br>Protected: adminLevel (for child classes)<br>Controlled public methods for interaction.<br><br><em>Toggle to see the complete social media example!</em>';
+                    }
+                }, 300);
+            }
+        },
+
+        updateWalkthrough: function(step) {
+            const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
+            const walkthroughVariables = document.getElementById('walkthroughVariables');
+            const walkthroughExplanation = document.getElementById('walkthroughExplanation');
+            const nextStepBtn = document.getElementById('nextStepBtn');
+
+            if (!walkthroughCodeBase || !walkthroughVariables || !walkthroughExplanation) return;
+
+            const data = this.encapsulationSteps[step];
+            
+            walkthroughCodeBase.textContent = data.code;
+            walkthroughVariables.textContent = data.vars;
+            walkthroughExplanation.innerHTML = `<em>Step ${step + 1}:</em> ${data.exp}`;
+            
+            if (step === this.encapsulationSteps.length - 1 && nextStepBtn) {
+                walkthroughExplanation.innerHTML += '<br><strong>Complete! Encapsulation protects private data from direct access.</strong>';
+                nextStepBtn.disabled = true;
+            }
+        },
+
+        nextStep: function() {
+            if (this.currentStep < this.encapsulationSteps.length) {
+                this.updateWalkthrough(this.currentStep);
+                this.currentStep++;
+            }
+        },
+
+        initWalkthrough: function() {
+            const nextStepBtn = document.getElementById('nextStepBtn');
+            if (nextStepBtn) {
+                this.currentStep = 0;
+
+                const newButton = nextStepBtn.cloneNode(true);
+                nextStepBtn.parentNode.replaceChild(newButton, nextStepBtn);
+
+                newButton.addEventListener('click', () => this.nextStep());
+                newButton.disabled = false;
+                
+                this.updateWalkthrough(0);
+                this.currentStep = 1;
+            }
+        },
+
+        initCodeExamples: function() {
+            const toggles = document.querySelectorAll('.form-check-input[type="checkbox"]');
+            toggles.forEach(toggle => {
+                const id = toggle.id.replace('Toggle', '');
+                if (id && this.simpleExamples[id]) {
+                    this.convertCode(id);
+                    toggle.addEventListener('change', () => this.convertCode(id));
+                }
+            });
+        },
+
+        init: function() {
+            console.log('Initializing OOP Encapsulation page');
+            this.initCodeExamples();
+            this.initWalkthrough();
+            
+            if (typeof hljs !== 'undefined') {
+                hljs.highlightAll();
+            }
+        }
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.oopEncapsulation.init();
+        });
+    } else {
+        window.oopEncapsulation.init();
+    }
+</script>
+</body>

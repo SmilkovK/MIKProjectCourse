@@ -420,7 +420,7 @@ Key: Constructor runs BEFORE you can use the object.
         <div class="code-header">Constructor Errors</div>
         <div class="code-content">
 <pre class="language-csharp">
-// ❌ WRONG: Wrong constructor name
+<span style="color: #dc3545; font-weight: bold;">// WRONG: Wrong constructor name</span>
 public class Car
 {
     public CarSetup(string brand)  // ERROR: Should be Car, not CarSetup
@@ -429,7 +429,7 @@ public class Car
     }
 }
 
-// ✅ CORRECT: Constructor name must match class
+<span style="color: #28a745; font-weight: bold;">// CORRECT: Constructor name must match class</span>
 public class Car
 {
     public string Brand;
@@ -440,7 +440,7 @@ public class Car
     }
 }
 
-// ❌ WRONG: Forgetting to set properties
+<span style="color: #dc3545; font-weight: bold;">// WRONG: Forgetting to set properties</span>
 public class Student
 {
     public string Name;
@@ -452,7 +452,7 @@ public class Student
     }
 }
 
-// ✅ CORRECT: Set all properties
+<span style="color: #28a745; font-weight: bold;">// CORRECT: Set all properties</span>
 public class Student
 {
     public string Name;
@@ -465,10 +465,10 @@ public class Student
     }
 }
 
-// ❌ WRONG: Calling constructor without 'new'
+<span style="color: #dc3545; font-weight: bold;">// WRONG: Calling constructor without 'new'</span>
 Student s = Student("Alex", 20);  // ERROR: Missing 'new'
 
-// ✅ CORRECT: Always use 'new'
+<span style="color: #28a745; font-weight: bold;">// CORRECT: Always use 'new'</span>
 Student s = new Student("Alex", 20);  // GOOD: With 'new'
 </pre>
         </div>
@@ -624,7 +624,6 @@ Student s = new Student("Alex", 20);  // GOOD: With 'new'
 </style>
 
 <script>
-    // Simple script to highlight code when page loads
     function initializePage() {
         if (typeof hljs !== 'undefined') {
             hljs.highlightAll();

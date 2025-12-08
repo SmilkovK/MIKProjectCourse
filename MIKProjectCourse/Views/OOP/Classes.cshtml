@@ -370,26 +370,26 @@ When you call: student1.Study()
         <div class="code-header">Class Errors and Solutions</div>
         <div class="code-content">
 <pre>
-// ❌ WRONG: Using class without creating object
+<span style="color: #dc3545; font-weight: bold;">// WRONG: Using class without creating object</span>
 Student.Name = "Alex";  // ERROR: Need to create object first!
 
-// ✅ CORRECT: Create object first
+<span style="color: #28a745; font-weight: bold;">// CORRECT: Create object first</span>
 Student student = new Student();
 student.Name = "Alex";  // GOOD!
 
-// ❌ WRONG: Forgetting the 'new' keyword
+<span style="color: #dc3545; font-weight: bold;">// WRONG: Forgetting the 'new' keyword</span>
 Student student;         // Just declared, not created
 student.Name = "Alex";   // ERROR: Object not created!
 
-// ✅ CORRECT: Use 'new' to create object
+<span style="color: #28a745; font-weight: bold;">// CORRECT: Use 'new' to create object</span>
 Student student = new Student();  // Actually creates it
 student.Name = "Alex";            // Now it works!
 
-// ❌ WRONG: Confusing class with object
+<span style="color: #dc3545; font-weight: bold;">// WRONG: Confusing class with object</span>
 // Class is blueprint, object is actual thing
 Car myCar = Car;  // ERROR: Can't assign class to variable
 
-// ✅ CORRECT: Create object from class
+<span style="color: #28a745; font-weight: bold;">// CORRECT: Create object from class</span>
 Car myCar = new Car();  // GOOD: Creates actual car
 </pre>
         </div>
@@ -400,24 +400,24 @@ Car myCar = new Car();  // GOOD: Creates actual car
         <div class="code-header">Good Class Design</div>
         <div class="code-content">
 <pre>
-// ✅ GOOD CLASS NAMES: Clear and singular
+<span style="color: #28a745; font-weight: bold;">// GOOD CLASS NAMES: Clear and singular</span>
 public class Car {}          // Not: Cars
 public class Student {}      // Not: Students
 public class Product {}      // Not: Products
 public class BankAccount {}  // Not: BankAccounts
 
-// ✅ GOOD PROPERTY NAMES: Descriptive
+<span style="color: #28a745; font-weight: bold;">// GOOD PROPERTY NAMES: Descriptive</span>
 public string Brand;         // Not: b
 public string Model;         // Not: m
 public int Year;             // Not: y
 public decimal Price;        // Not: p
 
-// ✅ GOOD METHOD NAMES: Action-oriented
+<span style="color: #28a745; font-weight: bold;">// GOOD METHOD NAMES: Action-oriented</span>
 public void Drive() {}       // Not: doSomething()
 public void Study() {}       // Not: action1()
 public void DisplayInfo() {} // Not: show()
 
-// ✅ FOLLOW THESE RULES:
+<span style="color: #28a745; font-weight: bold;">// FOLLOW THESE RULES:</span>
 // 1. Class names start with Capital letter
 // 2. Use PascalCase for class names (MyClassName)
 // 3. Use camelCase for properties/methods (myProperty)
@@ -867,7 +867,6 @@ Console.WriteLine("Available: " + phone.IsAvailable());`,
             }
         },
 
-        // Function to handle walkthrough step
         nextStep: function() {
             if (this.currentStep < this.classSteps.length) {
                 this.updateWalkthrough(this.currentStep);
@@ -875,35 +874,28 @@ Console.WriteLine("Available: " + phone.IsAvailable());`,
             }
         },
 
-        // Initialize walkthrough
         initWalkthrough: function() {
             const nextStepBtn = document.getElementById('nextStepBtn');
             if (nextStepBtn) {
-                // Reset state
                 this.currentStep = 0;
-                
-                // Remove existing event listener
+
                 const newButton = nextStepBtn.cloneNode(true);
                 nextStepBtn.parentNode.replaceChild(newButton, nextStepBtn);
-                
-                // Add new event listener
+
                 newButton.addEventListener('click', () => this.nextStep());
                 newButton.disabled = false;
-                
-                // Show first step
+
                 this.updateWalkthrough(0);
                 this.currentStep = 1;
             }
         },
 
-        // Initialize code examples
         initCodeExamples: function() {
             const toggles = document.querySelectorAll('.form-check-input[type="checkbox"]');
             toggles.forEach(toggle => {
                 const id = toggle.id.replace('Toggle', '');
                 if (id && this.simpleExamples[id]) {
                     this.convertCode(id);
-                    // Set up event listener directly
                     toggle.addEventListener('change', () => this.convertCode(id));
                 }
             });
@@ -940,7 +932,6 @@ Console.WriteLine("Available: " + phone.IsAvailable());`,
         }
     };
 
-    // Initialize when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => {
             window.oopClasses.init();

@@ -1,168 +1,511 @@
 ﻿@{
     ViewData["Title"] = "OOP - Static, Readonly, and Const";
 }
-
 <div class="container">
-    <h1>Static, Readonly, and Const in C#</h1>
-    <p>
-        In C#, you will often work with values that should not change or should be shared across
-        all objects of a class. For this purpose, we use <strong>static</strong>, <strong>readonly</strong>,
-        and <strong>const</strong>. While they may look similar at first, they behave differently.
-    </p>
+    <h1 class="mb-4">Static, Readonly, and Const: Controlling Your Data</h1>
 
-    <h2>1. Static</h2>
-    <p>
-        A <strong>static</strong> member belongs to the <em>class itself</em>, not to any single object.
-        This means you can use it without creating an object.
-        It is useful when something is common for all objects (like a counter, a utility method, or Pi in math).
-    </p>
+    <p><strong>Static, readonly, and const</strong> are like different types of <strong>security settings</strong> for your variables. They control who can access data and when it can be changed. Think of them as different kinds of storage:</p>
 
-    <!-- Static Example -->
-    <div class="code-container">
-        <div class="code-header">
-            Example: Static Member
-            <div class="toggle-wrapper">
-                <label class="toggle-label">C#</label>
-                <label class="switch">
-                    <input type="checkbox" id="staticToggle">
-                    <span class="slider round"></span>
-                </label>
-                <label class="toggle-label">C</label>
+    <div class="analogy-box">
+        <h3>Real-Life Analogies</h3>
+        <div class="analogy-container">
+            <div class="analogy-item">
+                <div class="analogy-header">
+                    <h4>Static</h4>
+                </div>
+                <div class="analogy-content">
+                    <p><strong>Company Whiteboard</strong> - Everyone sees and can update it. Shared by all employees.</p>
+                    <ul>
+                        <li><span class="correct-text">Shared by everyone</span></li>
+                        <li><span class="correct-text">Can be changed anytime</span></li>
+                        <li><span class="error-text">Only one exists</span></li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="code-content">
-<pre><code class="language-csharp static-code">
-public class Calculator
-{
-    public static double Pi = 3.14159;
-}
-
-// Usage:
-Console.WriteLine(Calculator.Pi); // Output: 3.14159
-</code></pre>
-
-<pre><code class="language-c static-code" style="display:none;">
-#include &lt;stdio.h&gt;
-
-double Pi = 3.14159;
-
-int main() {
-    printf("%f\n", Pi); // Output: 3.14159
-    return 0;
-}
-</code></pre>
+            
+            <div class="analogy-item">
+                <div class="analogy-header">
+                    <h4>Readonly</h4>
+                </div>
+                <div class="analogy-content">
+                    <p><strong>Your Birth Certificate</strong> - Created once, never changes. Unique to you.</p>
+                    <ul>
+                        <li><span class="correct-text">Set once at birth</span></li>
+                        <li><span class="error-text">Never changes after</span></li>
+                        <li><span class="correct-text">Each person has own</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="analogy-item">
+                <div class="analogy-header">
+                    <h4>Const</h4>
+                </div>
+                <div class="analogy-content">
+                    <p><strong>Speed of Light</strong> - Universal constant. Always 299,792,458 m/s.</p>
+                    <ul>
+                        <li><span class="error-text">Never changes</span></li>
+                        <li><span class="correct-text">Same everywhere</span></li>
+                        <li><span class="correct-text">Known at creation</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="analogy-item">
+                <div class="analogy-header">
+                    <h4>Regular Variable</h4>
+                </div>
+                <div class="analogy-content">
+                    <p><strong>Your Current Mood</strong> - Changes throughout the day. Completely flexible.</p>
+                    <ul>
+                        <li><span class="correct-text">Changes anytime</span></li>
+                        <li><span class="correct-text">Each person has own</span></li>
+                        <li><span class="correct-text">Most common type</span></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
-    <h2>2. Readonly</h2>
-    <p>
-        A <strong>readonly</strong> field can only be set:
-        <ul>
-            <li>When declaring the field, OR</li>
-            <li>Inside a constructor (when the object is created).</li>
-        </ul>
-        Once set, its value cannot be changed.
-        This is useful when each object should keep its own value that never changes after construction.
-    </p>
-
-    <!-- Readonly Example -->
+    <h2>📘 Quick Comparison</h2>
+    
     <div class="code-container">
-        <div class="code-header">
-            Example: Readonly Field
-            <div class="toggle-wrapper">
-                <label class="toggle-label">C#</label>
-                <label class="switch">
-                    <input type="checkbox" id="readonlyToggle">
-                    <span class="slider round"></span>
-                </label>
-                <label class="toggle-label">C</label>
-            </div>
+        <div class="code-header">Side-by-Side Comparison</div>
+        <div class="code-content">
+<pre>
+           ╔══════════════╦══════════════╦══════════════╦══════════════╗
+           ║   Regular    ║    Static    ║   Readonly   ║     Const    ║
+           ╠══════════════╬══════════════╬══════════════╬══════════════╣
+           ║ Belongs to:  ║              ║              ║              ║
+           ║   Object     ║    Class     ║    Object    ║    Class     ║
+           ║              ║              ║              ║              ║
+           ║ When set:    ║              ║              ║              ║
+           ║   Anytime    ║   Anytime    ║ Constructor  ║ Declaration  ║
+           ║              ║              ║              ║              ║
+           ║ Can change:  ║              ║              ║              ║
+           ║   <span class="correct-text">YES</span>       ║   <span class="correct-text">YES</span>       ║    <span class="error-text">NO</span>       ║    <span class="error-text">NO</span>       ║
+           ║              ║              ║              ║              ║
+           ║ Memory:      ║              ║              ║              ║
+           ║ One per obj  ║ One shared   ║ One per obj  ║ In code      ║
+           ╚══════════════╩══════════════╩══════════════╩══════════════╝
+
+Example:  Current mood  Company name  Birth date   Pi (3.14)
+          (changes)     (shared)      (fixed)      (constant)
+</pre>
+        </div>
+    </div>
+
+    <h2>1️⃣ Static: The Shared Whiteboard</h2>
+    <p><strong>Static</strong> means "shared by everyone." Like a company whiteboard - all employees see and update the same board.</p>
+    
+    <div class="code-container">
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="oopStaticConst.convertCode('example1')">
+            <label class="form-check-label" for="example1Toggle">Show Full Game Counter Example</label>
         </div>
         <div class="code-content">
-<pre><code class="language-csharp readonly-code">
-public class Circle
+<pre class="codeBlock" id="example1Code">
+public class Player
 {
-    public readonly double Radius;
-
-    public Circle(double radius)
+    // Regular fields (each player has their own)
+    public string Name;
+    public int Score;
+    
+    // Static field (shared by ALL players)
+    public static int TotalPlayers = 0;
+    
+    public Player(string name)
     {
-        Radius = radius; // Set once when object is created
+        Name = name;
+        Score = 0;
+        
+        // Update the shared counter
+        TotalPlayers++;
+        Console.WriteLine(Name + " joined. Total players: " + TotalPlayers);
     }
 }
 
-Circle c = new Circle(5);
-// c.Radius = 10; // ❌ Error: Cannot assign to readonly field
-</code></pre>
+// Create players
+Player alice = new Player("Alice");
+Player bob = new Player("Bob");
 
-<pre><code class="language-c readonly-code" style="display:none;">
-#include &lt;stdio.h&gt;
-
-struct Circle {
-    double Radius;
-};
-
-int main() {
-    struct Circle c;
-    c.Radius = 5;
-    // c.Radius = 10; // You can avoid changing by convention
-    printf("%f\n", c.Radius);
-    return 0;
-}
-</code></pre>
+// All players share the same TotalPlayers
+Console.WriteLine("Shared total: " + Player.TotalPlayers);
+</pre>
+        </div>
+        <div class="result-box" id="example1Result">
+            <strong>Output:</strong><br>
+            Alice joined. Total players: 1<br>
+            Bob joined. Total players: 2<br>
+            Shared total: 2<br><br>
+            <em>Static Magic:</em> Both Alice and Bob share the same <code>TotalPlayers</code> counter. When Bob joined, it increased from 1 to 2 for everyone!
         </div>
     </div>
 
-    <h2>3. Const</h2>
-    <p>
-        A <strong>const</strong> field is a constant value that never changes.
-        It must be assigned when declared, and the compiler replaces every usage with its value.
-        Use <code>const</code> for values that are absolutely fixed (like gravity, days in a week, etc.).
-    </p>
+    <h2>🧠 Interactive Walkthrough: Static Sharing</h2>
+    <p>Watch how static fields are shared between objects:</p>
 
-    <!-- Const Example -->
     <div class="code-container">
-        <div class="code-header">
-            Example: Const Field
-            <div class="toggle-wrapper">
-                <label class="toggle-label">C#</label>
-                <label class="switch">
-                    <input type="checkbox" id="constToggle">
-                    <span class="slider round"></span>
-                </label>
-                <label class="toggle-label">C</label>
-            </div>
+        <div class="code-header">Bank Account Example</div>
+        <div class="code-content">
+<pre id="walkthroughCodeBase">
+public class BankAccount
+{
+    // Static field - shared by ALL accounts
+    public static double InterestRate = 0.03;  // 3%
+    
+    // Instance fields - unique to each account
+    public string Owner;
+    public double Balance;
+    
+    public BankAccount(string owner, double balance)
+    {
+        Owner = owner;
+        Balance = balance;
+    }
+}
+
+// BankAccount.InterestRate = 0.03;
+// BankAccount aliceAccount = new BankAccount("Alice", 1000);
+// BankAccount bobAccount = new BankAccount("Bob", 2000);
+// BankAccount.UpdateInterestRate(0.04);
+</pre>
+        </div>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">Memory State</div>
+        <div class="code-content">
+<pre id="walkthroughVariables">
+Static Area (Shared):
+┌─────────────────┐
+│ InterestRate:   │
+│     0.03        │ ← Shared by ALL accounts
+└─────────────────┘
+
+No accounts created yet.
+</pre>
+        </div>
+        <div class="result-box" id="walkthroughExplanation">
+            <em>Click <strong>Next</strong> to see static sharing in action:</em>
+        </div>
+        <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
+    </div>
+
+    <h2>2️⃣ Readonly: Your Personal ID Card</h2>
+    <p><strong>Readonly</strong> fields are like your birth date - set once (at birth/construction) and never change.</p>
+    
+    <div class="code-container">
+        <div class="form-check form-switch mb-2">
+            <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="oopStaticConst.convertCode('example2')">
+            <label class="form-check-label" for="example2Toggle">Show Complete Student ID Example</label>
         </div>
         <div class="code-content">
-<pre><code class="language-csharp const-code">
-public class MathConstants
+<pre class="codeBlock" id="example2Code">
+public class Student
 {
-    public const double Gravity = 9.81;
+    // Readonly field - set once, never change
+    public readonly string StudentId;
+    
+    // Regular field - can change
+    public string Name;
+    
+    public Student(string id, string name)
+    {
+        // Set readonly field in constructor
+        StudentId = id;     // <span class="correct-text">Can set here</span>
+        Name = name;
+    }
+    
+    public void ChangeName(string newName)
+    {
+        Name = newName;     // <span class="correct-text">Can change regular field</span>
+        
+        // StudentId = "NEW123";  // <span class="error-text">ERROR! Can't change readonly</span>
+    }
 }
 
-// Usage:
-Console.WriteLine(MathConstants.Gravity); // Output: 9.81
-</code></pre>
+Student alice = new Student("S001", "Alice");
+Console.WriteLine("ID: " + alice.StudentId);
+Console.WriteLine("Name: " + alice.Name);
 
-<pre><code class="language-c const-code" style="display:none;">
-#include &lt;stdio.h&gt;
-
-const double Gravity = 9.81;
-
-int main() {
-    printf("%f\n", Gravity);
-    return 0;
-}
-</code></pre>
+alice.ChangeName("Alice Johnson");
+Console.WriteLine("New name: " + alice.Name);
+</pre>
+        </div>
+        <div class="result-box" id="example2Result">
+            <strong>Output:</strong><br>
+            ID: S001<br>
+            Name: Alice<br>
+            New name: Alice Johnson<br><br>
+            <em>Readonly Protection:</em> <code>StudentId</code> is set to "S001" in the constructor and can NEVER be changed. <code>Name</code> can change anytime. This protects important data from accidental changes!
         </div>
     </div>
 
-    <h2>Key Points</h2>
-    <ul>
-        <li><strong>Static:</strong> Belongs to the class, shared by all objects.</li>
-        <li><strong>Readonly:</strong> Set once per object, either at declaration or in constructor.</li>
-        <li><strong>Const:</strong> A compile-time constant, must be declared with a value.</li>
-        <li>Use <strong>static</strong> for shared values, <strong>readonly</strong> for values set once per object, and <strong>const</strong> for fixed constants.</li>
-    </ul>
+    <h2>3️⃣ Const: Universal Constants</h2>
+    <p><strong>Const</strong> values are like mathematical constants - known at compile time and never change.</p>
+    
+    <div class="code-container">
+        <div class="code-header">Math Constants Example</div>
+        <div class="code-content">
+<pre>
+public class MathConstants
+{
+    // Const values - must be set at declaration
+    public const double PI = 3.14159265359;
+    public const double E = 2.71828182846;
+    public const int DaysInWeek = 7;
+    
+    // This won't work:
+    // public const DateTime Birthday = new DateTime(1990, 1, 1); <span class="error-text">// ERROR!</span>
+    // Const can only be simple types
+}
+
+// Using const values
+Console.WriteLine("Pi: " + MathConstants.PI);
+Console.WriteLine("Days in week: " + MathConstants.DaysInWeek);
+
+// This won't work either:
+// MathConstants.PI = 3.14;  <span class="error-text">// ERROR! Const can't be changed</span>
+</pre>
+        </div>
+    </div>
+
+    <h2>🎮 Real Game Example: Player System</h2>
+    <p>Let's see all three in action in a game:</p>
+    
+    <div class="code-container">
+        <div class="code-header">Game Player System</div>
+        <div class="code-content">
+<pre>
+public class GamePlayer
+{
+    // CONST - Universal game rules (never change)
+    public const int MAX_LEVEL = 100;
+    public const double GRAVITY = 9.81;
+    
+    // STATIC - Shared game statistics
+    public static int TotalPlayersOnline = 0;
+    public static string GameVersion = "1.0";
+    
+    // READONLY - Unique to each player (set once)
+    public readonly string PlayerId;
+    public readonly DateTime AccountCreated;
+    
+    // REGULAR - Can change during game
+    public string PlayerName;
+    public int Level;
+    public int Score;
+    
+    public GamePlayer(string name)
+    {
+        PlayerName = name;
+        Level = 1;
+        Score = 0;
+        
+        // Set readonly fields
+        PlayerId = Guid.NewGuid().ToString();
+        AccountCreated = DateTime.Now;
+        
+        // Update static counter
+        TotalPlayersOnline++;
+    }
+    
+    public void LevelUp()
+    {
+        if (Level < MAX_LEVEL)  // Using const
+        {
+            Level++;
+            Score += 100;
+            Console.WriteLine(PlayerName + " leveled up to " + Level);
+        }
+    }
+    
+    public static void DisplayGameInfo()
+    {
+        Console.WriteLine("=== Game Info ===");
+        Console.WriteLine("Version: " + GameVersion);
+        Console.WriteLine("Players Online: " + TotalPlayersOnline);
+        Console.WriteLine("Max Level: " + MAX_LEVEL);
+        Console.WriteLine("=================");
+    }
+}
+
+// Using the game system
+Console.WriteLine("Game Max Level: " + GamePlayer.MAX_LEVEL);
+
+GamePlayer player1 = new GamePlayer("Hero123");
+GamePlayer player2 = new GamePlayer("Warrior99");
+
+player1.LevelUp();
+player2.LevelUp();
+
+GamePlayer.DisplayGameInfo();
+
+// What can we change?
+player1.PlayerName = "SuperHero";  // <span class="correct-text">Regular field - can change</span>
+// player1.PlayerId = "NEW_ID";    <span class="error-text">// Readonly - can't change</span>
+// GamePlayer.MAX_LEVEL = 200;     <span class="error-text">// Const - can't change</span>
+GamePlayer.GameVersion = "1.1";    // <span class="correct-text">Static - can change</span>
+</pre>
+        </div>
+    </div>
+
+    <h2>⚠️ Common Beginner Mistakes</h2>
+    
+    <div class="code-container">
+        <div class="code-header">What NOT to Do</div>
+        <div class="code-content">
+<pre>
+// <span class="error-text">MISTAKE 1: Trying to change const</span>
+public class Math
+{
+    public const double PI = 3.14;
+}
+
+// Math.PI = 3.14159;  <span class="error-text">COMPILE ERROR! Can't change const</span>
+
+// <span class="correct-text">SOLUTION: Use readonly if value might change</span>
+public class Physics
+{
+    public static readonly double Gravity = 9.81;  // Can be different on other planets
+}
+
+// <span class="error-text">MISTAKE 2: Using const with complex types</span>
+public class Person
+{
+    // public const DateTime Birthday = new DateTime(1990, 1, 1);  <span class="error-text">ERROR!</span>
+    // Const can only be: numbers, strings, bool, null
+}
+
+// <span class="correct-text">SOLUTION: Use readonly for complex types</span>
+public class Person
+{
+    public static readonly DateTime AppStartTime = DateTime.Now;  <span class="correct-text"></span>
+    public readonly DateTime Birthday = new DateTime(1990, 1, 1); <span class="correct-text"></span>
+}
+
+// <span class="error-text">MISTAKE 3: Forgetting to set readonly field</span>
+public class Student
+{
+    public readonly string Id;  <span class="error-text">Not set anywhere!</span>
+    
+    public Student(string name)
+    {
+        // Forgot to set Id!
+    }
+}
+
+// <span class="correct-text">SOLUTION: Always set readonly fields in constructor</span>
+public class Student
+{
+    public readonly string Id;
+    
+    public Student(string id, string name)
+    {
+        Id = id;  <span class="correct-text">Must be set in constructor</span>
+    }
+}
+
+// <span class="error-text">MISTAKE 4: Overusing static</span>
+public class BadDesign
+{
+    public static string Name;  <span class="error-text">Should be instance</span>
+    public static int Age;      <span class="error-text">Should be instance</span>
+}
+
+// <span class="correct-text">SOLUTION: Use instance for object-specific data</span>
+public class GoodDesign
+{
+    public string Name;  <span class="correct-text">Different per person</span>
+    public int Age;      <span class="correct-text">Different per person</span>
+}
+</pre>
+        </div>
+    </div>
+
+    <h2>🔑 When to Use Each - Simple Guide</h2>
+    
+    <div class="decision-guide">
+        <div class="decision-step">
+            <div class="decision-number">1</div>
+            <div class="decision-content">
+                <h4>Start with regular fields</h4>
+                <p>Most fields should be regular (not static, not readonly, not const). They can change anytime.</p>
+                <code>public string CurrentMood;</code>
+            </div>
+        </div>
+        
+        <div class="decision-step">
+            <div class="decision-number">2</div>
+            <div class="decision-content">
+                <h4>Make it readonly if...</h4>
+                <p>It should be set once and never change (like ID, birth date, enrollment date).</p>
+                <code>public readonly string StudentId;</code>
+            </div>
+        </div>
+        
+        <div class="decision-step">
+            <div class="decision-number">3</div>
+            <div class="decision-content">
+                <h4>Make it const if...</h4>
+                <p>It's a universal constant that will never, ever change (like Pi, days in week).</p>
+                <code>public const double PI = 3.14;</code>
+            </div>
+        </div>
+        
+        <div class="decision-step">
+            <div class="decision-number">4</div>
+            <div class="decision-content">
+                <h4>Make it static if...</h4>
+                <p>It should be shared by all objects of that class (like company name, counters).</p>
+                <code>public static int TotalStudents;</code>
+            </div>
+        </div>
+    </div>
+
+    <h2>🎯 Summary: Key Takeaways</h2>
+    <div class="summary-box">
+        <div class="summary-item">
+            <h4><span style="color: #0d6efd;">Static (Shared)</span></h4>
+            <ul>
+                <li>One copy shared by ALL objects</li>
+                <li>Can change anytime</li>
+                <li>Use for: counters, shared settings, utility methods</li>
+                <li>Example: <code>Player.TotalPlayers</code></li>
+            </ul>
+        </div>
+        
+        <div class="summary-item">
+            <h4><span style="color: #198754;">Readonly (Set Once)</span></h4>
+            <ul>
+                <li>Set once (in constructor or declaration)</li>
+                <li>Never changes after</li>
+                <li>Use for: IDs, dates, configuration</li>
+                <li>Example: <code>student.StudentId</code></li>
+            </ul>
+        </div>
+        
+        <div class="summary-item">
+            <h4><span style="color: #fd7e14;">Const (Constant)</span></h4>
+            <ul>
+                <li>Set at declaration only</li>
+                <li>Never changes, ever</li>
+                <li>Use for: mathematical constants, fixed values</li>
+                <li>Example: <code>Math.PI</code></li>
+            </ul>
+        </div>
+        
+        <div class="summary-item">
+            <h4><span style="color: #6f42c1;">Regular (Flexible)</span></h4>
+            <ul>
+                <li>Default - use this most often</li>
+                <li>Can change anytime</li>
+                <li>Use for: anything that changes</li>
+                <li>Example: <code>player.Score</code></li>
+            </ul>
+        </div>
+    </div>
 
     <div class="navigation-buttons">
         <a href="@Url.Action("Interfaces", "OOP")" class="btn btn-outline-primary ajax-link">← Interfaces</a>
@@ -177,23 +520,153 @@ int main() {
         background-color: var(--bs-body-bg);
     }
 
-    h1, h2 {
+    h1, h2, h3, h4 {
         color: var(--bs-heading-color);
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
-    p, li {
+    h1 {
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
+    }
+
+    p, li, code {
         color: var(--bs-body-color);
         line-height: 1.6;
     }
 
-    ul {
-        margin-left: 20px;
-        padding-left: 15px;
+    .analogy-box {
+        background-color: rgba(var(--bs-primary-rgb), 0.05);
+        border: 1px solid var(--bs-primary);
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+    }
+
+    .analogy-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    .analogy-item {
+        background-color: var(--bs-body-bg);
+        border-radius: 6px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        border: 1px solid var(--bs-border-color);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .analogy-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .analogy-header {
+        padding: 12px;
+        text-align: center;
+        color: var(--bs-body-color);
+        font-weight: 600;
+    }
+
+    /* Static card */
+    [data-bs-theme="dark"] .analogy-item:nth-child(1) .analogy-header {
+        background-color: rgba(13, 110, 253, 0.15);
+        border-bottom: 2px solid rgba(13, 110, 253, 0.3);
+    }
+
+    [data-bs-theme="light"] .analogy-item:nth-child(1) .analogy-header {
+        background-color: rgba(13, 110, 253, 0.1);
+        border-bottom: 2px solid rgba(13, 110, 253, 0.2);
+    }
+
+    /* Readonly card */
+    [data-bs-theme="dark"] .analogy-item:nth-child(2) .analogy-header {
+        background-color: rgba(25, 135, 84, 0.15);
+        border-bottom: 2px solid rgba(25, 135, 84, 0.3);
+    }
+
+    [data-bs-theme="light"] .analogy-item:nth-child(2) .analogy-header {
+        background-color: rgba(25, 135, 84, 0.1);
+        border-bottom: 2px solid rgba(25, 135, 84, 0.2);
+    }
+
+    /* Const card */
+    [data-bs-theme="dark"] .analogy-item:nth-child(3) .analogy-header {
+        background-color: rgba(253, 126, 20, 0.15);
+        border-bottom: 2px solid rgba(253, 126, 20, 0.3);
+    }
+
+    [data-bs-theme="light"] .analogy-item:nth-child(3) .analogy-header {
+        background-color: rgba(253, 126, 20, 0.1);
+        border-bottom: 2px solid rgba(253, 126, 20, 0.2);
+    }
+
+    /* Regular Variable card */
+    [data-bs-theme="dark"] .analogy-item:nth-child(4) .analogy-header {
+        background-color: rgba(111, 66, 193, 0.15);
+        border-bottom: 2px solid rgba(111, 66, 193, 0.3);
+    }
+
+    [data-bs-theme="light"] .analogy-item:nth-child(4) .analogy-header {
+        background-color: rgba(111, 66, 193, 0.1);
+        border-bottom: 2px solid rgba(111, 66, 193, 0.2);
+    }
+
+    .analogy-header h4 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: var(--bs-body-color);
+        font-weight: 600;
+    }
+
+    .analogy-content {
+        padding: 15px;
+        font-size: 0.95rem;
+        background-color: var(--bs-body-bg);
+    }
+
+    .analogy-content p {
+        margin-bottom: 10px;
+        color: var(--bs-body-color);
+    }
+
+    .analogy-content ul {
+        padding-left: 20px;
+        margin: 8px 0 0 0;
+    }
+
+    .analogy-content li {
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+        margin-bottom: 4px;
+    }
+
+    .correct-text {
+        color: var(--bs-success);
+        font-weight: 500;
+    }
+
+    .error-text {
+        color: var(--bs-danger);
+        font-weight: 500;
+    }
+
+    /* Add CSS variables for dark mode */
+    [data-bs-theme="dark"] {
+        --code-bg: #1e1e1e;
+        --code-header-bg: #2d2d2d;
+    }
+
+    [data-bs-theme="light"] {
+        --code-bg: #f8f9fa;
+        --code-header-bg: #e9ecef;
     }
 
     .code-container {
-        margin: 20px 0;
+        margin: 25px 0;
         border: 1px solid var(--bs-border-color);
         border-radius: 5px;
         overflow: hidden;
@@ -204,12 +677,9 @@ int main() {
         background-color: var(--code-header-bg);
         padding: 10px 15px;
         border-bottom: 1px solid var(--bs-border-color);
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         font-size: 0.9rem;
         color: var(--bs-body-color);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
     }
 
     .code-content {
@@ -221,69 +691,127 @@ int main() {
         margin: 0;
         white-space: pre-wrap;
         background-color: transparent;
-    }
-
-    code {
         font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    }
-
-    /* Toggle styling */
-    .toggle-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .toggle-label {
-        font-size: 0.9rem;
-        font-weight: 500;
         color: var(--bs-body-color);
     }
 
-    .switch {
-        position: relative;
-        display: inline-block;
-        width: 46px;
-        height: 24px;
+    .result-box {
+        padding: 10px 15px;
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        border-top: 1px solid var(--bs-border-color);
+        font-size: 0.95rem;
+        color: var(--bs-body-color);
     }
 
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-    .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: var(--bs-border-color);
-        transition: .4s;
-        border-radius: 24px;
+    .decision-guide {
+        background-color: rgba(var(--bs-primary-rgb), 0.05);
+        border: 1px solid var(--bs-primary);
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
     }
 
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
+    .decision-step {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px dashed var(--bs-border-color);
+    }
 
-    input:checked + .slider {
+    .decision-step:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+
+    .decision-number {
+        width: 36px;
+        height: 36px;
         background-color: var(--bs-primary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 15px;
+        flex-shrink: 0;
     }
 
-        input:checked + .slider:before {
-            transform: translateX(22px);
-        }
+    .decision-content {
+        flex: 1;
+    }
+
+    .decision-content h4 {
+        margin-top: 0;
+        margin-bottom: 8px;
+        color: var(--bs-heading-color);
+    }
+
+    .summary-box {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+
+    .summary-item {
+        background-color: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .summary-item h4 {
+        margin-top: 0;
+        padding-bottom: 8px;
+        border-bottom: 2px solid;
+    }
+
+    [data-bs-theme="dark"] .summary-item:nth-child(1) h4 {
+        color: #6ea8fe;
+    }
+
+    [data-bs-theme="dark"] .summary-item:nth-child(2) h4 {
+        color: #75b798;
+    }
+
+    [data-bs-theme="dark"] .summary-item:nth-child(3) h4 {
+        color: #ffc085;
+    }
+
+    [data-bs-theme="dark"] .summary-item:nth-child(4) h4 {
+        color: #b392f0;
+    }
+
+    [data-bs-theme="light"] .summary-item:nth-child(1) h4 {
+        color: #0d6efd;
+    }
+
+    [data-bs-theme="light"] .summary-item:nth-child(2) h4 {
+        color: #198754;
+    }
+
+    [data-bs-theme="light"] .summary-item:nth-child(3) h4 {
+        color: #fd7e14;
+    }
+
+    [data-bs-theme="light"] .summary-item:nth-child(4) h4 {
+        color: #6f42c1;
+    }
+
+    .summary-item ul {
+        padding-left: 20px;
+        margin: 0;
+    }
+
+    .summary-item li {
+        font-size: 0.9rem;
+        margin-bottom: 4px;
+        color: var(--bs-body-color);
+    }
 
     .navigation-buttons {
         display: flex;
@@ -295,56 +823,492 @@ int main() {
         padding: 8px 20px;
         border-radius: 4px;
         font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s ease;
     }
 
     .btn-primary {
         background-color: var(--bs-primary);
         border-color: var(--bs-primary);
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background-color: var(--bs-primary-dark);
+        border-color: var(--bs-primary-dark);
+        transform: translateY(-1px);
     }
 
     .btn-outline-primary {
         color: var(--bs-primary);
         border-color: var(--bs-primary);
+        background-color: transparent;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: var(--bs-primary);
+        color: #fff;
+        transform: translateY(-1px);
+    }
+
+    [data-bs-theme="dark"] .code-content .keyword { color: #569cd6; }
+    [data-bs-theme="dark"] .code-content .type { color: #4ec9b0; }
+    [data-bs-theme="dark"] .code-content .string { color: #ce9178; }
+    [data-bs-theme="dark"] .code-content .comment { color: #6a9955; }
+    [data-bs-theme="dark"] .code-content .number { color: #b5cea8; }
+
+    [data-bs-theme="light"] .code-content .keyword { color: #0000ff; }
+    [data-bs-theme="light"] .code-content .type { color: #267f99; }
+    [data-bs-theme="light"] .code-content .string { color: #a31515; }
+    [data-bs-theme="light"] .code-content .comment { color: #008000; }
+    [data-bs-theme="light"] .code-content .number { color: #098658; }
+
+    [data-bs-theme="dark"] .form-check-label {
+        color: var(--bs-body-color);
+    }
+
+    [data-bs-theme="dark"] .form-check-input {
+        background-color: var(--bs-body-bg);
+        border-color: var(--bs-border-color);
+    }
+
+    [data-bs-theme="dark"] .form-check-input:checked {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    [data-bs-theme="dark"] .analogy-box h3 {
+        color: var(--bs-body-color);
+    }
+
+    [data-bs-theme="dark"] code {
+        color: #e9ecef;
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 2px 6px;
+        border-radius: 4px;
+    }
+
+    [data-bs-theme="light"] code {
+        color: #212529;
+        background-color: rgba(0, 0, 0, 0.05);
+        padding: 2px 6px;
+        border-radius: 4px;
     }
 </style>
 
 <script>
-    // Toggle function for Static
-    document.getElementById("staticToggle").addEventListener("change", function() {
-        const csharp = document.querySelector(".static-code.language-csharp");
-        const c = document.querySelector(".static-code.language-c");
-        if(this.checked){
-            csharp.style.display = "none";
-            c.style.display = "block";
-        } else {
-            csharp.style.display = "block";
-            c.style.display = "none";
-        }
-    });
+    window.oopStaticConst = {
+        staticSteps: [
+            {
+                code: `public class BankAccount
+{
+    // Static field - shared by ALL accounts
+    public static double InterestRate = 0.03;  // 3%
+    
+    // Instance fields - unique to each account
+    public string Owner;
+    public double Balance;
+    
+    public BankAccount(string owner, double balance)
+    {
+        Owner = owner;
+        Balance = balance;
+    }
+}
 
-    // Toggle function for Readonly
-    document.getElementById("readonlyToggle").addEventListener("change", function() {
-        const csharp = document.querySelector(".readonly-code.language-csharp");
-        const c = document.querySelector(".readonly-code.language-c");
-        if(this.checked){
-            csharp.style.display = "none";
-            c.style.display = "block";
-        } else {
-            csharp.style.display = "block";
-            c.style.display = "none";
-        }
-    });
+// BankAccount.InterestRate = 0.03;
+// BankAccount aliceAccount = new BankAccount("Alice", 1000);
+// BankAccount bobAccount = new BankAccount("Bob", 2000);
+// BankAccount.UpdateInterestRate(0.04);`,
+                vars: `Static Area (Shared):
+┌─────────────────┐
+│ InterestRate:   │
+│     0.03        │ ← Shared by ALL accounts
+└─────────────────┘
 
-    // Toggle function for Const
-    document.getElementById("constToggle").addEventListener("change", function() {
-        const csharp = document.querySelector(".const-code.language-csharp");
-        const c = document.querySelector(".const-code.language-c");
-        if(this.checked){
-            csharp.style.display = "none";
-            c.style.display = "block";
-        } else {
-            csharp.style.display = "block";
-            c.style.display = "none";
+No accounts created yet.`,
+                exp: "We define a BankAccount class. The InterestRate is static - ONE value that ALL bank accounts will share. Regular fields (Owner, Balance) will be different for each account."
+            },
+            {
+                code: `public class BankAccount
+{
+    // Static field - shared by ALL accounts
+    public static double InterestRate = 0.03;  // 3%
+    
+    // Instance fields - unique to each account
+    public string Owner;
+    public double Balance;
+    
+    public BankAccount(string owner, double balance)
+    {
+        Owner = owner;
+        Balance = balance;
+    }
+}
+
+BankAccount.InterestRate = 0.03;
+BankAccount aliceAccount = new BankAccount("Alice", 1000);
+// BankAccount bobAccount = new BankAccount("Bob", 2000);
+// BankAccount.UpdateInterestRate(0.04);`,
+                vars: `Static Area (Shared):
+┌─────────────────┐
+│ InterestRate:   │
+│     0.03        │ ← Shared by ALL
+└─────────────────┘
+
+aliceAccount object:
+┌─────────────────┐
+│ Owner: "Alice"  │
+│ Balance: 1000   │ ← Unique to Alice
+└─────────────────┘
+
+Both use InterestRate = 0.03`,
+                exp: "We create Alice's account. Her account has its OWN Owner and Balance, but shares the InterestRate with ALL other accounts. There's still only ONE InterestRate in memory."
+            },
+            {
+                code: `public class BankAccount
+{
+    // Static field - shared by ALL accounts
+    public static double InterestRate = 0.03;  // 3%
+    
+    // Instance fields - unique to each account
+    public string Owner;
+    public double Balance;
+    
+    public BankAccount(string owner, double balance)
+    {
+        Owner = owner;
+        Balance = balance;
+    }
+}
+
+BankAccount.InterestRate = 0.03;
+BankAccount aliceAccount = new BankAccount("Alice", 1000);
+BankAccount bobAccount = new BankAccount("Bob", 2000);
+// BankAccount.UpdateInterestRate(0.04);`,
+                vars: `Static Area (Shared):
+┌─────────────────┐
+│ InterestRate:   │
+│     0.03        │ ← SHARED by both!
+└─────────────────┘
+
+aliceAccount object:    bobAccount object:
+┌─────────────────┐    ┌─────────────────┐
+│ Owner: "Alice"  │    │ Owner: "Bob"    │
+│ Balance: 1000   │    │ Balance: 2000   │
+└─────────────────┘    └─────────────────┘
+
+Both accounts SHARE the same InterestRate!`,
+                exp: "Now we have two accounts. Each has its OWN Owner and Balance, but they BOTH use the SAME InterestRate. Change it once, and it changes for everyone!"
+            },
+            {
+                code: `public class BankAccount
+{
+    // Static field - shared by ALL accounts
+    public static double InterestRate = 0.03;  // 3%
+    
+    // Instance fields - unique to each account
+    public string Owner;
+    public double Balance;
+    
+    public BankAccount(string owner, double balance)
+    {
+        Owner = owner;
+        Balance = balance;
+    }
+    
+    // Static method to update rate
+    public static void UpdateInterestRate(double newRate)
+    {
+        InterestRate = newRate;
+        Console.WriteLine("Interest rate updated to: " + (newRate * 100) + "%");
+    }
+}
+
+BankAccount.InterestRate = 0.03;
+BankAccount aliceAccount = new BankAccount("Alice", 1000);
+BankAccount bobAccount = new BankAccount("Bob", 2000);
+BankAccount.UpdateInterestRate(0.04);`,
+                vars: `Static Area (Changed!):
+┌─────────────────┐
+│ InterestRate:   │
+│     0.04        │ ← CHANGED for ALL!
+└─────────────────┘
+
+aliceAccount object:    bobAccount object:
+┌─────────────────┐    ┌─────────────────┐
+│ Owner: "Alice"  │    │ Owner: "Bob"    │
+│ Balance: 1000   │    │ Balance: 2000   │
+└─────────────────┘    └─────────────────┘
+
+Output: "Interest rate updated to: 4%"
+
+Both accounts now use 4%!`,
+                exp: "We call a static method UpdateInterestRate() to change the rate. This updates the SHARED InterestRate for ALL accounts instantly! Both Alice and Bob now have 4% interest."
+            }
+        ],
+
+        // Simple and complete code examples
+        simpleExamples: {
+            example1: `public class Player
+{
+    // Regular fields (each player has their own)
+    public string Name;
+    public int Score;
+    
+    // Static field (shared by ALL players)
+    public static int TotalPlayers = 0;
+    
+    public Player(string name)
+    {
+        Name = name;
+        Score = 0;
+        
+        // Update the shared counter
+        TotalPlayers++;
+        Console.WriteLine(Name + " joined. Total players: " + TotalPlayers);
+    }
+}
+
+// Create players
+Player alice = new Player("Alice");
+Player bob = new Player("Bob");
+
+// All players share the same TotalPlayers
+Console.WriteLine("Shared total: " + Player.TotalPlayers);`,
+            example2: `public class Student
+{
+    // Readonly field - set once, never change
+    public readonly string StudentId;
+    
+    // Regular field - can change
+    public string Name;
+    
+    public Student(string id, string name)
+    {
+        // Set readonly field in constructor
+        StudentId = id;     // <span class="correct-text">Can set here</span>
+        Name = name;
+    }
+}
+
+Student alice = new Student("S001", "Alice");
+Console.WriteLine("ID: " + alice.StudentId);
+Console.WriteLine("Name: " + alice.Name);`
+        },
+
+        completeExamples: {
+            example1: `public class Player
+{
+    // Regular fields (each player has their own)
+    public string Name;
+    public int Score;
+    
+    // Static field (shared by ALL players)
+    public static int TotalPlayers = 0;
+    public static int TotalScore = 0;
+    
+    // Static property
+    public static double AverageScore 
+    { 
+        get 
+        { 
+            return TotalPlayers > 0 ? (double)TotalScore / TotalPlayers : 0;
         }
-    });
+    }
+    
+    public Player(string name)
+    {
+        Name = name;
+        Score = 0;
+        
+        // Update the shared counter
+        TotalPlayers++;
+        Console.WriteLine(Name + " joined. Total players: " + TotalPlayers);
+    }
+    
+    public void AddScore(int points)
+    {
+        Score += points;
+        TotalScore += points;  // Update shared total
+        
+        Console.WriteLine(Name + " scored " + points + " points.");
+        Console.WriteLine("Total game score: " + TotalScore);
+        Console.WriteLine("Average score: " + AverageScore.toString("F2"));
+    }
+}
+
+// Create players
+Player alice = new Player("Alice");
+Player bob = new Player("Bob");
+Player charlie = new Player("Charlie");
+
+// Players add scores (affects static totals)
+alice.AddScore(100);
+bob.AddScore(50);
+charlie.AddScore(75);
+
+// Static values are shared
+Console.WriteLine("\n=== Final Game Stats ===");
+Console.WriteLine("Total Players: " + Player.TotalPlayers);
+Console.WriteLine("Total Score: " + Player.TotalScore);
+Console.WriteLine("Average Score: " + Player.AverageScore.toString("F2"));`,
+            example2: `public class Student
+{
+    // Readonly field - set once, never change
+    public readonly string StudentId;
+    public readonly DateTime EnrollmentDate;
+    public readonly string School = "University of Programming";
+    
+    // Regular field - can change
+    public string Name;
+    public double GPA;
+    public string Major;
+    
+    // Static readonly (shared constant for class)
+    public static readonly int MaxCourses = 5;
+    
+    public Student(string id, string name, DateTime enrollDate)
+    {
+        // MUST set readonly fields in constructor
+        StudentId = id;
+        EnrollmentDate = enrollDate;
+        Name = name;
+        GPA = 0.0;
+        
+        Console.WriteLine("Student " + Name + " enrolled on " + EnrollmentDate.ToShortDateString());
+    }
+    
+    public void UpdateInfo(string newMajor, double newGPA)
+    {
+        // Can change regular fields
+        Major = newMajor;
+        GPA = newGPA;
+        
+        // <span class="error-text">CAN'T change readonly fields!</span>
+        // StudentId = "NEW123";  // ERROR!
+        
+        Console.WriteLine(Name + " updated: " + Major + ", GPA: " + GPA);
+    }
+}
+
+// Create student (sets readonly fields in constructor)
+Student alice = new Student("S001", "Alice", new DateTime(2023, 9, 1));
+
+// Can update regular fields
+alice.UpdateInfo("Computer Science", 3.8);
+
+// Try to display - readonly fields show initial values
+Console.WriteLine("\n=== Student Info ===");
+Console.WriteLine("ID: " + alice.StudentId);
+Console.WriteLine("Name: " + alice.Name);
+Console.WriteLine("School: " + alice.School);
+Console.WriteLine("Enrolled: " + alice.EnrollmentDate.ToShortDateString());
+Console.WriteLine("Major: " + alice.Major);
+Console.WriteLine("GPA: " + alice.GPA);
+Console.WriteLine("Max Courses: " + Student.MaxCourses);`
+        },
+
+        currentStep: 0,
+
+        // Convert code between simple and complete versions
+        convertCode: function(id) {
+            const toggle = document.getElementById(id + "Toggle");
+            const isComplete = toggle ? toggle.checked : false;
+            const codeBlock = document.getElementById(id + "Code");
+            const resultBox = document.getElementById(id + "Result");
+
+            if (codeBlock && toggle) {
+                codeBlock.style.transition = 'opacity 0.3s ease';
+                codeBlock.style.opacity = '0.5';
+                setTimeout(() => {
+                    codeBlock.textContent = isComplete ? this.completeExamples[id] : this.simpleExamples[id];
+                    codeBlock.style.opacity = '1';
+
+                    if (resultBox && id === 'example1') {
+                        resultBox.innerHTML = isComplete ? 
+                            '<strong>Output:</strong><br>Alice joined. Total players: 1<br>Bob joined. Total players: 2<br>Charlie joined. Total players: 3<br>Alice scored 100 points.<br>Total game score: 100<br>Average score: 33.33<br>Bob scored 50 points.<br>Total game score: 150<br>Average score: 50.00<br>Charlie scored 75 points.<br>Total game score: 225<br>Average score: 75.00<br><br>=== Final Game Stats ===<br>Total Players: 3<br>Total Score: 225<br>Average Score: 75.00<br><br><em>Static Magic:</em> All players share <code>TotalPlayers</code> and <code>TotalScore</code>. When any player scores, it updates the SHARED totals for everyone!' :
+                            '<strong>Output:</strong><br>Alice joined. Total players: 1<br>Bob joined. Total players: 2<br>Shared total: 2<br><br><em>Static Magic:</em> Both Alice and Bob share the same <code>TotalPlayers</code> counter. When Bob joined, it increased from 1 to 2 for everyone!';
+                    } else if (resultBox && id === 'example2') {
+                        resultBox.innerHTML = isComplete ?
+                            '<strong>Output:</strong><br>Student Alice enrolled on 9/1/2023<br>Alice updated: Computer Science, GPA: 3.8<br><br>=== Student Info ===<br>ID: S001<br>Name: Alice<br>School: University of Programming<br>Enrolled: 9/1/2023<br>Major: Computer Science<br>GPA: 3.8<br>Max Courses: 5<br><br><em>Readonly Protection:</em> <code>StudentId</code> and <code>EnrollmentDate</code> are set in the constructor and can NEVER be changed. <code>School</code> is set at declaration and is the same for all students. <code>Student.MaxCourses</code> is static readonly - shared but constant.' :
+                            '<strong>Output:</strong><br>ID: S001<br>Name: Alice<br><br><em>Readonly Protection:</em> <code>StudentId</code> is set to "S001" in the constructor and can NEVER be changed. This protects important data from accidental changes!';
+                    }
+                }, 300);
+            }
+        },
+
+        // Update walkthrough display
+        updateWalkthrough: function(step) {
+            const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
+            const walkthroughVariables = document.getElementById('walkthroughVariables');
+            const walkthroughExplanation = document.getElementById('walkthroughExplanation');
+            const nextStepBtn = document.getElementById('nextStepBtn');
+
+            if (!walkthroughCodeBase || !walkthroughVariables || !walkthroughExplanation) return;
+
+            const data = this.staticSteps[step];
+            
+            walkthroughCodeBase.textContent = data.code;
+            walkthroughVariables.textContent = data.vars;
+            walkthroughExplanation.innerHTML = `<em>Step ${step + 1}:</em> ${data.exp}`;
+            
+            if (step === this.staticSteps.length - 1 && nextStepBtn) {
+                walkthroughExplanation.innerHTML += '<br><strong>Complete! Static fields are shared by ALL objects of a class.</strong>';
+                nextStepBtn.disabled = true;
+            }
+        },
+
+        nextStep: function() {
+            if (this.currentStep < this.staticSteps.length) {
+                this.updateWalkthrough(this.currentStep);
+                this.currentStep++;
+            }
+        },
+
+        initWalkthrough: function() {
+            const nextStepBtn = document.getElementById('nextStepBtn');
+            if (nextStepBtn) {
+                this.currentStep = 0;
+                
+                const newButton = nextStepBtn.cloneNode(true);
+                nextStepBtn.parentNode.replaceChild(newButton, nextStepBtn);
+                
+                newButton.addEventListener('click', () => this.nextStep());
+                newButton.disabled = false;
+                
+                this.updateWalkthrough(0);
+                this.currentStep = 1;
+            }
+        },
+
+        initCodeExamples: function() {
+            const toggles = document.querySelectorAll('.form-check-input[type="checkbox"]');
+            toggles.forEach(toggle => {
+                const id = toggle.id.replace('Toggle', '');
+                if (id && this.simpleExamples[id]) {
+                    this.convertCode(id);
+                    toggle.addEventListener('change', () => this.convertCode(id));
+                }
+            });
+        },
+
+        init: function() {
+            console.log('Initializing OOP Static/Readonly/Const page');
+            this.initCodeExamples();
+            this.initWalkthrough();
+            
+            if (typeof hljs !== 'undefined') {
+                hljs.highlightAll();
+            }
+        }
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => {
+            window.oopStaticConst.init();
+        });
+    } else {
+        window.oopStaticConst.init();
+    }
 </script>

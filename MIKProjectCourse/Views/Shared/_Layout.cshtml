@@ -535,6 +535,21 @@ $(document).ready(function() {
     }
     setupAjaxNavigation();
 
+    // Global function to initialize quiz
+    function initializeQuiz() {
+        console.log("Initializing quiz functionality");
+        
+        // Remove existing event listeners and add fresh ones
+        $('#startQuizBtn').off('click.quiz').on('click.quiz', startQuiz);
+        $('#restartQuizBtn').off('click.quiz').on('click.quiz', resetQuiz);
+        
+        // Also attach event listeners for any quiz buttons that might already exist
+        $(document).off('click.quiz').on('click.quiz', '#startQuizBtn', startQuiz);
+        $(document).off('click.quiz').on('click.quiz', '#restartQuizBtn', resetQuiz);
+        
+        console.log("Quiz initialization complete");
+    }
+
     function loadPage(url, addToHistory = true) {
         if ($('#page-content').hasClass('loading') || url === window.location.pathname) {
             return;
@@ -578,7 +593,10 @@ $(document).ready(function() {
                         setupChapterTitleClicks();
                         setupAjaxNavigation();
 
+                        // Extract and execute scripts properly
                         const scripts = tempDiv.find('script');
+                        const scriptPromises = [];
+                        
                         scripts.each(function() {
                             const scriptElement = $(this);
                             
@@ -587,17 +605,22 @@ $(document).ready(function() {
                                 if (!src.includes('jquery') && 
                                     !src.includes('bootstrap') && 
                                     !src.includes('highlight.js')) {
-                                    $.getScript(src).fail(function() {
-                                        console.warn('Failed to load script:', src);
+                                    const promise = new Promise((resolve, reject) => {
+                                        $.getScript(src)
+                                            .done(resolve)
+                                            .fail(reject);
                                     });
+                                    scriptPromises.push(promise);
                                 }
                             } else {
                                 try {
                                     const scriptContent = scriptElement.text();
                                     if (scriptContent.trim()) {
+                                        // Create and execute the script
                                         const script = document.createElement('script');
                                         script.textContent = scriptContent;
-                                        document.body.appendChild(script).remove();
+                                        document.body.appendChild(script);
+                                        document.body.removeChild(script);
                                     }
                                 } catch(e) {
                                     console.warn('Script execution warning:', e.message);
@@ -605,10 +628,29 @@ $(document).ready(function() {
                             }
                         });
 
-                        setTimeout(() => {
+                        // Wait for all scripts to load, then initialize
+                        Promise.all(scriptPromises).then(() => {
                             setupGlobalEventDelegation();
                             initializeCurrentPage();
-                        }, 100);
+                            
+                            // Check if this is the OOP Summary page and initialize quiz
+                            if (url.includes('/OOP/Summary')) {
+                                console.log("OOP Summary page detected, initializing quiz...");
+                                setTimeout(() => {
+                                    initializeQuiz();
+                                    // If quiz was already started, restore state
+                                    if (typeof currentQuestionIndex !== 'undefined' && currentQuestionIndex > 0) {
+                                        console.log("Restoring quiz state from page load");
+                                        loadQuestion(currentQuestionIndex);
+                                    }
+                                }, 100);
+                            }
+                        }).catch(err => {
+                            console.warn('Some scripts failed to load:', err);
+                            setupGlobalEventDelegation();
+                            initializeCurrentPage();
+                        });
+
                     });
                 });
             },
@@ -806,6 +848,14 @@ $(document).ready(function() {
             }
         }
         
+        // Initialize quiz if we're on the OOP Summary page
+        if (currentPath.includes('/OOP/Summary')) {
+            console.log("OOP Summary page detected in initializeCurrentPage");
+            setTimeout(() => {
+                initializeQuiz();
+            }, 100);
+        }
+        
         if (typeof window.initializePage === 'function') {
             try {
                 window.initializePage();
@@ -816,6 +866,14 @@ $(document).ready(function() {
     }
     
     setupGlobalEventDelegation();
+    
+    // Initialize quiz if we're already on the OOP Summary page on initial load
+    if (window.location.pathname.includes('/OOP/Summary')) {
+        console.log("Initial page load on OOP Summary, initializing quiz");
+        setTimeout(() => {
+            initializeQuiz();
+        }, 500);
+    }
     
     initializeCurrentPage();
 });
