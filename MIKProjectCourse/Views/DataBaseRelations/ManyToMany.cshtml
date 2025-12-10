@@ -2,42 +2,249 @@
     ViewData["Title"] = "Many-to-Many Relationship in C#";
 }
 
+<body data-topic="database-relations">
 <div class="container">
-    <h1>Many-to-Many Relationship in C#</h1>
-    <p>A Many-to-Many relationship means that records in Table A can be related to many records in Table B, and vice versa.</p>
+    <h1 class="text-center">Many-to-Many Relationship in C#</h1>
 
-    <h2>Example</h2>
-    <p>Consider a scenario where a <code>Student</code> can be enrolled in multiple <code>Courses</code>, and a <code>Course</code> can have many <code>Students</code>.</p>
-
-    <div class="code-container">
-        <div class="code-header">C# Entity Classes</div>
-        <div class="code-content">
-            <pre><code class="language-csharp">
-public class Student
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public List&lt;Course&gt; Courses { get; set; }
-}
-
-public class Course
-{
-    public int Id { get; set; }
-    public string Title { get; set; }
-    public List&lt;Student&gt; Students { get; set; }
-}
-            </code></pre>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-project-diagram"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Third Relationship Type: Many-to-Many</h4>
+            <p><strong>This is the most flexible relationship type!</strong> Many-to-Many means <strong>many things connect to many other things</strong>.</p>
+            <p><strong>Focus on understanding:</strong></p>
+            <ul>
+                <li><strong>The concept:</strong> Many items can connect to many other items in both directions</li>
+                <li><strong>Real-world examples:</strong> Common situations where connections go both ways</li>
+                <li><strong>C# implementation:</strong> How we represent this with Lists in both classes</li>
+            </ul>
+            <p><strong>Important:</strong> This relationship requires a special "join table" behind the scenes!</p>
         </div>
     </div>
 
-    <p>EF Core automatically creates a join table to store the relationships between students and courses.</p>
+    <div class="intro-section">
+        <p>A <strong>Many-to-Many relationship</strong> is the most flexible type of database relationship. It means that records in Table A can be related to many records in Table B, and records in Table B can be related to many records in Table A.</p>
+        
+        <p><strong>Think of it like this:</strong> Just like students can enroll in multiple courses, and courses can have multiple students. Both sides can have multiple connections!</p>
+    </div>
+
+    <h2 class="text-center">Real-World Examples</h2>
+    
+    <div class="examples-section">
+        <div class="example-item">
+            <h4><i class="fas fa-user-graduate"></i> Students ↔ Courses</h4>
+            <p>Students can enroll in multiple courses, and courses can have multiple students.</p>
+        </div>
+        
+        <div class="example-item">
+            <h4><i class="fas fa-tags"></i> Products ↔ Categories</h4>
+            <p>Products can belong to multiple categories, and categories can contain multiple products.</p>
+        </div>
+        
+        <div class="example-item">
+            <h4><i class="fas fa-users"></i> Users ↔ Roles</h4>
+            <p>Users can have multiple roles, and roles can be assigned to multiple users.</p>
+        </div>
+        
+        <div class="example-item">
+            <h4><i class="fas fa-book"></i> Authors ↔ Books</h4>
+            <p>Authors can write multiple books, and books can have multiple authors (in collaborative works).</p>
+        </div>
+    </div>
+
+    <h2 class="text-center">C# Implementation Example</h2>
+    
+    <div class="example-section">
+        <h3>Scenario: Students and Courses</h3>
+        <p>Let's create a practical example where <code>Student</code> records can be enrolled in multiple <code>Course</code> records, and <code>Course</code> records can have multiple <code>Student</code> records.</p>
+        
+        <div class="code-container">
+            <div class="code-header">Student.cs - First Side of the Relationship</div>
+            <div class="code-content">
+<pre><code class="language-csharp">
+public class Student
+{
+    public int Id { get; set; }              // Primary Key
+    public string Name { get; set; }
+    public string Email { get; set; }
+    
+    // Navigation Property - The "Many" side
+    // This is a LIST because one Student can have MANY Courses
+    public List<Course> Courses { get; set; } = new();
+}
+</code></pre>
+            </div>
+        </div>
+        
+        <div class="code-container">
+            <div class="code-header">Course.cs - Second Side of the Relationship</div>
+            <div class="code-content">
+<pre><code class="language-csharp">
+public class Course
+{
+    public int Id { get; set; }              // Primary Key
+    public string Title { get; set; }
+    public string Description { get; set; }
+    
+    // Navigation Property - The "Many" side
+    // This is a LIST because one Course can have MANY Students
+    public List<Student> Students { get; set; } = new();
+}
+</code></pre>
+            </div>
+        </div>
+        
+        <div class="explanation-box">
+            <h4>How This Works:</h4>
+            <ol>
+                <li><strong>Both classes</strong> have <code>List&lt;T&gt;</code> properties pointing to each other</li>
+                <li><strong>No foreign keys</strong> are needed in the main classes (unlike One-to-Many)</li>
+                <li><strong>Entity Framework</strong> automatically creates a <strong>join table</strong> in the database</li>
+                <li>The join table stores pairs of StudentId and CourseId behind the scenes</li>
+            </ol>
+        </div>
+    </div>
+
+    <h2 class="text-center">How to Use It in Your Code</h2>
+    
+    <div class="usage-section">
+        <p>Working with Many-to-Many relationships in C# is similar to One-to-Many, but you work with both sides:</p>
+        
+        <div class="code-container">
+            <div class="code-header">Working with Many-to-Many Relationships in C#</div>
+            <div class="code-content">
+<pre><code class="language-csharp">
+// 1. Creating Students and Courses
+var student1 = new Student { Name = "Alice", Email = "alice@email.com" };
+var student2 = new Student { Name = "Bob", Email = "bob@email.com" };
+
+var mathCourse = new Course { Title = "Mathematics", Description = "Algebra and Calculus" };
+var scienceCourse = new Course { Title = "Science", Description = "Physics and Chemistry" };
+
+// 2. Establishing the Many-to-Many relationships
+// Alice enrolls in both Math and Science
+student1.Courses.Add(mathCourse);
+student1.Courses.Add(scienceCourse);
+
+// Bob enrolls only in Science
+student2.Courses.Add(scienceCourse);
+
+// Add students to courses (optional - EF Core handles both sides)
+mathCourse.Students.Add(student1);
+scienceCourse.Students.Add(student1);
+scienceCourse.Students.Add(student2);
+
+// 3. Saving to database
+dbContext.Students.Add(student1);
+dbContext.Students.Add(student2);
+dbContext.SaveChanges();  // Creates Students, Courses, AND the join table!
+
+// 4. Loading a Student with their Courses
+var student = dbContext.Students
+    .Include(s => s.Courses)          // This loads ALL related courses
+    .First(s => s.Id == 1);
+
+Console.WriteLine($"Student: {student.Name}");
+Console.WriteLine("Courses enrolled:");
+foreach (var course in student.Courses)
+{
+    Console.WriteLine($"- {course.Title}");
+}
+
+// 5. Loading a Course with its Students
+var course = dbContext.Courses
+    .Include(c => c.Students)         // This loads ALL related students
+    .First(c => c.Id == 1);
+
+Console.WriteLine($"Course: {course.Title}");
+Console.WriteLine("Students enrolled:");
+foreach (var stud in course.Students)
+{
+    Console.WriteLine($"- {stud.Name}");
+}
+
+// 6. Adding a new Course to an existing Student
+var existingStudent = dbContext.Students
+    .Include(s => s.Courses)
+    .First(s => s.Id == 1);
+
+var newCourse = new Course { Title = "History", Description = "World History" };
+existingStudent.Courses.Add(newCourse);
+dbContext.SaveChanges();  // Updates the join table automatically
+
+// 7. Finding all Students in a specific Course
+var scienceStudents = dbContext.Courses
+    .Where(c => c.Title == "Science")
+    .SelectMany(c => c.Students)      // Flattens the collection
+    .ToList();
+</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center">Visual Representation</h2>
+    
+    <div class="visual-section">
+        <div class="code-container">
+            <div class="code-header">Database Table Structure (Created by EF Core)</div>
+            <div class="code-content">
+<pre>
+STUDENTS Table:
+┌─────┬──────────┬──────────────────┐
+│ Id  │   Name   │      Email       │
+├─────┼──────────┼──────────────────┤
+│  1  │ Alice    │ alice@email.com  │
+│  2  │ Bob      │ bob@email.com    │
+│  3  │ Charlie  │ charlie@email.com│
+└─────┴──────────┴──────────────────┘
+
+COURSES Table:
+┌─────┬──────────────┬─────────────────────────────┐
+│ Id  │    Title     │        Description          │
+├─────┼──────────────┼─────────────────────────────┤
+│  1  │ Mathematics  │ Algebra and Calculus        │
+│  2  │ Science      │ Physics and Chemistry       │
+│  3  │ History      │ World History               │
+└─────┴──────────────┴─────────────────────────────┘
+
+📌 JOIN TABLE (Created automatically by EF Core):
+STUDENTCOURSE Table:
+┌─────────────┬───────────┐
+│ StudentId   │ CourseId  │
+├─────────────┼───────────┤
+│      1      │     1     │ ← Alice enrolled in Mathematics
+│      1      │     2     │ ← Alice enrolled in Science
+│      2      │     2     │ ← Bob enrolled in Science
+│      3      │     1     │ ← Charlie enrolled in Mathematics
+│      3      │     3     │ ← Charlie enrolled in History
+└─────────────┴───────────┘
+
+📌 Each Student can be in MANY Courses
+📌 Each Course can have MANY Students
+📌 The join table connects them together
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-points">
+        <h3>Key Points to Remember</h3>
+        <ul>
+            <li><strong>Many-to-Many</strong> means many records connect to many other records in both directions</li>
+            <li><strong>Both classes</strong> use <code>List&lt;T&gt;</code> properties to reference each other</li>
+            <li><strong>No foreign keys</strong> in the main classes - EF Core creates a join table</li>
+            <li>The <strong>join table</strong> is created automatically and stores pairs of IDs</li>
+            <li>Use <code>.Include()</code> to load related collections from both sides</li>
+            <li>This is perfect for situations where connections go both ways</li>
+        </ul>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("OneToMany", "DataBaseRelations")" class="btn btn-outline-primary ajax-link">← One-to-Many</a>
-        <a href="@Url.Action("ManyToManyWithJoin", "DataBaseRelations")" class="btn btn-primary ajax-link">With Join Entity →</a>
+        <a href="@Url.Action("OneToMany", "DataBaseRelations")" class="btn btn-outline-primary ajax-link">← Back to One-to-Many</a>
+        <a href="@Url.Action("ManyToManyWithJoin", "DataBaseRelations")" class="btn btn-primary ajax-link">Next: Many-to-Many with Join Entity →</a>
     </div>
 </div>
-
 
 <style>
     .container {
@@ -46,37 +253,134 @@ public class Course
         background-color: var(--bs-body-bg);
     }
 
-    h1 {
+    h1, h2, h3, h4 {
         color: var(--bs-heading-color);
-        margin-bottom: 20px;
-    }
-
-    h2 {
-        color: var(--bs-heading-color);
-        margin-top: 25px;
         margin-bottom: 15px;
     }
 
-    p {
+    h1 {
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
+    }
+
+    h2 {
+        margin-top: 40px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+
+    h2.text-center {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    p, li {
         color: var(--bs-body-color);
         line-height: 1.6;
     }
 
+    .beginner-note {
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .beginner-note-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+
+    .beginner-note-content {
+        flex: 1;
+    }
+
+    .beginner-note-content h4 {
+        color: var(--bs-primary);
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .beginner-note-content p {
+        margin-bottom: 10px;
+        line-height: 1.6;
+    }
+
+    .beginner-note-content ul {
+        margin-left: 20px;
+        margin-bottom: 10px;
+    }
+
+    .beginner-note-content li {
+        margin-bottom: 5px;
+    }
+
+    .intro-section {
+        margin-bottom: 30px;
+        padding: 15px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border-radius: 5px;
+    }
+
+    .examples-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+    }
+
+    .example-item {
+        padding: 15px;
+        background-color: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        transition: transform 0.2s;
+    }
+
+    .example-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .example-item h4 {
+        color: var(--bs-primary);
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .example-section {
+        margin: 20px 0;
+    }
+
     .code-container {
-        margin: 25px 0;
+        margin: 15px 0;
         border: 1px solid var(--bs-border-color);
         border-radius: 5px;
         overflow: hidden;
-        background-color: var(--code-bg);
+        background-color: #1a1a1a;
     }
 
     .code-header {
-        background-color: var(--code-header-bg);
+        background-color: #2d2d2d;
         padding: 10px 15px;
         border-bottom: 1px solid var(--bs-border-color);
         font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         font-size: 0.9rem;
-        color: var(--bs-body-color);
+        color: #e0e0e0;
     }
 
     .code-content {
@@ -88,31 +392,126 @@ public class Course
         margin: 0;
         white-space: pre-wrap;
         background-color: transparent;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        color: #e0e0e0;
     }
 
-    code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    .explanation-box {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 5px;
+    }
+
+    .explanation-box h4 {
+        color: var(--bs-success);
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .explanation-box ol {
+        margin-left: 20px;
+    }
+
+    .usage-section {
+        margin: 20px 0;
+    }
+
+    .visual-section {
+        margin: 20px 0;
+    }
+
+    .key-points {
+        margin: 30px 0;
+        padding: 20px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 5px;
+    }
+
+    .key-points h3 {
+        color: var(--bs-indigo);
+        margin-top: 0;
+    }
+
+    .key-points ul {
+        margin-left: 20px;
     }
 
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
 
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
+        text-decoration: none;
     }
 
     .btn-primary {
         background-color: var(--bs-primary);
         border-color: var(--bs-primary);
+        color: white;
     }
 
     .btn-outline-primary {
         color: var(--bs-primary);
         border-color: var(--bs-primary);
+        background-color: transparent;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: var(--bs-primary);
+        color: white;
+    }
+
+    [data-bs-theme="dark"] .beginner-note {
+        background-color: rgba(13, 110, 253, 0.15);
+        border-color: var(--dark-primary);
+    }
+
+    [data-bs-theme="dark"] .beginner-note-icon {
+        background-color: var(--dark-primary);
+    }
+
+    [data-bs-theme="dark"] .beginner-note-content h4 {
+        color: var(--dark-primary);
+    }
+
+    [data-bs-theme="dark"] .intro-section {
+        background-color: rgba(108, 117, 125, 0.15);
+    }
+
+    [data-bs-theme="dark"] .example-item {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    [data-bs-theme="dark"] .explanation-box {
+        background-color: rgba(40, 167, 69, 0.15);
+    }
+
+    [data-bs-theme="dark"] .key-points {
+        background-color: rgba(111, 66, 193, 0.15);
+    }
+
+    [data-bs-theme="dark"] .beginner-tip {
+        background-color: rgba(255, 193, 7, 0.15);
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightAll();
+        }
+    });
+</script>
+</body>

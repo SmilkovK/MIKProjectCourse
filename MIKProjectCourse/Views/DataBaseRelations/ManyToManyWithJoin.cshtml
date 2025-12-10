@@ -2,52 +2,298 @@
     ViewData["Title"] = "Many-to-Many with Join Entity in C#";
 }
 
+<body data-topic="database-relations">
 <div class="container">
-    <h1>Many-to-Many with Join Entity</h1>
-    <p>In this variation of the <strong>Many-to-Many</strong> relationship, we introduce a join entity that allows us to store additional information about the relationship.</p>
+    <h1 class="text-center">Many-to-Many with Join Entity in C#</h1>
 
-    <h2>Scenario</h2>
-    <p>A <strong>Student</strong> can enroll in many <strong>Courses</strong>, and a <strong>Course</strong> can have many <strong>Students</strong>. We use a join table to store additional details about the enrollment.</p>
-
-    <div class="code-container">
-        <div class="code-header">C# Entity Classes</div>
-        <div class="code-content">
-            <pre><code class="language-csharp">
-public class Student
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public List&lt;StudentCourse&gt; StudentCourses { get; set; }
-}
-
-public class Course
-{
-    public int Id { get; set; }
-    public string Title { get; set; }
-    public List&lt;StudentCourse&gt; StudentCourses { get; set; }
-}
-
-public class StudentCourse
-{
-    public int StudentId { get; set; }
-    public Student Student { get; set; }
-    public int CourseId { get; set; }
-    public Course Course { get; set; }
-    public string Grade { get; set; }
-    public DateTime EnrollmentDate { get; set; }
-}
-            </code></pre>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-layer-group"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Advanced Many-to-Many: With Join Entity</h4>
+            <p><strong>This is the most powerful relationship type!</strong> It's like Many-to-Many, but with <strong>extra information about the relationship</strong>.</p>
+            <p><strong>Focus on understanding:</strong></p>
+            <ul>
+                <li><strong>The concept:</strong> When you need to store data ABOUT the connection itself</li>
+                <li><strong>Real-world examples:</strong> Situations where the relationship has its own properties</li>
+                <li><strong>C# implementation:</strong> Creating a dedicated join entity class</li>
+            </ul>
+            <p><strong>Use this when:</strong> You need to track more than just "who's connected to who"</p>
         </div>
     </div>
 
-    <p>Here, the <code>StudentCourse</code> entity acts as the join table and includes additional data.</p>
+    <div class="intro-section">
+        <p>A <strong>Many-to-Many with Join Entity</strong> relationship is an advanced version of Many-to-Many. Instead of letting EF Core create an invisible join table, we create our own join entity class. This allows us to store additional information about each relationship.</p>
+        
+        <p><strong>Think of it like this:</strong> Not just tracking which students are in which courses, but also storing their grade, enrollment date, and attendance for EACH enrollment.</p>
+    </div>
+
+    <h2 class="text-center">Real-World Examples</h2>
+    
+    <div class="examples-section">
+        <div class="example-item">
+            <h4><i class="fas fa-graduation-cap"></i> Student Enrollment</h4>
+            <p>Students enroll in courses with grades, enrollment dates, and attendance records.</p>
+        </div>
+        
+        <div class="example-item">
+            <h4><i class="fas fa-shopping-cart"></i> Order Items</h4>
+            <p>Orders contain products with quantities, prices, and discounts for each item.</p>
+        </div>
+        
+        <div class="example-item">
+            <h4><i class="fas fa-tags"></i> Product Tags</h4>
+            <p>Products have tags with relevance scores and tag assignment dates.</p>
+        </div>
+        
+        <div class="example-item">
+            <h4><i class="fas fa-users"></i> User Permissions</h4>
+            <p>Users have roles with permission levels and assignment dates.</p>
+        </div>
+    </div>
+
+    <h2 class="text-center">C# Implementation Example</h2>
+    
+    <div class="example-section">
+        <h3>Scenario: Student Course Enrollment with Grades</h3>
+        <p>Let's create an example where we track not just which students are in which courses, but also their grades and enrollment dates.</p>
+        
+        <div class="code-container">
+            <div class="code-header">Student.cs - First Main Entity</div>
+            <div class="code-content">
+<pre><code class="language-csharp">
+public class Student
+{
+    public int Id { get; set; }              // Primary Key
+    public string Name { get; set; }
+    public string Email { get; set; }
+    
+    // Navigation Property - Points to the Join Entity
+    // This replaces the direct List<Course> from basic Many-to-Many
+    public List<StudentCourse> StudentCourses { get; set; } = new();
+}
+</code></pre>
+            </div>
+        </div>
+        
+        <div class="code-container">
+            <div class="code-header">Course.cs - Second Main Entity</div>
+            <div class="code-content">
+<pre><code class="language-csharp">
+public class Course
+{
+    public int Id { get; set; }              // Primary Key
+    public string Title { get; set; }
+    public string Description { get; set; }
+    
+    // Navigation Property - Points to the Join Entity
+    // This replaces the direct List<Student> from basic Many-to-Many
+    public List<StudentCourse> StudentCourses { get; set; } = new();
+}
+</code></pre>
+            </div>
+        </div>
+        
+        <div class="code-container">
+            <div class="code-header">StudentCourse.cs - The Join Entity</div>
+            <div class="code-content">
+<pre><code class="language-csharp">
+public class StudentCourse
+{
+    // Composite Primary Key (StudentId + CourseId)
+    public int StudentId { get; set; }       // Foreign Key to Student
+    public int CourseId { get; set; }        // Foreign Key to Course
+    
+    // Navigation Properties - Links to both main entities
+    public Student Student { get; set; }
+    public Course Course { get; set; }
+    
+    // EXTRA DATA ABOUT THE RELATIONSHIP!
+    public string Grade { get; set; }        // e.g., "A", "B", "C"
+    public DateTime EnrollmentDate { get; set; }
+    public int AttendancePercentage { get; set; }
+    public string Status { get; set; }       // e.g., "Active", "Completed", "Dropped"
+    
+    // Additional properties can be added as needed
+    public decimal? FinalScore { get; set; }
+    public string InstructorComments { get; set; }
+}
+</code></pre>
+            </div>
+        </div>
+        
+        <div class="explanation-box">
+            <h4>How This Works:</h4>
+            <ol>
+                <li><strong>Student and Course classes</strong> have Lists pointing to the join entity (StudentCourse)</li>
+                <li><strong>StudentCourse class</strong> has foreign keys to both Student and Course</li>
+                <li><strong>StudentCourse class</strong> contains EXTRA DATA about each enrollment</li>
+                <li>This creates a <strong>composite primary key</strong> (StudentId + CourseId) in the database</li>
+                <li>You can query and update the relationship data directly through the join entity</li>
+            </ol>
+        </div>
+    </div>
+
+    <h2 class="text-center">How to Use It in Your Code</h2>
+    
+    <div class="usage-section">
+        <p>Working with Many-to-Many with Join Entity gives you more control and allows you to store relationship data:</p>
+        
+        <div class="code-container">
+            <div class="code-header">Working with Many-to-Many with Join Entity</div>
+            <div class="code-content">
+<pre><code class="language-csharp">
+// 1. Creating a new Enrollment (Relationship with extra data)
+var enrollment = new StudentCourse
+{
+    StudentId = 1,                          // Alice
+    CourseId = 1,                           // Mathematics
+    Grade = "A",
+    EnrollmentDate = DateTime.Now,
+    AttendancePercentage = 95,
+    Status = "Active",
+    FinalScore = 97.5m,
+    InstructorComments = "Excellent performance"
+};
+
+dbContext.StudentCourses.Add(enrollment);
+dbContext.SaveChanges();
+
+// 2. Loading a Student with their Enrollments and Course details
+var student = dbContext.Students
+    .Include(s => s.StudentCourses)          // Load enrollments
+        .ThenInclude(sc => sc.Course)        // Then load the Course for each enrollment
+    .First(s => s.Id == 1);
+
+Console.WriteLine($"Student: {student.Name}");
+foreach (var enrollment in student.StudentCourses)
+{
+    Console.WriteLine($"- Course: {enrollment.Course.Title}");
+    Console.WriteLine($"  Grade: {enrollment.Grade}");
+    Console.WriteLine($"  Enrollment Date: {enrollment.EnrollmentDate.ToShortDateString()}");
+}
+
+// 3. Finding all Students in a Course with their grades
+var courseEnrollments = dbContext.StudentCourses
+    .Where(sc => sc.CourseId == 1)           // Mathematics course
+    .Include(sc => sc.Student)               // Load Student details
+    .ToList();
+
+Console.WriteLine($"Students in Mathematics:");
+foreach (var enrollment in courseEnrollments)
+{
+    Console.WriteLine($"- {enrollment.Student.Name}: {enrollment.Grade}");
+}
+
+// 4. Updating a Grade for a specific Student-Course combination
+var studentEnrollment = dbContext.StudentCourses
+    .First(sc => sc.StudentId == 1 && sc.CourseId == 1);
+
+studentEnrollment.Grade = "A+";
+studentEnrollment.FinalScore = 99.0m;
+dbContext.SaveChanges();
+
+// 5. Finding all Students with grade "A" in any course
+var topStudents = dbContext.StudentCourses
+    .Where(sc => sc.Grade == "A")
+    .Include(sc => sc.Student)
+    .Include(sc => sc.Course)
+    .Select(sc => new
+    {
+        StudentName = sc.Student.Name,
+        CourseName = sc.Course.Title,
+        sc.Grade,
+        sc.FinalScore
+    })
+    .ToList();
+
+// 6. Adding a new Enrollment with validation
+// Check if enrollment already exists
+var existingEnrollment = dbContext.StudentCourses
+    .FirstOrDefault(sc => sc.StudentId == 2 && sc.CourseId == 1);
+
+if (existingEnrollment == null)
+{
+    var newEnrollment = new StudentCourse
+    {
+        StudentId = 2,
+        CourseId = 1,
+        Grade = "B",
+        EnrollmentDate = DateTime.Now,
+        Status = "Active"
+    };
+    dbContext.StudentCourses.Add(newEnrollment);
+    dbContext.SaveChanges();
+}
+else
+{
+    Console.WriteLine("Student already enrolled in this course!");
+}
+</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center">Visual Representation</h2>
+    
+    <div class="visual-section">
+        <div class="code-container">
+            <div class="code-header">Database Table Structure</div>
+            <div class="code-content">
+<pre>
+STUDENTS Table:
+┌─────┬──────────┬──────────────────┐
+│ Id  │   Name   │      Email       │
+├─────┼──────────┼──────────────────┤
+│  1  │ Alice    │ alice@email.com  │
+│  2  │ Bob      │ bob@email.com    │
+└─────┴──────────┴──────────────────┘
+
+COURSES Table:
+┌─────┬──────────────┬─────────────────────────────┐
+│ Id  │    Title     │        Description          │
+├─────┼──────────────┼─────────────────────────────┤
+│  1  │ Mathematics  │ Algebra and Calculus        │
+│  2  │ Science      │ Physics and Chemistry       │
+└─────┴──────────────┴─────────────────────────────┘
+
+STUDENTCOURSES Table (Our Join Entity):
+┌─────────────┬───────────┬───────┬──────────────────┬───────────────┬─────────┬─────────────┐
+│ StudentId   │ CourseId  │ Grade │ EnrollmentDate   │ Attendance%   │ Status  │ FinalScore  │
+├─────────────┼───────────┼───────┼──────────────────┼───────────────┼─────────┼─────────────┤
+│      1      │     1     │   A   │ 2024-01-15       │      95       │ Active  │    97.5     │
+│      1      │     2     │   B+  │ 2024-01-15       │      88       │ Active  │    88.5     │
+│      2      │     1     │   B   │ 2024-02-01       │      92       │ Active  │    85.0     │
+└─────────────┴───────────┴───────┴──────────────────┴───────────────┴─────────┴─────────────┘
+
+📌 StudentId + CourseId together form a COMPOSITE PRIMARY KEY
+📌 Each row stores EXTRA DATA about the specific enrollment
+📌 We can query and update relationship data directly
+📌 More flexible and powerful than basic Many-to-Many
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-points">
+        <h3>Key Points to Remember</h3>
+        <ul>
+            <li>Use <strong>Many-to-Many with Join Entity</strong> when you need to store data ABOUT the relationship</li>
+            <li>Create a <strong>dedicated join entity class</strong> with foreign keys to both main entities</li>
+            <li>The join entity can have its own <strong>properties and business logic</strong></li>
+            <li>Foreign keys in the join entity create a <strong>composite primary key</strong></li>
+            <li>Main entities point to the join entity, not directly to each other</li>
+            <li>Use <code>.Include()</code> and <code>.ThenInclude()</code> to navigate through the join entity</li>
+            <li>This pattern gives you <strong>more control and flexibility</strong> than basic Many-to-Many</li>
+        </ul>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("ManyToMany", "DataBaseRelations")" class="btn btn-outline-primary ajax-link">← Basic Many-to-Many</a>
-        <a href="@Url.Action("Info", "Exercises")" class="btn btn-primary ajax-link">Start Exercises</a>
+        <a href="@Url.Action("ManyToMany", "DataBaseRelations")" class="btn btn-outline-primary ajax-link">← Back to Basic Many-to-Many</a>
+        <a href="@Url.Action("Summary", "DataBaseRelations")" class="btn btn-primary ajax-link">Chapter Summary →</a>
     </div>
 </div>
-
 
 <style>
     .container {
@@ -56,37 +302,134 @@ public class StudentCourse
         background-color: var(--bs-body-bg);
     }
 
-    h1 {
+    h1, h2, h3, h4 {
         color: var(--bs-heading-color);
-        margin-bottom: 20px;
-    }
-
-    h2 {
-        color: var(--bs-heading-color);
-        margin-top: 25px;
         margin-bottom: 15px;
     }
 
-    p {
+    h1 {
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
+    }
+
+    h2 {
+        margin-top: 40px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+
+    h2.text-center {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    p, li {
         color: var(--bs-body-color);
         line-height: 1.6;
     }
 
+    .beginner-note {
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .beginner-note-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+
+    .beginner-note-content {
+        flex: 1;
+    }
+
+    .beginner-note-content h4 {
+        color: var(--bs-primary);
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .beginner-note-content p {
+        margin-bottom: 10px;
+        line-height: 1.6;
+    }
+
+    .beginner-note-content ul {
+        margin-left: 20px;
+        margin-bottom: 10px;
+    }
+
+    .beginner-note-content li {
+        margin-bottom: 5px;
+    }
+
+    .intro-section {
+        margin-bottom: 30px;
+        padding: 15px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border-radius: 5px;
+    }
+
+    .examples-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+    }
+
+    .example-item {
+        padding: 15px;
+        background-color: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        transition: transform 0.2s;
+    }
+
+    .example-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .example-item h4 {
+        color: var(--bs-primary);
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .example-section {
+        margin: 20px 0;
+    }
+
     .code-container {
-        margin: 25px 0;
+        margin: 15px 0;
         border: 1px solid var(--bs-border-color);
         border-radius: 5px;
         overflow: hidden;
-        background-color: var(--code-bg);
+        background-color: #1a1a1a;
     }
 
     .code-header {
-        background-color: var(--code-header-bg);
+        background-color: #2d2d2d;
         padding: 10px 15px;
         border-bottom: 1px solid var(--bs-border-color);
         font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         font-size: 0.9rem;
-        color: var(--bs-body-color);
+        color: #e0e0e0;
     }
 
     .code-content {
@@ -98,31 +441,126 @@ public class StudentCourse
         margin: 0;
         white-space: pre-wrap;
         background-color: transparent;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        color: #e0e0e0;
     }
 
-    code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    .explanation-box {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 5px;
+    }
+
+    .explanation-box h4 {
+        color: var(--bs-success);
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .explanation-box ol {
+        margin-left: 20px;
+    }
+
+    .usage-section {
+        margin: 20px 0;
+    }
+
+    .visual-section {
+        margin: 20px 0;
+    }
+
+    .key-points {
+        margin: 30px 0;
+        padding: 20px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 5px;
+    }
+
+    .key-points h3 {
+        color: var(--bs-indigo);
+        margin-top: 0;
+    }
+
+    .key-points ul {
+        margin-left: 20px;
     }
 
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
 
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
+        text-decoration: none;
     }
 
     .btn-primary {
         background-color: var(--bs-primary);
         border-color: var(--bs-primary);
+        color: white;
     }
 
     .btn-outline-primary {
         color: var(--bs-primary);
         border-color: var(--bs-primary);
+        background-color: transparent;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: var(--bs-primary);
+        color: white;
+    }
+
+    [data-bs-theme="dark"] .beginner-note {
+        background-color: rgba(13, 110, 253, 0.15);
+        border-color: var(--dark-primary);
+    }
+
+    [data-bs-theme="dark"] .beginner-note-icon {
+        background-color: var(--dark-primary);
+    }
+
+    [data-bs-theme="dark"] .beginner-note-content h4 {
+        color: var(--dark-primary);
+    }
+
+    [data-bs-theme="dark"] .intro-section {
+        background-color: rgba(108, 117, 125, 0.15);
+    }
+
+    [data-bs-theme="dark"] .example-item {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    [data-bs-theme="dark"] .explanation-box {
+        background-color: rgba(40, 167, 69, 0.15);
+    }
+
+    [data-bs-theme="dark"] .key-points {
+        background-color: rgba(111, 66, 193, 0.15);
+    }
+
+    [data-bs-theme="dark"] .beginner-tip {
+        background-color: rgba(255, 193, 7, 0.15);
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightAll();
+        }
+    });
+</script>
+</body>

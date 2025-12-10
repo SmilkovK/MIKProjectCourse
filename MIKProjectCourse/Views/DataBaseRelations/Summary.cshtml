@@ -1,0 +1,859 @@
+﻿@{
+    ViewData["Title"] = "Database Relationships - Complete Chapter Summary";
+}
+
+<div class="container">
+    <h1 class="mb-4">Complete Database Relationships Chapter Summary</h1>
+    <p class="lead">You've completed the entire Database Relationships chapter! Let's review all the concepts and test your understanding with 15 quiz questions.</p>
+
+    <div class="summary-table">
+        <h2>All Relationship Concepts at a Glance</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Relationship Type</th>
+                        <th>Key Idea</th>
+                        <th>Real-World Analogy</th>
+                        <th>C# Implementation</th>
+                        <th>When to Use</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>One-to-One</strong></td>
+                        <td>One thing connects to exactly one other thing</td>
+                        <td>Person ↔ Passport</td>
+                        <td>Navigation properties in both classes</td>
+                        <td>When data is split for organization or security</td>
+                    </tr>
+                    <tr>
+                        <td><strong>One-to-Many</strong></td>
+                        <td>One thing connects to many other things</td>
+                        <td>Department → Employees</td>
+                        <td>Parent has List<T>, child has foreign key</td>
+                        <td>Most common - for hierarchical data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Many-to-Many (Basic)</strong></td>
+                        <td>Many things connect to many other things</td>
+                        <td>Students ↔ Courses</td>
+                        <td>Both classes have List<T> properties</td>
+                        <td>When connections go both ways</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Many-to-Many (Join Entity)</strong></td>
+                        <td>Many-to-Many with extra data about the relationship</td>
+                        <td>Student enrollments with grades</td>
+                        <td>Dedicated join entity class</td>
+                        <td>When you need to store relationship metadata</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="detailed-summary">
+        <h2>Detailed Concept Review</h2>
+
+        <div class="concept-card">
+            <h3>1. One-to-One Relationship</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>What It Is:</h4>
+                    <ul>
+                        <li>One record connects to exactly one other record</li>
+                        <li>Both sides are unique</li>
+                        <li>Often used for splitting sensitive data</li>
+                        <li>Example: User ↔ Profile, Person ↔ Passport</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>C# Implementation:</h4>
+                    <pre><code class="language-csharp">public class User
+{
+    public int Id { get; set; }
+    public Profile Profile { get; set; }  // Navigation property
+}
+
+public class Profile
+{
+    public int Id { get; set; }
+    public int UserId { get; set; }      // Foreign key
+    public User User { get; set; }       // Navigation property
+}</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h3>2. One-to-Many Relationship</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>What It Is:</h4>
+                    <ul>
+                        <li>One "parent" connects to many "children"</li>
+                        <li>Most common relationship type</li>
+                        <li>Creates hierarchical data structures</li>
+                        <li>Example: Department → Employees, Blog → Comments</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>C# Implementation:</h4>
+                    <pre><code class="language-csharp">public class Department
+{
+    public int Id { get; set; }
+    public List<Employee> Employees { get; set; }  // Collection
+}
+
+public class Employee
+{
+    public int Id { get; set; }
+    public int DepartmentId { get; set; }          // Foreign key
+    public Department Department { get; set; }     // Navigation
+}</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h3>3. Many-to-Many Relationship (Basic)</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>What It Is:</h4>
+                    <ul>
+                        <li>Many records connect to many other records</li>
+                        <li>Both sides can have multiple connections</li>
+                        <li>Requires a join table behind the scenes</li>
+                        <li>Example: Students ↔ Courses, Products ↔ Categories</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>C# Implementation:</h4>
+                    <pre><code class="language-csharp">public class Student
+{
+    public int Id { get; set; }
+    public List<Course> Courses { get; set; }  // Collection
+}
+
+public class Course
+{
+    public int Id { get; set; }
+    public List<Student> Students { get; set; } // Collection
+}</code></pre>
+                    <p><strong>EF Core automatically creates the join table!</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h3>4. Many-to-Many with Join Entity</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>What It Is:</h4>
+                    <ul>
+                        <li>Advanced Many-to-Many with extra relationship data</li>
+                        <li>You create a dedicated join entity class</li>
+                        <li>Can store metadata about the relationship</li>
+                        <li>Example: Student enrollments with grades, dates</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>C# Implementation:</h4>
+                    <pre><code class="language-csharp">public class StudentCourse
+{
+    public int StudentId { get; set; }     // Composite key
+    public int CourseId { get; set; }      // Composite key
+    
+    // Extra relationship data
+    public string Grade { get; set; }
+    public DateTime EnrollmentDate { get; set; }
+    
+    // Navigation properties
+    public Student Student { get; set; }
+    public Course Course { get; set; }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h3>5. Key Differences Between Relationship Types</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>One-to-One vs One-to-Many</h4>
+                    <ul>
+                        <li><strong>One-to-One:</strong> Single connection each way</li>
+                        <li><strong>One-to-Many:</strong> One parent, many children</li>
+                        <li>Think: Marriage vs Parent-Child</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Basic vs Join Entity Many-to-Many</h4>
+                    <ul>
+                        <li><strong>Basic:</strong> EF Core creates invisible join table</li>
+                        <li><strong>Join Entity:</strong> You control the join table</li>
+                        <li>Use Join Entity when you need relationship data</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Loading Related Data</h4>
+                    <ul>
+                        <li>Use <code>.Include()</code> for immediate loading</li>
+                        <li>Use <code>.ThenInclude()</code> for nested relationships</li>
+                        <li>EF Core handles SQL JOINs for you!</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h3>6. C# Code Examples Comparison</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Traditional SQL (Don't Write This!)</h4>
+                    <pre><code class="language-sql">-- Complex SQL with JOINs
+SELECT s.Name, d.Name AS Department
+FROM Employees e
+JOIN Departments d ON e.DepartmentId = d.Id
+WHERE e.Salary > 50000
+ORDER BY e.Name;</code></pre>
+                </div>
+                <div class="col-md-6">
+                    <h4>C# with Entity Framework (Write This!)</h4>
+                    <pre><code class="language-csharp">// Clean, readable C# code
+var highEarners = dbContext.Employees
+    .Include(e => e.Department)          // Auto JOIN
+    .Where(e => e.Salary > 50000)
+    .OrderBy(e => e.Name)
+    .ToList();</code></pre>
+                    <p><strong>Benefits:</strong> Type-safe, IntelliSense, compile-time checking</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="quiz-section">
+        <h2>15-Question Database Relationships Quiz</h2>
+        <p>Test your understanding of all database relationship concepts. Choose the best answer for each question.</p>
+
+        <div class="quiz-container" id="quizContainer">
+        </div>
+
+        <div class="quiz-results" id="quizResults" style="display: none;">
+            <h3>Your Results</h3>
+            <div class="progress" style="height: 30px;">
+                <div id="scoreBar" class="progress-bar" role="progressbar" style="width: 0%">0%</div>
+            </div>
+            <p id="scoreText" class="mt-3"></p>
+            <button class="btn btn-secondary mt-2" id="restartQuizBtn">Restart Quiz</button>
+        </div>
+
+        <button class="btn btn-primary btn-lg mt-4" id="startQuizBtn">Start Quiz</button>
+    </div>
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("ManyToManyWithJoin", "DataBaseRelations")" class="btn btn-outline-primary ajax-link">← Back to Many-to-Many with Join Entity</a>
+        <a href="@Url.Action("Info", "Exercises")" class="btn btn-primary ajax-link">Next Chapter: Exercises →</a>
+    </div>
+</div>
+
+<style>
+    .container {
+        max-width: 1200px;
+        padding: 30px;
+        background-color: var(--bs-body-bg);
+    }
+
+    h1, h2, h3, h4, h5 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        border-bottom: 3px solid var(--bs-primary);
+        padding-bottom: 15px;
+    }
+
+    .summary-table {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: var(--summary-table-bg, rgba(13, 110, 253, 0.05));
+        border-radius: 10px;
+        border: 1px solid var(--bs-border-color);
+    }
+
+    .detailed-summary {
+        margin: 40px 0;
+    }
+
+    .concept-card {
+        background-color: var(--concept-card-bg, white);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 4px var(--shadow-color, rgba(0,0,0,0.1));
+    }
+
+    .concept-card h3 {
+        color: var(--bs-primary);
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
+    }
+
+    .concept-card pre {
+        background-color: var(--code-bg);
+        padding: 15px;
+        border-radius: 5px;
+        margin: 15px 0;
+        border: 1px solid var(--bs-border-color);
+        font-size: 0.9rem;
+    }
+
+    .concept-card ul {
+        margin-left: 20px;
+    }
+
+    .quiz-section {
+        margin: 50px 0;
+        padding: 30px;
+        background-color: var(--quiz-section-bg, rgba(111, 66, 193, 0.05));
+        border-radius: 10px;
+        border: 1px solid var(--bs-border-color);
+    }
+
+    .quiz-container {
+        margin: 30px 0;
+    }
+
+    .quiz-question {
+        background-color: var(--quiz-question-bg, white);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        display: none;
+    }
+
+    .quiz-question.active {
+        display: block;
+        animation: fadeIn 0.5s;
+    }
+
+    .quiz-options {
+        margin: 20px 0;
+    }
+
+    .quiz-option {
+        display: block;
+        padding: 12px 15px;
+        margin: 8px 0;
+        border: 2px solid var(--bs-border-color);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s;
+        color: var(--bs-body-color);
+        background-color: var(--quiz-option-bg, transparent);
+    }
+
+    .quiz-option:hover {
+        background-color: var(--quiz-option-hover, rgba(13, 110, 253, 0.1));
+        border-color: var(--bs-primary);
+    }
+
+    .quiz-option.selected {
+        background-color: var(--quiz-option-selected, rgba(13, 110, 253, 0.2));
+        border-color: var(--bs-primary);
+    }
+
+    .quiz-option.correct {
+        background-color: var(--quiz-option-correct, rgba(40, 167, 69, 0.2));
+        border-color: var(--bs-success);
+    }
+
+    .quiz-option.incorrect {
+        background-color: var(--quiz-option-incorrect, rgba(220, 53, 69, 0.2));
+        border-color: var(--bs-danger);
+    }
+
+    .quiz-results {
+        background-color: var(--quiz-results-bg, white);
+        padding: 25px;
+        border-radius: 8px;
+        border: 1px solid var(--bs-border-color);
+        margin-top: 30px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
+    }
+
+    .btn {
+        padding: 12px 25px;
+        border-radius: 6px;
+        font-weight: 500;
+    }
+
+    .btn-primary {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+    }
+
+    .btn-outline-primary:hover {
+        background-color: var(--bs-primary);
+        color: white;
+    }
+
+    .progress {
+        background-color: var(--progress-bg, #e9ecef);
+    }
+
+    .progress-bar {
+        background-color: var(--bs-primary);
+    }
+
+    .alert-info {
+        background-color: var(--alert-info-bg, rgba(13, 202, 240, 0.1));
+        border-color: var(--alert-info-border, rgba(13, 202, 240, 0.3));
+        color: var(--alert-info-color, var(--bs-info));
+    }
+
+    @@keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    [data-bs-theme="dark"] {
+        --summary-table-bg: rgba(13, 110, 253, 0.1);
+        --concept-card-bg: rgba(255, 255, 255, 0.05);
+        --shadow-color: rgba(0, 0, 0, 0.3);
+        --quiz-section-bg: rgba(111, 66, 193, 0.1);
+        --quiz-question-bg: rgba(255, 255, 255, 0.05);
+        --quiz-results-bg: rgba(255, 255, 255, 0.05);
+        --quiz-option-bg: rgba(255, 255, 255, 0.03);
+        --quiz-option-hover: rgba(110, 168, 254, 0.2);
+        --quiz-option-selected: rgba(110, 168, 254, 0.3);
+        --quiz-option-correct: rgba(40, 167, 69, 0.3);
+        --quiz-option-incorrect: rgba(220, 53, 69, 0.3);
+        --progress-bg: rgba(255, 255, 255, 0.1);
+        --alert-info-bg: rgba(13, 202, 240, 0.2);
+        --alert-info-border: rgba(13, 202, 240, 0.4);
+        --alert-info-color: #6ea8fe;
+    }
+
+    [data-bs-theme="light"] {
+        --summary-table-bg: rgba(13, 110, 253, 0.05);
+        --concept-card-bg: white;
+        --shadow-color: rgba(0, 0, 0, 0.1);
+        --quiz-section-bg: rgba(111, 66, 193, 0.05);
+        --quiz-question-bg: white;
+        --quiz-results-bg: white;
+        --quiz-option-bg: transparent;
+        --quiz-option-hover: rgba(13, 110, 253, 0.1);
+        --quiz-option-selected: rgba(13, 110, 253, 0.2);
+        --quiz-option-correct: rgba(40, 167, 69, 0.2);
+        --quiz-option-incorrect: rgba(220, 53, 69, 0.2);
+        --progress-bg: #e9ecef;
+        --alert-info-bg: rgba(13, 202, 240, 0.1);
+        --alert-info-border: rgba(13, 202, 240, 0.3);
+        --alert-info-color: #0dcaf0;
+    }
+
+    [data-bs-theme="dark"] .language-csharp,
+    [data-bs-theme="dark"] .language-sql,
+    [data-bs-theme="dark"] .language-json {
+        background-color: #1e1e1e !important;
+        color: #d4d4d4 !important;
+    }
+
+    [data-bs-theme="light"] .language-csharp,
+    [data-bs-theme="light"] .language-sql,
+    [data-bs-theme="light"] .language-json {
+        background-color: #f6f8fa !important;
+        color: #24292e !important;
+    }
+
+    .table {
+        --bs-table-color: var(--bs-body-color);
+        --bs-table-bg: transparent;
+        --bs-table-border-color: var(--bs-border-color);
+    }
+
+    .table-striped>tbody>tr:nth-of-type(odd)>* {
+        --bs-table-accent-bg: var(--table-striped-bg);
+    }
+
+    [data-bs-theme="dark"] .table-striped>tbody>tr:nth-of-type(odd)>* {
+        --table-striped-bg: rgba(255, 255, 255, 0.05);
+    }
+
+    [data-bs-theme="light"] .table-striped>tbody>tr:nth-of-type(odd)>* {
+        --table-striped-bg: rgba(0, 0, 0, 0.02);
+    }
+</style>
+
+<script>
+    const quizQuestions = [
+        {
+            question: "1. Which relationship type is used when one record connects to exactly one other record?",
+            options: [
+                "A) One-to-Many",
+                "B) Many-to-Many",
+                "C) One-to-One",
+                "D) All-to-All"
+            ],
+            correct: 2,
+            explanation: "One-to-One relationships are used when each record in Table A connects to exactly one record in Table B, like User ↔ Profile."
+        },
+        {
+            question: "2. In a One-to-Many relationship between Department and Employees, where should the foreign key be placed?",
+            options: [
+                "A) In the Department class",
+                "B) In the Employee class",
+                "C) In both classes",
+                "D) No foreign key needed"
+            ],
+            correct: 1,
+            explanation: "In a One-to-Many relationship, the 'many' side (Employee) contains the foreign key (DepartmentId) that links back to the 'one' side (Department)."
+        },
+        {
+            question: "3. What is the main advantage of using Many-to-Many with Join Entity over basic Many-to-Many?",
+            options: [
+                "A) It's simpler to code",
+                "B) It requires less database space",
+                "C) You can store extra data about the relationship",
+                "D) It's faster to query"
+            ],
+            correct: 2,
+            explanation: "Many-to-Many with Join Entity allows you to store additional data about each relationship, like enrollment dates, grades, or status in a Student-Course relationship."
+        },
+        {
+            question: "4. In C# with Entity Framework, which method do you use to load related data along with the main entity?",
+            options: [
+                "A) .Load()",
+                "B) .Include()",
+                "C) .Join()",
+                "D) .With()"
+            ],
+            correct: 1,
+            explanation: "The .Include() method in Entity Framework is used to eagerly load related entities, so they're available when you query the main entity."
+        },
+        {
+            question: "5. Which real-world example represents a One-to-Many relationship?",
+            options: [
+                "A) Student ↔ Course",
+                "B) User ↔ Profile",
+                "C) Department → Employees",
+                "D) Product ↔ Category"
+            ],
+            correct: 2,
+            explanation: "Department → Employees is a classic One-to-Many relationship: one department can have many employees, but each employee works in only one department."
+        },
+        {
+            question: "6. In a Many-to-Many relationship between Students and Courses, how does EF Core handle the database structure?",
+            options: [
+                "A) Creates separate tables for each relationship",
+                "B) Uses a single combined table",
+                "C) Automatically creates a join table",
+                "D) Requires manual SQL table creation"
+            ],
+            correct: 2,
+            explanation: "Entity Framework Core automatically creates a join table (often named StudentCourse) to handle Many-to-Many relationships behind the scenes."
+        },
+        {
+            question: "7. When should you use a One-to-One relationship instead of putting all data in one table?",
+            options: [
+                "A) When you have too much data",
+                "B) When you need to split sensitive data",
+                "C) When the data is rarely accessed",
+                "D) All of the above"
+            ],
+            correct: 3,
+            explanation: "One-to-One relationships are often used to split data for organization, security, or performance reasons, such as separating sensitive profile data from basic user data."
+        },
+        {
+            question: "8. What is a composite key in the context of a Join Entity?",
+            options: [
+                "A) A key that is composed of multiple properties",
+                "B) A key that uses multiple data types",
+                "C) A key that changes over time",
+                "D) A key that is encrypted"
+            ],
+            correct: 0,
+            explanation: "A composite key combines multiple properties to create a unique identifier. In a Join Entity, StudentId + CourseId together form a composite primary key."
+        },
+        {
+            question: "9. Which C# code correctly represents a One-to-Many relationship?",
+            options: [
+                "A) public class Department { public List<Employee> Employees; }",
+                "B) public class Employee { public List<Department> Departments; }",
+                "C) public class Student { public List<Course> Courses; }",
+                "D) Both A and C"
+            ],
+            correct: 0,
+            explanation: "Option A shows the correct One-to-Many pattern: the 'one' side (Department) has a List of the 'many' side (Employees). Option C represents Many-to-Many."
+        },
+        {
+            question: "10. What is the purpose of the .ThenInclude() method in Entity Framework?",
+            options: [
+                "A) To include multiple main entities",
+                "B) To include nested related entities",
+                "C) To include computed properties",
+                "D) To include only specific columns"
+            ],
+            correct: 1,
+            explanation: ".ThenInclude() is used to include nested related entities, such as loading a Student with their Courses and then each Course's Instructor."
+        },
+        {
+            question: "11. Which scenario is best suited for a Many-to-Many with Join Entity?",
+            options: [
+                "A) Tracking which books are checked out by which library members",
+                "B) Storing user login credentials separately from profiles",
+                "C) Organizing products into categories",
+                "D) Linking students to courses with grades and enrollment dates"
+            ],
+            correct: 3,
+            explanation: "Many-to-Many with Join Entity is ideal when you need to store data about the relationship itself, like grades and dates in student-course enrollments."
+        },
+        {
+            question: "12. In Entity Framework, what happens if you don't use .Include() when querying related data?",
+            options: [
+                "A) The data loads automatically",
+                "B) You get a compiler error",
+                "C) Related data is not loaded (null)",
+                "D) The query fails"
+            ],
+            correct: 2,
+            explanation: "Without .Include(), related entities are not loaded with the main query. You'll need to load them separately or use lazy loading (if configured)."
+        },
+        {
+            question: "13. What is the main benefit of using Entity Framework for database relationships?",
+            options: [
+                "A) You have to write complex SQL",
+                "B) You work with C# objects instead of SQL",
+                "C) It only works with Microsoft SQL Server",
+                "D) It requires more database knowledge"
+            ],
+            correct: 1,
+            explanation: "Entity Framework's main benefit is letting you work with database relationships using C# objects and LINQ queries instead of writing complex SQL JOIN statements."
+        },
+        {
+            question: "14. Which relationship type would you use for a shopping cart system where one Order contains multiple Products?",
+            options: [
+                "A) One-to-One",
+                "B) One-to-Many with Join Entity",
+                "C) Basic Many-to-Many",
+                "D) Simple One-to-Many"
+            ],
+            correct: 1,
+            explanation: "Order-Product relationships typically need a Join Entity (OrderItem) to store quantity, price, and other details about each product in the order."
+        },
+        {
+            question: "15. Why are database relationships important in application development?",
+            options: [
+                "A) They make code more complex",
+                "B) They prevent data duplication and keep data organized",
+                "C) They only matter for large applications",
+                "D) They're required for all database operations"
+            ],
+            correct: 1,
+            explanation: "Database relationships prevent data duplication, maintain data integrity, organize related data together, and make applications more efficient and maintainable."
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let userAnswers = [];
+
+    function initializeRelationshipsSummaryPage() {
+        console.log("Initializing Database Relationships Summary page...");
+
+        const startQuizBtn = document.getElementById('startQuizBtn');
+        const restartQuizBtn = document.getElementById('restartQuizBtn');
+        
+        if (startQuizBtn) {
+            startQuizBtn.removeEventListener('click', startQuiz);
+            startQuizBtn.addEventListener('click', startQuiz);
+            console.log("Start Quiz button listener attached");
+        }
+        
+        if (restartQuizBtn) {
+            restartQuizBtn.removeEventListener('click', resetQuiz);
+            restartQuizBtn.addEventListener('click', resetQuiz);
+            console.log("Restart Quiz button listener attached");
+        }
+
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightAll();
+        }
+        
+        console.log("Database Relationships Summary page initialized");
+    }
+
+    function startQuiz() {
+        console.log("Starting quiz...");
+        document.getElementById('startQuizBtn').style.display = 'none';
+        document.getElementById('quizContainer').innerHTML = '';
+        document.getElementById('quizResults').style.display = 'none';
+        
+        currentQuestionIndex = 0;
+        score = 0;
+        userAnswers = [];
+        
+        loadQuestion(currentQuestionIndex);
+    }
+
+    function loadQuestion(index) {
+        const container = document.getElementById('quizContainer');
+        const question = quizQuestions[index];
+        
+        let html = `
+            <div class="quiz-question active">
+                <h4>${question.question}</h4>
+                <div class="quiz-options">
+        `;
+        
+        question.options.forEach((option, optionIndex) => {
+            html += `
+                <div class="quiz-option" onclick="window.selectAnswer(${optionIndex})" id="option${optionIndex}">
+                    ${option}
+                </div>
+            `;
+        });
+        
+        html += `
+                </div>
+                <div id="explanation${index}" class="mt-3" style="display: none;">
+                    <div class="alert alert-info">
+                        <strong>Explanation:</strong> ${question.explanation}
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <button class="btn btn-primary" onclick="window.handleNext()" id="nextBtn${index}" disabled>
+                        ${index === quizQuestions.length - 1 ? 'See Results' : 'Next Question'}
+                    </button>
+                    <span class="ms-3">Question ${index + 1} of ${quizQuestions.length}</span>
+                </div>
+            </div>
+        `;
+        
+        container.innerHTML = html;
+
+        window.selectAnswer = selectAnswer;
+        window.handleNext = handleNext;
+    }
+
+    function selectAnswer(index) {
+        for (let i = 0; i < 4; i++) {
+            const option = document.getElementById(`option${i}`);
+            if (option) {
+                option.classList.remove('selected');
+            }
+        }
+        
+        const option = document.getElementById(`option${index}`);
+        option.classList.add('selected');
+        
+        document.getElementById(`nextBtn${currentQuestionIndex}`).disabled = false;
+        
+        userAnswers[currentQuestionIndex] = index;
+    }
+
+    function handleNext() {
+        const question = quizQuestions[currentQuestionIndex];
+        const userAnswer = userAnswers[currentQuestionIndex];
+        
+        document.getElementById(`explanation${currentQuestionIndex}`).style.display = 'block';
+        
+        for (let i = 0; i < 4; i++) {
+            const option = document.getElementById(`option${i}`);
+            if (option) {
+                option.classList.remove('selected');
+                if (i === question.correct) {
+                    option.classList.add('correct');
+                } else if (i === userAnswer && i !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+                option.style.pointerEvents = 'none';
+            }
+        }
+        
+        if (userAnswer === question.correct) {
+            score++;
+        }
+        
+        document.getElementById(`nextBtn${currentQuestionIndex}`).disabled = true;
+        
+        setTimeout(() => {
+            currentQuestionIndex++;
+            
+            if (currentQuestionIndex < quizQuestions.length) {
+                loadQuestion(currentQuestionIndex);
+            } else {
+                showResults();
+            }
+        }, 2000);
+    }
+
+    function showResults() {
+        document.getElementById('quizContainer').innerHTML = '';
+        document.getElementById('quizResults').style.display = 'block';
+        
+        const percentage = Math.round((score / quizQuestions.length) * 100);
+        const scoreBar = document.getElementById('scoreBar');
+        scoreBar.style.width = `${percentage}%`;
+        scoreBar.textContent = `${percentage}%`;
+        
+        let message = '';
+        if (percentage >= 90) {
+            message = 'Excellent! You\'re a Database Relationships expert!';
+            scoreBar.className = 'progress-bar bg-success';
+        } else if (percentage >= 70) {
+            message = 'Great job! You have a solid understanding of Database Relationships.';
+            scoreBar.className = 'progress-bar bg-info';
+        } else if (percentage >= 50) {
+            message = 'Good effort! Review the concepts and try again.';
+            scoreBar.className = 'progress-bar bg-warning';
+        } else {
+            message = 'Keep learning! Review the chapter and try the quiz again.';
+            scoreBar.className = 'progress-bar bg-danger';
+        }
+        
+        document.getElementById('scoreText').innerHTML = `
+            <h4>${message}</h4>
+            <p>You scored ${score} out of ${quizQuestions.length} questions correctly.</p>
+            <p>Percentage: ${percentage}%</p>
+        `;
+    }
+
+    function resetQuiz() {
+        document.getElementById('quizResults').style.display = 'none';
+        document.getElementById('startQuizBtn').style.display = 'inline-block';
+    }
+
+    window.selectAnswer = selectAnswer;
+    window.handleNext = handleNext;
+    window.startQuiz = startQuiz;
+    window.resetQuiz = resetQuiz;
+    window.initializeRelationshipsSummaryPage = initializeRelationshipsSummaryPage;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeRelationshipsSummaryPage();
+    });
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeRelationshipsSummaryPage);
+    } else {
+        initializeRelationshipsSummaryPage();
+    }
+</script>

@@ -9,5 +9,6 @@ namespace MIKProjectCourse.Controllers
         public IActionResult OneToMany() => View();
         public IActionResult ManyToMany() => View();
         public IActionResult ManyToManyWithJoin() => View();
+        public IActionResult Summary() => View();
     }
 }

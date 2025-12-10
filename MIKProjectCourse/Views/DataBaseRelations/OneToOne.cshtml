@@ -2,40 +2,197 @@
     ViewData["Title"] = "One-to-One Relationship in C#";
 }
 
+<body data-topic="database-relations">
 <div class="container">
-    <h1>One-to-One Relationship in C#</h1>
-    <p>A One-to-One relationship means one record in Table A is related to exactly one record in Table B.</p>
+    <h1 class="text-center">One-to-One Relationship in C#</h1>
 
-    <h2>Example</h2>
-    <p>Consider a scenario where each <code>User</code> has exactly one <code>Profile</code>, and each <code>Profile</code> belongs to exactly one <code>User</code>.</p>
-
-    <div class="code-container">
-        <div class="code-header">C# Entity Classes</div>
-        <div class="code-content">
-            <pre><code class="language-csharp">
-public class User
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public Profile Profile { get; set; }
-}
-
-public class Profile
-{
-    public int Id { get; set; }
-    public string Bio { get; set; }
-    public int UserId { get; set; }
-    public User User { get; set; }
-}
-            </code></pre>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-user-check"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>First Relationship Type: One-to-One</h4>
+            <p><strong>Don't worry - this is the simplest relationship type!</strong> One-to-One is exactly what it sounds like: <strong>one thing connects to exactly one other thing</strong>.</p>
+            <p><strong>Focus on understanding:</strong></p>
+            <ul>
+                <li><strong>The concept:</strong> Each item has exactly one matching item</li>
+                <li><strong>Real-world examples:</strong> Things you already understand from everyday life</li>
+                <li><strong>C# implementation:</strong> How we represent this in code (it's simple!)</li>
+            </ul>
+            <p><strong>Remember:</strong> With Entity Framework, you work with <strong>C# objects</strong>, not complex database code!</p>
         </div>
     </div>
 
-    <p>EF Core automatically maps this relationship by convention using a foreign key in the <code>Profile</code> class (<code>UserId</code>).</p>
+    <div class="intro-section">
+        <p>A <strong>One-to-One relationship</strong> is the simplest type of database relationship. It means that one record in Table A is related to exactly one record in Table B, and vice versa.</p>
+        
+        <p><strong>Think of it like this:</strong> Just like a person has only one birth certificate, and that birth certificate belongs to only one person.</p>
+    </div>
+
+    <h2 class="text-center">Real-World Examples</h2>
+    
+    <div class="examples-section">
+        <div class="example-item">
+            <h4><i class="fas fa-passport"></i> Person ↔ Passport</h4>
+            <p>Each person has exactly one passport, and each passport belongs to exactly one person.</p>
+        </div>
+        
+        <div class="example-item">
+            <h4><i class="fas fa-user-circle"></i> User ↔ Profile</h4>
+            <p>Each user account has exactly one profile page, and each profile belongs to exactly one user.</p>
+        </div>
+        
+        <div class="example-item">
+            <h4><i class="fas fa-id-card"></i> Employee ↔ ID Card</h4>
+            <p>Each employee has exactly one ID card, and each ID card is assigned to exactly one employee.</p>
+        </div>
+        
+        <div class="example-item">
+            <h4><i class="fas fa-heart"></i> Person ↔ Heart</h4>
+            <p>Each person has exactly one heart, and each heart belongs to exactly one person.</p>
+        </div>
+    </div>
+
+    <h2 class="text-center">C# Implementation Example</h2>
+    
+    <div class="example-section">
+        <h3>Scenario: User and Profile</h3>
+        <p>Let's create a simple example where each <code>User</code> has exactly one <code>Profile</code>, and each <code>Profile</code> belongs to exactly one <code>User</code>.</p>
+        
+        <div class="code-container">
+            <div class="code-header">User.cs - The Main Entity</div>
+            <div class="code-content">
+<pre><code class="language-csharp">
+public class User
+{
+    public int Id { get; set; }            // Primary Key
+    public string Name { get; set; }
+    public string Email { get; set; }
+    
+    // Navigation Property - This is the relationship!
+    public Profile Profile { get; set; }   // Each User has ONE Profile
+}
+</code></pre>
+            </div>
+        </div>
+        
+        <div class="code-container">
+            <div class="code-header">Profile.cs - The Related Entity</div>
+            <div class="code-content">
+<pre><code class="language-csharp">
+public class Profile
+{
+    public int Id { get; set; }            // Primary Key
+    public string Bio { get; set; }
+    public string ProfilePicture { get; set; }
+    
+    // Foreign Key - Links back to User
+    public int UserId { get; set; }        // References User.Id
+    
+    // Navigation Property - This completes the relationship!
+    public User User { get; set; }         // Each Profile belongs to ONE User
+}
+</code></pre>
+            </div>
+        </div>
+        
+        <div class="explanation-box">
+            <h4>How This Works:</h4>
+            <ol>
+                <li><strong>User class</strong> has a <code>Profile</code> property (navigation property)</li>
+                <li><strong>Profile class</strong> has a <code>UserId</code> (foreign key) and a <code>User</code> property</li>
+                <li><strong>Entity Framework</strong> automatically understands this is a One-to-One relationship</li>
+                <li><strong>No extra configuration needed!</strong> EF Core figures it out from the code</li>
+            </ol>
+        </div>
+    </div>
+
+    <h2 class="text-center">How to Use It in Your Code</h2>
+    
+    <div class="usage-section">
+        <p>Once you have the relationship defined, using it in your C# code is very simple:</p>
+        
+        <div class="code-container">
+            <div class="code-header">Working with One-to-One Relationships in C#</div>
+            <div class="code-content">
+<pre><code class="language-csharp">
+// 1. Creating a new User with Profile
+var newUser = new User
+{
+    Name = "Alice Johnson",
+    Email = "alice@email.com",
+    Profile = new Profile        // Creating the related Profile
+    {
+        Bio = "Software Developer from New York",
+        ProfilePicture = "alice.jpg"
+    }
+};
+dbContext.Users.Add(newUser);
+dbContext.SaveChanges();         // Saves BOTH User AND Profile!
+
+// 2. Loading a User with their Profile
+var user = dbContext.Users
+    .Include(u => u.Profile)     // This loads the related Profile too
+    .First(u => u.Id == 1);
+
+// Now you can access both:
+Console.WriteLine($"User: {user.Name}");
+Console.WriteLine($"Bio: {user.Profile.Bio}");    // Works because Profile is loaded!
+
+// 3. Finding a Profile's User
+var profile = dbContext.Profiles
+    .Include(p => p.User)        // Load the related User
+    .First(p => p.Id == 1);
+
+Console.WriteLine($"Profile belongs to: {profile.User.Name}");
+</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center">Visual Representation</h2>
+    
+    <div class="visual-section">
+        <div class="code-container">
+            <div class="code-header">Database Table Structure (Created by EF Core)</div>
+            <div class="code-content">
+<pre>
+USERS Table:
+┌─────┬──────────────┬──────────────────┐
+│ Id  │     Name     │      Email       │
+├─────┼──────────────┼──────────────────┤
+│  1  │ Alice Johnson│ alice@email.com  │
+│  2  │ Bob Smith    │ bob@email.com    │
+└─────┴──────────────┴──────────────────┘
+
+PROFILES Table:
+┌─────┬──────────────────────────────┬──────────────────┬─────────┐
+│ Id  │             Bio              │ ProfilePicture   │ UserId  │
+├─────┼──────────────────────────────┼──────────────────┼─────────┤
+│ 101 │ Software Developer from NY   │ alice.jpg        │    1    │
+│ 102 │ Graphic Designer from LA     │ bob.jpg          │    2    │
+└─────┴──────────────────────────────┴──────────────────┴─────────┘
+
+📌 Each User has exactly ONE Profile (UserId in Profiles links back to Users.Id)
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-points">
+        <h3>Key Points to Remember</h3>
+        <ul>
+            <li><strong>One-to-One</strong> means exactly one record connects to exactly one other record</li>
+            <li>Use <strong>navigation properties</strong> in both classes to define the relationship</li>
+            <li>Include <strong>foreign key property</strong> (like <code>UserId</code>) in the dependent entity</li>
+            <li>Use <code>.Include()</code> to load related data when querying</li>
+            <li>Entity Framework handles all the database complexity for you!</li>
+        </ul>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Index", "DataBaseRelations")" class="btn btn-outline-primary ajax-link">← Overview</a>
-        <a href="@Url.Action("OneToMany", "DataBaseRelations")" class="btn btn-primary ajax-link">One-to-Many →</a>
+        <a href="@Url.Action("Index", "DataBaseRelations")" class="btn btn-outline-primary ajax-link">← Back to Relationships Overview</a>
+        <a href="@Url.Action("OneToMany", "DataBaseRelations")" class="btn btn-primary ajax-link">Next: One-to-Many Relationships →</a>
     </div>
 </div>
 
@@ -46,37 +203,134 @@ public class Profile
         background-color: var(--bs-body-bg);
     }
 
-    h1 {
+    h1, h2, h3, h4 {
         color: var(--bs-heading-color);
-        margin-bottom: 20px;
-    }
-
-    h2 {
-        color: var(--bs-heading-color);
-        margin-top: 25px;
         margin-bottom: 15px;
     }
 
-    p {
+    h1 {
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
+    }
+
+    h2 {
+        margin-top: 40px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+
+    h2.text-center {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    p, li {
         color: var(--bs-body-color);
         line-height: 1.6;
     }
 
+    .beginner-note {
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .beginner-note-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+
+    .beginner-note-content {
+        flex: 1;
+    }
+
+    .beginner-note-content h4 {
+        color: var(--bs-primary);
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .beginner-note-content p {
+        margin-bottom: 10px;
+        line-height: 1.6;
+    }
+
+    .beginner-note-content ul {
+        margin-left: 20px;
+        margin-bottom: 10px;
+    }
+
+    .beginner-note-content li {
+        margin-bottom: 5px;
+    }
+
+    .intro-section {
+        margin-bottom: 30px;
+        padding: 15px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border-radius: 5px;
+    }
+
+    .examples-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+    }
+
+    .example-item {
+        padding: 15px;
+        background-color: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        transition: transform 0.2s;
+    }
+
+    .example-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .example-item h4 {
+        color: var(--bs-primary);
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .example-section {
+        margin: 20px 0;
+    }
+
     .code-container {
-        margin: 25px 0;
+        margin: 15px 0;
         border: 1px solid var(--bs-border-color);
         border-radius: 5px;
         overflow: hidden;
-        background-color: var(--code-bg);
+        background-color: #1a1a1a;
     }
 
     .code-header {
-        background-color: var(--code-header-bg);
+        background-color: #2d2d2d;
         padding: 10px 15px;
         border-bottom: 1px solid var(--bs-border-color);
         font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         font-size: 0.9rem;
-        color: var(--bs-body-color);
+        color: #e0e0e0;
     }
 
     .code-content {
@@ -88,31 +342,126 @@ public class Profile
         margin: 0;
         white-space: pre-wrap;
         background-color: transparent;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        color: #e0e0e0;
     }
 
-    code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    .explanation-box {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 5px;
+    }
+
+    .explanation-box h4 {
+        color: var(--bs-success);
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .explanation-box ol {
+        margin-left: 20px;
+    }
+
+    .usage-section {
+        margin: 20px 0;
+    }
+
+    .visual-section {
+        margin: 20px 0;
+    }
+
+    .key-points {
+        margin: 30px 0;
+        padding: 20px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 5px;
+    }
+
+    .key-points h3 {
+        color: var(--bs-indigo);
+        margin-top: 0;
+    }
+
+    .key-points ul {
+        margin-left: 20px;
     }
 
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
 
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
+        text-decoration: none;
     }
 
     .btn-primary {
         background-color: var(--bs-primary);
         border-color: var(--bs-primary);
+        color: white;
     }
 
     .btn-outline-primary {
         color: var(--bs-primary);
         border-color: var(--bs-primary);
+        background-color: transparent;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: var(--bs-primary);
+        color: white;
+    }
+
+    [data-bs-theme="dark"] .beginner-note {
+        background-color: rgba(13, 110, 253, 0.15);
+        border-color: var(--dark-primary);
+    }
+
+    [data-bs-theme="dark"] .beginner-note-icon {
+        background-color: var(--dark-primary);
+    }
+
+    [data-bs-theme="dark"] .beginner-note-content h4 {
+        color: var(--dark-primary);
+    }
+
+    [data-bs-theme="dark"] .intro-section {
+        background-color: rgba(108, 117, 125, 0.15);
+    }
+
+    [data-bs-theme="dark"] .example-item {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    [data-bs-theme="dark"] .explanation-box {
+        background-color: rgba(40, 167, 69, 0.15);
+    }
+
+    [data-bs-theme="dark"] .key-points {
+        background-color: rgba(111, 66, 193, 0.15);
+    }
+
+    [data-bs-theme="dark"] .beginner-tip {
+        background-color: rgba(255, 193, 7, 0.15);
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightAll();
+        }
+    });
+</script>
+</body>

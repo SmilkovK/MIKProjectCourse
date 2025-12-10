@@ -2,109 +2,524 @@
     ViewData["Title"] = "Introduction to Database Relations in C#";
 }
 
+<body data-topic="database-relations">
 <div class="container">
-    <h1>📚 Introduction to Database Relations in C#</h1>
+    <h1 class="text-center">Introduction to Database Relations in C#</h1>
 
-    <p>In modern software development, it's crucial to understand how data entities are related to one another in a database. This chapter introduces the fundamental concepts of database relationships and how we can represent them in C# using <strong>Entity Framework Core</strong> (EF Core).</p>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-handshake"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Welcome to Database Relationships!</h4>
+            <p><strong>Don't worry if this sounds complex at first!</strong> Database relationships are just ways to <strong>connect different pieces of data</strong> in your application.</p>
+            <p>Think of it like this: In real life, people have relationships (friends, family, coworkers). In databases, data has relationships too!</p>
+            <p><strong>Focus on understanding:</strong></p>
+            <ul>
+                <li><strong>The concept:</strong> How different types of data connect to each other</li>
+                <li><strong>The why:</strong> Why we need relationships instead of putting everything in one big table</li>
+                <li><strong>The basics:</strong> The 3 main types of relationships (we'll explain them simply!)</li>
+            </ul>
+            <p><strong>Remember:</strong> With C# and Entity Framework, you work with <strong>C# objects</strong> that automatically handle these relationships for you!</p>
+        </div>
+    </div>
 
-    <hr />
+    <!-- IMPORTANT NOTE ABOUT CODE SECTIONS -->
+    <div class="code-section-note">
+        <div class="code-section-note-icon">
+            <i class="fas fa-code"></i>
+        </div>
+        <div class="code-section-note-content">
+            <h4>Note About Code Examples</h4>
+            <p><strong>Each relationship type has a "How to Use It in Code" section.</strong> These sections show practical C# code examples.</p>
+            <p><strong>For this course:</strong> Understanding the <strong>concepts</strong> is the main requirement. The code examples are <strong>bonus material</strong> to help you see how these relationships work in practice.</p>
+            <p><strong>Don't stress about memorizing the code!</strong> Focus on understanding:</p>
+            <ul>
+                <li>When to use each type of relationship</li>
+                <li>How the relationships work conceptually</li>
+                <li>Why we need different relationship types</li>
+            </ul>
+            <p>The code is there to show you <strong>how it looks in practice</strong>, but you won't be tested on writing it from memory!</p>
+        </div>
+    </div>
+    <!-- END CODE SECTION NOTE -->
+    
+    <div class="intro-section">
+        <p>Now that you understand what databases are and how they work, it's time to learn about <strong>database relationships</strong>. In modern software development, it's crucial to understand how different pieces of data connect to each other.</p>
+        
+        <p>Think of it this way: In a school system, students are connected to courses, teachers are connected to students, and grades are connected to both. These connections are called <strong>relationships</strong>.</p>
+    </div>
 
-    <h2>🔍 What Are Database Relationships?</h2>
+    <h2 class="text-center">What Are Database Relationships?</h2>
+    
+    <div class="explanation-section">
+        <p>In a relational database, relationships between tables define how data is connected. Understanding these relationships helps you structure your database in a logical and efficient way.</p>
+        
+        <p><strong>Simple analogy:</strong> Think of a family tree:</p>
+        <ul>
+            <li><strong>One parent</strong> can have <strong>many children</strong> (One-to-Many)</li>
+            <li><strong>One person</strong> has <strong>one birth certificate</strong> (One-to-One)</li>
+            <li><strong>Students</strong> can attend <strong>many courses</strong>, and <strong>courses</strong> can have <strong>many students</strong> (Many-to-Many)</li>
+        </ul>
+    </div>
 
-    <p>In a relational database, relationships between tables help define how data is connected. Understanding these relationships is vital for structuring databases in an efficient and logical way. In C#, EF Core allows us to define these relationships in our code and map them to the underlying database.</p>
+    <h2 class="text-center">Why Are Database Relationships Important?</h2>
+    
+    <div class="importance-section">
+        <p>In real-world applications, data is rarely stored in a single table. Instead, it's organized into multiple tables that connect to each other. Here's why relationships matter:</p>
+        
+        <div class="importance-point">
+            <h4>1. Prevents Data Duplication</h4>
+            <p>Instead of repeating student information in every course they take, we store it once and connect it.</p>
+        </div>
+        
+        <div class="importance-point">
+            <h4>2. Keeps Data Organized</h4>
+            <p>Related data stays together, making it easier to find and manage.</p>
+        </div>
+        
+        <div class="importance-point">
+            <h4>3. Makes Updates Easy</h4>
+            <p>Change a student's name in one place, and it updates everywhere.</p>
+        </div>
+        
+        <div class="importance-point">
+            <h4>4. Enforces Data Rules</h4>
+            <p>Relationships help prevent errors, like enrolling a student in a non-existent course.</p>
+        </div>
+    </div>
 
-    <p>The three most common types of relationships are:</p>
+    <h2 class="text-center">The 3 Main Types of Relationships</h2>
+    
+    <div class="relationships-types">
+        <div class="relationship-type">
+            <h3>1. One-to-One Relationship</h3>
+            <p><strong>Simple explanation:</strong> One thing connects to exactly one other thing.</p>
+            <p><strong>Real-world example:</strong> A person has one passport, and that passport belongs to only one person.</p>
+            <p><strong>Database example:</strong> User → UserProfile (each user has one profile, each profile belongs to one user)</p>
+        </div>
+        
+        <div class="relationship-type">
+            <h3>2. One-to-Many Relationship</h3>
+            <p><strong>Simple explanation:</strong> One thing connects to many other things.</p>
+            <p><strong>Real-world example:</strong> A mother has many children, but each child has one mother.</p>
+            <p><strong>Database example:</strong> Department → Employees (one department has many employees, each employee works in one department)</p>
+        </div>
+        
+        <div class="relationship-type">
+            <h3>3. Many-to-Many Relationship</h3>
+            <p><strong>Simple explanation:</strong> Many things connect to many other things.</p>
+            <p><strong>Real-world example:</strong> Students and courses (students take many courses, courses have many students)</p>
+            <p><strong>Database example:</strong> Students ↔ Courses (requires a special "join table" to connect them)</p>
+        </div>
+    </div>
 
-    <ul>
-        <li><strong>One-to-One</strong>: One record in Table A is related to one record in Table B.</li>
-        <li><strong>One-to-Many</strong>: One record in Table A is related to multiple records in Table B.</li>
-        <li><strong>Many-to-Many</strong>: Records in Table A can be related to many in Table B, and vice versa.</li>
-    </ul>
+    <h2 class="text-center">How C# Makes This Easy</h2>
+    
+    <div class="csharp-advantage-section">
+        <p>The best part about learning database relationships with C# is that <strong>you don't need to write complex database code</strong>! Entity Framework Core (EF Core) handles the relationships for you.</p>
+        
+        <div class="code-container">
+            <div class="code-header">Traditional Database Way (Not what you'll do!)</div>
+            <div class="code-content">
+<pre>
+-- Complex SQL with JOINs
+SELECT s.Name, c.CourseName 
+FROM Students s
+JOIN Enrollment e ON s.StudentID = e.StudentID
+JOIN Courses c ON e.CourseID = c.CourseID
+WHERE s.StudentID = 101;
+</pre>
+            </div>
+        </div>
+        
+        <div class="code-container">
+            <div class="code-header">C# Way with Entity Framework (What you'll actually write!)</div>
+            <div class="code-content">
+<pre>
+// Simple C# code - EF Core handles the relationships!
+var student = dbContext.Students
+    .Include(s => s.Courses)  // Automatically loads related courses
+    .First(s => s.Id == 101);
 
-    <hr />
+// Now you can access student.Name and student.Courses easily!
+</pre>
+            </div>
+        </div>
+        
+        <p><strong>Notice the difference?</strong> With C#, you work with <strong>objects and properties</strong>, not complex SQL joins. Entity Framework does the hard work for you!</p>
+    </div>
 
-    <h2>🧐 Why Are Database Relationships Important?</h2>
+    <h2 class="text-center">What You'll Learn in This Chapter</h2>
+    
+    <div class="learning-section">
+        <p>In this chapter, we'll explore each type of relationship in detail:</p>
+        
+        <ol>
+            <li><strong>One-to-One Relationships:</strong> How to connect two tables where each record connects to exactly one other record</li>
+            <li><strong>One-to-Many Relationships:</strong> The most common relationship type - how one record connects to many others</li>
+            <li><strong>Many-to-Many Relationships:</strong> How to handle complex connections between tables</li>
+            <li><strong>Practical Examples:</strong> Real code examples you can understand and use</li>
+        </ol>
+        
+        <p>Each lesson will include simple C# code examples that show how to create and use these relationships in your applications.</p>
+    </div>
 
-    <p>In real-world applications, data is rarely stored in a single table. Instead, it's organized into multiple tables that are connected by relationships. By defining these relationships in code, you ensure that:</p>
+    <div class="beginner-tip">
+        <h3>Learning Strategy for This Chapter</h3>
+        <p><strong>Focus on the concepts first, code second!</strong> Here's a suggested approach:</p>
+        <ol>
+            <li><strong>Read through</strong> each relationship type to understand the concept</li>
+            <li><strong>Look at the code examples</strong> to see how it works in practice</li>
+            <li><strong>Don't worry about memorizing</strong> the exact syntax</li>
+            <li><strong>Focus on understanding</strong> when to use each relationship type</li>
+            <li><strong>Remember:</strong> The code is there to help you visualize, not to memorize!</li>
+        </ol>
+    </div>
 
-    <ul>
-        <li><strong>Data Integrity:</strong> Relationships help enforce rules about how data should relate to each other, preventing errors and ensuring consistency.</li>
-        <li><strong>Efficient Queries:</strong> Understanding relationships allows for optimized queries when retrieving data from multiple tables.</li>
-        <li><strong>Maintainability:</strong> A well-structured database is easier to maintain and scale as your application grows.</li>
-    </ul>
-
-    <hr />
-
-    <h2>🔗 Types of Database Relationships</h2>
-
-    <p>Now that we understand the importance of relationships, let's explore the three main types of relationships:</p>
-
-    <h3>1. One-to-One Relationship</h3>
-
-    <p>In a <strong>One-to-One</strong> relationship, one record in Table A is associated with only one record in Table B. For example, a <code>User</code> has one <code>Profile</code>, and a <code>Profile</code> belongs to exactly one <code>User</code>.</p>
-
-    <h3>2. One-to-Many Relationship</h3>
-
-    <p>In a <strong>One-to-Many</strong> relationship, one record in Table A is associated with multiple records in Table B. For example, a <code>Course</code> can have many <code>Students</code>, but each <code>Student</code> belongs to only one <code>Course</code>.</p>
-
-    <h3>3. Many-to-Many Relationship</h3>
-
-    <p>In a <strong>Many-to-Many</strong> relationship, records in Table A can be associated with many records in Table B, and vice versa. For example, a <code>Student</code> can be enrolled in multiple <code>Courses</code>, and a <code>Course</code> can have many <code>Students</code>.</p>
-
-    <hr />
-
-    <h2>🛠 How Do We Implement These Relationships in C#?</h2>
-
-    <p>In Entity Framework Core (EF Core), we can implement these relationships using navigation properties, foreign keys, and models. EF Core handles much of the complexity for us, automatically creating the necessary relationships in the database when we use migrations.</p>
-
-    <p>Throughout this chapter, you will learn how to define relationships in C# models and how to use EF Core to interact with the database. You'll start by learning about the One-to-One relationship, followed by One-to-Many and Many-to-Many relationships.</p>
-
-    <hr />
-
-    <h2>🔄 Next Steps</h2>
-
-    <p>Let's dive into the details of the first relationship type — <strong>One-to-One</strong>. Click the link below to begin!</p>
-
-    <p><a href="@Url.Action("OneToOne", "DataBaseRelations")" class="btn btn-primary ajax-link">Start Learning One-to-One Relationships</a></p>
+    <div class="navigation-buttons">
+        <a href="@Url.Action("Summary", "Database")" class="btn btn-outline-primary ajax-link">← Database Chapter Summary</a>
+        <a href="@Url.Action("OneToOne", "DataBaseRelations")" class="btn btn-primary ajax-link">Start Learning: One-to-One Relationships →</a>
+    </div>
 </div>
 
 <style>
     .container {
         max-width: 800px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
     }
 
-    h1, h2, h3 {
-        font-weight: bold;
-        color: #333;
+    h1, h2, h3, h4 {
+        color: var(--bs-heading-color);
+        margin-bottom: 15px;
     }
 
-    . container ul {
-        list-style-type: none;
-        padding-left: 0;
+    h1 {
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
     }
 
-    hr {
-        border-top: 1px solid #ddd;
+    h2 {
+        margin-top: 40px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+
+    h2.text-center {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    p, li {
+        color: var(--bs-body-color);
+        line-height: 1.6;
+    }
+
+    .beginner-note {
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 2px solid var(--bs-indigo);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .beginner-note-icon {
+        background-color: var(--bs-indigo);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+
+    .beginner-note-content {
+        flex: 1;
+    }
+
+    .beginner-note-content h4 {
+        color: var(--bs-indigo);
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .beginner-note-content p {
+        margin-bottom: 10px;
+        line-height: 1.6;
+    }
+
+    .beginner-note-content ul {
+        margin-left: 20px;
+        margin-bottom: 10px;
+    }
+
+    .beginner-note-content li {
+        margin-bottom: 5px;
+    }
+
+    /* CODE SECTION NOTE STYLES */
+    .code-section-note {
+        background-color: rgba(13, 202, 240, 0.1);
+        border: 2px solid var(--bs-info);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .code-section-note-icon {
+        background-color: var(--bs-info);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+
+    .code-section-note-content {
+        flex: 1;
+    }
+
+    .code-section-note-content h4 {
+        color: var(--bs-info);
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .code-section-note-content p {
+        margin-bottom: 10px;
+        line-height: 1.6;
+    }
+
+    .code-section-note-content ul {
+        margin-left: 20px;
+        margin-bottom: 10px;
+    }
+
+    .code-section-note-content li {
+        margin-bottom: 5px;
+    }
+    /* END CODE SECTION NOTE STYLES */
+
+    .intro-section {
+        margin-bottom: 30px;
+        padding: 15px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border-radius: 5px;
+    }
+
+    .explanation-section {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: rgba(0, 123, 255, 0.05);
+        border-radius: 5px;
+    }
+
+    .explanation-section ul {
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .importance-section {
+        margin: 20px 0;
+    }
+
+    .importance-point {
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border-left: 4px solid var(--bs-success);
+        border-radius: 4px;
+    }
+
+    .importance-point h4 {
+        color: var(--bs-success);
+        margin-top: 0;
+    }
+
+    .relationships-types {
+        margin: 20px 0;
+    }
+
+    .relationship-type {
+        margin-bottom: 25px;
+        padding: 20px;
+        background-color: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+    }
+
+    .relationship-type h3 {
+        color: var(--bs-primary);
+        margin-top: 0;
+        border-bottom: 1px solid var(--bs-border-color);
+        padding-bottom: 8px;
+    }
+
+    .csharp-advantage-section {
+        margin: 30px 0;
+        padding: 20px;
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid var(--bs-warning);
+        border-radius: 5px;
+    }
+
+    .code-container {
+        margin: 15px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        overflow: hidden;
+        background-color: #1a1a1a;
+    }
+
+    .code-header {
+        background-color: #2d2d2d;
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-size: 0.9rem;
+        color: #e0e0e0;
+    }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+    }
+
+    pre {
+        margin: 0;
+        white-space: pre-wrap;
+        background-color: transparent;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        color: #e0e0e0;
+    }
+
+    .learning-section {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border-radius: 5px;
+    }
+
+    .learning-section ol {
+        margin-left: 20px;
+        margin-top: 10px;
+    }
+
+    .learning-section li {
+        margin-bottom: 10px;
+    }
+
+    .beginner-tip {
+        margin: 30px 0;
+        padding: 20px;
+        background-color: rgba(13, 202, 240, 0.1);
+        border: 1px solid var(--bs-info);
+        border-radius: 5px;
+    }
+
+    .beginner-tip h3 {
+        color: var(--bs-info);
+        margin-top: 0;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
+    }
+
+    .btn {
+        padding: 12px 25px;
+        border-radius: 6px;
+        font-weight: 500;
+        text-decoration: none;
     }
 
     .btn-primary {
-        background-color: #007bff;
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
         color: white;
-        text-decoration: none;
-        padding: 10px 20px;
-        border-radius: 5px;
     }
 
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
+    .btn-outline-primary {
+        color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        background-color: transparent;
+    }
 
-    pre code {
-        background-color: #f8f9fa;
-        border: 1px solid #ddd;
-        padding: 10px;
-        border-radius: 5px;
-        display: block;
-        margin-bottom: 20px;
+    .btn-outline-primary:hover {
+        background-color: var(--bs-primary);
+        color: white;
+    }
+
+    [data-bs-theme="dark"] .beginner-note {
+        background-color: rgba(111, 66, 193, 0.15);
+        border-color: #6f42c1;
+    }
+
+    [data-bs-theme="dark"] .beginner-note-icon {
+        background-color: #6f42c1;
+    }
+
+    [data-bs-theme="dark"] .beginner-note-content h4 {
+        color: #bb86fc;
+    }
+
+    [data-bs-theme="dark"] .code-section-note {
+        background-color: rgba(13, 202, 240, 0.15);
+        border-color: #0dcaf0;
+    }
+
+    [data-bs-theme="dark"] .code-section-note-icon {
+        background-color: #0dcaf0;
+    }
+
+    [data-bs-theme="dark"] .code-section-note-content h4 {
+        color: #0dcaf0;
+    }
+
+    [data-bs-theme="dark"] .explanation-section {
+        background-color: rgba(13, 110, 253, 0.1);
+    }
+
+    [data-bs-theme="dark"] .importance-point {
+        background-color: rgba(40, 167, 69, 0.15);
+    }
+
+    [data-bs-theme="dark"] .csharp-advantage-section {
+        background-color: rgba(255, 193, 7, 0.15);
+    }
+
+    [data-bs-theme="dark"] .learning-section {
+        background-color: rgba(108, 117, 125, 0.15);
+    }
+
+    [data-bs-theme="dark"] .beginner-tip {
+        background-color: rgba(13, 202, 240, 0.15);
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightAll();
+        }
+    });
+</script>
+</body>

@@ -2,40 +2,228 @@
     ViewData["Title"] = "One-to-Many Relationship in C#";
 }
 
+<body data-topic="database-relations">
 <div class="container">
-    <h1>One-to-Many Relationship in C#</h1>
-    <p>A One-to-Many relationship means one record in Table A is related to multiple records in Table B.</p>
+    <h1 class="text-center">One-to-Many Relationship in C#</h1>
 
-    <h2>Example</h2>
-    <p>In this example, a <code>Course</code> can have many <code>Students</code>, but each <code>Student</code> belongs to only one <code>Course</code>.</p>
-
-    <div class="code-container">
-        <div class="code-header">C# Entity Classes</div>
-        <div class="code-content">
-            <pre><code class="language-csharp">
-public class Course
-{
-    public int Id { get; set; }
-    public string Title { get; set; }
-    public List&lt;Student&gt; Students { get; set; }
-}
-
-public class Student
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public int CourseId { get; set; }
-    public Course Course { get; set; }
-}
-            </code></pre>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-sitemap"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Second Relationship Type: One-to-Many</h4>
+            <p><strong>This is the most common relationship type!</strong> One-to-Many means <strong>one thing connects to many other things</strong>.</p>
+            <p><strong>Focus on understanding:</strong></p>
+            <ul>
+                <li><strong>The concept:</strong> One "parent" item connects to many "child" items</li>
+                <li><strong>Real-world examples:</strong> Everyday situations where one thing has multiple related things</li>
+                <li><strong>C# implementation:</strong> How we represent this with Lists and navigation properties</li>
+            </ul>
+            <p><strong>Remember:</strong> This relationship type is used everywhere in real applications!</p>
         </div>
     </div>
 
-    <p>Here, <code>CourseId</code> is a foreign key in the <code>Student</code> class that links to the <code>Course</code> entity.</p>
+    <div class="intro-section">
+        <p>A <strong>One-to-Many relationship</strong> is the most common type of database relationship. It means that one record in Table A can be related to multiple records in Table B, but each record in Table B is related to only one record in Table A.</p>
+        
+        <p><strong>Think of it like this:</strong> Just like a mother can have many children, but each child has only one biological mother.</p>
+    </div>
+
+    <h2 class="text-center">Real-World Examples</h2>
+    
+    <div class="examples-section">
+        <div class="example-item">
+            <h4><i class="fas fa-building"></i> Department → Employees</h4>
+            <p>One department can have many employees, but each employee works in only one department.</p>
+        </div>
+        
+        <div class="example-item">
+            <h4><i class="fas fa-book"></i> Author → Books</h4>
+            <p>One author can write many books, but each book is written by only one author.</p>
+        </div>
+        
+        <div class="example-item">
+            <h4><i class="fas fa-comments"></i> Blog Post → Comments</h4>
+            <p>One blog post can have many comments, but each comment belongs to only one blog post.</p>
+        </div>
+        
+        <div class="example-item">
+            <h4><i class="fas fa-shopping-cart"></i> Order → Order Items</h4>
+            <p>One order can contain many items, but each item belongs to only one order.</p>
+        </div>
+    </div>
+
+    <h2 class="text-center">C# Implementation Example</h2>
+    
+    <div class="example-section">
+        <h3>Scenario: Department and Employees</h3>
+        <p>Let's create a practical example where a <code>Department</code> can have many <code>Employee</code> records, but each <code>Employee</code> works in only one <code>Department</code>.</p>
+        
+        <div class="code-container">
+            <div class="code-header">Department.cs - The "One" Side</div>
+            <div class="code-content">
+<pre><code class="language-csharp">
+public class Department
+{
+    public int Id { get; set; }              // Primary Key
+    public string Name { get; set; }
+    public string Location { get; set; }
+    
+    // Navigation Property - The "Many" side
+    // This is a LIST because one Department has MANY Employees
+    public List<Employee> Employees { get; set; } = new();
+}
+</code></pre>
+            </div>
+        </div>
+        
+        <div class="code-container">
+            <div class="code-header">Employee.cs - The "Many" Side</div>
+            <div class="code-content">
+<pre><code class="language-csharp">
+public class Employee
+{
+    public int Id { get; set; }              // Primary Key
+    public string Name { get; set; }
+    public string Position { get; set; }
+    public decimal Salary { get; set; }
+    
+    // Foreign Key - Links back to Department
+    public int DepartmentId { get; set; }    // References Department.Id
+    
+    // Navigation Property - Links to the "One" side
+    public Department Department { get; set; }
+}
+</code></pre>
+            </div>
+        </div>
+        
+        <div class="explanation-box">
+            <h4>How This Works:</h4>
+            <ol>
+                <li><strong>Department class</strong> has a <code>List&lt;Employee&gt;</code> property to store multiple employees</li>
+                <li><strong>Employee class</strong> has a <code>DepartmentId</code> (foreign key) and a <code>Department</code> property</li>
+                <li>The <strong>foreign key</strong> (<code>DepartmentId</code>) creates the link in the database</li>
+                <li>Entity Framework automatically manages this relationship for you</li>
+            </ol>
+        </div>
+    </div>
+
+    <h2 class="text-center">How to Use It in Your Code</h2>
+    
+    <div class="usage-section">
+        <p>Working with One-to-Many relationships in C# is straightforward and intuitive:</p>
+        
+        <div class="code-container">
+            <div class="code-header">Working with One-to-Many Relationships in C#</div>
+            <div class="code-content">
+<pre><code class="language-csharp">
+// 1. Creating a Department with Employees
+var itDepartment = new Department
+{
+    Name = "IT Department",
+    Location = "Floor 3",
+    Employees = new List<Employee>      // Creating multiple employees
+    {
+        new Employee { Name = "Alice", Position = "Developer", Salary = 60000 },
+        new Employee { Name = "Bob", Position = "Designer", Salary = 55000 },
+        new Employee { Name = "Charlie", Position = "Manager", Salary = 75000 }
+    }
+};
+dbContext.Departments.Add(itDepartment);
+dbContext.SaveChanges();                 // Saves Department AND all Employees!
+
+// 2. Loading a Department with its Employees
+var department = dbContext.Departments
+    .Include(d => d.Employees)          // This loads ALL related employees
+    .First(d => d.Id == 1);
+
+// Now you can work with the department and its employees
+Console.WriteLine($"Department: {department.Name}");
+Console.WriteLine($"Number of employees: {department.Employees.Count}");
+foreach (var emp in department.Employees)
+{
+    Console.WriteLine($"- {emp.Name}: {emp.Position}");
+}
+
+// 3. Adding a new Employee to an existing Department
+var newEmployee = new Employee
+{
+    Name = "Diana",
+    Position = "Analyst",
+    Salary = 50000,
+    DepartmentId = 1                    // Links to Department with Id = 1
+};
+dbContext.Employees.Add(newEmployee);
+dbContext.SaveChanges();
+
+// 4. Finding all Employees in a specific Department
+var itEmployees = dbContext.Employees
+    .Where(e => e.DepartmentId == 1)   // Filter by department
+    .ToList();
+
+// 5. Finding which Department an Employee belongs to
+var employee = dbContext.Employees
+    .Include(e => e.Department)        // Load the related Department
+    .First(e => e.Id == 1);
+
+Console.WriteLine($"{employee.Name} works in {employee.Department.Name}");
+</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center">Visual Representation</h2>
+    
+    <div class="visual-section">
+        <div class="code-container">
+            <div class="code-header">Database Table Structure (Created by EF Core)</div>
+            <div class="code-content">
+<pre>
+DEPARTMENTS Table:
+┌─────┬──────────────────┬───────────┐
+│ Id  │       Name       │ Location  │
+├─────┼──────────────────┼───────────┤
+│  1  │ IT Department    │ Floor 3   │
+│  2  │ HR Department    │ Floor 2   │
+│  3  │ Sales Department │ Floor 1   │
+└─────┴──────────────────┴───────────┘
+
+EMPLOYEES Table:
+┌─────┬──────────┬─────────────┬─────────┬──────────────┐
+│ Id  │   Name   │  Position   │ Salary  │ DepartmentId │
+├─────┼──────────┼─────────────┼─────────┼──────────────┤
+│  1  │ Alice    │ Developer   │ 60000   │      1       │
+│  2  │ Bob      │ Designer    │ 55000   │      1       │
+│  3  │ Charlie  │ Manager     │ 75000   │      1       │
+│  4  │ Diana    │ HR Manager  │ 65000   │      2       │
+│  5  │ Eve      │ Recruiter   │ 50000   │      2       │
+│  6  │ Frank    │ Sales Rep   │ 45000   │      3       │
+└─────┴──────────┴─────────────┴─────────┴──────────────┘
+
+📌 Each Department (One) can have MANY Employees
+📌 Each Employee (Many) belongs to exactly ONE Department
+📌 DepartmentId in Employees links back to Departments.Id
+</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-points">
+        <h3>Key Points to Remember</h3>
+        <ul>
+            <li><strong>One-to-Many</strong> means one record connects to many other records</li>
+            <li>The "One" side uses a <code>List&lt;T&gt;</code> to store references to the "Many" side</li>
+            <li>The "Many" side has a foreign key property that references the "One" side</li>
+            <li>Use <code>.Include()</code> to load related collections when querying</li>
+            <li>This is the <strong>most frequently used</strong> relationship type in real applications</li>
+            <li>Entity Framework handles the database relationships automatically</li>
+        </ul>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("OneToOne", "DataBaseRelations")" class="btn btn-outline-primary ajax-link">← One-to-One</a>
-        <a href="@Url.Action("ManyToMany", "DataBaseRelations")" class="btn btn-primary ajax-link">Many-to-Many →</a>
+        <a href="@Url.Action("OneToOne", "DataBaseRelations")" class="btn btn-outline-primary ajax-link">← Back to One-to-One</a>
+        <a href="@Url.Action("ManyToMany", "DataBaseRelations")" class="btn btn-primary ajax-link">Next: Many-to-Many Relationships →</a>
     </div>
 </div>
 
@@ -46,37 +234,134 @@ public class Student
         background-color: var(--bs-body-bg);
     }
 
-    h1 {
+    h1, h2, h3, h4 {
         color: var(--bs-heading-color);
-        margin-bottom: 20px;
-    }
-
-    h2 {
-        color: var(--bs-heading-color);
-        margin-top: 25px;
         margin-bottom: 15px;
     }
 
-    p {
+    h1 {
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
+    }
+
+    h2 {
+        margin-top: 40px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+
+    h2.text-center {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    p, li {
         color: var(--bs-body-color);
         line-height: 1.6;
     }
 
+    .beginner-note {
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .beginner-note-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+
+    .beginner-note-content {
+        flex: 1;
+    }
+
+    .beginner-note-content h4 {
+        color: var(--bs-primary);
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+
+    .beginner-note-content p {
+        margin-bottom: 10px;
+        line-height: 1.6;
+    }
+
+    .beginner-note-content ul {
+        margin-left: 20px;
+        margin-bottom: 10px;
+    }
+
+    .beginner-note-content li {
+        margin-bottom: 5px;
+    }
+
+    .intro-section {
+        margin-bottom: 30px;
+        padding: 15px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border-radius: 5px;
+    }
+
+    .examples-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+    }
+
+    .example-item {
+        padding: 15px;
+        background-color: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        transition: transform 0.2s;
+    }
+
+    .example-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .example-item h4 {
+        color: var(--bs-primary);
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .example-section {
+        margin: 20px 0;
+    }
+
     .code-container {
-        margin: 25px 0;
+        margin: 15px 0;
         border: 1px solid var(--bs-border-color);
         border-radius: 5px;
         overflow: hidden;
-        background-color: var(--code-bg);
+        background-color: #1a1a1a;
     }
 
     .code-header {
-        background-color: var(--code-header-bg);
+        background-color: #2d2d2d;
         padding: 10px 15px;
         border-bottom: 1px solid var(--bs-border-color);
         font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         font-size: 0.9rem;
-        color: var(--bs-body-color);
+        color: #e0e0e0;
     }
 
     .code-content {
@@ -88,31 +373,126 @@ public class Student
         margin: 0;
         white-space: pre-wrap;
         background-color: transparent;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        color: #e0e0e0;
     }
 
-    code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    .explanation-box {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 5px;
+    }
+
+    .explanation-box h4 {
+        color: var(--bs-success);
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .explanation-box ol {
+        margin-left: 20px;
+    }
+
+    .usage-section {
+        margin: 20px 0;
+    }
+
+    .visual-section {
+        margin: 20px 0;
+    }
+
+    .key-points {
+        margin: 30px 0;
+        padding: 20px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 5px;
+    }
+
+    .key-points h3 {
+        color: var(--bs-indigo);
+        margin-top: 0;
+    }
+
+    .key-points ul {
+        margin-left: 20px;
     }
 
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
 
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
+        text-decoration: none;
     }
 
     .btn-primary {
         background-color: var(--bs-primary);
         border-color: var(--bs-primary);
+        color: white;
     }
 
     .btn-outline-primary {
         color: var(--bs-primary);
         border-color: var(--bs-primary);
+        background-color: transparent;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: var(--bs-primary);
+        color: white;
+    }
+
+    [data-bs-theme="dark"] .beginner-note {
+        background-color: rgba(13, 110, 253, 0.15);
+        border-color: var(--dark-primary);
+    }
+
+    [data-bs-theme="dark"] .beginner-note-icon {
+        background-color: var(--dark-primary);
+    }
+
+    [data-bs-theme="dark"] .beginner-note-content h4 {
+        color: var(--dark-primary);
+    }
+
+    [data-bs-theme="dark"] .intro-section {
+        background-color: rgba(108, 117, 125, 0.15);
+    }
+
+    [data-bs-theme="dark"] .example-item {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    [data-bs-theme="dark"] .explanation-box {
+        background-color: rgba(40, 167, 69, 0.15);
+    }
+
+    [data-bs-theme="dark"] .key-points {
+        background-color: rgba(111, 66, 193, 0.15);
+    }
+
+    [data-bs-theme="dark"] .beginner-tip {
+        background-color: rgba(255, 193, 7, 0.15);
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightAll();
+        }
+    });
+</script>
+</body>
