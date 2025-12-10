@@ -535,15 +535,12 @@ $(document).ready(function() {
     }
     setupAjaxNavigation();
 
-    // Global function to initialize quiz
     function initializeQuiz() {
         console.log("Initializing quiz functionality");
-        
-        // Remove existing event listeners and add fresh ones
+
         $('#startQuizBtn').off('click.quiz').on('click.quiz', startQuiz);
         $('#restartQuizBtn').off('click.quiz').on('click.quiz', resetQuiz);
-        
-        // Also attach event listeners for any quiz buttons that might already exist
+
         $(document).off('click.quiz').on('click.quiz', '#startQuizBtn', startQuiz);
         $(document).off('click.quiz').on('click.quiz', '#restartQuizBtn', resetQuiz);
         
@@ -593,7 +590,6 @@ $(document).ready(function() {
                         setupChapterTitleClicks();
                         setupAjaxNavigation();
 
-                        // Extract and execute scripts properly
                         const scripts = tempDiv.find('script');
                         const scriptPromises = [];
                         
@@ -616,7 +612,6 @@ $(document).ready(function() {
                                 try {
                                     const scriptContent = scriptElement.text();
                                     if (scriptContent.trim()) {
-                                        // Create and execute the script
                                         const script = document.createElement('script');
                                         script.textContent = scriptContent;
                                         document.body.appendChild(script);
@@ -628,17 +623,14 @@ $(document).ready(function() {
                             }
                         });
 
-                        // Wait for all scripts to load, then initialize
                         Promise.all(scriptPromises).then(() => {
                             setupGlobalEventDelegation();
                             initializeCurrentPage();
-                            
-                            // Check if this is the OOP Summary page and initialize quiz
+
                             if (url.includes('/OOP/Summary')) {
                                 console.log("OOP Summary page detected, initializing quiz...");
                                 setTimeout(() => {
                                     initializeQuiz();
-                                    // If quiz was already started, restore state
                                     if (typeof currentQuestionIndex !== 'undefined' && currentQuestionIndex > 0) {
                                         console.log("Restoring quiz state from page load");
                                         loadQuestion(currentQuestionIndex);
@@ -786,11 +778,9 @@ $(document).ready(function() {
             }
         }
 
-        // For If-Else page
         if (topic === 'ifelse' || currentPath.includes('/SP/IfElse')) {
             console.log("Initializing If-Else page functionality");
-            
-            // Reset global state
+
             if (typeof window.currentTraceStep !== 'undefined') {
                 window.currentTraceStep = 0;
             }
@@ -847,8 +837,7 @@ $(document).ready(function() {
                 }
             }
         }
-        
-        // Initialize quiz if we're on the OOP Summary page
+
         if (currentPath.includes('/OOP/Summary')) {
             console.log("OOP Summary page detected in initializeCurrentPage");
             setTimeout(() => {
@@ -863,11 +852,18 @@ $(document).ready(function() {
                 console.warn('initializePage error:', e.message);
             }
         }
+        if (currentPath.includes('/Database/Summary')) {
+            console.log("Database Summary page detected in initializeCurrentPage");
+            setTimeout(() => {
+                if (typeof window.initializeDatabaseSummaryPage === 'function') {
+                    window.initializeDatabaseSummaryPage();
+                }
+            }, 100);
+        }
     }
     
     setupGlobalEventDelegation();
-    
-    // Initialize quiz if we're already on the OOP Summary page on initial load
+
     if (window.location.pathname.includes('/OOP/Summary')) {
         console.log("Initial page load on OOP Summary, initializing quiz");
         setTimeout(() => {

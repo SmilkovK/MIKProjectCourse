@@ -2,119 +2,416 @@
     ViewData["Title"] = "Relational Databases";
 }
 
+<body data-topic="database">
 <div class="container">
-    <h1>@ViewData["Title"]</h1>
+    <h1 class="text-center">Relational Databases</h1>
+    
+    <div class="intro-section">
+        <p>A <strong>Relational Database</strong> is the most common type of database you'll work with as a C# developer. It organizes data into <strong>tables</strong> (like spreadsheets) that can be connected to each other through relationships.</p>
+        
+        <div class="key-point-box">
+            <p><strong>Think of it like this:</strong> Instead of having one messy list with all information, relational databases split data into organized tables that connect logically.</p>
+        </div>
+    </div>
 
-    <p>A <strong>Relational Database</strong> is a type of database that stores data in tables, where each table has rows and columns. These tables can be related to one another through keys, such as primary keys and foreign keys, which makes relational databases powerful for organizing and linking data.</p>
+    <h2 class="text-center">Understanding Tables, Rows, and Columns</h2>
+    
+    <div class="concept-visualization">
+        <div class="visual-example">
+            <div class="code-container">
+                <div class="code-header">Students Table (Like an Excel Spreadsheet)</div>
+                <div class="code-content">
+<pre>
+┌─────────────┬───────────┬───────────┬─────┐
+│ StudentID   │ FirstName │ LastName  │ Age │
+├─────────────┼───────────┼───────────┼─────┤
+│     101     │   Alice   │   Smith   │  20 │ ← Row 1 (One student)
+│     102     │    Bob    │  Johnson  │  21 │ ← Row 2 (Another student)
+│     103     │  Charlie  │  Williams │  19 │ ← Row 3 (Another student)
+└─────────────┴───────────┴───────────┴─────┘
+    ↑              ↑           ↑        ↑
+ Column 1     Column 2    Column 3   Column 4
+ (Primary Key)
+</pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="explanation">
+            <div class="explanation-item">
+                <h4>Table</h4>
+                <p>A collection of related data organized in rows and columns. Each table has a specific purpose.</p>
+                <p><strong>Example:</strong> "Students" table, "Courses" table, "Teachers" table</p>
+            </div>
+            
+            <div class="explanation-item">
+                <h4>Row (or Record)</h4>
+                <p>A single entry in a table. Each row represents one item.</p>
+                <p><strong>Example:</strong> One student's complete information</p>
+            </div>
+            
+            <div class="explanation-item">
+                <h4>Column (or Field)</h4>
+                <p>A specific type of information in a table. Each column has a data type.</p>
+                <p><strong>Example:</strong> "FirstName" column, "Age" column, "Email" column</p>
+            </div>
+        </div>
+    </div>
 
-    <h2>What is a Relational Database?</h2>
-    <p>A relational database organizes data into one or more tables where the data is structured in rows and columns. Each table has a unique identifier, and relationships between tables can be established using keys.</p>
-
-    <h2>Key Concepts (Explained Simply)</h2>
-    <ul>
-        <li>
-            <strong>Table:</strong>
-            Think of a table like a spreadsheet or an Excel file. It has rows (each row is one entry, like a person or a product) and columns (each column holds a type of information, like name, age, or price).
-        </li>
-
-        <li>
-            <strong>Primary Key:</strong>
-            This is like a unique ID card for each row in a table. Imagine a student list — even if two students have the same name, their student ID is always unique. That student ID is the primary key.
-            <br /><em>We need a primary key to keep track of each record without confusion.</em>
-        </li>
-
-        <li>
-            <strong>Foreign Key:</strong>
-            This is how we link tables together. If we have a separate table for courses, and we want to know which student is taking which course, we use the student’s ID (from the Students table) inside the Enrollment table.
-            That Student ID inside the Enrollment table is a <strong>foreign key</strong> — it "points" to another table.
-            <br /><em>Think of it like a reference — it connects related information from two different tables.</em>
-        </li>
-
-        <li>
-            <strong>Relationship:</strong>
-            This is when tables are linked through keys. For example, one student can take many courses. This is a one-to-many relationship. These relationships help us organize data and avoid repeating the same info.
-        </li>
-
-        <li>
-            <strong>SQL (Structured Query Language):</strong>
-            This is a language used to talk to the database. It helps you ask the database to show you data, add new data, or update or delete data.
-            <br /><em>Think of it as the instructions you give to the database to get what you need.</em>
-        </li>
-    </ul>
-
-    <h2>Example of Relational Database</h2>
-    <div class="code-container">
-        <div class="code-header">SQL Example</div>
-        <div class="code-content">
-            <pre><code class="language-sql">
--- Creating a table for students
+    <h2 class="text-center">Key Concepts Made Simple</h2>
+    
+    <div class="key-concepts">
+        <div class="concept-card">
+            <div class="concept-header">
+                <h4>1. Primary Key</h4>
+            </div>
+            <div class="concept-body">
+                <p><strong>The Unique Identifier</strong> - Like a student ID or social security number.</p>
+                <div class="analogy">
+                    <p><strong>Real-World Analogy:</strong> Your student ID card. Even if there's another student with the same name, their ID number is different.</p>
+                </div>
+                <div class="code-container">
+                    <div class="code-header">In Database Terms</div>
+                    <div class="code-content">
+<pre>
 CREATE TABLE Students (
-    StudentID INT PRIMARY KEY,
+    StudentID INT PRIMARY KEY,  <span style="color: #198754;">← PRIMARY KEY = Unique identifier</span>
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
     Age INT
 );
 
--- Creating a table for courses
+<span style="color: #198754;">// This ensures:</span>
+<span style="color: #198754;">• No two students have same StudentID</span>
+<span style="color: #198754;">• Every student MUST have a StudentID</span>
+<span style="color: #198754;">• We can find any student quickly using their ID</span>
+</pre>
+                    </div>
+                </div>
+                <p><strong>Why we need it:</strong> To keep track of each record without confusion, especially when names are the same.</p>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-header">
+                <h4>2. Foreign Key</h4>
+            </div>
+            <div class="concept-body">
+                <p><strong>The Connection Point</strong> - Links tables together by referencing another table's primary key.</p>
+                <div class="analogy">
+                    <p><strong>Real-World Analogy:</strong> A library checkout slip. It has your library card number (references you) and the book ISBN (references the book).</p>
+                </div>
+                <div class="code-container">
+                    <div class="code-header">Connecting Students to Courses</div>
+                    <div class="code-content">
+<pre>
+<span style="color: #198754;">// Courses Table</span>
 CREATE TABLE Courses (
-    CourseID INT PRIMARY KEY,
+    CourseID INT PRIMARY KEY,      <span style="color: #198754;">← Primary Key</span>
     CourseName VARCHAR(100),
     Credits INT
 );
 
--- Creating a table for enrollment, linking students and courses
+<span style="color: #198754;">// Enrollment Table (Connects Students to Courses)</span>
+CREATE TABLE Enrollment (
+    EnrollmentID INT PRIMARY KEY,
+    StudentID INT,                 <span style="color: #198754;">← Foreign Key (points to Students table)</span>
+    CourseID INT,                  <span style="color: #198754;">← Foreign Key (points to Courses table)</span>
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+
+<span style="color: #198754;">// This means:</span>
+<span style="color: #198754;">• StudentID in Enrollment must exist in Students table</span>
+<span style="color: #198754;">• CourseID in Enrollment must exist in Courses table</span>
+<span style="color: #198754;">• We can't enroll a non-existent student or course</span>
+</pre>
+                    </div>
+                </div>
+                <p><strong>Why we need it:</strong> Instead of copying student information into every course they take, we just reference their ID. This prevents data duplication and errors.</p>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-header">
+                <h4>3. Relationships</h4>
+            </div>
+            <div class="concept-body">
+                <p><strong>How Tables Connect</strong> - Defines how data in different tables relates to each other.</p>
+                <div class="relationship-types">
+                    <div class="relationship">
+                        <h5>One-to-One</h5>
+                        <p>One record in Table A relates to ONE record in Table B.</p>
+                        <p><strong>Example:</strong> Student → Student ID Card (each student has one ID card)</p>
+                    </div>
+                    
+                    <div class="relationship">
+                        <h5>One-to-Many</h5>
+                        <p>One record in Table A relates to MANY records in Table B.</p>
+                        <p><strong>Example:</strong> Teacher → Students (one teacher teaches many students)</p>
+                    </div>
+                    
+                    <div class="relationship">
+                        <h5>Many-to-Many</h5>
+                        <p>Many records in Table A relate to MANY records in Table B.</p>
+                        <p><strong>Example:</strong> Students → Courses (many students take many courses)</p>
+                    </div>
+                </div>
+                <div class="visual-relationship">
+                    <div class="code-container">
+                        <div class="code-header">Many-to-Many Relationship Example</div>
+                        <div class="code-content">
+<pre>
+<span style="color: #198754;">// Students Table</span>
+StudentID │ Name
+──────────┼──────────
+   101    │ Alice
+   102    │ Bob
+   103    │ Charlie
+
+<span style="color: #198754;">// Courses Table</span>
+CourseID │ CourseName
+─────────┼────────────
+   201   │ Math
+   202   │ Science
+   203   │ English
+
+<span style="color: #198754;">// Enrollment Table (Join Table)</span>
+EnrollmentID │ StudentID │ CourseID
+─────────────┼───────────┼──────────
+     1       │    101    │   201    ← Alice takes Math
+     2       │    101    │   202    ← Alice takes Science
+     3       │    102    │   201    ← Bob takes Math
+     4       │    103    │   203    ← Charlie takes English
+
+<span style="color: #198754;">// This shows relationships without duplicating data!</span>
+</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <div class="concept-header">
+                <h4>4. SQL (Structured Query Language)</h4>
+            </div>
+            <div class="concept-body">
+                <p><strong>The Database Language</strong> - Used to communicate with the database.</p>
+                <div class="analogy">
+                    <p><strong>Real-World Analogy:</strong> Giving instructions to a librarian: "Please find all books by this author" or "Add this new book to the system."</p>
+                </div>
+                
+                <div class="sql-examples">
+                    <div class="code-container">
+                        <div class="code-header">Basic SQL Commands</div>
+                        <div class="code-content">
+<pre>
+<span style="color: #198754;">-- SELECT: Get data from database</span>
+SELECT FirstName, LastName FROM Students WHERE Age > 20;
+
+<span style="color: #198754;">-- INSERT: Add new data</span>
+INSERT INTO Students (StudentID, FirstName, LastName, Age)
+VALUES (104, 'Diana', 'Brown', 22);
+
+<span style="color: #198754;">-- UPDATE: Modify existing data</span>
+UPDATE Students SET Age = 21 WHERE StudentID = 101;
+
+<span style="color: #198754;">-- DELETE: Remove data</span>
+DELETE FROM Students WHERE StudentID = 103;
+</pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="csharp-advantage">
+                    <h5>Good News for C# Developers!</h5>
+                    <p><strong>You don't need to write much SQL!</strong> C# and Entity Framework let you work with databases using familiar C# code:</p>
+                    
+                    <div class="code-container">
+                        <div class="code-header">C# Instead of SQL</div>
+                        <div class="code-content">
+<pre>
+<span style="color: #198754;">// Finding students over 20 years old - Using C#!</span>
+var olderStudents = dbContext.Students
+    .Where(s => s.Age > 20)
+    .ToList();
+
+<span style="color: #198754;">// Adding a new student - Using C#!</span>
+var newStudent = new Student 
+{
+    StudentID = 104,
+    FirstName = "Diana",
+    LastName = "Brown",
+    Age = 22
+};
+dbContext.Students.Add(newStudent);
+dbContext.SaveChanges();
+
+<span style="color: #198754;">// The framework converts C# to SQL automatically!</span>
+</pre>
+                        </div>
+                    </div>
+                    <p><strong>See? You use C# code, not SQL!</strong> The database work happens behind the scenes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center">Complete Relational Database Example</h2>
+    
+    <div class="complete-example">
+        <div class="database-schema">
+            <div class="code-container">
+                <div class="code-header">Complete School Database Schema</div>
+                <div class="code-content">
+<pre>
+<span style="color: #198754;">// 1. Students Table</span>
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) UNIQUE,
+    Age INT CHECK (Age >= 0 AND Age <= 120)
+);
+
+<span style="color: #198754;">// 2. Courses Table</span>
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(100) NOT NULL,
+    Credits INT DEFAULT 3,
+    TeacherID INT,
+    FOREIGN KEY (TeacherID) REFERENCES Teachers(TeacherID)
+);
+
+<span style="color: #198754;">// 3. Teachers Table</span>
+CREATE TABLE Teachers (
+    TeacherID INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Department VARCHAR(50)
+);
+
+<span style="color: #198754;">// 4. Enrollment Table (Links Students and Courses)</span>
 CREATE TABLE Enrollment (
     EnrollmentID INT PRIMARY KEY,
     StudentID INT,
     CourseID INT,
+    Grade CHAR(1) CHECK (Grade IN ('A', 'B', 'C', 'D', 'F')),
+    EnrollmentDate DATE DEFAULT GETDATE(),
     FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
     FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
 );
-            </code></pre>
+</pre>
+                </div>
+            </div>
+        </div>
+        
+        <div class="schema-explanation">
+            <div class="explanation-point">
+                <h5>Data Integrity Features</h5>
+                <ul>
+                    <li><strong>NOT NULL:</strong> These fields must have a value (can't be empty)</li>
+                    <li><strong>UNIQUE:</strong> Email must be different for each student</li>
+                    <li><strong>CHECK:</strong> Age must be between 0-120, Grade must be A-F</li>
+                    <li><strong>DEFAULT:</strong> Credits default to 3, EnrollmentDate defaults to today</li>
+                </ul>
+            </div>
+            
+            <div class="explanation-point">
+                <h5>How It All Connects</h5>
+                <ol>
+                    <li>Each <strong>Student</strong> has a unique StudentID</li>
+                    <li>Each <strong>Course</strong> has a unique CourseID and a TeacherID</li>
+                    <li>Each <strong>Teacher</strong> has a unique TeacherID</li>
+                    <li>The <strong>Enrollment</strong> table connects everything using Foreign Keys</li>
+                </ol>
+                <p><strong>Benefit:</strong> If a student's name changes, we update ONE record in Students table, not every course they're taking!</p>
+            </div>
         </div>
     </div>
 
-    <h2>Explanation of the Code (Beginner Friendly)</h2>
-    <p>This code is written in <strong>SQL</strong> (Structured Query Language), which is used to create and manage databases.</p>
+    <h2 class="text-center">Advantages of Relational Databases</h2>
+    
+    <div class="advantages-grid">
+        <div class="advantage">
+            <h4>Data Integrity</h4>
+            <p>Prevents invalid data through constraints (like age limits, unique emails).</p>
+        </div>
+        
+        <div class="advantage">
+            <h4>No Data Duplication</h4>
+            <p>Store student info once, reference it everywhere with IDs.</p>
+        </div>
+        
+        <div class="advantage">
+            <h4>Flexible Queries</h4>
+            <p>Ask complex questions like "Which students got A in Math but B in Science?"</p>
+        </div>
+        
+        <div class="advantage">
+            <h4>Security & Control</h4>
+            <p>Control who can view or modify different parts of the data.</p>
+        </div>
+        
+        <div class="advantage">
+            <h4>ACID Compliance</h4>
+            <p>Guarantees reliable transactions (important for banking, e-commerce).</p>
+        </div>
+        
+        <div class="advantage">
+            <h4>Great for C#</h4>
+            <p>Perfect integration with .NET and Entity Framework.</p>
+        </div>
+    </div>
 
-    <ul>
-        <li><strong>CREATE TABLE Students</strong>: Makes a table to store student information like ID, name, and age.</li>
-        <li><strong>StudentID INT PRIMARY KEY</strong>: A unique number (ID) for each student. No two students can have the same ID.</li>
-        <li><strong>FirstName / LastName</strong>: These store the student’s name using text (up to 50 characters).</li>
-        <li><strong>Age INT</strong>: The student's age, saved as a number.</li>
-        <li><strong>CREATE TABLE Courses</strong>: A new table to list the courses with a unique ID, course name, and credits.</li>
-        <li><strong>CREATE TABLE Enrollment</strong>: This table links students and courses. It shows who is taking what course.</li>
-        <li><strong>FOREIGN KEY (StudentID)</strong>: This says "this ID must match an ID in the Students table."</li>
-        <li><strong>FOREIGN KEY (CourseID)</strong>: This says "this ID must match an ID in the Courses table."</li>
-    </ul>
+    <div class="popular-databases">
+        <h3 class="text-center">Popular Relational Databases</h3>
+        <div class="database-list">
+            <div class="database-item">
+                <h4>Microsoft SQL Server</h4>
+                <p><strong>Best for:</strong> C#/.NET developers</p>
+                <p><strong>Why choose:</strong> Seamless integration with Visual Studio</p>
+            </div>
+            
+            <div class="database-item">
+                <h4>MySQL</h4>
+                <p><strong>Best for:</strong> Web applications, startups</p>
+                <p><strong>Why choose:</strong> Free, widely used, great community</p>
+            </div>
+            
+            <div class="database-item">
+                <h4>PostgreSQL</h4>
+                <p><strong>Best for:</strong> Complex applications, data integrity</p>
+                <p><strong>Why choose:</strong> Advanced features, open source</p>
+            </div>
+            
+            <div class="database-item">
+                <h4>SQLite</h4>
+                <p><strong>Best for:</strong> Mobile apps, small projects</p>
+                <p><strong>Why choose:</strong> Lightweight, no server needed</p>
+            </div>
+        </div>
+    </div>
 
-    <p><strong>Think of it like this:</strong> Instead of copying a student’s full name into every course they take, we just use their ID — that makes everything easier to manage and avoids mistakes.</p>
-
-    <p>In this example:</p>
-    <ul>
-        <li>The <strong>Students</strong> table stores information about students.</li>
-        <li>The <strong>Courses</strong> table stores information about the courses offered.</li>
-        <li>The <strong>Enrollment</strong> table establishes a relationship between students and courses using <strong>foreign keys</strong>.</li>
-    </ul>
-
-    <h2>Advantages of Relational Databases</h2>
-    <ul>
-        <li><strong>Data Integrity:</strong> Ensures data consistency and accuracy through constraints and relationships.</li>
-        <li><strong>Scalability:</strong> Can handle large amounts of data while maintaining performance.</li>
-        <li><strong>Flexibility:</strong> Easily supports complex queries, joins, and transactions.</li>
-    </ul>
-
-    <h2>Popular Relational Database Management Systems (RDBMS)</h2>
-    <ul>
-        <li>MySQL</li>
-        <li>PostgreSQL</li>
-        <li>Microsoft SQL Server</li>
-        <li>Oracle Database</li>
-    </ul>
+    <div class="summary-box">
+        <h3 class="text-center">Relational Database Summary</h3>
+        <div class="summary-content">
+            <p><strong>Relational Databases organize data into tables that connect through keys:</strong></p>
+            <ol>
+                <li><strong>Tables</strong> store data in rows and columns</li>
+                <li><strong>Primary Keys</strong> uniquely identify each row</li>
+                <li><strong>Foreign Keys</strong> connect tables together</li>
+                <li><strong>Relationships</strong> define how data connects (one-to-one, one-to-many, many-to-many)</li>
+                <li><strong>SQL</strong> is the language to talk to the database (but C# can do it for you!)</li>
+            </ol>
+            <p><strong>Best part for beginners:</strong> Start with Microsoft SQL Server and C# - they work perfectly together and you'll use C# code, not complex SQL!</p>
+        </div>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("HowDatabaseWorks", "Database")" class="btn btn-outline-primary ajax-link">← Types of Databases</a>
-        <a href="@Url.Action("Example", "Database")" class="btn btn-primary ajax-link">Example →</a>
+        <a href="@Url.Action("TypesOfDatabase", "Database")" class="btn btn-outline-primary ajax-link">← Types of Databases</a>
+        <a href="@Url.Action("Example", "Database")" class="btn btn-primary ajax-link">Next: Database Example →</a>
     </div>
 </div>
 
@@ -125,38 +422,87 @@ CREATE TABLE Enrollment (
         background-color: var(--bs-body-bg);
     }
 
-    h1 {
+    h1, h2, h3, h4, h5 {
         color: var(--bs-heading-color);
-        margin-bottom: 20px;
-    }
-
-    h2 {
-        color: var(--bs-heading-color);
-        margin-top: 25px;
         margin-bottom: 15px;
     }
 
-    .container p,
-    .container ul {
+    h1 {
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
+    }
+
+    h2 {
+        margin-top: 40px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+
+    h2.text-center {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    p, li {
         color: var(--bs-body-color);
         line-height: 1.6;
     }
 
+    .intro-section {
+        margin-bottom: 30px;
+    }
+
+    .key-point-box {
+        padding: 15px;
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid var(--bs-warning);
+        border-radius: 5px;
+        margin-top: 15px;
+    }
+
+    .concept-visualization {
+        margin: 30px 0;
+    }
+
+    .visual-example {
+        margin-bottom: 20px;
+    }
+
+    .explanation {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .explanation-item {
+        padding: 15px;
+        background-color: rgba(0, 123, 255, 0.05);
+        border-radius: 5px;
+    }
+
+    .explanation-item h4 {
+        color: var(--bs-primary);
+        margin-top: 0;
+        border-bottom: 1px solid var(--bs-border-color);
+        padding-bottom: 5px;
+    }
+
     .code-container {
-        margin: 25px 0;
+        margin: 15px 0;
         border: 1px solid var(--bs-border-color);
         border-radius: 5px;
         overflow: hidden;
-        background-color: var(--code-bg);
+        background-color: #1a1a1a;
     }
 
     .code-header {
-        background-color: var(--code-header-bg);
+        background-color: #2d2d2d;
         padding: 10px 15px;
         border-bottom: 1px solid var(--bs-border-color);
         font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         font-size: 0.9rem;
-        color: var(--bs-body-color);
+        color: #e0e0e0;
     }
 
     .code-content {
@@ -168,10 +514,182 @@ CREATE TABLE Enrollment (
         margin: 0;
         white-space: pre-wrap;
         background-color: transparent;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        color: #e0e0e0;
+        line-height: 1.4;
     }
 
-    code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    .key-concepts {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin: 30px 0;
+    }
+
+    .concept-card {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .concept-header {
+        background-color: var(--bs-primary);
+        color: white;
+        padding: 15px 20px;
+    }
+
+    .concept-header h4 {
+        color: white;
+        margin: 0;
+    }
+
+    .concept-body {
+        padding: 20px;
+    }
+
+    .analogy {
+        margin: 15px 0;
+        padding: 10px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border-radius: 5px;
+        font-style: italic;
+    }
+
+    .relationship-types {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+    }
+
+    .relationship {
+        padding: 15px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 5px;
+    }
+
+    .relationship h5 {
+        color: var(--bs-indigo);
+        margin-top: 0;
+    }
+
+    .visual-relationship {
+        margin-top: 20px;
+    }
+
+    .sql-examples {
+        margin: 20px 0;
+    }
+
+    .csharp-advantage {
+        margin-top: 25px;
+        padding: 15px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 5px;
+    }
+
+    .csharp-advantage h5 {
+        color: var(--bs-success);
+        margin-top: 0;
+    }
+
+    .complete-example {
+        margin: 30px 0;
+    }
+
+    .database-schema {
+        margin-bottom: 20px;
+    }
+
+    .schema-explanation {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .explanation-point {
+        padding: 15px;
+        background-color: rgba(0, 123, 255, 0.05);
+        border-radius: 5px;
+    }
+
+    .explanation-point h5 {
+        color: var(--bs-primary);
+        margin-top: 0;
+        border-bottom: 1px solid var(--bs-border-color);
+        padding-bottom: 5px;
+    }
+
+    .explanation-point ul, .explanation-point ol {
+        margin-left: 20px;
+    }
+
+    .advantages-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+    }
+
+    .advantage {
+        padding: 15px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .advantage h4 {
+        color: var(--bs-success);
+        margin-top: 0;
+    }
+
+    .popular-databases {
+        margin: 40px 0;
+    }
+
+    .database-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .database-item {
+        padding: 15px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border: 1px solid var(--bs-secondary);
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .database-item h4 {
+        color: var(--bs-primary);
+        margin-top: 0;
+    }
+
+    .summary-box {
+        margin: 40px 0;
+        padding: 20px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 8px;
+    }
+
+    .summary-box h3 {
+        color: var(--bs-indigo);
+        text-align: center;
+    }
+
+    .summary-content {
+        margin-top: 15px;
+    }
+
+    .summary-content ol {
+        margin-left: 20px;
     }
 
     .navigation-buttons {
@@ -184,15 +702,27 @@ CREATE TABLE Enrollment (
         padding: 8px 20px;
         border-radius: 4px;
         font-weight: 500;
+        text-decoration: none;
     }
 
     .btn-primary {
         background-color: var(--bs-primary);
         border-color: var(--bs-primary);
+        color: #fff;
     }
 
     .btn-outline-primary {
         color: var(--bs-primary);
         border-color: var(--bs-primary);
+        background-color: transparent;
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightAll();
+        }
+    });
+</script>
+</body>

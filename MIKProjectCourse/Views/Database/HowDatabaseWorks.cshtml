@@ -2,47 +2,452 @@
     ViewData["Title"] = "How Databases Work";
 }
 
+<body data-topic="database">
 <div class="container">
-    <h1>How Databases Work</h1>
-    <p>Now that you know what databases are and the different types, let's understand how they actually work behind the scenes in a simple way.</p>
-
-    <h2>1. Storing Data</h2>
-    <p>Databases store your data in an organized way so it's easy to find later. For example, if you have a user account, your name, email, and password are stored in a table inside the database.</p>
-
-    <h2>2. Retrieving Data</h2>
-    <p>When you log in or request information (like a product list), the application asks the database for that data using a language called <strong>SQL</strong> (Structured Query Language).</p>
-
-    <h2>3. Modifying Data</h2>
-    <p>You can add new data (like creating an account), update data (like changing your password), or delete data (like removing a post). These are done with SQL commands like:</p>
-
-    <div class="code-container">
-        <div class="code-header">Basic SQL Commands</div>
-        <div class="code-content">
-            <pre><code class="language-sql">
--- Get all users
-SELECT * FROM Users;
-
--- Add a new user
-INSERT INTO Users (Name, Email) VALUES ('John', 'john@example.com');
-
--- Update a user's email
-UPDATE Users SET Email = 'new@email.com' WHERE Id = 1;
-
--- Delete a user
-DELETE FROM Users WHERE Id = 1;
-            </code></pre>
+    <h1 class="text-center">How Databases Work</h1>
+    
+    <div class="intro-section">
+        <p>Now that you know what databases are and the different types, let's understand <strong>how databases actually work</strong> behind the scenes. Think of this as learning how a library operates - not just that books are stored on shelves, but how the librarian finds, organizes, and manages them.</p>
+        
+        <div class="note-box">
+            <p><strong>Important:</strong> While there are many types of databases, in this course we'll focus primarily on <strong>relational databases</strong> (like SQL Server) because they're most commonly used with C# and are perfect for beginners. We'll dive deeper into relational databases in the next lesson!</p>
         </div>
     </div>
 
-    <h2>4. Keeping Things Safe</h2>
-    <p>Databases usually have security measures like passwords, user roles, and backups to prevent data loss or unauthorized access.</p>
+    <h2 class="text-center">The Simple Database Workflow</h2>
+    
+    <div class="workflow-diagram">
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>Your Application (C# Code)</h4>
+                <p>You write C# code that needs to work with data (like a login system, shopping cart, or student records).</p>
+                <div class="code-container">
+                    <div class="code-header">C# Code Example</div>
+                    <div class="code-content">
+<pre>
+<span style="color: #198754;">// C# code wants to find a user</span>
+var user = FindUserByEmail("alice@email.com");
 
-    <h2>5. Interacting with Applications</h2>
-    <p>Most websites and apps use databases to store user data, content, orders, etc. Your application sends requests to the database and receives results — like a conversation.</p>
+<span style="color: #198754;">// Or add a new student</span>
+AddNewStudent("Bob", "Johnson", 21);
+</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="step-arrow">→</div>
+        
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>Database Request</h4>
+                <p>Your C# code sends a request to the database. This could be to find data, add new data, update, or delete.</p>
+                <div class="code-container">
+                    <div class="code-header">What Gets Sent to Database</div>
+                    <div class="code-content">
+<pre>
+<span style="color: #198754;">// Your C# code gets translated to SQL</span>
+SELECT * FROM Students WHERE Name = 'Bob';
+
+<span style="color: #198754;">// Or</span>
+INSERT INTO Students (Name, Age) VALUES ('Charlie', 19);
+</pre>
+                    </div>
+                </div>
+                <p><strong>Good news:</strong> With C# and Entity Framework, you don't write this SQL - it's generated automatically!</p>
+            </div>
+        </div>
+        
+        <div class="step-arrow">→</div>
+        
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>Database Processes Request</h4>
+                <p>The database receives the request, finds the right data, and prepares the response.</p>
+                <div class="processing-example">
+                    <div class="code-container">
+                        <div class="code-header">Database Internally Does:</div>
+                        <div class="code-content">
+<pre>
+1. Receives: "Find student named Bob"
+2. Checks: Students table structure
+3. Searches: Looks through all student records
+4. Finds: Bob's record (ID: 102, Age: 21, etc.)
+5. Prepares: Packages data for response
+</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="step-arrow">→</div>
+        
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h4>Response Sent Back</h4>
+                <p>The database sends the requested data back to your C# application.</p>
+                <div class="code-container">
+                    <div class="code-header">Data Returned to C#</div>
+                    <div class="code-content">
+<pre>
+<span style="color: #198754;">// Database returns:</span>
+StudentID: 102
+FirstName: "Bob"
+LastName: "Johnson"
+Age: 21
+Grade: "B"
+
+<span style="color: #198754;">// Your C# code receives this as an object</span>
+Student bob = { ID: 102, FirstName: "Bob", ... };
+</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center">Key Database Operations Explained</h2>
+    
+    <div class="operations-grid">
+        <div class="operation-card">
+            <div class="operation-header">
+                <h4>1. Storing Data (CREATE/INSERT)</h4>
+            </div>
+            <div class="operation-body">
+                <p>How databases save new information in an organized way.</p>
+                <div class="analogy">
+                    <p><strong>Like:</strong> Adding a new book to the library catalog and putting it on the right shelf.</p>
+                </div>
+                <div class="code-container">
+                    <div class="code-header">Adding a New Student</div>
+                    <div class="code-content">
+<pre>
+<span style="color: #198754;">// SQL way (database understands this)</span>
+INSERT INTO Students (StudentID, Name, Age, Grade)
+VALUES (104, 'Diana', 22, 'A');
+
+<span style="color: #198754;">// C# way (what you'll actually write)</span>
+var newStudent = new Student {
+    StudentID = 104,
+    Name = "Diana",
+    Age = 22,
+    Grade = "A"
+};
+db.Students.Add(newStudent);
+db.SaveChanges();
+</pre>
+                    </div>
+                </div>
+                <p><strong>What happens:</strong> Database creates a new row in the Students table with Diana's information.</p>
+            </div>
+        </div>
+
+        <div class="operation-card">
+            <div class="operation-header">
+                <h4>2. Retrieving Data (SELECT/READ)</h4>
+            </div>
+            <div class="operation-body">
+                <p>How databases find and return requested information.</p>
+                <div class="analogy">
+                    <p><strong>Like:</strong> Asking the librarian for all books by a specific author.</p>
+                </div>
+                <div class="code-container">
+                    <div class="code-header">Finding Students with Grade "A"</div>
+                    <div class="code-content">
+<pre>
+<span style="color: #198754;">// SQL way</span>
+SELECT Name, Age FROM Students WHERE Grade = 'A';
+
+<span style="color: #198754;">// C# way (much easier!)</span>
+var topStudents = db.Students
+    .Where(s => s.Grade == "A")
+    .Select(s => new { s.Name, s.Age })
+    .ToList();
+</pre>
+                    </div>
+                </div>
+                <p><strong>What happens:</strong> Database searches the Grade column, finds all "A" students, returns their names and ages.</p>
+            </div>
+        </div>
+
+        <div class="operation-card">
+            <div class="operation-header">
+                <h4>3. Modifying Data (UPDATE)</h4>
+            </div>
+            <div class="operation-body">
+                <p>How databases change existing information.</p>
+                <div class="analogy">
+                    <p><strong>Like:</strong> Updating a book's location after it's moved to a different shelf.</p>
+                </div>
+                <div class="code-container">
+                    <div class="code-header">Changing Bob's Grade</div>
+                    <div class="code-content">
+<pre>
+<span style="color: #198754;">// SQL way</span>
+UPDATE Students SET Grade = 'A' WHERE Name = 'Bob';
+
+<span style="color: #198754;">// C# way</span>
+var bob = db.Students.First(s => s.Name == "Bob");
+bob.Grade = "A";
+db.SaveChanges();
+</pre>
+                    </div>
+                </div>
+                <p><strong>What happens:</strong> Database finds Bob's record, changes his Grade from "B" to "A", saves the change.</p>
+            </div>
+        </div>
+
+        <div class="operation-card">
+            <div class="operation-header">
+                <h4>4. Removing Data (DELETE)</h4>
+            </div>
+            <div class="operation-body">
+                <p>How databases remove information when no longer needed.</p>
+                <div class="analogy">
+                    <p><strong>Like:</strong> Removing an old, damaged book from the library system.</p>
+                </div>
+                <div class="code-container">
+                    <div class="code-header">Removing a Student</div>
+                    <div class="code-content">
+<pre>
+<span style="color: #198754;">// SQL way</span>
+DELETE FROM Students WHERE StudentID = 103;
+
+<span style="color: #198754;">// C# way</span>
+var studentToRemove = db.Students.Find(103);
+db.Students.Remove(studentToRemove);
+db.SaveChanges();
+</pre>
+                    </div>
+                </div>
+                <p><strong>What happens:</strong> Database finds the student with ID 103 and removes their entire record.</p>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center">Behind the Scenes: What Makes Databases Smart</h2>
+    
+    <div class="features-grid">
+        <div class="feature">
+            <h4>Indexes (The Fast Search System)</h4>
+            <p>Like a book index - helps find data quickly without checking every single record.</p>
+            <div class="code-container">
+                <div class="code-header">Without vs With Index</div>
+                <div class="code-content">
+<pre>
+<span style="color: #dc3545;">Without Index:</span>
+- Find "Bob" in 10,000 students
+- Check every student (1, 2, 3, ... 10,000)
+- <span style="color: #dc3545;">Time: ~10 milliseconds</span>
+
+<span style="color: #198754;">With Index:</span>
+- Find "Bob" in 10,000 students  
+- Index knows Bob is at position 5,102
+- Go directly to student 5,102
+- <span style="color: #198754;">Time: ~0.1 milliseconds</span>
+</pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature">
+            <h4>Transactions (The Safety System)</h4>
+            <p>Ensures operations complete fully or not at all - prevents partial updates.</p>
+            <div class="code-container">
+                <div class="code-header">Bank Transfer Example</div>
+                <div class="code-content">
+<pre>
+<span style="color: #198754;">// Without transaction (DANGEROUS):</span>
+1. Subtract $100 from Account A ✓
+2. Server crashes! ❌
+3. Add $100 to Account B ❌
+<span style="color: #dc3545;">Result: Money lost!</span>
+
+<span style="color: #198754;">// With transaction (SAFE):</span>
+BEGIN TRANSACTION
+1. Subtract $100 from Account A ✓
+2. Add $100 to Account B ✓
+COMMIT TRANSACTION
+<span style="color: #198754;">Result: Both succeed or both fail</span>
+</pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature">
+            <h4>Constraints (The Rule Enforcer)</h4>
+            <p>Prevents invalid data from entering the database.</p>
+            <div class="code-container">
+                <div class="code-header">Data Validation Rules</div>
+                <div class="code-content">
+<pre>
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50) NOT NULL,           <span style="color: #198754;">// Must have a name</span>
+    Age INT CHECK (Age >= 0 AND Age <= 120), <span style="color: #198754;">// Age 0-120 only</span>
+    Email VARCHAR(100) UNIQUE,           <span style="color: #198754;">// Email must be unique</span>
+    Grade CHAR(1) CHECK (Grade IN ('A','B','C','D','F'))
+);
+
+<span style="color: #dc3545;">// These would be rejected:</span>
+Age = -5      <span style="color: #dc3545;">// Too young!</span>
+Grade = 'X'   <span style="color: #dc3545;">// Invalid grade!</span>
+Email = NULL  <span style="color: #dc3545;">// Must have email!</span>
+</pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature">
+            <h4>Security (The Protector)</h4>
+            <p>Controls who can access and modify data.</p>
+            <div class="code-container">
+                <div class="code-header">Access Control Levels</div>
+                <div class="code-content">
+<pre>
+<span style="color: #198754;">// Different users, different access:</span>
+
+ADMIN:
+- Can view ALL students
+- Can add/delete ANY student
+- Can change ANY grade
+
+TEACHER:
+- Can view THEIR students only
+- Can update grades (not delete)
+- Cannot see other teachers' students
+
+STUDENT:
+- Can view ONLY THEIR OWN grades
+- Cannot change any data
+- Cannot see other students
+</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center">Real-World Example: Online Store Database</h2>
+    
+    <div class="real-world-example">
+        <div class="store-flow">
+            <div class="flow-step">
+                <h5>1. Customer Browses Products</h5>
+                <p><strong>Database action:</strong> SELECT products with available stock</p>
+                <p><strong>SQL generated:</strong> <code>SELECT * FROM Products WHERE Stock > 0</code></p>
+            </div>
+            
+            <div class="flow-step">
+                <h5>2. Customer Adds to Cart</h5>
+                <p><strong>Database action:</strong> INSERT item into Cart table</p>
+                <p><strong>SQL generated:</strong> <code>INSERT INTO Cart VALUES (user123, product456, 1)</code></p>
+            </div>
+            
+            <div class="flow-step">
+                <h5>3. Customer Checks Out</h5>
+                <p><strong>Database action:</strong> Multiple operations in a transaction</p>
+                <div class="code-container">
+                    <div class="code-header">Transaction Steps</div>
+                    <div class="code-content">
+<pre>
+BEGIN TRANSACTION
+1. CREATE new Order record
+2. ADD all cart items to OrderDetails
+3. UPDATE product stock quantities
+4. CLEAR customer's cart
+5. RECORD payment information
+COMMIT TRANSACTION
+</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flow-step">
+                <h5>4. Store Owner Views Sales</h5>
+                <p><strong>Database action:</strong> Complex query with joins</p>
+                <p><strong>SQL generated:</strong> <code>SELECT SUM(Total) FROM Orders WHERE Date = TODAY</code></p>
+            </div>
+        </div>
+        
+        <div class="csharp-integration">
+            <h4>How C# Makes This Easy</h4>
+            <div class="code-container">
+                <div class="code-header">C# Code for Online Store</div>
+                <div class="code-content">
+<pre>
+<span style="color: #198754;">// 1. Get available products - Using C#!</span>
+var availableProducts = db.Products
+    .Where(p => p.Stock > 0)
+    .ToList();
+
+<span style="color: #198754;">// 2. Add to cart - Using C#!</span>
+var cartItem = new CartItem {
+    UserId = currentUser.Id,
+    ProductId = selectedProduct.Id,
+    Quantity = 1
+};
+db.CartItems.Add(cartItem);
+db.SaveChanges();
+
+<span style="color: #198754;">// 3. Checkout - Using C# transactions!</span>
+using (var transaction = db.Database.BeginTransaction())
+{
+    try
+    {
+        <span style="color: #198754;">// All checkout operations here</span>
+        transaction.Commit();
+    }
+    catch
+    {
+        transaction.Rollback();
+    }
+}
+</pre>
+                </div>
+            </div>
+            <p><strong>Notice:</strong> You're writing C# code, not SQL! The database work happens automatically.</p>
+        </div>
+    </div>
+
+    <div class="focus-note">
+        <h3 class="text-center">Focus on Relational Databases</h3>
+        <div class="note-content">
+            <p><strong>Important for this course:</strong> While we've shown how databases work in general, we'll now focus specifically on <strong>relational databases</strong> because:</p>
+            <ol>
+                <li>They're the most commonly used with C# and .NET</li>
+                <li>Perfect for structured data (like users, products, orders)</li>
+                <li>Great for learning proper database design</li>
+                <li>Microsoft SQL Server integrates perfectly with C#</li>
+                <li>You can use Entity Framework (makes database work easy!)</li>
+            </ol>
+            <p><strong>Next up:</strong> We'll dive deep into <strong>Relational Databases</strong> - how they're structured, how to design them, and how to use them with C#.</p>
+        </div>
+    </div>
+
+    <div class="summary-box">
+        <h3 class="text-center">How Databases Work - Summary</h3>
+        <div class="summary-content">
+            <p><strong>Databases work through a simple request-response cycle:</strong></p>
+            <ol>
+                <li>Your <strong>C# application</strong> needs data</li>
+                <li>It sends a <strong>request</strong> to the database (translated to SQL)</li>
+                <li>The database <strong>processes</strong> the request (finds/updates data)</li>
+                <li>It sends the <strong>response</strong> back to your application</li>
+            </ol>
+            <p><strong>Key operations:</strong> Create, Read, Update, Delete (CRUD)</p>
+            <p><strong>Smart features:</strong> Indexes (fast search), Transactions (safety), Constraints (data rules), Security (access control)</p>
+            <p><strong>Best part for C# developers:</strong> You write C# code, and Entity Framework handles the database communication automatically!</p>
+        </div>
+    </div>
 
     <div class="navigation-buttons">
         <a href="@Url.Action("TypesOfDatabase", "Database")" class="btn btn-outline-primary ajax-link">← Types of Databases</a>
-        <a href="@Url.Action("RelationalDatabase", "Database")" class="btn btn-primary ajax-link">Relational Databases →</a>
+        <a href="@Url.Action("RelationalDatabase", "Database")" class="btn btn-primary ajax-link">Next: Relational Databases →</a>
     </div>
 </div>
 
@@ -53,33 +458,109 @@ DELETE FROM Users WHERE Id = 1;
         background-color: var(--bs-body-bg);
     }
 
-    h1, h2 {
+    h1, h2, h3, h4, h5 {
         color: var(--bs-heading-color);
-        margin-top: 25px;
         margin-bottom: 15px;
     }
 
-    .container p,
-    .container ul {
+    h1 {
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
+    }
+
+    h2 {
+        margin-top: 40px;
+        padding-bottom: 8px;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+
+    h2.text-center {
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    p, li {
         color: var(--bs-body-color);
         line-height: 1.6;
     }
 
+    .intro-section {
+        margin-bottom: 30px;
+    }
+
+    .note-box {
+        padding: 15px;
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid var(--bs-warning);
+        border-radius: 5px;
+        margin-top: 15px;
+    }
+
+    .workflow-diagram {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin: 30px 0;
+    }
+
+    @@media (min-width: 768px) {
+        .workflow-diagram {
+            flex-direction: row;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .step-arrow {
+            padding: 0 15px;
+            font-size: 24px;
+            color: var(--bs-primary);
+        }
+    }
+
+    .step {
+        flex: 1;
+        min-width: 200px;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .step-number {
+        background-color: var(--bs-primary);
+        color: white;
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+
+    .step-content {
+        padding: 15px;
+    }
+
+    .step-content h4 {
+        color: var(--bs-primary);
+        margin-top: 0;
+        border-bottom: 1px solid var(--bs-border-color);
+        padding-bottom: 5px;
+    }
+
     .code-container {
-        margin: 25px 0;
+        margin: 10px 0;
         border: 1px solid var(--bs-border-color);
         border-radius: 5px;
         overflow: hidden;
-        background-color: var(--code-bg);
+        background-color: #1a1a1a;
     }
 
     .code-header {
-        background-color: var(--code-header-bg);
+        background-color: #2d2d2d;
         padding: 10px 15px;
         border-bottom: 1px solid var(--bs-border-color);
-        font-family: monospace;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
         font-size: 0.9rem;
-        color: var(--bs-body-color);
+        color: #e0e0e0;
     }
 
     .code-content {
@@ -91,10 +572,165 @@ DELETE FROM Users WHERE Id = 1;
         margin: 0;
         white-space: pre-wrap;
         background-color: transparent;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        color: #e0e0e0;
+        line-height: 1.4;
     }
 
-    code {
-        font-family: 'SFMono-Regular', Consolas, monospace;
+    .processing-example {
+        margin-top: 10px;
+    }
+
+    .operations-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin: 30px 0;
+    }
+
+    @@media (min-width: 768px) {
+        .operations-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .operation-card {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .operation-header {
+        background-color: var(--bs-primary);
+        color: white;
+        padding: 12px 15px;
+    }
+
+    .operation-header h4 {
+        color: white;
+        margin: 0;
+        font-size: 1.1rem;
+    }
+
+    .operation-body {
+        padding: 15px;
+    }
+
+    .analogy {
+        margin: 10px 0;
+        padding: 8px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border-radius: 5px;
+        font-style: italic;
+        font-size: 0.9rem;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin: 30px 0;
+    }
+
+    @@media (min-width: 768px) {
+        .features-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .feature {
+        padding: 15px;
+        background-color: rgba(0, 123, 255, 0.05);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+    }
+
+    .feature h4 {
+        color: var(--bs-primary);
+        margin-top: 0;
+        border-bottom: 1px solid var(--bs-border-color);
+        padding-bottom: 5px;
+    }
+
+    .real-world-example {
+        margin: 40px 0;
+    }
+
+    .store-flow {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+
+    @@media (min-width: 768px) {
+        .store-flow {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    .flow-step {
+        padding: 15px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 5px;
+    }
+
+    .flow-step h5 {
+        color: var(--bs-indigo);
+        margin-top: 0;
+    }
+
+    .csharp-integration {
+        padding: 20px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 5px;
+    }
+
+    .csharp-integration h4 {
+        color: var(--bs-success);
+        margin-top: 0;
+    }
+
+    .focus-note {
+        margin: 40px 0;
+        padding: 20px;
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid var(--bs-warning);
+        border-radius: 8px;
+    }
+
+    .focus-note h3 {
+        color: var(--bs-warning);
+    }
+
+    .note-content {
+        margin-top: 15px;
+    }
+
+    .note-content ol {
+        margin-left: 20px;
+    }
+
+    .summary-box {
+        margin: 40px 0;
+        padding: 20px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 8px;
+    }
+
+    .summary-box h3 {
+        color: var(--bs-indigo);
+    }
+
+    .summary-content {
+        margin-top: 15px;
+    }
+
+    .summary-content ol {
+        margin-left: 20px;
     }
 
     .navigation-buttons {
@@ -107,15 +743,27 @@ DELETE FROM Users WHERE Id = 1;
         padding: 8px 20px;
         border-radius: 4px;
         font-weight: 500;
+        text-decoration: none;
     }
 
     .btn-primary {
         background-color: var(--bs-primary);
         border-color: var(--bs-primary);
+        color: #fff;
     }
 
     .btn-outline-primary {
         color: var(--bs-primary);
         border-color: var(--bs-primary);
+        background-color: transparent;
     }
 </style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightAll();
+        }
+    });
+</script>
+</body>
