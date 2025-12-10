@@ -1,147 +1,1118 @@
 ﻿@{
-    ViewData["Title"] = "Code Formatting Guidelines in C#";
+    ViewData["Title"] = "Complete OOP Exercises";
 }
 
 <div class="container">
-    <h1>Code Formatting Guidelines</h1>
-    <p>Before we continue with the exercises, make sure your code is structured like this so it works correctly.</p>
+    <h1 class="mb-4">Object-Oriented Programming Exercises</h1>
+    <p class="lead">Practice all OOP concepts with these interactive exercises. Type your code and check your answers!</p>
 
-    <h2>1. Variables on Separate Lines</h2>
-    <p>Each variable should be declared on a new line. For example:</p>
-    <div class="code-container">
-        <div class="code-header">Correct</div>
-        <div class="code-content">
-<pre><code class="language-csharp">
-string student1 = "Kire";
-string student2 = "Kire2";
-</code></pre>
+    <div class="alert alert-info">
+        <strong>Instructions:</strong> For each exercise, type your code in the text area and click "Check Answer".
+        You can toggle to see the correct solution if needed.
+    </div>
+
+    <!-- Exercise 1: Basic Class -->
+    <div class="exercise-card" id="exercise1">
+        <h2>Exercise 1: Create a Basic Class</h2>
+        <div class="exercise-content">
+            <p>
+                Create a <strong>Student class</strong> with:<br />
+                1. Two properties: <code>Name</code> (string) and <code>Age</code> (int)<br />
+                2. One method: <code>Introduce()</code> that prints: "Hi, I'm [Name] and I'm [Age] years old."<br />
+                3. Create a Student object with Name="Alice" and Age=20, then call Introduce()
+            </p>
+
+            <textarea id="code1" rows="8" placeholder="Type your code here..." class="code-input"></textarea>
+
+            <div class="exercise-controls">
+                <div class="toggle-container">
+                    <label class="switch">
+                        <input type="checkbox" id="toggle1">
+                        <span class="slider"></span>
+                    </label>
+                    <span>Show Solution</span>
+                </div>
+                <button class="btn btn-check" onclick="checkExercise(1)">Check Answer</button>
+            </div>
+
+            <div id="solution1" class="solution-container">
+                <div class="solution-header">Correct Solution:</div>
+                <pre class="solution-code">public class Student
+{
+    public string Name;
+    public int Age;
+    
+    public void Introduce()
+    {
+        Console.WriteLine("Hi, I'm " + Name + " and I'm " + Age + " years old.");
+    }
+}
+
+// Create and use the student
+Student student = new Student();
+student.Name = "Alice";
+student.Age = 20;
+student.Introduce();</pre>
+            </div>
+
+            <div id="result1" class="result-message"></div>
         </div>
     </div>
 
-    <h2>2. Braces on Separate Lines</h2>
-    <p>For <code>if</code> statements, <code>for</code> loops, and similar blocks, always place the opening and closing braces on new lines. For example:</p>
-    <div class="code-container">
-        <div class="code-header">Correct</div>
-        <div class="code-content">
-<pre><code class="language-csharp">
-if (condition)
+    <!-- Exercise 2: Constructor -->
+    <div class="exercise-card" id="exercise2">
+        <h2>Exercise 2: Create a Constructor</h2>
+        <div class="exercise-content">
+            <p>
+                Create a <strong>Car class</strong> with:<br />
+                1. Properties: <code>Brand</code> (string), <code>Year</code> (int)<br />
+                2. A <strong>constructor</strong> that takes brand and year as parameters<br />
+                3. A method <code>DisplayInfo()</code> that prints: "[Brand] made in [Year]"<br />
+                4. Create a Car object using the constructor with "Toyota" and 2020
+            </p>
+
+            <textarea id="code2" rows="8" placeholder="Type your code here..." class="code-input"></textarea>
+
+            <div class="exercise-controls">
+                <div class="toggle-container">
+                    <label class="switch">
+                        <input type="checkbox" id="toggle2">
+                        <span class="slider"></span>
+                    </label>
+                    <span>Show Solution</span>
+                </div>
+                <button class="btn btn-check" onclick="checkExercise(2)">Check Answer</button>
+            </div>
+
+            <div id="solution2" class="solution-container">
+                <div class="solution-header">Correct Solution:</div>
+                <pre class="solution-code">public class Car
 {
-    // your code here
+    public string Brand;
+    public int Year;
+    
+    // Constructor
+    public Car(string brand, int year)
+    {
+        Brand = brand;
+        Year = year;
+    }
+    
+    public void DisplayInfo()
+    {
+        Console.WriteLine(Brand + " made in " + Year);
+    }
 }
 
-for (int i = 0; i &lt; 5; i++)
-{
-    // your code here
-}
-</code></pre>
+// Create car using constructor
+Car myCar = new Car("Toyota", 2020);
+myCar.DisplayInfo();</pre>
+            </div>
+
+            <div id="result2" class="result-message"></div>
         </div>
     </div>
 
-   <h2>3. Add an Empty Line Before Statements</h2>
-    <p>It is necessary to leave an empty line after variable declarations and before 
-        <code>if</code>, <code>else</code>, 
-        or other statements for the exercises to work correctly. This improves readability and ensures the exercise checker interprets your code properly.</p>
+    <!-- Exercise 3: Inheritance -->
+    <div class="exercise-card" id="exercise3">
+        <h2>Exercise 3: Inheritance</h2>
+        <div class="exercise-content">
+            <p>
+                Create an inheritance hierarchy:<br />
+                1. <strong>Animal class</strong> with: <code>Name</code> property and <code>Eat()</code> method (prints "[Name] is eating")<br />
+                2. <strong>Dog class</strong> that inherits from Animal, adds <code>Bark()</code> method (prints "Woof!")<br />
+                3. Create a Dog object named "Buddy" and call both Eat() and Bark()
+            </p>
 
-<div class="code-container">
-    <div class="code-header">Example</div>
-    <div class="code-content">
-<pre><code class="language-csharp">
-// Variable initialization
-int age = 20;
+            <textarea id="code3" rows="10" placeholder="Type your code here..." class="code-input"></textarea>
 
-// Statement
-if (age >= 18)
+            <div class="exercise-controls">
+                <div class="toggle-container">
+                    <label class="switch">
+                        <input type="checkbox" id="toggle3">
+                        <span class="slider"></span>
+                    </label>
+                    <span>Show Solution</span>
+                </div>
+                <button class="btn btn-check" onclick="checkExercise(3)">Check Answer</button>
+            </div>
+
+            <div id="solution3" class="solution-container">
+                <div class="solution-header">Correct Solution:</div>
+                <pre class="solution-code">public class Animal
 {
-    Console.WriteLine("Adult");
+    public string Name;
+    
+    public void Eat()
+    {
+        Console.WriteLine(Name + " is eating");
+    }
 }
-</code></pre>
+
+public class Dog : Animal  // Dog inherits from Animal
+{
+    public void Bark()
+    {
+        Console.WriteLine("Woof!");
+    }
+}
+
+// Create Dog and use inherited method
+Dog myDog = new Dog();
+myDog.Name = "Buddy";
+myDog.Eat();  // From Animal
+myDog.Bark(); // From Dog</pre>
+            </div>
+
+            <div id="result3" class="result-message"></div>
+        </div>
     </div>
-</div>
 
+    <!-- Exercise 4: Encapsulation -->
+    <div class="exercise-card" id="exercise4">
+        <h2>Exercise 4: Encapsulation</h2>
+        <div class="exercise-content">
+            <p>
+                Create a <strong>BankAccount class</strong> with proper encapsulation:<br />
+                1. Private field: <code>balance</code> (decimal)<br />
+                2. Public property: <code>Owner</code> (string)<br />
+                3. Public methods: <code>Deposit(amount)</code> and <code>GetBalance()</code><br />
+                4. Create account for "Alice", deposit 1000, then get balance
+            </p>
 
-    <h2>4. Correct Code</h2>
-    <p>Below the box where you enter the code, there is a slider that reveals the correct format and the answer for that specific exercise.  
-    If you are stuck or unsure, feel free to reveal the answer.</p>
+            <textarea id="code4" rows="10" placeholder="Type your code here..." class="code-input"></textarea>
+
+            <div class="exercise-controls">
+                <div class="toggle-container">
+                    <label class="switch">
+                        <input type="checkbox" id="toggle4">
+                        <span class="slider"></span>
+                    </label>
+                    <span>Show Solution</span>
+                </div>
+                <button class="btn btn-check" onclick="checkExercise(4)">Check Answer</button>
+            </div>
+
+            <div id="solution4" class="solution-container">
+                <div class="solution-header">Correct Solution:</div>
+                <pre class="solution-code">public class BankAccount
+{
+    // Private field - hidden
+    private decimal balance;
+    
+    // Public property
+    public string Owner;
+    
+    // Public method to deposit
+    public void Deposit(decimal amount)
+    {
+        if (amount > 0)
+        {
+            balance += amount;
+            Console.WriteLine("Deposited: $" + amount);
+        }
+    }
+    
+    // Public method to get balance
+    public decimal GetBalance()
+    {
+        return balance;
+    }
+}
+
+// Using the encapsulated account
+BankAccount account = new BankAccount();
+account.Owner = "Alice";
+account.Deposit(1000.00m);
+Console.WriteLine(account.Owner + "'s balance: $" + account.GetBalance());</pre>
+            </div>
+
+            <div id="result4" class="result-message"></div>
+        </div>
+    </div>
+
+    <!-- Exercise 5: Polymorphism -->
+    <div class="exercise-card" id="exercise5">
+        <h2>Exercise 5: Polymorphism (Method Overriding)</h2>
+        <div class="exercise-content">
+            <p>
+                Create a polymorphism example:<br />
+                1. <strong>Shape class</strong> with <code>virtual</code> method <code>Draw()</code> (prints "Drawing shape")<br />
+                2. <strong>Circle class</strong> that inherits from Shape, <code>override</code>s Draw() (prints "Drawing circle")<br />
+                3. Create Shape variable that holds Circle object, call Draw()
+            </p>
+
+            <textarea id="code5" rows="10" placeholder="Type your code here..." class="code-input"></textarea>
+
+            <div class="exercise-controls">
+                <div class="toggle-container">
+                    <label class="switch">
+                        <input type="checkbox" id="toggle5">
+                        <span class="slider"></span>
+                    </label>
+                    <span>Show Solution</span>
+                </div>
+                <button class="btn btn-check" onclick="checkExercise(5)">Check Answer</button>
+            </div>
+
+            <div id="solution5" class="solution-container">
+                <div class="solution-header">Correct Solution:</div>
+                <pre class="solution-code">public class Shape
+{
+    public virtual void Draw()
+    {
+        Console.WriteLine("Drawing shape");
+    }
+}
+
+public class Circle : Shape
+{
+    public override void Draw()
+    {
+        Console.WriteLine("Drawing circle");
+    }
+}
+
+// Polymorphism in action
+Shape myShape = new Circle();  // Shape variable, Circle object
+myShape.Draw();  // Calls Circle's Draw() - prints "Drawing circle"</pre>
+            </div>
+
+            <div id="result5" class="result-message"></div>
+        </div>
+    </div>
+
+    <!-- Exercise 6: Abstraction -->
+    <div class="exercise-card" id="exercise6">
+        <h2>Exercise 6: Abstraction</h2>
+        <div class="exercise-content">
+            <p>
+                Create an abstract class:<br />
+                1. <strong>Vehicle abstract class</strong> with <code>abstract</code> method <code>Start()</code><br />
+                2. <strong>Car class</strong> that inherits from Vehicle and implements Start() (prints "Car starting")<br />
+                3. <strong>Motorcycle class</strong> that inherits from Vehicle and implements Start() (prints "Motorcycle starting")<br />
+                4. Create objects of both and call Start()
+            </p>
+
+            <textarea id="code6" rows="12" placeholder="Type your code here..." class="code-input"></textarea>
+
+            <div class="exercise-controls">
+                <div class="toggle-container">
+                    <label class="switch">
+                        <input type="checkbox" id="toggle6">
+                        <span class="slider"></span>
+                    </label>
+                    <span>Show Solution</span>
+                </div>
+                <button class="btn btn-check" onclick="checkExercise(6)">Check Answer</button>
+            </div>
+
+            <div id="solution6" class="solution-container">
+                <div class="solution-header">Correct Solution:</div>
+                <pre class="solution-code">public abstract class Vehicle
+{
+    public abstract void Start();
+}
+
+public class Car : Vehicle
+{
+    public override void Start()
+    {
+        Console.WriteLine("Car starting");
+    }
+}
+
+public class Motorcycle : Vehicle
+{
+    public override void Start()
+    {
+        Console.WriteLine("Motorcycle starting");
+    }
+}
+
+// Using abstraction
+Vehicle car = new Car();
+Vehicle bike = new Motorcycle();
+
+car.Start();    // Prints "Car starting"
+bike.Start();   // Prints "Motorcycle starting"</pre>
+            </div>
+
+            <div id="result6" class="result-message"></div>
+        </div>
+    </div>
+
+    <!-- Exercise 7: Interface -->
+    <div class="exercise-card" id="exercise7">
+        <h2>Exercise 7: Interface</h2>
+        <div class="exercise-content">
+            <p>
+                Create and implement an interface:<br />
+                1. <strong>IPlayable interface</strong> with method <code>Play()</code><br />
+                2. <strong>MusicPlayer class</strong> that implements IPlayable, Play() prints "Playing music"<br />
+                3. <strong>VideoPlayer class</strong> that implements IPlayable, Play() prints "Playing video"<br />
+                4. Create array of IPlayable and call Play() on each
+            </p>
+
+            <textarea id="code7" rows="12" placeholder="Type your code here..." class="code-input"></textarea>
+
+            <div class="exercise-controls">
+                <div class="toggle-container">
+                    <label class="switch">
+                        <input type="checkbox" id="toggle7">
+                        <span class="slider"></span>
+                    </label>
+                    <span>Show Solution</span>
+                </div>
+                <button class="btn btn-check" onclick="checkExercise(7)">Check Answer</button>
+            </div>
+
+            <div id="solution7" class="solution-container">
+                <div class="solution-header">Correct Solution:</div>
+                <pre class="solution-code">public interface IPlayable
+{
+    void Play();
+}
+
+public class MusicPlayer : IPlayable
+{
+    public void Play()
+    {
+        Console.WriteLine("Playing music");
+    }
+}
+
+public class VideoPlayer : IPlayable
+{
+    public void Play()
+    {
+        Console.WriteLine("Playing video");
+    }
+}
+
+// Using interface
+IPlayable[] players = new IPlayable[2];
+players[0] = new MusicPlayer();
+players[1] = new VideoPlayer();
+
+foreach (IPlayable player in players)
+{
+    player.Play();
+}</pre>
+            </div>
+
+            <div id="result7" class="result-message"></div>
+        </div>
+    </div>
+
+    <!-- Exercise 8: Static, Readonly, Const -->
+    <div class="exercise-card" id="exercise8">
+        <h2>Exercise 8: Static, Readonly, Const</h2>
+        <div class="exercise-content">
+            <p>
+                Demonstrate static, readonly, and const:<br />
+                1. <strong>Game class</strong> with: <code>const MAX_PLAYERS = 4</code>, <code>static playerCount</code>, <code>readonly playerId</code><br />
+                2. Constructor sets playerId and increments playerCount<br />
+                3. Method to display game info<br />
+                4. Create two Game objects and show values
+            </p>
+
+            <textarea id="code8" rows="12" placeholder="Type your code here..." class="code-input"></textarea>
+
+            <div class="exercise-controls">
+                <div class="toggle-container">
+                    <label class="switch">
+                        <input type="checkbox" id="toggle8">
+                        <span class="slider"></span>
+                    </label>
+                    <span>Show Solution</span>
+                </div>
+                <button class="btn btn-check" onclick="checkExercise(8)">Check Answer</button>
+            </div>
+
+            <div id="solution8" class="solution-container">
+                <div class="solution-header">Correct Solution:</div>
+                <pre class="solution-code">public class Game
+{
+    public const int MAX_PLAYERS = 4;
+    public static int playerCount = 0;
+    public readonly string playerId;
+    public string PlayerName;
+    
+    public Game(string name)
+    {
+        PlayerName = name;
+        playerId = "P" + (playerCount + 1).ToString("D3");
+        playerCount++;
+    }
+    
+    public void DisplayInfo()
+    {
+        Console.WriteLine(PlayerName + " - ID: " + playerId);
+        Console.WriteLine("Total players: " + playerCount + "/" + MAX_PLAYERS);
+    }
+}
+
+// Using all modifiers
+Game player1 = new Game("Alice");
+Game player2 = new Game("Bob");
+
+player1.DisplayInfo();
+player2.DisplayInfo();</pre>
+            </div>
+
+            <div id="result8" class="result-message"></div>
+        </div>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("ManyToManyWithJoin", "DataBaseRelations")" class="btn btn-outline-primary ajax-link">← Many-to-Many with Join Entity</a>
-        <a href="@Url.Action("Index", "Exercises")" class="btn btn-primary ajax-link">Exercise 1 →</a>
+        <a href="@Url.Action("Summary", "OOP")" class="btn btn-outline-primary">← Back to OOP Summary</a>
+        <button class="btn btn-secondary" onclick="resetAllExercises()">Reset All Exercises</button>
     </div>
 </div>
 
 <style>
     .container {
-        max-width: 800px;
-        padding: 20px;
+        max-width: 1000px;
+        padding: 30px;
         background-color: var(--bs-body-bg);
     }
 
-    h1, h2 {
+    h1 {
         color: var(--bs-heading-color);
-        margin-bottom: 15px;
+        margin-bottom: 20px;
+        border-bottom: 3px solid var(--bs-primary);
+        padding-bottom: 15px;
     }
 
-    h1 {
+    .lead {
+        color: var(--bs-body-color);
+        font-size: 1.1rem;
         margin-bottom: 25px;
     }
 
-    p {
+    .alert-info {
+        background-color: rgba(13, 202, 240, 0.1);
+        border-color: rgba(13, 202, 240, 0.3);
+        color: var(--bs-info);
+        margin-bottom: 30px;
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .exercise-card {
+        background-color: var(--exercise-bg, white);
+        border: 2px solid var(--bs-border-color);
+        border-radius: 10px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 3px 10px var(--exercise-shadow, rgba(0,0,0,0.08));
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+        .exercise-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--exercise-shadow-hover, rgba(0,0,0,0.12));
+        }
+
+        .exercise-card h2 {
+            color: var(--bs-primary);
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+    .exercise-content p {
         color: var(--bs-body-color);
         line-height: 1.6;
+        margin-bottom: 20px;
     }
 
-    .code-container {
-        margin: 20px 0;
-        border: 1px solid var(--bs-border-color);
-        border-radius: 5px;
-        overflow: hidden;
+        .exercise-content p code {
+            background-color: var(--code-bg);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+            font-size: 0.9em;
+            color: var(--bs-body-color);
+        }
+
+    .code-input {
+        width: 100%;
+        min-height: 150px;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
+        font-size: 0.95rem;
+        padding: 15px;
+        border: 2px solid var(--bs-border-color);
+        border-radius: 8px;
         background-color: var(--code-bg);
+        color: var(--bs-body-color);
+        resize: vertical;
+        margin-bottom: 15px;
+        transition: border-color 0.2s;
     }
 
-    .code-header {
-        background-color: var(--code-header-bg);
-        padding: 10px 15px;
-        border-bottom: 1px solid var(--bs-border-color);
+        .code-input:focus {
+            outline: none;
+            border-color: var(--bs-primary);
+            box-shadow: 0 0 0 3px rgba(var(--bs-primary-rgb), 0.25);
+        }
+
+    .exercise-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 15px;
+        gap: 15px;
+    }
+
+    .toggle-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 26px;
+    }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+    input:checked + .slider {
+        background-color: var(--bs-primary);
+    }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+    .btn-check {
+        background-color: var(--bs-primary);
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        border-radius: 6px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.2s;
+        min-width: 120px;
+    }
+
+        .btn-check:hover {
+            background-color: var(--bs-primary-dark);
+        }
+
+    .solution-container {
+        background-color: var(--solution-bg, rgba(40, 167, 69, 0.1));
+        border: 1px solid var(--bs-success);
+        border-radius: 8px;
+        padding: 0;
+        margin-bottom: 15px;
+        display: none;
+        animation: fadeIn 0.3s;
+    }
+
+    .solution-header {
+        background-color: var(--solution-header-bg, rgba(40, 167, 69, 0.2));
+        padding: 12px 15px;
+        font-weight: 600;
+        color: var(--bs-success);
+        border-bottom: 1px solid var(--bs-success);
+        border-radius: 8px 8px 0 0;
+    }
+
+    .solution-code {
+        padding: 15px;
+        margin: 0;
+        white-space: pre-wrap;
         font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
         font-size: 0.9rem;
         color: var(--bs-body-color);
-    }
-
-    .code-content {
-        padding: 15px;
+        line-height: 1.5;
         overflow-x: auto;
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, monospace;
     }
 
-    pre {
-        margin: 0;
-        white-space: pre-wrap;
-        background-color: transparent;
+    .result-message {
+        padding: 15px;
+        border-radius: 8px;
+        font-weight: 600;
+        margin-top: 10px;
+        display: none;
+        animation: fadeIn 0.3s;
     }
+
+        .result-message.correct {
+            background-color: rgba(40, 167, 69, 0.1);
+            color: var(--bs-success);
+            border: 1px solid var(--bs-success);
+            display: block;
+        }
+
+        .result-message.incorrect {
+            background-color: rgba(220, 53, 69, 0.1);
+            color: var(--bs-danger);
+            border: 1px solid var(--bs-danger);
+            display: block;
+        }
 
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
 
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
         text-decoration: none;
         cursor: pointer;
+        transition: all 0.2s;
     }
 
     .btn-primary {
         background-color: var(--bs-primary);
         border-color: var(--bs-primary);
-        color: #fff;
+        color: white;
     }
+
+        .btn-primary:hover {
+            background-color: var(--bs-primary-dark);
+            border-color: var(--bs-primary-dark);
+            transform: translateY(-1px);
+        }
 
     .btn-outline-primary {
         color: var(--bs-primary);
         border-color: var(--bs-primary);
         background-color: transparent;
     }
+
+        .btn-outline-primary:hover {
+            background-color: var(--bs-primary);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+    .btn-secondary {
+        background-color: var(--bs-secondary);
+        border-color: var(--bs-secondary);
+        color: white;
+    }
+
+        .btn-secondary:hover {
+            background-color: var(--bs-secondary-dark);
+            border-color: var(--bs-secondary-dark);
+            transform: translateY(-1px);
+        }
+
+    @@keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Dark theme variables */
+    [data-bs-theme="dark"] {
+        --exercise-bg: rgba(255, 255, 255, 0.05);
+        --exercise-shadow: rgba(0, 0, 0, 0.3);
+        --exercise-shadow-hover: rgba(0, 0, 0, 0.4);
+        --code-bg: #1e1e1e;
+        --solution-bg: rgba(40, 167, 69, 0.15);
+        --solution-header-bg: rgba(40, 167, 69, 0.25);
+    }
+
+    [data-bs-theme="light"] {
+        --exercise-bg: white;
+        --exercise-shadow: rgba(0, 0, 0, 0.08);
+        --exercise-shadow-hover: rgba(0, 0, 0, 0.12);
+        --code-bg: #f8f9fa;
+        --solution-bg: rgba(40, 167, 69, 0.1);
+        --solution-header-bg: rgba(40, 167, 69, 0.2);
+    }
 </style>
+
+<script>
+        // Solutions for each exercise
+        const solutions = {
+            1: `public class Student
+    {
+        public string Name;
+        public int Age;
+
+        public void Introduce()
+        {
+            Console.WriteLine("Hi, I'm " + Name + " and I'm " + Age + " years old.");
+        }
+    }
+
+    // Create and use the student
+    Student student = new Student();
+    student.Name = "Alice";
+    student.Age = 20;
+    student.Introduce();`,
+
+            2: `public class Car
+    {
+        public string Brand;
+        public int Year;
+
+        // Constructor
+        public Car(string brand, int year)
+        {
+            Brand = brand;
+            Year = year;
+        }
+
+        public void DisplayInfo()
+        {
+            Console.WriteLine(Brand + " made in " + Year);
+        }
+    }
+
+    // Create car using constructor
+    Car myCar = new Car("Toyota", 2020);
+    myCar.DisplayInfo();`,
+
+            3: `public class Animal
+    {
+        public string Name;
+
+        public void Eat()
+        {
+            Console.WriteLine(Name + " is eating");
+        }
+    }
+
+    public class Dog : Animal  // Dog inherits from Animal
+    {
+        public void Bark()
+        {
+            Console.WriteLine("Woof!");
+        }
+    }
+
+    // Create Dog and use inherited method
+    Dog myDog = new Dog();
+    myDog.Name = "Buddy";
+    myDog.Eat();  // From Animal
+    myDog.Bark(); // From Dog`,
+
+            4: `public class BankAccount
+    {
+        // Private field - hidden
+        private decimal balance;
+
+        // Public property
+        public string Owner;
+
+        // Public method to deposit
+        public void Deposit(decimal amount)
+        {
+            if (amount > 0)
+            {
+                balance += amount;
+                Console.WriteLine("Deposited: $" + amount);
+            }
+        }
+
+        // Public method to get balance
+        public decimal GetBalance()
+        {
+            return balance;
+        }
+    }
+
+    // Using the encapsulated account
+    BankAccount account = new BankAccount();
+    account.Owner = "Alice";
+    account.Deposit(1000.00m);
+    Console.WriteLine(account.Owner + "'s balance: $" + account.GetBalance());`,
+
+            5: `public class Shape
+    {
+        public virtual void Draw()
+        {
+            Console.WriteLine("Drawing shape");
+        }
+    }
+
+    public class Circle : Shape
+    {
+        public override void Draw()
+        {
+            Console.WriteLine("Drawing circle");
+        }
+    }
+
+    // Polymorphism in action
+    Shape myShape = new Circle();  // Shape variable, Circle object
+    myShape.Draw();  // Calls Circle's Draw() - prints "Drawing circle"`,
+
+            6: `public abstract class Vehicle
+    {
+        public abstract void Start();
+    }
+
+    public class Car : Vehicle
+    {
+        public override void Start()
+        {
+            Console.WriteLine("Car starting");
+        }
+    }
+
+    public class Motorcycle : Vehicle
+    {
+        public override void Start()
+        {
+            Console.WriteLine("Motorcycle starting");
+        }
+    }
+
+    // Using abstraction
+    Vehicle car = new Car();
+    Vehicle bike = new Motorcycle();
+
+    car.Start();    // Prints "Car starting"
+    bike.Start();   // Prints "Motorcycle starting"`,
+
+            7: `public interface IPlayable
+    {
+        void Play();
+    }
+
+    public class MusicPlayer : IPlayable
+    {
+        public void Play()
+        {
+            Console.WriteLine("Playing music");
+        }
+    }
+
+    public class VideoPlayer : IPlayable
+    {
+        public void Play()
+        {
+            Console.WriteLine("Playing video");
+        }
+    }
+
+    // Using interface
+    IPlayable[] players = new IPlayable[2];
+    players[0] = new MusicPlayer();
+    players[1] = new VideoPlayer();
+
+    foreach (IPlayable player in players)
+    {
+        player.Play();
+    }`,
+
+            8: `public class Game
+    {
+        public const int MAX_PLAYERS = 4;
+        public static int playerCount = 0;
+        public readonly string playerId;
+        public string PlayerName;
+
+        public Game(string name)
+        {
+            PlayerName = name;
+            playerId = "P" + (playerCount + 1).ToString("D3");
+            playerCount++;
+        }
+
+        public void DisplayInfo()
+        {
+            Console.WriteLine(PlayerName + " - ID: " + playerId);
+            Console.WriteLine("Total players: " + playerCount + "/" + MAX_PLAYERS);
+        }
+    }
+
+    // Using all modifiers
+    Game player1 = new Game("Alice");
+    Game player2 = new Game("Bob");
+
+    player1.DisplayInfo();
+    player2.DisplayInfo();`
+        };
+
+        // Check functions for each exercise
+        function checkExercise(exerciseNumber) {
+            const userCode = document.getElementById(`code${exerciseNumber}`).value.trim();
+            const resultDiv = document.getElementById(`result${exerciseNumber}`);
+
+            // Remove any previous result classes
+            resultDiv.className = 'result-message';
+
+            // Check based on exercise number
+            let isCorrect = false;
+            let message = '';
+
+            switch(exerciseNumber) {
+                case 1:
+                    isCorrect = checkExercise1(userCode);
+                    message = isCorrect ?
+                        "✅ Perfect! You've created a Student class with properties and method." :
+                        "❌ Check: class Student, Name & Age properties, Introduce() method, create object with Alice/20";
+                    break;
+                case 2:
+                    isCorrect = checkExercise2(userCode);
+                    message = isCorrect ?
+                        "✅ Excellent! Constructor correctly initializes the Car object." :
+                        "❌ Check: class Car, constructor Car(string, int), DisplayInfo() method, new Car(\"Toyota\", 2020)";
+                    break;
+                case 3:
+                    isCorrect = checkExercise3(userCode);
+                    message = isCorrect ?
+                        "✅ Great! You understand inheritance (Dog : Animal)." :
+                        "❌ Check: Animal class, Dog : Animal inheritance, Name property, Eat() and Bark() methods, Buddy object";
+                    break;
+                case 4:
+                    isCorrect = checkExercise4(userCode);
+                    message = isCorrect ?
+                        "✅ Perfect encapsulation! Balance is private and accessed via methods." :
+                        "❌ Check: private decimal balance, public Owner, Deposit() and GetBalance() methods, Alice account with 1000 deposit";
+                    break;
+                case 5:
+                    isCorrect = checkExercise5(userCode);
+                    message = isCorrect ?
+                        "✅ Perfect polymorphism! Circle's Draw() called through Shape variable." :
+                        "❌ Check: Shape with virtual Draw(), Circle : Shape with override Draw(), Shape myShape = new Circle()";
+                    break;
+                case 6:
+                    isCorrect = checkExercise6(userCode);
+                    message = isCorrect ?
+                        "✅ Excellent abstraction! Abstract Vehicle with Car and Motorcycle implementations." :
+                        "❌ Check: abstract class Vehicle, abstract Start(), Car and Motorcycle classes with override Start()";
+                    break;
+                case 7:
+                    isCorrect = checkExercise7(userCode);
+                    message = isCorrect ?
+                        "✅ Great! Interface properly implemented with multiple classes." :
+                        "❌ Check: interface IPlayable, MusicPlayer and VideoPlayer implementing it, array of IPlayable";
+                    break;
+                case 8:
+                    isCorrect = checkExercise8(userCode);
+                    message = isCorrect ?
+                        "✅ Perfect! All modifiers (const, static, readonly) used correctly." :
+                        "❌ Check: const MAX_PLAYERS, static playerCount, readonly playerId, constructor, DisplayInfo()";
+                    break;
+            }
+
+            resultDiv.innerHTML = message;
+            resultDiv.classList.add(isCorrect ? 'correct' : 'incorrect');
+
+            // Scroll to result
+            resultDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Individual check functions
+        function checkExercise1(code) {
+            const normalized = code.toLowerCase().replace(/\s+/g, ' ');
+            return normalized.includes('class student') &&
+                   (normalized.includes('string name') || normalized.includes('public string name')) &&
+                   (normalized.includes('int age') || normalized.includes('public int age')) &&
+                   normalized.includes('void introduce') &&
+                   normalized.includes('new student()') &&
+                   normalized.includes('alice') &&
+                   normalized.includes('age = 20') &&
+                   normalized.includes('introduce()');
+        }
+
+        function checkExercise2(code) {
+            const normalized = code.toLowerCase().replace(/\s+/g, ' ');
+            return normalized.includes('class car') &&
+                   (normalized.includes('car(string') || normalized.includes('car (string')) &&
+                   normalized.includes('brand = brand') &&
+                   normalized.includes('year = year') &&
+                   normalized.includes('void displayinfo') &&
+                   normalized.includes('new car("toyota"') &&
+                   normalized.includes('2020)');
+        }
+
+        function checkExercise3(code) {
+            const normalized = code.toLowerCase().replace(/\s+/g, ' ');
+            return normalized.includes('class animal') &&
+                   normalized.includes('class dog') &&
+                   normalized.includes('dog : animal') &&
+                   normalized.includes('string name') &&
+                   normalized.includes('void eat()') &&
+                   normalized.includes('void bark()') &&
+                   normalized.includes('new dog()') &&
+                   normalized.includes('buddy') &&
+                   normalized.includes('eat()') &&
+                   normalized.includes('bark()');
+        }
+
+        function checkExercise4(code) {
+            const normalized = code.toLowerCase().replace(/\s+/g, ' ');
+            return normalized.includes('class bankaccount') &&
+                   normalized.includes('private decimal balance') &&
+                   normalized.includes('public string owner') &&
+                   (normalized.includes('void deposit(decimal') || normalized.includes('public void deposit(decimal')) &&
+                   (normalized.includes('decimal getbalance()') || normalized.includes('public decimal getbalance()')) &&
+                   normalized.includes('new bankaccount()') &&
+                   normalized.includes('alice') &&
+                   normalized.includes('deposit(1000') &&
+                   normalized.includes('getbalance()');
+        }
+
+        function checkExercise5(code) {
+            const normalized = code.toLowerCase().replace(/\s+/g, ' ');
+            return normalized.includes('class shape') &&
+                   normalized.includes('class circle') &&
+                   normalized.includes('circle : shape') &&
+                   normalized.includes('virtual void draw()') &&
+                   normalized.includes('override void draw()') &&
+                   normalized.includes('shape myshape =') &&
+                   normalized.includes('new circle()') &&
+                   normalized.includes('myshape.draw()');
+        }
+
+        function checkExercise6(code) {
+            const normalized = code.toLowerCase().replace(/\s+/g, ' ');
+            return normalized.includes('abstract class vehicle') &&
+                   normalized.includes('abstract void start()') &&
+                   normalized.includes('class car : vehicle') &&
+                   normalized.includes('class motorcycle : vehicle') &&
+                   normalized.includes('override void start()') &&
+                   normalized.includes('new car()') &&
+                   normalized.includes

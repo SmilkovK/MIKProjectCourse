@@ -1,51 +1,239 @@
 ﻿@{
-    ViewData["Title"] = "Exercise: If-Else with Variables in C# - Interactive";
+    ViewData["Title"] = "Structural Programming Exercises";
 }
 
 <div class="container">
-    <h1>Exercise: Define Variables and If-Else Check</h1>
+    <h1 class="mb-4">Structural Programming Exercises</h1>
+    <p>Practice what you've learned with these simple exercises. Try to solve them on your own, then check the solution!</p>
 
-    <p>
-        Define two integer variables <code>a</code> and <code>b</code> where <code>a = 5</code> and <code>b = 10</code>.<br />
-        Then write an <strong>if-else</strong> statement to check if <code>a</code> is bigger than <code>b</code>.<br />
-        - If <code>a &gt; b</code>, output <strong>"Test"</strong>.<br />
-        - Otherwise, output <strong>"Test2"</strong>.
-    </p>
+    <!-- Exercise 1: Variables -->
+    <div class="exercise-container">
+        <h2>Exercise 1: Variables</h2>
+        <p>
+            Create variables for a person:<br>
+            - <code>name</code> (string) with value "Ana"<br>
+            - <code>age</code> (int) with value 20<br>
+            - <code>height</code> (float) with value 1.68<br>
+            - <code>isStudent</code> (bool) with value true<br>
+            Then display them in a nice message.
+        </p>
 
-    <label for="userCode" class="form-label" style="font-weight: 600; margin-bottom: 6px;">Type your code below:</label>
-    <textarea id="userCode" rows="15" style="width: 100%; font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 0.95rem; padding:10px;"></textarea>
+        <label for="exercise1Code" class="form-label" style="font-weight: 600; margin-bottom: 6px;">Type your solution:</label>
+        <textarea id="exercise1Code" rows="8" style="width: 100%; font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 0.95rem; padding:10px;"></textarea>
 
-    <div style="display: flex; align-items: center; margin-top: 12px; gap: 12px;">
-        <label class="switch" style="user-select: none; margin-bottom: 0;">
-            <input type="checkbox" id="toggleCorrectCode" />
-            <span class="slider round"></span>
-        </label>
-        <span style="font-weight: 600; user-select: none;">Show Correct Code</span>
-    </div>
-
-    <div id="correctCodeContainer" class="code-container" style="display:none; margin-top: 12px;">
-        <div class="code-header">Correct Code</div>
-        <div class="code-content" style="padding: 15px; overflow-x: auto; background-color: var(--code-bg); border: 1px solid var(--bs-border-color); border-radius: 5px; font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 0.9rem; color: var(--bs-body-color); white-space: pre-wrap;">
-int a = 5;
-int b = 10;
-
-if (a > b)
-{
-    Console.WriteLine("Test");
-}
-else
-{
-    Console.WriteLine("Test2");
-}
+        <div style="display: flex; align-items: center; margin-top: 12px; gap: 12px;">
+            <label class="switch" style="user-select: none; margin-bottom: 0;">
+                <input type="checkbox" id="toggleExercise1" />
+                <span class="slider round"></span>
+            </label>
+            <span style="font-weight: 600; user-select: none;">Show Solution</span>
         </div>
+
+        <div id="solution1Container" class="code-container" style="display:none; margin-top: 12px;">
+            <div class="code-header">Solution</div>
+            <div class="code-content">
+                string name = "Ana";
+                int age = 20;
+                float height = 1.68f;
+                bool isStudent = true;
+
+                Console.WriteLine("Name: " + name);
+                Console.WriteLine("Age: " + age);
+                Console.WriteLine("Height: " + height + "m");
+                Console.WriteLine("Student: " + isStudent);
+            </div>
+        </div>
+
+        <button onclick="checkExercise(1)" class="btn btn-primary mt-3">Check Answer</button>
+        <div id="result1" style="margin-top:15px; font-weight: 600;"></div>
     </div>
 
-    <button id="checkBtn" class="btn btn-primary mt-3">Check Answer</button>
-    <div id="resultMessage" style="margin-top:15px; font-weight: 600;"></div>
+    <!-- Exercise 2: Input/Output -->
+    <div class="exercise-container" style="margin-top: 30px;">
+        <h2>Exercise 2: Input and Output</h2>
+        <p>
+            Create a simple calculator that:<br>
+            1. Asks user for two numbers<br>
+            2. Calculates their sum<br>
+            3. Displays the result
+        </p>
 
-    <div class="navigation-buttons" style="margin-top: 30px;">
-        <a href="@Url.Action("Info", "Exercises")" class="btn btn-outline-primary ajax-link">← Code format info</a>
-        <a href="@Url.Action("ArrayForLoop", "Exercises")" class="btn btn-primary ajax-link">Exercise 2 →</a>
+        <label for="exercise2Code" class="form-label" style="font-weight: 600; margin-bottom: 6px;">Type your solution:</label>
+        <textarea id="exercise2Code" rows="8" style="width: 100%; font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 0.95rem; padding:10px;"></textarea>
+
+        <div style="display: flex; align-items: center; margin-top: 12px; gap: 12px;">
+            <label class="switch" style="user-select: none; margin-bottom: 0;">
+                <input type="checkbox" id="toggleExercise2" />
+                <span class="slider round"></span>
+            </label>
+            <span style="font-weight: 600; user-select: none;">Show Solution</span>
+        </div>
+
+        <div id="solution2Container" class="code-container" style="display:none; margin-top: 12px;">
+            <div class="code-header">Solution</div>
+            <div class="code-content">
+                Console.Write("Enter first number: ");
+                int num1 = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Enter second number: ");
+                int num2 = Convert.ToInt32(Console.ReadLine());
+
+                int sum = num1 + num2;
+                Console.WriteLine("Sum: " + sum);
+            </div>
+        </div>
+
+        <button onclick="checkExercise(2)" class="btn btn-primary mt-3">Check Answer</button>
+        <div id="result2" style="margin-top:15px; font-weight: 600;"></div>
+    </div>
+
+    <!-- Exercise 3: If-Else -->
+    <div class="exercise-container" style="margin-top: 30px;">
+        <h2>Exercise 3: If-Else</h2>
+        <p>
+            Ask user for their age and check:<br>
+            - If 18 or older, display "You can vote!"<br>
+            - If younger than 18, display "You cannot vote yet."
+        </p>
+
+        <label for="exercise3Code" class="form-label" style="font-weight: 600; margin-bottom: 6px;">Type your solution:</label>
+        <textarea id="exercise3Code" rows="8" style="width: 100%; font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 0.95rem; padding:10px;"></textarea>
+
+        <div style="display: flex; align-items: center; margin-top: 12px; gap: 12px;">
+            <label class="switch" style="user-select: none; margin-bottom: 0;">
+                <input type="checkbox" id="toggleExercise3" />
+                <span class="slider round"></span>
+            </label>
+            <span style="font-weight: 600; user-select: none;">Show Solution</span>
+        </div>
+
+        <div id="solution3Container" class="code-container" style="display:none; margin-top: 12px;">
+            <div class="code-header">Solution</div>
+            <div class="code-content">
+                Console.Write("Enter your age: ");
+                int age = Convert.ToInt32(Console.ReadLine());
+
+                if (age >= 18)
+                {
+                Console.WriteLine("You can vote!");
+                }
+                else
+                {
+                Console.WriteLine("You cannot vote yet.");
+                }
+            </div>
+        </div>
+
+        <button onclick="checkExercise(3)" class="btn btn-primary mt-3">Check Answer</button>
+        <div id="result3" style="margin-top:15px; font-weight: 600;"></div>
+    </div>
+
+    <!-- Exercise 4: For Loops -->
+    <div class="exercise-container" style="margin-top: 30px;">
+        <h2>Exercise 4: For Loops</h2>
+        <p>
+            Use a for loop to count from 1 to 5<br>
+            Display each number on a new line
+        </p>
+
+        <label for="exercise4Code" class="form-label" style="font-weight: 600; margin-bottom: 6px;">Type your solution:</label>
+        <textarea id="exercise4Code" rows="6" style="width: 100%; font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 0.95rem; padding:10px;"></textarea>
+
+        <div style="display: flex; align-items: center; margin-top: 12px; gap: 12px;">
+            <label class="switch" style="user-select: none; margin-bottom: 0;">
+                <input type="checkbox" id="toggleExercise4" />
+                <span class="slider round"></span>
+            </label>
+            <span style="font-weight: 600; user-select: none;">Show Solution</span>
+        </div>
+
+        <div id="solution4Container" class="code-container" style="display:none; margin-top: 12px;">
+            <div class="code-header">Solution</div>
+            <div class="code-content">
+                for (int i = 1; i <= 5; i++)
+                {
+                Console.WriteLine(i);
+                }
+            </div>
+        </div>
+
+        <button onclick="checkExercise(4)" class="btn btn-primary mt-3">Check Answer</button>
+        <div id="result4" style="margin-top:15px; font-weight: 600;"></div>
+    </div>
+
+    <!-- Exercise 5: Arrays -->
+    <div class="exercise-container" style="margin-top: 30px;">
+        <h2>Exercise 5: Arrays</h2>
+        <p>
+            Create an array with 3 numbers: 10, 20, 30<br>
+            Display all numbers using a for loop
+        </p>
+
+        <label for="exercise5Code" class="form-label" style="font-weight: 600; margin-bottom: 6px;">Type your solution:</label>
+        <textarea id="exercise5Code" rows="8" style="width: 100%; font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 0.95rem; padding:10px;"></textarea>
+
+        <div style="display: flex; align-items: center; margin-top: 12px; gap: 12px;">
+            <label class="switch" style="user-select: none; margin-bottom: 0;">
+                <input type="checkbox" id="toggleExercise5" />
+                <span class="slider round"></span>
+            </label>
+            <span style="font-weight: 600; user-select: none;">Show Solution</span>
+        </div>
+
+        <div id="solution5Container" class="code-container" style="display:none; margin-top: 12px;">
+            <div class="code-header">Solution</div>
+            <div class="code-content">
+                int[] numbers = { 10, 20, 30 };
+
+                for (int i = 0; i < numbers.Length; i++)
+                {
+                Console.WriteLine(numbers[i]);
+                }
+            </div>
+        </div>
+
+        <button onclick="checkExercise(5)" class="btn btn-primary mt-3">Check Answer</button>
+        <div id="result5" style="margin-top:15px; font-weight: 600;"></div>
+    </div>
+
+    <!-- Exercise 6: String Arrays -->
+    <div class="exercise-container" style="margin-top: 30px;">
+        <h2>Exercise 6: String Arrays</h2>
+        <p>
+            Create an array with names: "Pero", "Mila", "Kire"<br>
+            Display each name on a new line
+        </p>
+
+        <label for="exercise6Code" class="form-label" style="font-weight: 600; margin-bottom: 6px;">Type your solution:</label>
+        <textarea id="exercise6Code" rows="8" style="width: 100%; font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace; font-size: 0.95rem; padding:10px;"></textarea>
+
+        <div style="display: flex; align-items: center; margin-top: 12px; gap: 12px;">
+            <label class="switch" style="user-select: none; margin-bottom: 0;">
+                <input type="checkbox" id="toggleExercise6" />
+                <span class="slider round"></span>
+            </label>
+            <span style="font-weight: 600; user-select: none;">Show Solution</span>
+        </div>
+
+        <div id="solution6Container" class="code-container" style="display:none; margin-top: 12px;">
+            <div class="code-header">Solution</div>
+            <div class="code-content">
+                string[] names = { "Pero", "Mila", "Kire" };
+
+                for (int i = 0; i < names.Length; i++)
+                {
+                Console.WriteLine(names[i]);
+                }
+            </div>
+        </div>
+
+        <button onclick="checkExercise(6)" class="btn btn-primary mt-3">Check Answer</button>
+        <div id="result6" style="margin-top:15px; font-weight: 600;"></div>
+    </div>
+
+    <div class="navigation-buttons" style="margin-top: 40px;">
+        <a href="@Url.Action("StringArrays", "SP")" class="btn btn-outline-primary ajax-link">← Back to Lessons</a>
+        <a href="@Url.Action("Index", "OOP")" class="btn btn-primary ajax-link">Next Chapter →</a>
     </div>
 </div>
 
@@ -56,14 +244,22 @@ else
         background-color: var(--bs-body-bg);
     }
 
-    h1 {
+    h1, h2 {
         color: var(--bs-heading-color);
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
     p {
         color: var(--bs-body-color);
         line-height: 1.6;
+    }
+
+    .exercise-container {
+        padding: 20px;
+        border: 2px solid var(--bs-border-color);
+        border-radius: 8px;
+        background-color: var(--code-bg);
+        margin-bottom: 20px;
     }
 
     .navigation-buttons {
@@ -91,7 +287,6 @@ else
         background-color: transparent;
     }
 
-    /* Slider switch style */
     .switch {
         position: relative;
         display: inline-block;
@@ -99,40 +294,43 @@ else
         height: 24px;
     }
 
-    .switch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-    }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
 
     .slider {
         position: absolute;
         cursor: pointer;
-        top: 0; left: 0; right: 0; bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         background-color: #ccc;
         transition: 0.4s;
         border-radius: 24px;
     }
 
-    .slider:before {
-        position: absolute;
-        content: "";
-        height: 18px;
-        width: 18px;
-        left: 3px;
-        bottom: 3px;
-        background-color: white;
-        transition: 0.4s;
-        border-radius: 50%;
-    }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
 
     input:checked + .slider {
         background-color: var(--bs-primary);
     }
 
-    input:checked + .slider:before {
-        transform: translateX(18px);
-    }
+        input:checked + .slider:before {
+            transform: translateX(18px);
+        }
 
     .code-container {
         border: 1px solid var(--bs-border-color);
@@ -149,39 +347,113 @@ else
         font-size: 0.9rem;
         color: var(--bs-body-color);
     }
+
+    .code-content {
+        padding: 15px;
+        overflow-x: auto;
+        background-color: var(--code-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 5px;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+        white-space: pre-wrap;
+    }
 </style>
 
 <script>
-    const correctCode =
-`int a = 5;
-int b = 10;
+        // Solutions for each exercise
+        const solutions = {
+            1: `string name = "Ana";
+    int age = 20;
+    float height = 1.68f;
+    bool isStudent = true;
 
-if (a > b)
-{
-    Console.WriteLine("Test");
-}
-else
-{
-    Console.WriteLine("Test2");
-}`;
+    Console.WriteLine("Name: " + name);
+    Console.WriteLine("Age: " + age);
+    Console.WriteLine("Height: " + height + "m");
+    Console.WriteLine("Student: " + isStudent);`,
 
-    document.getElementById("checkBtn").addEventListener("click", () => {
-        const userCode = document.getElementById("userCode").value.trim().replace(/\r\n/g, "\n");
-        const normalizedCorrectCode = correctCode.trim().replace(/\r\n/g, "\n");
+            2: `Console.Write("Enter first number: ");
+    int num1 = Convert.ToInt32(Console.ReadLine());
 
-        const resultMessage = document.getElementById("resultMessage");
+    Console.Write("Enter second number: ");
+    int num2 = Convert.ToInt32(Console.ReadLine());
 
-        if (userCode === normalizedCorrectCode) {
-            resultMessage.style.color = "green";
-            resultMessage.textContent = "✅ Correct! Well done.";
-        } else {
-            resultMessage.style.color = "red";
-            resultMessage.textContent = "❌ Incorrect. Please try again.";
+    int sum = num1 + num2;
+    Console.WriteLine("Sum: " + sum);`,
+
+            3: `Console.Write("Enter your age: ");
+    int age = Convert.ToInt32(Console.ReadLine());
+
+    if (age >= 18)
+    {
+        Console.WriteLine("You can vote!");
+    }
+    else
+    {
+        Console.WriteLine("You cannot vote yet.");
+    }`,
+
+            4: `for (int i = 1; i <= 5; i++)
+    {
+        Console.WriteLine(i);
+    }`,
+
+            5: `int[] numbers = { 10, 20, 30 };
+
+    for (int i = 0; i < numbers.Length; i++)
+    {
+        Console.WriteLine(numbers[i]);
+    }`,
+
+            6: `string[] names = { "Pero", "Mila", "Kire" };
+
+    for (int i = 0; i < names.Length; i++)
+    {
+        Console.WriteLine(names[i]);
+    }`
+        };
+
+        // Function to check exercise
+        function checkExercise(exerciseNum) {
+            const userCode = document.getElementById(`exercise${exerciseNum}Code`).value.trim().replace(/\r\n/g, "\n");
+            const normalizedSolution = solutions[exerciseNum].trim().replace(/\r\n/g, "\n");
+            const resultElement = document.getElementById(`result${exerciseNum}`);
+
+            // Simple check - compare normalized code
+            if (userCode === normalizedSolution) {
+                resultElement.style.color = "green";
+                resultElement.textContent = "✅ Correct! Well done.";
+            } else {
+                resultElement.style.color = "red";
+                resultElement.textContent = "❌ Try again. Check your code carefully.";
+            }
         }
-    });
 
-    document.getElementById("toggleCorrectCode").addEventListener("change", (e) => {
-        const correctCodeContainer = document.getElementById("correctCodeContainer");
-        correctCodeContainer.style.display = e.target.checked ? "block" : "none";
-    });
+        // Setup toggle buttons
+        for (let i = 1; i <= 6; i++) {
+            const toggle = document.getElementById(`toggleExercise${i}`);
+            const container = document.getElementById(`solution${i}Container`);
+
+            toggle.addEventListener('change', (e) => {
+                container.style.display = e.target.checked ? "block" : "none";
+            });
+        }
+
+        // Initialize all toggles
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log("Exercises page loaded");
+
+            // Set up the toggles
+            for (let i = 1; i <= 6; i++) {
+                const toggle = document.getElementById(`toggleExercise${i}`);
+                const container = document.getElementById(`solution${i}Container`);
+
+                if (toggle && container) {
+                    toggle.checked = false;
+                    container.style.display = "none";
+                }
+            }
+        });
 </script>
