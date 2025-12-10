@@ -1,90 +1,907 @@
 ﻿@{
-    ViewData["Title"] = "Database Overview and Next Topic";
+    ViewData["Title"] = "Database - Complete Chapter Summary";
 }
 
 <div class="container">
-    <h1>@ViewData["Title"]</h1>
+    <h1 class="mb-4">🗄️ Complete Database Chapter Summary</h1>
+    <p class="lead">You've completed the entire Database chapter! Let's review all the concepts and test your understanding with 20 quiz questions.</p>
 
-    <p>In this section, we explored several key concepts related to databases. Here's a quick overview:</p>
+    <div class="summary-table">
+        <h2>📚 All Database Concepts at a Glance</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Topic</th>
+                        <th>Key Idea</th>
+                        <th>Real-World Analogy</th>
+                        <th>Main Concepts</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>What is a Database?</strong></td>
+                        <td>Organized digital storage for information</td>
+                        <td>Digital filing cabinet, Library</td>
+                        <td>Tables, Records, Fields, Primary Key</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Why Database?</strong></td>
+                        <td>Organized storage, fast searching, data safety</td>
+                        <td>Library catalog vs messy shelves</td>
+                        <td>CRUD operations, Multi-user access</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Types of Databases</strong></td>
+                        <td>Different tools for different jobs</td>
+                        <td>Different types of storage (fridge, pantry, freezer)</td>
+                        <td>Relational, NoSQL, In-Memory, Cloud</td>
+                    </tr>
+                    <tr>
+                        <td><strong>How Databases Work</strong></td>
+                        <td>Request-response cycle with processing</td>
+                        <td>Librarian finding books</td>
+                        <td>Indexes, Transactions, Constraints, Security</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Relational Databases</strong></td>
+                        <td>Structured tables with relationships</td>
+                        <td>Spreadsheets that connect</td>
+                        <td>Tables, Primary/Foreign Keys, Relationships</td>
+                    </tr>
+                    <tr>
+                        <td><strong>C# Integration</strong></td>
+                        <td>Write C# code, not SQL</td>
+                        <td>Translator converting languages</td>
+                        <td>Entity Framework, LINQ, C# objects</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    <ul>
-        <li><strong>Why Database?</strong>: We discussed the importance of databases in organizing, storing, and retrieving data efficiently.</li>
-        <li><strong>Types of Database</strong>: We examined different types of databases, including relational, NoSQL, and others, highlighting their use cases.</li>
-        <li><strong>How Database Works</strong>: We looked into how databases store and retrieve data, focusing on the mechanics of database engines and their operations.</li>
-        <li><strong>Relational Database</strong>: We focused on relational databases, emphasizing how data is organized in tables and how relationships are maintained between different data entities.</li>
-        <li><strong>Example</strong>: We provided a real-world example of a school database to demonstrate how databases can be structured and used effectively in applications.</li>
-    </ul>
+    <div class="detailed-summary">
+        <h2>📘 Detailed Concept Review</h2>
 
-    <p>These topics are foundational for understanding how data is stored, organized, and managed in modern applications. With this knowledge, you'll be ready to dive deeper into specific database concepts and tools in future sections.</p>
+        <div class="concept-card">
+            <h3>1. Database Basics</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>What is a Database?</h4>
+                    <ul>
+                        <li><strong>Tables:</strong> Like spreadsheets for data</li>
+                        <li><strong>Records:</strong> Rows in the table (one item)</li>
+                        <li><strong>Fields:</strong> Columns in the table (type of info)</li>
+                        <li><strong>Primary Key:</strong> Unique ID for each record</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>Why Use Databases?</h4>
+                    <ul>
+                        <li>Organized storage</li>
+                        <li>Fast searching (milliseconds)</li>
+                        <li>Multiple users simultaneously</li>
+                        <li>Data safety and backups</li>
+                        <li>Prevents data duplication</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-    <h2>Next Topic: Database Relations in C#</h2>
-    <p>Now that we've covered the basics of databases, it's time to move on to the next topic: <strong>Database Relations in C#</strong>. In this section, we will explore:</p>
-    <ul>
-        <li>How to implement relationships between database tables using C# and Entity Framework.</li>
-        <li>How to define one-to-one, one-to-many, and many-to-many relationships in C#.</li>
-        <li>How to work with foreign keys and navigation properties in Entity Framework.</li>
-    </ul>
+        <div class="concept-card">
+            <h3>2. Database Types Comparison</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Relational (SQL)</h4>
+                    <pre><code class="language-csharp">// Structured tables
+Students Table:
+┌─────┬──────────┬─────┐
+│ ID  │   Name   │ Age │
+├─────┼──────────┼─────┤
+│ 101 │ Alice    │ 20  │
+│ 102 │ Bob      │ 21  │
+└─────┴──────────┴─────┘</code></pre>
+                    <p><strong>Best for:</strong> Structured data, relationships, accuracy</p>
+                    <p><strong>Examples:</strong> SQL Server, MySQL, PostgreSQL</p>
+                </div>
+                <div class="col-md-6">
+                    <h4>NoSQL</h4>
+                    <pre><code class="language-json">// Flexible documents
+{
+  "_id": "student_123",
+  "name": "Alice",
+  "courses": ["Math", "Science"],
+  "extras": {
+    "hobbies": ["Reading"]
+  }
+}</code></pre>
+                    <p><strong>Best for:</strong> Flexible, changing data, big data</p>
+                    <p><strong>Examples:</strong> MongoDB, Redis, Cassandra</p>
+                </div>
+            </div>
+        </div>
 
-    <p>This will be the next step in building more advanced and dynamic database-driven applications using C# and Entity Framework Core.</p>
+        <div class="concept-card">
+            <h3>3. Relational Database Core Concepts</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Primary Key</h4>
+                    <pre><code class="language-sql">CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50)
+);</code></pre>
+                    <p>Unique identifier for each record</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>Foreign Key</h4>
+                    <pre><code class="language-sql">CREATE TABLE Enrollment (
+    StudentID INT,
+    CourseID INT,
+    FOREIGN KEY (StudentID) 
+    REFERENCES Students(StudentID)
+);</code></pre>
+                    <p>Links tables together</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>Relationships</h4>
+                    <ul>
+                        <li><strong>One-to-One:</strong> Student → ID Card</li>
+                        <li><strong>One-to-Many:</strong> Teacher → Students</li>
+                        <li><strong>Many-to-Many:</strong> Students ↔ Courses</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h3>4. How Databases Work Internally</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Key Components</h4>
+                    <ul>
+                        <li><strong>Indexes:</strong> Fast search system (like book index)</li>
+                        <li><strong>Transactions:</strong> All-or-nothing operations</li>
+                        <li><strong>Constraints:</strong> Data validation rules</li>
+                        <li><strong>Security:</strong> Access control layers</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <h4>Workflow</h4>
+                    <pre><code>1. C# App → Request (Find student "Alice")
+2. Database → Processes request
+3. Database → Returns results
+4. C# App → Uses data</code></pre>
+                    <p><strong>CRUD Operations:</strong> Create, Read, Update, Delete</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h3>5. C# Database Integration</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Traditional SQL (Not needed!)</h4>
+                    <pre><code class="language-sql">SELECT * FROM Students 
+WHERE Age > 20 
+ORDER BY Name;</code></pre>
+                </div>
+                <div class="col-md-6">
+                    <h4>C# with Entity Framework</h4>
+                    <pre><code class="language-csharp">// You write C# code!
+var olderStudents = db.Students
+    .Where(s => s.Age > 20)
+    .OrderBy(s => s.Name)
+    .ToList();</code></pre>
+                    <p><strong>Benefits:</strong> Type safety, IntelliSense, compile-time checking</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h3>6. Database Recommendations</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>For C# Developers</h5>
+                    <p><strong>Microsoft SQL Server</strong></p>
+                    <p>Perfect integration with .NET</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>For Beginners</h5>
+                    <p><strong>SQL Server + Entity Framework</strong></p>
+                    <p>Write C#, not SQL!</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>For Small Projects</h5>
+                    <p><strong>SQLite or File-based</strong></p>
+                    <p>No server needed</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="quiz-section">
+        <h2>🧠 20-Question Database Mastery Quiz</h2>
+        <p>Test your understanding of all database concepts. Choose the best answer for each question.</p>
+
+        <div class="quiz-container" id="quizContainer">
+        </div>
+
+        <div class="quiz-results" id="quizResults" style="display: none;">
+            <h3>📊 Your Results</h3>
+            <div class="progress" style="height: 30px;">
+                <div id="scoreBar" class="progress-bar" role="progressbar" style="width: 0%">0%</div>
+            </div>
+            <p id="scoreText" class="mt-3"></p>
+            <button class="btn btn-secondary mt-2" id="restartQuizBtn">Restart Quiz</button>
+        </div>
+
+        <button class="btn btn-primary btn-lg mt-4" id="startQuizBtn">Start Quiz</button>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("RelationalDatabase", "Database")" class="btn btn-outline-primary ajax-link">← Relational Database</a>
-        <a href="@Url.Action("Index", "DataBaseRelations")" class="btn btn-primary ajax-link">Database Relations in C# →</a>
+        <a href="@Url.Action("Example", "Database")" class="btn btn-outline-primary ajax-link">← Database Example</a>
+        <a href="@Url.Action("Index", "DataBaseRelations")" class="btn btn-primary ajax-link">Next Chapter: Database Relations →</a>
     </div>
 </div>
 
 <style>
     .container {
-        max-width: 850px;
-        padding: 20px;
+        max-width: 1200px;
+        padding: 30px;
         background-color: var(--bs-body-bg);
-        color: var(--bs-body-color);
     }
 
-    h1, h2 {
+    h1, h2, h3, h4, h5 {
         color: var(--bs-heading-color);
+        margin-bottom: 20px;
     }
 
-    .container p,
-    .container ul {
+    h1 {
+        border-bottom: 3px solid var(--bs-primary);
+        padding-bottom: 15px;
+    }
+
+    .summary-table {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: var(--summary-table-bg, rgba(13, 110, 253, 0.05));
+        border-radius: 10px;
+        border: 1px solid var(--bs-border-color);
+    }
+
+    .detailed-summary {
+        margin: 40px 0;
+    }
+
+    .concept-card {
+        background-color: var(--concept-card-bg, white);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 4px var(--shadow-color, rgba(0,0,0,0.1));
+    }
+
+    .concept-card h3 {
+        color: var(--bs-primary);
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
+    }
+
+    .concept-card pre {
+        background-color: var(--code-bg);
+        padding: 15px;
+        border-radius: 5px;
+        margin: 15px 0;
+        border: 1px solid var(--bs-border-color);
+        font-size: 0.9rem;
+    }
+
+    .concept-card ul {
+        margin-left: 20px;
+    }
+
+    .quiz-section {
+        margin: 50px 0;
+        padding: 30px;
+        background-color: var(--quiz-section-bg, rgba(111, 66, 193, 0.05));
+        border-radius: 10px;
+        border: 1px solid var(--bs-border-color);
+    }
+
+    .quiz-container {
+        margin: 30px 0;
+    }
+
+    .quiz-question {
+        background-color: var(--quiz-question-bg, white);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        display: none;
+    }
+
+    .quiz-question.active {
+        display: block;
+        animation: fadeIn 0.5s;
+    }
+
+    .quiz-options {
+        margin: 20px 0;
+    }
+
+    .quiz-option {
+        display: block;
+        padding: 12px 15px;
+        margin: 8px 0;
+        border: 2px solid var(--bs-border-color);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s;
         color: var(--bs-body-color);
-        line-height: 1.6;
+        background-color: var(--quiz-option-bg, transparent);
     }
 
-        ul strong {
-            color: var(--bs-primary);
-        }
+    .quiz-option:hover {
+        background-color: var(--quiz-option-hover, rgba(13, 110, 253, 0.1));
+        border-color: var(--bs-primary);
+    }
+
+    .quiz-option.selected {
+        background-color: var(--quiz-option-selected, rgba(13, 110, 253, 0.2));
+        border-color: var(--bs-primary);
+    }
+
+    .quiz-option.correct {
+        background-color: var(--quiz-option-correct, rgba(40, 167, 69, 0.2));
+        border-color: var(--bs-success);
+    }
+
+    .quiz-option.incorrect {
+        background-color: var(--quiz-option-incorrect, rgba(220, 53, 69, 0.2));
+        border-color: var(--bs-danger);
+    }
+
+    .quiz-results {
+        background-color: var(--quiz-results-bg, white);
+        padding: 25px;
+        border-radius: 8px;
+        border: 1px solid var(--bs-border-color);
+        margin-top: 30px;
+    }
 
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
         margin-top: 40px;
-        gap: 1rem;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
 
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
-        font-size: 1rem;
-        transition: all 0.3s ease-in-out;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
     }
 
     .btn-primary {
         background-color: var(--bs-primary);
         border-color: var(--bs-primary);
-        color: white;
     }
 
     .btn-outline-primary {
-        border: 2px solid var(--bs-primary);
         color: var(--bs-primary);
-        background-color: transparent;
+        border-color: var(--bs-primary);
     }
 
+    .btn-outline-primary:hover {
+        background-color: var(--bs-primary);
+        color: white;
+    }
 
+    .progress {
+        background-color: var(--progress-bg, #e9ecef);
+    }
+
+    .progress-bar {
+        background-color: var(--bs-primary);
+    }
+
+    .alert-info {
+        background-color: var(--alert-info-bg, rgba(13, 202, 240, 0.1));
+        border-color: var(--alert-info-border, rgba(13, 202, 240, 0.3));
+        color: var(--alert-info-color, var(--bs-info));
+    }
+
+    @@keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    [data-bs-theme="dark"] {
+        --summary-table-bg: rgba(13, 110, 253, 0.1);
+        --concept-card-bg: rgba(255, 255, 255, 0.05);
+        --shadow-color: rgba(0, 0, 0, 0.3);
+        --quiz-section-bg: rgba(111, 66, 193, 0.1);
+        --quiz-question-bg: rgba(255, 255, 255, 0.05);
+        --quiz-results-bg: rgba(255, 255, 255, 0.05);
+        --quiz-option-bg: rgba(255, 255, 255, 0.03);
+        --quiz-option-hover: rgba(110, 168, 254, 0.2);
+        --quiz-option-selected: rgba(110, 168, 254, 0.3);
+        --quiz-option-correct: rgba(40, 167, 69, 0.3);
+        --quiz-option-incorrect: rgba(220, 53, 69, 0.3);
+        --progress-bg: rgba(255, 255, 255, 0.1);
+        --alert-info-bg: rgba(13, 202, 240, 0.2);
+        --alert-info-border: rgba(13, 202, 240, 0.4);
+        --alert-info-color: #6ea8fe;
+    }
+
+    [data-bs-theme="light"] {
+        --summary-table-bg: rgba(13, 110, 253, 0.05);
+        --concept-card-bg: white;
+        --shadow-color: rgba(0, 0, 0, 0.1);
+        --quiz-section-bg: rgba(111, 66, 193, 0.05);
+        --quiz-question-bg: white;
+        --quiz-results-bg: white;
+        --quiz-option-bg: transparent;
+        --quiz-option-hover: rgba(13, 110, 253, 0.1);
+        --quiz-option-selected: rgba(13, 110, 253, 0.2);
+        --quiz-option-correct: rgba(40, 167, 69, 0.2);
+        --quiz-option-incorrect: rgba(220, 53, 69, 0.2);
+        --progress-bg: #e9ecef;
+        --alert-info-bg: rgba(13, 202, 240, 0.1);
+        --alert-info-border: rgba(13, 202, 240, 0.3);
+        --alert-info-color: #0dcaf0;
+    }
+
+    [data-bs-theme="dark"] .language-csharp,
+    [data-bs-theme="dark"] .language-sql,
+    [data-bs-theme="dark"] .language-json {
+        background-color: #1e1e1e !important;
+        color: #d4d4d4 !important;
+    }
+
+    [data-bs-theme="light"] .language-csharp,
+    [data-bs-theme="light"] .language-sql,
+    [data-bs-theme="light"] .language-json {
+        background-color: #f6f8fa !important;
+        color: #24292e !important;
+    }
+
+    .table {
+        --bs-table-color: var(--bs-body-color);
+        --bs-table-bg: transparent;
+        --bs-table-border-color: var(--bs-border-color);
+    }
+
+    .table-striped>tbody>tr:nth-of-type(odd)>* {
+        --bs-table-accent-bg: var(--table-striped-bg);
+    }
+
+    [data-bs-theme="dark"] .table-striped>tbody>tr:nth-of-type(odd)>* {
+        --table-striped-bg: rgba(255, 255, 255, 0.05);
+    }
+
+    [data-bs-theme="light"] .table-striped>tbody>tr:nth-of-type(odd)>* {
+        --table-striped-bg: rgba(0, 0, 0, 0.02);
+    }
 </style>
+
+<script>
+    // Quiz data
+    const quizQuestions = [
+        {
+            question: "1. What is a database?",
+            options: [
+                "A) A programming language",
+                "B) An organized digital storage for information",
+                "C) A type of computer hardware",
+                "D) A networking protocol"
+            ],
+            correct: 1,
+            explanation: "A database is an organized collection of data stored digitally, like a digital filing cabinet or library."
+        },
+        {
+            question: "2. In a relational database, what is a 'table'?",
+            options: [
+                "A) A piece of furniture",
+                "B) A spreadsheet-like structure for storing data",
+                "C) A type of relationship",
+                "D) A database user"
+            ],
+            correct: 1,
+            explanation: "A table in a relational database is like a spreadsheet with rows (records) and columns (fields) for storing related data."
+        },
+        {
+            question: "3. What is a 'primary key'?",
+            options: [
+                "A) A password for the database",
+                "B) The main table in a database",
+                "C) A unique identifier for each record",
+                "D) The first column in a table"
+            ],
+            correct: 2,
+            explanation: "A primary key is a unique identifier for each record in a table, like a student ID or social security number."
+        },
+        {
+            question: "4. Which of these is NOT a reason to use a database?",
+            options: [
+                "A) Organized storage",
+                "B) Fast searching",
+                "C) Making coffee",
+                "D) Multiple user access"
+            ],
+            correct: 2,
+            explanation: "Databases help with organized storage, fast searching, and multiple user access, but they don't make coffee!"
+        },
+        {
+            question: "5. What does CRUD stand for in database operations?",
+            options: [
+                "A) Create, Read, Update, Delete",
+                "B) Copy, Remove, Undo, Duplicate",
+                "C) Calculate, Run, Use, Display",
+                "D) Connect, Retrieve, Upload, Download"
+            ],
+            correct: 0,
+            explanation: "CRUD stands for Create, Read, Update, Delete - the four basic operations you can perform on database data."
+        },
+        {
+            question: "6. What is a 'foreign key'?",
+            options: [
+                "A) A key that unlocks the database",
+                "B) A field that links to a primary key in another table",
+                "C) The most important key in the database",
+                "D) A key that's not from your country"
+            ],
+            correct: 1,
+            explanation: "A foreign key is a field in one table that links to the primary key in another table, creating relationships between tables."
+        },
+        {
+            question: "7. What type of database uses tables with rows and columns?",
+            options: [
+                "A) NoSQL database",
+                "B) Relational database",
+                "C) In-memory database",
+                "D) File-based database"
+            ],
+            correct: 1,
+            explanation: "Relational databases organize data into tables with rows (records) and columns (fields)."
+        },
+        {
+            question: "8. Which database type is best for flexible, changing data structures?",
+            options: [
+                "A) Relational database",
+                "B) NoSQL database",
+                "C) File-based database",
+                "D) All of the above"
+            ],
+            correct: 1,
+            explanation: "NoSQL databases are designed for flexible, changing data structures where each record can have different fields."
+        },
+        {
+            question: "9. What is Entity Framework?",
+            options: [
+                "A) A type of database",
+                "B) A .NET library that lets you use C# instead of SQL",
+                "C) A programming language",
+                "D) A database table"
+            ],
+            correct: 1,
+            explanation: "Entity Framework is a .NET library that allows C# developers to work with databases using C# code instead of writing SQL."
+        },
+        {
+            question: "10. In a school database, if one teacher teaches many students, what type of relationship is this?",
+            options: [
+                "A) One-to-One",
+                "B) One-to-Many",
+                "C) Many-to-Many",
+                "D) None-to-None"
+            ],
+            correct: 1,
+            explanation: "When one teacher teaches many students, it's a one-to-many relationship: one teacher record relates to many student records."
+        },
+        {
+            question: "11. What do database 'indexes' help with?",
+            options: [
+                "A) Making the database prettier",
+                "B) Faster searching of data",
+                "C) Increasing storage space",
+                "D) Creating backups"
+            ],
+            correct: 1,
+            explanation: "Indexes help databases find data quickly, similar to how a book index helps you find information without reading every page."
+        },
+        {
+            question: "12. Which SQL Server is best for C# developers?",
+            options: [
+                "A) MySQL",
+                "B) PostgreSQL",
+                "C) Microsoft SQL Server",
+                "D) SQLite"
+            ],
+            correct: 2,
+            explanation: "Microsoft SQL Server has the best integration with C# and .NET, making it ideal for C# developers."
+        },
+        {
+            question: "13. What is a database 'transaction'?",
+            options: [
+                "A) Buying and selling databases",
+                "B) A group of operations that must all succeed or all fail",
+                "C) The cost of a database",
+                "D) Moving data between databases"
+            ],
+            correct: 1,
+            explanation: "A transaction ensures that a group of database operations either all complete successfully or none of them do, maintaining data integrity."
+        },
+        {
+            question: "14. In C# with Entity Framework, how would you get all students older than 20?",
+            options: [
+                "A) SELECT * FROM Students WHERE Age > 20",
+                "B) db.Students.GetAll().WhereAge(20)",
+                "C) var students = db.Students.Where(s => s.Age > 20).ToList();",
+                "D) Students.filter(age > 20)"
+            ],
+            correct: 2,
+            explanation: "With Entity Framework, you use LINQ queries in C#: db.Students.Where(s => s.Age > 20).ToList();"
+        },
+        {
+            question: "15. What is the main advantage of using Entity Framework?",
+            options: [
+                "A) You have to write more code",
+                "B) You can write C# code instead of SQL",
+                "C) It only works with NoSQL databases",
+                "D) It makes databases slower"
+            ],
+            correct: 1,
+            explanation: "Entity Framework's main advantage is allowing developers to work with databases using C# code instead of writing SQL queries."
+        },
+        {
+            question: "16. Which database is lightweight and doesn't need a server?",
+            options: [
+                "A) Microsoft SQL Server",
+                "B) MySQL",
+                "C) SQLite",
+                "D) Oracle"
+            ],
+            correct: 2,
+            explanation: "SQLite is a lightweight database that stores data in a single file and doesn't require a separate server process."
+        },
+        {
+            question: "17. What does 'NoSQL' stand for?",
+            options: [
+                "A) No Structured Query Language",
+                "B) Not Only SQL",
+                "C) New SQL",
+                "D) Non-Sequential Query Language"
+            ],
+            correct: 1,
+            explanation: "NoSQL stands for 'Not Only SQL' - these databases can use various data models beyond traditional table structures."
+        },
+        {
+            question: "18. In a database, what are 'constraints'?",
+            options: [
+                "A) Rules that limit what data can be entered",
+                "B) Hardware limitations",
+                "C) User permissions",
+                "D) Network restrictions"
+            ],
+            correct: 0,
+            explanation: "Constraints are rules that ensure data integrity, like requiring an email to be unique or an age to be between 0-120."
+        },
+        {
+            question: "19. Which operation would you use to add new data to a database?",
+            options: [
+                "A) SELECT",
+                "B) DELETE",
+                "C) UPDATE",
+                "D) INSERT"
+            ],
+            correct: 3,
+            explanation: "INSERT is the SQL operation (or Add() in Entity Framework) used to add new records to a database."
+        },
+        {
+            question: "20. Why are databases important for modern applications?",
+            options: [
+                "A) They make applications slower",
+                "B) They organize and manage application data efficiently",
+                "C) They replace all programming languages",
+                "D) They only work on Windows"
+            ],
+            correct: 1,
+            explanation: "Databases are crucial because they efficiently organize, store, retrieve, and manage the data that modern applications need to function."
+        }
+    ];
+
+    // Quiz state
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let userAnswers = [];
+
+    // Initialize the page - this will be called after AJAX load
+    function initializeDatabaseSummaryPage() {
+        console.log("Initializing Database Summary page...");
+        
+        // Setup event listeners
+        const startQuizBtn = document.getElementById('startQuizBtn');
+        const restartQuizBtn = document.getElementById('restartQuizBtn');
+        
+        if (startQuizBtn) {
+            startQuizBtn.removeEventListener('click', startQuiz);
+            startQuizBtn.addEventListener('click', startQuiz);
+            console.log("Start Quiz button listener attached");
+        }
+        
+        if (restartQuizBtn) {
+            restartQuizBtn.removeEventListener('click', resetQuiz);
+            restartQuizBtn.addEventListener('click', resetQuiz);
+            console.log("Restart Quiz button listener attached");
+        }
+        
+        // Highlight code
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightAll();
+        }
+        
+        console.log("Database Summary page initialized");
+    }
+
+    // Quiz functions
+    function startQuiz() {
+        console.log("Starting quiz...");
+        document.getElementById('startQuizBtn').style.display = 'none';
+        document.getElementById('quizContainer').innerHTML = '';
+        document.getElementById('quizResults').style.display = 'none';
+        
+        currentQuestionIndex = 0;
+        score = 0;
+        userAnswers = [];
+        
+        loadQuestion(currentQuestionIndex);
+    }
+
+    function loadQuestion(index) {
+        const container = document.getElementById('quizContainer');
+        const question = quizQuestions[index];
+        
+        let html = `
+            <div class="quiz-question active">
+                <h4>${question.question}</h4>
+                <div class="quiz-options">
+        `;
+        
+        question.options.forEach((option, optionIndex) => {
+            html += `
+                <div class="quiz-option" onclick="window.selectAnswer(${optionIndex})" id="option${optionIndex}">
+                    ${option}
+                </div>
+            `;
+        });
+        
+        html += `
+                </div>
+                <div id="explanation${index}" class="mt-3" style="display: none;">
+                    <div class="alert alert-info">
+                        <strong>Explanation:</strong> ${question.explanation}
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <button class="btn btn-primary" onclick="window.handleNext()" id="nextBtn${index}" disabled>
+                        ${index === quizQuestions.length - 1 ? 'See Results' : 'Next Question'}
+                    </button>
+                    <span class="ms-3">Question ${index + 1} of ${quizQuestions.length}</span>
+                </div>
+            </div>
+        `;
+        
+        container.innerHTML = html;
+        
+        // Attach event listeners for answer selection
+        window.selectAnswer = selectAnswer;
+        window.handleNext = handleNext;
+    }
+
+    function selectAnswer(index) {
+        for (let i = 0; i < 4; i++) {
+            const option = document.getElementById(`option${i}`);
+            if (option) {
+                option.classList.remove('selected');
+            }
+        }
+        
+        const option = document.getElementById(`option${index}`);
+        option.classList.add('selected');
+        
+        document.getElementById(`nextBtn${currentQuestionIndex}`).disabled = false;
+        
+        userAnswers[currentQuestionIndex] = index;
+    }
+
+    function handleNext() {
+        const question = quizQuestions[currentQuestionIndex];
+        const userAnswer = userAnswers[currentQuestionIndex];
+        
+        document.getElementById(`explanation${currentQuestionIndex}`).style.display = 'block';
+        
+        for (let i = 0; i < 4; i++) {
+            const option = document.getElementById(`option${i}`);
+            if (option) {
+                option.classList.remove('selected');
+                if (i === question.correct) {
+                    option.classList.add('correct');
+                } else if (i === userAnswer && i !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+                option.style.pointerEvents = 'none';
+            }
+        }
+        
+        if (userAnswer === question.correct) {
+            score++;
+        }
+        
+        document.getElementById(`nextBtn${currentQuestionIndex}`).disabled = true;
+        
+        setTimeout(() => {
+            currentQuestionIndex++;
+            
+            if (currentQuestionIndex < quizQuestions.length) {
+                loadQuestion(currentQuestionIndex);
+            } else {
+                showResults();
+            }
+        }, 2000);
+    }
+
+    function showResults() {
+        document.getElementById('quizContainer').innerHTML = '';
+        document.getElementById('quizResults').style.display = 'block';
+        
+        const percentage = Math.round((score / quizQuestions.length) * 100);
+        const scoreBar = document.getElementById('scoreBar');
+        scoreBar.style.width = `${percentage}%`;
+        scoreBar.textContent = `${percentage}%`;
+        
+        let message = '';
+        if (percentage >= 90) {
+            message = '🎉 Excellent! You\'re a Database master!';
+            scoreBar.className = 'progress-bar bg-success';
+        } else if (percentage >= 70) {
+            message = '👍 Great job! You have a solid understanding of Databases.';
+            scoreBar.className = 'progress-bar bg-info';
+        } else if (percentage >= 50) {
+            message = '📚 Good effort! Review the concepts and try again.';
+            scoreBar.className = 'progress-bar bg-warning';
+        } else {
+            message = '📖 Keep learning! Review the chapter and try the quiz again.';
+            scoreBar.className = 'progress-bar bg-danger';
+        }
+        
+        document.getElementById('scoreText').innerHTML = `
+            <h4>${message}</h4>
+            <p>You scored ${score} out of ${quizQuestions.length} questions correctly.</p>
+            <p>Percentage: ${percentage}%</p>
+        `;
+    }
+
+    function resetQuiz() {
+        document.getElementById('quizResults').style.display = 'none';
+        document.getElementById('startQuizBtn').style.display = 'inline-block';
+    }
+
+    window.selectAnswer = selectAnswer;
+    window.handleNext = handleNext;
+    window.startQuiz = startQuiz;
+    window.resetQuiz = resetQuiz;
+    window.initializeDatabaseSummaryPage = initializeDatabaseSummaryPage;
+
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeDatabaseSummaryPage();
+    });
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeDatabaseSummaryPage);
+    } else {
+        initializeDatabaseSummaryPage();
+    }
+</script>
