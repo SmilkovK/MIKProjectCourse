@@ -2,78 +2,1036 @@
     ViewData["Title"] = "The Browser in Web Communication";
 }
 
+<body data-topic="web-communication-browser">
 <div class="container">
-    <h1>The Browser</h1>
-    <p>A <strong>web browser</strong> is the application that allows users to access and interact with websites. It works as a <em>client</em> in the client-server model, sending requests to servers and displaying the responses as web pages.</p>
+    <h1 class="text-center">What is a Browser in Web Communication?</h1>
 
-    <h2>Main Responsibilities</h2>
-    <ul>
-        <li><strong>Sending Requests:</strong> The browser sends HTTP or HTTPS requests to web servers when you type a URL or click a link.</li>
-        <li><strong>Rendering Content:</strong> It takes the response (HTML, CSS, JavaScript, images, etc.) and renders it visually for the user.</li>
-        <li><strong>Executing Scripts:</strong> The browser runs JavaScript code to make pages dynamic and interactive.</li>
-        <li><strong>Managing Storage:</strong> It stores cookies, local storage, and session data to maintain user state.</li>
-    </ul>
-
-    <h2>Example</h2>
-    <p>If you type <code>www.example.com</code> in the address bar:</p>
-    <ol>
-        <li>The browser sends a request to the server hosting <code>example.com</code>.</li>
-        <li>The server responds with an HTML page and related files.</li>
-        <li>The browser downloads these resources and renders the page for the user.</li>
-    </ol>
-
-    <div class="code-container">
-        <div class="code-header">Simplified Request Example</div>
-        <div class="code-content">
-<pre><code class="language-http">
-GET /index.html HTTP/1.1
-Host: www.example.com
-User-Agent: Chrome/Edge/Firefox
-Accept: text/html
-</code></pre>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-globe"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Think of the Browser Like a TV Remote + TV Combo</h4>
+            <p><strong>Browser = Your window to the internet world</strong></p>
+            <p><strong>Simple analogy:</strong></p>
+            <ul>
+                <li>Remote (Browser) lets you choose what to watch</li>
+                <li>TV Screen (Browser) displays the show</li>
+                <li>Channels (Websites) are different content sources</li>
+                <li>You control everything with the remote</li>
+            </ul>
+            <p><strong>In web terms:</strong> The browser is your tool to access and interact with websites!</p>
         </div>
     </div>
 
-    <p>In this example, the browser sends a <code>GET</code> request for the <code>index.html</code> page. The server then responds with the HTML file that the browser displays.</p>
+    <div class="intro-section">
+        <p>A <strong>web browser</strong> is a software application that lets you access, view, and interact with websites on the internet. It's like your <strong>personal tour guide</strong> through the digital world!</p>
+        
+        <div class="alert alert-info">
+            <i class="fas fa-lightbulb"></i> <strong>Quick Definition:</strong> A browser is <strong>your tool for surfing the web</strong> - it shows websites and lets you click around.
+        </div>
+    </div>
+
+    <h2 class="text-center">Popular Browsers You Probably Use</h2>
+    
+    <div class="browser-gallery">
+        <div class="browser-card">
+            <div class="browser-icon chrome">
+                <i class="fab fa-chrome"></i>
+            </div>
+            <h4>Google Chrome</h4>
+            <p><strong>Used by:</strong> ~65% of people</p>
+            <p><strong>Specialty:</strong> Speed and Google integration</p>
+            <p><strong>Fun fact:</strong> Most popular browser worldwide!</p>
+        </div>
+        
+        <div class="browser-card">
+            <div class="browser-icon safari">
+                <i class="fab fa-safari"></i>
+            </div>
+            <h4>Apple Safari</h4>
+            <p><strong>Used by:</strong> ~18% of people</p>
+            <p><strong>Specialty:</strong> Apple device optimization</p>
+            <p><strong>Fun fact:</strong> Default on all Apple devices</p>
+        </div>
+        
+        <div class="browser-card">
+            <div class="browser-icon firefox">
+                <i class="fab fa-firefox"></i>
+            </div>
+            <h4>Mozilla Firefox</h4>
+            <p><strong>Used by:</strong> ~7% of people</p>
+            <p><strong>Specialty:</strong> Privacy and customization</p>
+            <p><strong>Fun fact:</strong> Open-source and community-driven</p>
+        </div>
+        
+        <div class="browser-card">
+            <div class="browser-icon edge">
+                <i class="fab fa-edge"></i>
+            </div>
+            <h4>Microsoft Edge</h4>
+            <p><strong>Used by:</strong> ~5% of people</p>
+            <p><strong>Specialty:</strong> Windows integration</p>
+            <p><strong>Fun fact:</strong> Replaced Internet Explorer</p>
+        </div>
+    </div>
+
+    <h2 class="text-center">What a Browser Actually Does - Step by Step</h2>
+    
+    <div class="browser-process">
+        <div class="process-step">
+            <div class="process-number">1</div>
+            <div class="process-content">
+                <h5>You Type a URL</h5>
+                <p>Example: "youtube.com" in the address bar</p>
+                <div class="address-bar-example">
+                    <div class="address-bar">
+                        <span class="lock-icon"><i class="fas fa-lock"></i></span>
+                        <span class="url">https://www.youtube.com</span>
+                        <span class="refresh-icon"><i class="fas fa-redo"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="process-step">
+            <div class="process-number">2</div>
+            <div class="process-content">
+                <h5>Browser Sends Request</h5>
+                <p>Browser tells YouTube's server: "Please send me your homepage"</p>
+                <div class="request-visual">
+                    <div class="browser-icon-small">
+                        <i class="fab fa-chrome"></i>
+                    </div>
+                    <div class="arrow">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                    <div class="server-icon-small">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="request-text">GET / HTTP/1.1</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="process-step">
+            <div class="process-number">3</div>
+            <div class="process-content">
+                <h5>Receives & Processes</h5>
+                <p>Gets back HTML, CSS, JavaScript files and puts them together</p>
+                <div class="code-preview">
+                    <div class="code-tab active">HTML</div>
+                    <div class="code-tab">CSS</div>
+                    <div class="code-tab">JavaScript</div>
+                    <div class="code-content">
+                        &lt;div class="video"&gt;🎬&lt;/div&gt;<br>
+                        &lt;button class="play"&gt;▶ Play&lt;/button&gt;
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="process-step">
+            <div class="process-number">4</div>
+            <div class="process-content">
+                <h5>Displays the Page</h5>
+                <p>Shows you the complete YouTube website, ready to use!</p>
+                <div class="page-preview">
+                    <div class="page-header">YouTube</div>
+                    <div class="page-content">
+                        <div class="video-thumb">📹 Recommended Video</div>
+                        <div class="video-thumb">🎵 Music Video</div>
+                        <div class="video-thumb">😄 Funny Cats</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center">Browser Parts - Your Control Panel</h2>
+    
+    <div class="browser-anatomy">
+        <div class="anatomy-diagram">
+            <div class="browser-window">
+                <div class="browser-tabs">
+                    <div class="tab active">YouTube - Watch videos</div>
+                    <div class="tab">Google - Search</div>
+                    <div class="tab">Facebook - Social</div>
+                    <div class="tab new-tab">+</div>
+                </div>
+                
+                <div class="browser-nav">
+                    <div class="nav-button"><i class="fas fa-arrow-left"></i></div>
+                    <div class="nav-button"><i class="fas fa-arrow-right"></i></div>
+                    <div class="nav-button"><i class="fas fa-redo"></i></div>
+                    <div class="address-bar-full">
+                        <i class="fas fa-lock"></i>
+                        https://www.youtube.com
+                    </div>
+                    <div class="nav-button"><i class="fas fa-star"></i></div>
+                    <div class="nav-button"><i class="fas fa-ellipsis-v"></i></div>
+                </div>
+                
+                <div class="browser-content">
+                    <div class="content-area">
+                        <h4>Welcome to YouTube!</h4>
+                        <p>Your personalized video recommendations appear here...</p>
+                        <button class="play-button"><i class="fas fa-play"></i> Play Video</button>
+                    </div>
+                </div>
+                
+                <div class="browser-footer">
+                    <div class="status">Loaded successfully</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="anatomy-explanation">
+            <div class="explanation-item">
+                <div class="explanation-marker">①</div>
+                <div class="explanation-text">
+                    <strong>Tabs:</strong> Open multiple websites at once, like having several TV channels ready
+                </div>
+            </div>
+            <div class="explanation-item">
+                <div class="explanation-marker">②</div>
+                <div class="explanation-text">
+                    <strong>Address Bar:</strong> Where you type website addresses (URLs)
+                </div>
+            </div>
+            <div class="explanation-item">
+                <div class="explanation-marker">③</div>
+                <div class="explanation-text">
+                    <strong>Back/Forward:</strong> Navigate through your browsing history
+                </div>
+            </div>
+            <div class="explanation-item">
+                <div class="explanation-marker">④</div>
+                <div class="explanation-text">
+                    <strong>Refresh:</strong> Reload the current page if something isn't working
+                </div>
+            </div>
+            <div class="explanation-item">
+                <div class="explanation-marker">⑤</div>
+                <div class="explanation-text">
+                    <strong>Content Area:</strong> Where websites actually display
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="browser-features">
+        <h3><i class="fas fa-cogs"></i> Cool Browser Features You Use Everyday</h3>
+        
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-bookmark"></i>
+                </div>
+                <div class="feature-content">
+                    <h5>Bookmarks</h5>
+                    <p>Save your favorite websites for quick access later</p>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-history"></i>
+                </div>
+                <div class="feature-content">
+                    <h5>History</h5>
+                    <p>Remember where you've been (like a browsing diary)</p>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-download"></i>
+                </div>
+                <div class="feature-content">
+                    <h5>Downloads</h5>
+                    <p>Save files, images, and documents from websites</p>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-user-secret"></i>
+                </div>
+                <div class="feature-content">
+                    <h5>Incognito Mode</h5>
+                    <p>Browse privately without saving history</p>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-plug"></i>
+                </div>
+                <div class="feature-content">
+                    <h5>Extensions</h5>
+                    <p>Add extra features like ad blockers or password managers</p>
+                </div>
+            </div>
+            
+            <div class="feature">
+                <div class="feature-icon">
+                    <i class="fas fa-memory"></i>
+                </div>
+                <div class="feature-content">
+                    <h5>Cache</h5>
+                    <p>Remember website parts to load faster next time</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="interactive-activity">
+        <h3><i class="fas fa-gamepad"></i> Browser Detective Activity</h3>
+        <p>Look at your own browser right now and find these things:</p>
+        
+        <div class="activity-checklist">
+            <div class="checklist-item">
+                <input type="checkbox" id="check1">
+                <label for="check1">Find the address bar (where the website URL is)</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check2">
+                <label for="check2">Count how many tabs you have open</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check3">
+                <label for="check3">Click the back button (or try forward)</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check4">
+                <label for="check4">Find the refresh/reload button</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check5">
+                <label for="check5">Right-click anywhere and see the menu</label>
+            </div>
+        </div>
+        
+        <div class="activity-tip">
+            <i class="fas fa-lightbulb"></i>
+            <strong>Tip:</strong> Try pressing <kbd>Ctrl+T</kbd> (Windows) or <kbd>Cmd+T</kbd> (Mac) to open a new tab!
+        </div>
+    </div>
+
+    <div class="key-points">
+        <h3>Key Points to Remember</h3>
+        <ul>
+            <li><strong>Browser = Web Viewer</strong> - Your window to see websites</li>
+            <li><strong>Multiple types:</strong> Chrome, Safari, Firefox, Edge, etc.</li>
+            <li><strong>Requests pages:</strong> Asks servers for website files</li>
+            <li><strong>Assembles pages:</strong> Puts together HTML, CSS, JavaScript</li>
+            <li><strong>Displays content:</strong> Shows you the final website</li>
+            <li><strong>Has features:</strong> Tabs, bookmarks, history, extensions</li>
+            <li><strong>You control it:</strong> You decide where to go and what to do</li>
+        </ul>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Server", "WebCommunication")" class="btn btn-outline-primary ajax-link">← Server</a>
-        <a href="@Url.Action("HttpPart1", "WebCommunication")" class="btn btn-primary ajax-link">Http Part 1 →</a>
+        <a href="@Url.Action("Server", "WebCommunication")" class="btn btn-outline-primary ajax-link">← What is a Server?</a>
+        <a href="@Url.Action("HttpPart1", "WebCommunication")" class="btn btn-primary ajax-link">Next: HTTP Protocol - Part 1 →</a>
     </div>
 </div>
 
 <style>
     .container {
-        max-width: 800px;
+        max-width: 900px;
         padding: 20px;
         background-color: var(--bs-body-bg);
     }
 
-    h1, h2 {
+    h1, h2, h3, h4, h5 {
         color: var(--bs-heading-color);
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
-    p, li {
-        color: var(--bs-body-color);
-        line-height: 1.6;
+    h1 {
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
     }
 
-    ul, ol {
-        margin-left: 20px;
-        padding-left: 15px;
+    .beginner-note {
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
     }
 
-    .code-container {
-        margin: 25px 0;
+    .beginner-note-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+
+    .intro-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border-radius: 8px;
+    }
+
+    .browser-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+    }
+
+    .browser-card {
+        padding: 20px;
+        text-align: center;
+        background-color: var(--bs-body-bg);
         border: 1px solid var(--bs-border-color);
-        border-radius: 5px;
-        overflow: hidden;
-        background-color: var(--code-bg);
+        border-radius: 12px;
+        transition: transform 0.3s;
     }
 
-    .code-header {
-        background-color: var(--code-header-bg);
-        padding: 10px 15px;
+    .browser-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+
+    .browser-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin: 0 auto 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        color: white;
+    }
+
+    .chrome { background: linear-gradient(135deg, #4285f4, #34a853, #fbbc05, #ea4335); }
+    .safari { background: linear-gradient(135deg, #1B73E8, #34a853); }
+    .firefox { background: linear-gradient(135deg, #E66000, #FF9500); }
+    .edge { background: linear-gradient(135deg, #0078D7, #1490DF); }
+
+    .browser-card h4 {
+        margin: 10px 0;
+        color: var(--bs-heading-color);
+    }
+
+    .process-step {
+        display: flex;
+        gap: 20px;
+        margin: 25px 0;
+        padding: 20px;
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 2px solid var(--bs-warning);
+        border-radius: 12px;
+        align-items: center;
+    }
+
+    .process-number {
+        background-color: var(--bs-warning);
+        color: #212529;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+
+    .process-content h5 {
+        color: var(--bs-warning);
+        margin-top: 0;
+    }
+
+    .address-bar-example {
+        margin-top: 10px;
+    }
+
+    .address-bar {
+        display: inline-flex;
+        align-items: center;
+        padding: 8px 15px;
+        background-color: #f8f9fa;
+        border: 2px solid #dee2e6;
+        border-radius: 25px;
+        gap: 10px;
+        font-family: monospace;
+    }
+
+    [data-bs-theme="dark"] .address-bar {
+        background-color: #2d2d2d;
+        border-color: #404040;
+        color: #e0e0e0;
+    }
+
+    .lock-icon {
+        color: #28a745;
+    }
+
+    .refresh-icon {
+        color: #6c757d;
+        margin-left: auto;
+    }
+
+    .request-visual {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+        padding: 15px;
+        background-color: rgba(13, 110, 253, 0.1);
+        border-radius: 8px;
+    }
+
+    .browser-icon-small, .server-icon-small {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--bs-primary);
+        color: white;
+    }
+
+    .server-icon-small {
+        background-color: var(--bs-success);
+    }
+
+    .arrow {
+        color: var(--bs-primary);
+    }
+
+    .request-text {
+        font-family: monospace;
+        background-color: rgba(0,0,0,0.1);
+        padding: 5px 10px;
+        border-radius: 4px;
+        margin-left: auto;
+    }
+
+    .code-preview {
+        margin-top: 10px;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+
+    .code-tabs {
+        display: flex;
+        background-color: #f8f9fa;
         border-bottom: 1px solid var(--bs-border-color);
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    .code-tab {
+        padding: 8px 15px;
+        background-color: #e9ecef;
+        border-right: 1px solid var(--bs-border-color);
+        cursor: pointer;
+        font-family: monospace;
+        font-size: 0.9rem;
+    }
+
+    .code-tab.active {
+        background-color: white;
+        font-weight: bold;
+    }
+
+    [data-bs-theme="dark"] .code-tab {
+        background-color: #2d2d2d;
+        color: #e0e0e0;
+    }
+
+    [data-bs-theme="dark"] .code-tab.active {
+        background-color: #1a1a1a;
+    }
+
+    .code-content {
+        padding: 15px;
+        background-color: #1a1a1a;
+        color: #e0e0e0;
+        font-family: monospace;
+        min-height: 60px;
+    }
+
+    .page-preview {
+        margin-top: 10px;
+        border: 2px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: var(--bs-body-bg);
+    }
+
+    .page-header {
+        background-color: #ff0000;
+        color: white;
+        padding: 12px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .page-content {
+        padding: 15px;
+        display: grid;
+        gap: 10px;
+    }
+
+    .video-thumb {
+        padding: 15px;
+        background-color: rgba(0,0,0,0.05);
+        border-radius: 6px;
+        text-align: center;
+        border: 1px solid var(--bs-border-color);
+    }
+
+    .browser-anatomy {
+        margin: 40px 0;
+    }
+
+    .browser-window {
+        border: 3px solid var(--bs-border-color);
+        border-radius: 12px;
+        overflow: hidden;
+        background-color: var(--bs-body-bg);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .browser-tabs {
+        display: flex;
+        background-color: #f8f9fa;
+        border-bottom: 1px solid var(--bs-border-color);
+        padding: 5px 10px;
+        gap: 5px;
+    }
+
+    .tab {
+        padding: 8px 15px;
+        background-color: #e9ecef;
+        border-radius: 6px 6px 0 0;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 150px;
+        border: 1px solid var(--bs-border-color);
+        border-bottom: none;
+    }
+
+    .tab.active {
+        background-color: white;
+        border-bottom: 1px solid white;
+        margin-bottom: -1px;
+    }
+
+    .new-tab {
+        width: 30px;
+        text-align: center;
+        font-weight: bold;
+        background-color: transparent;
+        border: 1px dashed var(--bs-border-color);
+    }
+
+    .browser-nav {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        background-color: white;
+        border-bottom: 1px solid var(--bs-border-color);
+        gap: 10px;
+    }
+
+    [data-bs-theme="dark"] .browser-nav,
+    [data-bs-theme="dark"] .browser-tabs,
+    [data-bs-theme="dark"] .tab.active {
+        background-color: #2d2d2d;
+    }
+
+    [data-bs-theme="dark"] .tab {
+        background-color: #404040;
+    }
+
+    .nav-button {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f8f9fa;
+        cursor: pointer;
+        border: 1px solid var(--bs-border-color);
+    }
+
+    .nav-button:hover {
+        background-color: #e9ecef;
+    }
+
+    .address-bar-full {
+        flex: 1;
+        padding: 8px 15px;
+        background-color: #f8f9fa;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 25px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .browser-content {
+        padding: 30px;
+        min-height: 200px;
+        background-color: white;
+    }
+
+    [data-bs-theme="dark"] .browser-content {
+        background-color: #1a1a1a;
+    }
+
+    .content-area {
+        text-align: center;
+    }
+
+    .play-button {
+        padding: 10px 20px;
+        background-color: #ff0000;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        font-size: 16px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 15px;
+    }
+
+    .browser-footer {
+        padding: 8px 15px;
+        background-color: #f8f9fa;
+        border-top: 1px solid var(--bs-border-color);
+        font-size: 0.8rem;
+        color: #6c757d;
+    }
+
+    .anatomy-explanation {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border-radius: 12px;
+    }
+
+    .explanation-item {
+        display: flex;
+        gap: 15px;
+        margin: 10px 0;
+        align-items: flex-start;
+    }
+
+    .explanation-marker {
+        background-color: var(--bs-indigo);
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+
+    .browser-features {
+        margin: 40px 0;
+    }
+
+    .browser-features h3 {
+        color: var(--bs-success);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .feature {
+        display: flex;
+        gap: 15px;
+        padding: 15px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 8px;
+        align-items: flex-start;
+    }
+
+    .feature-icon {
+        background-color: var(--bs-success);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .feature-content h5 {
+        margin-top: 0;
+        color: var(--bs-success);
+    }
+
+    .interactive-activity {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(23, 162, 184, 0.1);
+        border: 2px solid var(--bs-info);
+        border-radius: 12px;
+    }
+
+    .interactive-activity h3 {
+        color: var(--bs-info);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .activity-checklist {
+        margin: 20px 0;
+    }
+
+    .checklist-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin: 12px 0;
+        padding: 10px 15px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+    }
+
+    .checklist-item input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+    }
+
+    .activity-tip {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 15px;
+        background-color: rgba(255, 193, 7, 0.2);
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+
+    .activity-tip i {
+        color: var(--bs-warning);
+        font-size: 24px;
+    }
+
+    kbd {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 4px;
+        padding: 2px 6px;
+        font-family: monospace;
+        font-size: 0.9rem;
+        box-shadow: 0 2px 0 #dee2e6;
+    }
+
+    [data-bs-theme="dark"] kbd {
+        background-color: #2d2d2d;
+        border-color: #404040;
+        box-shadow: 0 2px 0 #404040;
+    }
+
+    .key-points {
+        margin: 30px 0;
+        padding: 20px;
+        background-color: rgba(220, 53, 69, 0.1);
+        border: 1px solid var(--bs-danger);
+        border-radius: 8px;
+    }
+
+    .key-points h3 {
+        color: var(--bs-danger);
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
+    }
+
+    .btn {
+        padding: 12px 25px;
+        border-radius: 6px;
+        font-weight: 500;
+    }
+
+    [data-bs-theme="dark"] .beginner-note {
+        background-color: rgba(13, 110, 253, 0.15);
+    }
+
+    [data-bs-theme="dark"] .intro-section {
+        background-color: rgba(108, 117, 125, 0.15);
+    }
+
+    [data-bs-theme="dark"] .browser-card {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    [data-bs-theme="dark"] .process-step {
+        background-color: rgba(255, 193, 7, 0.15);
+    }
+
+    [data-bs-theme="dark"] .process-number {
+        color: white;
+    }
+
+    [data-bs-theme="dark"] .anatomy-explanation {
+        background-color: rgba(111, 66, 193, 0.15);
+    }
+
+    [data-bs-theme="dark"] .feature {
+        background-color: rgba(40, 167, 69, 0.15);
+    }
+
+    [data-bs-theme="dark"] .interactive-activity {
+        background-color: rgba(23, 162, 184, 0.15);
+    }
+
+    [data-bs-theme="dark"] .key-points {
+        background-color: rgba(220, 53, 69, 0.15);
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const checkboxes = document.querySelectorAll('.checklist-item input');
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const label = this.nextElementSibling;
+            if (this.checked) {
+                label.style.textDecoration = 'line-through';
+                label.style.opacity = '0.7';
+            } else {
+                label.style.textDecoration = 'none';
+                label.style.opacity = '1';
+            }
+        });
+    });
+
+    const codeTabs = document.querySelectorAll('.code-tab');
+    const codeContent = document.querySelector('.code-content');
+    
+    codeTabs.forEach(tab => {
+            codeTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+
+            const tabText = this.textContent.trim();
+            
+            if (tabText === 'HTML') {
+                codeContent.innerHTML = `&lt;div class="video"&gt;🎬&lt;/div&gt;<br>
+&lt;button class="play"&gt;▶ Play&lt;/button&gt;<br>
+&lt;h1&gt;Video Title&lt;/h1&gt;<br>
+&lt;p&gt;Description goes here&lt;/p&gt;`;
+            } else if (tabText === 'CSS') {
+                codeContent.innerHTML = `.video {<br>
+&nbsp;&nbsp;width: 300px;<br>
+&nbsp;&nbsp;height: 200px;<br>
+&nbsp;&nbsp;background: black;<br>
+}<br><br>
+.play-button {<br>
+&nbsp;&nbsp;background: red;<br>
+&nbsp;&nbsp;color: white;<br>
+&nbsp;&nbsp;padding: 10px;<br>
+}`;
+            } else if (tabText === 'JavaScript') {
+                codeContent.innerHTML = `function playVideo() {<br>
+&nbsp;&nbsp;console.log("Playing video...");<br>
+&nbsp;&nbsp;// Code to start video<br>
+}<br><br>
+document.querySelector('.play')<br>
+&nbsp;&nbsp;.addEventListener('click', playVideo);`;
+            }
+        });
+    });
+
+    const navButtons = document.querySelectorAll('.nav-button');
+    navButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const icon = this.querySelector('i');
+            if (!icon) return;
+            
+            const iconClass = icon.className;
+
+            if (iconClass.includes('arrow-left') || iconClass.includes('arrow-right')) {
+                const content = document.querySelector('.content-area h4');
+                if (content) {
+                    content.style.transform = 'translateX(10px)';
+                    setTimeout(() => {
+                        content.style.transform = 'translateX(0)';
+                    }, 300);
+                }
+            } else if (iconClass.includes('redo')) {
+                const content = document.querySelector('.content-area');
+                if (content) {
+                    content.style.opacity = '0.5';
+                    setTimeout(() => {
+                        content.style.opacity = '1';
+                    }, 500);
+                }
+            } else if (iconClass.includes('star')) {
+                const originalColor = this.style.color;
+                this.style.color = '#ffc107';
+                setTimeout(() => {
+                    this.style.color = originalColor;
+                }, 1000);
+            }
+        });
+    });
+
+    const playButton = document.querySelector('.play-button');
+    if (playButton) {
+        playButton.addEventListener('click', function() {
+            const originalText = this.innerHTML;
+            const originalColor = this.style.backgroundColor;
+            
+            this.innerHTML = '<i class="fas fa-pause"></i> Playing...';
+            this.style.backgroundColor = '#28a745';
+            
+            setTimeout(() => {
+                this.innerHTML = originalText;
+                this.style.backgroundColor = originalColor || '#ff0000';
+            }, 2000);
+        });
+    }
+});
+</script>
+</body>

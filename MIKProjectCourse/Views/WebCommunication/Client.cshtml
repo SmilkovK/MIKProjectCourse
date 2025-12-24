@@ -2,119 +2,536 @@
     ViewData["Title"] = "The Client in Web Communication";
 }
 
+<body data-topic="web-communication-client">
 <div class="container">
-    <h1>The Client</h1>
-    <p>In web communication, a <strong>client</strong> is the application or device that initiates a request to a server. The client can be a web browser, mobile app, or any software that interacts with a server to access data or services.</p>
+    <h1 class="text-center">What is a Client in Web Communication?</h1>
 
-    <h2>Main Responsibilities</h2>
-    <ul>
-        <li><strong>Sending Requests:</strong> The client sends HTTP/HTTPS requests to the server to fetch or submit data.</li>
-        <li><strong>Displaying Responses:</strong> After receiving a response from the server, the client processes and displays the data to the user.</li>
-        <li><strong>Executing Local Code:</strong> Some clients can execute scripts locally (like JavaScript in a browser) to make the interface interactive.</li>
-        <li><strong>Maintaining State:</strong> Clients may use cookies, sessions, or local storage to keep track of user data between requests.</li>
-    </ul>
-
-    <h2>Example</h2>
-    <p>When you use a web browser to visit <code>www.example.com</code>:</p>
-    <ol>
-        <li>The browser (client) sends a <code>GET</code> request to the server hosting <code>example.com</code>.</li>
-        <li>The server responds with an HTML page, CSS, JavaScript, and images.</li>
-        <li>The client renders the page and allows you to interact with it.</li>
-    </ol>
-
-    <div class="code-container">
-        <div class="code-header">Simplified HTTP Request from Client</div>
-        <div class="code-content">
-<pre><code class="language-http">
-GET /index.html HTTP/1.1
-Host: www.example.com
-User-Agent: Chrome/Edge/Firefox
-Accept: text/html
-</code></pre>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-laptop"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Think of the Client Like a Customer in a Restaurant</h4>
+            <p><strong>Client = Customer</strong> who makes requests (orders food)</p>
+            <p><strong>Simple analogy:</strong></p>
+            <ul>
+                <li>You (Client) go to a restaurant</li>
+                <li>You request food from the menu</li>
+                <li>You wait for the food to be prepared</li>
+                <li>You receive and consume the food</li>
+            </ul>
+            <p><strong>In web terms:</strong> The client requests web pages/data, waits for the server to prepare it, then displays it!</p>
         </div>
     </div>
 
-    <p>This demonstrates how the client initiates communication and how the server responds, completing the client-server cycle.</p>
+    <div class="intro-section">
+        <p>A <strong>client</strong> is any device or software application that requests and uses services from a server. When you browse the internet, <strong>you are the client!</strong></p>
+        
+        <div class="alert alert-info">
+            <i class="fas fa-lightbulb"></i> <strong>Quick Definition:</strong> A client is <strong>ANYTHING that asks for information</strong> from the internet.
+        </div>
+    </div>
+
+    <h2 class="text-center">Everyday Examples of Clients</h2>
+    
+    <div class="examples-section">
+        <div class="example-item">
+            <h4><i class="fas fa-window-maximize"></i> Web Browsers</h4>
+            <p><strong>Chrome, Firefox, Safari, Edge</strong> - These are the most common clients you use every day!</p>
+            <p>When you type "google.com" and press Enter, your browser (client) asks Google's servers for the webpage.</p>
+        </div>
+        
+        <div class="example-item">
+            <h4><i class="fas fa-mobile-alt"></i> Mobile Apps</h4>
+            <p><strong>Instagram, Facebook, WhatsApp</strong> apps on your phone</p>
+            <p>When you scroll through your feed, the app (client) requests new posts from Instagram's servers.</p>
+        </div>
+        
+        <div class="example-item">
+            <h4><i class="fas fa-desktop"></i> Desktop Applications</h4>
+            <p><strong>Spotify, Slack, Zoom</strong> installed on your computer</p>
+            <p>When you play a song on Spotify, the desktop app (client) requests music files from Spotify's servers.</p>
+        </div>
+        
+        <div class="example-item">
+            <h4><i class="fas fa-gamepad"></i> Game Clients</h4>
+            <p><strong>Fortnite, Minecraft</strong> game applications</p>
+            <p>When you play online, the game (client) constantly communicates with game servers.</p>
+        </div>
+    </div>
+
+    <h2 class="text-center">How Clients Work - Simple Step-by-Step</h2>
+    
+    <div class="visual-section">
+        <div class="step-diagram">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h5>You Make a Request</h5>
+                    <p>You type a URL (like facebook.com) or click a link in your browser</p>
+                </div>
+            </div>
+            
+            <div class="step-arrow">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h5>Client Prepares the Request</h5>
+                    <p>Your browser prepares a message saying: "Hello server, please give me the Facebook homepage"</p>
+                </div>
+            </div>
+            
+            <div class="step-arrow">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h5>Request is Sent</h5>
+                    <p>The request travels through the internet to Facebook's servers</p>
+                </div>
+            </div>
+            
+            <div class="step-arrow">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h5>Client Waits for Response</h5>
+                    <p>Your browser shows a loading spinner while waiting</p>
+                </div>
+            </div>
+            
+            <div class="step-arrow">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h5>Client Receives & Displays</h5>
+                    <p>When the response arrives, your browser displays the Facebook page</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center">Client Types - Quick Comparison</h2>
+    
+    <div class="comparison-table">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Type of Client</th>
+                    <th>Examples</th>
+                    <th>What It Does</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Thin Client</strong></td>
+                    <td>Web Browsers</td>
+                    <td>Most work is done by the server. Just displays information.</td>
+                </tr>
+                <tr>
+                    <td><strong>Thick Client</strong></td>
+                    <td>Desktop Apps (Photoshop)</td>
+                    <td>Does more processing locally, less dependent on server.</td>
+                </tr>
+                <tr>
+                    <td><strong>Mobile Client</strong></td>
+                    <td>Phone Apps (Instagram)</td>
+                    <td>Runs on phones/tablets, often works offline too.</td>
+                </tr>
+                <tr>
+                    <td><strong>Smart Client</strong></td>
+                    <td>Progressive Web Apps</td>
+                    <td>Works like a website but can save data for offline use.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="code-container">
+        <div class="code-header">Real Example: What Your Browser Actually Sends</div>
+        <div class="code-content">
+<pre><code class="language-http">
+GET /homepage HTTP/1.1
+Host: www.facebook.com
+User-Agent: Chrome/Windows
+Accept: text/html,application/json
+Accept-Language: en-US
+Connection: keep-alive
+
+(Blank line - request ends here)
+</code></pre>
+        </div>
+        <div class="code-explanation">
+            <p><strong>This is what happens when you visit Facebook:</strong></p>
+            <ol>
+                <li><code>GET /homepage</code> = "Please give me the homepage"</li>
+                <li><code>Host: www.facebook.com</code> = "I want it from Facebook"</li>
+                <li><code>User-Agent: Chrome/Windows</code> = "I'm using Chrome on Windows"</li>
+                <li>The empty line at the end means: "That's all I have to say!"</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="interactive-example">
+        <h3><i class="fas fa-hand-pointer"></i> Try It Yourself: Be the Client!</h3>
+        <div class="interactive-content">
+            <p>Imagine you're a web browser. What would you ask for in these situations?</p>
+            
+            <div class="scenario">
+                <p><strong>Scenario 1:</strong> You want to watch a YouTube video about cats.</p>
+                <div class="options">
+                    <button class="btn btn-outline-secondary option-btn" data-correct="true">Ask YouTube: "Please send me the cat video page"</button>
+                    <button class="btn btn-outline-secondary option-btn" data-correct="false">Ask Google: "What's the weather today?"</button>
+                    <button class="btn btn-outline-secondary option-btn" data-correct="false">Tell YouTube: "Here's my bank account info"</button>
+                </div>
+            </div>
+            
+            <div class="scenario">
+                <p><strong>Scenario 2:</strong> You're checking your email in Gmail.</p>
+                <div class="options">
+                    <button class="btn btn-outline-secondary option-btn" data-correct="false">Ask Facebook: "Show me my friends"</button>
+                    <button class="btn btn-outline-secondary option-btn" data-correct="true">Ask Gmail: "Please show me my new emails"</button>
+                    <button class="btn btn-outline-secondary option-btn" data-correct="false">Tell Gmail: "Play music for me"</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-points">
+        <h3>Key Points to Remember</h3>
+        <ul>
+            <li><strong>Client = Request Maker</strong> - Anything that asks for data from the internet</li>
+            <li><strong>You are a client</strong> every time you use the internet</li>
+            <li><strong>Different types:</strong> Browsers, mobile apps, desktop apps, games</li>
+            <li><strong>Always initiates:</strong> The client always starts the conversation</li>
+            <li><strong>Sends requests:</strong> "Please give me this webpage/video/data"</li>
+            <li><strong>Receives responses:</strong> Gets back what it asked for (or an error)</li>
+        </ul>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Introduction", "WebCommunication")" class="btn btn-outline-primary ajax-link">← Web Communication Introduction</a>
-        <a href="@Url.Action("Server", "WebCommunication")" class="btn btn-primary ajax-link">Server →</a>
+        <a href="@Url.Action("Introduction", "WebCommunication")" class="btn btn-outline-primary ajax-link">← Introduction</a>
+        <a href="@Url.Action("Server", "WebCommunication")" class="btn btn-primary ajax-link">Next: What is a Server? →</a>
     </div>
 </div>
 
 <style>
     .container {
-        max-width: 800px;
+        max-width: 900px;
         padding: 20px;
         background-color: var(--bs-body-bg);
     }
 
-    h1, h2 {
+    h1, h2, h3, h4 {
         color: var(--bs-heading-color);
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
-    p, li {
-        color: var(--bs-body-color);
-        line-height: 1.6;
+    h1 {
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
     }
 
-    ul, ol {
-        margin-left: 20px;
-        padding-left: 15px;
+    .beginner-note {
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
     }
 
-    .code-container {
-        margin: 25px 0;
-        border: 1px solid var(--bs-border-color);
-        border-radius: 5px;
-        overflow: hidden;
-        background-color: var(--code-bg);
+    .beginner-note-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
     }
 
-    .code-header {
-        background-color: var(--code-header-bg);
-        padding: 10px 15px;
-        border-bottom: 1px solid var(--bs-border-color);
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-        font-size: 0.9rem;
-        color: var(--bs-body-color);
+    .beginner-note-content h4 {
+        color: var(--bs-primary);
+        margin-top: 0;
     }
 
-    .code-content {
+    .intro-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border-radius: 8px;
+    }
+
+    .alert {
+        margin-top: 15px;
+    }
+
+    .examples-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        margin: 20px 0;
+    }
+
+    .example-item {
         padding: 15px;
+        background-color: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        transition: transform 0.2s;
+    }
+
+    .example-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .example-item h4 {
+        color: var(--bs-primary);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 0;
+    }
+
+    .step-diagram {
+        max-width: 600px;
+        margin: 30px auto;
+    }
+
+    .step {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        background-color: rgba(13, 110, 253, 0.05);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
+        margin: 10px 0;
+    }
+
+    .step-number {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+
+    .step-arrow {
+        text-align: center;
+        margin: 10px 0;
+        color: var(--bs-primary);
+        font-size: 24px;
+    }
+
+    .comparison-table {
+        margin: 30px 0;
         overflow-x: auto;
     }
 
-    pre {
-        margin: 0;
-        white-space: pre-wrap;
-        background-color: transparent;
+    .table {
+        background-color: var(--bs-body-bg);
+        color: var(--bs-body-color);
     }
 
-    code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    .table th {
+        background-color: rgba(13, 110, 253, 0.1);
+        border-color: var(--bs-border-color);
+    }
+
+    .table td {
+        border-color: var(--bs-border-color);
+    }
+
+    .code-container {
+        margin: 30px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .code-header {
+        background-color: #2d2d2d;
+        padding: 12px 20px;
+        border-bottom: 1px solid var(--bs-border-color);
+        font-family: monospace;
+        color: #e0e0e0;
+        font-size: 0.9rem;
+    }
+
+    .code-content {
+        padding: 20px;
+        background-color: #1a1a1a;
+        overflow-x: auto;
+    }
+
+    .code-explanation {
+        padding: 15px 20px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border-top: 1px solid var(--bs-success);
+    }
+
+    .code-explanation ol {
+        margin-bottom: 0;
+    }
+
+    .interactive-example {
+        margin: 30px 0;
+        padding: 20px;
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid var(--bs-warning);
+        border-radius: 8px;
+    }
+
+    .interactive-example h3 {
+        color: var(--bs-warning);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .scenario {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 6px;
+    }
+
+    .options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .option-btn {
+        text-align: left;
+        transition: all 0.3s;
+    }
+
+    .option-btn:hover {
+        transform: translateX(5px);
+    }
+
+    .option-btn.correct {
+        background-color: #28a745 !important;
+        color: white !important;
+        border-color: #28a745 !important;
+    }
+
+    .option-btn.incorrect {
+        background-color: #dc3545 !important;
+        color: white !important;
+        border-color: #dc3545 !important;
+    }
+
+    .key-points {
+        margin: 30px 0;
+        padding: 20px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 8px;
+    }
+
+    .key-points h3 {
+        color: var(--bs-indigo);
     }
 
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
 
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
     }
 
-    .btn-primary {
-        background-color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    /* Dark theme adjustments */
+    [data-bs-theme="dark"] .beginner-note {
+        background-color: rgba(13, 110, 253, 0.15);
     }
 
-    .btn-outline-primary {
-        color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    [data-bs-theme="dark"] .intro-section {
+        background-color: rgba(108, 117, 125, 0.15);
+    }
+
+    [data-bs-theme="dark"] .example-item {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    [data-bs-theme="dark"] .step {
+        background-color: rgba(13, 110, 253, 0.1);
+    }
+
+    [data-bs-theme="dark"] .code-explanation {
+        background-color: rgba(40, 167, 69, 0.15);
+    }
+
+    [data-bs-theme="dark"] .interactive-example {
+        background-color: rgba(255, 193, 7, 0.15);
+    }
+
+    [data-bs-theme="dark"] .key-points {
+        background-color: rgba(111, 66, 193, 0.15);
     }
 </style>
+
+<script>
+$(document).ready(function() {
+    if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+    }
+
+    // Use jQuery for easier event delegation
+    $(document).on('click', '.option-btn', function() {
+        const $button = $(this);
+        const isCorrect = $button.data('correct') === true;
+        const $scenario = $button.closest('.scenario');
+        
+        // Remove all classes first
+        $scenario.find('.option-btn').removeClass('correct incorrect');
+        
+        // Mark clicked button
+        $button.addClass(isCorrect ? 'correct' : 'incorrect');
+        
+        // Mark other buttons
+        $scenario.find('.option-btn').each(function() {
+            const $btn = $(this);
+            if ($btn[0] !== $button[0]) {
+                const btnIsCorrect = $btn.data('correct') === true;
+                $btn.addClass(btnIsCorrect ? 'correct' : 'incorrect');
+            }
+        });
+    });
+});
+</script>
+</body>

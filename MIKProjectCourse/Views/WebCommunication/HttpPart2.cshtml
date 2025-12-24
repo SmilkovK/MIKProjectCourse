@@ -1,99 +1,1048 @@
 ﻿@{
-    ViewData["Title"] = "HTTP Part 2 - Advanced Concepts";
+    ViewData["Title"] = "HTTP Protocol - Part 2: Status Codes & Headers";
 }
 
 <div class="container">
-    <h1>HTTP Part 2</h1>
-    <p>This section expands on the basics of HTTP by explaining headers, query parameters, POST requests, and how clients send data to the server.</p>
+    <h1 class="text-center">HTTP Protocol - Part 2: Status Codes & Headers</h1>
 
-    <h2>HTTP Headers</h2>
-    <p>Headers provide metadata about the request or response. Examples include:</p>
-    <ul>
-        <li><strong>User-Agent:</strong> identifies the client software (browser, app, etc.).</li>
-        <li><strong>Content-Type:</strong> specifies the type of data sent in a request or received in a response.</li>
-        <li><strong>Authorization:</strong> used for sending authentication tokens.</li>
-    </ul>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Think of HTTP Status Codes Like Restaurant Responses</h4>
+            <p><strong>Status Codes = How the server replies to your request</strong></p>
+            <p><strong>Simple analogy:</strong></p>
+            <ul>
+                <li>"200 OK" = "Here's your food, enjoy!" (Success)</li>
+                <li>"404 Not Found" = "Sorry, we don't have that item" (Error)</li>
+                <li>"500 Internal Server Error" = "Kitchen is on fire!" (Server problem)</li>
+            </ul>
+            <p><strong>In web terms:</strong> Status codes tell you exactly what happened with your request!</p>
+        </div>
+    </div>
 
-    <h2>Query Parameters</h2>
-    <p>Clients can pass data via the URL using query parameters:</p>
-    <pre><code class="language-http">
-GET /search?query=weather&city=Skopje HTTP/1.1
-Host: www.example.com
-    </code></pre>
-    <p>This request asks the server to search for "weather" in "Skopje".</p>
+    <div class="intro-section">
+        <p>In <strong>HTTP Part 2</strong>, we'll explore how servers respond to requests. You'll learn about status codes (like 404), headers (extra information), and how HTTP handles different situations.</p>
+        
+        <div class="alert alert-info">
+            <i class="fas fa-lightbulb"></i> <strong>Remember:</strong> HTTP is a conversation. Part 1 was about asking questions (requests), Part 2 is about getting answers (responses)!
+        </div>
+    </div>
 
-    <h2>POST Requests</h2>
-    <p>POST is used to send data to the server, often for creating or updating resources:</p>
-    <pre><code class="language-http">
-POST /users HTTP/1.1
-Host: www.example.com
-Content-Type: application/json
+    <h2 class="text-center">HTTP Response: What Servers Send Back</h2>
+    
+    <div class="http-response-demo">
+        <div class="response-header">
+            <h4><i class="fas fa-reply"></i> What Facebook's Server Actually Sends</h4>
+        </div>
+        
+        <div class="response-content">
+            <div class="status-line">
+                <span class="version">HTTP/1.1</span>
+                <span class="status-code success">200</span>
+                <span class="status-text">OK</span>
+            </div>
+            
+            <div class="response-headers">
+                <div class="header-line">
+                    <span class="header-name">Content-Type:</span>
+                    <span class="header-value">text/html; charset=UTF-8</span>
+                </div>
+                <div class="header-line">
+                    <span class="header-name">Content-Length:</span>
+                    <span class="header-value">1256</span>
+                </div>
+                <div class="header-line">
+                    <span class="header-name">Server:</span>
+                    <span class="header-value">Apache/2.4.41</span>
+                </div>
+                <div class="header-line">
+                    <span class="header-name">Date:</span>
+                    <span class="header-value">Mon, 15 Jan 2024 10:30:00 GMT</span>
+                </div>
+            </div>
+            
+            <div class="response-body">
+                <div class="body-separator"></div>
+                <div class="html-preview">
+                    &lt;!DOCTYPE html&gt;<br>
+                    &lt;html&gt;<br>
+                    &lt;head&gt;<br>
+                    &nbsp;&nbsp;&lt;title&gt;Facebook&lt;/title&gt;<br>
+                    &lt;/head&gt;<br>
+                    &lt;body&gt;<br>
+                    &nbsp;&nbsp;&lt;h1&gt;Welcome to Facebook&lt;/h1&gt;<br>
+                    &lt;/body&gt;<br>
+                    &lt;/html&gt;
+                </div>
+            </div>
+        </div>
+        
+        <div class="response-explanation">
+            <div class="explanation-item">
+                <div class="explanation-badge">200 OK</div>
+                <div class="explanation-text">
+                    <strong>Status:</strong> Success! Your request worked perfectly
+                </div>
+            </div>
+            <div class="explanation-item">
+                <div class="explanation-badge">Content-Type</div>
+                <div class="explanation-text">
+                    <strong>Format:</strong> This is an HTML webpage
+                </div>
+            </div>
+            <div class="explanation-item">
+                <div class="explanation-badge">Content-Length</div>
+                <div class="explanation-text">
+                    <strong>Size:</strong> The page is 1256 characters long
+                </div>
+            </div>
+        </div>
+    </div>
 
-{
-    "name": "John Doe",
-    "email": "john@example.com"
-}
-    </code></pre>
-    <p>The server will process this JSON data and respond accordingly.</p>
+    <h2 class="text-center">HTTP Status Codes: Server's Mood</h2>
+    
+    <div class="status-codes">
+        <div class="status-category">
+            <h3><span class="status-indicator success">2</span><span class="status-range">00</span> Success</h3>
+            <p>Everything worked! The server did what you asked.</p>
+            
+            <div class="status-examples">
+                <div class="status-example">
+                    <div class="status-bubble success">200</div>
+                    <div class="status-info">
+                        <strong>OK</strong><br>
+                        Success! Request completed
+                    </div>
+                </div>
+                <div class="status-example">
+                    <div class="status-bubble success">201</div>
+                    <div class="status-info">
+                        <strong>Created</strong><br>
+                        New resource created
+                    </div>
+                </div>
+                <div class="status-example">
+                    <div class="status-bubble success">204</div>
+                    <div class="status-info">
+                        <strong>No Content</strong><br>
+                        Success, but nothing to show
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="status-category">
+            <h3><span class="status-indicator redirect">3</span><span class="status-range">00</span> Redirection</h3>
+            <p>Go somewhere else! The resource moved.</p>
+            
+            <div class="status-examples">
+                <div class="status-example">
+                    <div class="status-bubble redirect">301</div>
+                    <div class="status-info">
+                        <strong>Moved Permanently</strong><br>
+                        Page moved forever
+                    </div>
+                </div>
+                <div class="status-example">
+                    <div class="status-bubble redirect">302</div>
+                    <div class="status-info">
+                        <strong>Found</strong><br>
+                        Page moved temporarily
+                    </div>
+                </div>
+                <div class="status-example">
+                    <div class="status-bubble redirect">304</div>
+                    <div class="status-info">
+                        <strong>Not Modified</strong><br>
+                        Use cached version
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="status-category">
+            <h3><span class="status-indicator client-error">4</span><span class="status-range">00</span> Client Errors</h3>
+            <p>You made a mistake! Check your request.</p>
+            
+            <div class="status-examples">
+                <div class="status-example">
+                    <div class="status-bubble client-error">400</div>
+                    <div class="status-info">
+                        <strong>Bad Request</strong><br>
+                        Your request is malformed
+                    </div>
+                </div>
+                <div class="status-example">
+                    <div class="status-bubble client-error popular">404</div>
+                    <div class="status-info">
+                        <strong>Not Found</strong><br>
+                        Page doesn't exist
+                    </div>
+                </div>
+                <div class="status-example">
+                    <div class="status-bubble client-error">403</div>
+                    <div class="status-info">
+                        <strong>Forbidden</strong><br>
+                        You're not allowed
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="status-category">
+            <h3><span class="status-indicator server-error">5</span><span class="status-range">00</span> Server Errors</h3>
+            <p>Server problems! It's not your fault.</p>
+            
+            <div class="status-examples">
+                <div class="status-example">
+                    <div class="status-bubble server-error">500</div>
+                    <div class="status-info">
+                        <strong>Internal Server Error</strong><br>
+                        Server messed up
+                    </div>
+                </div>
+                <div class="status-example">
+                    <div class="status-bubble server-error">502</div>
+                    <div class="status-info">
+                        <strong>Bad Gateway</strong><br>
+                        Problem between servers
+                    </div>
+                </div>
+                <div class="status-example">
+                    <div class="status-bubble server-error">503</div>
+                    <div class="status-info">
+                        <strong>Service Unavailable</strong><br>
+                        Server too busy
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="common-status-visual">
+        <h3><i class="fas fa-chart-bar"></i> Most Common Status Codes You'll See</h3>
+        
+        <div class="status-frequency">
+            <div class="frequency-item">
+                <div class="frequency-bar" style="width: 90%"></div>
+                <div class="frequency-info">
+                    <span class="status-code-mini success">200 OK</span>
+                    <span class="frequency-text">Success! Page loaded</span>
+                </div>
+            </div>
+            
+            <div class="frequency-item">
+                <div class="frequency-bar" style="width: 60%"></div>
+                <div class="frequency-info">
+                    <span class="status-code-mini redirect">304 Not Modified</span>
+                    <span class="frequency-text">Using cached version</span>
+                </div>
+            </div>
+            
+            <div class="frequency-item">
+                <div class="frequency-bar" style="width: 40%"></div>
+                <div class="frequency-info">
+                    <span class="status-code-mini client-error popular">404 Not Found</span>
+                    <span class="frequency-text">Page doesn't exist</span>
+                </div>
+            </div>
+            
+            <div class="frequency-item">
+                <div class="frequency-bar" style="width: 20%"></div>
+                <div class="frequency-info">
+                    <span class="status-code-mini client-error">403 Forbidden</span>
+                    <span class="frequency-text">Access denied</span>
+                </div>
+            </div>
+            
+            <div class="frequency-item">
+                <div class="frequency-bar" style="width: 10%"></div>
+                <div class="frequency-info">
+                    <span class="status-code-mini server-error">500 Server Error</span>
+                    <span class="frequency-text">Server problem</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="http-headers">
+        <h3><i class="fas fa-info-circle"></i> HTTP Headers: Extra Information</h3>
+        <p>Headers are like metadata - extra information about the request or response.</p>
+        
+        <div class="headers-grid">
+            <div class="header-type">
+                <h4>Request Headers</h4>
+                <p>What client sends to server:</p>
+                <ul>
+                    <li><strong>User-Agent:</strong> What browser/device you're using</li>
+                    <li><strong>Accept:</strong> What formats you can understand</li>
+                    <li><strong>Cookie:</strong> Your login/session information</li>
+                    <li><strong>Authorization:</strong> Your login credentials</li>
+                </ul>
+            </div>
+            
+            <div class="header-type">
+                <h4>Response Headers</h4>
+                <p>What server sends back:</p>
+                <ul>
+                    <li><strong>Content-Type:</strong> What type of data is returned</li>
+                    <li><strong>Set-Cookie:</strong> Save login/session info</li>
+                    <li><strong>Cache-Control:</strong> How long to store the data</li>
+                    <li><strong>Location:</strong> Where to redirect to</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="interactive-game">
+        <h3><i class="fas fa-gamepad"></i> Status Code Detective</h3>
+        <p>What status code would you get in these situations?</p>
+        
+        <div class="game-scenarios">
+            <div class="game-scenario" data-correct="403">
+                <p>You try to visit "facebook.com/profile/secret" but you're not logged in</p>
+                <div class="game-options">
+                    <button class="btn btn-outline-secondary game-btn" data-answer="403">403 Forbidden</button>
+                    <button class="btn btn-outline-secondary game-btn" data-answer="404">404 Not Found</button>
+                    <button class="btn btn-outline-secondary game-btn" data-answer="200">200 OK</button>
+                </div>
+                <div class="game-feedback"></div>
+            </div>
+            
+            <div class="game-scenario" data-correct="200">
+                <p>You successfully load the YouTube homepage</p>
+                <div class="game-options">
+                    <button class="btn btn-outline-secondary game-btn" data-answer="200">200 OK</button>
+                    <button class="btn btn-outline-secondary game-btn" data-answer="500">500 Error</button>
+                    <button class="btn btn-outline-secondary game-btn" data-answer="301">301 Moved</button>
+                </div>
+                <div class="game-feedback"></div>
+            </div>
+            
+            <div class="game-scenario" data-correct="404">
+                <p>You type "amazon.com/product-that-doesnt-exist"</p>
+                <div class="game-options">
+                    <button class="btn btn-outline-secondary game-btn" data-answer="404">404 Not Found</button>
+                    <button class="btn btn-outline-secondary game-btn" data-answer="200">200 OK</button>
+                    <button class="btn btn-outline-secondary game-btn" data-answer="403">403 Forbidden</button>
+                </div>
+                <div class="game-feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="http-cookies">
+        <h3><i class="fas fa-cookie-bite"></i> Cookies: How Websites Remember You</h3>
+        
+        <div class="cookie-explanation">
+            <div class="cookie-step">
+                <div class="cookie-number">1</div>
+                <div class="cookie-content">
+                    <h5>First Visit</h5>
+                    <p>You visit a website for the first time</p>
+                </div>
+            </div>
+            
+            <div class="cookie-arrow">→</div>
+            
+            <div class="cookie-step">
+                <div class="cookie-number">2</div>
+                <div class="cookie-content">
+                    <h5>Server Sends Cookie</h5>
+                    <p>Server says: "Remember this ID: user123"</p>
+                </div>
+            </div>
+            
+            <div class="cookie-arrow">→</div>
+            
+            <div class="cookie-step">
+                <div class="cookie-number">3</div>
+                <div class="cookie-content">
+                    <h5>Browser Stores It</h5>
+                    <p>Your browser saves: "facebook.com = user123"</p>
+                </div>
+            </div>
+            
+            <div class="cookie-arrow">→</div>
+            
+            <div class="cookie-step">
+                <div class="cookie-number">4</div>
+                <div class="cookie-content">
+                    <h5>Next Visit</h5>
+                    <p>You say: "Hey Facebook, I'm user123!"</p>
+                </div>
+            </div>
+            
+            <div class="cookie-arrow">→</div>
+            
+            <div class="cookie-step">
+                <div class="cookie-number">5</div>
+                <div class="cookie-content">
+                    <h5>Website Remembers</h5>
+                    <p>Facebook knows it's you and shows your profile</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-points">
+        <h3>Key Points to Remember - Part 2</h3>
+        <ul>
+            <li><strong>Status Codes:</strong> 2xx (Success), 3xx (Redirect), 4xx (Your fault), 5xx (Server fault)</li>
+            <li><strong>200 OK:</strong> Everything worked perfectly</li>
+            <li><strong>404 Not Found:</strong> Most famous error - page doesn't exist</li>
+            <li><strong>Headers:</strong> Extra information in requests/responses</li>
+            <li><strong>Cookies:</strong> How websites remember you between visits</li>
+            <li><strong>Stateless:</strong> HTTP doesn't remember previous requests (cookies help with this)</li>
+        </ul>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("HttpPart1", "WebCommunication")" class="btn btn-outline-primary ajax-link">← Http Part 1</a>
-        <a href="@Url.Action("ClientSide", "WebCommunication")" class="btn btn-primary ajax-link">Client-Side Communication →</a>
+        <a href="@Url.Action("HttpPart1", "WebCommunication")" class="btn btn-outline-primary ajax-link">← HTTP Part 1</a>
+        <a href="@Url.Action("ClientSide", "WebCommunication")" class="btn btn-primary ajax-link">Next: Client-Side Communication →</a>
     </div>
 </div>
 
 <style>
-    .container {
-        max-width: 800px;
+    .container { max-width: 900px; padding: 20px; background-color: var(--bs-body-bg); }
+    h1, h2, h3, h4, h5 { color: var(--bs-heading-color); margin-bottom: 15px; }
+    h1 { border-bottom: 2px solid var(--bs-primary); padding-bottom: 10px; }
+    
+    .beginner-note {
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
         padding: 20px;
-        background-color: var(--bs-body-bg);
+        margin-bottom: 30px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .beginner-note-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+    
+    .intro-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border-radius: 8px;
     }
 
-    h1, h2 {
-        color: var(--bs-heading-color);
-        margin-bottom: 20px;
+    .http-response-demo {
+        margin: 40px 0;
+        border: 2px solid var(--bs-border-color);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    .response-header {
+        background-color: #2d2d2d;
+        padding: 15px 20px;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+    
+    .response-header h4 {
+        color: #e0e0e0;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .response-content {
+        padding: 20px;
+        background-color: #1a1a1a;
+        font-family: 'Courier New', monospace;
+        color: #e0e0e0;
+    }
+    
+    .status-line {
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+    }
+    
+    .version {
+        color: #c678dd;
+    }
+    
+    .status-code {
+        color: white;
+        padding: 2px 8px;
+        border-radius: 4px;
+        margin: 0 10px;
+        font-weight: bold;
+    }
+    
+    .success { background-color: #28a745; }
+    .redirect { background-color: #ffc107; color: #212529; }
+    .client-error { background-color: #dc3545; }
+    .server-error { background-color: #6f42c1; }
+    
+    .status-text {
+        color: #98c379;
+    }
+    
+    .response-headers {
+        margin: 15px 0;
+    }
+    
+    .header-line {
+        margin: 8px 0;
+        padding-left: 20px;
+    }
+    
+    .header-name {
+        color: #e06c75;
+        font-weight: bold;
+    }
+    
+    .header-value {
+        color: #e0e0e0;
+        margin-left: 10px;
+    }
+    
+    .response-body {
+        margin-top: 20px;
+    }
+    
+    .body-separator {
+        height: 1px;
+        background-color: #404040;
+        margin: 15px 0;
+    }
+    
+    .html-preview {
+        color: #e5c07b;
+        padding-left: 20px;
+        line-height: 1.5;
+    }
+    
+    .response-explanation {
+        padding: 20px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border-top: 1px solid var(--bs-success);
+    }
+    
+    .explanation-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin: 10px 0;
+    }
+    
+    .explanation-badge {
+        background-color: var(--bs-primary);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-weight: bold;
+        min-width: 100px;
+        text-align: center;
     }
 
-    p, li {
-        color: var(--bs-body-color);
-        line-height: 1.6;
+    .status-codes {
+        margin: 40px 0;
+    }
+    
+    .status-category {
+        margin: 30px 0;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        border-left: 5px solid;
+    }
+    
+    .status-category:nth-child(1) { border-left-color: #28a745; }
+    .status-category:nth-child(2) { border-left-color: #ffc107; }
+    .status-category:nth-child(3) { border-left-color: #dc3545; }
+    .status-category:nth-child(4) { border-left-color: #6f42c1; }
+    
+    .status-category h3 {
+        display: flex;
+        align-items: center;
+        margin-top: 0;
+    }
+    
+    .status-indicator {
+        font-size: 2rem;
+        font-weight: bold;
+        margin-right: 5px;
+    }
+    
+    .status-indicator.success { color: #28a745; }
+    .status-indicator.redirect { color: #ffc107; }
+    .status-indicator.client-error { color: #dc3545; }
+    .status-indicator.server-error { color: #6f42c1; }
+    
+    .status-range {
+        font-size: 1.5rem;
+        opacity: 0.7;
+    }
+    
+    .status-examples {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 15px;
+        margin-top: 15px;
+    }
+    
+    .status-example {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+    }
+    
+    .status-bubble {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: white;
+        flex-shrink: 0;
+    }
+    
+    .status-bubble.success { background-color: #28a745; }
+    .status-bubble.redirect { background-color: #ffc107; color: #212529; }
+    .status-bubble.client-error { background-color: #dc3545; }
+    .status-bubble.server-error { background-color: #6f42c1; }
+    
+    .status-bubble.popular {
+        animation: pulse 2s infinite;
+        position: relative;
+    }
+    
+    @@keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+    
+    .status-info {
+        font-size: 0.9rem;
     }
 
-    ul {
-        margin-left: 20px;
-        padding-left: 15px;
+    .common-status-visual {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(23, 162, 184, 0.1);
+        border: 1px solid var(--bs-info);
+        border-radius: 10px;
+    }
+    
+    .common-status-visual h3 {
+        color: var(--bs-info);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .status-frequency {
+        margin-top: 20px;
+    }
+    
+    .frequency-item {
+        margin: 15px 0;
+    }
+    
+    .frequency-bar {
+        height: 30px;
+        background: linear-gradient(90deg, var(--bar-color, #28a745), #20c997);
+        border-radius: 4px;
+        margin-bottom: 5px;
+        transition: width 1s ease-out;
+    }
+    
+    .frequency-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .status-code-mini {
+        padding: 3px 8px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 0.9rem;
+        color: white;
+    }
+    
+    .status-code-mini.success { background-color: #28a745; }
+    .status-code-mini.redirect { background-color: #ffc107; color: #212529; }
+    .status-code-mini.client-error { background-color: #dc3545; }
+    .status-code-mini.server-error { background-color: #6f42c1; }
+    
+    .status-code-mini.popular {
+        animation: pulse 2s infinite;
     }
 
-    pre {
-        background-color: var(--code-bg);
+    .http-headers {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid var(--bs-warning);
+        border-radius: 10px;
+    }
+    
+    .http-headers h3 {
+        color: var(--bs-warning);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .headers-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 20px;
+    }
+    
+    .header-type {
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+    
+    .header-type h4 {
+        color: var(--bs-warning);
+        margin-top: 0;
+    }
+    
+    .header-type ul {
+        list-style: none;
+        padding: 0;
+        margin: 15px 0 0 0;
+    }
+    
+    .header-type li {
+        margin: 10px 0;
+        padding-left: 20px;
+        position: relative;
+    }
+    
+    .header-type li:before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: var(--bs-warning);
+    }
+
+    .interactive-game {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 10px;
+    }
+    
+    .interactive-game h3 {
+        color: var(--bs-indigo);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .game-scenarios {
+        margin-top: 20px;
+    }
+    
+    .game-scenario {
+        margin: 20px 0;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+    
+    .game-options {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+        flex-wrap: wrap;
+    }
+    
+    .game-btn {
+        transition: all 0.3s;
+    }
+    
+    .game-btn:hover {
+        transform: translateY(-2px);
+    }
+    
+    .game-btn.correct {
+        background-color: #28a745 !important;
+        color: white !important;
+        border-color: #28a745 !important;
+    }
+    
+    .game-btn.incorrect {
+        background-color: #dc3545 !important;
+        color: white !important;
+        border-color: #dc3545 !important;
+    }
+    
+    .game-feedback {
+        margin-top: 10px;
         padding: 10px;
         border-radius: 5px;
-        overflow-x: auto;
+        display: none;
+    }
+    
+    .game-feedback.correct {
+        background-color: rgba(40, 167, 69, 0.2);
+        color: #155724;
+        display: block;
+    }
+    
+    .game-feedback.incorrect {
+        background-color: rgba(220, 53, 69, 0.2);
+        color: #721c24;
+        display: block;
     }
 
-    code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    .http-cookies {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(220, 53, 69, 0.1);
+        border: 1px solid var(--bs-danger);
+        border-radius: 10px;
+    }
+    
+    .http-cookies h3 {
+        color: var(--bs-danger);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .cookie-explanation {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+    }
+    
+    .cookie-step {
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        text-align: center;
+        min-width: 120px;
+        flex: 1;
+    }
+    
+    .cookie-number {
+        background-color: var(--bs-danger);
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin: 0 auto 10px;
+    }
+    
+    .cookie-arrow {
+        color: var(--bs-danger);
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+    
+    @@media (max-width: 768px) {
+        .cookie-explanation {
+            flex-direction: column;
+        }
+        
+        .cookie-arrow {
+            transform: rotate(90deg);
+        }
+        
+        .game-options {
+            flex-direction: column;
+        }
+    }
+
+    .key-points {
+        margin: 30px 0;
+        padding: 20px;
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 1px solid var(--bs-primary);
+        border-radius: 8px;
+    }
+    
+    .key-points h3 {
+        color: var(--bs-primary);
     }
 
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
-
+    
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
     }
 
-    .btn-primary {
-        background-color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    [data-bs-theme="dark"] .beginner-note {
+        background-color: rgba(13, 110, 253, 0.15);
     }
-
-    .btn-outline-primary {
-        color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    
+    [data-bs-theme="dark"] .intro-section {
+        background-color: rgba(108, 117, 125, 0.15);
+    }
+    
+    [data-bs-theme="dark"] .status-category,
+    [data-bs-theme="dark"] .header-type,
+    [data-bs-theme="dark"] .cookie-step {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    [data-bs-theme="dark"] .common-status-visual {
+        background-color: rgba(23, 162, 184, 0.15);
+    }
+    
+    [data-bs-theme="dark"] .http-headers {
+        background-color: rgba(255, 193, 7, 0.15);
+    }
+    
+    [data-bs-theme="dark"] .interactive-game {
+        background-color: rgba(111, 66, 193, 0.15);
+    }
+    
+    [data-bs-theme="dark"] .http-cookies {
+        background-color: rgba(220, 53, 69, 0.15);
+    }
+    
+    [data-bs-theme="dark"] .key-points {
+        background-color: rgba(13, 110, 253, 0.15);
     }
 </style>
+
+<script>
+$(document).ready(function() {
+    if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+    }
+
+    // Animate frequency bars
+    const frequencyItems = document.querySelectorAll('.frequency-item');
+    frequencyItems.forEach((item, index) => {
+        const bar = item.querySelector('.frequency-bar');
+        const statusCode = item.querySelector('.status-code-mini');
+        
+        if (statusCode.classList.contains('success')) {
+            bar.style.setProperty('--bar-color', '#28a745');
+        } else if (statusCode.classList.contains('redirect')) {
+            bar.style.setProperty('--bar-color', '#ffc107');
+        } else if (statusCode.classList.contains('client-error')) {
+            bar.style.setProperty('--bar-color', '#dc3545');
+        } else if (statusCode.classList.contains('server-error')) {
+            bar.style.setProperty('--bar-color', '#6f42c1');
+        }
+
+        bar.style.width = '0%';
+        setTimeout(() => {
+            const targetWidth = bar.getAttribute('style').split('width: ')[1];
+            bar.style.width = targetWidth;
+        }, 500 + (index * 200));
+    });
+
+    // Initialize the game functionality
+    function initializeGame() {
+        $('.game-btn').off('click').on('click', function() {
+            const $button = $(this);
+            const $scenario = $button.closest('.game-scenario');
+            const correctAnswer = $scenario.data('correct');
+            const selectedAnswer = $button.data('answer');
+            
+            console.log('Game clicked:', {
+                correctAnswer: correctAnswer,
+                selectedAnswer: selectedAnswer
+            });
+            
+            // Reset all buttons in this scenario
+            $scenario.find('.game-btn')
+                .removeClass('correct incorrect')
+                .css({
+                    'color': 'white',
+                    'background-color': '',
+                    'border-color': ''
+                });
+            
+            $scenario.find('.game-feedback')
+                .removeClass('correct incorrect')
+                .hide();
+            
+            // Check if answer is correct
+            if (selectedAnswer === correctAnswer) {
+                $button.addClass('correct');
+                $button.css({
+                    'background-color': '#28a745',
+                    'border-color': '#28a745',
+                    'color': 'white'
+                });
+                
+                $scenario.find('.game-feedback')
+                    .addClass('correct')
+                    .html('<i class="fas fa-check"></i> <strong>Correct!</strong> That\'s the right status code!')
+                    .show();
+            } else {
+                $button.addClass('incorrect');
+                $button.css({
+                    'background-color': '#dc3545',
+                    'border-color': '#dc3545',
+                    'color': 'white'
+                });
+                
+                $scenario.find('.game-feedback')
+                    .addClass('incorrect')
+                    .html(`<i class="fas fa-times"></i> <strong>Not quite!</strong> The correct answer is ${correctAnswer}.`)
+                    .show();
+            }
+
+            $scenario.find('.game-btn').each(function() {
+                const $btn = $(this);
+                if ($btn.data('answer') === correctAnswer) {
+                    $btn.addClass('correct');
+                    $btn.css({
+                        'background-color': '#28a745',
+                        'border-color': '#28a745',
+                        'color': 'white'
+                    });
+                }
+            });
+        });
+    }
+
+    initializeGame();
+});
+</script>

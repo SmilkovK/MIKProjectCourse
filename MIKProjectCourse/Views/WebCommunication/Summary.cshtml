@@ -1,71 +1,994 @@
 ﻿@{
-    ViewData["Title"] = "Web Communication - Summary";
+    ViewData["Title"] = "Web Communication - Complete Chapter Summary";
 }
 
 <div class="container">
-    <h1>Chapter Summary: Web Communication</h1>
-    <p>This chapter introduced the fundamentals of web communication, including the roles of clients, servers, browsers, HTTP protocols, client-side and server-side operations, and APIs.</p>
+    <h1 class="mb-4">🎓 Complete Web Communication Summary</h1>
+    <p class="lead">You've completed the entire Web Communication chapter! Let's review all the concepts and test your understanding with a comprehensive quiz.</p>
 
-    <h2>Key Takeaways</h2>
-    <ul>
-        <li><strong>Client:</strong> Initiates requests and displays responses.</li>
-        <li><strong>Server:</strong> Processes requests, manages resources, and sends responses.</li>
-        <li><strong>Browser:</strong> Acts as the interface for the client to interact with web applications.</li>
-        <li><strong>HTTP Protocol:</strong> The standard for request/response communication between client and server.</li>
-        <li><strong>Client-Side Communication:</strong> Executes operations in the user’s browser (HTML, CSS, JavaScript).</li>
-        <li><strong>Server-Side Communication:</strong> Handles operations on the server, interacts with databases, and generates responses.</li>
-        <li><strong>APIs:</strong> Allow applications to exchange data programmatically.</li>
-    </ul>
+    <div class="summary-table">
+        <h2>📚 All Web Communication Concepts at a Glance</h2>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Concept</th>
+                        <th>Role</th>
+                        <th>Real-World Analogy</th>
+                        <th>Key Protocols/Technologies</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Client</strong></td>
+                        <td>Requests information/services</td>
+                        <td>Customer in restaurant</td>
+                        <td>Browser, Mobile App, Desktop App</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Server</strong></td>
+                        <td>Provides information/services</td>
+                        <td>Kitchen in restaurant</td>
+                        <td>Apache, Nginx, Database Servers</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Browser</strong></td>
+                        <td>Displays/interprets web content</td>
+                        <td>TV Remote + Screen</td>
+                        <td>Chrome, Firefox, Safari, Edge</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HTTP</strong></td>
+                        <td>Rules for web communication</td>
+                        <td>Restaurant conversation rules</td>
+                        <td>HTTP/1.1, HTTP/2, HTTPS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Client-Side</strong></td>
+                        <td>Processing in user's device</td>
+                        <td>Your brain thinking</td>
+                        <td>HTML, CSS, JavaScript</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Server-Side</strong></td>
+                        <td>Processing on remote servers</td>
+                        <td>Kitchen cooking food</td>
+                        <td>Python, C#, Java, Node.js</td>
+                    </tr>
+                    <tr>
+                        <td><strong>APIs</strong></td>
+                        <td>App-to-app communication</td>
+                        <td>Waiter between kitchen/customer</td>
+                        <td>REST APIs, JSON, XML</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-    <p>Understanding these concepts is crucial for developing modern web applications and integrating different systems efficiently.</p>
+    <div class="detailed-summary">
+        <h2>📘 Detailed Concept Review</h2>
+
+        <div class="concept-card">
+            <h3>1. Client-Server Model</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>Client (Request Maker)</h4>
+                    <pre><code class="language-http">GET /homepage HTTP/1.1
+Host: www.facebook.com
+User-Agent: Chrome/Windows</code></pre>
+                    <p><strong>Examples:</strong> Web browsers, mobile apps, desktop apps</p>
+                </div>
+                <div class="col-md-6">
+                    <h4>Server (Response Provider)</h4>
+                    <pre><code class="language-http">HTTP/1.1 200 OK
+Content-Type: text/html
+
+&lt;html&gt;...&lt;/html&gt;</code></pre>
+                    <p><strong>Examples:</strong> Web servers, database servers, file servers</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h3>2. HTTP Communication Flow</h3>
+            <div class="http-flow-diagram">
+                <div class="flow-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h5>Client Sends Request</h5>
+                        <p>Browser: "GET facebook.com"</p>
+                    </div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h5>Server Processes</h5>
+                        <p>Finds files, runs code</p>
+                    </div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h5>Server Sends Response</h5>
+                        <p>Sends back HTML/CSS/JS</p>
+                    </div>
+                </div>
+                <div class="flow-arrow">→</div>
+                <div class="flow-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h5>Browser Renders</h5>
+                        <p>Displays Facebook page</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h3>3. HTTP Status Codes</h3>
+            <div class="row">
+                <div class="col-md-3">
+                    <h5 class="text-success">2xx Success</h5>
+                    <p><strong>200 OK</strong><br>Request successful</p>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="text-warning">3xx Redirect</h5>
+                    <p><strong>301 Moved</strong><br>Page moved permanently</p>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="text-danger">4xx Client Error</h5>
+                    <p><strong>404 Not Found</strong><br>Page doesn't exist</p>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="text-danger">5xx Server Error</h5>
+                    <p><strong>500 Error</strong><br>Server problem</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h3>4. Client-Side vs Server-Side</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="text-primary">Client-Side</h4>
+                    <ul>
+                        <li><strong>Location:</strong> User's browser/device</li>
+                        <li><strong>Technologies:</strong> HTML, CSS, JavaScript</li>
+                        <li><strong>Examples:</strong> Form validation, animations, responsive design</li>
+                        <li><strong>Advantages:</strong> Fast, responsive, works offline</li>
+                    </ul>
+                    <pre><code class="language-javascript">// Client-side JavaScript
+document.getElementById('btn').addEventListener('click', 
+    function() { alert('Clicked!'); });</code></pre>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="text-success">Server-Side</h4>
+                    <ul>
+                        <li><strong>Location:</strong> Remote servers</li>
+                        <li><strong>Technologies:</strong> Python, C#, Java, PHP</li>
+                        <li><strong>Examples:</strong> User authentication, database operations, payment processing</li>
+                        <li><strong>Advantages:</strong> Secure, powerful, database access</li>
+                    </ul>
+                    <pre><code class="language-csharp">// Server-side C#
+[HttpPost]
+public IActionResult Login(LoginModel model)
+{
+    // Check database, process login
+    return Ok("Login successful");
+}</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h3>5. APIs - Application Programming Interfaces</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>What are APIs?</h5>
+                    <p>Rules for apps to communicate</p>
+                    <pre><code class="language-http">GET /api/weather?city=NYC
+→ Returns JSON weather data</code></pre>
+                </div>
+                <div class="col-md-4">
+                    <h5>REST APIs</h5>
+                    <p>Most common web API type</p>
+                    <pre><code class="language-http">GET    /api/users      (get all)
+POST   /api/users      (create)
+PUT    /api/users/123  (update)
+DELETE /api/users/123  (delete)</code></pre>
+                </div>
+                <div class="col-md-4">
+                    <h5>Real Examples</h5>
+                    <ul>
+                        <li>Google Maps API</li>
+                        <li>Weather APIs</li>
+                        <li>Payment APIs (Stripe, PayPal)</li>
+                        <li>Social Media APIs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="concept-card">
+            <h3>6. Security & Performance</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>HTTPS vs HTTP</h4>
+                    <div class="security-comparison">
+                        <div class="security-bad">
+                            <h5><i class="fas fa-times text-danger"></i> HTTP</h5>
+                            <p>Not secure - data sent in plain text</p>
+                        </div>
+                        <div class="security-good">
+                            <h5><i class="fas fa-check text-success"></i> HTTPS</h5>
+                            <p>Secure - encrypted communication</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h4>Cookies & Sessions</h4>
+                    <ul>
+                        <li><strong>Cookies:</strong> Small data stored in browser</li>
+                        <li><strong>Sessions:</strong> Server-side user tracking</li>
+                        <li><strong>Cache:</strong> Store files for faster loading</li>
+                        <li><strong>CDN:</strong> Distribute content globally</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="quiz-section">
+        <h2>Web Communication Mastery Quiz</h2>
+        <p>Test your understanding of all web communication concepts. Choose the best answer for each question.</p>
+
+        <div class="quiz-container" id="quizContainer">
+        </div>
+
+        <div class="quiz-results" id="quizResults" style="display: none;">
+            <h3>Your Results</h3>
+            <div class="progress" style="height: 30px;">
+                <div id="scoreBar" class="progress-bar" role="progressbar" style="width: 0%">0%</div>
+            </div>
+            <p id="scoreText" class="mt-3"></p>
+            <button class="btn btn-secondary mt-2" id="restartQuizBtn">Restart Quiz</button>
+        </div>
+
+        <button class="btn btn-primary btn-lg mt-4" id="startQuizBtn">Start Quiz</button>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("API", "WebCommunication")" class="btn btn-outline-primary ajax-link">← API's</a>
-        <a href="@Url.Action("Index", "Web")" class="btn btn-primary ajax-link">Next Chapter (Web) →</a>
+        <a href="@Url.Action("API", "WebCommunication")" class="btn btn-outline-primary ajax-link">← APIs</a>
+        <a href="@Url.Action("Index", "Web")" class="btn btn-primary ajax-link">Next Chapter: Web Development →</a>
     </div>
 </div>
 
 <style>
     .container {
-        max-width: 800px;
-        padding: 20px;
+        max-width: 1200px;
+        padding: 30px;
         background-color: var(--bs-body-bg);
     }
 
-    h1, h2 {
+    h1, h2, h3, h4, h5 {
         color: var(--bs-heading-color);
         margin-bottom: 20px;
     }
 
-    p, li {
-        color: var(--bs-body-color);
-        line-height: 1.6;
+    h1 {
+        border-bottom: 3px solid var(--bs-primary);
+        padding-bottom: 15px;
     }
 
-    ul {
-        margin-left: 20px;
-        padding-left: 15px;
+    .summary-table {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: var(--summary-table-bg, rgba(13, 110, 253, 0.05));
+        border-radius: 10px;
+        border: 1px solid var(--bs-border-color);
+    }
+
+    .detailed-summary {
+        margin: 40px 0;
+    }
+
+    .concept-card {
+        background-color: var(--concept-card-bg, white);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 4px var(--shadow-color, rgba(0,0,0,0.1));
+    }
+
+    .concept-card h3 {
+        color: var(--bs-primary);
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 10px;
+    }
+
+    .concept-card pre {
+        background-color: var(--code-bg);
+        padding: 15px;
+        border-radius: 5px;
+        margin: 15px 0;
+        border: 1px solid var(--bs-border-color);
+        font-size: 0.9rem;
+    }
+
+    .http-flow-diagram {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 0;
+        flex-wrap: wrap;
+    }
+
+    .flow-step {
+        text-align: center;
+        padding: 15px;
+        background-color: var(--flow-step-bg, rgba(13, 110, 253, 0.1));
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
+        flex: 1;
+        margin: 0 10px;
+        min-width: 150px;
+    }
+
+    .step-number {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin: 0 auto 10px;
+    }
+
+    .flow-arrow {
+        color: var(--bs-primary);
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .security-comparison {
+        display: flex;
+        gap: 20px;
+        margin-top: 15px;
+    }
+
+    .security-bad, .security-good {
+        padding: 15px;
+        border-radius: 6px;
+        flex: 1;
+    }
+
+    .security-bad {
+        background-color: rgba(220, 53, 69, 0.1);
+        border: 1px solid var(--bs-danger);
+    }
+
+    .security-good {
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+    }
+
+    .quiz-section {
+        margin: 50px 0;
+        padding: 30px;
+        background-color: var(--quiz-section-bg, rgba(111, 66, 193, 0.05));
+        border-radius: 10px;
+        border: 1px solid var(--bs-border-color);
+    }
+
+    .quiz-container {
+        margin: 30px 0;
+    }
+
+    .quiz-question {
+        background-color: var(--quiz-question-bg, white);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        display: none;
+    }
+
+    .quiz-question.active {
+        display: block;
+        animation: fadeIn 0.5s;
+    }
+
+    .quiz-options {
+        margin: 20px 0;
+    }
+
+    .quiz-option {
+        display: block;
+        padding: 12px 15px;
+        margin: 8px 0;
+        border: 2px solid var(--bs-border-color);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s;
+        color: var(--bs-body-color);
+        background-color: var(--quiz-option-bg, transparent);
+    }
+
+    .quiz-option:hover {
+        background-color: var(--quiz-option-hover, rgba(13, 110, 253, 0.1));
+        border-color: var(--bs-primary);
+    }
+
+    .quiz-option.selected {
+        background-color: var(--quiz-option-selected, rgba(13, 110, 253, 0.2));
+        border-color: var(--bs-primary);
+    }
+
+    .quiz-option.correct {
+        background-color: var(--quiz-option-correct, rgba(40, 167, 69, 0.2));
+        border-color: var(--bs-success);
+    }
+
+    .quiz-option.incorrect {
+        background-color: var(--quiz-option-incorrect, rgba(220, 53, 69, 0.2));
+        border-color: var(--bs-danger);
+    }
+
+    .quiz-results {
+        background-color: var(--quiz-results-bg, white);
+        padding: 25px;
+        border-radius: 8px;
+        border: 1px solid var(--bs-border-color);
+        margin-top: 30px;
     }
 
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
 
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
     }
 
-    .btn-primary {
-        background-color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    .progress {
+        background-color: var(--progress-bg, #e9ecef);
     }
 
-    .btn-outline-primary {
-        color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    .alert-info {
+        background-color: var(--alert-info-bg, rgba(13, 202, 240, 0.1));
+        border-color: var(--alert-info-border, rgba(13, 202, 240, 0.3));
+        color: var(--alert-info-color, var(--bs-info));
+    }
+
+    @@keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @@media (max-width: 768px) {
+        .http-flow-diagram {
+            flex-direction: column;
+        }
+        
+        .flow-arrow {
+            transform: rotate(90deg);
+            margin: 10px 0;
+        }
+        
+        .security-comparison {
+            flex-direction: column;
+        }
+    }
+
+    [data-bs-theme="dark"] {
+        --summary-table-bg: rgba(13, 110, 253, 0.1);
+        --concept-card-bg: rgba(255, 255, 255, 0.05);
+        --shadow-color: rgba(0, 0, 0, 0.3);
+        --quiz-section-bg: rgba(111, 66, 193, 0.1);
+        --quiz-question-bg: rgba(255, 255, 255, 0.05);
+        --quiz-results-bg: rgba(255, 255, 255, 0.05);
+        --quiz-option-bg: rgba(255, 255, 255, 0.03);
+        --quiz-option-hover: rgba(110, 168, 254, 0.2);
+        --quiz-option-selected: rgba(110, 168, 254, 0.3);
+        --quiz-option-correct: rgba(40, 167, 69, 0.3);
+        --quiz-option-incorrect: rgba(220, 53, 69, 0.3);
+        --progress-bg: rgba(255, 255, 255, 0.1);
+        --alert-info-bg: rgba(13, 202, 240, 0.2);
+        --alert-info-border: rgba(13, 202, 240, 0.4);
+        --alert-info-color: #6ea8fe;
+        --flow-step-bg: rgba(110, 168, 254, 0.15);
+    }
+
+    [data-bs-theme="light"] {
+        --summary-table-bg: rgba(13, 110, 253, 0.05);
+        --concept-card-bg: white;
+        --shadow-color: rgba(0, 0, 0, 0.1);
+        --quiz-section-bg: rgba(111, 66, 193, 0.05);
+        --quiz-question-bg: white;
+        --quiz-results-bg: white;
+        --quiz-option-bg: transparent;
+        --quiz-option-hover: rgba(13, 110, 253, 0.1);
+        --quiz-option-selected: rgba(13, 110, 253, 0.2);
+        --quiz-option-correct: rgba(40, 167, 69, 0.2);
+        --quiz-option-incorrect: rgba(220, 53, 69, 0.2);
+        --progress-bg: #e9ecef;
+        --alert-info-bg: rgba(13, 202, 240, 0.1);
+        --alert-info-border: rgba(13, 202, 240, 0.3);
+        --alert-info-color: #0dcaf0;
+        --flow-step-bg: rgba(13, 110, 253, 0.1);
     }
 </style>
+
+<script>
+    const quizQuestions = [
+        {
+            question: "1. What is the role of a CLIENT in web communication?",
+            options: [
+                "A) Stores websites and data",
+                "B) Requests information from servers",
+                "C) Processes server requests",
+                "D) Creates web protocols"
+            ],
+            correct: 1,
+            explanation: "The client is anything that requests information or services from servers. Examples include web browsers, mobile apps, and desktop applications."
+        },
+        {
+            question: "2. What is the main function of a SERVER?",
+            options: [
+                "A) Displays web pages to users",
+                "B) Requests data from clients",
+                "C) Stores and provides information when asked",
+                "D) Creates web browsers"
+            ],
+            correct: 2,
+            explanation: "Servers store websites, applications, and data, and deliver them to clients upon request. They're like digital kitchens that serve information."
+        },
+        {
+            question: "3. Which HTTP status code means 'Success'?",
+            options: [
+                "A) 404",
+                "B) 500",
+                "C) 200",
+                "D) 301"
+            ],
+            correct: 2,
+            explanation: "200 OK means the request was successful. This is the most common success status code you'll see."
+        },
+        {
+            question: "4. What does the '404 Not Found' error mean?",
+            options: [
+                "A) Server is too busy",
+                "B) Page doesn't exist",
+                "C) You're not authorized",
+                "D) Connection timeout"
+            ],
+            correct: 1,
+            explanation: "404 Not Found means the server couldn't find the requested page or resource. It's one of the most common errors on the web."
+        },
+        {
+            question: "5. Which technology is primarily CLIENT-SIDE?",
+            options: [
+                "A) Python",
+                "B) C#",
+                "C) JavaScript",
+                "D) Java"
+            ],
+            correct: 2,
+            explanation: "JavaScript runs in the user's browser, making it a client-side technology. Python, C#, and Java are typically server-side languages."
+        },
+        {
+            question: "6. What is the main advantage of SERVER-SIDE processing?",
+            options: [
+                "A) Faster animations",
+                "B) Better security for sensitive data",
+                "C) Works without internet",
+                "D) Browser compatibility"
+            ],
+            correct: 1,
+            explanation: "Server-side processing provides better security because sensitive operations (like password checking, payment processing) happen on protected servers, not in the user's browser."
+        },
+        {
+            question: "7. What does HTTP stand for?",
+            options: [
+                "A) HyperText Transfer Protocol",
+                "B) High Transfer Text Protocol",
+                "C) Hyper Transfer Text Process",
+                "D) High Text Transfer Process"
+            ],
+            correct: 0,
+            explanation: "HTTP stands for HyperText Transfer Protocol - it's the set of rules that governs how clients and servers communicate on the web."
+        },
+        {
+            question: "8. What is the difference between HTTP and HTTPS?",
+            options: [
+                "A) HTTPS is faster",
+                "B) HTTPS uses a different port",
+                "C) HTTPS is encrypted/secure",
+                "D) HTTPS doesn't use cookies"
+            ],
+            correct: 2,
+            explanation: "HTTPS (HTTP Secure) encrypts the communication between client and server, making it much more secure than regular HTTP."
+        },
+        {
+            question: "9. What does an API (Application Programming Interface) do?",
+            options: [
+                "A) Creates web browsers",
+                "B) Lets different applications communicate",
+                "C) Stores website files",
+                "D) Designs user interfaces"
+            ],
+            correct: 1,
+            explanation: "APIs are sets of rules that allow different software applications to communicate with each other and exchange data."
+        },
+        {
+            question: "10. What does REST API stand for?",
+            options: [
+                "A) Rapid Exchange Standard Transfer",
+                "B) Representational State Transfer",
+                "C) Remote Execution System Transfer",
+                "D) Resource Exchange Standard Type"
+            ],
+            correct: 1,
+            explanation: "REST stands for Representational State Transfer. REST APIs are the most common type of web APIs today."
+        },
+        {
+            question: "11. Which HTTP method is used to GET data from a server?",
+            options: [
+                "A) POST",
+                "B) PUT",
+                "C) DELETE",
+                "D) GET"
+            ],
+            correct: 3,
+            explanation: "The GET method is used to retrieve data from a server. It's the most common HTTP method."
+        },
+        {
+            question: "12. Which HTTP method is used to SEND data to a server?",
+            options: [
+                "A) GET",
+                "B) POST",
+                "C) DELETE",
+                "D) HEAD"
+            ],
+            correct: 1,
+            explanation: "The POST method is used to send data to a server, like when submitting a form or uploading a file."
+        },
+        {
+            question: "13. What are COOKIES used for?",
+            options: [
+                "A) Making websites taste better",
+                "B) Storing small data in the browser",
+                "C) Encrypting web traffic",
+                "D) Speeding up servers"
+            ],
+            correct: 1,
+            explanation: "Cookies are small pieces of data stored in the user's browser. They help websites remember information like login status, preferences, and shopping cart items."
+        },
+        {
+            question: "14. What is CACHING?",
+            options: [
+                "A) Saving money on web hosting",
+                "B) Storing website files locally for faster loading",
+                "C) Encrypting sensitive data",
+                "D) Creating backup servers"
+            ],
+            correct: 1,
+            explanation: "Caching means storing website files (like images, CSS, JavaScript) locally on your device so they load faster on subsequent visits."
+        },
+        {
+            question: "15. What does AJAX stand for?",
+            options: [
+                "A) Advanced JavaScript and XML",
+                "B) Asynchronous JavaScript and XML",
+                "C) Automated JavaScript XML",
+                "D) Applied JavaScript Extension"
+            ],
+            correct: 1,
+            explanation: "AJAX stands for Asynchronous JavaScript and XML. It allows web pages to update content without refreshing the entire page."
+        },
+        {
+            question: "16. Which of these is a real-world example of an API?",
+            options: [
+                "A) Google Maps showing locations in Uber",
+                "B) Microsoft Word opening documents",
+                "C) Your computer's calculator app",
+                "D) Windows operating system"
+            ],
+            correct: 0,
+            explanation: "When Uber shows maps and directions, it's using the Google Maps API. This is a perfect example of APIs allowing different applications to work together."
+        },
+        {
+            question: "17. What is the main difference between thin and thick clients?",
+            options: [
+                "A) Thin clients are heavier",
+                "B) Thick clients do more processing locally",
+                "C) Thin clients are faster",
+                "D) Thick clients are always web-based"
+            ],
+            correct: 1,
+            explanation: "Thick clients (like Photoshop) do more processing on the user's device, while thin clients (like web browsers) rely more on servers for processing."
+        },
+        {
+            question: "18. What happens when you type a URL and press Enter?",
+            options: [
+                "A) Computer asks server for the webpage",
+                "B) Website downloads to your computer permanently",
+                "C) Your browser creates the webpage from scratch",
+                "D) Nothing - you need to click a link"
+            ],
+            correct: 0,
+            explanation: "Your browser sends an HTTP request to the server asking for the webpage. The server responds with the files needed to display the page."
+        },
+        {
+            question: "19. What does 'stateless' mean in HTTP?",
+            options: [
+                "A) Each request is independent",
+                "B) HTTP never forgets anything",
+                "C) HTTP has no states",
+                "D) HTTP is always in the same state"
+            ],
+            correct: 0,
+            explanation: "HTTP is stateless, meaning each request is independent. The server doesn't remember previous requests (though cookies help with this)."
+        },
+        {
+            question: "20. Why are APIs important in modern web development?",
+            options: [
+                "A) They make websites look prettier",
+                "B) They allow apps to share data and services",
+                "C) They replace all servers",
+                "D) They're only for large companies"
+            ],
+            correct: 1,
+            explanation: "APIs are crucial because they allow different applications, services, and systems to communicate and share data, enabling the connected digital world we have today."
+        }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let userAnswers = [];
+
+    function initializeQuiz() {
+        console.log("Initializing quiz...");
+        
+        const startBtn = document.getElementById('startQuizBtn');
+        const restartBtn = document.getElementById('restartQuizBtn');
+        
+        if (startBtn) {
+            console.log("Found start button, attaching event listener");
+            startBtn.replaceWith(startBtn.cloneNode(true));
+            document.getElementById('startQuizBtn').addEventListener('click', startQuiz);
+        } else {
+            console.error("Start button not found!");
+        }
+        
+        if (restartBtn) {
+            restartBtn.replaceWith(restartBtn.cloneNode(true));
+            document.getElementById('restartQuizBtn').addEventListener('click', resetQuiz);
+        }
+
+        window.addEventListener('load', function() {
+            console.log("Window loaded, re-attaching quiz listeners");
+            if (document.getElementById('startQuizBtn')) {
+                document.getElementById('startQuizBtn').addEventListener('click', startQuiz);
+            }
+            if (document.getElementById('restartQuizBtn')) {
+                document.getElementById('restartQuizBtn').addEventListener('click', resetQuiz);
+            }
+        });
+    }
+
+    setTimeout(initializeQuiz, 100);
+
+    document.addEventListener('DOMContentLoaded', initializeQuiz);
+
+    function startQuiz() {
+        console.log("Start quiz button clicked!");
+        const startBtn = document.getElementById('startQuizBtn');
+        const quizContainer = document.getElementById('quizContainer');
+        const quizResults = document.getElementById('quizResults');
+        
+        if (!startBtn || !quizContainer || !quizResults) {
+            console.error("Required elements not found!");
+            return;
+        }
+        
+        startBtn.style.display = 'none';
+        quizContainer.innerHTML = '';
+        quizResults.style.display = 'none';
+        
+        currentQuestionIndex = 0;
+        score = 0;
+        userAnswers = [];
+        
+        loadQuestion(currentQuestionIndex);
+    }
+
+    function loadQuestion(index) {
+        const container = document.getElementById('quizContainer');
+        const question = quizQuestions[index];
+        
+        let html = `
+            <div class="quiz-question active">
+                <h4>${question.question}</h4>
+                <div class="quiz-options">
+        `;
+        
+        question.options.forEach((option, optionIndex) => {
+            html += `
+                <div class="quiz-option" data-option="${optionIndex}" id="option${optionIndex}">
+                    ${option}
+                </div>
+            `;
+        });
+        
+        html += `
+                </div>
+                <div id="explanation${index}" class="mt-3" style="display: none;">
+                    <div class="alert alert-info">
+                        <strong>Explanation:</strong> ${question.explanation}
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <button class="btn btn-primary" id="nextBtn" data-index="${index}">
+                        ${index === quizQuestions.length - 1 ? 'See Results' : 'Next Question'}
+                    </button>
+                    <span class="ms-3">Question ${index + 1} of ${quizQuestions.length}</span>
+                </div>
+            </div>
+        `;
+        
+        container.innerHTML = html;
+
+        question.options.forEach((option, optionIndex) => {
+            const optionElement = document.getElementById(`option${optionIndex}`);
+            if (optionElement) {
+                optionElement.addEventListener('click', () => selectAnswer(optionIndex));
+            }
+        });
+
+        const nextBtn = document.getElementById('nextBtn');
+        if (nextBtn) {
+            nextBtn.addEventListener('click', handleNext);
+            nextBtn.disabled = true;
+        }
+    }
+
+    function selectAnswer(index) {
+        const question = quizQuestions[currentQuestionIndex];
+
+        for (let i = 0; i < 4; i++) {
+            const option = document.getElementById(`option${i}`);
+            if (option) {
+                option.classList.remove('selected');
+            }
+        }
+
+        const option = document.getElementById(`option${index}`);
+        if (option) {
+            option.classList.add('selected');
+        }
+
+        const nextBtn = document.getElementById('nextBtn');
+        if (nextBtn) {
+            nextBtn.disabled = false;
+        }
+        
+        userAnswers[currentQuestionIndex] = index;
+    }
+
+    function handleNext() {
+        const question = quizQuestions[currentQuestionIndex];
+        const userAnswer = userAnswers[currentQuestionIndex];
+
+        const explanation = document.getElementById(`explanation${currentQuestionIndex}`);
+        if (explanation) {
+            explanation.style.display = 'block';
+        }
+
+        for (let i = 0; i < 4; i++) {
+            const option = document.getElementById(`option${i}`);
+            if (option) {
+                option.classList.remove('selected');
+                option.style.pointerEvents = 'none';
+                
+                if (i === question.correct) {
+                    option.classList.add('correct');
+                } else if (i === userAnswer && i !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            }
+        }
+
+        if (userAnswer === question.correct) {
+            score++;
+        }
+
+        const nextBtn = document.getElementById('nextBtn');
+        if (nextBtn) {
+            nextBtn.disabled = true;
+        }
+
+        setTimeout(() => {
+            currentQuestionIndex++;
+            
+            if (currentQuestionIndex < quizQuestions.length) {
+                loadQuestion(currentQuestionIndex);
+            } else {
+                showResults();
+            }
+        }, 2000);
+    }
+
+    function showResults() {
+        const container = document.getElementById('quizContainer');
+        const results = document.getElementById('quizResults');
+        
+        if (!container || !results) return;
+        
+        container.innerHTML = '';
+        results.style.display = 'block';
+        
+        const percentage = Math.round((score / quizQuestions.length) * 100);
+        const scoreBar = document.getElementById('scoreBar');
+        if (scoreBar) {
+            scoreBar.style.width = `${percentage}%`;
+            scoreBar.textContent = `${percentage}%`;
+            
+            if (percentage >= 90) {
+                scoreBar.className = 'progress-bar bg-success';
+            } else if (percentage >= 70) {
+                scoreBar.className = 'progress-bar bg-info';
+            } else if (percentage >= 50) {
+                scoreBar.className = 'progress-bar bg-warning';
+            } else {
+                scoreBar.className = 'progress-bar bg-danger';
+            }
+        }
+        
+        const scoreText = document.getElementById('scoreText');
+        if (scoreText) {
+            let message = '';
+            if (percentage >= 90) {
+                message = 'Excellent! You\'re a Web Communication expert!';
+            } else if (percentage >= 70) {
+                message = 'Great job! You understand web communication well.';
+            } else if (percentage >= 50) {
+                message = 'Good effort! Review the concepts and try again.';
+            } else {
+                message = 'Keep learning! Review the chapter and try the quiz again.';
+            }
+            
+            scoreText.innerHTML = `
+                <h4>${message}</h4>
+                <p>You scored ${score} out of ${quizQuestions.length} questions correctly.</p>
+                <p>Percentage: ${percentage}%</p>
+            `;
+        }
+    }
+
+    function resetQuiz() {
+        const results = document.getElementById('quizResults');
+        const startBtn = document.getElementById('startQuizBtn');
+        
+        if (results) results.style.display = 'none';
+        if (startBtn) startBtn.style.display = 'inline-block';
+    }
+
+    window.selectAnswer = selectAnswer;
+    window.handleNext = handleNext;
+    window.startQuiz = startQuiz;
+    window.resetQuiz = resetQuiz;
+</script>

@@ -2,122 +2,1334 @@
     ViewData["Title"] = "Server-Side Communication";
 }
 
+<body data-topic="web-communication-serverside">
 <div class="container">
-    <h1>Server-Side Communication</h1>
-    <p><strong>Server-side communication</strong> refers to operations that happen on the server in response to client requests. The server processes requests, interacts with databases or services, and sends back responses to the client.</p>
+    <h1 class="text-center">Server-Side Communication</h1>
 
-    <h2>Main Responsibilities</h2>
-    <ul>
-        <li><strong>Processing Requests:</strong> Handling HTTP requests from clients (GET, POST, PUT, DELETE).</li>
-        <li><strong>Business Logic:</strong> Executing server-side code to process data or perform actions.</li>
-        <li><strong>Database Interaction:</strong> Reading from or writing to databases based on client requests.</li>
-        <li><strong>Generating Responses:</strong> Sending HTML, JSON, or other data back to the client.</li>
-        <li><strong>Security & Validation:</strong> Ensuring requests are valid and authenticated.</li>
-    </ul>
-
-    <h2>Example: Simple API Endpoint (C# ASP.NET Core)</h2>
-    <div class="code-container">
-        <div class="code-header">Server-Side Code Example</div>
-        <div class="code-content">
-<pre><code class="language-csharp">
-[ApiController]
-[Route("api/[controller]")]
-public class UsersController : ControllerBase
-{
-    [HttpGet("{id}")]
-    public IActionResult GetUser(int id)
-    {
-        var user = _userService.GetUserById(id); // Fetch from database
-        if(user == null)
-            return NotFound();
-        return Ok(user); // Return JSON response
-    }
-}
-</code></pre>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-server"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Think of Server-Side Like a Restaurant Kitchen</h4>
+            <p><strong>Server-Side = Happens in the KITCHEN (server)</strong></p>
+            <p><strong>Simple analogy:</strong></p>
+            <ul>
+                <li>You order food (send request to server)</li>
+                <li>Kitchen prepares it (server processes your request)</li>
+                <li>Kitchen checks ingredients, cooks, plates (database access, logic)</li>
+                <li>Food is served to you (response sent back)</li>
+            </ul>
+            <p><strong>In web terms:</strong> Server-side means work happens on REMOTE SERVERS!</p>
         </div>
     </div>
 
-    <p>In this example, the server receives a request for a user by ID, queries the database, and returns a JSON response to the client.</p>
+    <div class="intro-section">
+        <p><strong>Server-side communication</strong> refers to all the processing that happens on web servers before sending responses back to clients. It's where the "brain work" of web applications happens!</p>
+        
+        <div class="alert alert-info">
+            <i class="fas fa-lightbulb"></i> <strong>Quick Definition:</strong> Server-side = <strong>work done by REMOTE SERVERS</strong>, not your device.
+        </div>
+    </div>
+
+    <h2 class="text-center">What Happens Server-Side? The Complete Process</h2>
+    
+    <div class="server-process">
+        <div class="process-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h5>Request Arrives</h5>
+                <p>Server receives HTTP request from client</p>
+            </div>
+        </div>
+        
+        <div class="process-arrow">→</div>
+        
+        <div class="process-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h5>Parse & Validate</h5>
+                <p>Server checks if request is valid and secure</p>
+            </div>
+        </div>
+        
+        <div class="process-arrow">→</div>
+        
+        <div class="process-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h5>Process Logic</h5>
+                <p>Server runs code, accesses databases, makes decisions</p>
+            </div>
+        </div>
+        
+        <div class="process-arrow">→</div>
+        
+        <div class="process-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h5>Generate Response</h5>
+                <p>Server creates HTML/JSON/XML response</p>
+            </div>
+        </div>
+        
+        <div class="process-arrow">→</div>
+        
+        <div class="process-step">
+            <div class="step-number">5</div>
+            <div class="step-content">
+                <h5>Send Back</h5>
+                <p>Server sends HTTP response to client</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="server-examples">
+        <h3><i class="fas fa-cogs"></i> Real Server-Side Examples</h3>
+        
+        <div class="examples-grid">
+            <div class="server-example">
+                <div class="example-header">
+                    <div class="example-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h4>User Authentication</h4>
+                </div>
+                <p><strong>What happens:</strong> Checking login credentials against database</p>
+                <p><strong>Why server-side:</strong> Password security - never trust client!</p>
+                <div class="example-code">
+                    <span class="code-label">Server checks:</span>
+                    <code>if (password_hash == stored_hash) { login_success }</code>
+                </div>
+            </div>
+            
+            <div class="server-example">
+                <div class="example-header">
+                    <div class="example-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h4>E-commerce Checkout</h4>
+                </div>
+                <p><strong>What happens:</strong> Processing payments, updating inventory</p>
+                <p><strong>Why server-side:</strong> Money and inventory must be secure</p>
+                <div class="example-code">
+                    <span class="code-label">Server processes:</span>
+                    <code>charge_card(), update_inventory(), send_receipt()</code>
+                </div>
+            </div>
+            
+            <div class="server-example">
+                <div class="example-header">
+                    <div class="example-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h4>Google Search</h4>
+                </div>
+                <p><strong>What happens:</strong> Searching billions of web pages</p>
+                <p><strong>Why server-side:</strong> Massive data processing needed</p>
+                <div class="example-code">
+                    <span class="code-label">Server searches:</span>
+                    <code>find_pages("cats"), rank_results(), return_top_10()</code>
+                </div>
+            </div>
+            
+            <div class="server-example">
+                <div class="example-header">
+                    <div class="example-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <h4>Netflix Recommendations</h4>
+                </div>
+                <p><strong>What happens:</strong> Analyzing viewing history, suggesting shows</p>
+                <p><strong>Why server-side:</strong> Complex algorithms need server power</p>
+                <div class="example-code">
+                    <span class="code-label">Server analyzes:</span>
+                    <code>user_history + similar_users = recommendations</code>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="server-technologies">
+        <h3><i class="fas fa-laptop-code"></i> Server-Side Technologies</h3>
+        
+        <div class="tech-categories">
+            <div class="tech-category">
+                <h4><i class="fas fa-code"></i> Programming Languages</h4>
+                <div class="tech-items">
+                    <div class="tech-item">
+                        <div class="tech-logo python">
+                            <i class="fab fa-python"></i>
+                        </div>
+                        <div class="tech-info">
+                            <strong>Python</strong>
+                            <p>Django, Flask frameworks</p>
+                        </div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-logo javascript">
+                            <i class="fab fa-js-square"></i>
+                        </div>
+                        <div class="tech-info">
+                            <strong>JavaScript (Node.js)</strong>
+                            <p>Express.js, NestJS</p>
+                        </div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-logo csharp">
+                            <i class="fas fa-copyright"></i>
+                        </div>
+                        <div class="tech-info">
+                            <strong>C# (.NET)</strong>
+                            <p>ASP.NET Core</p>
+                        </div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-logo java">
+                            <i class="fab fa-java"></i>
+                        </div>
+                        <div class="tech-info">
+                            <strong>Java</strong>
+                            <p>Spring Boot</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tech-category">
+                <h4><i class="fas fa-database"></i> Databases</h4>
+                <div class="tech-items">
+                    <div class="tech-item">
+                        <div class="tech-logo mysql">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="tech-info">
+                            <strong>MySQL</strong>
+                            <p>Relational database</p>
+                        </div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-logo mongodb">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="tech-info">
+                            <strong>MongoDB</strong>
+                            <p>NoSQL database</p>
+                        </div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-logo postgresql">
+                            <i class="fas fa-elephant"></i>
+                        </div>
+                        <div class="tech-info">
+                            <strong>PostgreSQL</strong>
+                            <p>Advanced relational DB</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="server-architecture">
+        <h3><i class="fas fa-sitemap"></i> Typical Server Architecture</h3>
+        
+        <div class="architecture-diagram">
+            <div class="arch-layer">
+                <div class="layer-label">Client</div>
+                <div class="layer-content">
+                    <div class="arch-component">
+                        <i class="fas fa-laptop"></i>
+                        <span>Browser/App</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="arch-arrow">HTTP Request →</div>
+            
+            <div class="arch-layer">
+                <div class="layer-label">Web Server</div>
+                <div class="layer-content">
+                    <div class="arch-component">
+                        <i class="fas fa-globe"></i>
+                        <span>Nginx/Apache</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="arch-arrow">→</div>
+            
+            <div class="arch-layer">
+                <div class="layer-label">Application Server</div>
+                <div class="layer-content">
+                    <div class="arch-component">
+                        <i class="fas fa-cogs"></i>
+                        <span>ASP.NET/Node.js</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="arch-arrow">Database Query →</div>
+            
+            <div class="arch-layer">
+                <div class="layer-label">Database</div>
+                <div class="layer-content">
+                    <div class="arch-component">
+                        <i class="fas fa-database"></i>
+                        <span>MySQL/PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="arch-arrow">← Data</div>
+            
+            <div class="arch-layer">
+                <div class="layer-label">Response</div>
+                <div class="layer-content">
+                    <div class="arch-component">
+                        <i class="fas fa-reply"></i>
+                        <span>HTML/JSON Response</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="code-example">
+        <h3><i class="fas fa-file-code"></i> Server-Side Code Example</h3>
+        
+        <div class="code-tabs">
+            <div class="tab-header">
+                <button class="tab-btn active" data-tab="python">Python</button>
+                <button class="tab-btn" data-tab="csharp">C#</button>
+                <button class="tab-btn" data-tab="nodejs">Node.js</button>
+            </div>
+            
+            <div class="tab-content active" id="python">
+<pre><code class="language-python">
+# Python Flask Example
+from flask import Flask, request, jsonify
+import mysql.connector
+
+app = Flask(__name__)
+
+# Database connection
+db = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="secret",
+    database="mydb"
+)
+
+@@app.route('/login', methods=['POST'])
+def login():
+    # Get data from request
+    username = request.json['username']
+    password = request.json['password']
+    
+    # Server-side validation
+    if not username or not password:
+        return jsonify({"error": "Missing credentials"}), 400
+    
+    # Check database (server-side security!)
+    cursor = db.cursor()
+    cursor.execute("SELECT * FROM users WHERE username = %s", (username,))
+    user = cursor.fetchone()
+    
+    if user and check_password_hash(user[2], password):
+        return jsonify({"message": "Login successful"}), 200
+    else:
+        return jsonify({"error": "Invalid credentials"}), 401
+
+# Server processes this securely!
+</code></pre>
+            </div>
+            
+            <div class="tab-content" id="csharp">
+<pre><code class="language-csharp">
+// C# ASP.NET Core Example
+[ApiController]
+[Route("api/[controller]")]
+public class AuthController : ControllerBase
+{
+    private readonly ApplicationDbContext _context;
+    
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(LoginModel model)
+    {
+        // Server-side validation
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+        
+        // Check database (server-side!)
+        var user = await _context.Users
+            .FirstOrDefaultAsync(u => u.Username == model.Username);
+        
+        if (user == null)
+            return Unauthorized("Invalid credentials");
+        
+        // Verify password hash on SERVER
+        var passwordValid = VerifyPasswordHash(
+            model.Password, 
+            user.PasswordHash, 
+            user.PasswordSalt);
+        
+        if (passwordValid)
+            return Ok(new { message = "Login successful" });
+        else
+            return Unauthorized("Invalid credentials");
+    }
+    
+    // Server handles all security logic!
+}
+</code></pre>
+            </div>
+            
+            <div class="tab-content" id="nodejs">
+<pre><code class="language-javascript">
+// Node.js Express Example
+const express = require('express');
+const bcrypt = require('bcrypt');
+const app = express();
+app.use(express.json());
+
+// Database connection
+const pool = require('./db');
+
+app.post('/api/login', async (req, res) => {
+    const { username, password } = req.body;
+    
+    // Server-side validation
+    if (!username || !password) {
+        return res.status(400).json({ error: 'Missing credentials' });
+    }
+    
+    try {
+        // Check database (on server!)
+        const result = await pool.query(
+            'SELECT * FROM users WHERE username = $1',
+            [username]
+        );
+        
+        if (result.rows.length === 0) {
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+        
+        const user = result.rows[0];
+        
+        // Compare password hash ON SERVER
+        const validPassword = await bcrypt.compare(password, user.password_hash);
+        
+        if (validPassword) {
+            res.json({ message: 'Login successful' });
+        } else {
+            res.status(401).json({ error: 'Invalid credentials' });
+        }
+    } catch (err) {
+        res.status(500).json({ error: 'Server error' });
+    }
+});
+
+// All security happens server-side!
+</code></pre>
+            </div>
+        </div>
+        
+        <div class="code-explanation">
+            <p><strong>Key Server-Side Features in This Code:</strong></p>
+            <ul>
+                <li><i class="fas fa-shield-alt text-success"></i> <strong>Security:</strong> Password checking happens on server</li>
+                <li><i class="fas fa-database text-info"></i> <strong>Database Access:</strong> Server queries database directly</li>
+                <li><i class="fas fa-check-circle text-warning"></i> <strong>Validation:</strong> Input validation before processing</li>
+                <li><i class="fas fa-cogs text-primary"></i> <strong>Business Logic:</strong> Application rules enforced on server</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="security-importance">
+        <h3><i class="fas fa-user-shield"></i> Why Server-Side Security Matters</h3>
+        
+        <div class="security-comparison">
+            <div class="security-bad">
+                <h4><i class="fas fa-times-circle text-danger"></i> Bad: Client-Side Only</h4>
+                <div class="security-example">
+                    <p>JavaScript in browser checks password:</p>
+<pre><code class="language-javascript">
+// DANGEROUS! Client-side only
+if (password === "secret123") {
+    grantAccess(); // Hackers can see this!
+}
+</code></pre>
+                    <div class="security-risk">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>Risk:</strong> Hackers can view source code and bypass!
+                    </div>
+                </div>
+            </div>
+            
+            <div class="security-good">
+                <h4><i class="fas fa-check-circle text-success"></i> Good: Server-Side</h4>
+                <div class="security-example">
+                    <p>Server checks password hash:</p>
+<pre><code class="language-python">
+# SECURE! Server-side
+if bcrypt.check_password_hash(
+    stored_hash, 
+    provided_password
+):
+    grant_access() # Hackers can't see this
+</code></pre>
+                    <div class="security-benefit">
+                        <i class="fas fa-shield-alt"></i>
+                        <strong>Benefit:</strong> Logic is hidden, passwords encrypted!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="server-benefits">
+        <h3><i class="fas fa-star"></i> Benefits of Server-Side Processing</h3>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h5>Security</h5>
+                <p>Sensitive logic and data protected on server</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h5>Performance</h5>
+                <p>Servers are powerful - can handle complex tasks</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <h5>Data Access</h5>
+                <p>Direct access to databases and external services</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h5>Consistency</h5>
+                <p>Same logic for all users, regardless of device</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-code-branch"></i>
+                </div>
+                <h5>Maintainability</h5>
+                <p>Centralized code - easy to update and maintain</p>
+            </div>
+            
+            <div class="benefit-card">
+                <div class="benefit-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h5>Scalability</h5>
+                <p>Can handle thousands of users simultaneously</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="interactive-quiz">
+        <h3><i class="fas fa-question-circle"></i> Server-Side Quiz</h3>
+        
+        <div class="quiz-container">
+            <div class="quiz-question">
+                <p>Which of these should ALWAYS happen server-side?</p>
+                <div class="quiz-options">
+                    <div class="quiz-option">
+                        <input type="checkbox" id="q1a" name="q1" value="a">
+                        <label for="q1a">Processing credit card payments</label>
+                    </div>
+                    <div class="quiz-option">
+                        <input type="checkbox" id="q1b" name="q1" value="b">
+                        <label for="q1b">Changing button colors on hover</label>
+                    </div>
+                    <div class="quiz-option">
+                        <input type="checkbox" id="q1c" name="q1" value="c">
+                        <label for="q1c">Validating user passwords</label>
+                    </div>
+                    <div class="quiz-option">
+                        <input type="checkbox" id="q1d" name="q1" value="d">
+                        <label for="q1d">Animating a loading spinner</label>
+                    </div>
+                </div>
+                <button class="btn btn-primary check-answer" data-question="1">Check Answer</button>
+                <div class="quiz-feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-points">
+        <h3>Key Points to Remember</h3>
+        <ul>
+            <li><strong>Server-side = Remote servers</strong> - Processing happens on powerful servers</li>
+            <li><strong>Security critical:</strong> Sensitive operations MUST happen server-side</li>
+            <li><strong>Database access:</strong> Servers directly query databases</li>
+            <li><strong>Business logic:</strong> Core application rules enforced on server</li>
+            <li><strong>Technologies:</strong> Python, C#, Java, Node.js, databases</li>
+            <li><strong>Benefits:</strong> Security, performance, consistency, scalability</li>
+            <li><strong>Works with client-side:</strong> They work together for complete apps</li>
+        </ul>
+    </div>
 
     <div class="navigation-buttons">
         <a href="@Url.Action("ClientSide", "WebCommunication")" class="btn btn-outline-primary ajax-link">← Client-Side Communication</a>
-        <a href="@Url.Action("API", "WebCommunication")" class="btn btn-primary ajax-link">API's →</a>
+        <a href="@Url.Action("API", "WebCommunication")" class="btn btn-primary ajax-link">Next: APIs →</a>
     </div>
 </div>
 
 <style>
-    .container {
-        max-width: 800px;
+    .container { max-width: 900px; padding: 20px; background-color: var(--bs-body-bg); }
+    h1, h2, h3, h4, h5 { color: var(--bs-heading-color); margin-bottom: 15px; }
+    h1 { border-bottom: 2px solid var(--bs-primary); padding-bottom: 10px; }
+    
+    .beginner-note {
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
         padding: 20px;
-        background-color: var(--bs-body-bg);
+        margin-bottom: 30px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .beginner-note-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+    
+    .intro-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border-radius: 8px;
     }
 
-    h1, h2 {
-        color: var(--bs-heading-color);
+    .server-process {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 40px 0;
+    }
+    
+    .process-step {
+        padding: 20px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 2px solid var(--bs-success);
+        border-radius: 10px;
+        text-align: center;
+        min-width: 150px;
+        flex: 1;
+    }
+    
+    .step-number {
+        background-color: var(--bs-success);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin: 0 auto 10px;
+    }
+    
+    .process-arrow {
+        color: var(--bs-success);
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    .server-examples {
+        margin: 40px 0;
+    }
+    
+    .server-examples h3 {
+        color: var(--bs-primary);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .examples-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 25px;
+        margin-top: 20px;
+    }
+    
+    .server-example {
+        padding: 25px;
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 1px solid var(--bs-primary);
+        border-radius: 10px;
+        transition: transform 0.3s;
+    }
+    
+    .server-example:hover {
+        transform: translateY(-5px);
+    }
+    
+    .example-header {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .example-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+    }
+    
+    .example-header h4 {
+        margin: 0;
+        color: var(--bs-primary);
+    }
+    
+    .example-code {
+        margin-top: 15px;
+        padding: 12px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+        font-family: monospace;
+        border-left: 3px solid var(--bs-primary);
+    }
+    
+    .code-label {
+        display: block;
+        font-size: 0.9rem;
+        color: #6c757d;
+        margin-bottom: 5px;
+    }
+
+    .server-technologies {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid var(--bs-warning);
+        border-radius: 10px;
+    }
+    
+    .server-technologies h3 {
+        color: var(--bs-warning);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .tech-categories {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 20px;
+    }
+    
+    .tech-category {
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+    
+    .tech-category h4 {
+        color: var(--bs-warning);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 0;
         margin-bottom: 20px;
     }
-
-    p, li {
-        color: var(--bs-body-color);
-        line-height: 1.6;
+    
+    .tech-items {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
     }
-
-    ul {
-        margin-left: 20px;
-        padding-left: 15px;
-    }
-
-    .code-container {
-        margin: 25px 0;
-        border: 1px solid var(--bs-border-color);
-        border-radius: 5px;
-        overflow: hidden;
-        background-color: var(--code-bg);
-    }
-
-    .code-header {
-        background-color: var(--code-header-bg);
-        padding: 10px 15px;
-        border-bottom: 1px solid var(--bs-border-color);
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
-        font-size: 0.9rem;
-        color: var(--bs-body-color);
-    }
-
-    .code-content {
+    
+    .tech-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
         padding: 15px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+    }
+    
+    .tech-logo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: white;
+        flex-shrink: 0;
+    }
+    
+    .python { background: linear-gradient(135deg, #3776ab, #ffde57); color: #3776ab; }
+    .javascript { background: linear-gradient(135deg, #f7df1e, #000000); }
+    .csharp { background: linear-gradient(135deg, #239120, #68217a); }
+    .java { background: linear-gradient(135deg, #007396, #ed8b00); }
+    .mysql { background: linear-gradient(135deg, #00758f, #f29111); }
+    .mongodb { background: linear-gradient(135deg, #47a248, #b8c4c2); }
+    .postgresql { background: linear-gradient(135deg, #336791, #0064a5); }
+
+    .server-architecture {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 10px;
+    }
+    
+    .server-architecture h3 {
+        color: var(--bs-indigo);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .architecture-diagram {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 25px;
+    }
+    
+    .arch-layer {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .layer-label {
+        width: 150px;
+        padding: 10px;
+        background-color: var(--bs-indigo);
+        color: white;
+        border-radius: 6px;
+        text-align: center;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+    
+    .layer-content {
+        flex: 1;
+        padding: 15px;
+        background-color: rgba(111, 66, 193, 0.2);
+        border: 2px solid var(--bs-indigo);
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .arch-component {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 15px;
+    }
+    
+    .arch-component i {
+        font-size: 40px;
+        color: var(--bs-indigo);
+    }
+    
+    .arch-arrow {
+        text-align: center;
+        color: var(--bs-indigo);
+        font-weight: bold;
+        font-size: 1.2rem;
+        padding: 10px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border-radius: 6px;
+        margin-left: 170px;
+    }
+
+    .code-example {
+        margin: 40px 0;
+    }
+    
+    .code-example h3 {
+        color: var(--bs-success);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .code-tabs {
+        border: 2px solid var(--bs-border-color);
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 20px;
+    }
+    
+    .tab-header {
+        display: flex;
+        background-color: #2d2d2d;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+    
+    .tab-btn {
+        padding: 15px 25px;
+        background: none;
+        border: none;
+        color: #e0e0e0;
+        font-family: monospace;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        border-right: 1px solid var(--bs-border-color);
+    }
+    
+    .tab-btn:hover {
+        background-color: #404040;
+    }
+    
+    .tab-btn.active {
+        background-color: #1a1a1a;
+        color: #61dafb;
+        font-weight: bold;
+    }
+    
+    .tab-content {
+        display: none;
+        padding: 20px;
+        background-color: #1a1a1a;
+    }
+    
+    .tab-content.active {
+        display: block;
+    }
+    
+    .code-explanation {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 8px;
+    }
+    
+    .code-explanation ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+    
+    .code-explanation li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .security-importance {
+        margin: 40px 0;
+    }
+    
+    .security-importance h3 {
+        color: var(--bs-danger);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .security-comparison {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-top: 20px;
+    }
+    
+    .security-bad, .security-good {
+        padding: 25px;
+        border-radius: 10px;
+    }
+    
+    .security-bad {
+        background-color: rgba(220, 53, 69, 0.1);
+        border: 1px solid var(--bs-danger);
+    }
+    
+    .security-good {
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+    }
+    
+    .security-bad h4, .security-good h4 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 0;
+    }
+    
+    .security-example {
+        margin-top: 15px;
+    }
+    
+    .security-example pre {
+        margin: 10px 0;
+        padding: 15px;
+        background-color: #1a1a1a;
+        border-radius: 6px;
         overflow-x: auto;
     }
-
-    pre {
-        margin: 0;
-        white-space: pre-wrap;
-        background-color: transparent;
+    
+    .security-risk, .security-benefit {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 12px;
+        border-radius: 6px;
+        margin-top: 15px;
+    }
+    
+    .security-risk {
+        background-color: rgba(220, 53, 69, 0.2);
+        color: #721c24;
+    }
+    
+    .security-benefit {
+        background-color: rgba(40, 167, 69, 0.2);
+        color: #155724;
     }
 
-    code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    .server-benefits {
+        margin: 40px 0;
+    }
+    
+    .server-benefits h3 {
+        color: var(--bs-info);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .benefit-card {
+        padding: 25px;
+        background-color: rgba(23, 162, 184, 0.1);
+        border: 1px solid var(--bs-info);
+        border-radius: 10px;
+        text-align: center;
+        transition: transform 0.3s;
+    }
+    
+    .benefit-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .benefit-icon {
+        background-color: var(--bs-info);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 28px;
+        margin: 0 auto 15px;
+    }
+    
+    .benefit-card h5 {
+        color: var(--bs-info);
+        margin-top: 0;
+    }
+
+    .interactive-quiz {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border: 1px solid var(--bs-secondary);
+        border-radius: 10px;
+    }
+    
+    .interactive-quiz h3 {
+        color: var(--bs-secondary);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .quiz-container {
+        margin-top: 20px;
+    }
+    
+    .quiz-question {
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+    
+    .quiz-options {
+        margin: 20px 0;
+    }
+    
+    .quiz-option {
+        margin: 15px 0;
+        padding: 12px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .quiz-option input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .quiz-option.correct {
+        background-color: rgba(40, 167, 69, 0.3);
+        border: 2px solid #28a745;
+    }
+    
+    .quiz-option.incorrect {
+        background-color: rgba(220, 53, 69, 0.3);
+        border: 2px solid #dc3545;
+    }
+    
+    .check-answer {
+        margin-top: 15px;
+    }
+    
+    .quiz-feedback {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 6px;
+        display: none;
+    }
+    
+    .quiz-feedback.correct {
+        background-color: rgba(40, 167, 69, 0.2);
+        color: #155724;
+        display: block;
+    }
+    
+    .quiz-feedback.incorrect {
+        background-color: rgba(220, 53, 69, 0.2);
+        color: #721c24;
+        display: block;
+    }
+
+    .key-points {
+        margin: 30px 0;
+        padding: 20px;
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 1px solid var(--bs-primary);
+        border-radius: 8px;
+    }
+    
+    .key-points h3 {
+        color: var(--bs-primary);
     }
 
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
-
+    
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
     }
 
-    .btn-primary {
-        background-color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    @@media (max-width: 768px) {
+        .server-process {
+            flex-direction: column;
+        }
+        
+        .process-arrow {
+            transform: rotate(90deg);
+        }
+        
+        .security-comparison {
+            grid-template-columns: 1fr;
+        }
+        
+        .architecture-diagram {
+            display: none;
+        }
+        
+        .arch-layer {
+            display: none;
+        }
+        
+        .arch-arrow {
+            display: none;
+        }
+        
+        .server-architecture::after {
+            content: "Diagram hidden on mobile - view on desktop for full visualization";
+            display: block;
+            text-align: center;
+            font-style: italic;
+            color: #6c757d;
+            margin-top: 15px;
+        }
     }
 
-    .btn-outline-primary {
-        color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    [data-bs-theme="dark"] .beginner-note {
+        background-color: rgba(13, 110, 253, 0.15);
+    }
+    
+    [data-bs-theme="dark"] .intro-section {
+        background-color: rgba(108, 117, 125, 0.15);
+    }
+    
+    [data-bs-theme="dark"] .server-example,
+    [data-bs-theme="dark"] .tech-category,
+    [data-bs-theme="dark"] .quiz-question {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    [data-bs-theme="dark"] .server-technologies {
+        background-color: rgba(255, 193, 7, 0.15);
+    }
+    
+    [data-bs-theme="dark"] .server-architecture {
+        background-color: rgba(111, 66, 193, 0.15);
+    }
+    
+    [data-bs-theme="dark"] .code-explanation {
+        background-color: rgba(40, 167, 69, 0.15);
+    }
+    
+    [data-bs-theme="dark"] .benefit-card {
+        background-color: rgba(23, 162, 184, 0.15);
+    }
+    
+    [data-bs-theme="dark"] .interactive-quiz {
+        background-color: rgba(108, 117, 125, 0.15);
+    }
+    
+    [data-bs-theme="dark"] .key-points {
+        background-color: rgba(13, 110, 253, 0.15);
     }
 </style>
+
+<script>
+$(document).ready(function() {
+    if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+    }
+
+    $('.tab-btn').click(function() {
+        const tabId = $(this).data('tab');
+
+        $('.tab-btn').removeClass('active');
+        $('.tab-content').removeClass('active');
+
+        $(this).addClass('active');
+        $('#' + tabId).addClass('active');
+    });
+
+    $('.check-answer').click(function() {
+        const questionNum = $(this).data('question');
+        const $quizQuestion = $(this).closest('.quiz-question');
+        const $feedback = $quizQuestion.find('.quiz-feedback');
+
+        const correctAnswers = ['a', 'c'];
+
+        const selected = [];
+        $quizQuestion.find('input[type="checkbox"]:checked').each(function() {
+            selected.push($(this).val());
+        });
+
+        const isCorrect = 
+            selected.length === correctAnswers.length &&
+            selected.every(val => correctAnswers.includes(val)) &&
+            correctAnswers.every(val => selected.includes(val));
+
+        $quizQuestion.find('.quiz-option').removeClass('correct incorrect');
+
+        $quizQuestion.find('.quiz-option').each(function() {
+            const $option = $(this);
+            const value = $option.find('input').val();
+            
+            if (correctAnswers.includes(value)) {
+                $option.addClass('correct');
+            } else if (selected.includes(value) && !correctAnswers.includes(value)) {
+                $option.addClass('incorrect');
+            }
+        });
+
+        if (isCorrect) {
+            $feedback
+                .removeClass('incorrect')
+                .addClass('correct')
+                .html('<i class="fas fa-check"></i> <strong>Perfect!</strong> Payment processing and password validation MUST happen server-side for security.')
+                .show();
+        } else {
+            $feedback
+                .removeClass('correct')
+                .addClass('incorrect')
+                .html('<i class="fas fa-times"></i> <strong>Not quite right.</strong> Payment processing and password validation MUST happen server-side. Button colors and animations can happen client-side.')
+                .show();
+        }
+    });
+
+    $(window).scroll(function() {
+        const $architecture = $('.architecture-diagram');
+        if ($architecture.length) {
+            const scrollPos = $(window).scrollTop();
+            const architectureTop = $architecture.offset().top;
+            const windowHeight = $(window).height();
+            
+            if (scrollPos > architectureTop - windowHeight + 200) {
+                $architecture.addClass('animated');
+            }
+        }
+    });
+});
+</script>
+</body>
