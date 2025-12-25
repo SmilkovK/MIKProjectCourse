@@ -1,180 +1,1451 @@
 ﻿@{
-    ViewData["Title"] = "Introduction to Program.cs in .NET";
+    ViewData["Title"] = "Intro to Web - Chapter Summary";
 }
 
 <div class="container">
-    <h1>⚙️ Understanding Program.cs in .NET</h1>
+    <h1 class="text-center">🌐 Intro to Web - Chapter Summary</h1>
 
-    <p>
-        The <strong>Program.cs</strong> file is the starting point of a .NET application.  
-        It is where your application is configured and where the web server starts.
-    </p>
-
-    <hr />
-
-    <h2>🔹 What is Program.cs?</h2>
-    <div class="card">
-        <div class="card-body">
-            <p>
-                <strong>Program.cs</strong> contains the code that configures your application, sets up services, 
-                middleware, and defines how your app responds to HTTP requests.
-            </p>
-            <p>
-                In ASP.NET Core, it usually contains the <strong>WebApplication.CreateBuilder</strong> and <strong>app.Run()</strong> methods.
-            </p>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-globe"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Think of Web Development Like Building a Restaurant</h4>
+            <p><strong>Web Development = Creating digital spaces where users can interact with your application</strong></p>
+            <p><strong>Simple analogy:</strong></p>
+            <ul>
+                <li><strong>Client (Browser)</strong> = Customer ordering food</li>
+                <li><strong>Server</strong> = Kitchen preparing the order</li>
+                <li><strong>Controllers</strong> = Waiters taking orders</li>
+                <li><strong>Models</strong> = Recipes and ingredients</li>
+                <li><strong>Views</strong> = Plated food served to customer</li>
+                <li><strong>Database</strong> = Pantry storing ingredients</li>
+                <li><strong>Program.cs</strong> = Restaurant manager coordinating everything</li>
+            </ul>
+            <p><strong>In web terms:</strong> ASP.NET Core MVC helps you build complete web applications using organized patterns!</p>
         </div>
     </div>
 
-    <h2>🔹 Example Program.cs</h2>
-    <div class="card">
-        <div class="card-body">
-            <pre><code class="language-csharp">
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container
-builder.Services.AddControllersWithViews();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline
-if (!app.Environment.IsDevelopment())
-{
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
-}
-
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-
-app.UseAuthorization();
-
-// Map default route
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.Run();
-            </code></pre>
-            <p>
-                ✅ This code sets up a basic web application with MVC, routing, and middleware.
-            </p>
+    <div class="chapter-overview">
+        <h3><i class="fas fa-list-check"></i> What You've Learned</h3>
+        
+        <div class="overview-grid">
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-download"></i>
+                </div>
+                <div class="overview-content">
+                    <h5>Installation & Setup</h5>
+                    <p>Installed .NET SDK, Visual Studio, and created your first ASP.NET Core project</p>
+                </div>
+            </div>
+            
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <div class="overview-content">
+                    <h5>MVC Architecture</h5>
+                    <p>Understand the Model-View-Controller pattern for organizing web applications</p>
+                </div>
+            </div>
+            
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-traffic-light"></i>
+                </div>
+                <div class="overview-content">
+                    <h5>Controllers</h5>
+                    <p>Create controllers to handle HTTP requests and return responses</p>
+                </div>
+            </div>
+            
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <div class="overview-content">
+                    <h5>Models</h5>
+                    <p>Define data structures using C# classes that represent your application data</p>
+                </div>
+            </div>
+            
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <div class="overview-content">
+                    <h5>Views</h5>
+                    <p>Create Razor views to display data to users using HTML with embedded C#</p>
+                </div>
+            </div>
+            
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <div class="overview-content">
+                    <h5>Databases</h5>
+                    <p>Use Entity Framework Core to store and retrieve data from databases</p>
+                </div>
+            </div>
+            
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-play-circle"></i>
+                </div>
+                <div class="overview-content">
+                    <h5>Program.cs</h5>
+                    <p>Configure services, middleware, and start the web application</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <h2>🔹 Key Points About Program.cs</h2>
-    <ul class="list-group mb-3">
-        <li><strong>Builder:</strong> Used to configure services and application settings.</li>
-        <li><strong>App:</strong> Configures middleware and handles HTTP requests.</li>
-        <li><strong>Services:</strong> Things your app needs, like controllers, databases, or authentication.</li>
-        <li><strong>Middleware:</strong> Components that process requests and responses in the pipeline.</li>
-        <li><strong>app.Run():</strong> Starts the web application.</li>
-    </ul>
+    <div class="key-concepts">
+        <h3><i class="fas fa-lightbulb"></i> Key Concepts Review</h3>
+        
+        <div class="concepts-grid">
+            <div class="concept-card">
+                <div class="concept-header">
+                    <div class="concept-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <h5>MVC Pattern</h5>
+                </div>
+                <div class="concept-content">
+                    <p><strong>Separation of Concerns:</strong></p>
+                    <ul>
+                        <li><strong>Models</strong> - Handle data and business logic</li>
+                        <li><strong>Views</strong> - Display data to users</li>
+                        <li><strong>Controllers</strong> - Handle user requests</li>
+                    </ul>
+                    <div class="concept-code">
+<pre><code class="language-csharp">// Example flow
+User → Controller → Model → View → User</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="concept-card">
+                <div class="concept-header">
+                    <div class="concept-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h5>Routing</h5>
+                </div>
+                <div class="concept-content">
+                    <p><strong>URL to Controller mapping:</strong></p>
+                    <div class="routing-example">
+                        <div class="route-item">
+                            <span class="route-url">/Home/Index</span>
+                            <span class="route-arrow">→</span>
+                            <span class="route-desc">HomeController.Index()</span>
+                        </div>
+                        <div class="route-item">
+                            <span class="route-url">/Products/Details/5</span>
+                            <span class="route-arrow">→</span>
+                            <span class="route-desc">ProductsController.Details(5)</span>
+                        </div>
+                    </div>
+                    <p>Default pattern: <code>/Controller/Action/Parameters</code></p>
+                </div>
+            </div>
+            
+            <div class="concept-card">
+                <div class="concept-header">
+                    <div class="concept-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h5>HTTP Methods</h5>
+                </div>
+                <div class="concept-content">
+                    <p><strong>Different types of requests:</strong></p>
+                    <ul>
+                        <li><strong>GET</strong> - Retrieve data (show pages)</li>
+                        <li><strong>POST</strong> - Submit data (forms, updates)</li>
+                        <li><strong>PUT</strong> - Update entire resource</li>
+                        <li><strong>DELETE</strong> - Remove resource</li>
+                    </ul>
+                    <div class="concept-code">
+<pre><code class="language-csharp">[HttpGet]  // Show form
+[HttpPost] // Process form</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="concept-card">
+                <div class="concept-header">
+                    <div class="concept-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h5>Entity Framework Core</h5>
+                </div>
+                <div class="concept-content">
+                    <p><strong>Database operations:</strong></p>
+                    <ul>
+                        <li><strong>DbContext</strong> - Database connection</li>
+                        <li><strong>DbSet</strong> - Database tables</li>
+                        <li><strong>Migrations</strong> - Schema changes</li>
+                        <li><strong>LINQ</strong> - Query language</li>
+                    </ul>
+                    <div class="concept-code">
+<pre><code class="language-csharp">var products = db.Products
+    .Where(p => p.Price > 100)
+    .ToList();</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <hr />
-    <p class="text-center text-muted">
-        ✅ In short: Program.cs is the entry point where your .NET application starts, configures services, sets up middleware, and runs the web server.
-    </p>
+    <div class="interactive-quiz">
+        <h3><i class="fas fa-question-circle"></i> Test Your Knowledge - Chapter Quiz</h3>
+        
+        <div class="quiz-progress" id="quizProgress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <div class="progress-text">
+                Question <span id="currentQuestion">1</span> of <span id="totalQuestions">10</span>
+            </div>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question-container active" id="question1">
+                <h5>Question 1: MVC Architecture</h5>
+                <p>In the MVC pattern, which component is responsible for handling user requests and deciding which view to display?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q1" id="q1a">
+                        <label for="q1a">Controller</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q1" id="q1b">
+                        <label for="q1b">Model</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q1" id="q1c">
+                        <label for="q1c">View</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q1" id="q1d">
+                        <label for="q1d">Database</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: Controller</strong></p>
+                    <p>Controllers handle HTTP requests, interact with models, and return views to the user.</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question2">
+                <h5>Question 2: Program.cs</h5>
+                <p>Which method in Program.cs is used to add MVC services to the dependency injection container?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q2" id="q2a">
+                        <label for="q2a">app.UseMvc()</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q2" id="q2b">
+                        <label for="q2b">app.MapControllerRoute()</label>
+                    </div>
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q2" id="q2c">
+                        <label for="q2c">builder.Services.AddControllersWithViews()</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q2" id="q2d">
+                        <label for="q2d">app.UseRouting()</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: builder.Services.AddControllersWithViews()</strong></p>
+                    <p>This method registers MVC services (controllers, views, and related services) with the dependency injection container.</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question3">
+                <h5>Question 3: Controllers</h5>
+                <p>What naming convention must be followed for controller class names in ASP.NET Core?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q3" id="q3a">
+                        <label for="q3a">Must end with "Controller" (e.g., HomeController)</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q3" id="q3b">
+                        <label for="q3b">Must start with "Ctrl" (e.g., CtrlHome)</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q3" id="q3c">
+                        <label for="q3c">Must be in a folder named "Controllers"</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q3" id="q3d">
+                        <label for="q3d">No specific naming convention</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: Must end with "Controller" (e.g., HomeController)</strong></p>
+                    <p>This convention is required for ASP.NET Core to automatically recognize the class as a controller.</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question4">
+                <h5>Question 4: Models</h5>
+                <p>What is the primary purpose of a Model in the MVC pattern?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q4" id="q4a">
+                        <label for="q4a">Display HTML content to users</label>
+                    </div>
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q4" id="q4b">
+                        <label for="q4b">Represent data and business logic</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q4" id="q4c">
+                        <label for="q4c">Handle HTTP requests</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q4" id="q4d">
+                        <label for="q4d">Store data in the database</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: Represent data and business logic</strong></p>
+                    <p>Models contain the data structures and business rules of your application.</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question5">
+                <h5>Question 5: Views</h5>
+                <p>What file extension is used for Razor views in ASP.NET Core?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q5" id="q5a">
+                        <label for="q5a">.html</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q5" id="q5b">
+                        <label for="q5b">.aspx</label>
+                    </div>
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q5" id="q5c">
+                        <label for="q5c">.cshtml</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q5" id="q5d">
+                        <label for="q5d">.razor</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: .cshtml</strong></p>
+                    <p>Razor views use the .cshtml extension, which allows mixing HTML with C# code.</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question6">
+                <h5>Question 6: Databases</h5>
+                <p>Which Entity Framework Core method is used to retrieve all records from a table?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q6" id="q6a">
+                        <label for="q6a">db.Products.First()</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q6" id="q6b">
+                        <label for="q6b">db.Products.Find()</label>
+                    </div>
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q6" id="q6c">
+                        <label for="q6c">db.Products.ToList()</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q6" id="q6d">
+                        <label for="q6d">db.Products.Where()</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: db.Products.ToList()</strong></p>
+                    <p>ToList() executes the query and returns all records as a list.</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question7">
+                <h5>Question 7: HTTP Methods</h5>
+                <p>Which HTTP method should be used for a form submission that creates a new product?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q7" id="q7a">
+                        <label for="q7a">GET</label>
+                    </div>
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q7" id="q7b">
+                        <label for="q7b">POST</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q7" id="q7c">
+                        <label for="q7c">PUT</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q7" id="q7d">
+                        <label for="q7d">DELETE</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: POST</strong></p>
+                    <p>POST is used for creating new resources, like submitting a form to create a product.</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question8">
+                <h5>Question 8: Routing</h5>
+                <p>What controller and action would handle the URL "/Products/Details/5"?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q8" id="q8a">
+                        <label for="q8a">ProductController.Details()</label>
+                    </div>
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q8" id="q8b">
+                        <label for="q8b">ProductsController.Details(5)</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q8" id="q8c">
+                        <label for="q8c">ProductController.Show(5)</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q8" id="q8d">
+                        <label for="q8d">ProductsController.Index(5)</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: ProductsController.Details(5)</strong></p>
+                    <p>The pattern is /Controller/Action/Id, so ProductsController with Details action and id parameter of 5.</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question9">
+                <h5>Question 9: Entity Framework Setup</h5>
+                <p>Which of these is NOT required when setting up Entity Framework Core?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q9" id="q9a">
+                        <label for="q9a">DbContext class</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q9" id="q9b">
+                        <label for="q9b">Connection string</label>
+                    </div>
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q9" id="q9c">
+                        <label for="q9c">Writing SQL queries manually</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q9" id="q9d">
+                        <label for="q9d">Migrations</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: Writing SQL queries manually</strong></p>
+                    <p>EF Core allows you to use LINQ queries instead of writing raw SQL, though you can use SQL if needed.</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question10">
+                <h5>Question 10: Middleware</h5>
+                <p>In Program.cs, which middleware should be called before app.UseRouting()?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q10" id="q10a">
+                        <label for="q10a">app.UseAuthorization()</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q10" id="q10b">
+                        <label for="q10b">app.MapControllerRoute()</label>
+                    </div>
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q10" id="q10c">
+                        <label for="q10c">app.UseStaticFiles()</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q10" id="q10d">
+                        <label for="q10d">app.UseHttpsRedirection()</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: app.UseStaticFiles()</strong></p>
+                    <p>Static files middleware should be called before routing so static files can be served without routing.</p>
+                </div>
+            </div>
+            
+            <div class="quiz-results" id="quizResults">
+                <h5><i class="fas fa-trophy"></i> Quiz Results</h5>
+                <div class="score-display">
+                    <div class="score-circle">
+                        <span id="scorePercentage">0%</span>
+                    </div>
+                    <div class="score-details">
+                        <p>You answered <strong><span id="correctCount">0</span> out of 10</strong> questions correctly!</p>
+                        <p id="scoreMessage">Keep practicing to improve your score!</p>
+                    </div>
+                </div>
+                <div class="result-breakdown">
+                    <h6>Question Review:</h6>
+                    <div id="questionReview"></div>
+                </div>
+                <button class="btn btn-primary" id="restartQuizBtn">
+                    <i class="fas fa-redo"></i> Try Again
+                </button>
+            </div>
+        </div>
+        
+        <div class="quiz-controls">
+            <button class="btn btn-outline-secondary" id="prevBtn" disabled>
+                <i class="fas fa-arrow-left"></i> Previous
+            </button>
+            <button class="btn btn-primary" id="nextBtn">
+                Next Question <i class="fas fa-arrow-right"></i>
+            </button>
+            <button class="btn btn-success" id="submitBtn" style="display: none;">
+                <i class="fas fa-paper-plane"></i> Submit Quiz
+            </button>
+        </div>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Programcs", "Web")" class="btn btn-outline-primary ajax-link">← Introduction to .NET Program.cs</a>
-        <a href="@Url.Action("Index", "WebApp")" class="btn btn-primary ajax-link">Next Chapter →</a>
+        <a href="@Url.Action("Programcs", "Web")" class="btn btn-outline-primary">
+            <i class="fas fa-arrow-left"></i> Back: Program.cs Overview
+        </a>
+        <a href="@Url.Action("Index", "WebApp")" class="btn btn-primary">
+            Next: Web Application Building <i class="fas fa-arrow-right"></i>
+        </a>
     </div>
 </div>
 
 <style>
     .container {
-        max-width: 800px;
+        max-width: 900px;
+        margin: 0 auto;
         padding: 20px;
+        background-color: var(--bs-body-bg);
     }
-
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--bs-heading-color);
+        margin-bottom: 1rem;
+    }
+    
     h1 {
-        margin-bottom: 20px;
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
-
-    h2 {
-        margin-top: 25px;
-        margin-bottom: 15px;
+    
+    .beginner-note {
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
+        padding: 1.25rem;
+        margin-bottom: 2rem;
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
     }
-
-    p, ul {
+    
+    .beginner-note-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+    }
+    
+    .beginner-note-content h4 {
+        margin-top: 0;
+        color: var(--bs-primary);
+    }
+    
+    .beginner-note-content ul {
+        padding-left: 1.25rem;
+        margin: 0.75rem 0;
+    }
+    
+    .beginner-note-content li {
+        margin-bottom: 0.25rem;
+    }
+    
+    .chapter-overview {
+        margin: 2.5rem 0;
+    }
+    
+    .chapter-overview h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--bs-success);
+    }
+    
+    .overview-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+    }
+    
+    .overview-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1.25rem;
+        background-color: rgba(var(--bs-secondary-rgb), 0.1);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .overview-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-color: var(--bs-primary);
+    }
+    
+    .overview-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+    }
+    
+    .overview-content h5 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        color: var(--bs-primary);
+    }
+    
+    .overview-content p {
+        color: var(--bs-secondary);
+        margin-bottom: 0;
+        font-size: 0.9rem;
+    }
+    
+    .key-concepts {
+        margin: 2.5rem 0;
+    }
+    
+    .key-concepts h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--bs-warning);
+    }
+    
+    .concepts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+    }
+    
+    .concept-card {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: var(--bs-body-bg);
+        transition: all 0.3s ease;
+    }
+    
+    .concept-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    
+    .concept-header {
+        background-color: var(--bs-primary);
+        color: white;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .concept-icon {
+        background-color: white;
+        color: var(--bs-primary);
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+    }
+    
+    .concept-content {
+        padding: 1rem;
+    }
+    
+    .concept-content ul {
+        padding-left: 1.25rem;
+        margin: 0.75rem 0;
+    }
+    
+    .concept-content li {
+        margin-bottom: 0.25rem;
+        font-size: 0.9rem;
+    }
+    
+    .concept-code {
+        background-color: #1a1a1a;
+        color: var(--bs-light);
+        padding: 0.75rem;
+        border-radius: 6px;
+        margin-top: 0.75rem;
+        font-size: 0.85rem;
+        overflow-x: auto;
+    }
+    
+    .routing-example {
+        margin: 0.75rem 0;
+    }
+    
+    .route-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        background-color: rgba(var(--bs-secondary-rgb), 0.1);
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .route-url {
+        font-family: var(--bs-font-monospace);
+        color: var(--bs-info);
+    }
+    
+    .route-arrow {
+        color: var(--bs-secondary);
+    }
+    
+    .route-desc {
+        font-family: var(--bs-font-monospace);
+        color: var(--bs-success);
+    }
+    
+    .interactive-quiz {
+        margin: 2.5rem 0;
+        padding: 1.5rem;
+        background-color: rgba(var(--bs-info-rgb), 0.1);
+        border: 1px solid var(--bs-info);
+        border-radius: 10px;
+    }
+    
+    .interactive-quiz h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--bs-info);
+        margin-top: 0;
+    }
+    
+    .quiz-progress {
+        margin-bottom: 1.5rem;
+    }
+    
+    .progress-bar {
+        height: 8px;
+        background-color: rgba(var(--bs-secondary-rgb), 0.2);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+    }
+    
+    .progress-fill {
+        height: 100%;
+        background-color: var(--bs-success);
+        width: 0%;
+        transition: width 0.3s ease;
+    }
+    
+    .progress-text {
+        text-align: center;
+        color: var(--bs-secondary);
+        font-size: 0.9rem;
+    }
+    
+    .quiz-container {
+        min-height: 300px;
+        position: relative;
+    }
+    
+    .question-container {
+        display: none;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    .question-container.active {
+        display: block;
+    }
+    
+    .question-container h5 {
+        color: var(--bs-primary);
+        margin-bottom: 1rem;
+    }
+    
+    .question-container p {
+        margin-bottom: 1.5rem;
         line-height: 1.6;
     }
-
-    ul {
-        list-style-type: none;
-        padding-left: 0;
+    
+    .options-container {
+        margin: 1.5rem 0;
     }
-
-    ul li {
-        margin-bottom: 8px;
+    
+    .option {
+        padding: 0.75rem 1rem;
+        margin-bottom: 0.75rem;
+        background-color: var(--bs-body-bg);
+        border: 2px solid var(--bs-border-color);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
     }
-
-    hr {
-        border-top: 1px solid #ddd;
-        margin: 25px 0;
+    
+    .option:hover {
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        border-color: var(--bs-primary);
     }
-
-    .card {
-        border-radius: 8px;
-        margin-bottom: 20px;
-        border: 1px solid #ddd;
-        background-color: #f8f9fa;
+    
+    .option.selected {
+        background-color: rgba(var(--bs-primary-rgb), 0.2);
+        border-color: var(--bs-primary);
     }
-
-    .card-body {
-        padding: 15px;
+    
+    .option.correct {
+        background-color: rgba(var(--bs-success-rgb), 0.2);
+        border-color: var(--bs-success);
     }
-
-    pre code {
-        background-color: #f8f9fa;
-        border: 1px solid #ddd;
-        padding: 10px;
-        border-radius: 5px;
+    
+    .option.incorrect {
+        background-color: rgba(var(--bs-danger-rgb), 0.2);
+        border-color: var(--bs-danger);
+    }
+    
+    .option input[type="radio"] {
+        cursor: pointer;
+    }
+    
+    .option label {
+        cursor: pointer;
+        margin-bottom: 0;
+        flex: 1;
+    }
+    
+    .explanation {
+        padding: 1rem;
+        background-color: rgba(var(--bs-info-rgb), 0.1);
+        border-radius: 6px;
+        margin-top: 1rem;
+        display: none;
+    }
+    
+    .explanation.show {
         display: block;
-        margin-bottom: 20px;
-        color: #333;
-        font-family: Consolas, monospace;
+        animation: fadeIn 0.3s ease;
     }
-
-    .list-group-item {
-        padding: 10px 15px;
-        margin-bottom: 5px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        background-color: #f8f9fa;
+    
+    .quiz-results {
+        display: none;
+        text-align: center;
+        padding: 2rem;
     }
-
+    
+    .quiz-results.show {
+        display: block;
+        animation: fadeIn 0.5s ease;
+    }
+    
+    .score-display {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+    }
+    
+    .score-circle {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background-color: var(--bs-primary);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        box-shadow: 0 4px 12px rgba(var(--bs-primary-rgb), 0.3);
+    }
+    
+    .score-details {
+        text-align: left;
+        flex: 1;
+        min-width: 250px;
+    }
+    
+    .result-breakdown {
+        margin: 2rem 0;
+        text-align: left;
+    }
+    
+    .question-review-item {
+        padding: 0.75rem;
+        margin-bottom: 0.75rem;
+        border-radius: 6px;
+        background-color: rgba(var(--bs-secondary-rgb), 0.1);
+    }
+    
+    .question-review-item.correct {
+        border-left: 4px solid var(--bs-success);
+    }
+    
+    .question-review-item.incorrect {
+        border-left: 4px solid var(--bs-danger);
+    }
+    
+    .quiz-controls {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--bs-border-color);
+    }
+    
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .project-exercise {
+        margin: 2.5rem 0;
+        padding: 1.5rem;
+        background-color: rgba(var(--bs-success-rgb), 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 10px;
+    }
+    
+    .project-exercise h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--bs-success);
+        margin-top: 0;
+    }
+    
+    .exercise-card {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: var(--bs-body-bg);
+        margin-top: 1.5rem;
+    }
+    
+    .exercise-header {
+        background-color: var(--bs-success);
+        color: white;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .exercise-icon {
+        background-color: white;
+        color: var(--bs-success);
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+    }
+    
+    .exercise-content {
+        padding: 1.5rem;
+    }
+    
+    .requirements, .hints {
+        margin-bottom: 1.5rem;
+    }
+    
+    .requirements h6, .hints h6 {
+        color: var(--bs-success);
+        margin-bottom: 0.75rem;
+    }
+    
+    .requirements ol, .hints ul {
+        padding-left: 1.25rem;
+    }
+    
+    .requirements li, .hints li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .solution {
+        margin-top: 1.5rem;
+        background-color: #1a1a1a;
+        border-radius: 6px;
+        overflow: hidden;
+    }
+    
+    .next-steps {
+        margin: 2.5rem 0;
+    }
+    
+    .next-steps h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--bs-primary);
+    }
+    
+    .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+    }
+    
+    .step-card {
+        padding: 1.5rem;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        background-color: var(--bs-body-bg);
+        transition: all 0.3s ease;
+    }
+    
+    .step-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        border-color: var(--bs-primary);
+    }
+    
+    .step-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+    
+    .step-content h5 {
+        margin-top: 0;
+        color: var(--bs-primary);
+    }
+    
+    .step-content p {
+        color: var(--bs-secondary);
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .step-content .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.875rem;
+    }
+    
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+        border-top: 2px solid var(--bs-border-color);
     }
-
-    .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
-        font-weight: 500;
+    
+    @@keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
-
-    .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-        color: white;
-    }
-
-    .btn-outline-primary {
-        color: #007bff;
-        border-color: #007bff;
-        background-color: transparent;
-    }
-
-    p.text-muted {
-        color: #6c757d;
+    
+    @@media (max-width: 768px) {
+        .container {
+            padding: 1rem;
+        }
+        
+        .overview-grid,
+        .concepts-grid,
+        .steps-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .score-display {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .score-details {
+            text-align: center;
+        }
+        
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .navigation-buttons .btn {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .quiz-controls {
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .quiz-controls .btn {
+            width: 100%;
+        }
     }
 </style>
+
+<script>
+$(document).ready(function() {
+    // Initialize syntax highlighting
+    if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+    }
+    
+    // Quiz state
+    let currentQuestion = 1;
+    const totalQuestions = 10;
+    let userAnswers = {};
+    let quizCompleted = false;
+    
+    // Initialize quiz
+    function initializeQuiz() {
+        console.log("Initializing Web Intro Quiz");
+        currentQuestion = 1;
+        userAnswers = {};
+        quizCompleted = false;
+        
+        // Reset all questions
+        $('.question-container').removeClass('active').hide();
+        $('.explanation').removeClass('show').hide();
+        $('.option').removeClass('selected correct incorrect');
+        $('input[type="radio"]').prop('checked', false);
+        
+        // Show first question
+        $(`#question${currentQuestion}`).addClass('active').show();
+        
+        // Update progress
+        updateProgress();
+        
+        // Update button states
+        updateButtonStates();
+        
+        // Hide results
+        $('#quizResults').removeClass('show').hide();
+        
+        console.log("Quiz initialized, current question:", currentQuestion);
+    }
+    
+    // Update progress bar
+    function updateProgress() {
+        const progressPercent = ((currentQuestion - 1) / totalQuestions) * 100;
+        $('#progressFill').css('width', `${progressPercent}%`);
+        $('#currentQuestion').text(currentQuestion);
+        $('#totalQuestions').text(totalQuestions);
+    }
+    
+    // Update button states
+    function updateButtonStates() {
+        $('#prevBtn').prop('disabled', currentQuestion === 1);
+        
+        if (currentQuestion === totalQuestions) {
+            $('#nextBtn').hide();
+            $('#submitBtn').show();
+        } else {
+            $('#nextBtn').show();
+            $('#submitBtn').hide();
+        }
+    }
+    
+    // Show question
+    function showQuestion(questionNumber) {
+        $('.question-container').removeClass('active').hide();
+        $(`#question${questionNumber}`).addClass('active').show();
+        
+        // Show/hide explanation based on if answer was selected
+        const questionContainer = $(`#question${questionNumber}`);
+        const selectedOption = questionContainer.find('input[type="radio"]:checked');
+        
+        if (selectedOption.length > 0) {
+            questionContainer.find('.explanation').addClass('show').show();
+            
+            // Update option styling
+            questionContainer.find('.option').each(function() {
+                const $option = $(this);
+                const isCorrect = $option.data('correct') === true;
+                const isSelected = $option.find('input').is(':checked');
+                
+                $option.removeClass('selected correct incorrect');
+                
+                if (isSelected) {
+                    $option.addClass('selected');
+                    if (isCorrect) {
+                        $option.addClass('correct');
+                    } else {
+                        $option.addClass('incorrect');
+                    }
+                }
+            });
+        } else {
+            questionContainer.find('.explanation').removeClass('show').hide();
+        }
+        
+        updateProgress();
+        updateButtonStates();
+    }
+    
+    // Check answer for current question
+    function checkCurrentQuestion() {
+        const questionContainer = $(`#question${currentQuestion}`);
+        const selectedOption = questionContainer.find('input[type="radio"]:checked');
+        
+        if (selectedOption.length === 0) {
+            alert('Please select an answer before continuing.');
+            return false;
+        }
+        
+        const selectedLabel = selectedOption.next('label').text();
+        const isCorrect = selectedOption.closest('.option').data('correct') === true;
+        
+        // Store answer
+        userAnswers[currentQuestion] = {
+            selected: selectedLabel,
+            correct: isCorrect
+        };
+        
+        // Show explanation
+        questionContainer.find('.explanation').addClass('show').show();
+        
+        // Update option styling
+        questionContainer.find('.option').each(function() {
+            const $option = $(this);
+            const optionIsCorrect = $option.data('correct') === true;
+            const optionIsSelected = $option.find('input').is(':checked');
+            
+            $option.removeClass('selected correct incorrect');
+            
+            if (optionIsSelected) {
+                $option.addClass('selected');
+                if (optionIsCorrect) {
+                    $option.addClass('correct');
+                } else {
+                    $option.addClass('incorrect');
+                }
+            }
+        });
+        
+        return true;
+    }
+    
+    // Calculate and show results
+    function showResults() {
+        if (!checkCurrentQuestion()) {
+            return;
+        }
+        
+        quizCompleted = true;
+        
+        // Calculate score
+        let correctCount = 0;
+        Object.values(userAnswers).forEach(answer => {
+            if (answer.correct) correctCount++;
+        });
+        
+        const scorePercentage = Math.round((correctCount / totalQuestions) * 100);
+        
+        // Update results display
+        $('#scorePercentage').text(`${scorePercentage}%`);
+        $('#correctCount').text(correctCount);
+        
+        // Set score message
+        let scoreMessage = '';
+        if (scorePercentage >= 90) {
+            scoreMessage = 'Excellent! You have mastered the Intro to Web concepts!';
+        } else if (scorePercentage >= 70) {
+            scoreMessage = 'Great job! You have a good understanding of web development basics.';
+        } else if (scorePercentage >= 50) {
+            scoreMessage = 'Good effort! Review the key concepts to strengthen your understanding.';
+        } else {
+            scoreMessage = 'Keep practicing! Review the chapter material and try again.';
+        }
+        $('#scoreMessage').text(scoreMessage);
+        
+        // Build question review
+        let reviewHtml = '';
+        for (let i = 1; i <= totalQuestions; i++) {
+            const answer = userAnswers[i];
+            const isCorrect = answer?.correct || false;
+            const questionText = $(`#question${i} p`).text();
+            const selectedText = answer?.selected || 'Not answered';
+            
+            reviewHtml += `
+                <div class="question-review-item ${isCorrect ? 'correct' : 'incorrect'}">
+                    <strong>Q${i}:</strong> ${questionText}<br>
+                    <strong>Your answer:</strong> ${selectedText}<br>
+                    <strong>Result:</strong> ${isCorrect ? '✅ Correct' : '❌ Incorrect'}
+                </div>
+            `;
+        }
+        $('#questionReview').html(reviewHtml);
+        
+        // Show results
+        $('.question-container').removeClass('active').hide();
+        $('#quizResults').addClass('show').show();
+        
+        // Update progress to 100%
+        $('#progressFill').css('width', '100%');
+    }
+    
+    // Event handlers
+    $('#prevBtn').on('click', function() {
+        if (currentQuestion > 1) {
+            checkCurrentQuestion();
+            currentQuestion--;
+            showQuestion(currentQuestion);
+        }
+    });
+    
+    $('#nextBtn').on('click', function() {
+        if (checkCurrentQuestion()) {
+            if (currentQuestion < totalQuestions) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            }
+        }
+    });
+    
+    $('#submitBtn').on('click', showResults);
+    
+    $('#restartQuizBtn').on('click', initializeQuiz);
+    
+    // Option click handlers
+    $(document).on('click', '.option', function() {
+        const $option = $(this);
+        const $radio = $option.find('input[type="radio"]');
+        
+        // Uncheck all radios in this question
+        $option.closest('.options-container').find('input[type="radio"]').prop('checked', false);
+        
+        // Check this radio
+        $radio.prop('checked', true);
+        
+        // Update styling
+        $option.closest('.options-container').find('.option').removeClass('selected');
+        $option.addClass('selected');
+        
+        // Store answer immediately
+        const questionNumber = parseInt($option.closest('.question-container').attr('id').replace('question', ''));
+        const isCorrect = $option.data('correct') === true;
+        const selectedLabel = $option.find('label').text();
+        
+        userAnswers[questionNumber] = {
+            selected: selectedLabel,
+            correct: isCorrect
+        };
+
+        $option.closest('.question-container').find('.explanation').addClass('show').show();
+
+        $option.closest('.options-container').find('.option').each(function() {
+            const $opt = $(this);
+            const optIsCorrect = $opt.data('correct') === true;
+            const optIsSelected = $opt.find('input').is(':checked');
+            
+            $opt.removeClass('correct incorrect');
+            
+            if (optIsSelected) {
+                if (optIsCorrect) {
+                    $opt.addClass('correct');
+                } else {
+                    $opt.addClass('incorrect');
+                }
+            }
+        });
+    });
+
+    $('#showSolutionBtn').on('click', function() {
+        const $solution = $('#solution');
+        const $btn = $(this);
+        
+        if ($solution.is(':visible')) {
+            $solution.hide();
+            $btn.html('<i class="fas fa-lightbulb"></i> Show Solution Template');
+        } else {
+            $solution.show();
+            $btn.html('<i class="fas fa-eye-slash"></i> Hide Solution');
+
+            if (typeof hljs !== 'undefined') {
+                hljs.highlightAll();
+            }
+        }
+    });
+
+    initializeQuiz();
+});
+</script>

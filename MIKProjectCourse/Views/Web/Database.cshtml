@@ -1,181 +1,1519 @@
 ﻿@{
-    ViewData["Title"] = "Introduction to Databases in .NET";
+    ViewData["Title"] = "Database in .NET";
 }
 
 <div class="container">
-    <h1>💾 Understanding Databases in .NET</h1>
+    <h1 class="text-center">Database in .NET</h1>
 
-    <p>
-        Databases are where your application stores and retrieves data.  
-        In .NET, we commonly use <strong>SQL Server</strong> or <strong>SQLite</strong> with 
-        <strong>Entity Framework Core</strong> to interact with the database.
-    </p>
-
-    <hr />
-
-    <h2>🔹 What is a Database?</h2>
-    <div class="card">
-        <div class="card-body">
-            <p>
-                A <strong>database</strong> is a structured collection of data that your application can read from and write to.  
-                It organizes information in <strong>tables</strong> which contain rows (records) and columns (fields).
-            </p>
-            <p>
-                Example: A <strong>Users</strong> table might have columns like <code>Id</code>, <code>Name</code>, <code>Email</code>.
-            </p>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-database"></i>
         </div>
-    </div>
-
-    <h2>🔹 How .NET Works With Databases</h2>
-    <div class="card">
-        <div class="card-body">
-            <p>
-                In .NET, we usually use <strong>Entity Framework Core (EF Core)</strong> to interact with databases.  
-                EF Core allows you to work with data as <strong>C# objects</strong> instead of writing SQL manually.
-            </p>
+        <div class="beginner-note-content">
+            <h4>Think of Databases Like Digital Filing Cabinets</h4>
+            <p><strong>Databases = Organized storage systems for your application's data</strong></p>
+            <p><strong>Simple analogy:</strong></p>
             <ul>
-                <li>Define <strong>Models</strong> which represent your tables.</li>
-                <li>Use a <strong>DbContext</strong> class to manage connections and queries.</li>
-                <li>Perform operations like <strong>Create, Read, Update, Delete (CRUD)</strong> on your data.</li>
+                <li><strong>Database</strong> = Filing cabinet with labeled drawers</li>
+                <li><strong>Table</strong> = Folder within a drawer (Products, Users, Orders)</li>
+                <li><strong>Row</strong> = Individual document in a folder (specific product, user)</li>
+                <li><strong>Column</strong> = Information category on the document (Name, Price, Email)</li>
+                <li><strong>Entity Framework</strong> = Your personal assistant who knows exactly where everything is filed</li>
             </ul>
+            <p><strong>In .NET terms:</strong> Databases store your application's data permanently, and Entity Framework helps your C# code talk to the database!</p>
         </div>
     </div>
 
-    <h2>🔹 Example: User Model and DbContext</h2>
-    <div class="card">
-        <div class="card-body">
-            <p>Here’s a simple example of a User model and DbContext:</p>
-            <pre><code class="language-csharp">
-public class User
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public string Email { get; set; }
-}
+    <div class="important-note">
+        <h4><i class="fas fa-exclamation-triangle"></i> Database Selection Guide</h4>
+        <p>When starting a new .NET project, choose your database based on your needs:</p>
+        <ul>
+            <li><strong>SQL Server</strong> - Best for Windows/enterprise applications</li>
+            <li><strong>SQLite</strong> - Perfect for learning, testing, or small projects</li>
+            <li><strong>PostgreSQL</strong> - Great for cross-platform and cloud applications</li>
+        </ul>
+    </div>
 
-public class AppDbContext : DbContext
-{
-    public DbSet&lt;User&gt; Users { get; set; }
+    <div class="intro-section">
+        <p>Now that you understand Models (data structure) and Views (data display), let's explore how to <strong>store data permanently</strong> using databases. In the .NET world, we primarily use <strong>Entity Framework Core</strong> (EF Core) to work with databases.</p>
+        
+        <div class="alert alert-info">
+            <i class="fas fa-lightbulb"></i> <strong>Good news for beginners:</strong> Entity Framework does most of the hard work for you! You work with C# objects, and EF Core automatically translates them to database operations.
+        </div>
+    </div>
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    <h2 class="text-center">How Databases Work with .NET Applications</h2>
+    
+    <div class="database-flow">
+        <div class="flow-diagram">
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>1. Your C# Code</h5>
+                    <p>You create and work with C# objects (Models)</p>
+                    <div class="flow-code">
+                        <code>var product = new Product { 
+    Name = "Laptop", 
+    Price = 999 
+};</code>
+                    </div>
+                </div>
+                <div class="flow-arrow"></div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>2. Entity Framework</h5>
+                    <p>EF Core translates objects to database commands</p>
+                    <div class="flow-code">
+                        <code>dbContext.Products.Add(product);</code>
+                    </div>
+                </div>
+                <div class="flow-arrow"></div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>3. Database</h5>
+                    <p>SQL commands execute on the database server</p>
+                    <div class="flow-code">
+                        <code>INSERT INTO Products VALUES ('Laptop', 999);</code>
+                    </div>
+                </div>
+                <div class="flow-arrow"></div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-save"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>4. Data Storage</h5>
+                    <p>Data is saved permanently on disk</p>
+                    <div class="flow-code">
+                        <code>Data saved to database file</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center">Setting Up Entity Framework Core</h2>
+    
+    <div class="code-demo">
+        <div class="demo-explanation">
+            <h4><i class="fas fa-cogs"></i> What You Need to Get Started</h4>
+            <p>To work with databases in .NET, you need these components:</p>
+            
+            <div class="controller-parts">
+                <div class="part-item">
+                    <div class="part-badge">1</div>
+                    <div class="part-content">
+                        <h6>NuGet Packages</h6>
+                        <p>Add database provider via NuGet Package Manager</p>
+                    </div>
+                </div>
+                
+                <div class="part-item">
+                    <div class="part-badge">2</div>
+                    <div class="part-content">
+                        <h6>DbContext Class</h6>
+                        <p>Your main connection point to the database</p>
+                    </div>
+                </div>
+                
+                <div class="part-item">
+                    <div class="part-badge">3</div>
+                    <div class="part-content">
+                        <h6>Configuration</h6>
+                        <p>Connection string in appsettings.json</p>
+                    </div>
+                </div>
+                
+                <div class="part-item">
+                    <div class="part-badge">4</div>
+                    <div class="part-content">
+                        <h6>Migrations</h6>
+                        <p>Commands to create/update database structure</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="code-example">
+            <div class="code-header">
+                <div class="code-title">
+                    <i class="fas fa-file-code"></i> Complete Database Setup Example
+                </div>
+                <button class="btn btn-sm btn-outline-secondary copy-btn">
+                    <i class="fas fa-copy"></i> Copy Code
+                </button>
+            </div>
+            
+            <div class="code-content">
+<pre><code class="language-csharp">// Step 1: Install NuGet Packages
+// Microsoft.EntityFrameworkCore.SqlServer
+// Microsoft.EntityFrameworkCore.Tools
+
+// Step 2: Create Your DbContext
+using Microsoft.EntityFrameworkCore;
+
+namespace MyStore.Data
+{
+    public class StoreDbContext : DbContext
     {
-        optionsBuilder.UseSqlServer("YourConnectionStringHere");
+        public StoreDbContext(DbContextOptions<StoreDbContext> options)
+            : base(options)
+        {
+        }
+        
+        // Each DbSet represents a table in your database
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Customer> Customers { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Configure relationships and constraints
+            modelBuilder.Entity<Order>()
+                .HasOne(o => o.Customer)
+                .WithMany(c => c.Orders)
+                .HasForeignKey(o => o.CustomerId);
+            
+            // Seed initial data
+            modelBuilder.Entity<Product>().HasData(
+                new Product { Id = 1, Name = "Laptop", Price = 999.99m },
+                new Product { Id = 2, Name = "Mouse", Price = 29.99m }
+            );
+        }
     }
 }
-            </code></pre>
-            <p>
-                ✅ This allows you to access the <strong>Users</strong> table via C# code and perform CRUD operations.
-            </p>
+
+// Step 3: Configure Connection String in appsettings.json
+/*
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=(localdb)\\mssqllocaldb;Database=MyStoreDb;Trusted_Connection=True;"
+  }
+}
+*/
+
+// Step 4: Register DbContext in Program.cs
+/*
+var builder = WebApplication.CreateBuilder(args);
+
+// Add DbContext with SQL Server
+builder.Services.AddDbContext<StoreDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
+*/
+
+// Step 5: Create and Apply Migrations
+// Package Manager Console:
+// Add-Migration InitialCreate
+// Update-Database
+
+// .NET CLI:
+// dotnet ef migrations add InitialCreate
+// dotnet ef database update</code></pre>
+            </div>
+            
+            <div class="code-explanation">
+                <div class="explanation-header">
+                    <i class="fas fa-info-circle"></i> Key Points About This Setup
+                </div>
+                <div class="explanation-content">
+                    <p><strong>DbContext:</strong></p>
+                    <ul>
+                        <li>Acts as your main database connection</li>
+                        <li>Each DbSet property represents a database table</li>
+                        <li>OnModelCreating() configures relationships and seed data</li>
+                    </ul>
+                    <p><strong>Migrations:</strong> Track changes to your database schema. Always create a new migration after changing your models.</p>
+                    <p><strong>Connection Strings:</strong> Never commit sensitive connection strings to source control. Use environment variables or secure storage.</p>
+                </div>
+            </div>
+            
+            <div class="code-output">
+                <div class="output-header">
+                    <i class="fas fa-sitemap"></i> Setup Steps Summary
+                </div>
+                <div class="url-mappings">
+                    <div class="mapping-item">
+                        <span class="url-path">Install Packages</span>
+                        <span class="mapping-arrow"></span>
+                        <span class="controller-info">Add EF Core and database provider NuGet packages</span>
+                    </div>
+                    <div class="mapping-item">
+                        <span class="url-path">Create DbContext</span>
+                        <span class="mapping-arrow"></span>
+                        <span class="controller-info">Define your database tables as DbSet properties</span>
+                    </div>
+                    <div class="mapping-item">
+                        <span class="url-path">Configure Connection</span>
+                        <span class="mapping-arrow"></span>
+                        <span class="controller-info">Add connection string to appsettings.json</span>
+                    </div>
+                    <div class="mapping-item">
+                        <span class="url-path">Register Services</span>
+                        <span class="mapping-arrow"></span>
+                        <span class="controller-info">Add DbContext to dependency injection in Program.cs</span>
+                    </div>
+                    <div class="mapping-item">
+                        <span class="url-path">Run Migrations</span>
+                        <span class="mapping-arrow"></span>
+                        <span class="controller-info">Create and apply database schema</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <h2>🔹 Key Points About Databases in .NET</h2>
-    <ul class="list-group mb-3">
-        <li>Use <strong>EF Core</strong> for easier data access.</li>
-        <li>Models represent <strong>tables</strong> in the database.</li>
-        <li>DbContext manages <strong>connections and queries</strong>.</li>
-        <li>CRUD operations let you <strong>create, read, update, and delete data</strong> from the database.</li>
-    </ul>
+    <h2 class="text-center">Basic Database Operations (CRUD)</h2>
+    
+    <div class="action-methods">
+        <div class="methods-grid">
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-icon">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="method-name">Create (Insert)</div>
+                </div>
+                <div class="method-content">
+                    <p><strong>Add new records</strong> to the database</p>
+                    <div class="method-url">Method: Add() + SaveChanges()</div>
+                    <div class="method-example">
+<pre><code class="language-csharp">var product = new Product { 
+    Name = "Keyboard", 
+    Price = 49.99m 
+};
+db.Products.Add(product);
+db.SaveChanges();</code></pre>
+                    </div>
+                    <div class="method-note">Always call SaveChanges() to persist changes</div>
+                </div>
+            </div>
+            
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="method-name">Read (Query)</div>
+                </div>
+                <div class="method-content">
+                    <p><strong>Retrieve data</strong> from database</p>
+                    <div class="method-url">Methods: ToList(), FirstOrDefault()</div>
+                    <div class="method-example">
+<pre><code class="language-csharp">var all = db.Products.ToList();
+var laptop = db.Products
+    .FirstOrDefault(p => p.Name == "Laptop");
+var expensive = db.Products
+    .Where(p => p.Price > 100)
+    .ToList();</code></pre>
+                    </div>
+                    <div class="method-note">Use LINQ for filtering, sorting, and projection</div>
+                </div>
+            </div>
+            
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <div class="method-name">Update (Modify)</div>
+                </div>
+                <div class="method-content">
+                    <p><strong>Update existing</strong> records</p>
+                    <div class="method-url">Method: Update() or property changes</div>
+                    <div class="method-example">
+<pre><code class="language-csharp">var product = db.Products.Find(1);
+if (product != null)
+{
+    product.Price = 899.99m;
+    db.SaveChanges();
+}</code></pre>
+                    </div>
+                    <div class="method-note">EF Core tracks changes to loaded entities</div>
+                </div>
+            </div>
+            
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-icon">
+                        <i class="fas fa-trash"></i>
+                    </div>
+                    <div class="method-name">Delete (Remove)</div>
+                </div>
+                <div class="method-content">
+                    <p><strong>Remove records</strong> from database</p>
+                    <div class="method-url">Method: Remove() + SaveChanges()</div>
+                    <div class="method-example">
+<pre><code class="language-csharp">var product = db.Products.Find(2);
+if (product != null)
+{
+    db.Products.Remove(product);
+    db.SaveChanges();
+}</code></pre>
+                    </div>
+                    <div class="method-note">Always check if entity exists before deleting</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <hr />
-    <p class="text-center text-muted">
-        ✅ In short: Databases store your data, Models represent the data in C#, and DbContext helps your application interact with it easily.
-    </p>
+    <h2 class="text-center">Common Database Return Types</h2>
+    
+    <div class="return-types">
+        <div class="returns-grid">
+            <div class="return-item">
+                <div class="return-icon">
+                    <i class="fas fa-list"></i>
+                </div>
+                <div class="return-content">
+                    <h5>ToList()</h5>
+                    <p>Returns all records as a list</p>
+                    <div class="code-snippet">
+<pre><code class="language-csharp">var products = db.Products.ToList();</code></pre>
+                    </div>
+                    <div class="return-note">Loads all records into memory</div>
+                </div>
+            </div>
+            
+            <div class="return-item">
+                <div class="return-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="return-content">
+                    <h5>FirstOrDefault()</h5>
+                    <p>Returns first matching record or null</p>
+                    <div class="code-snippet">
+<pre><code class="language-csharp">var product = db.Products
+    .FirstOrDefault(p => p.Id == 5);</code></pre>
+                    </div>
+                    <div class="return-note">Safe - returns null if not found</div>
+                </div>
+            </div>
+            
+            <div class="return-item">
+                <div class="return-icon">
+                    <i class="fas fa-filter"></i>
+                </div>
+                <div class="return-content">
+                    <h5>Where()</h5>
+                    <p>Filters records based on condition</p>
+                    <div class="code-snippet">
+<pre><code class="language-csharp">var expensive = db.Products
+    .Where(p => p.Price > 100);</code></pre>
+                    </div>
+                    <div class="return-note">Returns IQueryable - lazy evaluation</div>
+                </div>
+            </div>
+            
+            <div class="return-item">
+                <div class="return-icon">
+                    <i class="fas fa-sort"></i>
+                </div>
+                <div class="return-content">
+                    <h5>OrderBy()</h5>
+                    <p>Sorts records in ascending order</p>
+                    <div class="code-snippet">
+<pre><code class="language-csharp">var sorted = db.Products
+    .OrderBy(p => p.Name);</code></pre>
+                    </div>
+                    <div class="return-note">Use OrderByDescending for reverse</div>
+                </div>
+            </div>
+            
+            <div class="return-item">
+                <div class="return-icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <div class="return-content">
+                    <h5>Include()</h5>
+                    <p>Loads related entities (eager loading)</p>
+                    <div class="code-snippet">
+<pre><code class="language-csharp">var orders = db.Orders
+    .Include(o => o.Customer)
+    .ToList();</code></pre>
+                    </div>
+                    <div class="return-note">Prevents N+1 query problem</div>
+                </div>
+            </div>
+            
+            <div class="return-item">
+                <div class="return-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="return-content">
+                    <h5>Any()</h5>
+                    <p>Checks if any records exist</p>
+                    <div class="code-snippet">
+<pre><code class="language-csharp">var exists = db.Products
+    .Any(p => p.Price > 1000);</code></pre>
+                    </div>
+                    <div class="return-note">More efficient than Count() > 0</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="interactive-exercise">
+        <h3><i class="fas fa-database"></i> Database Detective Game</h3>
+        <p>Match the database operation with its correct code:</p>
+        
+        <div class="matching-game">
+            <div class="game-column">
+                <h5>Operations</h5>
+                <div class="game-item" data-match="1">Get all products</div>
+                <div class="game-item" data-match="2">Find product by ID</div>
+                <div class="game-item" data-match="3">Add new product</div>
+                <div class="game-item" data-match="4">Update product price</div>
+            </div>
+            
+            <div class="game-column">
+                <h5>Code Examples</h5>
+                <div class="game-item" data-match="3">db.Products.Add(product); db.SaveChanges();</div>
+                <div class="game-item" data-match="1">db.Products.ToList()</div>
+                <div class="game-item" data-match="4">product.Price = 899.99m; db.SaveChanges();</div>
+                <div class="game-item" data-match="2">db.Products.Find(id)</div>
+            </div>
+        </div>
+        
+        <div class="game-feedback"></div>
+        <button class="btn btn-primary mt-3" id="checkMatches">Check Answers</button>
+    </div>
+
+    <div class="routing-explanation">
+        <h3><i class="fas fa-server"></i> Database Types Comparison</h3>
+        
+        <div class="routing-table">
+            <div class="table-header">
+                <div class="col-url">Database Type</div>
+                <div class="col-controller">Best For</div>
+                <div class="col-action">Connection String Example</div>
+                <div class="col-params">Setup Method</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="col-url">SQL Server</div>
+                <div class="col-controller">Windows apps, Enterprise</div>
+                <div class="col-action">Server=localhost;Database=MyDb;Trusted_Connection=True;</div>
+                <div class="col-params">UseSqlServer()</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="col-url">SQLite</div>
+                <div class="col-controller">Learning, Testing, Mobile</div>
+                <div class="col-action">Data Source=mydatabase.db</div>
+                <div class="col-params">UseSqlite()</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="col-url">PostgreSQL</div>
+                <div class="col-controller">Cross-platform, Cloud</div>
+                <div class="col-action">Host=localhost;Database=MyDb;Username=postgres;</div>
+                <div class="col-params">UseNpgsql()</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="col-url">MySQL</div>
+                <div class="col-controller">Web apps, Cross-platform</div>
+                <div class="col-action">Server=localhost;Database=MyDb;Uid=root;Pwd=password;</div>
+                <div class="col-params">UseMySQL()</div>
+            </div>
+        </div>
+        
+        <div class="routing-note">
+            <i class="fas fa-info-circle"></i>
+            <p><strong>Recommendation for beginners:</strong> Start with SQLite for learning - it's file-based, requires no server setup, and works great for small projects.</p>
+        </div>
+    </div>
+
+    <div class="key-points">
+        <h3>Key Points to Remember</h3>
+        <ul>
+            <li><strong>Entity Framework Core</strong> is the main way .NET applications work with databases</li>
+            <li><strong>DbContext</strong> is your gateway to the database - it manages connections and operations</li>
+            <li><strong>DbSet</strong> properties represent database tables and allow you to query data</li>
+            <li><strong>Migrations</strong> track changes to your database schema over time</li>
+            <li>Always call <strong>SaveChanges()</strong> after modifying data to persist changes</li>
+            <li>Use <strong>LINQ queries</strong> (Where, OrderBy, Select) to filter and sort data</li>
+            <li><strong>Connection strings</strong> tell EF Core how to connect to your database</li>
+            <li>Follow <strong>CRUD operations</strong>: Create, Read, Update, Delete for basic data management</li>
+        </ul>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Views_", "Web")" class="btn btn-outline-primary ajax-link">← Introduction to views</a>
-        <a href="@Url.Action("Programcs", "Web")" class="btn btn-primary ajax-link">Introduction to Program.cs →</a>
+        <a href="@Url.Action("Views_", "Web")" class="btn btn-outline-primary">Back: View Basics</a>
+        <a href="@Url.Action("Programcs", "Web")" class="btn btn-primary">Next: Program.cs Overview</a>
     </div>
 </div>
 
 <style>
-    .container {
-        max-width: 800px;
-        padding: 20px;
+    .container { 
+        max-width: 900px; 
+        margin: 0 auto;
+        padding: 20px; 
     }
-
-    h1 {
-        margin-bottom: 20px;
+    
+    h1, h2, h3, h4, h5, h6 { 
+        color: var(--bs-heading-color);
+        margin-bottom: 1rem;
     }
-
-    h2 {
-        margin-top: 25px;
-        margin-bottom: 15px;
+    
+    h1 { 
+        border-bottom: 2px solid var(--bs-primary); 
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
     }
-
-    p, ul {
-        line-height: 1.6;
+    
+    h2.text-center {
+        margin: 2.5rem 0 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--bs-border-color);
     }
-
-    ul {
-        list-style-type: none;
-        padding-left: 0;
-    }
-
-    ul li {
-        margin-bottom: 8px;
-    }
-
-    hr {
-        border-top: 1px solid #ddd;
-        margin: 25px 0;
-    }
-
-    .card {
+    
+    .beginner-note {
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        border: 2px solid var(--bs-primary);
         border-radius: 8px;
-        margin-bottom: 20px;
-        border: 1px solid #ddd;
-        background-color: #f8f9fa;
+        padding: 1.25rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .beginner-note-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+    }
+    
+    .beginner-note-content h4 {
+        margin-top: 0;
+        color: var(--bs-primary);
+    }
+    
+    .beginner-note-content ul {
+        padding-left: 1.25rem;
+        margin: 0.75rem 0;
+    }
+    
+    .beginner-note-content li {
+        margin-bottom: 0.25rem;
+    }
+    
+    .important-note {
+        background-color: rgba(var(--bs-warning-rgb), 0.1);
+        border: 2px solid var(--bs-warning);
+        border-radius: 8px;
+        padding: 1.25rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .important-note h4 {
+        color: var(--bs-warning);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0;
+    }
+    
+    .important-note ul {
+        padding-left: 1.25rem;
+        margin: 0.5rem 0 0;
+    }
+    
+    .intro-section {
+        margin-bottom: 1.5rem;
+        padding: 1.25rem;
+        background-color: rgba(var(--bs-secondary-rgb), 0.1);
+        border-radius: 8px;
+    }
+    
+    .intro-section p:last-child {
+        margin-bottom: 0;
+    }
+    
+    .alert {
+        margin-top: 1rem;
+        margin-bottom: 0;
     }
 
-    .card-body {
-        padding: 15px;
+    .database-flow {
+        margin: 2.5rem 0;
+    }
+    
+    .flow-diagram {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .flow-step {
+        flex: 1;
+        min-width: 200px;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.25rem;
+        background-color: var(--bs-light-bg-subtle);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        position: relative;
+    }
+    
+    .flow-icon {
+        background-color: var(--bs-success);
+        color: white;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+    }
+    
+    .flow-content h5 {
+        margin: 0 0 0.25rem 0;
+        color: var(--bs-success);
+    }
+    
+    .flow-content p {
+        margin: 0;
+        color: var(--bs-secondary);
+        font-size: 0.875rem;
+    }
+    
+    .flow-code {
+        background-color: var(--bs-dark);
+        color: var(--bs-light);
+        padding: 0.75rem;
+        border-radius: 6px;
+        font-family: var(--bs-font-monospace);
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
+        overflow-x: auto;
+    }
+    
+    .flow-code code {
+        background: transparent;
+        padding: 0;
+        color: inherit;
+    }
+    
+    .flow-arrow {
+        position: absolute;
+        right: -1.5rem;
+        color: var(--bs-success);
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    
+    .flow-arrow:after {
+        content: "→";
+    }
+    
+    @@media (max-width: 992px) {
+        .flow-step {
+            flex-direction: column;
+            text-align: center;
+            min-width: 180px;
+        }
+        
+        .flow-arrow {
+            right: 0;
+            bottom: -1.5rem;
+            transform: rotate(90deg);
+        }
     }
 
-    pre code {
-        background-color: #f8f9fa;
-        border: 1px solid #ddd;
-        padding: 10px;
-        border-radius: 5px;
+    .code-demo {
+        margin: 2.5rem 0;
+    }
+    
+    .demo-explanation {
+        margin-bottom: 1.5rem;
+        padding: 1.25rem;
+        background-color: rgba(var(--bs-info-rgb), 0.1);
+        border-radius: 8px;
+    }
+    
+    .demo-explanation h4 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--bs-info);
+    }
+    
+    .controller-parts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    
+    .part-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+    }
+    
+    .part-badge {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        flex-shrink: 0;
+        font-size: 0.9rem;
+    }
+    
+    .code-example {
+        border: 2px solid var(--bs-border-color);
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: var(--bs-body-bg);
+    }
+    
+    .code-header {
+        background-color: var(--bs-dark);
+        padding: 1rem 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+    
+    .code-title {
+        color: var(--bs-light);
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .copy-btn {
+        background-color: var(--bs-secondary);
+        border: none;
+        color: var(--bs-light);
+        padding: 0.25rem 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    .copy-btn:hover {
+        background-color: var(--bs-secondary-dark);
+        color: white;
+    }
+    
+    .code-content {
+        background-color: #1a1a1a;
+        padding: 1.25rem;
+        overflow-x: auto;
+    }
+    
+    .code-explanation {
+        background-color: var(--bs-dark);
+        border-top: 1px solid var(--bs-border-color);
+        padding: 1.25rem;
+    }
+    
+    .explanation-header {
+        color: #98c379;
+        font-weight: bold;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .explanation-content {
+        color: var(--bs-light);
+    }
+    
+    .explanation-content ul {
+        padding-left: 1.25rem;
+        margin: 0.5rem 0;
+    }
+    
+    .explanation-content li {
+        margin-bottom: 0.25rem;
+    }
+    
+    .code-output {
+        background-color: var(--bs-dark);
+        border-top: 1px solid var(--bs-border-color);
+        padding: 1.25rem;
+    }
+    
+    .output-header {
+        color: #98c379;
+        font-weight: bold;
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .url-mappings {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .mapping-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.75rem;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+        flex-wrap: wrap;
+    }
+    
+    .url-path {
+        font-family: var(--bs-font-monospace);
+        color: #e06c75;
+        font-weight: bold;
+        min-width: 120px;
+    }
+    
+    .mapping-arrow {
+        color: #61afef;
+    }
+    
+    .mapping-arrow:after {
+        content: "→";
+    }
+    
+    .controller-info {
+        font-family: var(--bs-font-monospace);
+        color: #98c379;
+        flex: 1;
+    }
+
+    .action-methods {
+        margin: 2.5rem 0;
+    }
+    
+    .methods-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.25rem;
+    }
+    
+    .method-card {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: var(--bs-body-bg);
+        transition: all 0.3s ease;
+    }
+    
+    .method-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    
+    .method-header {
+        background-color: var(--bs-primary);
+        color: white;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .method-icon {
+        background-color: white;
+        color: var(--bs-primary);
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+    }
+    
+    .method-name {
+        font-weight: bold;
+        font-size: 1.1rem;
+        margin: 0;
+    }
+    
+    .method-content {
+        padding: 1rem;
+    }
+    
+    .method-url {
+        font-family: var(--bs-font-monospace);
+        color: var(--bs-info);
+        font-size: 0.875rem;
+        margin: 0.5rem 0;
+    }
+    
+    .method-example {
+        background-color: #1a1a1a;
+        color: var(--bs-light);
+        padding: 0.75rem;
+        border-radius: 6px;
+        font-size: 0.875rem;
+        overflow-x: auto;
+        margin: 0.75rem 0;
+    }
+    
+    .method-example pre {
+        margin: 0;
+    }
+    
+    .method-note {
+        margin-top: 0.75rem;
+        font-size: 0.85rem;
+        color: var(--bs-secondary);
+        font-style: italic;
+    }
+
+    .return-types {
+        margin: 2.5rem 0;
+    }
+    
+    .returns-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.25rem;
+    }
+    
+    .return-item {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 1.25rem;
+        text-align: center;
+        background-color: var(--bs-body-bg);
+        transition: all 0.3s ease;
+    }
+    
+    .return-item:hover {
+        border-color: var(--bs-primary);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .return-icon {
+        background-color: var(--bs-success);
+        color: white;
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        margin: 0 auto 1rem;
+    }
+    
+    .return-content h5 {
+        margin-top: 0;
+        color: var(--bs-success);
+        margin-bottom: 0.5rem;
+    }
+    
+    .return-content p {
+        color: var(--bs-secondary);
+        margin-bottom: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .code-snippet {
+        background-color: #1a1a1a;
+        color: var(--bs-light);
+        padding: 0.75rem;
+        border-radius: 6px;
+        margin: 0.75rem 0;
+        overflow-x: auto;
+    }
+    
+    .code-snippet pre {
+        margin: 0;
+    }
+    
+    .return-note {
+        font-size: 0.85rem;
+        color: var(--bs-secondary);
+        font-style: italic;
+        margin-top: 0.75rem;
+    }
+
+    .interactive-exercise {
+        margin: 2.5rem 0;
+        padding: 1.5rem;
+        background-color: rgba(var(--bs-warning-rgb), 0.1);
+        border: 1px solid var(--bs-warning);
+        border-radius: 10px;
+    }
+    
+    .interactive-exercise h3 {
+        color: var(--bs-warning);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .matching-game {
+        display: flex;
+        gap: 2rem;
+        margin: 1.5rem 0;
+    }
+    
+    .game-column {
+        flex: 1;
+    }
+    
+    .game-column h5 {
+        color: var(--bs-warning);
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid var(--bs-warning);
+    }
+    
+    .game-item {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 0.75rem 1rem;
+        margin: 0.5rem 0;
+        border-radius: 6px;
+        cursor: move;
+        border: 2px dashed transparent;
+        transition: all 0.3s;
+        font-family: var(--bs-font-monospace);
+        font-size: 0.9rem;
+        color: var(--bs-body-color);
+    }
+    
+    .game-item:hover {
+        background-color: rgba(var(--bs-warning-rgb), 0.15);
+        border-color: var(--bs-warning);
+    }
+    
+    .game-item.dragging {
+        opacity: 0.5;
+    }
+    
+    .game-item.matched {
+        background-color: rgba(var(--bs-success-rgb), 0.15);
+        border-color: var(--bs-success);
+        color: var(--bs-success);
+    }
+    
+    .game-feedback {
+        margin-top: 1rem;
+        padding: 1rem;
+        border-radius: 6px;
+        display: none;
+    }
+    
+    .game-feedback.success {
+        background-color: rgba(var(--bs-success-rgb), 0.15);
+        color: var(--bs-success-text);
+        border: 1px solid var(--bs-success-border-subtle);
         display: block;
-        margin-bottom: 20px;
-        color: #333;
-        font-family: Consolas, monospace;
+    }
+    
+    .game-feedback.error {
+        background-color: rgba(var(--bs-danger-rgb), 0.15);
+        color: var(--bs-danger-text);
+        border: 1px solid var(--bs-danger-border-subtle);
+        display: block;
     }
 
-    .list-group-item {
-        padding: 10px 15px;
-        margin-bottom: 5px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        background-color: #f8f9fa;
+    .routing-explanation {
+        margin: 2.5rem 0;
+        padding: 1.5rem;
+        background-color: rgba(var(--bs-indigo-rgb), 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 10px;
+    }
+    
+    .routing-explanation h3 {
+        color: var(--bs-indigo);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .routing-table {
+        margin: 1.5rem 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: var(--bs-body-bg);
+    }
+    
+    .table-header {
+        display: flex;
+        background-color: var(--bs-indigo);
+        color: white;
+        font-weight: bold;
+    }
+    
+    .table-row {
+        display: flex;
+        border-top: 1px solid var(--bs-border-color);
+        background-color: var(--bs-body-bg);
+    }
+    
+    .col-url, .col-controller, .col-action, .col-params {
+        padding: 0.75rem 1rem;
+        flex: 1;
+    }
+    
+    .col-url {
+        font-family: var(--bs-font-monospace);
+        color: var(--bs-primary);
+        font-weight: bold;
+    }
+    
+    .col-controller {
+        color: var(--bs-success);
+    }
+    
+    .col-action {
+        color: var(--bs-danger);
+        font-family: var(--bs-font-monospace);
+        font-size: 0.9rem;
+    }
+    
+    .col-params {
+        color: var(--bs-info);
+        font-family: var(--bs-font-monospace);
+        font-size: 0.9rem;
+    }
+    
+    .routing-note {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+        margin-top: 1rem;
+        padding: 1rem;
+        background-color: rgba(var(--bs-indigo-rgb), 0.15);
+        border-radius: 6px;
+    }
+    
+    .routing-note i {
+        color: var(--bs-indigo);
+        font-size: 1.25rem;
+        flex-shrink: 0;
+        margin-top: 0.25rem;
+    }
+
+    .key-points {
+        margin: 2.5rem 0;
+        padding: 1.5rem;
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        border: 1px solid var(--bs-primary);
+        border-radius: 10px;
+    }
+    
+    .key-points h3 {
+        color: var(--bs-primary);
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .key-points ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .key-points li {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(var(--bs-primary-rgb), 0.2);
+        position: relative;
+        padding-left: 2rem;
+        color: var(--bs-body-color);
+    }
+    
+    .key-points li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--bs-success);
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+    
+    .key-points li:last-child {
+        border-bottom: none;
     }
 
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+        border-top: 2px solid var(--bs-border-color);
     }
-
+    
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
         font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-        color: white;
+    @@media (max-width: 768px) {
+        .container {
+            padding: 1rem;
+        }
+        
+        .beginner-note {
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+        }
+        
+        .beginner-note-icon {
+            margin-bottom: 0.5rem;
+        }
+        
+        .matching-game {
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .table-header, .table-row {
+            flex-direction: column;
+        }
+        
+        .col-url, .col-controller, .col-action, .col-params {
+            padding: 0.5rem 0.75rem;
+            width: 100%;
+        }
+        
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .navigation-buttons .btn {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .flow-step {
+            min-width: 100%;
+        }
+        
+        .methods-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .returns-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
     }
-
-    .btn-outline-primary {
-        color: #007bff;
-        border-color: #007bff;
-        background-color: transparent;
-    }
-
-    p.text-muted {
-        color: #6c757d;
+    
+    @@media (max-width: 480px) {
+        .returns-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .controller-parts {
+            grid-template-columns: 1fr;
+        }
     }
 </style>
+
+<script>
+$(document).ready(function() {
+    // Initialize syntax highlighting
+    if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+    }
+
+    // Copy code functionality
+    $('.copy-btn').on('click', function() {
+        const $codeElement = $(this).closest('.code-example').find('code');
+        const codeText = $codeElement.text();
+        
+        navigator.clipboard.writeText(codeText).then(() => {
+            const originalText = $(this).html();
+            $(this).html('<i class="fas fa-check"></i> Copied!');
+            $(this).removeClass('btn-outline-secondary').addClass('btn-success');
+            
+            setTimeout(() => {
+                $(this).html(originalText);
+                $(this).removeClass('btn-success').addClass('btn-outline-secondary');
+            }, 2000);
+        });
+    });
+
+    // Initialize drag and drop for matching game
+    let draggedItem = null;
+    
+    $('.game-item').on('dragstart', function(e) {
+        draggedItem = this;
+        $(this).addClass('dragging');
+    });
+    
+    $('.game-item').on('dragend', function() {
+        $(this).removeClass('dragging');
+        draggedItem = null;
+    });
+    
+    $('.game-item').on('dragover', function(e) {
+        e.preventDefault();
+    });
+    
+    $('.game-item').on('drop', function(e) {
+        e.preventDefault();
+        
+        if (draggedItem && draggedItem !== this) {
+            // Swap positions
+            const tempHTML = $(this).html();
+            const tempData = $(this).data('match');
+            
+            $(this).html($(draggedItem).html());
+            $(this).data('match', $(draggedItem).data('match'));
+            
+            $(draggedItem).html(tempHTML);
+            $(draggedItem).data('match', tempData);
+        }
+    });
+
+    // Check matching game answers
+    $('#checkMatches').on('click', function() {
+        const $feedback = $('.game-feedback');
+        let correctMatches = 0;
+        const totalMatches = 4;
+        
+        // Check each pair
+        $('.game-column:first-child .game-item').each(function(index) {
+            const leftMatch = $(this).data('match');
+            const $rightItem = $('.game-column:last-child .game-item').eq(index);
+            const rightMatch = $rightItem.data('match');
+            
+            if (leftMatch === rightMatch) {
+                $(this).addClass('matched');
+                $rightItem.addClass('matched');
+                correctMatches++;
+            } else {
+                $(this).removeClass('matched');
+                $rightItem.removeClass('matched');
+            }
+        });
+        
+        if (correctMatches === totalMatches) {
+            $feedback.html(`
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <i class="fas fa-check-circle" style="color: var(--bs-success); font-size: 1.5rem;"></i>
+                    <div>
+                        <strong>Perfect!</strong><br>
+                        You correctly matched all database operations to their code examples!
+                    </div>
+                </div>
+            `).removeClass('error').addClass('success').show();
+        } else {
+            $feedback.html(`
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <i class="fas fa-exclamation-circle" style="color: var(--bs-warning); font-size: 1.5rem;"></i>
+                    <div>
+                        <strong>Almost there!</strong><br>
+                        You got ${correctMatches} out of ${totalMatches} correct. 
+                        Remember: SaveChanges() is needed for Create, Update, and Delete operations.
+                    </div>
+                </div>
+            `).removeClass('success').addClass('error').show();
+        }
+    });
+
+    // Make game items draggable
+    $('.game-item').attr('draggable', 'true');
+
+    // Add click interaction to method cards
+    $('.method-card').on('click', function() {
+        const $card = $(this);
+        $card.toggleClass('active');
+        
+        if ($card.hasClass('active')) {
+            $card.css('transform', 'translateY(-6px) scale(1.02)');
+            $card.css('box-shadow', '0 12px 24px rgba(0,0,0,0.15)');
+        } else {
+            $card.css('transform', 'translateY(0) scale(1)');
+            $card.css('box-shadow', 'none');
+        }
+    });
+
+    const flowSteps = $('.flow-step');
+    
+    flowSteps.each(function(index) {
+        $(this).css({
+            'opacity': '0',
+            'transform': 'translateY(20px)',
+            'transition': 'all 0.5s ease ' + (index * 0.2) + 's'
+        });
+    });
+
+    setTimeout(() => {
+        flowSteps.each(function(index) {
+            $(this).css({
+                'opacity': '1',
+                'transform': 'translateY(0)'
+            });
+        });
+    }, 100);
+
+    $('.method-example, .code-snippet').hover(
+        function() {
+            $(this).css('box-shadow', '0 0 0 2px rgba(var(--bs-primary-rgb), 0.3)');
+        },
+        function() {
+            $(this).css('box-shadow', 'none');
+        }
+    );
+
+    $(document).on('click', '.game-item', function() {
+        if (typeof hljs !== 'undefined') {
+            setTimeout(() => hljs.highlightAll(), 100);
+        }
+    });
+});
+</script>

@@ -1,161 +1,990 @@
 ﻿@{
-    ViewData["Title"] = "Introduction to .NET Web Development";
+    ViewData["Title"] = "Introduction to .NET Programming";
 }
 
 <div class="container">
-    <h1>🌐 Introduction to .NET Web Development</h1>
+    <h1 class="text-center">Introduction to .NET Programming</h1>
 
-    <p>
-        Now that you have installed Visual Studio and .NET, it’s time to dive into the fundamentals of 
-        <strong>ASP.NET Core Web Development</strong>.  
-        In this section, we will explore the <strong>MVC pattern</strong>, 
-        the <strong>client-server model</strong>, and how everything works together 
-        to build modern web applications.
-    </p>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-rocket"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Think of .NET Like a Universal App Builder</h4>
+            <p><strong>.NET = Your complete toolbox for building any type of application</strong></p>
+            <p><strong>Simple analogy:</strong></p>
+            <ul>
+                <li><strong>C# Language</strong> = The words you use to give instructions</li>
+                <li><strong>.NET Framework</strong> = The workshop with all tools and materials</li>
+                <li><strong>Visual Studio</strong> = Your high-tech workbench</li>
+                <li><strong>ASP.NET</strong> = Special tools for building websites</li>
+            </ul>
+            <p><strong>In programming terms:</strong> Everything you need to turn ideas into working applications!</p>
+        </div>
+    </div>
 
-    <hr />
+    <div class="intro-section">
+        <p>Now that you have Visual Studio installed, let's explore what .NET programming is all about. <strong>.NET</strong> is Microsoft's modern, open-source development platform that lets you build applications for web, desktop, mobile, gaming, and IoT.</p>
+        
+        <div class="alert alert-success">
+            <i class="fas fa-star"></i> <strong>Great news for beginners:</strong> C# (pronounced "C sharp") is one of the most beginner-friendly programming languages in the world. Its syntax is clean, readable, and designed to prevent common mistakes!
+        </div>
+    </div>
 
-    <h2>🔑 What is ASP.NET Core?</h2>
-    <p>
-        ASP.NET Core is a powerful framework developed by Microsoft for building web applications, APIs, and services.  
-        It uses the <strong>MVC (Model-View-Controller)</strong> architectural pattern to keep your code organized, 
-        maintainable, and scalable.
-    </p>
+    <h2 class="text-center">What Can You Build with .NET?</h2>
+    
+    <div class="applications-grid">
+        <div class="application-card">
+            <div class="app-icon web">
+                <i class="fas fa-globe"></i>
+            </div>
+            <div class="app-content">
+                <h4>Web Applications</h4>
+                <p>Build modern websites like Facebook, YouTube, or Netflix using ASP.NET</p>
+                <div class="app-examples">
+                    <span class="app-badge">E-commerce</span>
+                    <span class="app-badge">Social Media</span>
+                    <span class="app-badge">Blogs</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="application-card">
+            <div class="app-icon desktop">
+                <i class="fas fa-desktop"></i>
+            </div>
+            <div class="app-content">
+                <h4>Desktop Applications</h4>
+                <p>Create Windows applications like Microsoft Office or Photoshop</p>
+                <div class="app-examples">
+                    <span class="app-badge">Business Apps</span>
+                    <span class="app-badge">Games</span>
+                    <span class="app-badge">Tools</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="application-card">
+            <div class="app-icon mobile">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div class="app-content">
+                <h4>Mobile Apps</h4>
+                <p>Develop iOS and Android apps using .NET MAUI (Multi-platform App UI)</p>
+                <div class="app-examples">
+                    <span class="app-badge">iOS Apps</span>
+                    <span class="app-badge">Android Apps</span>
+                    <span class="app-badge">Cross-platform</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="application-card">
+            <div class="app-icon api">
+                <i class="fas fa-cloud"></i>
+            </div>
+            <div class="app-content">
+                <h4>APIs & Microservices</h4>
+                <p>Build backend services that power web and mobile applications</p>
+                <div class="app-examples">
+                    <span class="app-badge">REST APIs</span>
+                    <span class="app-badge">Cloud Services</span>
+                    <span class="app-badge">Real-time</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <hr />
+    <h2 class="text-center">The .NET Family</h2>
+    
+    <div class="dotnet-family">
+        <div class="family-tree">
+            <div class="family-root">
+                <div class="family-node">
+                    <div class="node-icon">
+                        <i class="fab fa-microsoft"></i>
+                    </div>
+                    <div class="node-content">
+                        <h5>.NET Platform</h5>
+                        <p>The complete development platform</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="family-branches">
+                <div class="branch">
+                    <div class="branch-line"></div>
+                    <div class="branch-node">
+                        <div class="node-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="node-content">
+                            <h5>C# Language</h5>
+                            <p>Primary programming language</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="branch">
+                    <div class="branch-line"></div>
+                    <div class="branch-node">
+                        <div class="node-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <div class="node-content">
+                            <h5>Common Language Runtime (CLR)</h5>
+                            <p>Runs your code on any platform</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="branch">
+                    <div class="branch-line"></div>
+                    <div class="branch-node">
+                        <div class="node-icon">
+                            <i class="fas fa-box-open"></i>
+                        </div>
+                        <div class="node-content">
+                            <h5>Base Class Library (BCL)</h5>
+                            <p>Pre-built code for common tasks</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h2>🏛 The MVC Pattern</h2>
-    <p>
-        MVC stands for <strong>Model–View–Controller</strong>.  
-        Each part has a specific role in your application:
-    </p>
+    <h2 class="text-center">Your First C# Code</h2>
+    
+    <div class="first-code-demo">
+        <div class="code-explanation">
+            <h4><i class="fas fa-play-circle"></i> Let's Write Our First Program!</h4>
+            <p>Here's what happens when you run your first C# program:</p>
+            
+            <div class="execution-flow">
+                <div class="flow-step">
+                    <div class="flow-number">1</div>
+                    <div class="flow-content">
+                        <h5>You Write Code</h5>
+                        <p>Type instructions in C# language</p>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">2</div>
+                    <div class="flow-content">
+                        <h5>Computer Reads It</h5>
+                        <p>.NET translates to machine language</p>
+                    </div>
+                </div>
+                
+                <div class="flow-arrow">→</div>
+                
+                <div class="flow-step">
+                    <div class="flow-number">3</div>
+                    <div class="flow-content">
+                        <h5>Program Runs</h5>
+                        <p>Computer executes your instructions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="code-example">
+            <div class="code-header">
+                <div class="code-title">
+                    <i class="fas fa-file-code"></i> Program.cs - Your First C# Program
+                </div>
+                <button class="btn btn-sm btn-outline-secondary copy-btn">
+                    <i class="fas fa-copy"></i> Copy Code
+                </button>
+            </div>
+            
+            <div class="code-content">
+<pre><code class="language-csharp">using System;
 
-    <ul>
-        <li><strong>Model:</strong> Represents the data and business logic of the application.  
-            Example: A <code>Student</code> class with properties like <code>Name</code>, <code>Age</code>, and <code>Grade</code>.
-        </li>
-        <li><strong>View:</strong> The user interface that displays the data. Views are written in <code>.cshtml</code> files.  
-            Example: A web page that shows the list of students.
-        </li>
-        <li><strong>Controller:</strong> The middle layer that handles user requests, processes data using Models, 
-            and returns a View or API response.  
-            Example: A <code>StudentsController</code> that fetches students from the database and passes them to a View.
-        </li>
-    </ul>
+class Program
+{
+    static void Main()
+    {
+        // This line displays text in the console
+        Console.WriteLine("Hello, World!");
+        
+        // Ask for user's name
+        Console.Write("What's your name? ");
+        string name = Console.ReadLine();
+        
+        // Greet the user
+        Console.WriteLine($"Nice to meet you, {name}!");
+        
+        // Wait for user to press a key
+        Console.WriteLine("\nPress any key to exit...");
+        Console.ReadKey();
+    }
+}</code></pre>
+            </div>
+            
+            <div class="code-output">
+                <div class="output-header">
+                    <i class="fas fa-terminal"></i> Program Output
+                </div>
+                <div class="output-content">
+                    <div class="console-line">Hello, World!</div>
+                    <div class="console-line">What's your name? <span class="user-input">John</span></div>
+                    <div class="console-line">Nice to meet you, John!</div>
+                    <div class="console-line">Press any key to exit...</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <p>The flow can be summarized as:</p>
-    <pre><code>User Request → Controller → Model → Controller → View → Response to User</code></pre>
+    <h2 class="text-center">Understanding C# Syntax</h2>
+    
+    <div class="syntax-guide">
+        <div class="syntax-grid">
+            <div class="syntax-item">
+                <div class="syntax-header">
+                    <span class="syntax-keyword">using</span>
+                    <span class="syntax-example">System;</span>
+                </div>
+                <div class="syntax-explanation">
+                    <h5>Import Statements</h5>
+                    <p>Tells C# what tools you want to use. Like saying "I need a hammer and nails"</p>
+                </div>
+            </div>
+            
+            <div class="syntax-item">
+                <div class="syntax-header">
+                    <span class="syntax-keyword">class</span>
+                    <span class="syntax-example">Program</span>
+                </div>
+                <div class="syntax-explanation">
+                    <h5>Class Definition</h5>
+                    <p>Creates a blueprint for your program. Every C# program needs at least one class</p>
+                </div>
+            </div>
+            
+            <div class="syntax-item">
+                <div class="syntax-header">
+                    <span class="syntax-keyword">static void Main()</span>
+                </div>
+                <div class="syntax-explanation">
+                    <h5>Main Method</h5>
+                    <p>The starting point of your program. This is where execution begins</p>
+                </div>
+            </div>
+            
+            <div class="syntax-item">
+                <div class="syntax-header">
+                    <span class="syntax-keyword">Console.WriteLine()</span>
+                </div>
+                <div class="syntax-explanation">
+                    <h5>Output Command</h5>
+                    <p>Displays text on the screen. Your program's way of talking to the user</p>
+                </div>
+            </div>
+            
+            <div class="syntax-item">
+                <div class="syntax-header">
+                    <span class="syntax-keyword">// Comment</span>
+                </div>
+                <div class="syntax-explanation">
+                    <h5>Comments</h5>
+                    <p>Notes for yourself or other developers. Computer ignores these lines</p>
+                </div>
+            </div>
+            
+            <div class="syntax-item">
+                <div class="syntax-header">
+                    <span class="syntax-keyword">string name = ...</span>
+                </div>
+                <div class="syntax-explanation">
+                    <h5>Variable</h5>
+                    <p>Storage box for information. Can hold text, numbers, or other data</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <hr />
+    <div class="interactive-exercise">
+        <h3><i class="fas fa-puzzle-piece"></i> Let's Build Something Together!</h3>
+        <p>Try to predict what this program will do, then check your answer:</p>
+        
+        <div class="exercise-code">
+<pre><code class="language-csharp">using System;
 
-    <h2>🌍 Client-Server Model</h2>
-    <p>
-        ASP.NET Core applications follow the <strong>client-server architecture</strong>.  
-        Here’s how it works:
-    </p>
-    <ul>
-        <li><strong>Client:</strong> The user’s browser or mobile app that sends requests (e.g., clicking a button).</li>
-        <li><strong>Server:</strong> The ASP.NET Core application running on a server processes the request.</li>
-        <li><strong>Response:</strong> The server sends back an HTML page, JSON data, or another response type to the client.</li>
-    </ul>
+class SimpleCalculator
+{
+    static void Main()
+    {
+        Console.WriteLine("Simple Calculator");
+        Console.Write("Enter first number: ");
+        int num1 = Convert.ToInt32(Console.ReadLine());
+        
+        Console.Write("Enter second number: ");
+        int num2 = Convert.ToInt32(Console.ReadLine());
+        
+        int sum = num1 + num2;
+        Console.WriteLine($"The sum is: {sum}");
+    }
+}</code></pre>
+        </div>
+        
+        <div class="exercise-question">
+            <p><strong>Question:</strong> If the user enters 5 and 3, what will the program display?</p>
+            <div class="answer-options">
+                <button class="btn btn-outline-primary answer-btn" data-answer="A">A) 8</button>
+                <button class="btn btn-outline-primary answer-btn" data-answer="B">B) 53</button>
+                <button class="btn btn-outline-primary answer-btn" data-answer="C">C) 15</button>
+                <button class="btn btn-outline-primary answer-btn" data-answer="D">D) Error</button>
+            </div>
+            <div class="exercise-feedback"></div>
+        </div>
+    </div>
 
-    <p>This interaction happens every time a user interacts with your web application.</p>
-
-    <hr />
-
-    <h2>⚡ Why Use MVC?</h2>
-    <p>The MVC pattern brings several advantages:</p>
-    <ul>
-        <li><strong>Separation of Concerns:</strong> Each part (Model, View, Controller) has a clear responsibility.</li>
-        <li><strong>Maintainability:</strong> Easier to manage, extend, and debug.</li>
-        <li><strong>Reusability:</strong> Models and Views can be reused across different Controllers.</li>
-        <li><strong>Scalability:</strong> Perfect for applications that grow over time.</li>
-    </ul>
-
-    <hr />
-
-    <h2>🚀 What’s Next?</h2>
-    <p>
-        In the next chapters, we will explore each component of MVC in detail:  
-    </p>
-    <ul>
-        <li>How to create and use <strong>Controllers</strong>.</li>
-        <li>How to build <strong>Models</strong> and connect them to a database.</li>
-        <li>How to design <strong>Views</strong> to display data to users.</li>
-    </ul>
+    <div class="key-points">
+        <h3>Key Points to Remember</h3>
+        <ul>
+            <li><strong>.NET</strong> is a free, open-source platform for building many types of applications</li>
+            <li><strong>C#</strong> is the primary language used with .NET - it's clean and beginner-friendly</li>
+            <li>Every C# program needs a <strong>Main() method</strong> - this is where execution starts</li>
+            <li><strong>Console.WriteLine()</strong> displays text, <strong>Console.ReadLine()</strong> gets user input</li>
+            <li><strong>Classes</strong> are blueprints, <strong>methods</strong> are actions, <strong>variables</strong> store data</li>
+            <li><strong>Comments (//)</strong> are notes for developers - the computer ignores them</li>
+        </ul>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Instalation", "Web")" class="btn btn-outline-primary ajax-link">← Instalation of Visual Studio 2022</a>
-        <a href="@Url.Action("Controllers", "Web")" class="btn btn-primary ajax-link">Introduction to Controllers →</a>
+        <a href="@Url.Action("Instalation", "Web")" class="btn btn-outline-primary ajax-link">← Installation Guide</a>
+        <a href="@Url.Action("Controllers", "Web")" class="btn btn-primary ajax-link">Next: Controller Basics →</a>
     </div>
 </div>
 
 <style>
-    .container {
-        max-width: 800px;
+    .container { 
+        max-width: 900px; 
+        padding: 20px; 
+        background-color: var(--bs-body-bg); 
+    }
+    
+    h1, h2, h3, h4, h5 { 
+        color: var(--bs-heading-color); 
+        margin-bottom: 15px; 
+    }
+    
+    h1 { 
+        border-bottom: 2px solid var(--bs-primary); 
+        padding-bottom: 10px; 
+    }
+    
+    .beginner-note {
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .beginner-note-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+    
+    .intro-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border-radius: 8px;
+    }
+
+    .applications-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin: 30px 0;
+    }
+    
+    .application-card {
+        border: 2px solid var(--bs-border-color);
+        border-radius: 10px;
+        padding: 20px;
+        transition: all 0.3s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .application-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .app-icon {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        margin-bottom: 15px;
+        color: white;
+    }
+    
+    .app-icon.web { background-color: #28a745; }
+    .app-icon.desktop { background-color: #007bff; }
+    .app-icon.mobile { background-color: #6f42c1; }
+    .app-icon.api { background-color: #17a2b8; }
+    
+    .app-content h4 {
+        margin: 10px 0;
+    }
+    
+    .app-examples {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        justify-content: center;
+    }
+    
+    .app-badge {
+        background-color: rgba(0,0,0,0.1);
+        padding: 3px 8px;
+        border-radius: 12px;
+        font-size: 0.8rem;
+    }
+
+    .dotnet-family {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border-radius: 10px;
+    }
+    
+    .family-tree {
+        text-align: center;
+    }
+    
+    .family-root {
+        margin-bottom: 30px;
+    }
+    
+    .family-node {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .node-icon {
+        width: 80px;
+        height: 80px;
+        background-color: var(--bs-primary);
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+    }
+    
+    .family-branches {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    
+    .branch {
+        position: relative;
+        flex: 1;
+        min-width: 200px;
+    }
+    
+    .branch-line {
+        height: 40px;
+        width: 2px;
+        background-color: var(--bs-border-color);
         margin: 0 auto;
     }
+    
+    .branch-node {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .branch-node .node-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        background-color: var(--bs-success);
+    }
 
-    h1, h2 {
-        font-weight: bold;
-        color: #333;
+    .first-code-demo {
+        margin: 40px 0;
+    }
+    
+    .code-explanation {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: rgba(23, 162, 184, 0.1);
+        border-radius: 8px;
+    }
+    
+    .execution-flow {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         margin-top: 20px;
+        flex-wrap: wrap;
+        gap: 10px;
     }
-
-    .container ul {
-        list-style-type: none;
-        padding-left: 0;
+    
+    .flow-step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        min-width: 150px;
     }
-
-    .container li {
-        margin-bottom: 8px;
-    }
-
-    hr {
-        border-top: 1px solid #ddd;
-        margin: 20px 0;
-    }
-
-    .btn-primary, .btn-outline-primary {
-        text-decoration: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        margin: 5px;
-    }
-
-    .btn-primary {
-        background-color: #007bff;
+    
+    .flow-number {
+        background-color: var(--bs-info);
         color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    
+    .flow-arrow {
+        color: var(--bs-info);
+        font-size: 2rem;
+        font-weight: bold;
+    }
+    
+    .code-example {
+        border: 2px solid var(--bs-border-color);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    .code-header {
+        background-color: #2d2d2d;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #404040;
+    }
+    
+    .code-title {
+        color: #e0e0e0;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .copy-btn {
+        background-color: #404040;
         border: none;
+        color: #e0e0e0;
+    }
+    
+    .copy-btn:hover {
+        background-color: #505050;
+    }
+    
+    .code-content {
+        background-color: #1a1a1a;
+    }
+    
+    .code-output {
+        background-color: #2d2d2d;
+        border-top: 1px solid #404040;
+        padding: 20px;
+    }
+    
+    .output-header {
+        color: #98c379;
+        font-weight: bold;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .console-line {
+        font-family: monospace;
+        color: #e0e0e0;
+        margin: 5px 0;
+        padding-left: 20px;
+    }
+    
+    .user-input {
+        color: #e5c07b;
+        font-weight: bold;
     }
 
-    .btn-primary:hover {
-        background-color: #0056b3;
+    .syntax-guide {
+        margin: 40px 0;
     }
-
-    .btn-outline-primary {
-        border: 1px solid #007bff;
-        color: #007bff;
-        background-color: transparent;
+    
+    .syntax-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
     }
-
-    .btn-outline-primary:hover {
-        background-color: #007bff;
-        color: white;
+    
+    .syntax-item {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
     }
-
-    pre code {
-        background-color: #f8f9fa;
-        border: 1px solid #ddd;
+    
+    .syntax-header {
+        background-color: #2d2d2d;
         padding: 10px;
-        border-radius: 5px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        font-family: monospace;
+    }
+    
+    .syntax-keyword {
+        color: #c678dd;
+        font-weight: bold;
+    }
+    
+    .syntax-example {
+        color: #e5c07b;
+    }
+
+    .interactive-exercise {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid var(--bs-warning);
+        border-radius: 10px;
+    }
+    
+    .interactive-exercise h3 {
+        color: var(--bs-warning);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .exercise-code {
+        margin: 20px 0;
+        background-color: #1a1a1a;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .exercise-question {
+        margin-top: 25px;
+    }
+    
+    .answer-options {
+        display: flex;
+        gap: 10px;
+        margin: 15px 0;
+        flex-wrap: wrap;
+    }
+    
+    .answer-btn {
+        min-width: 100px;
+    }
+    
+    .answer-btn.correct {
+        background-color: #28a745 !important;
+        color: white !important;
+        border-color: #28a745 !important;
+    }
+    
+    .answer-btn.incorrect {
+        background-color: #dc3545 !important;
+        color: white !important;
+        border-color: #dc3545 !important;
+    }
+    
+    .exercise-feedback {
+        margin-top: 15px;
+        padding: 15px;
+        border-radius: 6px;
+        display: none;
+    }
+    
+    .exercise-feedback.correct {
+        background-color: rgba(40, 167, 69, 0.2);
+        border: 1px solid rgba(40, 167, 69, 0.3);
+        color: inherit;
         display: block;
-        margin-bottom: 20px;
+    }
+    
+    .exercise-feedback.incorrect {
+        background-color: rgba(220, 53, 69, 0.2);
+        border: 1px solid rgba(220, 53, 69, 0.3);
+        color: inherit;
+        display: block;
+    }
+    
+    .feedback-content {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .feedback-icon {
+        font-size: 1.5rem;
+        flex-shrink: 0;
+    }
+    
+    .feedback-text {
+        line-height: 1.4;
+    }
+    
+    .exercise-feedback.correct .feedback-icon {
+        color: var(--bs-success);
+    }
+    
+    .exercise-feedback.incorrect .feedback-icon {
+        color: var(--bs-danger);
+    }
+
+    .key-points {
+        margin: 30px 0;
+        padding: 25px;
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 1px solid var(--bs-primary);
+        border-radius: 10px;
+    }
+    
+    .key-points h3 {
+        color: var(--bs-primary);
+        margin-top: 0;
+    }
+    
+    .key-points ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .key-points li {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(13, 110, 253, 0.2);
+        position: relative;
+        padding-left: 30px;
+    }
+    
+    .key-points li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--bs-success);
+        font-weight: bold;
+    }
+    
+    .key-points li:last-child {
+        border-bottom: none;
     }
 
     .navigation-buttons {
-        margin-top: 30px;
         display: flex;
         justify-content: space-between;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
+    }
+    
+    .btn {
+        padding: 12px 25px;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: all 0.3s;
+    }
+    
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Responsive adjustments */
+    @@media (max-width: 768px) {
+        .beginner-note {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .execution-flow {
+            flex-direction: column;
+        }
+        
+        .flow-arrow {
+            transform: rotate(90deg);
+        }
+        
+        .answer-options {
+            flex-direction: column;
+        }
+        
+        .answer-btn {
+            width: 100%;
+        }
+        
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .navigation-buttons .btn {
+            width: 100%;
+            text-align: center;
+        }
     }
 </style>
+
+<script>
+$(document).ready(function() {
+    // Initialize syntax highlighting
+    if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+    }
+
+    $('.copy-btn').on('click', function() {
+        const $codeElement = $(this).closest('.code-example').find('code');
+        const codeText = $codeElement.text();
+        
+        navigator.clipboard.writeText(codeText).then(() => {
+            const originalText = $(this).html();
+            $(this).html('<i class="fas fa-check"></i> Copied!');
+            $(this).addClass('btn-success').removeClass('btn-outline-secondary');
+            
+            setTimeout(() => {
+                $(this).html(originalText);
+                $(this).removeClass('btn-success').addClass('btn-outline-secondary');
+            }, 2000);
+        });
+    });
+
+    $('.answer-btn').on('click', function() {
+        const $button = $(this);
+        const selectedAnswer = $button.data('answer');
+        const correctAnswer = "A";
+        const $feedback = $('.exercise-feedback');
+
+        $('.answer-btn').removeClass('correct incorrect');
+
+        if (selectedAnswer === correctAnswer) {
+            $button.addClass('correct');
+            $feedback.html(`
+                <div class="feedback-content">
+                    <i class="fas fa-check-circle feedback-icon"></i>
+                    <div class="feedback-text">
+                        <strong>Correct!</strong><br>
+                        The program adds 5 + 3 = 8. The + operator performs addition when used with numbers.
+                    </div>
+                </div>
+            `).addClass('correct').show();
+        } else {
+            $button.addClass('incorrect');
+            $feedback.html(`
+                <div class="feedback-content">
+                    <i class="fas fa-times-circle feedback-icon"></i>
+                    <div class="feedback-text">
+                        <strong>Not quite!</strong><br>
+                        Remember: When you use + with numbers, it adds them (5 + 3 = 8). 
+                        Only with text does it combine them ("5" + "3" = "53").
+                    </div>
+                </div>
+            `).addClass('incorrect').show();
+        }
+
+        $('.answer-btn[data-answer="' + correctAnswer + '"]').addClass('correct');
+    });
+
+    $('.application-card').hover(
+        function() {
+            $(this).css({
+                'transform': 'translateY(-5px)',
+                'box-shadow': '0 10px 20px rgba(0,0,0,0.15)'
+            });
+        },
+        function() {
+            $(this).css({
+                'transform': 'translateY(0)',
+                'box-shadow': 'none'
+            });
+        }
+    );
+
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    $('.syntax-item').each(function(index) {
+        $(this).css({
+            'opacity': '0',
+            'transform': 'translateY(20px)',
+            'transition': 'all 0.5s ease ' + (index * 0.1) + 's'
+        });
+        observer.observe(this);
+    });
+
+    const consoleLines = $('.console-line');
+    let currentLine = 0;
+    
+    function animateConsole() {
+        if (currentLine < consoleLines.length) {
+            const $line = $(consoleLines[currentLine]);
+            $line.css('opacity', '0');
+            
+            setTimeout(() => {
+                $line.animate({opacity: 1}, 800);
+            }, currentLine * 800);
+            
+            currentLine++;
+            setTimeout(animateConsole, 1000);
+        }
+    }
+
+    setTimeout(animateConsole, 2000);
+});
+</script>

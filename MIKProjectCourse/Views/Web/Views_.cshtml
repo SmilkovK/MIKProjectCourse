@@ -1,126 +1,601 @@
 ﻿@{
-    ViewData["Title"] = "Introduction to Views";
+    ViewData["Title"] = "View Basics in ASP.NET Core";
 }
 
 <div class="container">
-    <h1>📌 Understanding Views in ASP.NET Core MVC</h1>
+    <h1 class="text-center mb-4">View Basics in ASP.NET Core</h1>
 
-    <p>
-        Views are the part of your application that shows <strong>information to the user</strong>.  
-        They take data from your <strong>Models</strong> and display it in a web page.
-    </p>
-
-    <hr />
-
-    <h2>🔹 What Are Views?</h2>
-    <div class="card">
+    <div class="card border-primary mb-4">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+            <i class="fas fa-eye me-2"></i>
+            <h5 class="mb-0">Think of Views Like Restaurant Menus</h5>
+        </div>
         <div class="card-body">
-            <p>
-                In ASP.NET Core MVC, a <strong>View</strong> is responsible for displaying the user interface (UI).  
-                It is usually a combination of HTML and Razor syntax that can include dynamic data from your <strong>Models</strong>.
-            </p>
-            <p>
-                Views are linked to <strong>Controllers</strong>. Each controller action usually returns a view to display the data to the user.
-            </p>
+            <p class="card-text"><strong>Views = The visual presentation that users see and interact with</strong></p>
+            <p class="card-text"><strong>Simple analogy:</strong></p>
+            <ul>
+                <li><strong>Controller</strong> = Chef who prepares the food</li>
+                <li><strong>Model</strong> = Ingredients and recipe</li>
+                <li><strong>View</strong> = Beautiful menu presented to customers</li>
+                <li><strong>Razor Syntax</strong> = Special instructions for how to display the menu</li>
+            </ul>
+            <p class="card-text"><strong>In web terms:</strong> Views are the HTML pages that users see, with dynamic data inserted from controllers!</p>
         </div>
     </div>
 
-    <h2>🔹 Views in MVC</h2>
-    <div class="card">
+    <div class="card border-warning mb-4">
+        <div class="card-header bg-warning text-dark d-flex align-items-center">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            <h5 class="mb-0">Important Learning Path</h5>
+        </div>
         <div class="card-body">
-            <p>
-                Think of Views as the “face” of your application. They are what the user sees in the browser.  
-                Controllers send data to Views, and Views format that data as HTML to be displayed.
-            </p>
-            <p>
-                In this course, we will <strong>not go deep into Views</strong> because they are a long and complex topic.  
-                Instead, we will focus on <strong>Controllers</strong> and <strong>Models</strong> so you understand the core structure of an ASP.NET Core MVC app.
-            </p>
+            <p><strong>Views require HTML, CSS, and JavaScript knowledge!</strong></p>
+            <p>Before diving deep into Views, you should learn:</p>
+            <ul>
+                <li><strong>HTML</strong> - Page structure and content</li>
+                <li><strong>CSS</strong> - Styling and layout</li>
+                <li><strong>JavaScript</strong> - Interactivity and dynamic behavior</li>
+            </ul>
+            <div class="alert alert-info mb-0">
+                <i class="fas fa-lightbulb"></i> For now, we'll focus on understanding what Views ARE conceptually, not how to code them.
+            </div>
         </div>
     </div>
 
-    <hr />
-    <p class="text-center text-muted">
-        ✅ In short: Views are what the user sees. They get data from Models and are selected by Controllers.  
-        We will skip the details in this course to keep things simple for beginners.
-    </p>
+    <div class="intro-section card mb-4">
+        <div class="card-body">
+            <p>Now that you understand Controllers (the logic) and Models (the data), let's explore <strong>Views</strong> - the "V" in MVC. Views are what users actually see in their browsers - the HTML, CSS, and JavaScript that make up your web pages.</p>
+        </div>
+    </div>
+
+    <h2 class="text-center mb-4">How Views Work in MVC</h2>
+    
+    <div class="controller-flow mb-5">
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="flow-icon mb-3">
+                            <i class="fas fa-user fa-2x"></i>
+                        </div>
+                        <h5 class="card-title">User Request</h5>
+                        <p class="card-text">User visits a URL in their browser</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="flow-icon mb-3">
+                            <i class="fas fa-cogs fa-2x"></i>
+                        </div>
+                        <h5 class="card-title">Controller</h5>
+                        <p class="card-text">Processes the request and prepares data</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="flow-icon mb-3">
+                            <i class="fas fa-database fa-2x"></i>
+                        </div>
+                        <h5 class="card-title">Model</h5>
+                        <p class="card-text">Contains the data to display</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="flow-icon mb-3">
+                            <i class="fas fa-eye fa-2x"></i>
+                        </div>
+                        <h5 class="card-title">View</h5>
+                        <p class="card-text">Displays the data as HTML</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center mb-4">What Views Do</h2>
+    
+    <div class="code-demo mb-5">
+        <div class="card mb-4">
+            <div class="card-header bg-dark text-white d-flex align-items-center">
+                <i class="fas fa-file-code me-2"></i>
+                <h5 class="mb-0">Anatomy of a Razor View</h5>
+            </div>
+            <div class="card-body">
+                <p>Every Razor view has these key parts:</p>
+                
+                <div class="row g-4">
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="badge bg-primary me-3" style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">1</div>
+                                    <h6 class="mb-0">Razor Directives</h6>
+                                </div>
+                                <p class="card-text">Instructions like @@model, @@using that tell Razor what to do</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="badge bg-primary me-3" style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">2</div>
+                                    <h6 class="mb-0">HTML Structure</h6>
+                                </div>
+                                <p class="card-text">Standard HTML tags (div, p, h1, etc.) for page structure</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="badge bg-primary me-3" style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">3</div>
+                                    <h6 class="mb-0">C# Code Blocks</h6>
+                                </div>
+                                <p class="card-text">C# code inside @@{ } for logic and calculations</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center mb-3">
+                                    <div class="badge bg-primary me-3" style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;">4</div>
+                                    <h6 class="mb-0">Display Expressions</h6>
+                                </div>
+                                <p class="card-text">@@Model.Property to display data from the model</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center mb-4">Essential Razor Syntax</h2>
+    
+    <div class="razor-syntax mb-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-header bg-dark text-white">
+                        <code>@@model Type</code>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Model Directive</h5>
+                        <p class="card-text">Specifies what type of data this view expects</p>
+                        <div class="bg-light p-2 rounded mt-3 border border-secondary">
+                            <code>@@model Product</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-header bg-dark text-white">
+                        <code>@@Model.Property</code>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Display Data</h5>
+                        <p class="card-text">Shows a value from the model</p>
+                        <div class="bg-light p-2 rounded mt-3 border border-secondary">
+                            <code>&lt;h1&gt;@@Model.Name&lt;/h1&gt;</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-header bg-dark text-white">
+                        <code>@@if (condition) { }</code>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Conditional</h5>
+                        <p class="card-text">Shows content only if condition is true</p>
+                        <div class="bg-light p-2 rounded mt-3 border border-secondary">
+                            <code>@@if (Model.InStock) { &lt;p&gt;Available&lt;/p&gt; }</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-header bg-dark text-white">
+                        <code>@@foreach (var item in list) { }</code>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Loop</h5>
+                        <p class="card-text">Repeats content for each item in a collection</p>
+                        <div class="bg-light p-2 rounded mt-3 border border-secondary">
+                            <code>@@foreach (var product in Model.Products) { ... }</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-header bg-dark text-white">
+                        <code>@@{ C# code }</code>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Code Block</h5>
+                        <p class="card-text">Runs C# code (calculations, logic, variables)</p>
+                        <div class="bg-light p-2 rounded mt-3 border border-secondary">
+                            <code>@@{ var total = price * quantity; }</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100">
+                    <div class="card-header bg-dark text-white">
+                        <code>@@:Text</code>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Explicit Text</h5>
+                        <p class="card-text">Tells Razor to treat content as text, not code</p>
+                        <div class="bg-light p-2 rounded mt-3 border border-secondary">
+                            <code>@@{ @@:This is plain text }</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center mb-4">Different Types of Views</h2>
+    
+    <div class="view-types mb-5">
+        <div class="row g-4">
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="view-icon mb-3">
+                            <i class="fas fa-file-alt fa-2x"></i>
+                        </div>
+                        <h5 class="card-title">Regular Views</h5>
+                        <p class="card-text">Standard web pages</p>
+                        <div class="text-muted small">Views/Controller/Action.cshtml</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="view-icon mb-3">
+                            <i class="fas fa-code fa-2x"></i>
+                        </div>
+                        <h5 class="card-title">Partial Views</h5>
+                        <p class="card-text">Reusable UI components</p>
+                        <div class="text-muted small">Views/Shared/_Partial.cshtml</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="view-icon mb-3">
+                            <i class="fas fa-layer-group fa-2x"></i>
+                        </div>
+                        <h5 class="card-title">Layout Views</h5>
+                        <p class="card-text">Page templates/wrappers</p>
+                        <div class="text-muted small">Views/Shared/_Layout.cshtml</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div class="view-icon mb-3">
+                            <i class="fas fa-puzzle-piece fa-2x"></i>
+                        </div>
+                        <h5 class="card-title">View Components</h5>
+                        <p class="card-text">Complex reusable components</p>
+                        <div class="text-muted small">Views/Shared/Components/</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center mb-4">Conceptual Example</h2>
+    
+    <div class="conceptual-example mb-5">
+        <div class="card">
+            <div class="card-header bg-info text-white d-flex align-items-center">
+                <i class="fas fa-lightbulb me-2"></i>
+                <h5 class="mb-0">How Data Flows Through a View</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-primary">Controller Sends Data</h6>
+                        <div class="p-3 rounded mb-3 border border-secondary bg-light">
+                            <pre class="mb-0"><code>public IActionResult ProductDetails(int id)
+{
+    var product = GetProductFromDatabase(id);
+    return View(product);
+}</code></pre>
+                        </div>
+                        <p class="small text-muted">Controller gets data and passes it to View</p>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="text-primary">View Displays Data</h6>
+                        <div class="p-3 rounded mb-3 border border-secondary bg-light">
+                            <pre class="mb-0"><code>&lt;h1&gt;@@Model.Name&lt;/h1&gt;
+&lt;p&gt;Price: @@Model.Price.ToString("C")&lt;/p&gt;
+@@if (Model.InStock)
+{
+    &lt;button&gt;Add to Cart&lt;/button&gt;
+}</code></pre>
+                        </div>
+                        <p class="small text-muted">View formats data into HTML for the user</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="best-practices mb-5">
+        <h3 class="text-center mb-4">
+            <i class="fas fa-check-circle text-success me-2"></i>
+            View Best Practices
+        </h3>
+        
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Keep Views Simple
+                        </h5>
+                        <p class="card-text">Views should focus on display logic only. Complex calculations belong in controllers or models.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Use Strongly-Typed Views
+                        </h5>
+                        <p class="card-text">Always use @@model Type to get IntelliSense and compile-time checking.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Create Reusable Components
+                        </h5>
+                        <p class="card-text">Use partial views for repeated UI elements (headers, footers, product cards).</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Separate HTML and C#
+                        </h5>
+                        <p class="card-text">Keep C# code minimal in views. Use code blocks only for simple display logic.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-points card border-success mb-5">
+        <div class="card-header bg-success text-white">
+            <h5 class="mb-0">
+                <i class="fas fa-clipboard-check me-2"></i>
+                Key Points to Remember
+            </h5>
+        </div>
+        <div class="card-body">
+            <ul class="list-unstyled">
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> <strong>Views</strong> are the HTML pages that users see - they display data from models</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> <strong>Razor syntax</strong> (@@) lets you mix C# code with HTML for dynamic pages</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Use <strong>@@model Type</strong> to specify what data your view expects</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> <strong>@@Model.Property</strong> displays data from your model in the HTML</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Use <strong>@@if</strong> and <strong>@@foreach</strong> for conditional display and loops</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> <strong>Partial views</strong> are reusable components (start with _)</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> <strong>Layout views</strong> provide consistent page templates</li>
+                <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Keep views focused on <strong>display logic only</strong> - move complex logic to controllers</li>
+            </ul>
+        </div>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Models", "Web")" class="btn btn-outline-primary ajax-link">← Introduction to Program.cs</a>
-        <a href="@Url.Action("Database", "Web")" class="btn btn-primary ajax-link">Next Chapter →</a>
+        <a href="@Url.Action("Models", "Web")" class="btn btn-outline-primary">Back: Model Basics</a>
+        <a href="@Url.Action("Database", "Web")" class="btn btn-primary">Next: Database in .NET</a>
     </div>
 </div>
 
 <style>
-    .container {
-        max-width: 800px;
-        padding: 20px;
+    .container { 
+        max-width: 900px; 
+        padding: 20px; 
+        background-color: var(--bs-body-bg); 
     }
-
-    h1 {
-        color: var(--bs-heading-color);
-        margin-bottom: 20px;
+    
+    h1, h2, h3, h4, h5 { 
+        color: var(--bs-heading-color); 
+        margin-bottom: 15px; 
     }
-
-    h2 {
-        color: var(--bs-heading-color);
-        margin-top: 25px;
-        margin-bottom: 15px;
+    
+    h1 { 
+        border-bottom: 2px solid var(--bs-primary); 
+        padding-bottom: 10px; 
     }
-
-    p, ul {
-        color: var(--bs-body-color);
-        line-height: 1.6;
+    
+    .flow-icon {
+        background-color: var(--bs-info);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
     }
-
-    ul {
-        list-style-type: none;
-        padding-left: 0;
+    
+    .view-icon {
+        color: var(--bs-primary);
     }
-
-    ul li {
-        margin-bottom: 8px;
+    
+    /* Ensure code blocks are properly styled in dark mode */
+    pre code {
+        background-color: transparent !important;
+        padding: 0 !important;
     }
-
-    hr {
-        border-top: 1px solid var(--bs-border-color);
-        margin: 25px 0;
+    
+    /* Fix borders for both light and dark modes */
+    .border-secondary {
+        border-color: var(--bs-border-color) !important;
     }
-
-    .card {
-        border-radius: 8px;
-        margin-bottom: 20px;
-        border: 1px solid var(--bs-border-color);
-        background-color: var(--bs-body-bg);
-    }
-
-    .card-body {
-        padding: 15px;
-    }
-
+    
+    /* Navigation buttons styling to match Controller.cshtml */
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
-
-    .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+    
+    .navigation-buttons .btn {
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
+        transition: all 0.3s;
     }
-
-    .btn-primary {
-        background-color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    
+    .navigation-buttons .btn:hover {
+        transform: translateY(-2px);
     }
-
-    .btn-outline-primary {
-        color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    
+    /* Dark mode adjustments */
+    [data-bs-theme="dark"] .bg-light,
+    .dark-mode .bg-light {
+        background-color: #2d2d2d !important;
+        border-color: #495057 !important;
     }
-
-    p.text-muted {
-        color: var(--bs-secondary);
+    
+    [data-bs-theme="dark"] pre,
+    .dark-mode pre {
+        background-color: rgba(45, 45, 45, 0.5) !important;
+        border-color: #495057 !important;
+    }
+    
+    [data-bs-theme="dark"] .card-header.bg-dark {
+        background-color: #343a40 !important;
+    }
+    
+    /* Responsive design */
+    @@media (max-width: 768px) {
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .navigation-buttons .btn {
+            width: 100%;
+            text-align: center;
+        }
     }
 </style>
+
+<script>
+$(document).ready(function() {
+    if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+    }
+
+    $('.card').hover(
+        function() {
+            $(this).css('transform', 'translateY(-5px)');
+            $(this).css('transition', 'transform 0.3s ease');
+        },
+        function() {
+            $(this).css('transform', 'translateY(0)');
+        }
+    );
+
+    $('.flow-icon').each(function(index) {
+        $(this).css({
+            'opacity': '0',
+            'transform': 'scale(0.5)',
+            'transition': 'all 0.5s ease ' + (index * 0.3) + 's'
+        });
+    });
+    
+    setTimeout(() => {
+        $('.flow-icon').each(function() {
+            $(this).css({
+                'opacity': '1',
+                'transform': 'scale(1)'
+            });
+        });
+    }, 500);
+
+    function updateDarkModeStyles() {
+        const isDarkMode = document.documentElement.getAttribute('data-bs-theme') === 'dark' || 
+                          document.body.classList.contains('dark-mode') ||
+                          window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (isDarkMode) {
+            $('.bg-light').addClass('bg-dark');
+            $('.bg-light').removeClass('bg-light');
+            $('pre').css('background-color', 'rgba(45, 45, 45, 0.5)');
+            $('pre').css('border-color', '#495057');
+            $('.border-secondary').css('border-color', '#495057');
+        } else {
+            $('.bg-dark').addClass('bg-light');
+            $('.bg-dark').removeClass('bg-dark');
+            $('pre').css('background-color', '#f8f9fa');
+            $('pre').css('border-color', '#dee2e6');
+            $('.border-secondary').css('border-color', '#dee2e6');
+        }
+    }
+
+    updateDarkModeStyles();
+
+    const observer = new MutationObserver(updateDarkModeStyles);
+    observer.observe(document.documentElement, { 
+        attributes: true, 
+        attributeFilter: ['data-bs-theme'] 
+    });
+});
+</script>

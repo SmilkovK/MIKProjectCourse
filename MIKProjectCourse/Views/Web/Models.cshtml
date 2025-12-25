@@ -1,184 +1,299 @@
 ﻿@{
-    ViewData["Title"] = "Introduction to Models";
+    ViewData["Title"] = "Model Basics in ASP.NET Core";
 }
 
-<div class="container">
-    <h1>📌 Understanding Models in ASP.NET Core MVC</h1>
+<div class="container models-page">
+    <h1 class="text-center mb-4">Model Basics in ASP.NET Core</h1>
 
-    <p>
-        In ASP.NET Core MVC, <strong>Models</strong> are the part of your application that handles <strong>data and business logic</strong>.  
-        They represent real-world things like users, products, or orders.
-    </p>
-
-    <hr />
-
-    <h2>🔹 What is a Model?</h2>
-    <div class="card">
-        <div class="card-body">
-            <p>
-                A <strong>Model</strong> is a C# class that defines the structure of your data.  
-                For example, a <strong>User</strong> model might have properties like <code>Name</code>, <code>Email</code>, and <code>Age</code>.
-            </p>
-            <p>
-                Think of a model like a <strong>blueprint</strong> for your data. It tells the application what information exists and how it is stored.
-            </p>
+    <div class="card border-primary mb-4">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+            <i class="fas fa-database me-2"></i>
+            <h5 class="mb-0">What Are Models?</h5>
         </div>
-    </div>
-
-    <h2>🔹 Why Do We Need Models?</h2>
-    <ul class="list-group mb-3">
-        <li class="list-group-item">They define the <strong>structure of data</strong> in your application.</li>
-        <li class="list-group-item">They allow your app to <strong>store, retrieve, and manipulate data</strong> easily.</li>
-        <li class="list-group-item">They connect with <strong>databases</strong> using Entity Framework Core.</li>
-        <li class="list-group-item">They help keep your code organized by separating data logic from UI logic.</li>
-    </ul>
-
-    <h2>🔹 Models and Controllers</h2>
-    <div class="card">
         <div class="card-body">
             <p>
-                Controllers use models to <strong>get or update data</strong>. For example:
+                <strong>Models represent the DATA of your application.</strong>
+            </p>
+            <p>
+                If your app was a real system:
             </p>
             <ul>
-                <li>Controller asks the model for a list of users.</li>
-                <li>Controller sends that data to the view to display it.</li>
+                <li><strong>Model</strong> = Data (Student, User, Product)</li>
+                <li><strong>Controller</strong> = Logic (what happens)</li>
+                <li><strong>View</strong> = UI (what the user sees)</li>
             </ul>
-            <p>
-                Think of it like a restaurant:  
-                <strong>Model</strong> = the kitchen (where the food/data is prepared),  
-                <strong>Controller</strong> = the waiter (who takes orders and delivers food),  
-                <strong>View</strong> = the plate and presentation (what the user sees).
+            <p class="mb-0">
+                Models are written as <strong>normal C# classes</strong>.
             </p>
         </div>
     </div>
 
-    <h2>🔹 How Models Look in Code</h2>
-    <div class="card">
+    <div class="card border-warning mb-4">
+        <div class="card-header bg-warning text-dark">
+            <i class="fas fa-exclamation-triangle me-2"></i>
+            Before You Learn Models
+        </div>
         <div class="card-body">
-            <p>Here’s a simple example of a <strong>User</strong> model:</p>
-            <pre><code class="language-csharp">
-public class User
+            <ul class="mb-0">
+                <li>What a <strong>class</strong> is</li>
+                <li>What <strong>properties</strong> are</li>
+                <li>Basic data types: <code>int</code>, <code>string</code>, <code>bool</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 class="text-center mb-4">A Simple Model Example</h2>
+
+    <div class="card mb-5">
+        <div class="card-header bg-body-secondary fw-semibold">
+            Student Model
+        </div>
+        <div class="card-body">
+            <pre class="code-block">
+<code>
+public class Student
 {
-    public int Id { get; set; }      // Unique ID for the user
-    public string Name { get; set; } // User's name
-    public string Email { get; set; } // User's email
-    public int Age { get; set; }     // User's age
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public bool IsActive { get; set; }
 }
-            </code></pre>
-            <p>
-                ✅ Each property represents a piece of information about the user.  
-                Controllers can use this model to <strong>create, read, update, or delete users</strong> in the database.
+</code>
+            </pre>
+
+            <p class="mt-3 mb-0">
+                This model describes <strong>what data a Student has</strong>.
             </p>
         </div>
     </div>
 
-    <h2>🔹 Key Points About Models</h2>
-    <ul class="list-group mb-3">
-        <li>Models represent the <strong>data</strong> in your app.</li>
-        <li>Models are usually plain C# classes (<strong>POCOs</strong> – Plain Old CLR Objects).</li>
-        <li>They work together with <strong>Controllers</strong> and <strong>Views</strong> to show and update information.</li>
-        <li>They often map to <strong>database tables</strong> when using Entity Framework Core.</li>
-    </ul>
+    <h2 class="text-center mb-4">Why Models Matter</h2>
 
-    <hr />
-    <p class="text-center text-muted">
-        ✅ In short: Models = your data, Controllers = the middle-man, Views = what the user sees.
-    </p>
+    <div class="card mb-5">
+        <div class="card-body">
+            <ul>
+                <li>They define the <strong>structure</strong> of your data</li>
+                <li>They are shared between Controllers and Views</li>
+                <li>They make your code <strong>organized</strong></li>
+                <li>They are required for databases (later)</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 class="text-center mb-4">Models in the MVC Flow</h2>
+
+    <div class="row g-4 mb-5 text-center">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <i class="fas fa-user fa-2x mb-2"></i>
+                    <h6>User</h6>
+                    <p>Requests a page</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <i class="fas fa-cogs fa-2x mb-2"></i>
+                    <h6>Controller</h6>
+                    <p>Creates / loads a Model</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <i class="fas fa-database fa-2x mb-2"></i>
+                    <h6>Model</h6>
+                    <p>Holds the data</p>
+                </div>
+            </div>
+        </div>
+
+    <h2 class="text-center mb-4">Using a Model in a Controller</h2>
+
+    <div class="card mb-5">
+        <div class="card-body">
+            <pre class="code-block">
+<code>
+public IActionResult Details()
+{
+    var student = new Student
+    {
+        Id = 1,
+        Name = "Ana",
+        Age = 20,
+        IsActive = true
+    };
+
+    return View(student);
+}
+</code>
+            </pre>
+        </div>
+    </div>
+
+    <h2 class="text-center mb-4">Using a Model in a View</h2>
+
+    <div class="card mb-5">
+        <div class="card-body">
+            <pre class="code-block">
+<code>
+@@model Student
+
+&lt;h2&gt;@@Model.Name&lt;/h2&gt;
+&lt;p&gt;Age: @@Model.Age&lt;/p&gt;
+</code>
+            </pre>
+
+            <p class="mb-0">
+                Views <strong>display</strong> model data. They do NOT modify it.
+            </p>
+        </div>
+    </div>
+
+    <!-- DATA VALIDATION -->
+    <h2 class="text-center mb-4">Model Validation (Very Important)</h2>
+
+    <div class="card mb-5">
+        <div class="card-body">
+            <p>
+                Models can define <strong>rules</strong> using Data Annotations.
+            </p>
+
+            <pre class="code-block">
+<code>
+using System.ComponentModel.DataAnnotations;
+
+public class Student
+{
+    public int Id { get; set; }
+
+    [Required]
+    public string Name { get; set; }
+
+    [Range(6, 100)]
+    public int Age { get; set; }
+}
+</code>
+            </pre>
+
+            <p class="mb-0">
+                These rules are used automatically by MVC.
+            </p>
+        </div>
+    </div>
+
+    <h2 class="text-center mb-4">Types of Models Beginners Should Know</h2>
+
+    <div class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <strong>Domain Models</strong>
+                    <p class="mb-0">Represent real data (Student, Course)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <strong>View Models</strong>
+                    <p class="mb-0">Data prepared for a View</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <strong>DTOs</strong>
+                    <p class="mb-0">Data sent between layers / APIs</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center mb-4">Models & Databases (Coming Next)</h2>
+
+    <div class="card mb-5">
+        <div class="card-body">
+            <p>
+                Later, models will be connected to databases using:
+            </p>
+            <ul class="mb-0">
+                <li>Entity Framework Core</li>
+                <li>SQL tables</li>
+                <li>Migrations</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card border-success mb-5">
+        <div class="card-header bg-success text-white">
+            Key Points to Remember
+        </div>
+        <div class="card-body">
+            <ul class="mb-0">
+                <li>Models are C# classes</li>
+                <li>They define application data</li>
+                <li>They can include validation</li>
+                <li>They are shared between Controllers and Views</li>
+            </ul>
+        </div>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("ControllersExample", "Web")" class="btn btn-outline-primary ajax-link">← Controller Example with code</a>
-        <a href="@Url.Action("Views_", "Web")" class="btn btn-primary ajax-link">Introduction to views →</a>
+        <a href="@Url.Action("Controllers", "Web")" class="btn btn-outline-primary">
+            ← Controllers
+        </a>
+        <a href="@Url.Action("Views_", "Web")" class="btn btn-primary">
+            Views →
+        </a>
     </div>
 </div>
 
 <style>
-    .container {
-        max-width: 800px;
-        padding: 20px;
-    }
+.models-page {
+    max-width: 900px;
+    padding: 20px;
+}
 
-    h1 {
-        margin-bottom: 20px;
-    }
+.code-block {
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    border: 1px solid var(--bs-border-color);
+    border-radius: 6px;
+    padding: 15px;
+    overflow-x: auto;
+}
 
-    h2 {
-        margin-top: 25px;
-        margin-bottom: 15px;
-    }
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 20px;
+    border-top: 2px solid var(--bs-border-color);
+}
 
-    p, ul {
-        line-height: 1.6;
-    }
+.navigation-buttons .btn {
+    padding: 12px 28px;
+    font-weight: 500;
+    border-radius: 6px;
+}
 
-    ul {
-        list-style-type: none;
-        padding-left: 0;
-    }
-
-    ul li {
-        margin-bottom: 8px;
-    }
-
-    hr {
-        border-top: 1px solid #ddd;
-        margin: 25px 0;
-    }
-
-    .card {
-        border-radius: 8px;
-        margin-bottom: 20px;
-        border: 1px solid #ddd;
-        background-color: #f8f9fa;
-    }
-
-    .card-body {
-        padding: 15px;
-    }
-
-    pre code {
-        background-color: #f8f9fa;
-        border: 1px solid #ddd;
-        padding: 10px;
-        border-radius: 5px;
-        display: block;
-        margin-bottom: 20px;
-        color: #333;
-        font-family: Consolas, monospace;
-    }
-
-    .list-group-item {
-        padding: 10px 15px;
-        margin-bottom: 5px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        background-color: #f8f9fa;
-    }
-
+@@media (max-width: 768px) {
     .navigation-buttons {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 30px;
+        flex-direction: column;
     }
 
-    .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
-        font-weight: 500;
+    .navigation-buttons .btn {
+        width: 100%;
+        text-align: center;
     }
-
-    .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-        color: white;
-    }
-
-    .btn-outline-primary {
-        color: #007bff;
-        border-color: #007bff;
-        background-color: transparent;
-    }
-
-    p.text-muted {
-        color: #6c757d;
-    }
+}
 </style>

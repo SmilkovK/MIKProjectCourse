@@ -1,47 +1,161 @@
 ﻿@{
-    ViewData["Title"] = "Introduction to Program.cs in .NET";
+    ViewData["Title"] = "Program.cs in ASP.NET Core";
 }
 
 <div class="container">
-    <h1>⚙️ Understanding Program.cs in .NET</h1>
+    <h1 class="text-center">Understanding Program.cs in .NET</h1>
 
-    <p>
-        The <strong>Program.cs</strong> file is the starting point of a .NET application.  
-        It is where your application is configured and where the web server starts.
-    </p>
-
-    <hr />
-
-    <h2>🔹 What is Program.cs?</h2>
-    <div class="card">
-        <div class="card-body">
-            <p>
-                <strong>Program.cs</strong> contains the code that configures your application, sets up services, 
-                middleware, and defines how your app responds to HTTP requests.
-            </p>
-            <p>
-                In ASP.NET Core, it usually contains the <strong>WebApplication.CreateBuilder</strong> and <strong>app.Run()</strong> methods.
-            </p>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-play-circle"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Think of Program.cs Like a Movie Director</h4>
+            <p><strong>Program.cs = The starting point that sets everything up</strong></p>
+            <p><strong>Simple analogy:</strong></p>
+            <ul>
+                <li><strong>Program.cs</strong> = Movie director who sets up the stage</li>
+                <li><strong>Builder</strong> = Building the movie set and hiring actors</li>
+                <li><strong>App Configuration</strong> = Setting up cameras, lights, and equipment</li>
+                <li><strong>app.Run()</strong> = Director shouts "Action!" and the movie starts</li>
+            </ul>
+            <p><strong>In web terms:</strong> Program.cs is where your web application starts, gets configured, and begins running!</p>
         </div>
     </div>
 
-    <h2>🔹 Example Program.cs</h2>
-    <div class="card">
-        <div class="card-body">
-            <pre><code class="language-csharp">
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+    <div class="important-note">
+        <h4><i class="fas fa-exclamation-triangle"></i> Program.cs vs Main() Method</h4>
+        <p>In modern .NET, <strong>Program.cs</strong> uses a simplified approach called "Top-Level Statements." This means no more explicit <code>Main()</code> method - the code in Program.cs IS the entry point!</p>
+        <p>This makes it cleaner and easier to read for beginners.</p>
+    </div>
 
-var builder = WebApplication.CreateBuilder(args);
+    <div class="intro-section">
+        <p>The <strong>Program.cs</strong> file is the starting point of every .NET application. It's where your application is configured and where the web server starts running. Think of it as the "brain" that tells your app how to work!</p>
+        
+        <div class="alert alert-info">
+            <i class="fas fa-lightbulb"></i> <strong>Remember:</strong> Every time you run a .NET web app, Program.cs is the first file that executes. It sets up everything your app needs to work.
+        </div>
+    </div>
 
-// Add services to the container
+    <h2 class="text-center">What Program.cs Does</h2>
+    
+    <div class="controller-flow">
+        <div class="flow-diagram">
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>1. Entry Point</h5>
+                    <p>First file that runs when app starts</p>
+                </div>
+                <div class="flow-arrow"></div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>2. Create Builder</h5>
+                    <p>Sets up configuration and services</p>
+                </div>
+                <div class="flow-arrow"></div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>3. Configure App</h5>
+                    <p>Adds middleware and routing</p>
+                </div>
+                <div class="flow-arrow"></div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>4. Run Application</h5>
+                    <p>Starts web server and listens for requests</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center">Complete Program.cs Example</h2>
+    
+    <div class="code-demo">
+        <div class="demo-explanation">
+            <h4><i class="fas fa-file-code"></i> Anatomy of Program.cs</h4>
+            <p>Every Program.cs file has these essential parts:</p>
+            
+            <div class="controller-parts">
+                <div class="part-item">
+                    <div class="part-badge">1</div>
+                    <div class="part-content">
+                        <h6>Top-Level Statements</h6>
+                        <p>No Main() method needed - code runs from top to bottom</p>
+                    </div>
+                </div>
+                
+                <div class="part-item">
+                    <div class="part-badge">2</div>
+                    <div class="part-content">
+                        <h6>Create Builder</h6>
+                        <p><code>WebApplication.CreateBuilder()</code> sets everything up</p>
+                    </div>
+                </div>
+                
+                <div class="part-item">
+                    <div class="part-badge">3</div>
+                    <div class="part-content">
+                        <h6>Configure Services</h6>
+                        <p>Add controllers, database, authentication, etc.</p>
+                    </div>
+                </div>
+                
+                <div class="part-item">
+                    <div class="part-badge">4</div>
+                    <div class="part-content">
+                        <h6>Build & Run</h6>
+                        <p><code>builder.Build()</code> and <code>app.Run()</code> start the app</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="code-example">
+            <div class="code-header">
+                <div class="code-title">
+                    <i class="fas fa-file-code"></i> Program.cs - Complete Example
+                </div>
+                <button class="btn btn-sm btn-outline-secondary copy-btn">
+                    <i class="fas fa-copy"></i> Copy Code
+                </button>
+            </div>
+            
+            <div class="code-content">
+<pre><code class="language-csharp">var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
-if (!app.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
 {
     app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
@@ -49,132 +163,1192 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
+app.UseSession();
 
-// Map default route
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-app.Run();
-            </code></pre>
-            <p>
-                ✅ This code sets up a basic web application with MVC, routing, and middleware.
-            </p>
+Console.WriteLine("Application starting...");
+app.Run();</code></pre>
+            </div>
+            
+            <div class="code-explanation">
+                <div class="explanation-header">
+                    <i class="fas fa-info-circle"></i> Key Points About This Code
+                </div>
+                <div class="explanation-content">
+                    <p><strong>Service Registration:</strong></p>
+                    <ul>
+                        <li><code>AddControllersWithViews()</code> - Enables MVC pattern</li>
+                        <li><code>AddSession()</code> - Allows storing user data between requests</li>
+                        <li><code>AddAuthentication()</code> - Enables user login functionality</li>
+                    </ul>
+                    <p><strong>Middleware Order Matters:</strong> Requests flow through middleware in the order they're added. <code>UseRouting()</code> must come before <code>UseAuthorization()</code>.</p>
+                    <p><strong>Default Route:</strong> <code>{controller=Home}/{action=Index}/{id?}</code> means URLs like "/" go to HomeController.Index().</p>
+                </div>
+            </div>
+            
+            <div class="code-output">
+                <div class="output-header">
+                    <i class="fas fa-terminal"></i> What Happens When You Run This
+                </div>
+                <div class="url-mappings">
+                    <div class="mapping-item">
+                        <span class="url-path">dotnet run</span>
+                        <span class="mapping-arrow"></span>
+                        <span class="controller-info">Program.cs executes from top to bottom</span>
+                    </div>
+                    <div class="mapping-item">
+                        <span class="url-path">Create Builder</span>
+                        <span class="mapping-arrow"></span>
+                        <span class="controller-info">Sets up configuration and services</span>
+                    </div>
+                    <div class="mapping-item">
+                        <span class="url-path">Build App</span>
+                        <span class="mapping-arrow"></span>
+                        <span class="controller-info">Creates the web application instance</span>
+                    </div>
+                    <div class="mapping-item">
+                        <span class="url-path">Configure Middleware</span>
+                        <span class="mapping-arrow"></span>
+                        <span class="controller-info">Sets up request processing pipeline</span>
+                    </div>
+                    <div class="mapping-item">
+                        <span class="url-path">app.Run()</span>
+                        <span class="mapping-arrow"></span>
+                        <span class="controller-info">Web server starts on http://localhost:5000</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <h2>🔹 Key Points About Program.cs</h2>
-    <ul class="list-group mb-3">
-        <li><strong>Builder:</strong> Used to configure services and application settings.</li>
-        <li><strong>App:</strong> Configures middleware and handles HTTP requests.</li>
-        <li><strong>Services:</strong> Things your app needs, like controllers, databases, or authentication.</li>
-        <li><strong>Middleware:</strong> Components that process requests and responses in the pipeline.</li>
-        <li><strong>app.Run():</strong> Starts the web application.</li>
-    </ul>
+    <h2 class="text-center">Understanding Middleware</h2>
+    
+    <div class="action-methods">
+        <div class="methods-grid">
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="method-name">UseHttpsRedirection()</div>
+                </div>
+                <div class="method-content">
+                    <p><strong>Security</strong> - Redirects HTTP to HTTPS</p>
+                    <div class="method-url">Why: Makes your site secure</div>
+                    <div class="method-example">
+                        <code>app.UseHttpsRedirection();</code>
+                    </div>
+                    <div class="method-note">Always use in production</div>
+                </div>
+            </div>
+            
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-icon">
+                        <i class="fas fa-file"></i>
+                    </div>
+                    <div class="method-name">UseStaticFiles()</div>
+                </div>
+                <div class="method-content">
+                    <p><strong>Serves static files</strong> - CSS, JavaScript, images</p>
+                    <div class="method-url">Location: wwwroot folder</div>
+                    <div class="method-example">
+                        <code>app.UseStaticFiles();</code>
+                    </div>
+                    <div class="method-note">Required for your website styling</div>
+                </div>
+            </div>
+            
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <div class="method-name">UseRouting()</div>
+                </div>
+                <div class="method-content">
+                    <p><strong>Enables URL routing</strong></p>
+                    <div class="method-url">Maps: /Controller/Action/Id</div>
+                    <div class="method-example">
+                        <code>app.UseRouting();</code>
+                    </div>
+                    <div class="method-note">Required for MVC to work</div>
+                </div>
+            </div>
+            
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div class="method-name">UseAuthorization()</div>
+                </div>
+                <div class="method-content">
+                    <p><strong>User permissions</strong></p>
+                    <div class="method-url">Checks: Can user access this?</div>
+                    <div class="method-example">
+                        <code>app.UseAuthorization();</code>
+                    </div>
+                    <div class="method-note">Must come after UseRouting()</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <hr />
-    <p class="text-center text-muted">
-        ✅ In short: Program.cs is the entry point where your .NET application starts, configures services, sets up middleware, and runs the web server.
-    </p>
+    <h2 class="text-center">Development vs Production</h2>
+    
+    <div class="return-types">
+        <div class="returns-grid">
+            <div class="return-item">
+                <div class="return-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="return-content">
+                    <h5>Development Mode</h5>
+                    <p>Shows detailed error messages</p>
+                    <div class="code-snippet">
+                        <code>app.UseDeveloperExceptionPage();</code>
+                    </div>
+                    <div class="return-note">Use while coding - shows errors clearly</div>
+                </div>
+            </div>
+            
+            <div class="return-item">
+                <div class="return-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="return-content">
+                    <h5>Production Mode</h5>
+                    <p>Hides errors for security</p>
+                    <div class="code-snippet">
+                        <code>app.UseExceptionHandler("/Error");</code>
+                    </div>
+                    <div class="return-note">Use when app is live - user-friendly errors</div>
+                </div>
+            </div>
+            
+            <div class="return-item">
+                <div class="return-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="return-content">
+                    <h5>HSTS</h5>
+                    <p>HTTP Strict Transport Security</p>
+                    <div class="code-snippet">
+                        <code>app.UseHsts();</code>
+                    </div>
+                    <div class="return-note">Security feature for production</div>
+                </div>
+            </div>
+            
+            <div class="return-item">
+                <div class="return-icon">
+                    <i class="fas fa-bug"></i>
+                </div>
+                <div class="return-content">
+                    <h5>Environment Check</h5>
+                    <p>Different settings for dev/prod</p>
+                    <div class="code-snippet">
+                        <code>if (app.Environment.IsDevelopment())</code>
+                    </div>
+                    <div class="return-note">Check if running locally or on server</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="interactive-exercise">
+        <h3><i class="fas fa-puzzle-piece"></i> Middleware Order Quiz</h3>
+        <p>Test your knowledge of middleware order. Which order is correct?</p>
+        
+        <div class="quiz-container">
+            <div class="quiz-question">
+                <p><strong>Question:</strong> What is the correct order for these middleware components?</p>
+            </div>
+            
+            <div class="quiz-options">
+                <div class="quiz-option" data-correct="false">
+                    <div class="option-letter">A</div>
+                    <div class="option-content">
+                        <code>UseStaticFiles()</code> → <code>UseRouting()</code> → <code>UseHttpsRedirection()</code> → <code>UseAuthorization()</code>
+                    </div>
+                </div>
+                
+                <div class="quiz-option" data-correct="false">
+                    <div class="option-letter">B</div>
+                    <div class="option-content">
+                        <code>UseRouting()</code> → <code>UseAuthorization()</code> → <code>UseHttpsRedirection()</code> → <code>UseStaticFiles()</code>
+                    </div>
+                </div>
+                
+                <div class="quiz-option" data-correct="true">
+                    <div class="option-letter">C</div>
+                    <div class="option-content">
+                        <code>UseHttpsRedirection()</code> → <code>UseStaticFiles()</code> → <code>UseRouting()</code> → <code>UseAuthorization()</code>
+                    </div>
+                </div>
+                
+                <div class="quiz-option" data-correct="false">
+                    <div class="option-letter">D</div>
+                    <div class="option-content">
+                        <code>UseAuthorization()</code> → <code>UseHttpsRedirection()</code> → <code>UseStaticFiles()</code> → <code>UseRouting()</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quiz-feedback"></div>
+            <button class="btn btn-primary mt-3" id="checkQuiz">Check Answer</button>
+        </div>
+    </div>
+
+    <div class="routing-explanation">
+        <h3><i class="fas fa-map-signs"></i> URL Routing Configuration</h3>
+        
+        <div class="routing-table">
+            <div class="table-header">
+                <div class="col-url">Route Pattern</div>
+                <div class="col-controller">Example URL</div>
+                <div class="col-action">Controller</div>
+                <div class="col-params">Action</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="col-url">{controller=Home}/{action=Index}/{id?}</div>
+                <div class="col-controller">/</div>
+                <div class="col-action">Home</div>
+                <div class="col-params">Index</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="col-url">{controller=Home}/{action=Index}/{id?}</div>
+                <div class="col-controller">/Products</div>
+                <div class="col-action">Products</div>
+                <div class="col-params">Index</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="col-url">{controller=Home}/{action=Index}/{id?}</div>
+                <div class="col-controller">/Products/Details/5</div>
+                <div class="col-action">Products</div>
+                <div class="col-params">Details</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="col-url">blog/{*slug}</div>
+                <div class="col-controller">/blog/my-first-post</div>
+                <div class="col-action">Blog</div>
+                <div class="col-params">Post</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="col-url">api/{controller}/{id?}</div>
+                <div class="col-controller">/api/products/5</div>
+                <div class="col-action">Products</div>
+                <div class="col-params">Get (API)</div>
+            </div>
+        </div>
+        
+        <div class="routing-note">
+            <i class="fas fa-info-circle"></i>
+            <p><strong>Route Parameters:</strong> <code>{id?}</code> means optional, <code>{*slug}</code> means catch-all. Default values like <code>{controller=Home}</code> set defaults when not specified.</p>
+        </div>
+    </div>
+
+    <div class="key-points">
+        <h3>Key Points to Remember</h3>
+        <ul>
+            <li><strong>Program.cs</strong> is the entry point of every .NET application - it runs first</li>
+            <li>Modern .NET uses <strong>top-level statements</strong> - no explicit Main() method needed</li>
+            <li><strong>WebApplication.CreateBuilder()</strong> creates the configuration builder</li>
+            <li><strong>builder.Services.Add()</strong> methods register services your app needs</li>
+            <li><strong>Middleware order is critical</strong> - they run in the sequence you add them</li>
+            <li><strong>app.MapControllerRoute()</strong> defines how URLs map to controllers</li>
+            <li><strong>Development vs Production</strong> have different error handling and security</li>
+            <li><strong>app.Run()</strong> starts the web server - nothing runs after this line!</li>
+            <li>Default route: <code>{controller=Home}/{action=Index}/{id?}</code></li>
+        </ul>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Database", "Web")" class="btn btn-outline-primary ajax-link">← Introduction to .NET Database</a>
-        <a href="@Url.Action("Summary", "Web")" class="btn btn-primary ajax-link">Summary of Current Chapter →</a>
+        <a href="@Url.Action("Database", "Web")" class="btn btn-outline-primary">Back: Database in .NET</a>
+        <a href="@Url.Action("Summary", "Web")" class="btn btn-primary">Next: Chapter Summary</a>
     </div>
 </div>
 
 <style>
-    .container {
-        max-width: 800px;
+    .container { 
+        max-width: 900px; 
+        padding: 20px; 
+        background-color: var(--bs-body-bg); 
+    }
+    
+    h1, h2, h3, h4, h5 { 
+        color: var(--bs-heading-color); 
+        margin-bottom: 15px; 
+    }
+    
+    h1 { 
+        border-bottom: 2px solid var(--bs-primary); 
+        padding-bottom: 10px; 
+    }
+    
+    .beginner-note {
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .beginner-note-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+    
+    .important-note {
+        background-color: rgba(255, 193, 7, 0.2);
+        border: 2px solid var(--bs-warning);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .important-note h4 {
+        color: var(--bs-warning);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 0;
+    }
+    
+    .intro-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border-radius: 8px;
+    }
+
+    .controller-flow {
+        margin: 40px 0;
+    }
+    
+    .flow-diagram {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .flow-step {
+        flex: 1;
+        min-width: 200px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        position: relative;
+    }
+    
+    .flow-icon {
+        background-color: var(--bs-info);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+    }
+    
+    .flow-content h5 {
+        margin: 0 0 5px 0;
+        color: var(--bs-info);
+    }
+    
+    .flow-arrow {
+        position: absolute;
+        right: -25px;
+        color: var(--bs-info);
+        font-size: 24px;
+        font-weight: bold;
+    }
+    
+    .flow-arrow:after {
+        content: "→";
+    }
+    
+    @@media (max-width: 992px) {
+        .flow-step {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .flow-arrow {
+            right: 0;
+            bottom: -25px;
+            transform: rotate(90deg);
+        }
+    }
+
+    .code-demo {
+        margin: 40px 0;
+    }
+    
+    .demo-explanation {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: rgba(23, 162, 184, 0.1);
+        border-radius: 8px;
+    }
+    
+    .controller-parts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .part-item {
+        display: flex;
+        gap: 15px;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+    
+    .part-badge {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+    
+    .code-example {
+        border: 2px solid var(--bs-border-color);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    .code-header {
+        background-color: #2d2d2d;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #404040;
+    }
+    
+    .code-title {
+        color: #e0e0e0;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .copy-btn {
+        background-color: #404040;
+        border: none;
+        color: #e0e0e0;
+    }
+    
+    .copy-btn:hover {
+        background-color: #505050;
+    }
+    
+    .code-content {
+        background-color: #1a1a1a;
+        padding: 20px;
+        overflow-x: auto;
+    }
+    
+    .code-explanation {
+        background-color: #2d2d2d;
+        border-top: 1px solid #404040;
         padding: 20px;
     }
-
-    h1 {
-        margin-bottom: 20px;
-    }
-
-    h2 {
-        margin-top: 25px;
+    
+    .explanation-header {
+        color: #98c379;
+        font-weight: bold;
         margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .explanation-content {
+        color: #e0e0e0;
+    }
+    
+    .explanation-content ul {
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+    
+    .explanation-content li {
+        margin-bottom: 5px;
+    }
+    
+    .code-output {
+        background-color: #2d2d2d;
+        border-top: 1px solid #404040;
+        padding: 20px;
+    }
+    
+    .output-header {
+        color: #98c379;
+        font-weight: bold;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .url-mappings {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .mapping-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+    }
+    
+    .url-path {
+        font-family: monospace;
+        color: #e06c75;
+        font-weight: bold;
+        min-width: 150px;
+    }
+    
+    .mapping-arrow {
+        color: #61afef;
+    }
+    
+    .mapping-arrow:after {
+        content: "→";
+    }
+    
+    .controller-info {
+        font-family: monospace;
+        color: #98c379;
     }
 
-    p, ul {
-        line-height: 1.6;
+    .action-methods {
+        margin: 40px 0;
     }
-
-    ul {
-        list-style-type: none;
-        padding-left: 0;
+    
+    .methods-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
     }
-
-    ul li {
-        margin-bottom: 8px;
-    }
-
-    hr {
-        border-top: 1px solid #ddd;
-        margin: 25px 0;
-    }
-
-    .card {
+    
+    .method-card {
+        border: 1px solid var(--bs-border-color);
         border-radius: 8px;
-        margin-bottom: 20px;
-        border: 1px solid #ddd;
-        background-color: #f8f9fa;
+        overflow: hidden;
+        transition: all 0.3s;
     }
-
-    .card-body {
+    
+    .method-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .method-header {
+        background-color: var(--bs-primary);
+        color: white;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .method-icon {
+        background-color: white;
+        color: var(--bs-primary);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+    
+    .method-name {
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+    
+    .method-content {
         padding: 15px;
     }
-
-    pre code {
-        background-color: #f8f9fa;
-        border: 1px solid #ddd;
+    
+    .method-url {
+        font-family: monospace;
+        color: var(--bs-info);
+        font-size: 0.9rem;
+        margin: 10px 0;
+    }
+    
+    .method-example {
+        background-color: #2d2d2d;
+        color: #e0e0e0;
         padding: 10px;
-        border-radius: 5px;
-        display: block;
-        margin-bottom: 20px;
-        color: #333;
-        font-family: Consolas, monospace;
+        border-radius: 6px;
+        font-family: monospace;
+        font-size: 0.9rem;
+    }
+    
+    .method-note {
+        margin-top: 10px;
+        font-size: 0.85rem;
+        color: var(--bs-secondary);
+        font-style: italic;
     }
 
-    .list-group-item {
-        padding: 10px 15px;
-        margin-bottom: 5px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        background-color: #f8f9fa;
+    .return-types {
+        margin: 40px 0;
+    }
+    
+    .returns-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+    
+    .return-item {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        transition: all 0.3s;
+    }
+    
+    .return-item:hover {
+        border-color: var(--bs-primary);
+        transform: translateY(-3px);
+    }
+    
+    .return-icon {
+        background-color: var(--bs-success);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin: 0 auto 15px;
+    }
+    
+    .return-content h5 {
+        margin-top: 0;
+        color: var(--bs-success);
+    }
+    
+    .code-snippet {
+        background-color: #2d2d2d;
+        color: #e0e0e0;
+        padding: 10px;
+        border-radius: 6px;
+        font-family: monospace;
+        margin: 10px 0;
+        font-size: 0.9rem;
+    }
+    
+    .return-note {
+        font-size: 0.85rem;
+        color: var(--bs-secondary);
+        font-style: italic;
+        margin-top: 10px;
+    }
+
+    .interactive-exercise {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid var(--bs-warning);
+        border-radius: 10px;
+    }
+    
+    .interactive-exercise h3 {
+        color: var(--bs-warning);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 0;
+    }
+    
+    .quiz-container {
+        margin: 20px 0;
+    }
+    
+    .quiz-question {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    
+    .quiz-options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .quiz-option {
+        display: flex;
+        gap: 15px;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 2px solid transparent;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .quiz-option:hover {
+        background-color: rgba(255, 193, 7, 0.1);
+        border-color: var(--bs-warning);
+    }
+    
+    .quiz-option.selected {
+        background-color: rgba(13, 110, 253, 0.1);
+        border-color: var(--bs-primary);
+    }
+    
+    .quiz-option.correct {
+        background-color: rgba(40, 167, 69, 0.1);
+        border-color: var(--bs-success);
+    }
+    
+    .quiz-option.incorrect {
+        background-color: rgba(220, 53, 69, 0.1);
+        border-color: var(--bs-danger);
+    }
+    
+    .option-letter {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+    
+    .quiz-option.correct .option-letter {
+        background-color: var(--bs-success);
+    }
+    
+    .quiz-option.incorrect .option-letter {
+        background-color: var(--bs-danger);
+    }
+    
+    .option-content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+    
+    .option-content code {
+        font-size: 1rem;
+        margin: 0 5px;
+    }
+    
+    .quiz-feedback {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 6px;
+        display: none;
+        border: 1px solid transparent;
+        font-weight: 500;
+    }
+    
+    .quiz-feedback.success {
+        background-color: rgba(40, 167, 69, 0.2);
+        color: #d4edda !important;
+        border-color: #28a745;
+        display: block;
+    }
+    
+    .quiz-feedback.error {
+        background-color: rgba(220, 53, 69, 0.2);
+        color: #f8d7da !important;
+        border-color: #dc3545;
+        display: block;
+    }
+
+    .routing-explanation {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 10px;
+    }
+    
+    .routing-explanation h3 {
+        color: var(--bs-indigo);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 0;
+    }
+    
+    .routing-table {
+        margin: 20px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .table-header {
+        display: flex;
+        background-color: var(--bs-indigo);
+        color: white;
+        font-weight: bold;
+    }
+    
+    .table-row {
+        display: flex;
+        border-top: 1px solid var(--bs-border-color);
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    .col-url, .col-controller, .col-action, .col-params {
+        padding: 12px 15px;
+        flex: 1;
+    }
+    
+    .col-url {
+        font-family: monospace;
+        color: #e06c75;
+    }
+    
+    .col-controller, .col-action {
+        color: #61afef;
+        font-weight: bold;
+    }
+    
+    .col-params {
+        color: #98c379;
+        font-family: monospace;
+        font-size: 0.9rem;
+    }
+    
+    .routing-note {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+        margin-top: 20px;
+        padding: 15px;
+        background-color: rgba(111, 66, 193, 0.2);
+        border-radius: 6px;
+    }
+    
+    .routing-note i {
+        color: var(--bs-indigo);
+        font-size: 1.5rem;
+        flex-shrink: 0;
+        margin-top: 3px;
+    }
+
+    .key-points {
+        margin: 30px 0;
+        padding: 25px;
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 1px solid var(--bs-primary);
+        border-radius: 10px;
+    }
+    
+    .key-points h3 {
+        color: var(--bs-primary);
+        margin-top: 0;
+    }
+    
+    .key-points ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .key-points li {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(13, 110, 253, 0.2);
+        position: relative;
+        padding-left: 30px;
+    }
+    
+    .key-points li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--bs-success);
+        font-weight: bold;
+    }
+    
+    .key-points li:last-child {
+        border-bottom: none;
     }
 
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
-
+    
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
+        transition: all 0.3s;
+    }
+    
+    .btn:hover {
+        transform: translateY(-2px);
     }
 
-    .btn-primary {
-        background-color: #007bff;
-        border-color: #007bff;
-        color: white;
-    }
-
-    .btn-outline-primary {
-        color: #007bff;
-        border-color: #007bff;
-        background-color: transparent;
-    }
-
-    p.text-muted {
-        color: #6c757d;
+    @@media (max-width: 768px) {
+        .beginner-note {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .quiz-option {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .option-letter {
+            align-self: flex-start;
+        }
+        
+        .table-header, .table-row {
+            flex-direction: column;
+        }
+        
+        .col-url, .col-controller, .col-action, .col-params {
+            padding: 8px 10px;
+        }
+        
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .navigation-buttons .btn {
+            width: 100%;
+            text-align: center;
+        }
     }
 </style>
+
+<script>
+$(document).ready(function() {
+    // Initialize syntax highlighting
+    if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+    }
+
+    // Copy code functionality
+    $('.copy-btn').on('click', function() {
+        const $codeElement = $(this).closest('.code-example').find('code');
+        const codeText = $codeElement.text();
+        
+        navigator.clipboard.writeText(codeText).then(() => {
+            const originalText = $(this).html();
+            $(this).html('<i class="fas fa-check"></i> Copied!');
+            $(this).addClass('btn-success').removeClass('btn-outline-secondary');
+            
+            setTimeout(() => {
+                $(this).html(originalText);
+                $(this).removeClass('btn-success').addClass('btn-outline-secondary');
+            }, 2000);
+        });
+    });
+
+    // Quiz functionality
+    let selectedOption = null;
+    
+    $('.quiz-option').on('click', function() {
+        // Remove selected class from all options
+        $('.quiz-option').removeClass('selected');
+        
+        // Add selected class to clicked option
+        $(this).addClass('selected');
+        selectedOption = $(this);
+        
+        // Clear any previous feedback
+        $('.quiz-feedback').hide().removeClass('success error').empty();
+    });
+
+    $('#checkQuiz').on('click', function() {
+        const $feedback = $('.quiz-feedback');
+        
+        if (!selectedOption) {
+            $feedback.html(`
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-exclamation-circle" style="color: #ffc107; font-size: 1.5rem;"></i>
+                    <div>
+                        <strong>Please select an answer first!</strong>
+                    </div>
+                </div>
+            `).addClass('error').show();
+            return;
+        }
+        
+        const isCorrect = selectedOption.data('correct') === true;
+        
+        // Mark all options as correct/incorrect
+        $('.quiz-option').each(function() {
+            const $option = $(this);
+            const correct = $option.data('correct') === true;
+            
+            if (correct) {
+                $option.addClass('correct');
+            } else {
+                $option.addClass('incorrect');
+            }
+        });
+        
+        if (isCorrect) {
+            $feedback.html(`
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle" style="color: #28a745; font-size: 1.5rem;"></i>
+                    <div>
+                        <strong style="font-size: 1.1em;">Correct!</strong><br>
+                        The correct order is: HTTPS Redirection → Static Files → Routing → Authorization.<br>
+                        <strong>Why this order matters:</strong><br>
+                        1. <code>UseHttpsRedirection()</code> first for security<br>
+                        2. <code>UseStaticFiles()</code> to serve CSS/JS/images<br>
+                        3. <code>UseRouting()</code> to determine which controller to use<br>
+                        4. <code>UseAuthorization()</code> last to check permissions after routing
+                    </div>
+                </div>
+            `).addClass('success').show();
+        } else {
+            $feedback.html(`
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-exclamation-circle" style="color: #ffc107; font-size: 1.5rem;"></i>
+                    <div>
+                        <strong style="font-size: 1.1em;">Not quite right!</strong><br>
+                        The correct order is: <code>UseHttpsRedirection()</code> → <code>UseStaticFiles()</code> → <code>UseRouting()</code> → <code>UseAuthorization()</code><br>
+                        <strong>Remember:</strong><br>
+                        • Security first (HTTPS)<br>
+                        • Static files before routing<br>
+                        • Routing before authorization<br>
+                        • Authorization checks permissions after the route is determined
+                    </div>
+                </div>
+            `).addClass('error').show();
+        }
+        
+        // Scroll to feedback
+        $('html, body').animate({
+            scrollTop: $feedback.offset().top - 100
+        }, 500);
+    });
+
+    // Add click interaction to method cards
+    $('.method-card').on('click', function() {
+        const $card = $(this);
+        $card.toggleClass('active');
+        
+        if ($card.hasClass('active')) {
+            $card.css('transform', 'translateY(-8px) scale(1.02)');
+            $card.css('box-shadow', '0 15px 30px rgba(0,0,0,0.2)');
+        } else {
+            $card.css('transform', 'translateY(0) scale(1)');
+            $card.css('box-shadow', 'none');
+        }
+    });
+
+    // Flow animation
+    const flowSteps = $('.flow-step');
+    let currentStep = 0;
+    
+    function animateFlow() {
+        if (currentStep >= flowSteps.length) {
+            currentStep = 0;
+            flowSteps.removeClass('active');
+        }
+        
+        flowSteps.eq(currentStep).addClass('active');
+        currentStep++;
+        setTimeout(animateFlow, 2000);
+    }
+
+    // Initialize flow animation
+    flowSteps.each(function(index) {
+        $(this).css({
+            'opacity': '0.7',
+            'transform': 'translateY(10px)',
+            'transition': 'all 0.5s ease ' + (index * 0.2) + 's'
+        });
+    });
+
+    setTimeout(() => {
+        flowSteps.each(function(index) {
+            $(this).css({
+                'opacity': '1',
+                'transform': 'translateY(0)'
+            });
+        });
+        setTimeout(animateFlow, 1000);
+    }, 500);
+
+    // Hover effect for return items
+    $('.return-item').hover(
+        function() {
+            $(this).find('.code-snippet').css('background-color', '#404040');
+        },
+        function() {
+            $(this).find('.code-snippet').css('background-color', '#2d2d2d');
+        }
+    );
+});
+</script>

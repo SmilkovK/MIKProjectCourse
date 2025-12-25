@@ -1,160 +1,1236 @@
 ﻿@{
-    ViewData["Title"] = "Controller Example with Code";
+    ViewData["Title"] = "Controller Example: Building a Product Catalog";
 }
 
 <div class="container">
-    <h1>💻 Example Controller Explained</h1>
+    <h1 class="text-center">Controller Example: Building a Product Catalog</h1>
 
-    <p>
-        Let's look at a simple example of a controller and understand what each part does.
-    </p>
-
-    <hr />
-
-    <h2>🔹 Example Controller</h2>
-    <div class="code-container">
-        <div class="code-header">C# Controller Example</div>
-        <div class="code-content">
-            <pre><code class="language-csharp">
-using Microsoft.AspNetCore.Mvc;
-
-namespace MyApp.Controllers
-{
-    public class HomeController : Controller
-    {
-        // Action for the home page
-        public IActionResult Index()
-        {
-            return View(); // Sends the Index.cshtml page to the browser
-        }
-
-        // Action for the About page
-        public IActionResult About()
-        {
-            ViewData["Message"] = "This is the About page."; // Pass data to the view
-            return View(); // Sends the About.cshtml page to the browser
-        }
-    }
-}
-            </code></pre>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Think of This Like Building a Simple Online Store</h4>
+            <p><strong>Product Catalog = A collection of items with details and actions</strong></p>
+            <p><strong>Simple analogy:</strong></p>
+            <ul>
+                <li><strong>ProductsController</strong> = Store manager who handles all product-related tasks</li>
+                <li><strong>Action Methods</strong> = Specific jobs (list products, show details, add new products)</li>
+                <li><strong>Views</strong> = Store shelves and display cases showing products</li>
+                <li><strong>Models</strong> = Product information cards with details</li>
+            </ul>
+            <p><strong>In web terms:</strong> We're building a complete system to manage and display products!</p>
         </div>
     </div>
 
-    <h2>🔹 What This Code Does</h2>
-    <ul>
-        <li><strong>using Microsoft.AspNetCore.Mvc;</strong> → Imports MVC library for controllers & views.</li>
-        <li><strong>namespace MyApp.Controllers</strong> → Organizes your controllers in a namespace.</li>
-        <li><strong>public class HomeController : Controller</strong> → Defines a controller class inheriting from Controller.</li>
-        <li><strong>public IActionResult Index()</strong> → Handles requests for the home page.</li>
-        <li><strong>return View();</strong> → Returns the view (web page) to the browser.</li>
-        <li><strong>public IActionResult About()</strong> → Handles requests for the About page.</li>
-        <li><strong>ViewData["Message"]</strong> → Passes data to the view.</li>
-    </ul>
+    <div class="important-note">
+        <h4><i class="fas fa-exclamation-triangle"></i> Important Setup Reminder</h4>
+        <p>Remember to select <strong>ASP.NET Core Web App (Model-View-Controller)</strong> template in Visual Studio 2022. This gives you the MVC structure automatically!</p>
+    </div>
 
-    <h2>🔹 How It Works Step by Step</h2>
-    <ul>
-        <li>1️⃣ User goes to <code>/Home/Index</code> → <strong>Index</strong> action runs → Index View is displayed.</li>
-        <li>2️⃣ User goes to <code>/Home/About</code> → <strong>About</strong> action runs → About View is displayed with the message.</li>
-        <li>3️⃣ The controller decides which page and data to show → acts as a bridge between user and app.</li>
-    </ul>
+    <div class="intro-section">
+        <p>Let's build a real-world example: a <strong>Product Catalog</strong> for an online store. This example will show you how controllers handle different types of requests, work with data, and produce responses.</p>
+        
+        <div class="alert alert-info">
+            <i class="fas fa-code"></i> <strong>Note:</strong> We'll focus on the controller logic. In the next sections, you'll learn about models and views that complete this picture.
+        </div>
+    </div>
 
-    <p><strong>✅ In short:</strong> Controllers manage requests, interact with models if needed, and return the appropriate views or data.</p>
+    <h2 class="text-center">Complete ProductsController Example</h2>
+    
+    <div class="code-demo">
+        <div class="demo-explanation">
+            <h4><i class="fas fa-cogs"></i> What This Controller Does</h4>
+            <p>This controller handles all product-related operations in our store:</p>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-list"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h6>List Products</h6>
+                        <p>Shows all products in the catalog</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h6>View Details</h6>
+                        <p>Shows detailed information about a specific product</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h6>Add Products</h6>
+                        <p>Allows adding new products to the catalog</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h6>Edit Products</h6>
+                        <p>Allows updating existing product information</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="code-example">
+            <div class="code-header">
+                <div class="code-title">
+                    <i class="fas fa-file-code"></i> ProductsController.cs - Complete Example
+                </div>
+                <div class="code-actions">
+                    <button class="btn btn-sm btn-outline-secondary copy-btn">
+                        <i class="fas fa-copy"></i> Copy Code
+                    </button>
+                    <button class="btn btn-sm btn-outline-primary" id="toggleComments">
+                        <i class="fas fa-comment"></i> Toggle Comments
+                    </button>
+                </div>
+            </div>
+            
+            <div class="code-content">
+<pre><code class="language-csharp">using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace MyStore.Controllers
+{
+    public class ProductsController : Controller
+    {
+        // In-memory list to simulate a database
+        // In real applications, this would come from a database
+        private static List<Product> products = new List<Product>
+        {
+            new Product { Id = 1, Name = "Laptop", Price = 999.99m, Category = "Electronics" },
+            new Product { Id = 2, Name = "Coffee Mug", Price = 12.50m, Category = "Kitchen" },
+            new Product { Id = 3, Name = "Book", Price = 24.99m, Category = "Education" }
+        };
+
+        // GET: /Products
+        // Shows all products
+        [HttpGet]
+        public IActionResult Index()
+        {
+            // Pass the list of products to the view
+            return View(products);
+        }
+
+        // GET: /Products/Details/5
+        // Shows details of a specific product
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            // Find the product with matching ID
+            var product = products.Find(p => p.Id == id);
+            
+            // Check if product was found
+            if (product == null)
+            {
+                // Return 404 Not Found if product doesn't exist
+                return NotFound();
+            }
+            
+            // Pass the found product to the view
+            return View(product);
+        }
+
+        // GET: /Products/Create
+        // Shows the form to create a new product
+        [HttpGet]
+        public IActionResult Create()
+        {
+            // Return empty form
+            return View();
+        }
+
+        // POST: /Products/Create
+        // Handles form submission for creating a product
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Product product)
+        {
+            // Check if the submitted data is valid
+            // ModelState checks if all required fields are filled correctly
+            if (ModelState.IsValid)
+            {
+                // Generate a new ID (simulating database auto-increment)
+                product.Id = products.Count > 0 ? products.Max(p => p.Id) + 1 : 1;
+                
+                // Add the new product to our list
+                products.Add(product);
+                
+                // Redirect to the product list with success message
+                TempData["SuccessMessage"] = "Product created successfully!";
+                return RedirectToAction(nameof(Index));
+            }
+            
+            // If data is invalid, show the form again with error messages
+            return View(product);
+        }
+
+        // GET: /Products/Edit/5
+        // Shows the form to edit an existing product
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var product = products.Find(p => p.Id == id);
+            
+            if (product == null)
+            {
+                return NotFound();
+            }
+            
+            return View(product);
+        }
+
+        // POST: /Products/Edit/5
+        // Handles form submission for editing a product
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Product updatedProduct)
+        {
+            // Find the existing product
+            var existingProduct = products.Find(p => p.Id == id);
+            
+            if (existingProduct == null)
+            {
+                return NotFound();
+            }
+            
+            if (ModelState.IsValid)
+            {
+                // Update the product properties
+                existingProduct.Name = updatedProduct.Name;
+                existingProduct.Price = updatedProduct.Price;
+                existingProduct.Category = updatedProduct.Category;
+                
+                TempData["SuccessMessage"] = "Product updated successfully!";
+                return RedirectToAction(nameof(Index));
+            }
+            
+            return View(updatedProduct);
+        }
+
+        // GET: /Products/Delete/5
+        // Shows confirmation page for deleting a product
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var product = products.Find(p => p.Id == id);
+            
+            if (product == null)
+            {
+                return NotFound();
+            }
+            
+            return View(product);
+        }
+
+        // POST: /Products/Delete/5
+        // Handles product deletion
+        // Uses ActionName to have different method name but same action name
+        [HttpPost]
+        [ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteConfirmed(int id)
+        {
+            var product = products.Find(p => p.Id == id);
+            
+            if (product != null)
+            {
+                products.Remove(product);
+                TempData["SuccessMessage"] = "Product deleted successfully!";
+            }
+            
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: /Products/Search?query=laptop
+        // Searches for products by name
+        [HttpGet]
+        public IActionResult Search(string query)
+        {
+            if (string.IsNullOrEmpty(query))
+            {
+                // If no search query, show all products
+                return View("Index", products);
+            }
+            
+            // Find products whose name contains the search query (case-insensitive)
+            var results = products
+                .Where(p => p.Name.ToLower().Contains(query.ToLower()))
+                .ToList();
+            
+            // Pass search results to the view
+            ViewData["SearchQuery"] = query;
+            return View(results);
+        }
+    }
+
+    // Simple Product model (usually in a separate file)
+    // This defines what data a product contains
+    public class Product
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public string Category { get; set; }
+    }
+}</code></pre>
+            </div>
+            
+            <div class="code-explanation">
+                <div class="explanation-header">
+                    <i class="fas fa-info-circle"></i> Key Concepts in This Controller
+                </div>
+                <div class="explanation-content">
+                    <p><strong>Important Concepts to Understand:</strong></p>
+                    <ul>
+                        <li><code>[HttpGet]</code> - Used for showing pages (GET requests)</li>
+                        <li><code>[HttpPost]</code> - Used for handling form submissions</li>
+                        <li><code>[ValidateAntiForgeryToken]</code> - Security feature that prevents form tampering</li>
+                        <li><code>ModelState.IsValid</code> - Checks if form data meets validation rules</li>
+                        <li><code>TempData</code> - Temporary storage for messages between page redirects</li>
+                        <li><code>RedirectToAction()</code> - Sends user to a different page (used after form submissions)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="code-output">
+                <div class="output-header">
+                    <i class="fas fa-exchange-alt"></i> HTTP Request/Response Flow Example
+                </div>
+                <div class="flow-visual">
+                    <div class="flow-step">
+                        <div class="step-label">Browser Request</div>
+                        <div class="step-example">GET /Products/Details/2</div>
+                    </div>
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-label">Controller Action</div>
+                        <div class="step-example">Details(int id = 2)</div>
+                    </div>
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-label">Find Product</div>
+                        <div class="step-example">products.Find(p => p.Id == 2)</div>
+                    </div>
+                    <div class="flow-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-label">Return View</div>
+                        <div class="step-example">return View(coffeeMug)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center">Understanding Each Action Method</h2>
+    
+    <div class="action-breakdown">
+        <div class="breakdown-grid">
+            <div class="breakdown-item">
+                <div class="breakdown-header">
+                    <div class="method-type get">GET</div>
+                    <h5>Index()</h5>
+                </div>
+                <div class="breakdown-content">
+                    <p><strong>Purpose:</strong> List all products</p>
+                    <p><strong>URL:</strong> /Products</p>
+                    <p><strong>Returns:</strong> View with list of all products</p>
+                    <div class="code-mini">
+                        <code>return View(products);</code>
+                    </div>
+                    <div class="method-note">The default action for the controller</div>
+                </div>
+            </div>
+            
+            <div class="breakdown-item">
+                <div class="breakdown-header">
+                    <div class="method-type get">GET</div>
+                    <h5>Details(int id)</h5>
+                </div>
+                <div class="breakdown-content">
+                    <p><strong>Purpose:</strong> Show single product details</p>
+                    <p><strong>URL:</strong> /Products/Details/5</p>
+                    <p><strong>Returns:</strong> View with specific product or 404</p>
+                    <div class="code-mini">
+                        <code>return View(product);</code>
+                    </div>
+                    <div class="method-note">The "5" from URL becomes the id parameter</div>
+                </div>
+            </div>
+            
+            <div class="breakdown-item">
+                <div class="breakdown-header">
+                    <div class="method-type get">GET</div>
+                    <h5>Create()</h5>
+                </div>
+                <div class="breakdown-content">
+                    <p><strong>Purpose:</strong> Show create form</p>
+                    <p><strong>URL:</strong> /Products/Create</p>
+                    <p><strong>Returns:</strong> Empty form view</p>
+                    <div class="code-mini">
+                        <code>return View();</code>
+                    </div>
+                    <div class="method-note">Shows the form to the user</div>
+                </div>
+            </div>
+            
+            <div class="breakdown-item">
+                <div class="breakdown-header">
+                    <div class="method-type post">POST</div>
+                    <h5>[HttpPost] Create()</h5>
+                </div>
+                <div class="breakdown-content">
+                    <p><strong>Purpose:</strong> Handle form submission</p>
+                    <p><strong>URL:</strong> POST to /Products/Create</p>
+                    <p><strong>Returns:</strong> Redirect or form with errors</p>
+                    <div class="code-mini">
+                        <code>return RedirectToAction("Index");</code>
+                    </div>
+                    <div class="method-note">Processes data from submitted form</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="url-mapping-demo">
+        <h3><i class="fas fa-sitemap"></i> URL Patterns and Their Actions</h3>
+        
+        <div class="mapping-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>HTTP Method</th>
+                        <th>URL Pattern</th>
+                        <th>Controller Action</th>
+                        <th>What It Does</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="method-badge get">GET</span></td>
+                        <td><code>/Products</code></td>
+                        <td><code>Index()</code></td>
+                        <td>Shows all products in a list</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method-badge get">GET</span></td>
+                        <td><code>/Products/Details/3</code></td>
+                        <td><code>Details(3)</code></td>
+                        <td>Shows details for product ID 3 (Book)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method-badge get">GET</span></td>
+                        <td><code>/Products/Create</code></td>
+                        <td><code>Create()</code></td>
+                        <td>Shows empty form to create new product</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method-badge post">POST</span></td>
+                        <td><code>/Products/Create</code></td>
+                        <td><code>[HttpPost] Create()</code></td>
+                        <td>Processes submitted form data for new product</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method-badge get">GET</span></td>
+                        <td><code>/Products/Edit/2</code></td>
+                        <td><code>Edit(2)</code></td>
+                        <td>Shows edit form for product ID 2 (Coffee Mug)</td>
+                    </tr>
+                    <tr>
+                        <td><span class="method-badge get">GET</span></td>
+                        <td><code>/Products/Search?query=laptop</code></td>
+                        <td><code>Search("laptop")</code></td>
+                        <td>Searches products containing "laptop" in name</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="mapping-note">
+            <i class="fas fa-lightbulb"></i>
+            <p><strong>Note:</strong> The same URL (<code>/Products/Create</code>) can have two actions: one for showing the form (GET) and one for processing it (POST). This is a common pattern in MVC.</p>
+        </div>
+    </div>
+
+    <div class="interactive-exercise">
+        <h3><i class="fas fa-code"></i> Code Completion Challenge</h3>
+        <p>Fill in the missing code to complete the controller action:</p>
+        
+        <div class="code-challenge">
+            <div class="challenge-header">
+                <h5>Complete the Search Action</h5>
+                <p>This action should search products by category and price range</p>
+            </div>
+            
+            <div class="challenge-code">
+<pre><code class="language-csharp">public IActionResult AdvancedSearch(string category, decimal? minPrice, decimal? maxPrice)
+{
+    // Start with all products
+    var results = products.AsEnumerable();
+    
+    // Filter by category if provided
+    if (!string.IsNullOrEmpty(category))
+    {
+        // TODO: Add filtering logic here
+        // Hint: Use .Where() and .ToLower() for case-insensitive comparison
+    }
+    
+    // Filter by minimum price if provided
+    if (minPrice.HasValue)
+    {
+        // TODO: Add minimum price filter
+        // Hint: Products where Price >= minPrice
+    }
+    
+    // Filter by maximum price if provided
+    if (maxPrice.HasValue)
+    {
+        // TODO: Add maximum price filter
+        // Hint: Products where Price <= maxPrice
+    }
+    
+    // Convert back to list and pass to view
+    return View("Index", results.ToList());
+}</code></pre>
+            </div>
+            
+            <div class="challenge-solution" style="display: none;">
+                <h5>Solution:</h5>
+<pre><code class="language-csharp">public IActionResult AdvancedSearch(string category, decimal? minPrice, decimal? maxPrice)
+{
+    var results = products.AsEnumerable();
+    
+    if (!string.IsNullOrEmpty(category))
+    {
+        results = results.Where(p => 
+            p.Category.ToLower() == category.ToLower());
+    }
+    
+    if (minPrice.HasValue)
+    {
+        results = results.Where(p => p.Price >= minPrice.Value);
+    }
+    
+    if (maxPrice.HasValue)
+    {
+        results = results.Where(p => p.Price <= maxPrice.Value);
+    }
+    
+    return View("Index", results.ToList());
+}</code></pre>
+            </div>
+            
+            <button class="btn btn-primary" id="showSolution">Show Solution</button>
+            <button class="btn btn-outline-secondary" id="resetChallenge">Reset</button>
+        </div>
+    </div>
+
+    <div class="best-practices">
+        <h3><i class="fas fa-check-circle"></i> Controller Best Practices</h3>
+        
+        <div class="practices-grid">
+            <div class="practice-item">
+                <div class="practice-icon good">
+                    <i class="fas fa-thumbs-up"></i>
+                </div>
+                <div class="practice-content">
+                    <h5>Keep Actions Focused</h5>
+                    <p>Each action should do one specific thing. Don't combine multiple unrelated operations in one action.</p>
+                </div>
+            </div>
+            
+            <div class="practice-item">
+                <div class="practice-icon good">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <div class="practice-content">
+                    <h5>Use HTTP Methods Correctly</h5>
+                    <p>Use [HttpGet] for showing pages and [HttpPost] for handling form submissions. This follows web standards.</p>
+                </div>
+            </div>
+            
+            <div class="practice-item">
+                <div class="practice-icon bad">
+                    <i class="fas fa-thumbs-down"></i>
+                </div>
+                <div class="practice-content">
+                    <h5>Avoid Business Logic in Controllers</h5>
+                    <p>Controllers should coordinate, not contain complex business logic. Move it to services or models.</p>
+                </div>
+            </div>
+            
+            <div class="practice-item">
+                <div class="practice-icon good">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="practice-content">
+                    <h5>Validate Input</h5>
+                    <p>Always check ModelState.IsValid and use [ValidateAntiForgeryToken] for forms to prevent attacks.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-points">
+        <h3>Key Points to Remember</h3>
+        <ul>
+            <li><strong>CRUD Operations:</strong> Most controllers handle Create, Read, Update, Delete operations</li>
+            <li><strong>GET vs POST:</strong> GET shows pages, POST processes form submissions - use the right attribute for each</li>
+            <li><strong>Model Binding:</strong> ASP.NET automatically maps form data and URL parameters to your action method parameters</li>
+            <li><strong>Redirect After Post:</strong> Always redirect after successful POST to prevent duplicate form submissions</li>
+            <li><strong>TempData:</strong> Use TempData to pass success/error messages between page redirects</li>
+            <li><strong>Error Handling:</strong> Return NotFound() when items don't exist, check ModelState for validation errors</li>
+            <li><strong>Separation of Concerns:</strong> Controllers handle requests, models handle data, views handle display</li>
+        </ul>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Controllers", "Web")" class="btn btn-outline-primary ajax-link">← Introduction to Controllers</a>
-        <a href="@Url.Action("Models", "Web")" class="btn btn-primary ajax-link">Introduction to models →</a>
+        <a href="@Url.Action("Controllers", "Web")" class="btn btn-outline-primary">Back: Controller Basics</a>
+        <a href="@Url.Action("Models", "Web")" class="btn btn-primary">Next: Model Basics</a>
     </div>
 </div>
 
 <style>
-    .container {
-        max-width: 800px;
+    .container { 
+        max-width: 900px; 
+        padding: 20px; 
+        background-color: var(--bs-body-bg); 
+    }
+    
+    h1, h2, h3, h4, h5 { 
+        color: var(--bs-heading-color); 
+        margin-bottom: 15px; 
+    }
+    
+    h1 { 
+        border-bottom: 2px solid var(--bs-primary); 
+        padding-bottom: 10px; 
+    }
+    
+    .beginner-note {
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
         padding: 20px;
-        background-color: var(--bs-body-bg);
-    }
-
-    h1 {
-        color: var(--bs-heading-color);
         margin-bottom: 20px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .beginner-note-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+    
+    .important-note {
+        background-color: rgba(255, 193, 7, 0.2);
+        border: 2px solid var(--bs-warning);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .important-note h4 {
+        color: var(--bs-warning);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 0;
+    }
+    
+    .intro-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border-radius: 8px;
     }
 
-    h2 {
-        color: var(--bs-heading-color);
-        margin-top: 25px;
-        margin-bottom: 15px;
+    .code-demo {
+        margin: 40px 0;
     }
-
-    .container p,
-    .container ul {
-        color: var(--bs-body-color);
-        line-height: 1.6;
+    
+    .demo-explanation {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: rgba(23, 162, 184, 0.1);
+        border-radius: 8px;
     }
-
-    .container ul {
-        list-style-type: none;
-        padding-left: 0;
+    
+    .feature-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
     }
-
-    .container li {
-        margin-bottom: 8px;
-    }
-
-    hr {
-        border-top: 1px solid var(--bs-border-color);
-        margin: 25px 0;
-    }
-
-    .code-container {
-        margin: 25px 0;
-        border: 1px solid var(--bs-border-color);
-        border-radius: 5px;
-        overflow: hidden;
-        background-color: var(--code-bg);
-    }
-
-    .code-header {
-        background-color: var(--code-header-bg);
-        padding: 10px 15px;
-        border-bottom: 1px solid var(--bs-border-color);
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-        font-size: 0.9rem;
-        color: var(--bs-body-color);
-    }
-
-    .code-content {
+    
+    .feature-item {
+        display: flex;
+        gap: 15px;
         padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+    
+    .feature-icon {
+        background-color: var(--bs-success);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+    
+    .code-example {
+        border: 2px solid var(--bs-border-color);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    .code-header {
+        background-color: #2d2d2d;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #404040;
+    }
+    
+    .code-title {
+        color: #e0e0e0;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .code-actions {
+        display: flex;
+        gap: 10px;
+    }
+    
+    .code-content {
+        background-color: #1a1a1a;
+        position: relative;
+        padding: 20px;
         overflow-x: auto;
     }
-
-    pre {
-        margin: 0;
-        white-space: pre-wrap;
-        background-color: transparent;
+    
+    .code-content .comment {
+        color: #5c6370;
+        font-style: italic;
+    }
+    
+    .code-explanation {
+        background-color: #2d2d2d;
+        border-top: 1px solid #404040;
+        padding: 20px;
+    }
+    
+    .explanation-header {
+        color: #98c379;
+        font-weight: bold;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .explanation-content ul {
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+    
+    .explanation-content li {
+        margin-bottom: 5px;
+        color: #e0e0e0;
+    }
+    
+    .code-output {
+        background-color: #2d2d2d;
+        border-top: 1px solid #404040;
+        padding: 20px;
+    }
+    
+    .output-header {
+        color: #98c379;
+        font-weight: bold;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .flow-visual {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .flow-step {
+        flex: 1;
+        min-width: 150px;
+        text-align: center;
+        padding: 15px;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+    }
+    
+    .step-label {
+        color: #61afef;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    
+    .step-example {
+        font-family: monospace;
+        color: #e0e0e0;
+        font-size: 0.9rem;
+    }
+    
+    .flow-arrow {
+        color: var(--bs-info);
+        font-size: 1.5rem;
     }
 
-    code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    .action-breakdown {
+        margin: 40px 0;
+    }
+    
+    .breakdown-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .breakdown-item {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .breakdown-header {
+        background-color: #2d2d2d;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .method-type {
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 0.8rem;
+        color: white;
+    }
+    
+    .method-type.get {
+        background-color: #28a745;
+    }
+    
+    .method-type.post {
+        background-color: #007bff;
+    }
+    
+    .breakdown-header h5 {
+        margin: 0;
+        color: #e0e0e0;
+    }
+    
+    .breakdown-content {
+        padding: 15px;
+    }
+    
+    .code-mini {
+        background-color: #2d2d2d;
+        color: #e0e0e0;
+        padding: 10px;
+        border-radius: 6px;
+        font-family: monospace;
+        margin: 10px 0;
+        font-size: 0.9rem;
+    }
+    
+    .method-note {
+        font-size: 0.85rem;
+        color: var(--bs-secondary);
+        font-style: italic;
+        margin-top: 10px;
+    }
+
+    .url-mapping-demo {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 10px;
+    }
+    
+    .url-mapping-demo h3 {
+        color: var(--bs-indigo);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 0;
+    }
+    
+    .mapping-table {
+        overflow-x: auto;
+        margin-top: 20px;
+    }
+    
+    .mapping-table table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .mapping-table th {
+        background-color: var(--bs-indigo);
+        color: white;
+        padding: 12px 15px;
+        text-align: left;
+    }
+    
+    .mapping-table td {
+        padding: 12px 15px;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+    
+    .mapping-table tr:hover {
+        background-color: rgba(111, 66, 193, 0.1);
+    }
+    
+    .method-badge {
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-weight: bold;
+        font-size: 0.8rem;
+        color: white;
+    }
+    
+    .method-badge.get {
+        background-color: #28a745;
+    }
+    
+    .method-badge.post {
+        background-color: #007bff;
+    }
+    
+    .mapping-note {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+        margin-top: 20px;
+        padding: 15px;
+        background-color: rgba(111, 66, 193, 0.2);
+        border-radius: 6px;
+    }
+    
+    .mapping-note i {
+        color: var(--bs-indigo);
+        font-size: 1.5rem;
+        flex-shrink: 0;
+        margin-top: 3px;
+    }
+
+    .interactive-exercise {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid var(--bs-warning);
+        border-radius: 10px;
+    }
+    
+    .interactive-exercise h3 {
+        color: var(--bs-warning);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 0;
+    }
+    
+    .code-challenge {
+        margin-top: 20px;
+    }
+    
+    .challenge-header {
+        margin-bottom: 15px;
+    }
+    
+    .challenge-code {
+        background-color: #1a1a1a;
+        border-radius: 8px;
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+    
+    .challenge-solution {
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .challenge-solution h5 {
+        color: var(--bs-success);
+        margin-top: 0;
+    }
+
+    .best-practices {
+        margin: 40px 0;
+    }
+    
+    .practices-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .practice-item {
+        display: flex;
+        gap: 15px;
+        padding: 20px;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+    }
+    
+    .practice-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
+    }
+    
+    .practice-icon.good {
+        background-color: var(--bs-success);
+        color: white;
+    }
+    
+    .practice-icon.bad {
+        background-color: var(--bs-danger);
+        color: white;
+    }
+
+    .key-points {
+        margin: 30px 0;
+        padding: 25px;
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 1px solid var(--bs-primary);
+        border-radius: 10px;
+    }
+    
+    .key-points h3 {
+        color: var(--bs-primary);
+        margin-top: 0;
+    }
+    
+    .key-points ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .key-points li {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(13, 110, 253, 0.2);
+        position: relative;
+        padding-left: 30px;
+    }
+    
+    .key-points li:before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        color: var(--bs-primary);
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+    
+    .key-points li:last-child {
+        border-bottom: none;
     }
 
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
-
+    
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
+        transition: all 0.3s;
+    }
+    
+    .btn:hover {
+        transform: translateY(-2px);
     }
 
-    .btn-primary {
-        background-color: var(--bs-primary);
-        border-color: var(--bs-primary);
-    }
-
-    .btn-outline-primary {
-        color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    @@media (max-width: 768px) {
+        .beginner-note {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .flow-visual {
+            flex-direction: column;
+        }
+        
+        .flow-arrow {
+            transform: rotate(90deg);
+        }
+        
+        .mapping-table {
+            font-size: 0.9rem;
+        }
+        
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .navigation-buttons .btn {
+            width: 100%;
+            text-align: center;
+        }
     }
 </style>
+
+<script>
+$(document).ready(function() {
+    if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+    }
+
+    $('.copy-btn').on('click', function() {
+        const $codeElement = $(this).closest('.code-example').find('code');
+        const codeText = $codeElement.text();
+        
+        navigator.clipboard.writeText(codeText).then(() => {
+            const originalText = $(this).html();
+            $(this).html('<i class="fas fa-check"></i> Copied!');
+            $(this).addClass('btn-success').removeClass('btn-outline-secondary');
+            
+            setTimeout(() => {
+                $(this).html(originalText);
+                $(this).removeClass('btn-success').addClass('btn-outline-secondary');
+            }, 2000);
+        });
+    });
+
+    $('#toggleComments').on('click', function() {
+        const $comments = $('.code-content .hljs-comment');
+        $comments.toggle();
+        
+        if ($comments.is(':visible')) {
+            $(this).html('<i class="fas fa-comment-slash"></i> Hide Comments');
+            $(this).addClass('btn-secondary').removeClass('btn-outline-primary');
+        } else {
+            $(this).html('<i class="fas fa-comment"></i> Show Comments');
+            $(this).addClass('btn-outline-primary').removeClass('btn-secondary');
+        }
+    });
+
+    $('#showSolution').on('click', function() {
+        $('.challenge-solution').slideDown();
+        $(this).hide();
+        $('#resetChallenge').show();
+    });
+
+    $('#resetChallenge').on('click', function() {
+        $('.challenge-solution').slideUp();
+        $('#showSolution').show();
+        $(this).hide();
+    }).hide();
+
+    $('.breakdown-item').hover(
+        function() {
+            $(this).css('transform', 'translateY(-5px)');
+            $(this).css('box-shadow', '0 10px 20px rgba(0,0,0,0.1)');
+        },
+        function() {
+            $(this).css('transform', 'translateY(0)');
+            $(this).css('box-shadow', 'none');
+        }
+    );
+
+    const flowSteps = $('.flow-step');
+    flowSteps.each(function(index) {
+        $(this).css({
+            'opacity': '0',
+            'transform': 'translateY(20px)',
+            'transition': 'all 0.5s ease ' + (index * 0.2) + 's'
+        });
+    });
+
+    setTimeout(() => {
+        flowSteps.each(function(index) {
+            $(this).css({
+                'opacity': '1',
+                'transform': 'translateY(0)'
+            });
+        });
+    }, 500);
+
+    $('.practice-item').on('click', function() {
+        $(this).toggleClass('active');
+        
+        if ($(this).hasClass('active')) {
+            $(this).css({
+                'transform': 'scale(1.02)',
+                'box-shadow': '0 5px 15px rgba(0,0,0,0.1)'
+            });
+        } else {
+            $(this).css({
+                'transform': 'scale(1)',
+                'box-shadow': 'none'
+            });
+        }
+    });
+});
+</script>

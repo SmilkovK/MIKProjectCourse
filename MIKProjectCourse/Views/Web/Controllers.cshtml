@@ -1,179 +1,1351 @@
 ﻿@{
-    ViewData["Title"] = "Introduction to Controllers";
+    ViewData["Title"] = "Controller Basics in ASP.NET Core";
 }
 
 <div class="container">
-    <h1>📌 Understanding Controllers in ASP.NET Core MVC</h1>
-    <p>
-        Controllers are one of the <b>main building blocks</b> of an ASP.NET Core MVC application.  
-        They act as the “middle-man” between the <b>user (client)</b> and your <b>application logic & database (server)</b>.
-    </p>
+    <h1 class="text-center">Controller Basics in ASP.NET Core</h1>
 
-    <hr />
-
-    <h2>🔹 What is a Controller?</h2>
-    <div class="info-box">
-        <p>
-            A <b>Controller</b> is a C# class that handles incoming <b>HTTP requests</b> (like when a user clicks a link or submits a form) 
-            and sends back a <b>response</b> (like showing a web page or returning data).
-        </p>
-        <p>
-            Think of it like a <b>traffic manager</b>: it decides what should happen when someone visits a page on your website.
-        </p>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-traffic-light"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Think of Controllers Like Restaurant Managers</h4>
+            <p><strong>Controllers = The decision-makers that handle user requests</strong></p>
+            <p><strong>Simple analogy:</strong></p>
+            <ul>
+                <li><strong>User Request</strong> = Customer ordering food</li>
+                <li><strong>Controller</strong> = Restaurant manager who takes the order</li>
+                <li><strong>Action Method</strong> = Specific task (take order, serve food, handle complaints)</li>
+                <li><strong>Response</strong> = Food served to customer</li>
+            </ul>
+            <p><strong>In web terms:</strong> Controllers decide what happens when users visit different pages!</p>
+        </div>
     </div>
 
-    <h2>🔹 How Does It Work?</h2>
-    <ul>
-        <li>1️⃣ The <b>Client (browser)</b> sends a request (like going to <code>/Home/About</code>).</li>
-        <li>2️⃣ The <b>Controller</b> receives that request.</li>
-        <li>3️⃣ The Controller decides whether to use <b>Models</b> (data and logic) and then sends it to a <b>View</b>.</li>
-        <li>4️⃣ The <b>View</b> creates HTML and sends it back to the client.</li>
-    </ul>
-
-    <h2>🔹 Key Points About Controllers</h2>
-    <ul>
-        <li><b>Controller = Class</b> (usually ends with “Controller”).</li>
-        <li><b>Action = Method</b> inside the controller that does something.</li>
-        <li>Actions usually <b>return Views</b> (HTML pages) or <b>data</b> (like JSON for APIs).</li>
-        <li>Controllers <b>connect Models and Views</b>.</li>
-    </ul>
-
-    <h2>🔹 Controller Names and URLs (Beginner-Friendly)</h2>
-    <div class="info-box">
-        <p>
-            When you create a controller, its <b>name helps decide the website URL</b>.  
-            For beginners, here’s a simple way to remember:
-        </p>
-        <ul>
-            <li>Controller class = <b>HomeController</b> → URL prefix = <code>/Home</code></li>
-            <li>Action method = <b>Index()</b> → URL = <code>/Home/Index</code></li>
-            <li>Other method = <b>About()</b> → URL = <code>/Home/About</code></li>
-        </ul>
-        <p>
-            Tip: <b>Index()</b> is special – it’s the default action, so <code>/Home</code> will also show the Index page.
-        </p>
-        <p>
-            Think of it like a restaurant: <b>HomeController</b> is the restaurant building, <b>Index()</b> is the main door, and <b>About()</b> is a side door.
-        </p>
+    <div class="important-note">
+        <h4><i class="fas fa-exclamation-triangle"></i> Important Setup Note</h4>
+        <p>When creating this project in Visual Studio 2022, make sure to select <strong>ASP.NET Core Web App (Model-View-Controller)</strong>, NOT Console App!</p>
+        <p>The MVC template automatically sets up controllers, views, and routing for you. If you select Console App by mistake, controllers won't work.</p>
     </div>
 
-    <h2>🔹 How Controllers and Views Connect</h2>
-    <div class="info-box">
-        <p>
-            Views are the HTML pages that users see. Controllers tell which view to show.  
-            By default:
-        </p>
-        <ul>
-            <li>Controller = folder inside <code>Views</code> (without “Controller”).</li>
-            <li>Action method = view file inside that folder.</li>
-        </ul>
-        <p>Example:</p>
-        <ul>
-            <li>Controller: <b>HomeController</b></li>
-            <li>Action: <b>About()</b></li>
-            <li>View file: <code>Views/Home/About.cshtml</code></li>
-        </ul>
-        <p>
-            Simple way to think: <b>Controller decides what to do, View shows it to the user</b>.
-        </p>
+    <div class="intro-section">
+        <p>Now that you understand .NET basics, let's dive into the heart of web applications: <strong>Controllers</strong>. In ASP.NET Core, controllers are classes that handle web requests and return responses. They're like the "brain" of your web application!</p>
+        
+        <div class="alert alert-info">
+            <i class="fas fa-lightbulb"></i> <strong>Remember:</strong> Every time you click a link or submit a form on a website, a controller somewhere is handling that request and deciding what to show you next.
+        </div>
     </div>
 
-    <h2>🔹 Why Are Controllers Important?</h2>
-    <div class="info-box">
-        <ul>
-            <li>They organize your code so it’s easy to understand.</li>
-            <li>They help your app follow the MVC pattern (Model-View-Controller).</li>
-            <li>They let you handle different user actions (open pages, submit forms, etc.).</li>
-        </ul>
+    <h2 class="text-center">How Controllers Work</h2>
+    
+    <div class="controller-flow">
+        <div class="flow-diagram">
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-mouse-pointer"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>1. User Clicks</h5>
+                    <p>User visits a URL like "/products/details/5"</p>
+                </div>
+                <div class="flow-arrow"></div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-route"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>2. Routing</h5>
+                    <p>ASP.NET figures out which controller to use</p>
+                </div>
+                <div class="flow-arrow"></div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>3. Controller Action</h5>
+                    <p>Specific method runs to handle the request</p>
+                </div>
+                <div class="flow-arrow"></div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>4. View Rendered</h5>
+                    <p>HTML page is created and sent to browser</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <hr />
-    <p class="highlight">
-        ✅ In short: A Controller listens to the user → decides what to do → calls Models if needed → 
-        then returns a View (page) or Data.
-    </p>
+    <h2 class="text-center">Creating Your First Controller</h2>
+    
+    <div class="code-demo">
+        <div class="demo-explanation">
+            <h4><i class="fas fa-code"></i> Anatomy of a Controller</h4>
+            <p>Every controller has these essential parts:</p>
+            
+            <div class="controller-parts">
+                <div class="part-item">
+                    <div class="part-badge">1</div>
+                    <div class="part-content">
+                        <h6>Class Name</h6>
+                        <p>Must end with "Controller" (e.g., HomeController)</p>
+                    </div>
+                </div>
+                
+                <div class="part-item">
+                    <div class="part-badge">2</div>
+                    <div class="part-content">
+                        <h6>Inheritance</h6>
+                        <p>Must inherit from Controller class</p>
+                    </div>
+                </div>
+                
+                <div class="part-item">
+                    <div class="part-badge">3</div>
+                    <div class="part-content">
+                        <h6>Action Methods</h6>
+                        <p>Public methods that handle specific requests</p>
+                    </div>
+                </div>
+                
+                <div class="part-item">
+                    <div class="part-badge">4</div>
+                    <div class="part-content">
+                        <h6>Return Types</h6>
+                        <p>Usually returns a View() or other result</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="code-example">
+            <div class="code-header">
+                <div class="code-title">
+                    <i class="fas fa-file-code"></i> HomeController.cs - Your First Controller
+                </div>
+                <button class="btn btn-sm btn-outline-secondary copy-btn">
+                    <i class="fas fa-copy"></i> Copy Code
+                </button>
+            </div>
+            
+            <div class="code-content">
+<pre><code class="language-csharp">using Microsoft.AspNetCore.Mvc;
+
+namespace MyWebApp.Controllers
+{
+    public class HomeController : Controller
+    {
+        // HTTP GET: Handles "/" or "/Home/Index"
+        // [HttpGet] is optional here - it's the default
+        public IActionResult Index()
+        {
+            // Pass data to the view
+            ViewData["Title"] = "Welcome to My Web App";
+            ViewData["Message"] = "Hello from the Home Controller!";
+            
+            // Return the Index.cshtml view
+            return View();
+        }
+        
+        // HTTP GET: Handles "/Home/About"
+        // This will show the About page form
+        [HttpGet]
+        public IActionResult About()
+        {
+            ViewData["Title"] = "About Us";
+            ViewData["Message"] = "This is the about page.";
+            
+            return View();
+        }
+        
+        // HTTP POST: Handles form submissions to "/Home/About"
+        // This method runs when user submits a form
+        [HttpPost]
+        public IActionResult About(string feedback)
+        {
+            // Process the form data here
+            ViewData["Title"] = "Thank You!";
+            ViewData["Message"] = "Thanks for your feedback!";
+            
+            return View("ThankYou");
+        }
+        
+        // HTTP GET: Handles "/Home/Contact"
+        [HttpGet]
+        public IActionResult Contact()
+        {
+            ViewData["Title"] = "Contact Us";
+            
+            return View();
+        }
+        
+        // HTTP GET with parameter: Handles "/Home/User/John"
+        // The "name" comes from the URL
+        [HttpGet]
+        public IActionResult UserProfile(string name)
+        {
+            ViewData["Title"] = "Profile: " + name;
+            ViewData["UserName"] = name;
+            
+            return View();
+        }
+        
+        // Simple action returning JSON (for APIs)
+        [HttpGet]
+        public IActionResult ApiExample()
+        {
+            var data = new {
+                Status = "Success",
+                Message = "This is JSON data",
+                Timestamp = DateTime.Now
+            };
+            
+            return Json(data);
+        }
+    }
+}</code></pre>
+            </div>
+            
+            <div class="code-explanation">
+                <div class="explanation-header">
+                    <i class="fas fa-info-circle"></i> Key Points About This Code
+                </div>
+                <div class="explanation-content">
+                    <p><strong>HTTP Attributes:</strong></p>
+                    <ul>
+                        <li><code>[HttpGet]</code> - Used for pages that display information (default, can be omitted)</li>
+                        <li><code>[HttpPost]</code> - Used for handling form submissions</li>
+                    </ul>
+                    <p><strong>Why two About methods?</strong> One shows the form (GET), the other processes it (POST). Same URL, different HTTP methods.</p>
+                    <p><strong>Parameters:</strong> Values from the URL (like "John") automatically get passed to the method.</p>
+                </div>
+            </div>
+            
+            <div class="code-output">
+                <div class="output-header">
+                    <i class="fas fa-sitemap"></i> URL Mappings
+                </div>
+                <div class="url-mappings">
+                    <div class="mapping-item">
+                        <span class="url-path">/</span>
+                        <span class="mapping-arrow"></span>
+                        <span class="controller-info">HomeController.Index() - Shows homepage</span>
+                    </div>
+                    <div class="mapping-item">
+                        <span class="url-path">/Home/About (GET)</span>
+                        <span class="mapping-arrow"></span>
+                        <span class="controller-info">HomeController.About() - Shows about page</span>
+                    </div>
+                    <div class="mapping-item">
+                        <span class="url-path">/Home/About (POST)</span>
+                        <span class="mapping-arrow"></span>
+                        <span class="controller-info">HomeController.About(feedback) - Processes form</span>
+                    </div>
+                    <div class="mapping-item">
+                        <span class="url-path">/Home/User/John</span>
+                        <span class="mapping-arrow"></span>
+                        <span class="controller-info">HomeController.UserProfile("John") - Shows user profile</span>
+                    </div>
+                    <div class="mapping-item">
+                        <span class="url-path">/Home/ApiExample</span>
+                        <span class="mapping-arrow"></span>
+                        <span class="controller-info">HomeController.ApiExample() - Returns JSON data</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center">Understanding Action Methods</h2>
+    
+    <div class="action-methods">
+        <div class="methods-grid">
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="method-name">Index()</div>
+                </div>
+                <div class="method-content">
+                    <p><strong>Default action</strong> - shows the main page</p>
+                    <div class="method-url">URL: /ControllerName</div>
+                    <div class="method-example">
+                        <code>return View();</code>
+                    </div>
+                    <div class="method-note">Called when no action is specified</div>
+                </div>
+            </div>
+            
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="method-name">Details(id)</div>
+                </div>
+                <div class="method-content">
+                    <p><strong>Shows details</strong> of a specific item</p>
+                    <div class="method-url">URL: /Products/Details/5</div>
+                    <div class="method-example">
+                        <code>return View(product);</code>
+                    </div>
+                    <div class="method-note">The "5" in URL becomes the id parameter</div>
+                </div>
+            </div>
+            
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-icon">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="method-name">Create() [HttpGet]</div>
+                </div>
+                <div class="method-content">
+                    <p><strong>Shows form</strong> to create new item</p>
+                    <div class="method-url">URL: /Products/Create</div>
+                    <div class="method-example">
+                        <code>return View();</code>
+                    </div>
+                    <div class="method-note">Shows the empty form to user</div>
+                </div>
+            </div>
+            
+            <div class="method-card">
+                <div class="method-header">
+                    <div class="method-icon">
+                        <i class="fas fa-save"></i>
+                    </div>
+                    <div class="method-name">Create() [HttpPost]</div>
+                </div>
+                <div class="method-content">
+                    <p><strong>Handles form submission</strong></p>
+                    <div class="method-url">POST to: /Products/Create</div>
+                    <div class="method-example">
+                        <code>return RedirectToAction("Index");</code>
+                    </div>
+                    <div class="method-note">Processes data from submitted form</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center">Common Return Types</h2>
+    
+    <div class="return-types">
+        <div class="returns-grid">
+            <div class="return-item">
+                <div class="return-icon">
+                    <i class="fas fa-file-code"></i>
+                </div>
+                <div class="return-content">
+                    <h5>View()</h5>
+                    <p>Returns an HTML page (Razor view)</p>
+                    <div class="code-snippet">
+                        <code>return View();</code>
+                    </div>
+                    <div class="return-note">Most common - shows a web page</div>
+                </div>
+            </div>
+            
+            <div class="return-item">
+                <div class="return-icon">
+                    <i class="fas fa-redo"></i>
+                </div>
+                <div class="return-content">
+                    <h5>RedirectToAction()</h5>
+                    <p>Sends user to a different page</p>
+                    <div class="code-snippet">
+                        <code>return RedirectToAction("Index");</code>
+                    </div>
+                    <div class="return-note">Use after form submissions</div>
+                </div>
+            </div>
+            
+            <div class="return-item">
+                <div class="return-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="return-content">
+                    <h5>Json()</h5>
+                    <p>Returns JSON data (for APIs)</p>
+                    <div class="code-snippet">
+                        <code>return Json(data);</code>
+                    </div>
+                    <div class="return-note">For web APIs, not HTML pages</div>
+                </div>
+            </div>
+            
+            <div class="return-item">
+                <div class="return-icon">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="return-content">
+                    <h5>Content()</h5>
+                    <p>Returns plain text or HTML</p>
+                    <div class="code-snippet">
+                        <code>return Content("Hello World");</code>
+                    </div>
+                    <div class="return-note">Simple text response</div>
+                </div>
+            </div>
+            
+            <div class="return-item">
+                <div class="return-icon">
+                    <i class="fas fa-ban"></i>
+                </div>
+                <div class="return-content">
+                    <h5>NotFound()</h5>
+                    <p>Returns 404 error page</p>
+                    <div class="code-snippet">
+                        <code>return NotFound();</code>
+                    </div>
+                    <div class="return-note">When item doesn't exist</div>
+                </div>
+            </div>
+            
+            <div class="return-item">
+                <div class="return-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="return-content">
+                    <h5>BadRequest()</h5>
+                    <p>Returns 400 error page</p>
+                    <div class="code-snippet">
+                        <code>return BadRequest();</code>
+                    </div>
+                    <div class="return-note">When request has errors</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="interactive-exercise">
+        <h3><i class="fas fa-puzzle-piece"></i> Controller Detective Game</h3>
+        <p>Match the URL with the correct controller action:</p>
+        
+        <div class="matching-game">
+            <div class="game-column">
+                <h5>URLs</h5>
+                <div class="game-item" data-match="1">/Products/Details/5</div>
+                <div class="game-item" data-match="2">/Blog/Create</div>
+                <div class="game-item" data-match="3">/Api/Users</div>
+                <div class="game-item" data-match="4">/Home/Privacy</div>
+            </div>
+            
+            <div class="game-column">
+                <h5>Controller Actions</h5>
+                <div class="game-item" data-match="1">Details(int id)</div>
+                <div class="game-item" data-match="3">GetUsers()</div>
+                <div class="game-item" data-match="4">Privacy()</div>
+                <div class="game-item" data-match="2">Create()</div>
+            </div>
+        </div>
+        
+        <div class="game-feedback"></div>
+        <button class="btn btn-primary mt-3" id="checkMatches">Check Answers</button>
+    </div>
+
+    <div class="routing-explanation">
+        <h3><i class="fas fa-road"></i> URL Routing: The Magic Behind Scenes</h3>
+        
+        <div class="routing-table">
+            <div class="table-header">
+                <div class="col-url">URL Pattern</div>
+                <div class="col-controller">Controller</div>
+                <div class="col-action">Action</div>
+                <div class="col-params">Parameters</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="col-url">/</div>
+                <div class="col-controller">Home</div>
+                <div class="col-action">Index</div>
+                <div class="col-params">None</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="col-url">/Home</div>
+                <div class="col-controller">Home</div>
+                <div class="col-action">Index</div>
+                <div class="col-params">None</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="col-url">/Home/About</div>
+                <div class="col-controller">Home</div>
+                <div class="col-action">About</div>
+                <div class="col-params">None</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="col-url">/Products/Details/5</div>
+                <div class="col-controller">Products</div>
+                <div class="col-action">Details</div>
+                <div class="col-params">id = 5</div>
+            </div>
+            
+            <div class="table-row">
+                <div class="col-url">/Blog/Post/2024/hello-world</div>
+                <div class="col-controller">Blog</div>
+                <div class="col-action">Post</div>
+                <div class="col-params">year=2024, slug="hello-world"</div>
+            </div>
+        </div>
+        
+        <div class="routing-note">
+            <i class="fas fa-info-circle"></i>
+            <p><strong>Default Convention:</strong> /Controller/Action/Parameters. If no action specified, Index is used. If no controller specified, Home is used.</p>
+        </div>
+    </div>
+
+    <div class="key-points">
+        <h3>Key Points to Remember</h3>
+        <ul>
+            <li><strong>Controllers</strong> are classes that handle web requests and return responses</li>
+            <li>When creating project: Select <strong>ASP.NET Core Web App (MVC)</strong> in Visual Studio 2022</li>
+            <li>Controller names <strong>must end with "Controller"</strong> (e.g., HomeController)</li>
+            <li><strong>[HttpGet]</strong> shows pages, <strong>[HttpPost]</strong> handles form submissions</li>
+            <li><strong>Action methods</strong> are public methods that handle specific URLs</li>
+            <li>The <strong>Index()</strong> method is the default action for a controller</li>
+            <li><strong>View()</strong> returns HTML pages, <strong>Json()</strong> returns API data</li>
+            <li><strong>URL routing</strong> follows pattern: /Controller/Action/Parameters</li>
+        </ul>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Introduction", "Web")" class="btn btn-outline-primary ajax-link">← Introduction to Web Programing</a>
-        <a href="@Url.Action("ControllersExample", "Web")" class="btn btn-primary ajax-link">Controller Example with code →</a>
+        <a href="@Url.Action("Introduction", "Web")" class="btn btn-outline-primary">Previous: Introduction to .NET</a>
+        <a href="@Url.Action("ControllersExample", "Web")" class="btn btn-primary">Next: Controller Example</a>
     </div>
 </div>
 
 <style>
-    .container {
-        max-width: 800px;
-        margin: 0 auto;
+    .container { 
+        max-width: 900px; 
+        padding: 20px; 
+        background-color: var(--bs-body-bg); 
+    }
+    
+    h1, h2, h3, h4, h5 { 
+        color: var(--bs-heading-color); 
+        margin-bottom: 15px; 
+    }
+    
+    h1 { 
+        border-bottom: 2px solid var(--bs-primary); 
+        padding-bottom: 10px; 
+    }
+    
+    .beginner-note {
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .beginner-note-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+    
+    .important-note {
+        background-color: rgba(255, 193, 7, 0.2);
+        border: 2px solid var(--bs-warning);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .important-note h4 {
+        color: var(--bs-warning);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 0;
+    }
+    
+    .intro-section {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border-radius: 8px;
     }
 
-    h1, h2 {
+    .controller-flow {
+        margin: 40px 0;
+    }
+    
+    .flow-diagram {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    
+    .flow-step {
+        flex: 1;
+        min-width: 200px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        position: relative;
+    }
+    
+    .flow-icon {
+        background-color: var(--bs-info);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+    }
+    
+    .flow-content h5 {
+        margin: 0 0 5px 0;
+        color: var(--bs-info);
+    }
+    
+    .flow-arrow {
+        position: absolute;
+        right: -25px;
+        color: var(--bs-info);
+        font-size: 24px;
         font-weight: bold;
-        color: #333;
+    }
+    
+    .flow-arrow:after {
+        content: "→";
+    }
+    
+    @@media (max-width: 992px) {
+        .flow-step {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .flow-arrow {
+            right: 0;
+            bottom: -25px;
+            transform: rotate(90deg);
+        }
+    }
+
+    .code-demo {
+        margin: 40px 0;
+    }
+    
+    .demo-explanation {
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: rgba(23, 162, 184, 0.1);
+        border-radius: 8px;
+    }
+    
+    .controller-parts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
         margin-top: 20px;
     }
-
-    p {
-        margin-bottom: 15px;
-    }
-
-    ul {
-        list-style-type: none;
-        padding-left: 0;
-    }
-
-    ul li {
-        margin-bottom: 8px;
-    }
-
-    .info-box {
-        background-color: #f8f9fa;
-        border: 1px solid #ddd;
+    
+    .part-item {
+        display: flex;
+        gap: 15px;
         padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
         border-radius: 8px;
-        margin-bottom: 20px;
+    }
+    
+    .part-badge {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+    
+    .code-example {
+        border: 2px solid var(--bs-border-color);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    
+    .code-header {
+        background-color: #2d2d2d;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #404040;
+    }
+    
+    .code-title {
+        color: #e0e0e0;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .copy-btn {
+        background-color: #404040;
+        border: none;
+        color: #e0e0e0;
+    }
+    
+    .copy-btn:hover {
+        background-color: #505050;
+    }
+    
+    .code-content {
+        background-color: #1a1a1a;
+        padding: 20px;
+        overflow-x: auto;
+    }
+    
+    .code-explanation {
+        background-color: #2d2d2d;
+        border-top: 1px solid #404040;
+        padding: 20px;
+    }
+    
+    .explanation-header {
+        color: #98c379;
+        font-weight: bold;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .explanation-content {
+        color: #e0e0e0;
+    }
+    
+    .explanation-content ul {
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+    
+    .explanation-content li {
+        margin-bottom: 5px;
+    }
+    
+    .code-output {
+        background-color: #2d2d2d;
+        border-top: 1px solid #404040;
+        padding: 20px;
+    }
+    
+    .output-header {
+        color: #98c379;
+        font-weight: bold;
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .url-mappings {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .mapping-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+    }
+    
+    .url-path {
+        font-family: monospace;
+        color: #e06c75;
+        font-weight: bold;
+        min-width: 150px;
+    }
+    
+    .mapping-arrow {
+        color: #61afef;
+    }
+    
+    .mapping-arrow:after {
+        content: "→";
+    }
+    
+    .controller-info {
+        font-family: monospace;
+        color: #98c379;
     }
 
-    .highlight {
-        text-align: center;
-        color: #555;
+    .action-methods {
+        margin: 40px 0;
+    }
+    
+    .methods-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .method-card {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+        transition: all 0.3s;
+    }
+    
+    .method-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .method-header {
+        background-color: var(--bs-primary);
+        color: white;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .method-icon {
+        background-color: white;
+        color: var(--bs-primary);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+    }
+    
+    .method-name {
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+    
+    .method-content {
+        padding: 15px;
+    }
+    
+    .method-url {
+        font-family: monospace;
+        color: var(--bs-info);
+        font-size: 0.9rem;
+        margin: 10px 0;
+    }
+    
+    .method-example {
+        background-color: #2d2d2d;
+        color: #e0e0e0;
+        padding: 10px;
+        border-radius: 6px;
+        font-family: monospace;
+        font-size: 0.9rem;
+    }
+    
+    .method-note {
+        margin-top: 10px;
+        font-size: 0.85rem;
+        color: var(--bs-secondary);
         font-style: italic;
     }
 
-    hr {
-        border-top: 1px solid #ddd;
-        margin: 25px 0;
+    .return-types {
+        margin: 40px 0;
     }
-
-    .btn-primary, .btn-outline-primary {
-        text-decoration: none;
-        padding: 10px 20px;
-        border-radius: 5px;
-        margin: 5px;
+    
+    .returns-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
     }
-
-    .btn-primary {
-        background-color: #007bff;
+    
+    .return-item {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        transition: all 0.3s;
+    }
+    
+    .return-item:hover {
+        border-color: var(--bs-primary);
+        transform: translateY(-3px);
+    }
+    
+    .return-icon {
+        background-color: var(--bs-success);
         color: white;
-        border: none;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin: 0 auto 15px;
+    }
+    
+    .return-content h5 {
+        margin-top: 0;
+        color: var(--bs-success);
+    }
+    
+    .code-snippet {
+        background-color: #2d2d2d;
+        color: #e0e0e0;
+        padding: 10px;
+        border-radius: 6px;
+        font-family: monospace;
+        margin: 10px 0;
+        font-size: 0.9rem;
+    }
+    
+    .return-note {
+        font-size: 0.85rem;
+        color: var(--bs-secondary);
+        font-style: italic;
+        margin-top: 10px;
     }
 
-    .btn-primary:hover {
-        background-color: #0056b3;
+    .interactive-exercise {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid var(--bs-warning);
+        border-radius: 10px;
+    }
+    
+    .interactive-exercise h3 {
+        color: var(--bs-warning);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 0;
+    }
+    
+    .matching-game {
+        display: flex;
+        gap: 30px;
+        margin: 20px 0;
+    }
+    
+    .game-column {
+        flex: 1;
+    }
+    
+    .game-column h5 {
+        color: var(--bs-warning);
+        margin-bottom: 15px;
+        padding-bottom: 5px;
+        border-bottom: 2px solid var(--bs-warning);
+    }
+    
+    .game-item {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 12px 15px;
+        margin: 8px 0;
+        border-radius: 6px;
+        cursor: move;
+        border: 2px dashed transparent;
+        transition: all 0.3s;
+        font-family: monospace;
+    }
+    
+    .game-item:hover {
+        background-color: rgba(255, 193, 7, 0.2);
+    }
+    
+    .game-item.dragging {
+        opacity: 0.5;
+    }
+    
+    .game-item.matched {
+        background-color: rgba(40, 167, 69, 0.2);
+        border-color: var(--bs-success);
+        color: var(--bs-success);
+    }
+    
+    .game-feedback {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 6px;
+        display: none;
+    }
+    
+    .game-feedback.success {
+        background-color: rgba(40, 167, 69, 0.2);
+        color: #155724;
+        display: block;
+    }
+    
+    .game-feedback.error {
+        background-color: rgba(220, 53, 69, 0.2);
+        color: #721c24;
+        display: block;
     }
 
-    .btn-outline-primary {
-        border: 1px solid #007bff;
-        color: #007bff;
-        background-color: transparent;
+    .routing-explanation {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 10px;
     }
-
-    .btn-outline-primary:hover {
-        background-color: #007bff;
+    
+    .routing-explanation h3 {
+        color: var(--bs-indigo);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 0;
+    }
+    
+    .routing-table {
+        margin: 20px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .table-header {
+        display: flex;
+        background-color: var(--bs-indigo);
         color: white;
+        font-weight: bold;
+    }
+    
+    .table-row {
+        display: flex;
+        border-top: 1px solid var(--bs-border-color);
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    .col-url, .col-controller, .col-action, .col-params {
+        padding: 12px 15px;
+        flex: 1;
+    }
+    
+    .col-url {
+        font-family: monospace;
+        color: #e06c75;
+    }
+    
+    .col-controller, .col-action {
+        color: #61afef;
+        font-weight: bold;
+    }
+    
+    .col-params {
+        color: #98c379;
+        font-family: monospace;
+        font-size: 0.9rem;
+    }
+    
+    .routing-note {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+        margin-top: 20px;
+        padding: 15px;
+        background-color: rgba(111, 66, 193, 0.2);
+        border-radius: 6px;
+    }
+    
+    .routing-note i {
+        color: var(--bs-indigo);
+        font-size: 1.5rem;
+        flex-shrink: 0;
+        margin-top: 3px;
+    }
+
+    .key-points {
+        margin: 30px 0;
+        padding: 25px;
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 1px solid var(--bs-primary);
+        border-radius: 10px;
+    }
+    
+    .key-points h3 {
+        color: var(--bs-primary);
+        margin-top: 0;
+    }
+    
+    .key-points ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .key-points li {
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(13, 110, 253, 0.2);
+        position: relative;
+        padding-left: 30px;
+    }
+    
+    .key-points li:before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--bs-success);
+        font-weight: bold;
+    }
+    
+    .key-points li:last-child {
+        border-bottom: none;
     }
 
     .navigation-buttons {
-        margin-top: 30px;
         display: flex;
         justify-content: space-between;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
+    }
+    
+    .btn {
+        padding: 12px 25px;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: all 0.3s;
+    }
+    
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+
+    @@media (max-width: 768px) {
+        .beginner-note {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .matching-game {
+            flex-direction: column;
+        }
+        
+        .table-header, .table-row {
+            flex-direction: column;
+        }
+        
+        .col-url, .col-controller, .col-action, .col-params {
+            padding: 8px 10px;
+        }
+        
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .navigation-buttons .btn {
+            width: 100%;
+            text-align: center;
+        }
     }
 </style>
+
+<script>
+$(document).ready(function() {
+    // Initialize syntax highlighting
+    if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+    }
+
+    // Copy code functionality
+    $('.copy-btn').on('click', function() {
+        const $codeElement = $(this).closest('.code-example').find('code');
+        const codeText = $codeElement.text();
+        
+        navigator.clipboard.writeText(codeText).then(() => {
+            const originalText = $(this).html();
+            $(this).html('<i class="fas fa-check"></i> Copied!');
+            $(this).addClass('btn-success').removeClass('btn-outline-secondary');
+            
+            setTimeout(() => {
+                $(this).html(originalText);
+                $(this).removeClass('btn-success').addClass('btn-outline-secondary');
+            }, 2000);
+        });
+    });
+
+    // Initialize drag and drop for matching game
+    let draggedItem = null;
+    
+    $('.game-item').on('dragstart', function(e) {
+        draggedItem = this;
+        $(this).addClass('dragging');
+    });
+    
+    $('.game-item').on('dragend', function() {
+        $(this).removeClass('dragging');
+        draggedItem = null;
+    });
+    
+    $('.game-item').on('dragover', function(e) {
+        e.preventDefault();
+    });
+    
+    $('.game-item').on('drop', function(e) {
+        e.preventDefault();
+        
+        if (draggedItem && draggedItem !== this) {
+            // Swap positions
+            const tempHTML = $(this).html();
+            const tempData = $(this).data('match');
+            
+            $(this).html($(draggedItem).html());
+            $(this).data('match', $(draggedItem).data('match'));
+            
+            $(draggedItem).html(tempHTML);
+            $(draggedItem).data('match', tempData);
+        }
+    });
+
+    // Check matching game answers
+    $('#checkMatches').on('click', function() {
+        const $feedback = $('.game-feedback');
+        let correctMatches = 0;
+        const totalMatches = 4;
+        
+        // Check each pair
+        $('.game-column:first-child .game-item').each(function(index) {
+            const leftMatch = $(this).data('match');
+            const $rightItem = $('.game-column:last-child .game-item').eq(index);
+            const rightMatch = $rightItem.data('match');
+            
+            if (leftMatch === rightMatch) {
+                $(this).addClass('matched');
+                $rightItem.addClass('matched');
+                correctMatches++;
+            } else {
+                $(this).removeClass('matched');
+                $rightItem.removeClass('matched');
+            }
+        });
+        
+        if (correctMatches === totalMatches) {
+            $feedback.html(`
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle" style="color: #28a745; font-size: 1.5rem;"></i>
+                    <div>
+                        <strong>Perfect!</strong><br>
+                        You correctly matched all URL patterns to their controller actions!
+                    </div>
+                </div>
+            `).addClass('success').show();
+        } else {
+            $feedback.html(`
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-exclamation-circle" style="color: #ffc107; font-size: 1.5rem;"></i>
+                    <div>
+                        <strong>Almost there!</strong><br>
+                        You got ${correctMatches} out of ${totalMatches} correct. 
+                        Remember: /Controller/Action/Parameters pattern.
+                    </div>
+                </div>
+            `).addClass('error').show();
+        }
+    });
+
+    // Make game items draggable
+    $('.game-item').attr('draggable', 'true');
+
+    // Add click interaction to method cards
+    $('.method-card').on('click', function() {
+        const $card = $(this);
+        $card.toggleClass('active');
+        
+        if ($card.hasClass('active')) {
+            $card.css('transform', 'translateY(-8px) scale(1.02)');
+            $card.css('box-shadow', '0 15px 30px rgba(0,0,0,0.2)');
+        } else {
+            $card.css('transform', 'translateY(0) scale(1)');
+            $card.css('box-shadow', 'none');
+        }
+    });
+
+    const flowSteps = $('.flow-step');
+    let currentStep = 0;
+    
+    function animateFlow() {
+        if (currentStep >= flowSteps.length) {
+            currentStep = 0;
+            flowSteps.removeClass('active');
+        }
+        
+        flowSteps.eq(currentStep).addClass('active');
+        currentStep++;
+        setTimeout(animateFlow, 2000);
+    }
+
+    flowSteps.each(function(index) {
+        $(this).css({
+            'opacity': '0.7',
+            'transform': 'translateY(10px)',
+            'transition': 'all 0.5s ease ' + (index * 0.2) + 's'
+        });
+    });
+
+    setTimeout(() => {
+        flowSteps.each(function(index) {
+            $(this).css({
+                'opacity': '1',
+                'transform': 'translateY(0)'
+            });
+        });
+        setTimeout(animateFlow, 1000);
+    }, 500);
+
+    $('.return-item').hover(
+        function() {
+            $(this).find('.code-snippet').css('background-color', '#404040');
+        },
+        function() {
+            $(this).find('.code-snippet').css('background-color', '#2d2d2d');
+        }
+    );
+});
+</script>

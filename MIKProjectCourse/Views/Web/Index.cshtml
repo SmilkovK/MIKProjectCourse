@@ -1,113 +1,1139 @@
 ﻿@{
-    ViewData["Title"] = "Creating Your First Website with .NET";
+    ViewData["Title"] = "Introduction to Web Development with .NET";
 }
 
 <div class="container">
-    <h1>@ViewData["Title"]</h1>
+    <div class="chapter-intro">
+        <div class="intro-header">
+            <h1><i class="fas fa-rocket"></i> Welcome to Web Development with .NET!</h1>
+            <p class="lead">Your journey to building modern web applications starts here</p>
+        </div>
+        
+        <div class="welcome-note">
+            <div class="welcome-icon">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="welcome-content">
+                <h4>Ready to Build Your First Website?</h4>
+                <p>Congratulations on completing the foundational exercises! You've built a solid programming foundation, and now it's time to put those skills to work in the exciting world of web development.</p>
+                <p><strong>Important:</strong> This won't make you an expert overnight, but it will give you the practical skills to start building real web applications with confidence.</p>
+            </div>
+        </div>
+    </div>
 
-    <p>
-        After completing all the exercises and previous sections, we hope you are ready to continue with 
-        creating your very first website. 
-        <br />
-        <strong>Note:</strong> This will not make you an expert in web development. 
-        From here on out, this course will guide you into setting up your environment and 
-        creating your first beginner-friendly website.
-    </p>
+    <div class="learning-roadmap">
+        <h2><i class="fas fa-map"></i> Your Learning Roadmap</h2>
+        <div class="roadmap-container">
+            <div class="roadmap-item">
+                <div class="roadmap-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h5>Part 1: .NET Web Basics</h5>
+                        <p><strong>Absolute Beginner Level</strong> - Start from ground zero</p>
+                        <ul>
+                            <li>Install and set up Visual Studio 2022</li>
+                            <li>Understand the MVC pattern</li>
+                            <li>Create your first simple website</li>
+                            <li>Learn Controllers, Models, and Views</li>
+                        </ul>
+                        <div class="level-indicator">
+                            <span class="level-label">Starting Level:</span>
+                            <div class="level-meter">
+                                <div class="level-fill" style="width: 10%"></div>
+                            </div>
+                            <span class="level-text">Level 1</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="roadmap-item">
+                    <div class="roadmap-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h5>Part 2: Intermediate Concepts</h5>
+                            <p><strong>Beginner-Intermediate Level</strong> - Build on your foundation</p>
+                            <ul>
+                                <li>Database integration with Entity Framework</li>
+                                <li>Form handling and validation</li>
+                                <li>User authentication basics</li>
+                                <li>Deploying your application</li>
+                            </ul>
+                            <div class="level-indicator">
+                                <span class="level-label">Target Level:</span>
+                                <div class="level-meter">
+                                    <div class="level-fill" style="width: 30%"></div>
+                                </div>
+                                <span class="level-text">Level 2.5-3</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h2>📝 What Does This Section Cover?</h2>
-    <p>
-        This section is divided into two main parts:
-    </p>
-    <ul>
-        <li><strong>Part 1:</strong> Learning the basics of .NET web programming (absolute beginner level).</li>
-        <li><strong>Part 2:</strong> Moving into more advanced topics (still beginner-friendly, but slightly deeper).</li>
-    </ul>
+    <div class="tools-section">
+        <h2><i class="fas fa-tools"></i> Development Tools You'll Use</h2>
+        
+        <div class="tools-comparison">
+            <div class="tool-recommended">
+                <div class="tool-header">
+                    <div class="tool-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h5>Recommended: Visual Studio 2022</h5>
+                </div>
+                <div class="tool-content">
+                    <p><strong>Perfect for beginners</strong> with built-in project templates, debugging tools, and intuitive interface.</p>
+                    <div class="tool-features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Drag-and-drop UI designer</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Built-in project templates</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Advanced debugging tools</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Integrated database tools</span>
+                        </div>
+                    </div>
+                    <div class="tool-note">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Community Edition is <strong>free</strong> for individual developers</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tool-alternative">
+                <div class="tool-header">
+                    <div class="tool-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h5>Alternative: Visual Studio Code</h5>
+                </div>
+                <div class="tool-content">
+                    <p><strong>Lightweight and flexible</strong> editor popular with experienced developers.</p>
+                    <div class="tool-features">
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Fast and lightweight</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Extensive extensions library</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Cross-platform support</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Git integration built-in</span>
+                        </div>
+                    </div>
+                    <div class="tool-note">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <span>Requires more manual setup for .NET development</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tech-stack">
+            <h6>Technology Stack:</h6>
+            <div class="tech-badges">
+                <span class="tech-badge dotnet">.NET 9</span>
+                <span class="tech-badge csharp">C#</span>
+                <span class="tech-badge mvc">ASP.NET Core MVC</span>
+                <span class="tech-badge ef">Entity Framework Core</span>
+                <span class="tech-badge sql">SQL Server / SQLite</span>
+            </div>
+        </div>
+    </div>
 
-    <p>
-        To put this into perspective, if we were to rank knowledge on a scale of 1–10:
-    </p>
-    <ul>
-        <li><strong>Part 1:</strong> You start at level <strong>1</strong>.</li>
-        <li><strong>Part 2:</strong> You’ll move up to about <strong>2.5 – 3</strong>.</li>
-    </ul>
+    <div class="mvc-visual-guide">
+        <h2><i class="fas fa-project-diagram"></i> Understanding MVC in Visual Studio</h2>
+        <p>The Model-View-Controller (MVC) pattern is at the heart of .NET web development. Here's how it looks in Visual Studio:</p>
+        
+        <div class="mvc-explanation">
+            <div class="mvc-folder-structure">
+                <div class="folder-header">
+                    <i class="fas fa-folder"></i>
+                    <h5>Visual Studio Solution Explorer</h5>
+                </div>
+                <div class="folder-tree">
+                    <div class="folder-item expanded">
+                        <i class="fas fa-folder-open"></i>
+                        <span>YourProjectName</span>
+                        <ul class="folder-subitems">
+                            <li class="folder-item">
+                                <i class="fas fa-folder"></i>
+                                <span>Controllers</span>
+                                <span class="folder-description">- Contains your controller classes</span>
+                            </li>
+                            <li class="folder-item">
+                                <i class="fas fa-folder"></i>
+                                <span>Models</span>
+                                <span class="folder-description">- Contains your data model classes</span>
+                            </li>
+                            <li class="folder-item expanded">
+                                <i class="fas fa-folder-open"></i>
+                                <span>Views</span>
+                                <ul class="folder-subitems">
+                                    <li class="folder-item">
+                                        <i class="fas fa-folder"></i>
+                                        <span>Home</span>
+                                        <span class="folder-description">- Views for HomeController</span>
+                                    </li>
+                                    <li class="folder-item">
+                                        <i class="fas fa-folder"></i>
+                                        <span>Shared</span>
+                                        <span class="folder-description">- Layouts and partial views</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="folder-item">
+                                <i class="fas fa-folder"></i>
+                                <span>wwwroot</span>
+                                <span class="folder-description">- Static files (CSS, JS, images)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mvc-flow-diagram">
+                <div class="flow-step">
+                    <div class="flow-icon">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="flow-content">
+                        <h5>1. User Request</h5>
+                        <p>User visits a URL like "/Products/Details/5"</p>
+                    </div>
+                    <div class="flow-arrow"></div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="flow-content">
+                        <h5>2. Controller</h5>
+                        <p>Processes the request and decides what to do</p>
+                        <code class="flow-code">ProductsController.Details(5)</code>
+                    </div>
+                    <div class="flow-arrow"></div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="flow-content">
+                        <h5>3. Model</h5>
+                        <p>Retrieves data from database</p>
+                        <code class="flow-code">Product.GetById(5)</code>
+                    </div>
+                    <div class="flow-arrow"></div>
+                </div>
+                
+                <div class="flow-step">
+                    <div class="flow-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="flow-content">
+                        <h5>4. View</h5>
+                        <p>Displays data to user</p>
+                        <code class="flow-code">Details.cshtml</code>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="visual-studio-preview">
+            <h6><i class="fas fa-desktop"></i> Visual Studio 2022 Interface Preview</h6>
+            <div class="vs-preview-image">
+                <div class="image-container">
+                    <img src="~/Pictures/interface-mvc.png" alt="Visual Studio 2022 MVC Interface" class="vs-interface-img">
+                </div>
+                <div class="image-caption">
+                    <i class="fas fa-info-circle"></i>
+                    <span>This is what Visual Studio 2022 looks like when working with MVC projects. You'll see the Solution Explorer (left), code editor (center), and various tool windows.</span>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h2>💻 Tools You Will Need</h2>
-    <p>
-        In this course, we will be using <strong>Visual Studio 2022 (Community Edition)</strong>. 
-        While you can use other IDEs, we highly recommend VS 2022 as it is the most beginner-friendly option.
-    </p>
-    <p>
-        <strong>Visual Studio Code</strong> is also a great option, but in our opinion, Microsoft’s Visual Studio 2022 
-        offers more pre-built classes and a UI that makes it easier for beginners to get started.
-    </p>
-    <p>
-        At the time of writing this course, we will be using <strong>.NET 9</strong>. 
-        We recommend you install and use the same version for consistency.
-    </p>
+    <div class="whats-next">
+        <h2><i class="fas fa-forward"></i> What's Coming Next?</h2>
+        <div class="upcoming-chapters">
+            <div class="chapter-preview">
+                <div class="chapter-icon">
+                    <i class="fas fa-download"></i>
+                </div>
+                <div class="chapter-content">
+                    <h5>Next Chapter: Installation Guide</h5>
+                    <p>Step-by-step instructions to install Visual Studio 2022 Community Edition and .NET 9 SDK on your computer.</p>
+                    <ul>
+                        <li>System requirements check</li>
+                        <li>Download and installation process</li>
+                        <li>Verifying your setup</li>
+                        <li>Creating your first test project</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="chapter-preview">
+                <div class="chapter-icon">
+                    <i class="fas fa-plus-circle"></i>
+                </div>
+                <div class="chapter-content">
+                    <h5>Then: Your First .NET Project</h5>
+                    <p>Create your first ASP.NET Core MVC project from scratch and understand the project structure.</p>
+                    <ul>
+                        <li>Creating a new MVC project</li>
+                        <li>Understanding the default template</li>
+                        <li>Running your first web application</li>
+                        <li>Basic project navigation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h2>🚀 What’s Next?</h2>
-    <p>
-        The next few chapters will guide you through:
-    </p>
-    <ul>
-        <li>Installing Visual Studio 2022</li>
-        <li>Understanding the basics of Controllers, Models, and Views</li>
-        <li>Building your first simple web application step by step</li>
-    </ul>
+    <div class="learning-tips">
+        <h3><i class="fas fa-lightbulb"></i> Tips for Success</h3>
+        <div class="tips-grid">
+            <div class="tip-item">
+                <div class="tip-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="tip-content">
+                    <h5>Type Everything Out</h5>
+                    <p>Don't copy-paste code. Typing helps reinforce learning and helps you notice details.</p>
+                </div>
+            </div>
+            
+            <div class="tip-item">
+                <div class="tip-icon">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <div class="tip-content">
+                    <h5>Experiment & Break Things</h5>
+                    <p>Change code to see what happens. Learning from mistakes is powerful.</p>
+                </div>
+            </div>
+            
+            <div class="tip-item">
+                <div class="tip-icon">
+                    <i class="fas fa-save"></i>
+                </div>
+                <div class="tip-content">
+                    <h5>Save Your Work</h5>
+                    <p>Create backups of working code before making major changes.</p>
+                </div>
+            </div>
+            
+            <div class="tip-item">
+                <div class="tip-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <div class="tip-content">
+                    <h5>Join the Community</h5>
+                    <p>Connect with other learners and ask questions when you're stuck.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <p>
-        So buckle up and get ready — things are about to get exciting! 🎉
-    </p>
-
-    <div class="navigation-buttons">
-        <a href="@Url.Action("Summary", "WebCommunication")" class="btn btn-outline-primary ajax-link">← Previous chapter Summary</a>
-        <a href="@Url.Action("Instalation", "Web")" class="btn btn-primary ajax-link">Visual Studio 2022 Instalation →</a>
+    <div class="action-call">
+        <div class="action-content">
+            <h4><i class="fas fa-play-circle"></i> Ready to Start Building?</h4>
+            <p>You now understand what lies ahead. In the next chapter, we'll roll up our sleeves and start with the installation process.</p>
+            <p><strong>Remember:</strong> Every expert was once a beginner. Your journey starts with this single step.</p>
+        </div>
+        <div class="action-buttons">
+            <a href="@Url.Action("Summary", "WebCommunication")" class="btn btn-outline-primary">
+                <i class="fas fa-arrow-left"></i> Previous: Web Communication Summary
+            </a>
+            <a href="@Url.Action("Instalation", "Web")" class="btn btn-primary">
+                Start Installation Guide <i class="fas fa-download"></i>
+            </a>
+        </div>
     </div>
 </div>
 
 <style>
     .container {
-        max-width: 800px;
+        max-width: 1000px;
+        margin: 0 auto;
         padding: 20px;
         background-color: var(--bs-body-bg);
     }
-
-    h1 {
+    
+    h1, h2, h3, h4, h5, h6 {
         color: var(--bs-heading-color);
-        margin-bottom: 20px;
+        margin-bottom: 1rem;
     }
-
-    h2 {
-        color: var(--bs-heading-color);
-        margin-top: 25px;
-        margin-bottom: 15px;
+    
+    .chapter-intro {
+        margin-bottom: 2.5rem;
     }
-
-    .container p,
-    .container ul {
-        color: var(--bs-body-color);
+    
+    .intro-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--bs-primary);
+    }
+    
+    .intro-header h1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .intro-header .lead {
+        color: var(--bs-secondary);
+        font-size: 1.25rem;
+    }
+    
+    .welcome-note {
+        display: flex;
+        gap: 1.5rem;
+        padding: 1.5rem;
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 10px;
+        align-items: flex-start;
+    }
+    
+    .welcome-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.75rem;
+        flex-shrink: 0;
+    }
+    
+    .welcome-content h4 {
+        color: var(--bs-primary);
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+    }
+    
+    .welcome-content p {
+        margin-bottom: 0.75rem;
         line-height: 1.6;
     }
-
-    .navigation-buttons {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 30px;
+    
+    .welcome-content p:last-child {
+        margin-bottom: 0;
     }
-
-    .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+    
+    .learning-roadmap {
+        margin: 2.5rem 0;
+        padding: 1.5rem;
+        background-color: rgba(var(--bs-info-rgb), 0.1);
+        border: 1px solid var(--bs-info);
+        border-radius: 10px;
+    }
+    
+    .learning-roadmap h2 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--bs-info);
+        margin-top: 0;
+    }
+    
+    .roadmap-container {
+        margin-top: 1.5rem;
+    }
+    
+    .roadmap-step {
+        margin-bottom: 1.5rem;
+        padding: 1.5rem;
+        background-color: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        position: relative;
+    }
+    
+    .roadmap-step:last-child {
+        margin-bottom: 0;
+    }
+    
+    .step-number {
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        background-color: var(--bs-primary);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.25rem;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .step-content h5 {
+        color: var(--bs-primary);
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+    
+    .step-content > p {
+        color: var(--bs-secondary);
+        margin-bottom: 1rem;
         font-weight: 500;
     }
-
-    .btn-primary {
-        background-color: var(--bs-primary);
+    
+    .step-content ul {
+        padding-left: 1.25rem;
+        margin: 0.75rem 0;
+    }
+    
+    .step-content li {
+        margin-bottom: 0.25rem;
+        font-size: 0.95rem;
+    }
+    
+    .level-indicator {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 1rem;
+        padding: 0.75rem;
+        background-color: rgba(var(--bs-secondary-rgb), 0.1);
+        border-radius: 6px;
+    }
+    
+    .level-label {
+        font-size: 0.9rem;
+        color: var(--bs-secondary);
+    }
+    
+    .level-meter {
+        flex: 1;
+        height: 8px;
+        background-color: rgba(var(--bs-secondary-rgb), 0.2);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+    
+    .level-fill {
+        height: 100%;
+        background-color: var(--bs-success);
+        border-radius: 4px;
+    }
+    
+    .level-text {
+        font-weight: bold;
+        color: var(--bs-success);
+        min-width: 60px;
+        text-align: right;
+    }
+    
+    .tools-section {
+        margin: 2.5rem 0;
+    }
+    
+    .tools-section h2 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .tools-comparison {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .tool-recommended, .tool-alternative {
+        border: 2px solid;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .tool-recommended {
+        border-color: var(--bs-success);
+    }
+    
+    .tool-alternative {
+        border-color: var(--bs-secondary);
+    }
+    
+    .tool-header {
+        padding: 1rem;
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .tool-recommended .tool-header {
+        background-color: var(--bs-success);
+    }
+    
+    .tool-alternative .tool-header {
+        background-color: var(--bs-secondary);
+    }
+    
+    .tool-icon {
+        font-size: 1.5rem;
+    }
+    
+    .tool-header h5 {
+        margin: 0;
+    }
+    
+    .tool-content {
+        padding: 1.25rem;
+    }
+    
+    .tool-content > p {
+        margin-bottom: 1rem;
+    }
+    
+    .tool-features {
+        margin: 1rem 0;
+    }
+    
+    .feature {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+    
+    .feature i {
+        color: var(--bs-success);
+    }
+    
+    .tool-note {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem;
+        border-radius: 6px;
+        margin-top: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .tool-recommended .tool-note {
+        background-color: rgba(var(--bs-success-rgb), 0.1);
+        color: var(--bs-success);
+    }
+    
+    .tool-alternative .tool-note {
+        background-color: rgba(var(--bs-warning-rgb), 0.1);
+        color: var(--bs-warning);
+    }
+    
+    .tech-stack {
+        margin-top: 2rem;
+        padding: 1.5rem;
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        border-radius: 8px;
+    }
+    
+    .tech-stack h6 {
+        margin-bottom: 1rem;
+        color: var(--bs-primary);
+    }
+    
+    .tech-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+    
+    .tech-badge {
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+    
+    .tech-badge.dotnet {
+        background-color: rgba(80, 0, 200, 0.1);
+        color: #512bd4;
+        border: 1px solid #512bd4;
+    }
+    
+    .tech-badge.csharp {
+        background-color: rgba(23, 114, 39, 0.1);
+        color: #178822;
+        border: 1px solid #178822;
+    }
+    
+    .tech-badge.mvc {
+        background-color: rgba(13, 110, 253, 0.1);
+        color: var(--bs-primary);
+        border: 1px solid var(--bs-primary);
+    }
+    
+    .tech-badge.ef {
+        background-color: rgba(253, 126, 20, 0.1);
+        color: #fd7e14;
+        border: 1px solid #fd7e14;
+    }
+    
+    .tech-badge.sql {
+        background-color: rgba(220, 53, 69, 0.1);
+        color: var(--bs-danger);
+        border: 1px solid var(--bs-danger);
+    }
+    
+    .mvc-visual-guide {
+        margin: 2.5rem 0;
+        padding: 1.5rem;
+        background-color: rgba(var(--bs-purple-rgb, 111, 66, 193), 0.1);
+        border: 1px solid var(--bs-purple, #6f42c1);
+        border-radius: 10px;
+    }
+    
+    .mvc-visual-guide h2 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--bs-purple, #6f42c1);
+        margin-top: 0;
+    }
+    
+    .mvc-visual-guide > p {
+        margin-bottom: 1.5rem;
+    }
+    
+    .mvc-explanation {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .mvc-folder-structure {
+        background-color: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .folder-header {
+        background-color: rgba(var(--bs-secondary-rgb), 0.2);
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+    
+    .folder-tree {
+        padding: 1rem;
+    }
+    
+    .folder-item {
+        padding: 0.5rem 0;
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .folder-item i {
+        color: var(--bs-warning);
+        width: 16px;
+    }
+    
+    .folder-description {
+        font-size: 0.85rem;
+        color: var(--bs-secondary);
+        margin-left: auto;
+    }
+    
+    .folder-subitems {
+        padding-left: 1.5rem;
+        margin: 0.25rem 0;
+    }
+    
+    .mvc-flow-diagram {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .flow-step {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background-color: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        position: relative;
+    }
+    
+    .flow-icon {
+        background-color: var(--bs-purple, #6f42c1);
+        color: white;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+    }
+    
+    .flow-content h5 {
+        margin: 0 0 0.25rem 0;
+        color: var(--bs-purple, #6f42c1);
+    }
+    
+    .flow-content p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--bs-secondary);
+    }
+    
+    .flow-code {
+        display: block;
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        background-color: rgba(0,0,0,0.05);
+        border-radius: 4px;
+        font-family: var(--bs-font-monospace);
+        font-size: 0.85rem;
+        color: var(--bs-purple, #6f42c1);
+    }
+    
+    .flow-arrow {
+        position: absolute;
+        right: -1.5rem;
+        color: var(--bs-purple, #6f42c1);
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    
+    .flow-arrow:after {
+        content: "→";
+    }
+    
+    .visual-studio-preview {
+        margin-top: 2rem;
+    }
+    
+    .visual-studio-preview h6 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .vs-preview-image {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: rgba(0,0,0,0.03);
+    }
+    
+    .image-placeholder {
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, rgba(var(--bs-primary-rgb), 0.1) 0%, rgba(var(--bs-info-rgb), 0.1) 100%);
+    }
+    
+    .image-placeholder i {
+        font-size: 4rem;
+        color: var(--bs-primary);
+        margin-bottom: 1rem;
+    }
+    
+    .image-placeholder p {
+        color: var(--bs-secondary);
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+    
+    .image-caption {
+        padding: 1rem;
+        background-color: rgba(var(--bs-secondary-rgb), 0.1);
+        border-top: 1px solid var(--bs-border-color);
+        font-size: 0.9rem;
+        color: var(--bs-secondary);
+        text-align: center;
+    }
+    
+    .whats-next {
+        margin: 2.5rem 0;
+        padding: 1.5rem;
+        background-color: rgba(var(--bs-success-rgb), 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 10px;
+    }
+    
+    .whats-next h2 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--bs-success);
+        margin-top: 0;
+    }
+    
+    .upcoming-chapters {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    
+    .chapter-preview {
+        padding: 1.5rem;
+        background-color: var(--bs-body-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .chapter-preview:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
         border-color: var(--bs-primary);
     }
-
-    .btn-outline-primary {
+    
+    .chapter-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+    
+    .chapter-content h5 {
         color: var(--bs-primary);
-        border-color: var(--bs-primary);
+        margin-top: 0;
+        margin-bottom: 0.75rem;
+    }
+    
+    .chapter-content > p {
+        margin-bottom: 1rem;
+        line-height: 1.5;
+    }
+    
+    .chapter-content ul {
+        padding-left: 1.25rem;
+        margin: 0;
+    }
+    
+    .chapter-content li {
+        margin-bottom: 0.25rem;
+        font-size: 0.9rem;
+    }
+    
+    .learning-tips {
+        margin: 2.5rem 0;
+    }
+    
+    .learning-tips h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--bs-warning);
+    }
+    
+    .tips-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .tip-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1.25rem;
+        background-color: rgba(var(--bs-warning-rgb), 0.1);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .tip-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-color: var(--bs-warning);
+    }
+    
+    .tip-icon {
+        background-color: var(--bs-warning);
+        color: white;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        flex-shrink: 0;
+    }
+    
+    .tip-content h5 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        color: var(--bs-warning);
+    }
+    
+    .tip-content p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--bs-secondary);
+    }
+    
+    .action-call {
+        margin: 2.5rem 0;
+        padding: 2rem;
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 10px;
+        text-align: center;
+    }
+    
+    .action-content h4 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        color: var(--bs-primary);
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+    
+    .action-content p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .action-content p:last-child {
+        margin-bottom: 1.5rem;
+        font-weight: 500;
+    }
+    
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+    
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    
+    .btn i {
+        margin-right: 0.5rem;
+    }
+    
+    .btn-primary i {
+        margin-right: 0.5rem;
+        margin-left: 0;
+    }
+    
+    @@media (max-width: 768px) {
+        .container {
+            padding: 1rem;
+        }
+        
+        .welcome-note {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .welcome-icon {
+            margin: 0 auto;
+        }
+        
+        .tools-comparison,
+        .mvc-explanation,
+        .upcoming-chapters,
+        .tips-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .flow-arrow {
+            display: none;
+        }
+        
+        .flow-step {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .action-buttons {
+            flex-direction: column;
+        }
+        
+        .action-buttons .btn {
+            width: 100%;
+        }
+        
+        .folder-description {
+            display: none;
+        }
+    }
+    
+    @@media (max-width: 480px) {
+        .tech-badges {
+            justify-content: center;
+        }
+        
+        .step-number {
+            position: relative;
+            top: 0;
+            left: 0;
+            margin-bottom: 1rem;
+        }
     }
 </style>
