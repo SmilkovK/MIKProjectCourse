@@ -1,48 +1,48 @@
 ﻿@{
-    ViewData["Title"] = "OOP - Constructors";
+    ViewData["Title"] = "OOP - Конструктори";
 }
 
 <div class="container">
-    <h1 class="mb-4">🔨 Constructors: Setting Up Your Objects</h1>
+    <h1 class="mb-4">Конструктори: Подесување на вашите објекти</h1>
 
-    <p><strong>Constructors</strong> are like the <strong>setup crew</strong> or <strong>initialization team</strong> for your objects. When you create a new object from a class, the constructor makes sure it's ready to go with all its starting values!</p>
+    <p><strong>Конструкторите</strong> се како <strong>тим за подесување</strong> или <strong>иницијализација</strong> на вашите објекти. Кога креирате нов објект од класа, конструкторот се грижи тој да биде подготвен со сите почетни вредности.</p>
 
-    <p>You see constructors in action all around you:</p>
+    <p>Конструктори гледате насекаде во реалниот живот:</p>
     <ul>
-        <li>When you <strong>order a pizza</strong>, you specify toppings right away - that's like constructor parameters!</li>
-        <li>When you <strong>buy a new phone</strong>, it comes with default apps already installed</li>
-        <li>When you <strong>fill out a new student registration form</strong>, you provide name and age immediately</li>
-        <li>When you <strong>build a Lego set</strong>, you follow the first page of instructions to get started</li>
+        <li>Кога <strong>нарачувате пица</strong>, веднаш избирате додатоци – тоа се параметри на конструктор</li>
+        <li>Кога <strong>купувате нов телефон</strong>, тој доаѓа со основни апликации веќе инсталирани</li>
+        <li>Кога <strong>пополнувате формулар за упис на студент</strong>, веднаш внесувате име и возраст</li>
+        <li>Кога <strong>градите Lego сет</strong>, првите чекори служат за почетно поставување</li>
     </ul>
 
-    <h2>📘 What is a Constructor?</h2>
-    <p>A constructor has three important features:</p>
-    
+    <h2>Што е конструктор?</h2>
+    <p>Конструкторот има три важни карактеристики:</p>
+
     <div class="code-container">
-        <div class="code-header">Constructor Anatomy</div>
+        <div class="code-header">Анатомија на конструктор</div>
         <div class="code-content">
 <pre>
-         Constructor Name    Parameters      Setup Code
-               ↓                ↓                ↓
-      <strong>public Student</strong>(<strong>string name, int age</strong>)
+         Име на конструктор   Параметри        Код за подесување
+               ↓                ↓                    ↓
+            <strong>public Student</strong>(<strong>string name, int age</strong>)
       {
-          <strong>Name = name;</strong>     ← Sets up the Name
-          <strong>Age = age;</strong>       ← Sets up the Age
+            <strong>Name = name;</strong>     ← Го поставува името
+            <strong>Age = age;</strong>       ← Ја поставува возраста
       }
 </pre>
         </div>
     </div>
 
-    <p>Think of it like this:</p>
+    <p>Размислете вака:</p>
     <ul>
-        <li><strong>Same name as class</strong> → It's the "setup method" for the class</li>
-        <li><strong>Parameters</strong> → What information you need to provide</li>
-        <li><strong>Setup Code</strong> → What happens when the object is created</li>
+        <li><strong>Истото име како класата</strong> → тоа е методот за подесување</li>
+        <li><strong>Параметри</strong> → податоци што мора да ги дадете</li>
+        <li><strong>Код за подесување</strong> → што се случува при создавање на објектот</li>
     </ul>
 
-    <h2>📋 The Problem: Empty Objects</h2>
+    <h2>Проблемот: Празни објекти</h2>
     <div class="code-container">
-        <div class="code-header">Without Constructor (The Hard Way)</div>
+        <div class="code-header">Без конструктор (тешкиот начин)</div>
         <div class="code-content">
 <pre class="language-csharp">
 public class Student
@@ -51,51 +51,48 @@ public class Student
     public int Age;
 }
 
-// Creating and setting up a student
-Student s = new Student();  // Empty student
-s.Name = "Alex";            // Set name manually
-s.Age = 20;                 // Set age manually
+// Креирање и рачно подесување
+Student s = new Student();
+s.Name = "Alex";
+s.Age = 20;
 
-// Problem: What if we forget to set Age?
+// Проблем: ако заборавиме нешто?
 Student s2 = new Student();
 s2.Name = "Maria";
-// Oops! Forgot s2.Age = 21;
+// Заборавено: s2.Age = 21;
 </pre>
         </div>
     </div>
     <div class="result-box">
-        ➡ <strong>Problem:</strong> We have to remember to set every property!<br>
-        It's easy to forget, and we might end up with incomplete objects.<br>
-        <em>Solution: Use a constructor to make sure everything is set up right away!</em>
+        <strong>Проблем:</strong> Мора рачно да го поставиме секое својство.<br>
+        Лесно е да се заборави нешто и да се добие нецелосен објект.<br>
+        <em>Решение: користење конструктор за автоматско подесување!</em>
     </div>
 
-    <h2>🎯 Example 1: Student Constructor</h2>
-    <p>Let's create a student that's ready to go from the start:</p>
-    
+    <h2>Пример 1: Student со конструктор</h2>
+    <p>Да создадеме студент кој е подготвен веднаш:</p>
+
     <div class="code-container">
-        <div class="code-header">Student Class with Constructor</div>
+        <div class="code-header">Student класа со конструктор</div>
         <div class="code-content">
 <pre class="language-csharp">
-// WITH CONSTRUCTOR (The Right Way!)
 public class Student
 {
     public string Name;
     public int Age;
-    
-    // Constructor - called automatically when creating object
+
     public Student(string studentName, int studentAge)
     {
-        Name = studentName;  // Set the name
-        Age = studentAge;    // Set the age
+        Name = studentName;
+        Age = studentAge;
     }
-    
+
     public void Study()
     {
-        Console.WriteLine(Name + " (age " + Age + ") is studying.");
+        Console.WriteLine(Name + " (возраст " + Age + ") учи.");
     }
 }
 
-// Creating students - EASY and SAFE!
 Student alex = new Student("Alex", 20);
 Student maria = new Student("Maria", 21);
 
@@ -104,22 +101,17 @@ maria.Study();
 </pre>
         </div>
         <div class="result-box">
-            ➡ <strong>Output:</strong><br>
-            Alex (age 20) is studying.<br>
-            Maria (age 21) is studying.<br><br>
-            <strong>How it works:</strong><br>
-            1. When we write <code>new Student("Alex", 20)</code>, the constructor is called automatically<br>
-            2. The constructor sets <code>Name = "Alex"</code> and <code>Age = 20</code><br>
-            3. The object is created with all properties already set<br>
-            4. We can immediately use the object without any manual setup<br><br>
-            <strong>Key Benefit:</strong> No manual property setting needed! The object is ready to use immediately.
+            <strong>Излез:</strong><br>
+            Alex (возраст 20) учи.<br>
+            Maria (возраст 21) учи.<br><br>
+            <strong>Предност:</strong> Објектите се целосно подготвени без дополнително подесување.
         </div>
     </div>
 
-    <h2>🧠 Step-by-Step: How a Constructor Works</h2>
-    
+    <h2>Чекор по чекор: Како работи конструктор</h2>
+
     <div class="code-container">
-        <div class="code-header">Creating a Book with Constructor</div>
+        <div class="code-header">Book класа со конструктор</div>
         <div class="code-content">
 <pre class="language-csharp">
 public class Book
@@ -127,47 +119,33 @@ public class Book
     public string Title;
     public string Author;
     public int Pages;
-    
-    // Constructor
+
     public Book(string title, string author, int pages)
     {
         Title = title;
         Author = author;
         Pages = pages;
     }
-    
+
     public void DisplayInfo()
     {
-        Console.WriteLine($"Book: {Title}");
-        Console.WriteLine($"Author: {Author}");
-        Console.WriteLine($"Pages: {Pages}");
+        Console.WriteLine($"Книга: {Title}");
+        Console.WriteLine($"Автор: {Author}");
+        Console.WriteLine($"Страници: {Pages}");
     }
 }
 
-// Creating a book object
 Book myBook = new Book("Harry Potter", "J.K. Rowling", 400);
 myBook.DisplayInfo();
 </pre>
         </div>
-        <div class="result-box">
-            ➡ <strong>Output:</strong><br>
-            Book: Harry Potter<br>
-            Author: J.K. Rowling<br>
-            Pages: 400<br><br>
-            <strong>Step-by-Step Execution:</strong><br>
-            <strong>Step 1:</strong> <code>new Book("Harry Potter", "J.K. Rowling", 400)</code> is called<br>
-            <strong>Step 2:</strong> Constructor runs with parameters: title="Harry Potter", author="J.K. Rowling", pages=400<br>
-            <strong>Step 3:</strong> Constructor sets: <code>Title = "Harry Potter"</code>, <code>Author = "J.K. Rowling"</code>, <code>Pages = 400</code><br>
-            <strong>Step 4:</strong> Object is created with all properties already set<br>
-            <strong>Step 5:</strong> We can immediately call <code>myBook.DisplayInfo()</code> because the object is ready
-        </div>
     </div>
 
-    <h2>🎯 Example 2: Constructor Overloading</h2>
-    <p>You can have multiple constructors for different situations (this is called "overloading"):</p>
-    
+    <h2>Пример 2: Повеќе конструктори (Overloading)</h2>
+    <p>Може да имате повеќе конструктори за различни ситуации:</p>
+
     <div class="code-container">
-        <div class="code-header">GameCharacter Class with Multiple Constructors</div>
+        <div class="code-header">GameCharacter со повеќе конструктори</div>
         <div class="code-content">
 <pre class="language-csharp">
 public class GameCharacter
@@ -175,369 +153,99 @@ public class GameCharacter
     public string Name;
     public int Health;
     public string Weapon;
-    
-    // Constructor 1: Full setup
+
     public GameCharacter(string name, int health, string weapon)
     {
         Name = name;
         Health = health;
         Weapon = weapon;
-        Console.WriteLine("Character created with weapon: " + weapon);
     }
-    
-    // Constructor 2: Just name and health (no weapon)
+
     public GameCharacter(string name, int health)
     {
         Name = name;
         Health = health;
-        Weapon = "Fists";  // Default weapon
-        Console.WriteLine("Character created with default weapon");
+        Weapon = "Fists";
     }
-    
-    // Constructor 3: Just name (everything else default)
+
     public GameCharacter(string name)
     {
         Name = name;
-        Health = 100;      // Default health
-        Weapon = "Fists";  // Default weapon
-        Console.WriteLine("Character created with all defaults");
-    }
-    
-    public void ShowInfo()
-    {
-        Console.WriteLine($"{Name} - Health: {Health}, Weapon: {Weapon}");
+        Health = 100;
+        Weapon = "Fists";
     }
 }
-
-// Using different constructors
-Console.WriteLine("=== Creating Characters ===");
-GameCharacter warrior = new GameCharacter("Thor", 150, "Hammer");
-GameCharacter mage = new GameCharacter("Merlin", 80);
-GameCharacter newbie = new GameCharacter("Player1");
-
-Console.WriteLine("\n=== Character Information ===");
-warrior.ShowInfo();
-mage.ShowInfo();
-newbie.ShowInfo();
 </pre>
-        </div>
-        <div class="result-box">
-            ➡ <strong>Output:</strong><br>
-            === Creating Characters ===<br>
-            Character created with weapon: Hammer<br>
-            Character created with default weapon<br>
-            Character created with all defaults<br><br>
-            === Character Information ===<br>
-            Thor - Health: 150, Weapon: Hammer<br>
-            Merlin - Health: 80, Weapon: Fists<br>
-            Player1 - Health: 100, Weapon: Fists<br><br>
-            <strong>How Constructor Overloading Works:</strong><br>
-            C# automatically chooses the right constructor based on the parameters you provide:<br>
-            • <code>new GameCharacter("Thor", 150, "Hammer")</code> → Uses constructor with 3 parameters<br>
-            • <code>new GameCharacter("Merlin", 80)</code> → Uses constructor with 2 parameters (defaults Weapon)<br>
-            • <code>new GameCharacter("Player1")</code> → Uses constructor with 1 parameter (defaults Health and Weapon)<br><br>
-            <strong>Benefit:</strong> Flexible object creation - users can provide as much or as little information as they have.
         </div>
     </div>
 
-    <h2>🎯 Example 3: Constructor with Validation</h2>
-    <p>Constructors can validate input to prevent invalid objects:</p>
-    
+    <h2>Пример 3: Конструктор со валидација</h2>
+
     <div class="code-container">
-        <div class="code-header">BankAccount Class with Validation</div>
+        <div class="code-header">BankAccount со проверка</div>
         <div class="code-content">
 <pre class="language-csharp">
 public class BankAccount
 {
     public string Owner;
     public decimal Balance;
-    
-    // Constructor with validation
+
     public BankAccount(string owner, decimal startingBalance)
     {
-        // Validate starting balance
-        if (startingBalance < 0)
-        {
-            Console.WriteLine("ERROR: Starting balance cannot be negative!");
-            Console.WriteLine("Setting balance to 0 instead.");
-            Balance = 0; // Set to zero instead of throwing error
-        }
-        else
-        {
-            Balance = startingBalance;
-        }
-        
-        // Validate owner name
-        if (string.IsNullOrEmpty(owner))
-        {
-            Console.WriteLine("ERROR: Owner name is required!");
-            Console.WriteLine("Setting owner to 'Unknown'.");
-            Owner = "Unknown";
-        }
-        else
-        {
-            Owner = owner;
-        }
-        
-        Console.WriteLine($"✓ Account created for {Owner} with ${Balance}");
-    }
-    
-    public void DisplayInfo()
-    {
-        Console.WriteLine($"{Owner}'s balance: ${Balance}");
+        Balance = startingBalance < 0 ? 0 : startingBalance;
+        Owner = string.IsNullOrEmpty(owner) ? "Unknown" : owner;
     }
 }
-
-// Creating bank accounts
-Console.WriteLine("=== Creating Bank Accounts ===");
-BankAccount johnAccount = new BankAccount("John Smith", 1000.00m);
-BankAccount invalidAccount = new BankAccount("", -100.00m);
-BankAccount sarahAccount = new BankAccount("Sarah Johnson", 500.00m);
-
-Console.WriteLine("\n=== Account Information ===");
-johnAccount.DisplayInfo();
-invalidAccount.DisplayInfo();
-sarahAccount.DisplayInfo();
 </pre>
-        </div>
-        <div class="result-box">
-            ➡ <strong>Output:</strong><br>
-            === Creating Bank Accounts ===<br>
-            ✓ Account created for John Smith with $1000.00<br>
-            ERROR: Starting balance cannot be negative!<br>
-            Setting balance to 0 instead.<br>
-            ERROR: Owner name is required!<br>
-            Setting owner to 'Unknown'.<br>
-            ✓ Account created for Unknown with $0<br>
-            ✓ Account created for Sarah Johnson with $500.00<br><br>
-            === Account Information ===<br>
-            John Smith's balance: $1000.00<br>
-            Unknown's balance: $0<br>
-            Sarah Johnson's balance: $500.00<br><br>
-            <strong>How Validation Works in Constructors:</strong><br>
-            1. <strong>Balance validation:</strong> Checks if startingBalance is negative<br>
-            &nbsp;&nbsp;&nbsp;• If negative: Shows error, sets Balance = 0<br>
-            &nbsp;&nbsp;&nbsp;• If positive: Sets Balance = startingBalance<br><br>
-            2. <strong>Owner validation:</strong> Checks if owner name is empty<br>
-            &nbsp;&nbsp;&nbsp;• If empty: Shows error, sets Owner = "Unknown"<br>
-            &nbsp;&nbsp;&nbsp;• If not empty: Sets Owner = owner<br><br>
-            <strong>Benefit:</strong> Prevents creating invalid objects. Even with bad input, we get a valid (though default) object.
         </div>
     </div>
 
-    <h2>🎯 Example 4: Default Constructor</h2>
-    <p>When you don't write any constructor, C# gives you a free one:</p>
-    
+    <h2>Default конструктор</h2>
+    <p>Ако не дефинирате конструктор, C# автоматски додава празен:</p>
+
     <div class="code-container">
-        <div class="code-header">Automatic Default Constructor</div>
+        <div class="code-header">Автоматски конструктор</div>
         <div class="code-content">
 <pre class="language-csharp">
-// You write this class without any constructor:
 public class Product
 {
     public string Name;
     public decimal Price;
-    
-    public void Show()
-    {
-        Console.WriteLine($"{Name} - ${Price}");
-    }
 }
-
-// C# automatically adds this hidden constructor:
-// public Product() { }
-
-// So you can create objects like this:
-Product laptop = new Product();  // Uses the default constructor
-laptop.Name = "Laptop";
-laptop.Price = 999.99m;
-
-Product phone = new Product();
-phone.Name = "Phone";
-phone.Price = 799.99m;
-
-laptop.Show();
-phone.Show();
-</pre>
-        </div>
-        <div class="result-box">
-            ➡ <strong>Output:</strong><br>
-            Laptop - $999.99<br>
-            Phone - $799.99<br><br>
-            <strong>Important Rule:</strong><br>
-            The default constructor goes away if you write ANY constructor yourself!<br><br>
-            <strong>Example:</strong><br>
-            <code>
-            public class Product<br>
-            {<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;public string Name;<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;public decimal Price;<br><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;// If you add this constructor:<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;public Product(string name)<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;{<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Name = name;<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-            }<br>
-            </code><br>
-            Then <code>new Product()</code> won't work anymore! You must use <code>new Product("Laptop")</code><br><br>
-            <strong>Why:</strong> Once you define your own constructor, C# assumes you want full control and doesn't provide the default one.
-        </div>
-    </div>
-
-    <h2>Visual Diagram: How Constructors Work</h2>
-    
-    <div class="code-container">
-        <div class="code-header">Constructor Flow</div>
-        <div class="code-content">
-<pre>
-1. You write:      Student s = new Student("Alex", 20);
-
-2. Computer finds constructor:
-   public Student(string name, int age)
-   {
-       Name = name;   // ← Sets Name = "Alex"
-       Age = age;     // ← Sets Age = 20
-   }
-
-3. Memory is allocated:
-   ┌─────────────────┐
-   │ Student Object  │
-   ├─────────────────┤
-   │ Name = "Alex"   │  ← Set by constructor
-   │ Age = 20        │  ← Set by constructor
-   └─────────────────┘
-
-4. Object is ready to use!
-
-Key: Constructor runs BEFORE you can use the object.
-     It prepares everything automatically.
 </pre>
         </div>
     </div>
 
-    <h2>⚠️ Common Mistakes to Avoid</h2>
+    <h2>Чести грешки</h2>
     <div class="code-container">
-        <div class="code-header">Constructor Errors</div>
+        <div class="code-header">Грешки и решенија</div>
         <div class="code-content">
 <pre class="language-csharp">
-<span style="color: #dc3545; font-weight: bold;">// WRONG: Wrong constructor name</span>
-public class Car
-{
-    public CarSetup(string brand)  // ERROR: Should be Car, not CarSetup
-    {
-        Brand = brand;
-    }
-}
+<span style="color:red; font-weight:bold;">// ГРЕШНО: Името не одговара на класата</span>
+public CarSetup(string brand) {}
 
-<span style="color: #28a745; font-weight: bold;">// CORRECT: Constructor name must match class</span>
-public class Car
-{
-    public string Brand;
-    
-    public Car(string brand)  // GOOD: Same name as class
-    {
-        Brand = brand;
-    }
-}
-
-<span style="color: #dc3545; font-weight: bold;">// WRONG: Forgetting to set properties</span>
-public class Student
-{
-    public string Name;
-    public int Age;
-    
-    public Student(string name)  // ERROR: Forgot to set Age!
-    {
-        Name = name;
-    }
-}
-
-<span style="color: #28a745; font-weight: bold;">// CORRECT: Set all properties</span>
-public class Student
-{
-    public string Name;
-    public int Age;
-    
-    public Student(string name, int age)  // GOOD: Sets both
-    {
-        Name = name;
-        Age = age;
-    }
-}
-
-<span style="color: #dc3545; font-weight: bold;">// WRONG: Calling constructor without 'new'</span>
-Student s = Student("Alex", 20);  // ERROR: Missing 'new'
-
-<span style="color: #28a745; font-weight: bold;">// CORRECT: Always use 'new'</span>
-Student s = new Student("Alex", 20);  // GOOD: With 'new'
+<span style="color:lightgreen; font-weight:bold;">// ТОЧНО</span>
+public Car(string brand) {}
 </pre>
         </div>
     </div>
 
-    <h2>🎯 Constructor Types Summary</h2>
-    <div class="code-container">
-        <div class="code-header">Three Types of Constructors</div>
-        <div class="code-content">
-<pre>
-1. DEFAULT CONSTRUCTOR (Automatic)
-   -------------------------------
-   public class Student
-   {
-       // C# automatically provides:
-       // public Student() { }
-   }
-
-2. PARAMETERIZED CONSTRUCTOR (Your custom one)
-   -------------------------------------------
-   public class Student
-   {
-       public string Name;
-       public int Age;
-       
-       public Student(string name, int age)
-       {
-           Name = name;
-           Age = age;
-       }
-   }
-
-3. COPY CONSTRUCTOR (Advanced - creates copy)
-   ------------------------------------------
-   public class Student
-   {
-       public string Name;
-       public int Age;
-       
-       // Copy constructor
-       public Student(Student otherStudent)
-       {
-           Name = otherStudent.Name;
-           Age = otherStudent.Age;
-       }
-   }
-</pre>
-        </div>
-    </div>
-
-    <h2>🎉 Summary</h2>
+    <h2>Резиме</h2>
     <ul>
-        <li><strong>Constructor</strong> = <strong>Setup method</strong> that runs when object is created</li>
-        <li>Constructor name must be <strong>exactly the same as class name</strong></li>
-        <li>Use constructors to <strong>initialize properties automatically</strong></li>
-        <li>Prevents <strong>incomplete objects</strong> - everything is set up immediately</li>
-        <li>You can have <strong>multiple constructors</strong> with different parameters (overloading)</li>
-        <li>If you don't write any constructor, C# gives you a <strong>default empty one</strong></li>
-        <li>Always use <code>new</code> keyword to call a constructor</li>
-        <li>Constructors help ensure <strong>valid, ready-to-use objects</strong></li>
-        <li>Constructors can include <strong>validation logic</strong> to prevent invalid objects</li>
-        <li>Constructors run <strong>automatically</strong> when objects are created</li>
+        <li><strong>Конструктор</strong> = метод за почетно подесување</li>
+        <li>Името мора да биде исто како класата</li>
+        <li>Се повикува автоматски при <code>new</code></li>
+        <li>Спречува нецелосни објекти</li>
+        <li>Може да има повеќе конструктори</li>
+        <li>Може да содржи валидација</li>
     </ul>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Classes", "OOP")" class="btn btn-outline-primary ajax-link">← Classes</a>
-        <a href="@Url.Action("Objects", "OOP")" class="btn btn-primary ajax-link">Next: Objects →</a>
+        <a href="@Url.Action("Classes", "OOP")" class="btn btn-outline-primary ajax-link">← Класи</a>
+        <a href="@Url.Action("Objects", "OOP")" class="btn btn-primary ajax-link">Следно: Објекти →</a>
     </div>
 </div>
+
 
 <style>
     .container {

@@ -1,189 +1,163 @@
 ﻿@{
-    ViewData["Title"] = "Variables";
+    ViewData["Title"] = "Променливи";
 }
 
 <div class="container">
-    <h1 class="mb-4">📦 Variables: Storing Information in Programs</h1>
+    <h1 class="mb-4">Променливи: Чување информации во програми</h1>
 
-    <p><strong>Variables</strong> are the building blocks of programming. They act like <strong>labeled containers</strong> that hold data your program needs to work with. Think of them as boxes with names where you can store different types of information.</p>
+    <p><strong>Променливи</strong> се основни градбени блокови на програмирањето. Тие функционираат како <strong>означени контејнери</strong> кои чуваат податоци што вашата програма треба да ги користи. Замислете ги како кутии со имиња каде можете да складирате различни типови информации.</p>
 
-    <p>You use variables every day without realizing it:</p>
+    <p>Променливи користите секојдневно без да знаете:</p>
     <ul>
-        <li>Your <strong>age</strong> is a number variable</li>
-        <li>Your <strong>name</strong> is a text variable</li>
-        <li>Whether you're <strong>logged in</strong> is a true/false variable</li>
-        <li>Your <strong>test score</strong> is a number variable</li>
+        <li>Вашата <strong>возраст</strong> е бројна променлива</li>
+        <li>Вашето <strong>име</strong> е текстуална променлива</li>
+        <li>Дали сте <strong>најавени</strong> е логичка (true/false) променлива</li>
+        <li>Вашиот <strong>тест резултат</strong> е бројна променлива</li>
     </ul>
 
-    <h2>📘 What is a Variable?</h2>
-    <p>A variable has three essential parts:</p>
-    
+    <h2>Што е променлива?</h2>
+    <p>Променливата има три основни делови:</p>
+
     <div class="code-container">
-        <div class="code-header">Variable Anatomy</div>
+        <div class="code-header">Анатомија на променлива</div>
         <div class="code-content">
 <pre>
-         Data Type     Variable Name     Value
-            ↓               ↓             ↓
-         <strong>int</strong>           <strong>age</strong>          =     <strong>25</strong>;
-         <strong>string</strong>        <strong>name</strong>         =     <strong>"Sarah"</strong>;
-         <strong>bool</strong>         <strong>isStudent</strong>    =     <strong>true</strong>;
+         Тип на податок     Име на променлива     Вредност
+            ↓               ↓                     ↓
+            <strong>int</strong>           <strong>age</strong>          =     <strong>25</strong>;
+            <strong>string</strong>        <strong>name</strong>         =     <strong>"Sarah"</strong>;
+            <strong>bool</strong>         <strong>isStudent</strong>    =     <strong>true</strong>;
 </pre>
         </div>
     </div>
 
-    <p>Think of it like this:</p>
+    <p>Замислете го вака:</p>
     <ul>
-        <li><strong>Data Type</strong> → What kind of container is it? (Number box, Text box, Yes/No box)</li>
-        <li><strong>Variable Name</strong> → The label on the container</li>
-        <li><strong>Value</strong> → What's actually inside the container</li>
+        <li><strong>Тип на податок</strong> → Каков вид контејнер е тоа? (кутија за број, кутија за текст, Да/Не кутија)</li>
+        <li><strong>Име на променлива</strong> → Ознаката на контејнерот</li>
+        <li><strong>Вредност</strong> → Што всушност се наоѓа внатре во контејнерот</li>
     </ul>
 
-    <h2>📋 Common Data Types</h2>
-    
+    <h2>Чести типови на податоци</h2>
+
     <div class="code-container">
-        <div class="code-header">Essential Variable Types</div>
+        <div class="code-header">Основни типови на променливи</div>
         <div class="code-content">
 <pre>
-<strong>int</strong>       → Stores whole numbers        → <code>15</code>, <code>-3</code>, <code>1000</code>
-<strong>float</strong>     → Stores decimal numbers      → <code>3.14</code>, <code>1.5</code>, <code>99.9</code>
-<strong>char</strong>      → Stores single characters    → <code>'A'</code>, <code>'$'</code>, <code>'7'</code>
-<strong>string</strong>    → Stores text                 → <code>"Hello"</code>, <code>"John"</code>, <code>"C# Rules!"</code>
-<strong>bool</strong>     → Stores true/false values    → <code>true</code>, <code>false</code>
+<strong>int</strong>       →       Чува цели броеви<code>15</code> <code>-3</code> <code>1000</code>
+<strong>float</strong>     →       Чува децимални броеви<code>3.14</code> <code>1.5</code> <code>99.9</code>
+<strong>char</strong>      →       Чува еден карактер<code>'A'</code> <code>'$'</code> <code>'7'</code>
+<strong>string</strong>    →       Чува текст<code>"Hello"</code> <code>"John"</code> <code>"C# Rules!"</code>
+<strong>bool</strong>      →       Чува логички вредности<code>true</code> <code>false</code>
 </pre>
         </div>
     </div>
 
-    <h2>🎯 Example 1: Basic Variable Creation</h2>
-    <p>Creating and using simple variables:</p>
-    
+    <h2>Пример 1: Основно создавање на променливи</h2>
+    <p>Креирање и користење едноставни променливи:</p>
+
     <div class="code-container">
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="window.convertCode('example1')">
-            <label class="form-check-label" for="example1Toggle">Convert to C#</label>
+            <label class="form-check-label" for="example1Toggle">Претвори во C#</label>
         </div>
         <div class="code-content">
 <pre class="codeBlock" id="example1Code">
-// Creating variables
+// Креирање на променливи
 int age = 15;
 float height = 1.65;
 string name = "Alex";
 bool isStudent = true;
 char grade = 'A';
 
-// Using the variables
-cout << "Name: " << name << endl;
-cout << "Age: " << age << " years" << endl;
-cout << "Height: " << height << " meters" << endl;
-cout << "Student: " << (isStudent ? "Yes" : "No") << endl;
-cout << "Grade: " << grade << endl;
+// Користење на променливи
+cout << "Име: " << name << endl;
+cout << "Возраст: " << age << " години" << endl;
+cout << "Висина: " << height << " метри" << endl;
+cout << "Студент: " << (isStudent ? "Да" : "Не") << endl;
+cout << "Оценка: " << grade << endl;
 </pre>
         </div>
         <div class="result-box" id="example1Result">
-            ➡ <strong>Result:</strong><br>Name: Alex<br>Age: 15 years<br>Height: 1.65 meters<br>Student: Yes<br>Grade: A<br>
-            <em>Explanation:</em> Each variable stores a different type of data. We then use these variables to display information.
+             <strong>Резултат:</strong><br>Име: Alex<br>Возраст: 15 години<br>Висина: 1.65 метри<br>Студент: Да<br>Оценка: A<br>
+            <em>Објаснување:</em> Секоја променлива чува различен тип на податок. Потоа ги користиме овие променливи за прикажување информации.
         </div>
     </div>
 
-    <h2>🎯 Example 2: Variable Operations</h2>
-    <p>Variables can be used in calculations and operations:</p>
-    
+    <h2>Пример 2: Операции со променливи</h2>
+    <p>Променливите можат да се користат во пресметки и операции:</p>
+
     <div class="code-container">
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="window.convertCode('example2')">
-            <label class="form-check-label" for="example2Toggle">Convert to C#</label>
+            <label class="form-check-label" for="example2Toggle">Претвори во C#</label>
         </div>
         <div class="code-content">
 <pre class="codeBlock" id="example2Code">
 int apples = 5;
 int oranges = 3;
 
-// Basic arithmetic with variables
+// Основни аритметички операции со променливи
 int totalFruits = apples + oranges;
 int difference = apples - oranges;
 int doubleApples = apples * 2;
 
-cout << "Apples: " << apples << endl;
-cout << "Oranges: " << oranges << endl;
-cout << "Total fruits: " << totalFruits << endl;
-cout << "More apples than oranges: " << difference << endl;
-cout << "Double apples: " << doubleApples << endl;
+cout << "Јаболка: " << apples << endl;
+cout << "Портокали: " << oranges << endl;
+cout << "Вкупно овошје: " << totalFruits << endl;
+cout << "Повеќе јаболка од портокали: " << difference << endl;
+cout << "Дупло јаболка: " << doubleApples << endl;
 </pre>
         </div>
         <div class="result-box" id="example2Result">
-            ➡ <strong>Result:</strong><br>Apples: 5<br>Oranges: 3<br>Total fruits: 8<br>More apples than oranges: 2<br>Double apples: 10<br>
-            <em>Explanation:</em> Variables can be used in mathematical operations just like regular numbers. The computer uses the values stored in the variables.
+             <strong>Резултат:</strong><br>Јаболка: 5<br>Портокали: 3<br>Вкупно овошје: 8<br>Повеќе јаболка од портокали: 2<br>Дупло јаболка: 10<br>
+            <em>Објаснување:</em> Променливите можат да се користат во математички операции исто како обични броеви. Компјутерот користи вредности зачувани во променливите.
         </div>
     </div>
 
-    <h2>🧠 Interactive Walkthrough: Following Variable Execution</h2>
-    <p>Watch how the program stores and uses variables step-by-step:</p>
+    <h2>Пример 3: Промена на вредности на променливи</h2>
+    <p>Променливите се нарекуваат „променливи“ бидејќи нивните вредности можат да <strong>се менуваат</strong>:</p>
 
-    <div class="code-container">
-        <div class="code-header">Active Code (C++)</div>
-        <div class="code-content">
-<pre id="walkthroughCodeBase">
-int score = 85;
-int bonus = 15;
-// int total = score + bonus;
-// cout << "Total: " << total << endl;
-</pre>
-        </div>
-    </div>
-
-    <div class="code-container">
-        <div class="code-header">Variable State</div>
-        <div class="code-content">
-<pre id="walkthroughVariables">score = 85, bonus = 15, total = ?</pre>
-        </div>
-        <div class="result-box" id="walkthroughExplanation">
-            <em>Click <strong>Next</strong> to begin the trace:</em>
-        </div>
-        <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
-    </div>
-
-    <h2>🎯 Example 3: Changing Variable Values</h2>
-    <p>Variables are called "variables" because their values can <strong>vary</strong> (change):</p>
-    
     <div class="code-container">
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="window.convertCode('example3')">
-            <label class="form-check-label" for="example3Toggle">Convert to C#</label>
+            <label class="form-check-label" for="example3Toggle">Претвори во C#</label>
         </div>
         <div class="code-content">
 <pre class="codeBlock" id="example3Code">
 int counter = 0;
-cout << "Counter starts at: " << counter << endl;
+cout << "Бројач започнува на: " << counter << endl;
 
-// Change the value
+// Промена на вредноста
 counter = 10;
-cout << "Counter changed to: " << counter << endl;
+cout << "Бројач променет на: " << counter << endl;
 
-// Increase by 5
-counter = counter + 5;  // Same as: counter += 5
-cout << "Counter increased to: " << counter << endl;
+// Зголемување за 5
+counter = counter + 5;  // Исто како: counter += 5
+cout << "Бројач зголемен на: " << counter << endl;
 
-// Decrease by 3
-counter = counter - 3;  // Same as: counter -= 3
-cout << "Counter decreased to: " << counter << endl;
+// Намалување за 3
+counter = counter - 3;  // Исто како: counter -= 3
+cout << "Бројач намален на: " << counter << endl;
 
-// Multiply by 2
-counter = counter * 2;  // Same as: counter *= 2
-cout << "Counter doubled to: " << counter << endl;
+// Множење со 2
+counter = counter * 2;  // Исто како: counter *= 2
+cout << "Бројач двојно: " << counter << endl;
 </pre>
         </div>
         <div class="result-box" id="example3Result">
-            ➡ <strong>Result:</strong><br>Counter starts at: 0<br>Counter changed to: 10<br>Counter increased to: 15<br>Counter decreased to: 12<br>Counter doubled to: 24<br>
-            <em>Explanation:</em> You can change a variable's value at any time. The new value replaces the old one. Special operators like <code>+=</code> and <code>-=</code> provide shortcuts for common operations.
+             <strong>Резултат:</strong><br>Бројач започнува на: 0<br>Бројач променет на: 10<br>Бројач зголемен на: 15<br>Бројач намален на: 12<br>Бројач двојно: 24<br>
+            <em>Објаснување:</em> Можете да ја промените вредноста на променлива во секое време. Новата вредност го заменува старата. Специјални оператори како <code>+=</code> и <code>-=</code> даваат кратки начини за чести операции.
         </div>
     </div>
 
-    <h2>🎯 Example 4: String Operations</h2>
-    <p>Text variables (strings) can also be combined and modified:</p>
-    
+    <h2>Пример 4: Операции со текст (strings)</h2>
+    <p>Текстуалните променливи можат да се комбинираат и модифицираат:</p>
+
     <div class="code-container">
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" id="example4Toggle" onchange="window.convertCode('example4')">
-            <label class="form-check-label" for="example4Toggle">Convert to C#</label>
+            <label class="form-check-label" for="example4Toggle">Претвори во C#</label>
         </div>
         <div class="code-content">
 <pre class="codeBlock" id="example4Code">
@@ -191,35 +165,35 @@ string firstName = "John";
 string lastName = "Smith";
 int age = 25;
 
-// Combining strings (concatenation)
+// Комбинирање на текст (concatenation)
 string fullName = firstName + " " + lastName;
-cout << "Full Name: " << fullName << endl;
+cout << "Целосно име: " << fullName << endl;
 
-// Creating messages with variables
+// Креирање пораки со променливи
 string greeting = "Hello, " + firstName + "!";
-string info = firstName + " is " + to_string(age) + " years old.";
+string info = firstName + " има " + to_string(age) + " години.";
 
 cout << greeting << endl;
 cout << info << endl;
 
-// Changing a string
+// Промена на текст
 firstName = "Jonathan";
-cout << "New first name: " << firstName << endl;
+cout << "Ново име: " << firstName << endl;
 </pre>
         </div>
         <div class="result-box" id="example4Result">
-            ➡ <strong>Result:</strong><br>Full Name: John Smith<br>Hello, John!<br>John is 25 years old.<br>New first name: Jonathan<br>
-            <em>Explanation:</em> Strings can be combined using <code>+</code> (concatenation). When combining strings with numbers, you need to convert the number to a string first.
+             <strong>Резултат:</strong><br>Целосно име: John Smith<br>Hello, John!<br>John има 25 години.<br>Ново име: Jonathan<br>
+            <em>Објаснување:</em> Текстот може да се комбинира со <code>+</code> (concatenation). Кога комбинирате текст со број, бројот мора да се конвертира во текст.
         </div>
     </div>
 
-    <h2>🎯 Example 5: Real-World Application - Game Stats</h2>
-    <p>Variables are essential for tracking game information:</p>
-    
+    <h2>Пример 5: Реална примена – Игра</h2>
+    <p>Променливите се клучни за следење информации во игра:</p>
+
     <div class="code-container">
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" id="example5Toggle" onchange="window.convertCode('example5')">
-            <label class="form-check-label" for="example5Toggle">Convert to C#</label>
+            <label class="form-check-label" for="example5Toggle">Претвори во C#</label>
         </div>
         <div class="code-content">
 <pre class="codeBlock" id="example5Code">
@@ -229,162 +203,162 @@ int score = 0;
 float speed = 5.5;
 bool isAlive = true;
 
-cout << "=== GAME STATS ===" << endl;
-cout << "Player: " << playerName << endl;
-cout << "Health: " << health << endl;
-cout << "Score: " << score << endl;
-cout << "Speed: " << speed << endl;
-cout << "Alive: " << (isAlive ? "Yes" : "No") << endl;
+cout << "=== СТАТИСТИКА НА ИГРАЧ ===" << endl;
+cout << "Играч: " << playerName << endl;
+cout << "Здравје: " << health << endl;
+cout << "Резултат: " << score << endl;
+cout << "Брзина: " << speed << endl;
+cout << "Жив: " << (isAlive ? "Да" : "Не") << endl;
 
-// Game actions
-score = score + 50;      // Player scored points
-health = health - 20;    // Player took damage
+// Дејства во игра
+score = score + 50;      // Играчот заработи поени
+health = health - 20;    // Играчот прими штета
 
-cout << "\n=== AFTER ACTION ===" << endl;
-cout << "New Score: " << score << endl;
-cout << "New Health: " << health << endl;
+cout << "\n=== ПО ДЕЈСТВО ===" << endl;
+cout << "Нов резултат: " << score << endl;
+cout << "Ново здравје: " << health << endl;
 
 if (health <= 0) {
     isAlive = false;
-    cout << "Player has been defeated!" << endl;
+    cout << "Играчот е поразен!" << endl;
 }
 </pre>
         </div>
         <div class="result-box" id="example5Result">
-            ➡ <strong>Result:</strong><br>=== GAME STATS ===<br>Player: GameMaster<br>Health: 100<br>Score: 0<br>Speed: 5.5<br>Alive: Yes<br><br>=== AFTER ACTION ===<br>New Score: 50<br>New Health: 80<br>
-            <em>Explanation:</em> Games use variables to track player state. As the game progresses, variable values change to reflect what's happening.
+             <strong>Резултат:</strong><br>=== СТАТИСТИКА НА ИГРАЧ ===<br>Играч: GameMaster<br>Здравје: 100<br>Резултат: 0<br>Брзина: 5.5<br>Жив: Да<br><br>=== ПО ДЕЈСТВО ===<br>Нов резултат: 50<br>Ново здравје: 80<br>
+            <em>Објаснување:</em> Игрите користат променливи за следење на состојбата на играчот. Вредностите се менуваат според случувањата во играта.
         </div>
     </div>
 
-    <h2>🎯 Example 6: Temperature Converter</h2>
-    <p>A practical example using variables for unit conversion:</p>
-    
+    <h2>Пример 6: Конвертер на температура</h2>
+    <p>Практичен пример со променливи за конверзија на единици:</p>
+
     <div class="code-container">
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" id="example6Toggle" onchange="window.convertCode('example6')">
-            <label class="form-check-label" for="example6Toggle">Convert to C#</label>
+            <label class="form-check-label" for="example6Toggle">Претвори во C#</label>
         </div>
         <div class="code-content">
 <pre class="codeBlock" id="example6Code">
 float celsius = 25.0;
 float fahrenheit;
 
-// Convert Celsius to Fahrenheit
+// Конверзија од Целзиус во Фаренхајт
 fahrenheit = (celsius * 9.0 / 5.0) + 32.0;
 
-cout << "Temperature Converter" << endl;
+cout << "Конвертер на температура" << endl;
 cout << "====================" << endl;
 cout << celsius << "°C = " << fahrenheit << "°F" << endl;
 
-// Now let's convert back
+// Конвертирање назад
 celsius = (fahrenheit - 32.0) * 5.0 / 9.0;
 cout << fahrenheit << "°F = " << celsius << "°C" << endl;
 </pre>
         </div>
         <div class="result-box" id="example6Result">
-            ➡ <strong>Result:</strong><br>Temperature Converter<br>====================<br>25°C = 77°F<br>77°F = 25°C<br>
-            <em>Explanation:</em> Variables store the temperature values, and mathematical formulas convert between units. The same variable (<code>celsius</code>) can be reused with a new value.
+             <strong>Резултат:</strong><br>Конвертер на температура<br>====================<br>25°C = 77°F<br>77°F = 25°C<br>
+            <em>Објаснување:</em> Променливите чуваат вредности на температурата, а математички формули ја извршуваат конверзијата. Иста променлива (<code>celsius</code>) може да се користи со нова вредност.
         </div>
     </div>
 
-    <h2>⚠️ Common Mistakes to Avoid</h2>
+    <h2>Чести грешки</h2>
     <div class="code-container">
-        <div class="code-header">Variable Errors and Solutions</div>
+        <div class="code-header">Грешки и решенија</div>
         <div class="code-content">
 <pre>
-// ❌ WRONG: Using variable before giving it a value
+// <span style="color:red"> ГРЕШНО: Користење на променлива пред да се инициализира </span>>
 int count;
-cout << count;  // ERROR: What's the value?
+cout << count;  // ERROR: Каква е вредноста?
 
-// ✅ CORRECT: Initialize before use
+// <span style="color:lightgreen"> ТОЧНО: Иницијализација пред користење </span>>
 int count = 0;
-cout << count;  // GOOD: Value is 0
+cout << count;  // Вредноста е 0
 
-// ❌ WRONG: Wrong type for the value
-int price = 19.99;  // ERROR: 19.99 is not a whole number
+// <span style="color:red"> ГРЕШНО: Погрешен тип на вредност </span>>
+int price = 19.99;  // ERROR: 19.99 не е цел број
 
-// ✅ CORRECT: Use correct type
-float price = 19.99;  // GOOD: float for decimals
+//  <span style="color:lightgreen"> ТОЧНО: Користење на соодветен тип </span>>
+float price = 19.99;  // GOOD: float за децимали
 
-// ❌ WRONG: Using wrong quotes for char
-char letter = "A";  // ERROR: "A" is string, 'A' is char
+// <span style="color:red"> ГРЕШНО: Погрешни кавички за char </span>>
+char letter = "A";  // ERROR: "A" е string, 'A' е char
 
-// ✅ CORRECT: Use single quotes for char
-char letter = 'A';  // GOOD: char uses ' '
+//  <span style="color:lightgreen"> ТОЧНО: Користење на единични кавички </span>>
+char letter = 'A';  // GOOD: char користи ' '
 
-// ❌ WRONG: Using reserved words as names
-int int = 5;  // ERROR: 'int' is reserved
+// <span style="color:red"> ГРЕШНО: Користење резервирани зборови како име </span>>
+int int = 5;  // ERROR: 'int' е резервиран збор
 
-// ✅ CORRECT: Use descriptive names
-int score = 5;  // GOOD: Clear and allowed
+// <span style="color:lightgreen"> ТОЧНО: Користење описни имиња </span>>
+int score = 5;  // GOOD: Јасно и дозволено
 </pre>
         </div>
     </div>
 
-    <h2>🧠 Visual Diagram: How Variables Work in Memory</h2>
-    
+    <h2>Визуелна претстава: Променливи во меморија</h2>
+
     <div class="code-container">
-        <div class="code-header">Memory Representation</div>
+        <div class="code-header">Мемориска претстава</div>
         <div class="code-content">
 <pre>
-Code:         int age = 25;
+Код:         int age = 25;
               string name = "Alice";
 
-Memory:
-Address      Variable    Value
-1000         age         25
-1004         name        "Alice"
+Меморија:
+Адреса      Променлива    Вредност
+1000        age           25
+1004        name          "Alice"
 
-When you use 'age' in code:
-- Computer looks for variable named 'age'
-- Finds it at address 1000
-- Gets the value 25
-- Uses it in calculations or displays
+Кога користите 'age' во код:
+- Компјутерот бара променлива со име 'age'
+- Ја наоѓа на адреса 1000
+- Го зема вредноста 25
+- Ја користи во пресметки или за прикажување
 </pre>
         </div>
     </div>
 
-    <h2>🎯 Naming Rules & Best Practices</h2>
+    <h2>Правила за именување & Добри практики</h2>
     <div class="code-container">
-        <div class="code-header">Good vs Bad Variable Names</div>
+        <div class="code-header">Добри и лоши имиња на променливи</div>
         <div class="code-content">
 <pre>
-// ✅ GOOD NAMES: Clear and descriptive
+//  ДОБРИ ИМЕНОВИ: Јасни и описни
 int studentCount = 30;
 float averageScore = 85.5;
 string userName = "player123";
 bool isGameOver = false;
 
-// ❌ BAD NAMES: Unclear or confusing
-int x = 30;              // What does x represent?
-float asdf = 85.5;       // Meaningless
-string n = "player123";  // Too short
-bool b = false;          // Not descriptive
+//  ЛОШИ ИМЕНОВИ: Нејасни или збунувачки
+int x = 30;              // Што претставува x?
+float asdf = 85.5;       // Без значење
+string n = "player123";  // Превише кратко
+bool b = false;          // Неописно
 
-// ✅ FOLLOW THESE RULES:
-// 1. Start with letter or underscore
-// 2. Can contain letters, numbers, underscores
-// 3. Case sensitive (age ≠ Age ≠ AGE)
-// 4. Cannot use reserved words (int, if, for, etc.)
-// 5. Use camelCase for multi-word names
+//  ПРАВИЛА:
+// 1. Почнувајте со буква или подвлечен знак
+// 2. Може да содржи букви, броеви, подвлечени знаци
+// 3. Големите и малите букви се различни (age ≠ Age ≠ AGE)
+// 4. Не користете резервирани зборови (int, if, for, итн.)
+// 5. Користете camelCase за повеќедумни имиња
 </pre>
         </div>
     </div>
 
-    <h2>🎉 Summary</h2>
+    <h2>Резиме</h2>
     <ul>
-        <li><strong>Variables</strong> are containers that store data in your program</li>
-        <li>Every variable has a <strong>type</strong> (int, float, string, bool, char)</li>
-        <li>Variables must be <strong>declared</strong> (created) before use</li>
-        <li>You can <strong>assign values</strong> using <code>=</code> (equals sign)</li>
-        <li>Variable values can <strong>change</strong> throughout the program</li>
-        <li>Use <strong>descriptive names</strong> that explain what the variable stores</li>
-        <li>Variables are essential for storing user input, calculation results, game states, and more</li>
+        <li><strong>Променливи</strong> се контејнери кои чуваат податоци во програмата</li>
+        <li>Секоја променлива има <strong>тип</strong> (int, float, string, bool, char)</li>
+        <li>Променливите мора да се <strong>декларираат</strong> пред користење</li>
+        <li>Можете да им <strong>доделите вредности</strong> со <code>=</code></li>
+        <li>Вредностите на променливите можат да <strong>се менуваат</strong> низ програмата</li>
+        <li>Користете <strong>описни имиња</strong> кои објаснуваат што чува променливата</li>
+        <li>Променливите се клучни за чување на кориснички внес, резултати од пресметки, состојби во игри и многу повеќе</li>
     </ul>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Index", "Introduction")" class="btn btn-outline-primary ajax-link">← Introduction</a>
-        <a href="@Url.Action("InputOutput", "SP")" class="btn btn-primary ajax-link">Input - Output →</a>
+        <a href="@Url.Action("Index", "Introduction")" class="btn btn-outline-primary ajax-link">← Вовед</a>
+        <a href="@Url.Action("InputOutput", "SP")" class="btn btn-primary ajax-link">Внесување и Излез →</a>
     </div>
 </div>
 
@@ -489,14 +463,14 @@ window.traceSteps = [
 ];
 
 window.cppSnippets = {
-    example1: `// Creating variables
+    example1: `// Создавање променливи
 int age = 15;
 float height = 1.65;
 string name = "Alex";
 bool isStudent = true;
 char grade = 'A';
 
-// Using the variables
+// Користење променливи
 cout << "Name: " << name << endl;
 cout << "Age: " << age << " years" << endl;
 cout << "Height: " << height << " meters" << endl;
@@ -505,7 +479,7 @@ cout << "Grade: " << grade << endl;`,
     example2: `int apples = 5;
 int oranges = 3;
 
-// Basic arithmetic with variables
+// Проста аритметика со променливи
 int totalFruits = apples + oranges;
 int difference = apples - oranges;
 int doubleApples = apples * 2;
@@ -518,37 +492,37 @@ cout << "Double apples: " << doubleApples << endl;`,
     example3: `int counter = 0;
 cout << "Counter starts at: " << counter << endl;
 
-// Change the value
+// Промени ја вредноста
 counter = 10;
 cout << "Counter changed to: " << counter << endl;
 
-// Increase by 5
-counter = counter + 5;  // Same as: counter += 5
+// Зголеми за 5
+counter = counter + 5;  // Исто со: counter += 5
 cout << "Counter increased to: " << counter << endl;
 
-// Decrease by 3
-counter = counter - 3;  // Same as: counter -= 3
+// Намали за 3
+    counter = counter - 3;  // Исто со: counter -= 3
 cout << "Counter decreased to: " << counter << endl;
 
-// Multiply by 2
-counter = counter * 2;  // Same as: counter *= 2
+// Помножи со 2
+    counter = counter * 2;  // Исто со: counter *= 2
 cout << "Counter doubled to: " << counter << endl;`,
     example4: `string firstName = "John";
 string lastName = "Smith";
 int age = 25;
 
-// Combining strings (concatenation)
+    // Спојување string-ови (конкатенација)
 string fullName = firstName + " " + lastName;
 cout << "Full Name: " << fullName << endl;
 
-// Creating messages with variables
+// Создавање пораки со променливи
 string greeting = "Hello, " + firstName + "!";
 string info = firstName + " is " + to_string(age) + " years old.";
 
 cout << greeting << endl;
 cout << info << endl;
 
-// Changing a string
+// Создавање на string
 firstName = "Jonathan";
 cout << "New first name: " << firstName << endl;`,
     example5: `string playerName = "GameMaster";
@@ -564,9 +538,9 @@ cout << "Score: " << score << endl;
 cout << "Speed: " << speed << endl;
 cout << "Alive: " << (isAlive ? "Yes" : "No") << endl;
 
-// Game actions
-score = score + 50;      // Player scored points
-health = health - 20;    // Player took damage
+// Акции на игра
+score = score + 50;      // Играчот освои поени
+health = health - 20;    // Играчот прима damage
 
 cout << "\n=== AFTER ACTION ===" << endl;
 cout << "New Score: " << score << endl;
@@ -579,27 +553,27 @@ if (health <= 0) {
     example6: `float celsius = 25.0;
 float fahrenheit;
 
-// Convert Celsius to Fahrenheit
+// Конвертирај целзиусови во фаренахјтови
 fahrenheit = (celsius * 9.0 / 5.0) + 32.0;
 
 cout << "Temperature Converter" << endl;
 cout << "====================" << endl;
 cout << celsius << "°C = " << fahrenheit << "°F" << endl;
 
-// Now let's convert back
+// Сега да конвертираме назад
 celsius = (fahrenheit - 32.0) * 5.0 / 9.0;
 cout << fahrenheit << "°F = " << celsius << "°C" << endl;`
 };
 
 window.csharpSnippets = {
-    example1: `// Creating variables
+    example1: `// Создавање променливи
 int age = 15;
 float height = 1.65f;
 string name = "Alex";
 bool isStudent = true;
 char grade = 'A';
 
-// Using the variables
+// Користење на променливите
 Console.WriteLine("Name: " + name);
 Console.WriteLine("Age: " + age + " years");
 Console.WriteLine("Height: " + height + " meters");
@@ -608,7 +582,7 @@ Console.WriteLine("Grade: " + grade);`,
     example2: `int apples = 5;
 int oranges = 3;
 
-// Basic arithmetic with variables
+// Проста аритметика со променливите
 int totalFruits = apples + oranges;
 int difference = apples - oranges;
 int doubleApples = apples * 2;
@@ -621,37 +595,37 @@ Console.WriteLine("Double apples: " + doubleApples);`,
     example3: `int counter = 0;
 Console.WriteLine("Counter starts at: " + counter);
 
-// Change the value
+// Промени ја вредноста
 counter = 10;
 Console.WriteLine("Counter changed to: " + counter);
 
-// Increase by 5
-counter = counter + 5;  // Same as: counter += 5
+// Зголеми за 5
+    counter = counter + 5;  // Исто со: counter += 5
 Console.WriteLine("Counter increased to: " + counter);
 
-// Decrease by 3
-counter = counter - 3;  // Same as: counter -= 3
+// Намали за 3
+    counter = counter - 3;  // Исто со: counter -= 3
 Console.WriteLine("Counter decreased to: " + counter);
 
-// Multiply by 2
-counter = counter * 2;  // Same as: counter *= 2
+// Поможни со 2
+    counter = counter * 2;  // Исто со: counter *= 2
 Console.WriteLine("Counter doubled to: " + counter);`,
     example4: `string firstName = "John";
 string lastName = "Smith";
 int age = 25;
 
-// Combining strings (concatenation)
+// Спојување string-ови (конкатенација)
 string fullName = firstName + " " + lastName;
 Console.WriteLine("Full Name: " + fullName);
 
-// Creating messages with variables
+// Создавање пораки со променливи
 string greeting = "Hello, " + firstName + "!";
 string info = firstName + " is " + age + " years old.";
 
 Console.WriteLine(greeting);
 Console.WriteLine(info);
 
-// Changing a string
+// Создавање на string
 firstName = "Jonathan";
 Console.WriteLine("New first name: " + firstName);`,
     example5: `string playerName = "GameMaster";
@@ -667,9 +641,9 @@ Console.WriteLine("Score: " + score);
 Console.WriteLine("Speed: " + speed);
 Console.WriteLine("Alive: " + (isAlive ? "Yes" : "No"));
 
-// Game actions
-score = score + 50;      // Player scored points
-health = health - 20;    // Player took damage
+// Акции на играта
+score = score + 50;      // Играчот освои поени
+health = health - 20;    // Играчот прима damage
 
 Console.WriteLine("\n=== AFTER ACTION ===");
 Console.WriteLine("New Score: " + score);
@@ -683,14 +657,14 @@ if (health <= 0)
     example6: `float celsius = 25.0f;
 float fahrenheit;
 
-// Convert Celsius to Fahrenheit
+// Конвертирај целзиусови во фаренахјтови
 fahrenheit = (celsius * 9.0f / 5.0f) + 32.0f;
 
 Console.WriteLine("Temperature Converter");
 Console.WriteLine("====================");
 Console.WriteLine(celsius + "°C = " + fahrenheit + "°F");
 
-// Now let's convert back
+// Сега да конвертираме назад
 celsius = (fahrenheit - 32.0f) * 5.0f / 9.0f;
 Console.WriteLine(fahrenheit + "°F = " + celsius + "°C");`
 };
@@ -815,4 +789,3 @@ window.initializeVariablesPage = function() {
     initializeWalkthrough();
 };
 </script>
-</body>

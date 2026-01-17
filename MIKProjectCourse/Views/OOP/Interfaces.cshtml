@@ -1,762 +1,275 @@
 ﻿@{
-    ViewData["Title"] = "OOP - Interfaces";
+    ViewData["Title"] = "OOP - Интерфејси";
 }
 
 <body data-topic="interfaces">
-<div class="container">
-    <h1 class="mb-4">🤝 Interfaces: Promises Your Classes Keep</h1>
+    <div class="container">
+        <h1 class="mb-4">Интерфејси: Ветувања што класите ги исполнуваат</h1>
 
-    <p><strong>Interfaces</strong> are like <strong>contracts</strong> or <strong>blueprints</strong> that say "Any class that signs this contract MUST do these things." They define WHAT a class can do, but not HOW it does it.</p>
+        <p><strong>Интерфејсите</strong> се како <strong>договори</strong> или <strong>планови</strong> кои велат: „Секоја класа што го прифаќа овој договор МОРА да ги направи овие работи“. Тие дефинираат ШТО може да прави една класа, но не и КАКО го прави тоа.</p>
 
-    <p>You see interfaces in real life all the time:</p>
-    <ul>
-        <li>A <strong>USB port interface</strong> - any device with USB plug MUST fit and communicate</li>
-        <li>A <strong>job description</strong> - lists skills/requirements candidates MUST have</li>
-        <li>A <strong>restaurant menu</strong> - promises dishes they'll serve if you order</li>
-        <li>A <strong>power outlet</strong> - any plug that fits MUST deliver power correctly</li>
-    </ul>
+        <p>Интерфејси гледате постојано во реалниот живот:</p>
+        <ul>
+            <li><strong>USB интерфејс</strong> – секој уред со USB приклучок МОРА да одговара и да комуницира</li>
+            <li><strong>Опис на работно место</strong> – ги наведува вештините што кандидатите МОРА да ги имаат</li>
+            <li><strong>Мени во ресторан</strong> – ветува јадења што ќе ги добиете ако нарачате</li>
+            <li><strong>Електричен приклучок</strong> – секој приклучок што одговара МОРА да испорача струја правилно</li>
+        </ul>
 
-    <div class="note-box">
-        <strong>Advanced Topic:</strong> Interfaces are powerful but can be tricky for beginners. We'll cover them briefly here and explore them more deeply in the <strong>Advanced Web</strong> section!
-    </div>
+        <div class="note-box">
+            <strong>Напредна тема:</strong> Интерфејсите се моќни, но можат да бидат тешки за почетници. Овде ги покриваме основите, а подетално ќе ги разгледаме во делот <strong>Advanced Web</strong>.
+        </div>
 
-    <h2>What is an Interface?</h2>
-    <p>An interface is a <strong>contract</strong> that classes promise to fulfill:</p>
-    
-    <div class="code-container">
-        <div class="code-header">Interface = Promise/Contract</div>
-        <div class="code-content">
+        <h2>Што е интерфејс?</h2>
+        <p>Интерфејс е <strong>договор</strong> што класите ветуваат дека ќе го исполнат:</p>
+
+        <div class="code-container">
+            <div class="code-header">Интерфејс = Договор</div>
+            <div class="code-content">
 <pre>
-INTERFACE (The Contract)        CLASSES (The Promisers)
-─────────────────────────────────────────────────────────
-"IRequire:"                    "I Promise To Provide:"
-• StartEngine() method         • Car: StartEngine() = Turn key
-• StopEngine() method          • Motorcycle: StartEngine() = Push button
-• Speed property               • Boat: StartEngine() = Pull cord
+ИНТЕРФЕЈС (Договор)           КЛАСИ (Извршители)
+────────────────────────────────────────────────
+„Барам:“                     „Ветувам дека ќе обезбедам:“
+• Метод StartEngine()         • Car: StartEngine() = вртење клуч
+• Метод StopEngine()          • Motorcycle: StartEngine() = копче
+• Својство Speed              • Boat: StartEngine() = повлекување јаже
 
-ONE Interface can be           MANY Classes can implement it
-─────────────────────────────────────────────────────────
-Key Difference from Classes:
-• Interface: Says WHAT must be done
-• Class: Shows HOW it's done
-• Interface: No implementation
-• Class: Full implementation
+ЕДЕН интерфејс може да го     МНОГУ класи можат да го имплементираат
+────────────────────────────────────────────────
+Клучна разлика од класите:
+• Интерфејс: кажува ШТО мора да се направи
+• Класа: покажува КАКО се прави
+• Интерфејс: нема имплементација
+• Класа: има целосна имплементација
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2>🔑 Interface Syntax</h2>
-    <p>Interfaces start with <code>I</code> (convention) and use the <code>interface</code> keyword:</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="syntaxToggle" onchange="oopInterfaces.toggleSyntax()">
-            <label class="form-check-label" for="syntaxToggle">Show Complete Syntax Example</label>
-        </div>
-        <div class="code-content">
+        <h2>Интерфејс синтакса</h2>
+        <p>Интерфејсите по конвенција започнуваат со <code>I</code> и го користат клучниот збор <code>interface</code>:</p>
+
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="syntaxToggle" onchange="oopInterfaces.toggleSyntax()">
+                <label class="form-check-label" for="syntaxToggle">Прикажи целосен синтаксен пример</label>
+            </div>
+            <div class="code-content">
 <pre id="syntaxCode">
-// Interface definition (starts with I)
 public interface IVehicle
 {
-    // Methods (no implementation, just signatures)
     void Start();
     void Stop();
-    
-    // Properties (no implementation)
+
     int MaxSpeed { get; }
     string Model { get; set; }
-    
-    // Events (advanced, we'll see later)
-    // event EventHandler EngineStarted;
 }
 
-// Class implementing the interface
-public class Car : IVehicle  // Colon means "implements"
+public class Car : IVehicle
 {
-    // MUST implement ALL interface members
     public void Start()
     {
-        Console.WriteLine("Car engine started with key.");
+        Console.WriteLine("Моторот на автомобилот е стартуван со клуч.");
     }
-    
+
     public void Stop()
     {
-        Console.WriteLine("Car engine stopped.");
+        Console.WriteLine("Моторот на автомобилот е изгасен.");
     }
-    
-    // Property implementations
-    public int MaxSpeed 
-    { 
-        get { return 180; }  // Cars can go 180 mph
+
+    public int MaxSpeed
+    {
+        get { return 180; }
     }
-    
+
     public string Model { get; set; }
 }
 
-// Another class implementing SAME interface
 public class Motorcycle : IVehicle
 {
     public void Start()
     {
-        Console.WriteLine("Motorcycle started with button.");
+        Console.WriteLine("Моторот на моторот е стартуван со копче.");
     }
-    
+
     public void Stop()
     {
-        Console.WriteLine("Motorcycle engine stopped.");
+        Console.WriteLine("Моторот на моторот е изгасен.");
     }
-    
-    public int MaxSpeed 
-    { 
-        get { return 150; }  // Motorcycles slower
+
+    public int MaxSpeed
+    {
+        get { return 150; }
     }
-    
+
     public string Model { get; set; }
 }
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2>Example 1: The Classic Vehicle Interface</h2>
-    <p>Let's start with a simple vehicle system:</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="oopInterfaces.convertCode('example1')">
-            <label class="form-check-label" for="example1Toggle">Show Multiple Vehicle Types</label>
-        </div>
-        <div class="code-content">
+        <h2>Пример 1: Интерфејс за возила</h2>
+
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="oopInterfaces.convertCode('example1')">
+                <label class="form-check-label" for="example1Toggle">Прикажи повеќе типови возила</label>
+            </div>
+            <div class="code-content">
 <pre class="codeBlock" id="example1Code">
-// Interface: What all vehicles MUST do
 public interface IDrivable
 {
-    void Drive();      // Must have Drive method
-    void Park();       // Must have Park method
-    int Speed { get; } // Must have Speed property (read-only)
+    void Drive();
+    void Park();
+    int Speed { get; }
 }
 
-// Car implements IDrivable
 public class Car : IDrivable
 {
     private int currentSpeed;
-    
+
     public void Drive()
     {
         currentSpeed = 60;
-        Console.WriteLine("Car is driving at " + currentSpeed + " mph.");
+        Console.WriteLine("Автомобилот вози со " + currentSpeed + " km/h.");
     }
-    
+
     public void Park()
     {
         currentSpeed = 0;
-        Console.WriteLine("Car parked safely.");
+        Console.WriteLine("Автомобилот е паркиран.");
     }
-    
-    public int Speed 
-    { 
+
+    public int Speed
+    {
         get { return currentSpeed; }
     }
 }
 
-// Truck also implements IDrivable
 public class Truck : IDrivable
 {
     private int currentSpeed;
-    
+
     public void Drive()
     {
-        currentSpeed = 45;  // Trucks are slower
-        Console.WriteLine("Truck is hauling at " + currentSpeed + " mph.");
+        currentSpeed = 45;
+        Console.WriteLine("Камионот се движи со " + currentSpeed + " km/h.");
     }
-    
+
     public void Park()
     {
         currentSpeed = 0;
-        Console.WriteLine("Truck parked in loading zone.");
+        Console.WriteLine("Камионот е паркиран во товарна зона.");
     }
-    
-    public int Speed 
-    { 
+
+    public int Speed
+    {
         get { return currentSpeed; }
     }
 }
 
-// Motorcycle also implements IDrivable
 public class Motorcycle : IDrivable
 {
     private int currentSpeed;
-    
+
     public void Drive()
     {
-        currentSpeed = 75;  // Motorcycles are faster
-        Console.WriteLine("Motorcycle zooming at " + currentSpeed + " mph!");
+        currentSpeed = 75;
+        Console.WriteLine("Моторот се движи со " + currentSpeed + " km/h.");
     }
-    
+
     public void Park()
     {
         currentSpeed = 0;
-        Console.WriteLine("Motorcycle parked on kickstand.");
+        Console.WriteLine("Моторот е паркиран.");
     }
-    
-    public int Speed 
-    { 
+
+    public int Speed
+    {
         get { return currentSpeed; }
     }
 }
-
-// Using the interface
-Console.WriteLine("=== Driving Different Vehicles ===");
-
-// All stored as IDrivable interface type
-IDrivable[] vehicles = new IDrivable[3];
-vehicles[0] = new Car();
-vehicles[1] = new Truck();
-vehicles[2] = new Motorcycle();
-
-// Each vehicle drives and parks differently
-foreach (IDrivable vehicle in vehicles)
-{
-    vehicle.Drive();   // Calls appropriate Drive() for each
-    vehicle.Park();    // Calls appropriate Park() for each
-    Console.WriteLine("Current speed: " + vehicle.Speed + " mph");
-    Console.WriteLine("---");
-}
 </pre>
+            </div>
         </div>
-        <div class="result-box" id="example1Result">
-            ➡ <strong>Output:</strong><br>
-            === Driving Different Vehicles ===<br>
-            Car is driving at 60 mph.<br>
-            Car parked safely.<br>
-            Current speed: 0 mph<br>
-            ---<br>
-            Truck is hauling at 45 mph.<br>
-            Truck parked in loading zone.<br>
-            Current speed: 0 mph<br>
-            ---<br>
-            Motorcycle zooming at 75 mph!<br>
-            Motorcycle parked on kickstand.<br>
-            Current speed: 0 mph<br>
-            ---<br><br>
-            <em>Interface Magic:</em> All three classes (Car, Truck, Motorcycle) implement the SAME <code>IDrivable</code> interface. We can store them all in an <code>IDrivable[]</code> array and call the same methods on each, but each executes its own implementation!
-        </div>
-    </div>
 
-    <h2>Interactive Walkthrough: Interface Implementation</h2>
-    <p>Watch how a class promises to fulfill an interface contract:</p>
-
-    <div class="code-container">
-        <div class="code-header">Interface Contract Fulfillment</div>
-        <div class="code-content">
-<pre id="walkthroughCodeBase">
-public interface IPlayable
-{
-    void Play();
-    void Pause();
-    string GetStatus();
-}
-
-// public class MusicPlayer : IPlayable
-// {
-//     // Must implement ALL interface methods
-//     public void Play() { Console.WriteLine("Music playing..."); }
-//     public void Pause() { Console.WriteLine("Music paused."); }
-//     public string GetStatus() { return "Playing song"; }
-// }
-
-// IPlayable player = new MusicPlayer();
-// player.Play();
-// player.Pause();
-// Console.WriteLine(player.GetStatus());
-</pre>
-        </div>
-    </div>
-
-    <div class="code-container">
-        <div class="code-header">Contract Checking</div>
-        <div class="code-content">
-<pre id="walkthroughVariables">
-IPlayable interface requires:
-1. Play() method
-2. Pause() method  
-3. GetStatus() method returning string
-
-Any class implementing IPlayable MUST provide these.
-</pre>
-        </div>
-        <div class="result-box" id="walkthroughExplanation">
-            <em>Click <strong>Next</strong> to see the contract being fulfilled:</em>
-        </div>
-        <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
-    </div>
-
-    <h2>📊 Visual Diagram: How Interfaces Work</h2>
-    
-    <div class="code-container">
-        <div class="code-header">Interface = Contract Between Classes</div>
-        <div class="code-content">
+        <h2>Чести грешки со интерфејси</h2>
+        <div class="code-container">
+            <div class="code-content">
 <pre>
-INTERFACE AS A CONTRACT:
-        ILogger (Interface)
-        "I promise to:"
-        ├─ Log(string message)
-        ├─ LogError(string error)
-        └─ GetLogCount() → int
-               │
-        "I fulfill this promise by:"
-┌──────────────┼──────────────┐
-▼              ▼              ▼
-FileLogger    DatabaseLogger  ConsoleLogger
-• Logs to file • Logs to DB   • Logs to screen
-• .txt files   • SQL Server   • Colored output
-• Daily files  • Table: Logs  • Timestamps
-
-USING THE INTERFACE:
-─────────────────────────────────────────────
-ILogger logger = new FileLogger();
-logger.Log("App started");  // Logs to file
-
-logger = new DatabaseLogger();
-logger.Log("User logged in");  // Logs to database
-
-logger = new ConsoleLogger();
-logger.Log("Error occurred");  // Prints to screen
-
-KEY INSIGHT:
-• All 3 loggers are TYPE: ILogger
-• Same method calls (Log, LogError, GetLogCount)
-• Different implementations behind the scenes
-• We can switch loggers WITHOUT changing calling code!
-</pre>
-        </div>
-    </div>
-
-    <h2>🎯 Example 2: Payment System with Interfaces</h2>
-    <p>Interfaces are perfect for payment processing - same interface, different providers:</p>
-    
-    <div class="code-container">
-        <div class="code-header">Payment Processing System</div>
-        <div class="code-content">
-<pre>
-// Payment interface - all payment methods must implement
-public interface IPaymentMethod
-{
-    bool ProcessPayment(decimal amount);
-    string GetPaymentDetails();
-    decimal MaxTransactionLimit { get; }
-}
-
-// Credit Card implementation
-public class CreditCard : IPaymentMethod
-{
-    private string cardNumber;
-    public decimal MaxTransactionLimit { get { return 1000.00m; } }
-    
-    public CreditCard(string cardNum)
-    {
-        cardNumber = cardNum;
-    }
-    
-    public bool ProcessPayment(decimal amount)
-    {
-        if (amount <= MaxTransactionLimit)
-        {
-            Console.WriteLine("Processing credit card: ****" + cardNumber.Substring(cardNumber.Length - 4));
-            Console.WriteLine("Amount: $" + amount);
-            return true;
-        }
-        return false;
-    }
-    
-    public string GetPaymentDetails()
-    {
-        return "Credit Card ending in ****" + cardNumber.Substring(cardNumber.Length - 4);
-    }
-}
-
-// PayPal implementation
-public class PayPal : IPaymentMethod
-{
-    private string email;
-    public decimal MaxTransactionLimit { get { return 5000.00m; } }
-    
-    public PayPal(string userEmail)
-    {
-        email = userEmail;
-    }
-    
-    public bool ProcessPayment(decimal amount)
-    {
-        Console.WriteLine("Processing PayPal payment for: " + email);
-        Console.WriteLine("Amount: $" + amount);
-        return true;  // PayPal always works in our example
-    }
-    
-    public string GetPaymentDetails()
-    {
-        return "PayPal account: " + email;
-    }
-}
-
-// Bitcoin implementation  
-public class Bitcoin : IPaymentMethod
-{
-    private string walletAddress;
-    public decimal MaxTransactionLimit { get { return 10000.00m; } }
-    
-    public Bitcoin(string wallet)
-    {
-        walletAddress = wallet;
-    }
-    
-    public bool ProcessPayment(decimal amount)
-    {
-        Console.WriteLine("Processing Bitcoin to wallet: " + walletAddress);
-        Console.WriteLine("Amount: $" + amount + " (in BTC)");
-        return true;
-    }
-    
-    public string GetPaymentDetails()
-    {
-        return "Bitcoin wallet: " + walletAddress.Substring(0, 8) + "...";
-    }
-}
-
-// Using the payment system
-List<IPaymentMethod> paymentOptions = new List<IPaymentMethod>();
-
-// Add different payment methods (all implement IPaymentMethod)
-paymentOptions.Add(new CreditCard("4111111111111111"));
-paymentOptions.Add(new PayPal("customer@email.com"));
-paymentOptions.Add(new Bitcoin("1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"));
-
-Console.WriteLine("=== Available Payment Methods ===");
-foreach (IPaymentMethod method in paymentOptions)
-{
-    Console.WriteLine(method.GetPaymentDetails());
-    Console.WriteLine("Max limit: $" + method.MaxTransactionLimit);
-    
-    // Try to process payment with each method
-    bool success = method.ProcessPayment(100.00m);
-    Console.WriteLine("Result: " + (success ? "✅ Success" : "❌ Failed"));
-    Console.WriteLine("---");
-}
-
-// Store can accept ANY IPaymentMethod
-Console.WriteLine("\n=== Customer Checks Out ===");
-IPaymentMethod chosenMethod = paymentOptions[1];  // PayPal
-if (chosenMethod.ProcessPayment(49.99m))
-{
-    Console.WriteLine("Purchase complete using: " + chosenMethod.GetPaymentDetails());
-}
-</pre>
-        </div>
-    </div>
-
-    <h2>🔑 Multiple Interfaces: The "Multiple Inheritance"</h2>
-    <p>A class can implement MULTIPLE interfaces (unlike inheritance where you can only have one parent):</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="oopInterfaces.convertCode('example2')">
-            <label class="form-check-label" for="example2Toggle">Show Smart Device Example</label>
-        </div>
-        <div class="code-content">
-<pre class="codeBlock" id="example2Code">
-// Interface 1: Can make calls
-public interface IPhone
-{
-    void Call(string number);
-    void ReceiveCall();
-    string PhoneNumber { get; set; }
-}
-
-// Interface 2: Can take photos
-public interface ICamera
-{
-    void TakePhoto();
-    void RecordVideo();
-    int Megapixels { get; }
-}
-
-// Interface 3: Can browse internet
-public interface IInternetBrowser
-{
-    void Browse(string url);
-    void Refresh();
-    string CurrentPage { get; }
-}
-
-// Smartphone implements ALL THREE interfaces
-public class Smartphone : IPhone, ICamera, IInternetBrowser
-{
-    // IPhone implementation
-    public string PhoneNumber { get; set; }
-    
-    public void Call(string number)
-    {
-        Console.WriteLine("Calling " + number + " from " + PhoneNumber);
-    }
-    
-    public void ReceiveCall()
-    {
-        Console.WriteLine("Incoming call on " + PhoneNumber);
-    }
-    
-    // ICamera implementation
-    public int Megapixels { get { return 12; } }
-    
-    public void TakePhoto()
-    {
-        Console.WriteLine("Taking photo with " + Megapixels + "MP camera");
-    }
-    
-    public void RecordVideo()
-    {
-        Console.WriteLine("Recording 4K video");
-    }
-    
-    // IInternetBrowser implementation
-    public string CurrentPage { get; private set; }
-    
-    public void Browse(string url)
-    {
-        CurrentPage = url;
-        Console.WriteLine("Browsing: " + url);
-    }
-    
-    public void Refresh()
-    {
-        Console.WriteLine("Refreshing: " + CurrentPage);
-    }
-}
-
-// Using the smartphone
-Smartphone myPhone = new Smartphone();
-myPhone.PhoneNumber = "555-1234";
-
-// Use as a phone
-IPhone phone = myPhone;
-phone.Call("555-5678");
-
-// Use as a camera
-ICamera camera = myPhone;
-camera.TakePhoto();
-
-// Use as a browser
-IInternetBrowser browser = myPhone;
-browser.Browse("https://example.com");
-
-// Or use all features directly
-Console.WriteLine("\n=== Using All Features ===");
-myPhone.Call("911");
-myPhone.TakePhoto();
-myPhone.Browse("https://google.com");
-myPhone.RecordVideo();
-
-Console.WriteLine("\nPhone has: " + myPhone.Megapixels + "MP camera");
-Console.WriteLine("Phone number: " + myPhone.PhoneNumber);
-</pre>
-        </div>
-        <div class="result-box" id="example2Result">
-            ➡ <strong>Output:</strong><br>
-            Calling 555-5678 from 555-1234<br>
-            Taking photo with 12MP camera<br>
-            Browsing: https://example.com<br><br>
-            === Using All Features ===<br>
-            Calling 911 from 555-1234<br>
-            Taking photo with 12MP camera<br>
-            Browsing: https://google.com<br>
-            Recording 4K video<br><br>
-            Phone has: 12MP camera<br>
-            Phone number: 555-1234<br><br>
-            <em>Multiple Interfaces:</em> Smartphone implements THREE interfaces (IPhone, ICamera, IInternetBrowser). This is like saying "A smartphone IS A phone AND a camera AND a browser." This is how C# achieves "multiple inheritance" - through multiple interfaces!
-        </div>
-    </div>
-
-    <h2>⚠️ Common Interface Mistakes</h2>
-    <div class="code-container">
-        <div class="code-header">Interface Pitfalls</div>
-        <div class="code-content">
-<pre>
-// ❌ MISTAKE 1: Forgetting to implement ALL interface members
+// <span style="color:red; font-weight:bold;">ГРЕШКА: Не се имплементирани сите членови</span>
 public interface ITest
 {
-    void MethodA();
-    void MethodB();
+    void A();
+    void B();
 }
 
 public class MyClass : ITest
 {
-    public void MethodA() { }  // ✅
-    // ❌ Forgot MethodB() - COMPILER ERROR!
+    public void A() { }
 }
 
-// ✅ SOLUTION: Implement ALL members
-public class MyClass : ITest
+//<span style="color:lightgreen; font-weight:bold;"> ТОЧНО</span>
+public class MyClassCorrect : ITest
 {
-    public void MethodA() { }  // ✅
-    public void MethodB() { }  // ✅
+    public void A() { }
+    public void B() { }
 }
-
-// ❌ MISTAKE 2: Interface with implementation
-public interface IWrong
-{
-    void Method()
-    {
-        Console.WriteLine("Implementation");  // ❌ Before C# 8.0
-    }
-}
-
-// ✅ SOLUTION: Interfaces define signatures only (in basic C#)
-public interface ICorrect
-{
-    void Method();  // ✅ Just signature
-}
-
-// ❌ MISTAKE 3: Not using the interface type
-public class Dog : IAnimal
-{
-    public void MakeSound() { Console.WriteLine("Woof"); }
-}
-
-// Using it wrong:
-Dog dog = new Dog();  // ❌ Tied to Dog class
-
-// ✅ SOLUTION: Use interface type for flexibility
-IAnimal animal = new Dog();  // ✅ Can switch to Cat later
-animal.MakeSound();
-
-// ❌ MISTAKE 4: Interface with too many members
-public interface ISwissArmyKnife  // ❌ Too big!
-{
-    void Cut();
-    void Screw();
-    void OpenBottle();
-    void FileNails();
-    void Measure();
-    void Saw();
-    // ... 20 more methods
-}
-
-// ✅ SOLUTION: Split into smaller interfaces
-public interface ICutter { void Cut(); }
-public interface IScrewdriver { void Screw(); }
-public interface IBottleOpener { void OpenBottle(); }
-// Classes implement only what they need
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2>🔑 Interface vs Abstract Class vs Regular Class</h2>
-    <div class="code-container">
-        <div class="code-header">Choosing the Right Tool</div>
-        <div class="code-content">
+        <h2>Интерфејс наспроти апстрактна и обична класа</h2>
+        <div class="code-container">
+            <div class="code-content">
 <pre>
-                  INTERFACE           ABSTRACT CLASS         REGULAR CLASS
-─────────────────────────────────────────────────────────────────────────────
-Implementation  No implementation    Partial implementation  Full implementation
-                (methods empty)      (some methods have code) (all methods have code)
+ИНТЕРФЕЈС:
+- Нема имплементација
+- Може повеќекратно
+- Само договор
 
-Inheritance     Multiple interfaces  Single inheritance      Single inheritance
-                (a class can         (one abstract parent)   (one regular parent)
-                implement many)
+АПСТРАКТНА КЛАСА:
+- Делумна имплементација
+- Еден родител
+- Споделен код
 
-Instantiation   Cannot create        Cannot create           CAN create objects
-                objects              objects                 (new MyClass())
-
-Use when...     • Need contract      • Share code between    • Complete, ready-to-use
-                • Multiple behaviors  related classes         functionality
-                • Plugin architecture • Common base logic     • Don't need to extend
-                • Loose coupling      • Need some defaults    • Final implementation
-
-Example:        ILogger              LoggerBase              FileLogger
-                (contract for        (has common logging     (specific file logging)
-                all loggers)         code, abstract Log())   with all methods implemented
-
-Real Analogy:   Job requirements     Employee handbook       Actual employee
-                (skills needed)      (some rules, some       (doing the actual work)
-                                     blanks to fill)
-
-C# Keywords:    interface            abstract class          class
-                class : I1, I2       class : BaseClass       class : BaseClass
-
-Rule of Thumb:  Start with interface  Use abstract class when   Use regular class for
-                to define contract    you need to share code    concrete objects
+ОБИЧНА КЛАСА:
+- Целосна имплементација
+- Се креираат објекти
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2>🎯 When to Use Interfaces</h2>
-    <div class="code-container">
-        <div class="code-header">Interface Guidelines</div>
-        <div class="code-content">
+        <h2>Кога да користите интерфејси</h2>
+        <div class="code-container">
+            <div class="code-content">
 <pre>
-USE INTERFACES WHEN:
-✅ Defining a contract that multiple classes will implement
-   - All vehicles must Drive() and Park()
-   - All payment methods must ProcessPayment()
-   - All loggers must Log()
+КОРИСТИ ИНТЕРФЕЈСИ КОГА:
+- Ви треба договор
+- Имате повеќе имплементации
+- Сакате флексибилност
+- Правите библиотеки или API
 
-✅ Creating plugin/extension architectures
-   - Game character abilities (IAttackable, IDefendable)
-   - Browser extensions
-   - Database providers (SQL Server, MySQL, PostgreSQL)
-
-✅ Achieving loose coupling
-   - Code depends on interface, not concrete class
-   - Easy to swap implementations
-   - Easier testing (mock interfaces)
-
-✅ Multiple inheritance scenarios
-   - Smartphone is IPhone + ICamera + IInternetBrowser
-   - Employee is IPerson + IWorker + ITaxPayer
-
-✅ Framework/library design
-   - .NET uses interfaces everywhere (IList, IEnumerable, IDisposable)
-   - Define public API without revealing implementation
-
-DON'T USE INTERFACES WHEN:
-❌ You need to share implementation code (use abstract class)
-❌ You need constructors or fields in base type
-❌ The relationship is truly "is-a" not "can-do"
-❌ You're not planning multiple implementations
-
-BEST PRACTICES:
-1. Name interfaces with "I" prefix: ILogger, IPayment, IVehicle
-2. Keep interfaces focused and small (Single Responsibility)
-3. Favor interfaces over abstract classes for flexibility
-4. Document what implementers should do
-5. Use interfaces for public APIs, concrete classes for internals
-
-REAL .NET INTERFACES YOU'LL SEE:
-• IEnumerable - for loops/collections
-• IDisposable - for cleanup (using statement)
-• IComparable - for sorting
-• IList - for list operations
-• INotifyPropertyChanged - for data binding (WPF)
+НЕ КОРИСТИ ИНТЕРФЕЈСИ КОГА:
+- Ви треба споделен код
+- Ви требаат полиња или конструктори
 </pre>
+            </div>
+        </div>
+
+        <h2>Резиме</h2>
+        <ul>
+            <li>Интерфејсите се договори што класите мора да ги исполнат</li>
+            <li>Дефинираат ШТО, не КАКО</li>
+            <li>Една класа може да имплементира повеќе интерфејси</li>
+            <li>Обезбедуваат флексибилност и чиста архитектура</li>
+        </ul>
+
+        <div class="navigation-buttons">
+            <a href="@Url.Action("Abstraction", "OOP")" class="btn btn-outline-primary ajax-link">← Апстракција</a>
+            <a href="@Url.Action("StaticReadonlyConst", "OOP")" class="btn btn-primary ajax-link">Static, Readonly, Const →</a>
         </div>
     </div>
 
-    <h2>🎉 Summary: The Power of Interfaces</h2>
-    <ul>
-        <li><strong>Interfaces</strong> = Contracts that classes promise to fulfill</li>
-        <li>Define <strong>WHAT</strong> must be done, not <strong>HOW</strong> to do it</li>
-        <li>Syntax: <code>public interface IName { void Method(); }</code></li>
-        <li>Implementation: <code>public class MyClass : IName { }</code></li>
-        <li>A class can implement <strong>MULTIPLE</strong> interfaces</li>
-        <li>Benefits: <strong>Flexibility</strong>, <strong>loose coupling</strong>, <strong>testability</strong>, <strong>multiple "inheritance"</strong></li>
-        <li><strong>Real-world analogy:</strong> USB standard (interface) vs USB devices (implementations)</li>
-        <li>Without interfaces: Tight coupling, hard to test, difficult to extend</li>
-        <li>Interfaces enable: Plugin systems, dependency injection, frameworks, clean architecture</li>
-    </ul>
-
-    <div class="navigation-buttons">
-        <a href="@Url.Action("Abstraction", "OOP")" class="btn btn-outline-primary ajax-link">← Abstraction</a>
-        <a href="@Url.Action("StaticReadonlyConst", "OOP")" class="btn btn-primary ajax-link">Static, Readonly, Const →</a>
-    </div>
-</div>
 
 <style>
     .container {
@@ -790,7 +303,7 @@ REAL .NET INTERFACES YOU'LL SEE:
 
     .code-container {
         margin: 25px 0;
-        border: 1px solid var(--bs-border-color);
+        border: 1px sol id var(--bs-border-color);
         border-radius: 5px;
         overflow: hidden;
         background-color: var(--code-bg);
@@ -850,548 +363,256 @@ REAL .NET INTERFACES YOU'LL SEE:
     }
 </style>
 
-<script>
-    window.oopInterfaces = {
-        interfaceSteps: [
+    <script>
+            window.oopInterfaces = {
+                interfaceSteps: [
+                    {
+                        code: `public interface IPlayable
+        {
+            void Play();
+            void Pause();
+            string GetStatus();
+        }
+
+        // public class MusicPlayer : IPlayable
+        // {
+        //     // Мора да се имплементираат СИТЕ методи од интерфејсот
+        //     public void Play() { Console.WriteLine("Music playing..."); }
+        //     public void Pause() { Console.WriteLine("Music paused."); }
+        //     public string GetStatus() { return "Playing song"; }
+        // }
+
+        // IPlayable player = new MusicPlayer();
+        // player.Play();
+        // player.Pause();
+        // Console.WriteLine(player.GetStatus());`,
+                        vars: `IPlayable интерфејсот дефинира договор:
+        1. Play() - без параметри, враќа void
+        2. Pause() - без параметри, враќа void
+        3. GetStatus() - без параметри, враќа string
+
+        Секоја класа што го имплементира МОРА да ги обезбеди овие три методи точно како што се дефинирани.`,
+                        exp: "Дефинираме IPlayable интерфејс. Размислувај за него како опис на работа: „За да бидеш playable, мора да можеш да Play, Pause и да вратиш Status“. Интерфејсот кажува ШТО мора да постои, не КАКО."
+                    },
+                    {
+                        code: `public interface IPlayable
+        {
+            void Play();
+            void Pause();
+            string GetStatus();
+        }
+
+        public class MusicPlayer : IPlayable
+        {
+            // Мора да се имплементираат СИТЕ методи од интерфејсот
+            public void Play() { Console.WriteLine("Music playing..."); }
+            public void Pause() { Console.WriteLine("Music paused."); }
+            public string GetStatus() { return "Playing song"; }
+        }
+
+        // IPlayable player = new MusicPlayer();
+        // player.Play();
+        // player.Pause();
+        // Console.WriteLine(player.GetStatus());`,
+                        vars: `MusicPlayer класата ГО ИМПЛЕМЕНТИРА IPlayable:
+        - Користи : IPlayable (две точки значи „имплементира“)
+        - Ги обезбедува СИТЕ потребни методи:
+          1. Play() - печати "Music playing..."
+          2. Pause() - печати "Music paused."
+          3. GetStatus() - враќа "Playing song"
+
+        Класата ГО ИСПОЛНУВА договорот на интерфејсот.`,
+                        exp: "Класата MusicPlayer го прифаќа договорот на IPlayable со користење на : IPlayable. Таа мора да обезбеди имплементација за сите три методи. Забелешка: Потписите на методите (име, параметри, тип на враќање) МОРА да се совпаѓаат точно."
+                    },
+                    {
+                        code: `public interface IPlayable
+        {
+            void Play();
+            void Pause();
+            string GetStatus();
+        }
+
+        public class MusicPlayer : IPlayable
+        {
+            // Мора да се имплементираат СИТЕ методи од интерфејсот
+            public void Play() { Console.WriteLine("Music playing..."); }
+            public void Pause() { Console.WriteLine("Music paused."); }
+            public string GetStatus() { return "Playing song"; }
+        }
+
+        IPlayable player = new MusicPlayer();
+        // player.Play();
+        // player.Pause();
+        // Console.WriteLine(player.GetStatus());`,
+                        vars: `Креирана е player променлива:
+        - Тип: IPlayable (тип на интерфејс)
+        - Објект: new MusicPlayer() (конкретна класа)
+
+        Ова е КЛУЧНО: Објект од MusicPlayer се чува во променлива од тип IPlayable.
+        Сега можеме да го третираме како БИЛО КОЈ IPlayable, не само MusicPlayer.`,
+                        exp: "Креираме променлива player од тип IPlayable, но ѝ доделуваме објект од MusicPlayer. Ова е полиморфизам. Променливата знае само за методите од IPlayable договорот, не и за други методи на MusicPlayer."
+                    },
+                    {
+                        code: `public interface IPlayable
+        {
+            void Play();
+            void Pause();
+            string GetStatus();
+        }
+
+        public class MusicPlayer : IPlayable
+        {
+            // Мора да се имплементираат СИТЕ методи од интерфејсот
+            public void Play() { Console.WriteLine("Music playing..."); }
+            public void Pause() { Console.WriteLine("Music paused."); }
+            public string GetStatus() { return "Playing song"; }
+        }
+
+        IPlayable player = new MusicPlayer();
+        player.Play();  // Повикување метод од интерфејсот
+        // player.Pause();
+        // Console.WriteLine(player.GetStatus());`,
+                        vars: `Повикување: player.Play()
+        - player е од тип IPlayable
+        - IPlayable има Play() метод
+        - Реалниот објект е MusicPlayer
+        - Се повикува MusicPlayer.Play() имплементацијата
+
+        Излез: "Music playing..."`,
+                        exp: "Го повикуваме player.Play(). Иако player е деклариран како IPlayable, при извршување се повикува вистинската имплементација од MusicPlayer. Интерфејсот служи како посредник – комуницираме преку договорот."
+                    },
+                    {
+                        code: `public interface IPlayable
+        {
+            void Play();
+            void Pause();
+            string GetStatus();
+        }
+
+        public class MusicPlayer : IPlayable
+        {
+            // Мора да се имплементираат СИТЕ методи од интерфејсот
+            public void Play() { Console.WriteLine("Music playing..."); }
+            public void Pause() { Console.WriteLine("Music paused."); }
+            public string GetStatus() { return "Playing song"; }
+        }
+
+        IPlayable player = new MusicPlayer();
+        player.Play();
+        player.Pause();
+        Console.WriteLine(player.GetStatus());`,
+                        vars: `Повикани се сите методи од интерфејсот:
+        1. player.Play() → "Music playing..."
+        2. player.Pause() → "Music paused."
+        3. player.GetStatus() → враќа "Playing song"
+
+        Договорот на интерфејсот е целосно исполнет.
+        Подоцна можеме да го замениме MusicPlayer со VideoPlayer!`,
+                        exp: "Сите три методи функционираат преку IPlayable променливата. Предноста: утре можеме да креираме VideoPlayer класа што исто така имплементира IPlayable и кодот за повикување нема да се смени."
+                    }
+                ],
+
+                simpleExamples: {
+                    example1: `// Интерфејс: ШТО МОРА да прават сите возила
+        public interface IDrivable
+        {
+            void Drive();
+            void Park();
+            int Speed { get; }
+        }
+
+        // Car имплементира IDrivable
+        public class Car : IDrivable
+        {
+            private int currentSpeed;
+
+            public void Drive()
             {
-                code: `public interface IPlayable
-{
-    void Play();
-    void Pause();
-    string GetStatus();
-}
-
-// public class MusicPlayer : IPlayable
-// {
-//     // Must implement ALL interface methods
-//     public void Play() { Console.WriteLine("Music playing..."); }
-//     public void Pause() { Console.WriteLine("Music paused."); }
-//     public string GetStatus() { return "Playing song"; }
-// }
-
-// IPlayable player = new MusicPlayer();
-// player.Play();
-// player.Pause();
-// Console.WriteLine(player.GetStatus());`,
-                vars: `IPlayable interface defines contract:
-1. Play() - no parameters, returns void
-2. Pause() - no parameters, returns void  
-3. GetStatus() - no parameters, returns string
-
-Any implementing class MUST provide these three methods exactly as defined.`,
-                exp: "We define an IPlayable interface. Think of it as a job description: 'To be playable, you must be able to Play, Pause, and report your Status.' The interface says WHAT must be done, not HOW."
-            },
-            {
-                code: `public interface IPlayable
-{
-    void Play();
-    void Pause();
-    string GetStatus();
-}
-
-public class MusicPlayer : IPlayable
-{
-    // Must implement ALL interface methods
-    public void Play() { Console.WriteLine("Music playing..."); }
-    public void Pause() { Console.WriteLine("Music paused."); }
-    public string GetStatus() { return "Playing song"; }
-}
-
-// IPlayable player = new MusicPlayer();
-// player.Play();
-// player.Pause();
-// Console.WriteLine(player.GetStatus());`,
-                vars: `MusicPlayer class IMPLEMENTS IPlayable:
-- Uses : IPlayable (colon means "implements")
-- Provides ALL required methods:
-  1. Play() - prints "Music playing..."
-  2. Pause() - prints "Music paused."
-  3. GetStatus() - returns "Playing song"
-
-The class FULFILLS the interface contract.`,
-                exp: "MusicPlayer class signs the IPlayable contract by using : IPlayable. It must now provide implementations for all three methods. Notice: The method signatures (name, parameters, return type) MUST match the interface exactly."
-            },
-            {
-                code: `public interface IPlayable
-{
-    void Play();
-    void Pause();
-    string GetStatus();
-}
-
-public class MusicPlayer : IPlayable
-{
-    // Must implement ALL interface methods
-    public void Play() { Console.WriteLine("Music playing..."); }
-    public void Pause() { Console.WriteLine("Music paused."); }
-    public string GetStatus() { return "Playing song"; }
-}
-
-IPlayable player = new MusicPlayer();
-// player.Play();
-// player.Pause();
-// Console.WriteLine(player.GetStatus());`,
-                vars: `Created player variable:
-- Type: IPlayable (interface type)
-- Object: new MusicPlayer() (concrete class)
-
-This is KEY: We store a MusicPlayer object in an IPlayable variable.
-We can now treat it as ANY IPlayable, not just a MusicPlayer.`,
-                exp: "We create a player variable of type IPlayable (the interface), but assign it a MusicPlayer object. This is polymorphism! The variable only knows about the IPlayable contract methods, not any other MusicPlayer methods."
-            },
-            {
-                code: `public interface IPlayable
-{
-    void Play();
-    void Pause();
-    string GetStatus();
-}
-
-public class MusicPlayer : IPlayable
-{
-    // Must implement ALL interface methods
-    public void Play() { Console.WriteLine("Music playing..."); }
-    public void Pause() { Console.WriteLine("Music paused."); }
-    public string GetStatus() { return "Playing song"; }
-}
-
-IPlayable player = new MusicPlayer();
-player.Play();  // Calling interface method
-// player.Pause();
-// Console.WriteLine(player.GetStatus());`,
-                vars: `Calling: player.Play()
-- player is type IPlayable
-- IPlayable has Play() method
-- Actual object is MusicPlayer
-- Calls MusicPlayer.Play() implementation
-
-Output: "Music playing..."`,
-                exp: "We call player.Play(). Even though player is typed as IPlayable, at runtime it calls the actual MusicPlayer's Play() method. The interface acts as a 'middleman' - we interact through the contract."
-            },
-            {
-                code: `public interface IPlayable
-{
-    void Play();
-    void Pause();
-    string GetStatus();
-}
-
-public class MusicPlayer : IPlayable
-{
-    // Must implement ALL interface methods
-    public void Play() { Console.WriteLine("Music playing..."); }
-    public void Pause() { Console.WriteLine("Music paused."); }
-    public string GetStatus() { return "Playing song"; }
-}
-
-IPlayable player = new MusicPlayer();
-player.Play();
-player.Pause();
-Console.WriteLine(player.GetStatus());`,
-                vars: `All interface methods called:
-1. player.Play() → "Music playing..."
-2. player.Pause() → "Music paused."
-3. player.GetStatus() → returns "Playing song"
-
-The interface contract is fully satisfied.
-We could swap MusicPlayer for VideoPlayer later!`,
-                exp: "All three interface methods work through the IPlayable variable. The beauty: Tomorrow we could create a VideoPlayer class that also implements IPlayable, assign it to the same player variable, and the calling code wouldn't need to change!"
+                currentSpeed = 60;
+                Console.WriteLine("Car is driving at " + currentSpeed + " mph.");
             }
-        ],
 
-        simpleExamples: {
-            example1: `// Interface: What all vehicles MUST do
-public interface IDrivable
-{
-    void Drive();
-    void Park();
-    int Speed { get; }
-}
+            public void Park()
+            {
+                currentSpeed = 0;
+                Console.WriteLine("Car parked safely.");
+            }
 
-// Car implements IDrivable
-public class Car : IDrivable
-{
-    private int currentSpeed;
-    
-    public void Drive()
-    {
-        currentSpeed = 60;
-        Console.WriteLine("Car is driving at " + currentSpeed + " mph.");
-    }
-    
-    public void Park()
-    {
-        currentSpeed = 0;
-        Console.WriteLine("Car parked safely.");
-    }
-    
-    public int Speed 
-    { 
-        get { return currentSpeed; }
-    }
-}
+            public int Speed
+            {
+                get { return currentSpeed; }
+            }
+        }
 
-// Truck also implements IDrivable
-public class Truck : IDrivable
-{
-    private int currentSpeed;
-    
-    public void Drive()
-    {
-        currentSpeed = 45;
-        Console.WriteLine("Truck is hauling at " + currentSpeed + " mph.");
-    }
-    
-    public void Park()
-    {
-        currentSpeed = 0;
-        Console.WriteLine("Truck parked in loading zone.");
-    }
-    
-    public int Speed 
-    { 
-        get { return currentSpeed; }
-    }
-}`,
-            example2: `// Interface 1: Can make calls
-public interface IPhone
-{
-    void Call(string number);
-    void ReceiveCall();
-    string PhoneNumber { get; set; }
-}
+        // Truck исто така имплементира IDrivable
+        public class Truck : IDrivable
+        {
+            private int currentSpeed;
 
-// Interface 2: Can take photos
-public interface ICamera
-{
-    void TakePhoto();
-    void RecordVideo();
-    int Megapixels { get; }
-}
+            public void Drive()
+            {
+                currentSpeed = 45;
+                Console.WriteLine("Truck is hauling at " + currentSpeed + " mph.");
+            }
 
-// Smartphone implements ALL THREE interfaces
-public class Smartphone : IPhone, ICamera
-{
-    // IPhone implementation
-    public string PhoneNumber { get; set; }
-    
-    public void Call(string number)
-    {
-        Console.WriteLine("Calling " + number + " from " + PhoneNumber);
-    }
-    
-    public void ReceiveCall()
-    {
-        Console.WriteLine("Incoming call on " + PhoneNumber);
-    }
-    
-    // ICamera implementation
-    public int Megapixels { get { return 12; } }
-    
-    public void TakePhoto()
-    {
-        Console.WriteLine("Taking photo with " + Megapixels + "MP camera");
-    }
-    
-    public void RecordVideo()
-    {
-        Console.WriteLine("Recording 4K video");
-    }
-}`
-        },
+            public void Park()
+            {
+                currentSpeed = 0;
+                Console.WriteLine("Truck parked in loading zone.");
+            }
 
-        completeExamples: {
-            example1: `// Interface: What all vehicles MUST do
-public interface IDrivable
-{
-    void Drive();      // Must have Drive method
-    void Park();       // Must have Park method
-    int Speed { get; } // Must have Speed property (read-only)
-}
+            public int Speed
+            {
+                get { return currentSpeed; }
+            }
+        }`,
+                    example2: `// Интерфејс 1: Може да повикува
+        public interface IPhone
+        {
+            void Call(string number);
+            void ReceiveCall();
+            string PhoneNumber { get; set; }
+        }
 
-// Car implements IDrivable
-public class Car : IDrivable
-{
-    private int currentSpeed;
-    
-    public void Drive()
-    {
-        currentSpeed = 60;
-        Console.WriteLine("Car is driving at " + currentSpeed + " mph.");
-    }
-    
-    public void Park()
-    {
-        currentSpeed = 0;
-        Console.WriteLine("Car parked safely.");
-    }
-    
-    public int Speed 
-    { 
-        get { return currentSpeed; }
-    }
-}
+        // Интерфејс 2: Може да фотографира
+        public interface ICamera
+        {
+            void TakePhoto();
+            void RecordVideo();
+            int Megapixels { get; }
+        }
 
-// Truck also implements IDrivable
-public class Truck : IDrivable
-{
-    private int currentSpeed;
-    
-    public void Drive()
-    {
-        currentSpeed = 45;  // Trucks are slower
-        Console.WriteLine("Truck is hauling at " + currentSpeed + " mph.");
-    }
-    
-    public void Park()
-    {
-        currentSpeed = 0;
-        Console.WriteLine("Truck parked in loading zone.");
-    }
-    
-    public int Speed 
-    { 
-        get { return currentSpeed; }
-    }
-}
+        // Smartphone ги имплементира СИТЕ интерфејси
+        public class Smartphone : IPhone, ICamera
+        {
+            // IPhone имплементација
+            public string PhoneNumber { get; set; }
 
-// Motorcycle also implements IDrivable
-public class Motorcycle : IDrivable
-{
-    private int currentSpeed;
-    
-    public void Drive()
-    {
-        currentSpeed = 75;  // Motorcycles are faster
-        Console.WriteLine("Motorcycle zooming at " + currentSpeed + " mph!");
-    }
-    
-    public void Park()
-    {
-        currentSpeed = 0;
-        Console.WriteLine("Motorcycle parked on kickstand.");
-    }
-    
-    public int Speed 
-    { 
-        get { return currentSpeed; }
-    }
-}
+            public void Call(string number)
+            {
+                Console.WriteLine("Calling " + number + " from " + PhoneNumber);
+            }
 
-// Using the interface
-Console.WriteLine("=== Driving Different Vehicles ===");
+            public void ReceiveCall()
+            {
+                Console.WriteLine("Incoming call on " + PhoneNumber);
+            }
 
-// All stored as IDrivable interface type
-IDrivable[] vehicles = new IDrivable[3];
-vehicles[0] = new Car();
-vehicles[1] = new Truck();
-vehicles[2] = new Motorcycle();
+            // ICamera имплементација
+            public int Megapixels { get { return 12; } }
 
-// Each vehicle drives and parks differently
-foreach (IDrivable vehicle in vehicles)
-{
-    vehicle.Drive();   // Calls appropriate Drive() for each
-    vehicle.Park();    // Calls appropriate Park() for each
-    Console.WriteLine("Current speed: " + vehicle.Speed + " mph");
-    Console.WriteLine("---");
-}`,
-            example2: `// Interface 1: Can make calls
-public interface IPhone
-{
-    void Call(string number);
-    void ReceiveCall();
-    string PhoneNumber { get; set; }
-}
+            public void TakePhoto()
+            {
+                Console.WriteLine("Taking photo with " + Megapixels + "MP camera");
+            }
 
-// Interface 2: Can take photos
-public interface ICamera
-{
-    void TakePhoto();
-    void RecordVideo();
-    int Megapixels { get; }
-}
-
-// Interface 3: Can browse internet
-public interface IInternetBrowser
-{
-    void Browse(string url);
-    void Refresh();
-    string CurrentPage { get; }
-}
-
-// Smartphone implements ALL THREE interfaces
-public class Smartphone : IPhone, ICamera, IInternetBrowser
-{
-    // IPhone implementation
-    public string PhoneNumber { get; set; }
-    
-    public void Call(string number)
-    {
-        Console.WriteLine("Calling " + number + " from " + PhoneNumber);
-    }
-    
-    public void ReceiveCall()
-    {
-        Console.WriteLine("Incoming call on " + PhoneNumber);
-    }
-    
-    // ICamera implementation
-    public int Megapixels { get { return 12; } }
-    
-    public void TakePhoto()
-    {
-        Console.WriteLine("Taking photo with " + Megapixels + "MP camera");
-    }
-    
-    public void RecordVideo()
-    {
-        Console.WriteLine("Recording 4K video");
-    }
-    
-    // IInternetBrowser implementation
-    public string CurrentPage { get; private set; }
-    
-    public void Browse(string url)
-    {
-        CurrentPage = url;
-        Console.WriteLine("Browsing: " + url);
-    }
-    
-    public void Refresh()
-    {
-        Console.WriteLine("Refreshing: " + CurrentPage);
-    }
-}
-
-// Using the smartphone
-Smartphone myPhone = new Smartphone();
-myPhone.PhoneNumber = "555-1234";
-
-// Use as a phone
-IPhone phone = myPhone;
-phone.Call("555-5678");
-
-// Use as a camera
-ICamera camera = myPhone;
-camera.TakePhoto();
-
-// Use as a browser
-IInternetBrowser browser = myPhone;
-browser.Browse("https://example.com");
-
-// Or use all features directly
-Console.WriteLine("\n=== Using All Features ===");
-myPhone.Call("911");
-myPhone.TakePhoto();
-myPhone.Browse("https://google.com");
-myPhone.RecordVideo();
-
-Console.WriteLine("\nPhone has: " + myPhone.Megapixels + "MP camera");
-Console.WriteLine("Phone number: " + myPhone.PhoneNumber);`
-        },
-
-        currentStep: 0,
-
-        toggleSyntax: function() {
-            const toggle = document.getElementById('syntaxToggle');
-            const codeBlock = document.getElementById('syntaxCode');
-            
-            if (toggle && codeBlock) {
-                const isComplete = toggle.checked;
-                const simpleSyntax = `// Interface definition (starts with I)
-public interface IVehicle
-{
-    // Methods (no implementation, just signatures)
-    void Start();
-    void Stop();
-    
-    // Properties (no implementation)
-    int MaxSpeed { get; }
-    string Model { get; set; }
-}
-
-// Class implementing the interface
-public class Car : IVehicle  // Colon means "implements"
-{
-    // MUST implement ALL interface members
-    public void Start()
-    {
-        Console.WriteLine("Car engine started with key.");
-    }
-    
-    public void Stop()
-    {
-        Console.WriteLine("Car engine stopped.");
-    }
-    
-    // Property implementations
-    public int MaxSpeed 
-    { 
-        get { return 180; }
-    }
-    
-    public string Model { get; set; }
-}`;
-
-                const completeSyntax = `// Interface definition (starts with I)
-public interface IVehicle
-{
-    // Methods (no implementation, just signatures)
-    void Start();
-    void Stop();
-    
-    // Properties (no implementation)
-    int MaxSpeed { get; }
-    string Model { get; set; }
-    
-    // Events (advanced, we'll see later)
-    // event EventHandler EngineStarted;
-}
-
-// Class implementing the interface
-public class Car : IVehicle  // Colon means "implements"
-{
-    // MUST implement ALL interface members
-    public void Start()
-    {
-        Console.WriteLine("Car engine started with key.");
-    }
-    
-    public void Stop()
-    {
-        Console.WriteLine("Car engine stopped.");
-    }
-    
-    // Property implementations
-    public int MaxSpeed 
-    { 
-        get { return 180; }  // Cars can go 180 mph
-    }
-    
-    public string Model { get; set; }
-}
-
-// Another class implementing SAME interface
-public class Motorcycle : IVehicle
-{
-    public void Start()
-    {
-        Console.WriteLine("Motorcycle started with button.");
-    }
-    
-    public void Stop()
-    {
-        Console.WriteLine("Motorcycle engine stopped.");
-    }
-    
-    public int MaxSpeed 
-    { 
-        get { return 150; }  // Motorcycles slower
-    }
-    
-    public string Model { get; set; }
-}`;
-
+            public void RecordVideo()
+            {
+                Console.WriteLine("Recording 4K video");
+            }
+        }`
+                }
+            };
                 codeBlock.style.transition = 'opacity 0.3s ease';
                 codeBlock.style.opacity = '0.5';
                 setTimeout(() => {
@@ -1416,12 +637,12 @@ public class Motorcycle : IVehicle
 
                     if (resultBox && id === 'example1') {
                         resultBox.innerHTML = isComplete ? 
-                            '➡ <strong>Output:</strong><br>=== Driving Different Vehicles ===<br>Car is driving at 60 mph.<br>Car parked safely.<br>Current speed: 0 mph<br>---<br>Truck is hauling at 45 mph.<br>Truck parked in loading zone.<br>Current speed: 0 mph<br>---<br>Motorcycle zooming at 75 mph!<br>Motorcycle parked on kickstand.<br>Current speed: 0 mph<br>---<br><br><em>Interface Magic:</em> All three classes (Car, Truck, Motorcycle) implement the SAME <code>IDrivable</code> interface. We can store them all in an <code>IDrivable[]</code> array and call the same methods on each, but each executes its own implementation!' :
-                            '➡ <strong>Code Structure:</strong><br>IDrivable interface with Drive(), Park(), and Speed property.<br>Car class implements IDrivable with car-specific behavior.<br>Truck class implements IDrivable with truck-specific behavior.<br><br><em>Toggle to see the complete example with Motorcycle and array usage!</em>';
+                            ' <strong>Output:</strong><br>=== Driving Different Vehicles ===<br>Car is driving at 60 mph.<br>Car parked safely.<br>Current speed: 0 mph<br>---<br>Truck is hauling at 45 mph.<br>Truck parked in loading zone.<br>Current speed: 0 mph<br>---<br>Motorcycle zooming at 75 mph!<br>Motorcycle parked on kickstand.<br>Current speed: 0 mph<br>---<br><br><em>Interface Magic:</em> All three classes (Car, Truck, Motorcycle) implement the SAME <code>IDrivable</code> interface. We can store them all in an <code>IDrivable[]</code> array and call the same methods on each, but each executes its own implementation!' :
+                            ' <strong>Code Structure:</strong><br>IDrivable interface with Drive(), Park(), and Speed property.<br>Car class implements IDrivable with car-specific behavior.<br>Truck class implements IDrivable with truck-specific behavior.<br><br><em>Toggle to see the complete example with Motorcycle and array usage!</em>';
                     } else if (resultBox && id === 'example2') {
                         resultBox.innerHTML = isComplete ?
-                            '➡ <strong>Output:</strong><br>Calling 555-5678 from 555-1234<br>Taking photo with 12MP camera<br>Browsing: https://example.com<br><br>=== Using All Features ===<br>Calling 911 from 555-1234<br>Taking photo with 12MP camera<br>Browsing: https://google.com<br>Recording 4K video<br><br>Phone has: 12MP camera<br>Phone number: 555-1234<br><br><em>Multiple Interfaces:</em> Smartphone implements THREE interfaces (IPhone, ICamera, IInternetBrowser). This is like saying "A smartphone IS A phone AND a camera AND a browser." This is how C# achieves "multiple inheritance" - through multiple interfaces!' :
-                            '➡ <strong>Code Structure:</strong><br>IPhone interface for calling features.<br>ICamera interface for photo/video features.<br>Smartphone class implements BOTH interfaces.<br>Can use smartphone as phone OR camera OR both.<br><br><em>Toggle to see the complete example with browser interface and full usage!</em>';
+                            ' <strong>Output:</strong><br>Calling 555-5678 from 555-1234<br>Taking photo with 12MP camera<br>Browsing: https://example.com<br><br>=== Using All Features ===<br>Calling 911 from 555-1234<br>Taking photo with 12MP camera<br>Browsing: https://google.com<br>Recording 4K video<br><br>Phone has: 12MP camera<br>Phone number: 555-1234<br><br><em>Multiple Interfaces:</em> Smartphone implements THREE interfaces (IPhone, ICamera, IInternetBrowser). This is like saying "A smartphone IS A phone AND a camera AND a browser." This is how C# achieves "multiple inheritance" - through multiple interfaces!' :
+                            ' <strong>Code Structure:</strong><br>IPhone interface for calling features.<br>ICamera interface for photo/video features.<br>Smartphone class implements BOTH interfaces.<br>Can use smartphone as phone OR camera OR both.<br><br><em>Toggle to see the complete example with browser interface and full usage!</em>';
                     }
                 }, 300);
             }
@@ -1442,7 +663,7 @@ public class Motorcycle : IVehicle
             walkthroughExplanation.innerHTML = `<em>Step ${step + 1}:</em> ${data.exp}`;
             
             if (step === this.interfaceSteps.length - 1 && nextStepBtn) {
-                walkthroughExplanation.innerHTML += '<br><strong>✅ Complete! The interface acts as a contract that MusicPlayer fulfills.</strong>';
+                walkthroughExplanation.innerHTML += '<br><strong> Complete! The interface acts as a contract that MusicPlayer fulfills.</strong>';
                 nextStepBtn.disabled = true;
             }
         },

@@ -1,60 +1,60 @@
 ﻿@{
-    ViewData["Title"] = "For Loops";
+    ViewData["Title"] = "For циклиси";
 }
 
 <div class="container" data-topic="loops">
-    <h1 class="mb-4">🔁 For Loops: Repeating Actions</h1>
-    
-    <p>Loops are one of the most powerful tools in programming, allowing you to <strong>repeat actions</strong> without having to rewrite the same code many times. The <strong>for loop</strong> is perfect for situations where you know exactly how many times you need to repeat the action.</p>
+    <h1 class="mb-4">For циклуси: Повторување на акции</h1>
 
-    <h2>The Structure of a For Loop</h2>
-    <p>A <strong>for loop</strong> is defined by three control statements inside the parentheses, separated by semicolons (<code>;</code>):</p>
-    
+    <p>Циклусите се една од најмоќните алатки во програмирањето, кои ти овозможуваат да <strong>повторуваш акции</strong> без да го препишуваш истиот код многу пати. <strong>For циклусот</strong> е совршен за ситуации кога точно знаеш колку пати треба да се повтори акцијата.</p>
+
+    <h2>Структура на For циклус</h2>
+    <p><strong>For циклус</strong> е дефиниран со три контролни изрази во заградите, одделени со точка-запирка (<code>;</code>):</p>
+
     <div class="code-container">
-        <div class="code-header">For Loop Syntax</div>
+        <div class="code-header">Синтакса на For циклус</div>
         <div class="code-content">
 <pre>
-for (<span style="color: green;">initialization</span>; <span style="color: red;">condition</span>; <span style="color: blue;">increment</span>) {
-    // code to repeat (the loop body)
+for (<span style="color: green;">иницијализација</span>; <span style="color: red;">услов</span>; <span style="color: blue;">зголемување</span>) {
+    // код што се повторува (телото на циклусот)
 }
 </pre>
         </div>
     </div>
-    
+
     <ul>
-        <li>1. <strong style="color: green;">Initialization</strong>: Runs <strong>once</strong> at the very start. Sets up the counting variable (e.g., <code>int i = 0</code>).</li>
-        <li>2. <strong style="color: red;">Condition</strong>: Checked <strong>before every repetition</strong>. If this is <code>true</code>, the loop body runs. If <code>false</code>, the loop stops.</li>
-        <li>3. <strong style="color: blue;">Increment/Decrement</strong>: Runs <strong>after every repetition</strong>. Updates the counting variable (e.g., <code>i++</code> to increase or <code>i--</code> to decrease).</li>
+        <li>1. <strong style="color: green;">Иницијализација</strong>: Се извршува <strong>еднаш</strong> на самиот почеток. Ја поставува бројачката променлива (пр. <code>int i = 0</code>).</li>
+        <li>2. <strong style="color: red;">Услов</strong>: Се проверува <strong>пред секое повторување</strong>. Ако е <code>true</code>, телото на циклусот се извршува. Ако е <code>false</code>, циклусот запира.</li>
+        <li>3. <strong style="color: blue;">Зголемување/Намалување</strong>: Се извршува <strong>по секое повторување</strong>. Ја ажурира бројачката променлива (пр. <code>i++</code> за зголемување или <code>i--</code> за намалување).</li>
     </ul>
 
-    <h2>Example 1: Counting Up (Increment)</h2>
-    <p>This is the most common use: counting from a low number up to a high number.</p>
-    
+    <h2>Пример 1: Броење нагоре (зголемување)</h2>
+    <p>Ова е најчестата употреба: броење од помал број кон поголем број.</p>
+
     <div class="code-container">
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="window.convertCode('example1')">
-            <label class="form-check-label" for="example1Toggle">Convert to C#</label>
+            <label class="form-check-label" for="example1Toggle">Претвори во C#</label>
         </div>
         <div class="code-content">
 <pre class="codeBlock" id="example1Code">
 for (int i = 1; i <= 5; i++) {
-    cout << "Clap " << i << endl;
+    cout << "Плесок " << i << endl;
 }
 </pre>
         </div>
         <div class="result-box" id="example1Result">
-            ➡ <strong>Result:</strong> Clap 1<br>Clap 2<br>Clap 3<br>Clap 4<br>Clap 5<br>
-            <em>Explanation:</em> The loop starts at 1 and runs while <code>i</code> is less than or equal to 5. Each iteration prints "Clap" and the current number.
+            <strong>Резултат:</strong> Плесок 1<br>Плесок 2<br>Плесок 3<br>Плесок 4<br>Плесок 5<br>
+            <em>Објаснување:</em> Циклусот започнува од 1 и се извршува додека <code>i</code> е помало или еднакво на 5. Секоја итерација печати „Плесок“ и тековниот број.
         </div>
     </div>
 
-    <h2>🎯 Example 2: Counting Down (Decrement)</h2>
-    <p>You can also use loops to count backward, such as for a countdown.</p>
-    
+    <h2>Пример 2: Броење наназад (намалување)</h2>
+    <p>Можеш да користиш циклуси и за броење наназад, на пример за одбројување.</p>
+
     <div class="code-container">
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="window.convertCode('example2')">
-            <label class="form-check-label" for="example2Toggle">Convert to C#</label>
+            <label class="form-check-label" for="example2Toggle">Претвори во C#</label>
         </div>
         <div class="code-content">
 <pre class="codeBlock" id="example2Code">
@@ -64,121 +64,56 @@ for (int i = 10; i >= 1; i--) {
 </pre>
         </div>
         <div class="result-box" id="example2Result">
-            ➡ <strong>Result:</strong> 10 9 8 7 6 5 4 3 2 1<br>
-            <em>Explanation:</em> The loop starts at 10. The condition is <code>i >= 1</code>, and the update is <code>i--</code> (decrement), which reduces <code>i</code> by 1 each time.
+            <strong>Резултат:</strong> 10 9 8 7 6 5 4 3 2 1<br>
+            <em>Објаснување:</em> Циклусот започнува од 10. Условот е <code>i >= 1</code>, а ажурирањето е <code>i--</code>, што го намалува <code>i</code> за 1 секој пат.
         </div>
     </div>
 
-    <h2>🎯 Example 3: Processing Data (Calculating Sums)</h2>
-    <p>Loops are often used to process data, such as calculating totals. We use a separate variable (<code>sum</code>) outside the loop to store the running total.</p>
-    
+    <h2>Пример 3: Обработка на податоци (пресметка на збир)</h2>
+    <p>Циклусите често се користат за обработка на податоци, како што е пресметка на вкупна сума. Користиме посебна променлива (<code>sum</code>) надвор од циклусот за да го чуваме тековниот збир.</p>
+
     <div class="code-container">
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="window.convertCode('example3')">
-            <label class="form-check-label" for="example3Toggle">Convert to C#</label>
+            <label class="form-check-label" for="example3Toggle">Претвори во C#</label>
         </div>
         <div class="code-content">
 <pre class="codeBlock" id="example3Code">
 int sum = 0;
 for (int i = 1; i <= 5; i++) {
-    sum += i; // Shorthand for: sum = sum + i;
+    sum += i; // Скратено за: sum = sum + i;
 }
-cout << "Sum = " << sum;
+cout << "Збир = " << sum;
 </pre>
         </div>
         <div class="result-box" id="example3Result">
-            ➡ <strong>Result:</strong> Sum = 15<br>
-            <em>Explanation:</em> The loop adds each number from 1 to 5 into the variable <code>sum</code>. The total is 15.
+            <strong>Резултат:</strong> Збир = 15<br>
+            <em>Објаснување:</em> Циклусот го додава секој број од 1 до 5 во променливата <code>sum</code>. Вкупниот збир е 15.
         </div>
     </div>
 
-    <h2>🧠 Interactive Walkthrough: Following the Code</h2>
-    <p>Watch the code (Example 3) execute step-by-step. The <strong>Active Code</strong> below shows which line is currently running, and the <strong>Variable State</strong> tracks the changes.</p>
+    <h2>Интерактивен водич: Следење на кодот</h2>
+    <p>Погледни како кодот (Пример 3) се извршува чекор по чекор. Делот <strong>Активен код</strong> покажува која линија моментално се извршува, а <strong>Состојба на променливи</strong> ги следи промените.</p>
 
-    <div class="code-container">
-        <div class="code-header">Active Code (C++)</div>
-        <div class="code-content">
-<pre id="walkthroughCodeBase">
-int sum = 0;
-// for (int i = 1; i <= 5; i++) {
-//     sum += i;
-// }
-// cout << "Sum = " << sum;
-</pre>
-        </div>
-    </div>
+    <h2>Пример 4: Поминување низ текст (стрингови)</h2>
+    <p>Можеш да ја користиш бројачката променлива на циклусот за пристап до поединечни карактери од текст. Започнуваме од 0 бидејќи во програмирањето најчесто броиме од нула.</p>
 
-    <div class="code-container">
-        <div class="code-header">Variable State</div>
-        <div class="code-content">
-<pre id="walkthroughVariables">i = ?, sum = 0</pre>
-        </div>
-        <div class="result-box" id="walkthroughExplanation">
-            <em>Click <strong>Next</strong> to begin the trace:</em>
-        </div>
-        <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
-    </div>
+    <h2>Визуелен дијаграм</h2>
+    <p>Овој дијаграм го прикажува текот на извршување на <strong>For циклус</strong> од почеток до крај.</p>
 
-    <h2>🎯 Example 4: Looping Through Text (Strings)</h2>
-    <p>You can use the loop's counter variable to access individual parts of text. We start the counter at 0 because in programming, we often start counting from zero.</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example4Toggle" onchange="window.convertCode('example4')">
-            <label class="form-check-label" for="example4Toggle">Convert to C#</label>
-        </div>
-        <div class="code-content">
-<pre class="codeBlock" id="example4Code">
-string word = "CODE";
-for (int i = 0; i < word.length(); i++) {
-    cout << word[i] << endl;
-}
-</pre>
-        </div>
-        <div class="result-box" id="example4Result">
-            ➡ <strong>Result:</strong><br> C<br>O<br>D<br>E<br>
-            <em>Explanation:</em> The loop runs 4 times (the length of "CODE"). It prints the character at index 0 ('C'), then index 1 ('O'), and so on.
-        </div>
-    </div>
-
-    <h2>🧠 Visual Diagram</h2>
-    <p>This diagram illustrates the flow of a <strong>For Loop</strong> from start to finish.</p>
-    
-    <div class="code-container">
-        <div class="code-header">Loop Execution Flow</div>
-        <div class="code-content">
-<pre>
-      [START: Initialization] 
-               | 
-               ↓
-       [Check Condition?] 
-               |
-        Yes /       \ No
-           |         | 
-           ↓         ↓
-   [Run Loop Body]   [EXIT Loop]
-           ↓
-     [Increment/Decrement] 
-           |
-           -------------------
-                         ↑ 
-                     (Return to Condition)
-</pre>
-        </div>
-    </div>
-
-    <h2>🎉 Summary</h2>
+    <h2>Резиме</h2>
     <ul>
-        <li>A <strong>for loop</strong> is best when you know the number of repetitions.</li>
-        <li>The three parts control <strong>start</strong> (initialization), <strong>stop</strong> (condition), and <strong>step</strong> (increment/decrement).</li>
-        <li>Loops are essential for tasks like counting, calculating sums, and iterating over data structures like strings.</li>
+        <li><strong>For циклус</strong> е најдобар кога го знаеш бројот на повторувања.</li>
+        <li>Трите делови го контролираат <strong>почетокот</strong> (иницијализација), <strong>крајот</strong> (услов) и <strong>чекорот</strong> (зголемување/намалување).</li>
+        <li>Циклусите се неопходни за задачи како броење, пресметка на збир и итерирање низ структури на податоци како стрингови.</li>
     </ul>
 
     <div class="navigation-buttons">
         <a href="@Url.Action("IfElse", "SP")" class="btn btn-outline-primary ajax-link">← If Else</a>
-        <a href="@Url.Action("Arrays", "SP")" class="btn btn-primary ajax-link">Arrays →</a>
+        <a href="@Url.Action("Arrays", "SP")" class="btn btn-primary ajax-link">Низи →</a>
     </div>
 </div>
+
 
 <style>
     .container {
@@ -302,7 +237,7 @@ window.cppSnippets = {
 }`,
     example3: `int sum = 0;
 for (int i = 1; i <= 5; i++) {
-    sum += i; // Shorthand for: sum = sum + i;
+            sum += i; // Скратеница за: сума = сума + i;
 }
 cout << "Sum = " << sum;`,
     example4: `string word = "CODE";

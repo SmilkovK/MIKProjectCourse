@@ -1,604 +1,182 @@
 ﻿@{
-    ViewData["Title"] = "OOP - Inheritance";
+    ViewData["Title"] = "OOP - Наследување";
 }
 
 <body data-topic="inheritance">
-<div class="container">
-    <h1 class="mb-4 text-center">Inheritance: Building on What Already Exists</h1>
+    <div class="container">
+        <h1 class="mb-4 text-center">Наследување: Градење врз веќе постоечко</h1>
 
-    <p><strong>Inheritance</strong> is like getting features from your parents! In programming, it lets one class <strong>inherit</strong> properties and methods from another class, so you don't have to write the same code over and over.</p>
+        <p><strong>Наследувањето</strong> е како да ги добивате карактеристиките од вашите родители. Во програмирањето, тоа ѝ дозволува на една класа да <strong>наследи</strong> својства и методи од друга класа, за да не го пишувате истиот код повторно и повторно.</p>
 
-    <p>You see inheritance in real life all the time:</p>
-    <ul>
-        <li>A <strong>smartphone</strong> inherits features from a <strong>basic phone</strong> (makes calls) but adds more (takes photos)</li>
-        <li>A <strong>luxury car</strong> inherits from a <strong>regular car</strong> (has wheels, engine) but adds leather seats</li>
-        <li>A <strong>college student</strong> is a <strong>person</strong> with extra features (has a major, studies)</li>
-        <li>Instagram <strong>Stories</strong> inherit from <strong>Posts</strong> but disappear after 24 hours</li>
-    </ul>
+        <p>Наследување гледате постојано во реалниот живот:</p>
+        <ul>
+            <li><strong>Паметен телефон</strong> наследува функции од <strong>обичен телефон</strong> (јавување), но додава нови (фотографирање)</li>
+            <li><strong>Луксузен автомобил</strong> наследува од <strong>обичен автомобил</strong> (тркала, мотор), но додава кожни седишта</li>
+            <li><strong>Студент</strong> е <strong>личност</strong> со дополнителни карактеристики (студира, има насока)</li>
+            <li><strong>Stories</strong> на Instagram наследуваат од <strong>Posts</strong>, но исчезнуваат по 24 часа</li>
+        </ul>
 
-    <h2 class="text-center">What is Inheritance?</h2>
-    <p>Inheritance creates a <strong>parent-child relationship</strong> between classes:</p>
-    
-    <div class="code-container">
-        <div class="code-header">Family Tree of Classes</div>
-        <div class="code-content">
+        <h2 class="text-center">Што е наследување?</h2>
+        <p>Наследувањето создава <strong>врска родител-дете</strong> помеѓу класите:</p>
+
+        <div class="code-container">
+            <div class="code-header">Семејно стебло на класи</div>
+            <div class="code-content">
 <pre>
-PARENT CLASS (Base Class)     CHILD CLASS (Derived Class)
-──────────────────────────────────────────────────────────
+РОДИТЕЛСКА КЛАСА (Base)      ДЕТЕ КЛАСА (Derived)
+────────────────────────────────────────────────
     Person                        Student
       │                              │
-      ├─ Name (inherited) ───────────┘
-      ├─ Age (inherited) ─────────────┘
-      └─ Eat() (inherited) ───────────┘
+      ├─ Name (наследено) ───────────┘
+      ├─ Age (наследено) ─────────────┘
+      └─ Eat() (наследено) ───────────┘
                                    │
-                                   ├─ School (new!)
-                                   └─ Study() (new!)
+                                   ├─ School (ново)
+                                   └─ Study() (ново)
 
-ONE Parent Class can have          MANY Child Classes
+ЕДНА родителска класа може да има     МНОГУ дете-класи
 </pre>
+            </div>
         </div>
-    </div>
 
-    <p><strong>Key Idea:</strong> Child classes get everything from parent classes for free, then add their own special features!</p>
+        <p><strong>Клучна идеја:</strong> Дете-класите добиваат сѐ од родителската класа бесплатно, а потоа додаваат свои посебни карактеристики.</p>
 
-    <h2 class="text-center">The Colon (:) Operator</h2>
-    <p>In C#, we use a colon <code>:</code> to show inheritance. It's like saying "is a":</p>
-    
-    <div class="code-container">
-        <div class="code-header">Inheritance Syntax</div>
-        <div class="code-content">
+        <h2 class="text-center">Операторот две точки (:)</h2>
+        <p>Во C#, користиме две точки <code>:</code> за да покажеме наследување. Тоа значи „е“:</p>
+
+        <div class="code-container">
+            <div class="code-header">Синтакса за наследување</div>
+            <div class="code-content">
 <pre>
-// Parent class (Base class)
+// Родителска класа
 public class Animal
 {
     public string Name;
-    public void Eat() { Console.WriteLine("Eating..."); }
+    public void Eat() { Console.WriteLine("Јадење..."); }
 }
 
-// Child class (Derived class)
-// "Dog IS AN Animal"
-public class Dog : Animal  // ← The colon means "inherits from"
+// Дете-класа
+// „Куче Е Животно“
+public class Dog : Animal
 {
-    public void Bark() { Console.WriteLine("Woof!"); }
+    public void Bark() { Console.WriteLine("Ав!"); }
 }
 
-// Another child class
-// "Cat IS AN Animal"
+// Друга дете-класа
+// „Мачка Е Животно“
 public class Cat : Animal
 {
-    public void Meow() { Console.WriteLine("Meow!"); }
+    public void Meow() { Console.WriteLine("Мјау!"); }
 }
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2 class="text-center">Example 1: The Classic Person → Student Example</h2>
-    <p>Let's start with the most common inheritance example:</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="oopInheritance.convertCode('example1')">
-            <label class="form-check-label" for="example1Toggle">Show Full Example with Output</label>
-        </div>
-        <div class="code-content">
+        <h2 class="text-center">Пример 1: Класичен пример Person → Student</h2>
+
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="oopInheritance.convertCode('example1')">
+                <label class="form-check-label" for="example1Toggle">Прикажи целосен пример со излез</label>
+            </div>
+            <div class="code-content">
 <pre class="codeBlock" id="example1Code">
-// Parent Class: Person (the base)
 public class Person
 {
     public string Name;
     public int Age;
-    
+
     public void Introduce()
     {
-        Console.WriteLine("Hi, I'm " + Name + " and I'm " + Age + " years old.");
+        Console.WriteLine("Здраво, јас сум " + Name + " и имам " + Age + " години.");
     }
-    
+
     public void Eat()
     {
-        Console.WriteLine(Name + " is eating lunch.");
+        Console.WriteLine(Name + " јаде ручек.");
     }
 }
 
-// Child Class: Student (inherits from Person)
-public class Student : Person  // ← Student IS A Person
+public class Student : Person
 {
     public string School;
     public string Major;
-    
+
     public void Study()
     {
-        Console.WriteLine(Name + " is studying " + Major + " at " + School + ".");
+        Console.WriteLine(Name + " студира " + Major + " во " + School + ".");
     }
 }
 
-// Another Child Class: Teacher (also inherits from Person)
-public class Teacher : Person  // ← Teacher IS A Person
+public class Teacher : Person
 {
     public string Subject;
     public decimal Salary;
-    
+
     public void Teach()
     {
-        Console.WriteLine(Name + " teaches " + Subject + ".");
+        Console.WriteLine(Name + " предава " + Subject + ".");
     }
 }
-
-// Using inheritance
-Student student = new Student();
-student.Name = "Alice";      // Inherited from Person
-student.Age = 20;            // Inherited from Person
-student.School = "MIT";      // Student's own property
-student.Major = "CS";        // Student's own property
-
-Teacher teacher = new Teacher();
-teacher.Name = "Dr. Smith";  // Inherited from Person
-teacher.Age = 45;            // Inherited from Person
-teacher.Subject = "Math";    // Teacher's own property
-teacher.Salary = 60000;      // Teacher's own property
-
-student.Introduce();  // Inherited method from Person
-student.Study();      // Student's own method
-
-teacher.Introduce();  // Inherited method from Person  
-teacher.Teach();      // Teacher's own method
 </pre>
-        </div>
-        <div class="result-box" id="example1Result">
-            <strong>Output:</strong><br>
-            Hi, I'm Alice and I'm 20 years old.<br>
-            Alice is studying CS at MIT.<br>
-            Hi, I'm Dr. Smith and I'm 45 years old.<br>
-            Dr. Smith teaches Math.<br><br>
-            <em>Magic of Inheritance:</em> Student and Teacher got Name, Age, and Introduce() from Person FOR FREE! They didn't need to write that code again. They just added their own special features (School, Major, Study for Student; Subject, Salary, Teach for Teacher).
-        </div>
-    </div>
-
-    <h2 class="text-center">Interactive Walkthrough: How Inheritance Works</h2>
-    <p>Watch the inheritance chain step by step:</p>
-
-    <div class="code-container">
-        <div class="code-header">Inheritance in Action</div>
-        <div class="code-content">
-<pre id="walkthroughCodeBase">
-public class Vehicle
-{
-    public string Brand;
-    public void Start() { Console.WriteLine("Vehicle starting..."); }
-}
-
-// Car inherits from Vehicle
-// public class Car : Vehicle
-// {
-//     public int Doors;
-//     public void Honk() { Console.WriteLine("Beep beep!"); }
-// }
-
-// Car car = new Car();
-// car.Brand = "Toyota";
-// car.Doors = 4;
-// car.Start();
-// car.Honk();
-</pre>
-        </div>
-    </div>
-
-    <div class="code-container">
-        <div class="code-header">Inheritance Chain</div>
-        <div class="code-content">
-<pre id="walkthroughVariables">
-Vehicle class has: Brand, Start()
-Car class will inherit: Brand, Start()
-Car class adds: Doors, Honk()
-</pre>
-        </div>
-        <div class="result-box" id="walkthroughExplanation">
-            <em>Click <strong>Next</strong> to see inheritance unfold:</em>
-        </div>
-        <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
-    </div>
-
-    <h2 class="text-center">Visual Diagram: Inheritance Hierarchy</h2>
-    
-    <div class="code-container">
-        <div class="code-header">Class Family Tree</div>
-        <div class="code-content">
-<pre>
-            ╔══════════════════╗
-            ║    Animal        ║ ← Parent/Base class
-            ╠══════════════════╣
-            ║ + string Name    ║
-            ║ + void Eat()     ║
-            ║ + void Sleep()   ║
-            ╚══════╤═══════════╝
-                   │
-        ┌─────────┴─────────┐
-        ▼                   ▼
-╔══════════════╗   ╔══════════════╗
-║    Dog       ║   ║    Cat       ║ ← Child/Derived classes
-╠══════════════╣   ╠══════════════╣
-║ + void Bark()║   ║ + void Meow()║ ← Each adds something new
-║              ║   ║              ║
-║ Inherits:    ║   ║ Inherits:    ║
-║ • Name       ║   ║ • Name       ║
-║ • Eat()      ║   ║ • Eat()      ║
-║ • Sleep()    ║   ║ • Sleep()    ║
-╚══════════════╝   ╚══════════════╝
-
-Dog dog = new Dog();
-dog.Name = "Buddy";   // From Animal
-dog.Eat();            // From Animal  
-dog.Bark();           // From Dog
-
-Cat cat = new Cat();
-cat.Name = "Whiskers"; // From Animal
-cat.Sleep();           // From Animal
-cat.Meow();            // From Cat
-</pre>
-        </div>
-    </div>
-
-    <h2 class="text-center">Example 2: Vehicle Inheritance Hierarchy</h2>
-    <p>Real-world example with different types of vehicles:</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="oopInheritance.convertCode('example2')">
-            <label class="form-check-label" for="example2Toggle">Show Complete Transportation System</label>
-        </div>
-        <div class="code-content">
-<pre class="codeBlock" id="example2Code">
-// Base class: All vehicles share these
-public class Vehicle
-{
-    public string Brand;
-    public int Year;
-    public decimal Price;
-    
-    public void Start()
-    {
-        Console.WriteLine(Brand + " is starting...");
-    }
-    
-    public void Stop()
-    {
-        Console.WriteLine(Brand + " is stopping...");
-    }
-}
-
-// Car inherits from Vehicle
-public class Car : Vehicle
-{
-    public int Doors;
-    public bool HasSunroof;
-    
-    public void Honk()
-    {
-        Console.WriteLine(Brand + " car goes: Beep beep!");
-    }
-}
-
-// Motorcycle inherits from Vehicle
-public class Motorcycle : Vehicle
-{
-    public bool HasSidecar;
-    
-    public void Wheelie()
-    {
-        Console.WriteLine(Brand + " motorcycle does a wheelie!");
-    }
-}
-
-// Truck inherits from Vehicle
-public class Truck : Vehicle
-{
-    public int CargoCapacity;  // in tons
-    public bool HasTrailer;
-    
-    public void LoadCargo()
-    {
-        Console.WriteLine(Brand + " truck loading " + CargoCapacity + " tons of cargo.");
-    }
-}
-
-// Using our inheritance hierarchy
-Car myCar = new Car();
-myCar.Brand = "Toyota";     // From Vehicle
-myCar.Year = 2020;          // From Vehicle
-myCar.Doors = 4;            // From Car
-myCar.HasSunroof = true;    // From Car
-
-Motorcycle myBike = new Motorcycle();
-myBike.Brand = "Harley";    // From Vehicle
-myBike.HasSidecar = false;  // From Motorcycle
-
-Truck deliveryTruck = new Truck();
-deliveryTruck.Brand = "Ford";       // From Vehicle
-deliveryTruck.CargoCapacity = 5;    // From Truck
-deliveryTruck.HasTrailer = true;    // From Truck
-
-// Each vehicle uses inherited AND its own methods
-myCar.Start();      // From Vehicle
-myCar.Honk();       // From Car
-
-myBike.Start();     // From Vehicle
-myBike.Wheelie();   // From Motorcycle
-
-deliveryTruck.Start();      // From Vehicle
-deliveryTruck.LoadCargo();  // From Truck
-</pre>
-        </div>
-        <div class="result-box" id="example2Result">
-            <strong>Output:</strong><br>
-            Toyota is starting...<br>
-            Toyota car goes: Beep beep!<br>
-            Harley is starting...<br>
-            Harley motorcycle does a wheelie!<br>
-            Ford is starting...<br>
-            Ford truck loading 5 tons of cargo.<br><br>
-            <em>Power of Inheritance:</em> We wrote Start() and Stop() methods ONLY ONCE in Vehicle class. Car, Motorcycle, and Truck all get them for free! Each child class adds its own special features without repeating common code.
-        </div>
-    </div>
-
-    <h2 class="text-center">Example 3: Bank Account Inheritance</h2>
-    <p>Different types of bank accounts sharing common features:</p>
-    
-    <div class="code-container">
-        <div class="code-header">Bank Account Hierarchy</div>
-        <div class="code-content">
-<pre>
-// Base class for ALL bank accounts
-public class BankAccount
-{
-    public string AccountNumber;
-    public string Owner;
-    public decimal Balance;
-    
-    public void Deposit(decimal amount)
-    {
-        Balance += amount;
-        Console.WriteLine(Owner + " deposited $" + amount);
-    }
-    
-    public void DisplayBalance()
-    {
-        Console.WriteLine(Owner + "'s balance: $" + Balance);
-    }
-}
-
-// Checking account (for daily transactions)
-public class CheckingAccount : BankAccount
-{
-    public decimal OverdraftLimit;
-    
-    public void WriteCheck(decimal amount)
-    {
-        if (Balance + OverdraftLimit >= amount)
-        {
-            Balance -= amount;
-            Console.WriteLine("Check for $" + amount + " cleared.");
-        }
-        else
-        {
-            Console.WriteLine("Insufficient funds for check!");
-        }
-    }
-}
-
-// Savings account (earns interest)
-public class SavingsAccount : BankAccount
-{
-    public decimal InterestRate;
-    
-    public void AddInterest()
-    {
-        decimal interest = Balance * InterestRate;
-        Balance += interest;
-        Console.WriteLine("Added $" + interest + " interest to savings.");
-    }
-}
-
-// Using different account types
-CheckingAccount myChecking = new CheckingAccount();
-myChecking.Owner = "Alice";
-myChecking.Balance = 1000;
-myChecking.OverdraftLimit = 500;
-
-SavingsAccount mySavings = new SavingsAccount();
-mySavings.Owner = "Alice";
-mySavings.Balance = 5000;
-mySavings.InterestRate = 0.03m;  // 3% interest
-
-// Both accounts use inherited methods
-myChecking.Deposit(200);      // From BankAccount
-myChecking.WriteCheck(300);   // From CheckingAccount
-
-mySavings.Deposit(1000);      // From BankAccount
-mySavings.AddInterest();      // From SavingsAccount
-</pre>
-        </div>
-    </div>
-
-    <h2 class="text-center">Common Inheritance Mistakes</h2>
-    <div class="code-container">
-        <div class="code-header">Inheritance Pitfalls</div>
-        <div class="code-content">
-<pre>
-<span style="color: red;">// MISTAKE 1: Wrong "is a" relationship</span>
-public class Car : Engine  <span style="color: red;">// Car IS NOT AN Engine!</span>
-{
-    // This doesn't make sense
-}
-
-public class Engine : Car  <span style="color: red;">// Engine IS NOT A Car!</span>
-{
-    // This also doesn't make sense
-}
-
-<span style="color: green;">// CORRECT: Proper "is a" relationships</span>
-public class Car : Vehicle  <span style="color: green;">// Car IS A Vehicle</span>
-{
-    // Has an engine as a property
-    public Engine engine;
-}
-
-public class Engine : MachinePart  <span style="color: green;">// Engine IS A MachinePart</span>
-{
-    // Makes sense!
-}
-
-<span style="color: red;">// MISTAKE 2: Inheritance for code sharing only</span>
-public class User : Database  <span style="color: red;">// User IS NOT A Database!</span>
-{
-    // Just because both need database access
-}
-
-<span style="color: green;">// CORRECT: Use inheritance for real relationships</span>
-public class User : Person  <span style="color: green;">// User IS A Person</span>
-{
-    public string Username;
-    // Use a Database object separately
-}
-
-<span style="color: red;">// MISTAKE 3: Too deep inheritance</span>
-public class A { }
-public class B : A { }
-public class C : B { }
-public class D : C { }
-public class E : D { }  <span style="color: red;">// Too deep! Hard to understand</span>
-
-<span style="color: green;">// CORRECT: Keep inheritance shallow (2-3 levels max)</span>
-public class Vehicle { }
-public class Car : Vehicle { }
-public class SportsCar : Car { }  <span style="color: green;">// 3 levels is okay</span>
-</pre>
-        </div>
-    </div>
-
-    <h2 class="text-center">Key Inheritance Concepts</h2>
-    <div class="code-container">
-        <div class="code-header">Inheritance Essentials</div>
-        <div class="code-content">
-<pre>
-1. "IS A" RELATIONSHIP
-   - Car IS A Vehicle <span style="color: green;">Correct</span>
-   - Student IS A Person <span style="color: green;">Correct</span>
-   - If it doesn't make sense as "is a", don't use inheritance!
-
-2. CODE REUSE
-   - Write common code ONCE in parent class
-   - All child classes get it for free
-   - Reduces duplication, bugs, and maintenance
-
-3. EXTENDING FUNCTIONALITY
-   - Child classes ADD new features
-   - They don't remove parent features
-   - They can override parent methods (we'll learn this later)
-
-4. SINGLE INHERITANCE (C# rule)
-   - A class can have ONLY ONE parent class
-   - But a parent can have MANY children
-   - Example: class Student : Person <span style="color: green;">Correct</span>
-   - NOT: class Student : Person, Worker <span style="color: red;">Incorrect</span>
-
-5. REAL-WORLD HIERARCHIES:
-   Animal → Mammal → Dog → Labrador
-   Vehicle → Car → SportsCar → Ferrari
-   Employee → Manager → DepartmentHead
-   Product → Electronics → Phone → Smartphone
-</pre>
-        </div>
-    </div>
-
-    <h2 class="text-center">When to Use Inheritance</h2>
-    <div class="code-container">
-        <div class="code-header">Inheritance Guidelines</div>
-        <div class="code-content">
-<pre>
-<span style="color: green;">USE INHERITANCE WHEN:</span>
-1. There's a clear "is a" relationship
-   - Dog IS AN Animal <span style="color: green;">Correct</span>
-   - Car IS A Vehicle <span style="color: green;">Correct</span>
-   - SavingsAccount IS A BankAccount <span style="color: green;">Correct</span>
-
-2. Multiple classes share common behavior
-   - All vehicles can Start() and Stop()
-   - All employees have Name and CalculatePay()
-   - All products have Price and DisplayInfo()
-
-3. You want to extend existing functionality
-   - Basic Phone → Smartphone (adds apps, camera)
-   - Regular User → AdminUser (adds admin powers)
-   - Base Game → ExpansionPack (adds new levels)
-
-<span style="color: red;">DON'T USE INHERITANCE WHEN:</span>
-1. There's no real "is a" relationship
-   - User IS NOT A Database <span style="color: red;">Incorrect</span>
-   - Car IS NOT AN Engine <span style="color: red;">Incorrect</span>
-
-2. Just for code sharing without relationship
-   - Both need logging, but aren't related <span style="color: red;">Incorrect</span>
-
-3. The relationship might change
-   - Today: Student IS A Person
-   - Tomorrow: Student HAS A Person (different!) <span style="color: red;">Incorrect</span>
-
-4. For configuration differences only
-   - RedButton and BlueButton (just color difference) <span style="color: red;">Incorrect</span>
-</pre>
-        </div>
-    </div>
-
-    <h2 class="text-center">Quick Understanding Check</h2>
-    <div class="quiz-container">
-        <div class="quiz-question">
-            <p>1. Which is a correct inheritance relationship?</p>
-            <div class="quiz-options">
-                <button class="btn btn-sm btn-outline-secondary" onclick="oopInheritance.checkAnswer(1, 'A')">A) class Car : Engine</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="oopInheritance.checkAnswer(1, 'B')">B) class Student : Person</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="oopInheritance.checkAnswer(1, 'C')">C) class User : Password</button>
             </div>
-            <div id="quiz1Result" class="quiz-result mt-2"></div>
-        </div>
-        
-        <div class="quiz-question mt-3">
-            <p>2. If <code>Animal</code> class has <code>Eat()</code> method, and <code>Dog : Animal</code> adds <code>Bark()</code>, how many methods does a <code>Dog</code> object have?</p>
-            <div class="quiz-options">
-                <button class="btn btn-sm btn-outline-secondary" onclick="oopInheritance.checkAnswer(2, 'A')">A) 1 method (only Bark)</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="oopInheritance.checkAnswer(2, 'B')">B) 2 methods (Eat and Bark)</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="oopInheritance.checkAnswer(2, 'C')">C) 0 methods</button>
+            <div class="result-box" id="example1Result">
+                <strong>Излез:</strong><br>
+                Здраво, јас сум Alice и имам 20 години.<br>
+                Alice студира CS во MIT.<br>
+                Здраво, јас сум Dr. Smith и имам 45 години.<br>
+                Dr. Smith предава Math.<br><br>
+                <em>Моќта на наследувањето:</em> Student и Teacher ги добија Name, Age и Introduce() од Person без повторно пишување код.
             </div>
-            <div id="quiz2Result" class="quiz-result mt-2"></div>
         </div>
-    </div>
 
-    <h2 class="text-center">Summary: The Power of Inheritance</h2>
-    <ul>
-        <li><strong>Inheritance</strong> = Child classes get everything from parent classes for free</li>
-        <li>Syntax: <code>public class Child : Parent</code> (colon means "inherits from")</li>
-        <li>Use the <strong>"is a" test</strong>: If "Child IS A Parent" makes sense, use inheritance</li>
-        <li>Benefits: <strong>Code reuse</strong>, <strong>less duplication</strong>, <strong>easier maintenance</strong></li>
-        <li>Child classes can <strong>add new features</strong> but not remove inherited ones</li>
-        <li>C# has <strong>single inheritance</strong>: One parent per child, but many children per parent</li>
-        <li>Real examples: Student→Person, Car→Vehicle, AdminUser→User, Smartphone→Phone</li>
-        <li>Without inheritance: We'd write the same code over and over = more bugs, harder updates!</li>
-    </ul>
+        <h2 class="text-center">Чести грешки при наследување</h2>
+        <div class="code-container">
+            <div class="code-header">Грешки</div>
+            <div class="code-content">
+<pre>
+<span style="color:red;">// ГРЕШКА: Погрешна „е“ врска</span>
+public class Car : Engine  // Автомобил НЕ Е мотор
 
-    <div class="next-steps">
-        <h3 class="text-center">What's Next?</h3>
-        <p>Inheritance leads to even more powerful OOP concepts:</p>
+<span style="color:lightgreen;">// ТОЧНО</span>
+public class Car : Vehicle // Автомобил Е возило
+</pre>
+            </div>
+        </div>
+
+        <h2 class="text-center">Клучни концепти</h2>
+        <div class="code-container">
+            <div class="code-content">
+<pre>
+1. „Е“ ВРСКА
+   - Student Е Person
+   - Car Е Vehicle
+
+2. Повторна употреба на код
+   - Заедничкиот код се пишува еднаш
+
+3. Проширување
+   - Дете-класите додаваат функционалности
+
+4. Единечно наследување
+   - Една класа има само еден родител
+</pre>
+            </div>
+        </div>
+
+        <h2 class="text-center">Резиме</h2>
         <ul>
-            <li><strong>Polymorphism</strong> - Child classes can override parent methods for custom behavior</li>
-            <li><strong>Abstract Classes</strong> - Parents that define what children MUST do</li>
-            <li><strong>Interfaces</strong> - Contracts that classes promise to fulfill</li>
-            <li><strong>Encapsulation</strong> (next!) - Hiding internal details and protecting data</li>
+            <li>Наследувањето овозможува повторна употреба на код</li>
+            <li>Синтакса: <code>class Child : Parent</code></li>
+            <li>Користи го тестот „Child Е Parent“</li>
+            <li>Го прави кодот почист и полесен за одржување</li>
         </ul>
-    </div>
 
-    <div class="navigation-buttons">
-        <a href="@Url.Action("Objects", "OOP")" class="btn btn-outline-primary ajax-link">← Objects</a>
-        <a href="@Url.Action("Encapsulation", "OOP")" class="btn btn-primary ajax-link">Encapsulation →</a>
+        <div class="navigation-buttons">
+            <a href="@Url.Action("Objects", "OOP")" class="btn btn-outline-primary ajax-link">← Објекти</a>
+            <a href="@Url.Action("Encapsulation", "OOP")" class="btn btn-primary ajax-link">Енкапсулација →</a>
+        </div>
     </div>
-</div>
 
 <style>
     .container {
@@ -751,7 +329,7 @@ public class SportsCar : Car { }  <span style="color: green;">// 3 levels is oka
     public void Start() { Console.WriteLine("Vehicle starting..."); }
 }
 
-// Car inherits from Vehicle
+        // Car наследува од Vehicle
 // public class Car : Vehicle
 // {
 //     public int Doors;
@@ -777,7 +355,7 @@ No Car class yet.`,
     public void Start() { Console.WriteLine("Vehicle starting..."); }
 }
 
-// Car inherits from Vehicle
+        // Car наследува од Vehicle
 public class Car : Vehicle
 {
     public int Doors;
@@ -807,7 +385,7 @@ Car (Child) INHERITS from Vehicle:
     public void Start() { Console.WriteLine("Vehicle starting..."); }
 }
 
-// Car inherits from Vehicle
+// Car наследува од Vehicle
 public class Car : Vehicle
 {
     public int Doors;
@@ -835,7 +413,7 @@ The Car object has 4 members total!`,
     public void Start() { Console.WriteLine("Vehicle starting..."); }
 }
 
-// Car inherits from Vehicle
+// Car наследува од Vehicle
 public class Car : Vehicle
 {
     public int Doors;
@@ -861,7 +439,7 @@ car.Doors = 4;         // Setting its own property
     public void Start() { Console.WriteLine("Vehicle starting..."); }
 }
 
-// Car inherits from Vehicle
+// Car наследува од Vehicle
 public class Car : Vehicle
 {
     public int Doors;
@@ -898,7 +476,7 @@ public class Person
     }
 }
 
-// Child Class: Student (inherits from Person)
+// Child Class: Student (наследува од Person)
 public class Student : Person
 {
     public string School;
@@ -910,7 +488,7 @@ public class Student : Person
     }
 }
 
-// Another Child Class: Teacher (also inherits from Person)
+// Друга Child Class: Teacher (наследува од Person)
 public class Teacher : Person
 {
     public string Subject;
@@ -921,7 +499,7 @@ public class Teacher : Person
         Console.WriteLine(Name + " teaches " + Subject + ".");
     }
 }`,
-            example2: `// Base class: All vehicles share these
+            example2: `// Base class: сите возила ги делат овие
 public class Vehicle
 {
     public string Brand;
@@ -934,7 +512,7 @@ public class Vehicle
     }
 }
 
-// Car inherits from Vehicle
+// Car наследува од Vehicle
 public class Car : Vehicle
 {
     public int Doors;
@@ -946,7 +524,7 @@ public class Car : Vehicle
     }
 }
 
-// Motorcycle inherits from Vehicle
+// Motorcycle наследува од Vehicle
 public class Motorcycle : Vehicle
 {
     public bool HasSidecar;
@@ -957,7 +535,7 @@ public class Motorcycle : Vehicle
     }
 }
 
-// Truck inherits from Vehicle
+// Truck наследува од Vehicle
 public class Truck : Vehicle
 {
     public int CargoCapacity;
@@ -971,7 +549,7 @@ public class Truck : Vehicle
         },
 
         completeExamples: {
-            example1: `// Parent Class: Person (the base)
+            example1: `// Parent Class: Person (основата)
 public class Person
 {
     public string Name;
@@ -988,7 +566,7 @@ public class Person
     }
 }
 
-// Child Class: Student (inherits from Person)
+// Child Class: Student (наследува од Person)
 public class Student : Person
 {
     public string School;
@@ -1000,7 +578,7 @@ public class Student : Person
     }
 }
 
-// Another Child Class: Teacher (also inherits from Person)
+// Друга Child Class: Teacher (наследува од Person)
 public class Teacher : Person
 {
     public string Subject;
@@ -1012,7 +590,7 @@ public class Teacher : Person
     }
 }
 
-// Using inheritance
+// Користење наследување
 Student student = new Student();
 student.Name = "Alice";
 student.Age = 20;
@@ -1030,7 +608,7 @@ student.Study();
 
 teacher.Introduce();
 teacher.Teach();`,
-            example2: `// Base class: All vehicles share these
+            example2: `// Base class: Сите возила ги делат овие
 public class Vehicle
 {
     public string Brand;
@@ -1048,7 +626,7 @@ public class Vehicle
     }
 }
 
-// Car inherits from Vehicle
+// Car наследува од Vehicle
 public class Car : Vehicle
 {
     public int Doors;
@@ -1060,7 +638,7 @@ public class Car : Vehicle
     }
 }
 
-// Motorcycle inherits from Vehicle
+// Motorcycle наследува од Vehicle
 public class Motorcycle : Vehicle
 {
     public bool HasSidecar;
@@ -1071,7 +649,7 @@ public class Motorcycle : Vehicle
     }
 }
 
-// Truck inherits from Vehicle
+// Truck наследува од Vehicle
 public class Truck : Vehicle
 {
     public int CargoCapacity;
@@ -1083,7 +661,7 @@ public class Truck : Vehicle
     }
 }
 
-// Using our inheritance hierarchy
+        // Користење на нашата хиерархија на наследување
 Car myCar = new Car();
 myCar.Brand = "Toyota";
 myCar.Year = 2020;

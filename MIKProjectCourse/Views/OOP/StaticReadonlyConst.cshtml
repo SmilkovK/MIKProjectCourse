@@ -1,517 +1,174 @@
 ﻿@{
-    ViewData["Title"] = "OOP - Static, Readonly, and Const";
+    ViewData["Title"] = "OOP - Static, Readonly и Const";
 }
 <div class="container">
-    <h1 class="mb-4">Static, Readonly, and Const: Controlling Your Data</h1>
+    <h1 class="mb-4">Static, Readonly и Const: Контрола на податоците</h1>
 
-    <p><strong>Static, readonly, and const</strong> are like different types of <strong>security settings</strong> for your variables. They control who can access data and when it can be changed. Think of them as different kinds of storage:</p>
+    <p><strong>Static, readonly и const</strong> се како различни <strong>безбедносни поставки</strong> за вашите променливи. Тие контролираат кој може да пристапи до податоците и кога тие можат да се променат. Замислете ги како различни видови складирање:</p>
 
     <div class="analogy-box">
-        <h3>Real-Life Analogies</h3>
+        <h3>Аналогии од реалниот живот</h3>
         <div class="analogy-container">
             <div class="analogy-item">
                 <div class="analogy-header">
                     <h4>Static</h4>
                 </div>
                 <div class="analogy-content">
-                    <p><strong>Company Whiteboard</strong> - Everyone sees and can update it. Shared by all employees.</p>
+                    <p><strong>Табла во компанија</strong> – сите ја гледаат и можат да ја ажурираат. Заедничка за сите вработени.</p>
                     <ul>
-                        <li><span class="correct-text">Shared by everyone</span></li>
-                        <li><span class="correct-text">Can be changed anytime</span></li>
-                        <li><span class="error-text">Only one exists</span></li>
+                        <li><span class="correct-text">Заедничка за сите</span></li>
+                        <li><span class="correct-text">Може да се менува во секое време</span></li>
+                        <li><span class="error-text">Постои само една</span></li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="analogy-item">
                 <div class="analogy-header">
                     <h4>Readonly</h4>
                 </div>
                 <div class="analogy-content">
-                    <p><strong>Your Birth Certificate</strong> - Created once, never changes. Unique to you.</p>
+                    <p><strong>Извод од матична книга</strong> – се креира еднаш и никогаш не се менува. Единствен за секоја личност.</p>
                     <ul>
-                        <li><span class="correct-text">Set once at birth</span></li>
-                        <li><span class="error-text">Never changes after</span></li>
-                        <li><span class="correct-text">Each person has own</span></li>
+                        <li><span class="correct-text">Се поставува еднаш</span></li>
+                        <li><span class="error-text">Потоа не се менува</span></li>
+                        <li><span class="correct-text">Секој има свој</span></li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="analogy-item">
                 <div class="analogy-header">
                     <h4>Const</h4>
                 </div>
                 <div class="analogy-content">
-                    <p><strong>Speed of Light</strong> - Universal constant. Always 299,792,458 m/s.</p>
+                    <p><strong>Брзина на светлината</strong> – универзална константа. Секогаш иста.</p>
                     <ul>
-                        <li><span class="error-text">Never changes</span></li>
-                        <li><span class="correct-text">Same everywhere</span></li>
-                        <li><span class="correct-text">Known at creation</span></li>
+                        <li><span class="error-text">Никогаш не се менува</span></li>
+                        <li><span class="correct-text">Иста насекаде</span></li>
+                        <li><span class="correct-text">Позната при креирање</span></li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="analogy-item">
                 <div class="analogy-header">
-                    <h4>Regular Variable</h4>
+                    <h4>Обична променлива</h4>
                 </div>
                 <div class="analogy-content">
-                    <p><strong>Your Current Mood</strong> - Changes throughout the day. Completely flexible.</p>
+                    <p><strong>Тековно расположение</strong> – се менува во текот на денот.</p>
                     <ul>
-                        <li><span class="correct-text">Changes anytime</span></li>
-                        <li><span class="correct-text">Each person has own</span></li>
-                        <li><span class="correct-text">Most common type</span></li>
+                        <li><span class="correct-text">Може да се менува во секое време</span></li>
+                        <li><span class="correct-text">Секој има свое</span></li>
+                        <li><span class="correct-text">Најчесто користен тип</span></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
 
-    <h2>📘 Quick Comparison</h2>
-    
+    <h2>Брза споредба</h2>
+
     <div class="code-container">
-        <div class="code-header">Side-by-Side Comparison</div>
+        <div class="code-header">Споредба рамо до рамо</div>
         <div class="code-content">
 <pre>
            ╔══════════════╦══════════════╦══════════════╦══════════════╗
-           ║   Regular    ║    Static    ║   Readonly   ║     Const    ║
+           ║   Обична     ║    Static    ║   Readonly   ║     Const    ║
            ╠══════════════╬══════════════╬══════════════╬══════════════╣
-           ║ Belongs to:  ║              ║              ║              ║
-           ║   Object     ║    Class     ║    Object    ║    Class     ║
+           ║ Припаѓа на:  ║              ║              ║              ║
+           ║   Објект     ║    Класа     ║    Објект    ║    Класа     ║
            ║              ║              ║              ║              ║
-           ║ When set:    ║              ║              ║              ║
-           ║   Anytime    ║   Anytime    ║ Constructor  ║ Declaration  ║
+           ║Кога се сетира║              ║              ║              ║
+           ║   Било кога  ║   Било кога  ║  Конструктор ║ Декларација  ║
            ║              ║              ║              ║              ║
-           ║ Can change:  ║              ║              ║              ║
-           ║   <span class="correct-text">YES</span>       ║   <span class="correct-text">YES</span>       ║    <span class="error-text">NO</span>       ║    <span class="error-text">NO</span>       ║
+           ║ Може да се   ║              ║              ║              ║
+           ║ менува:      ║              ║              ║              ║
+           ║   <span class="correct-text">ДА</span>         ║   <span class="correct-text">ДА</span>         ║    <span class="error-text">НЕ</span>        ║    <span class="error-text">НЕ</span>        ║
            ║              ║              ║              ║              ║
-           ║ Memory:      ║              ║              ║              ║
-           ║ One per obj  ║ One shared   ║ One per obj  ║ In code      ║
+           ║ Меморија:    ║              ║              ║              ║
+           ║ По еден по   ║ Заеднички    ║ По еден по   ║ Во код       ║
+           ║ објект       ║ за сите      ║ објект       ║              ║
            ╚══════════════╩══════════════╩══════════════╩══════════════╝
-
-Example:  Current mood  Company name  Birth date   Pi (3.14)
-          (changes)     (shared)      (fixed)      (constant)
 </pre>
         </div>
     </div>
 
-    <h2>1️⃣ Static: The Shared Whiteboard</h2>
-    <p><strong>Static</strong> means "shared by everyone." Like a company whiteboard - all employees see and update the same board.</p>
-    
+    <h2>Static: Заедничката табла</h2>
+    <p><strong>Static</strong> значи „заедничко за сите“. Сите објекти ја делат истата вредност.</p>
+
     <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="oopStaticConst.convertCode('example1')">
-            <label class="form-check-label" for="example1Toggle">Show Full Game Counter Example</label>
-        </div>
         <div class="code-content">
-<pre class="codeBlock" id="example1Code">
+<pre>
 public class Player
 {
-    // Regular fields (each player has their own)
     public string Name;
     public int Score;
-    
-    // Static field (shared by ALL players)
+
     public static int TotalPlayers = 0;
-    
+
     public Player(string name)
     {
         Name = name;
         Score = 0;
-        
-        // Update the shared counter
         TotalPlayers++;
-        Console.WriteLine(Name + " joined. Total players: " + TotalPlayers);
+        Console.WriteLine(Name + " се приклучи. Вкупно играчи: " + TotalPlayers);
     }
 }
-
-// Create players
-Player alice = new Player("Alice");
-Player bob = new Player("Bob");
-
-// All players share the same TotalPlayers
-Console.WriteLine("Shared total: " + Player.TotalPlayers);
-</pre>
-        </div>
-        <div class="result-box" id="example1Result">
-            <strong>Output:</strong><br>
-            Alice joined. Total players: 1<br>
-            Bob joined. Total players: 2<br>
-            Shared total: 2<br><br>
-            <em>Static Magic:</em> Both Alice and Bob share the same <code>TotalPlayers</code> counter. When Bob joined, it increased from 1 to 2 for everyone!
-        </div>
-    </div>
-
-    <h2>🧠 Interactive Walkthrough: Static Sharing</h2>
-    <p>Watch how static fields are shared between objects:</p>
-
-    <div class="code-container">
-        <div class="code-header">Bank Account Example</div>
-        <div class="code-content">
-<pre id="walkthroughCodeBase">
-public class BankAccount
-{
-    // Static field - shared by ALL accounts
-    public static double InterestRate = 0.03;  // 3%
-    
-    // Instance fields - unique to each account
-    public string Owner;
-    public double Balance;
-    
-    public BankAccount(string owner, double balance)
-    {
-        Owner = owner;
-        Balance = balance;
-    }
-}
-
-// BankAccount.InterestRate = 0.03;
-// BankAccount aliceAccount = new BankAccount("Alice", 1000);
-// BankAccount bobAccount = new BankAccount("Bob", 2000);
-// BankAccount.UpdateInterestRate(0.04);
 </pre>
         </div>
     </div>
 
-    <div class="code-container">
-        <div class="code-header">Memory State</div>
-        <div class="code-content">
-<pre id="walkthroughVariables">
-Static Area (Shared):
-┌─────────────────┐
-│ InterestRate:   │
-│     0.03        │ ← Shared by ALL accounts
-└─────────────────┘
+    <h2>Readonly: Лична идентификација</h2>
+    <p><strong>Readonly</strong> полињата се поставуваат еднаш (во конструктор) и потоа не се менуваат.</p>
 
-No accounts created yet.
-</pre>
-        </div>
-        <div class="result-box" id="walkthroughExplanation">
-            <em>Click <strong>Next</strong> to see static sharing in action:</em>
-        </div>
-        <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
-    </div>
-
-    <h2>2️⃣ Readonly: Your Personal ID Card</h2>
-    <p><strong>Readonly</strong> fields are like your birth date - set once (at birth/construction) and never change.</p>
-    
     <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="oopStaticConst.convertCode('example2')">
-            <label class="form-check-label" for="example2Toggle">Show Complete Student ID Example</label>
-        </div>
         <div class="code-content">
-<pre class="codeBlock" id="example2Code">
+<pre>
 public class Student
 {
-    // Readonly field - set once, never change
     public readonly string StudentId;
-    
-    // Regular field - can change
     public string Name;
-    
+
     public Student(string id, string name)
     {
-        // Set readonly field in constructor
-        StudentId = id;     // <span class="correct-text">Can set here</span>
+        StudentId = id;
         Name = name;
     }
-    
-    public void ChangeName(string newName)
-    {
-        Name = newName;     // <span class="correct-text">Can change regular field</span>
-        
-        // StudentId = "NEW123";  // <span class="error-text">ERROR! Can't change readonly</span>
-    }
 }
-
-Student alice = new Student("S001", "Alice");
-Console.WriteLine("ID: " + alice.StudentId);
-Console.WriteLine("Name: " + alice.Name);
-
-alice.ChangeName("Alice Johnson");
-Console.WriteLine("New name: " + alice.Name);
 </pre>
-        </div>
-        <div class="result-box" id="example2Result">
-            <strong>Output:</strong><br>
-            ID: S001<br>
-            Name: Alice<br>
-            New name: Alice Johnson<br><br>
-            <em>Readonly Protection:</em> <code>StudentId</code> is set to "S001" in the constructor and can NEVER be changed. <code>Name</code> can change anytime. This protects important data from accidental changes!
         </div>
     </div>
 
-    <h2>3️⃣ Const: Universal Constants</h2>
-    <p><strong>Const</strong> values are like mathematical constants - known at compile time and never change.</p>
-    
+    <h2>Const: Универзални константи</h2>
+    <p><strong>Const</strong> вредностите се познати при компилација и никогаш не се менуваат.</p>
+
     <div class="code-container">
-        <div class="code-header">Math Constants Example</div>
         <div class="code-content">
 <pre>
 public class MathConstants
 {
-    // Const values - must be set at declaration
-    public const double PI = 3.14159265359;
-    public const double E = 2.71828182846;
+    public const double PI = 3.14159;
     public const int DaysInWeek = 7;
-    
-    // This won't work:
-    // public const DateTime Birthday = new DateTime(1990, 1, 1); <span class="error-text">// ERROR!</span>
-    // Const can only be simple types
-}
-
-// Using const values
-Console.WriteLine("Pi: " + MathConstants.PI);
-Console.WriteLine("Days in week: " + MathConstants.DaysInWeek);
-
-// This won't work either:
-// MathConstants.PI = 3.14;  <span class="error-text">// ERROR! Const can't be changed</span>
-</pre>
-        </div>
-    </div>
-
-    <h2>🎮 Real Game Example: Player System</h2>
-    <p>Let's see all three in action in a game:</p>
-    
-    <div class="code-container">
-        <div class="code-header">Game Player System</div>
-        <div class="code-content">
-<pre>
-public class GamePlayer
-{
-    // CONST - Universal game rules (never change)
-    public const int MAX_LEVEL = 100;
-    public const double GRAVITY = 9.81;
-    
-    // STATIC - Shared game statistics
-    public static int TotalPlayersOnline = 0;
-    public static string GameVersion = "1.0";
-    
-    // READONLY - Unique to each player (set once)
-    public readonly string PlayerId;
-    public readonly DateTime AccountCreated;
-    
-    // REGULAR - Can change during game
-    public string PlayerName;
-    public int Level;
-    public int Score;
-    
-    public GamePlayer(string name)
-    {
-        PlayerName = name;
-        Level = 1;
-        Score = 0;
-        
-        // Set readonly fields
-        PlayerId = Guid.NewGuid().ToString();
-        AccountCreated = DateTime.Now;
-        
-        // Update static counter
-        TotalPlayersOnline++;
-    }
-    
-    public void LevelUp()
-    {
-        if (Level < MAX_LEVEL)  // Using const
-        {
-            Level++;
-            Score += 100;
-            Console.WriteLine(PlayerName + " leveled up to " + Level);
-        }
-    }
-    
-    public static void DisplayGameInfo()
-    {
-        Console.WriteLine("=== Game Info ===");
-        Console.WriteLine("Version: " + GameVersion);
-        Console.WriteLine("Players Online: " + TotalPlayersOnline);
-        Console.WriteLine("Max Level: " + MAX_LEVEL);
-        Console.WriteLine("=================");
-    }
-}
-
-// Using the game system
-Console.WriteLine("Game Max Level: " + GamePlayer.MAX_LEVEL);
-
-GamePlayer player1 = new GamePlayer("Hero123");
-GamePlayer player2 = new GamePlayer("Warrior99");
-
-player1.LevelUp();
-player2.LevelUp();
-
-GamePlayer.DisplayGameInfo();
-
-// What can we change?
-player1.PlayerName = "SuperHero";  // <span class="correct-text">Regular field - can change</span>
-// player1.PlayerId = "NEW_ID";    <span class="error-text">// Readonly - can't change</span>
-// GamePlayer.MAX_LEVEL = 200;     <span class="error-text">// Const - can't change</span>
-GamePlayer.GameVersion = "1.1";    // <span class="correct-text">Static - can change</span>
-</pre>
-        </div>
-    </div>
-
-    <h2>⚠️ Common Beginner Mistakes</h2>
-    
-    <div class="code-container">
-        <div class="code-header">What NOT to Do</div>
-        <div class="code-content">
-<pre>
-// <span class="error-text">MISTAKE 1: Trying to change const</span>
-public class Math
-{
-    public const double PI = 3.14;
-}
-
-// Math.PI = 3.14159;  <span class="error-text">COMPILE ERROR! Can't change const</span>
-
-// <span class="correct-text">SOLUTION: Use readonly if value might change</span>
-public class Physics
-{
-    public static readonly double Gravity = 9.81;  // Can be different on other planets
-}
-
-// <span class="error-text">MISTAKE 2: Using const with complex types</span>
-public class Person
-{
-    // public const DateTime Birthday = new DateTime(1990, 1, 1);  <span class="error-text">ERROR!</span>
-    // Const can only be: numbers, strings, bool, null
-}
-
-// <span class="correct-text">SOLUTION: Use readonly for complex types</span>
-public class Person
-{
-    public static readonly DateTime AppStartTime = DateTime.Now;  <span class="correct-text"></span>
-    public readonly DateTime Birthday = new DateTime(1990, 1, 1); <span class="correct-text"></span>
-}
-
-// <span class="error-text">MISTAKE 3: Forgetting to set readonly field</span>
-public class Student
-{
-    public readonly string Id;  <span class="error-text">Not set anywhere!</span>
-    
-    public Student(string name)
-    {
-        // Forgot to set Id!
-    }
-}
-
-// <span class="correct-text">SOLUTION: Always set readonly fields in constructor</span>
-public class Student
-{
-    public readonly string Id;
-    
-    public Student(string id, string name)
-    {
-        Id = id;  <span class="correct-text">Must be set in constructor</span>
-    }
-}
-
-// <span class="error-text">MISTAKE 4: Overusing static</span>
-public class BadDesign
-{
-    public static string Name;  <span class="error-text">Should be instance</span>
-    public static int Age;      <span class="error-text">Should be instance</span>
-}
-
-// <span class="correct-text">SOLUTION: Use instance for object-specific data</span>
-public class GoodDesign
-{
-    public string Name;  <span class="correct-text">Different per person</span>
-    public int Age;      <span class="correct-text">Different per person</span>
 }
 </pre>
         </div>
     </div>
 
-    <h2>🔑 When to Use Each - Simple Guide</h2>
-    
-    <div class="decision-guide">
-        <div class="decision-step">
-            <div class="decision-number">1</div>
-            <div class="decision-content">
-                <h4>Start with regular fields</h4>
-                <p>Most fields should be regular (not static, not readonly, not const). They can change anytime.</p>
-                <code>public string CurrentMood;</code>
-            </div>
-        </div>
-        
-        <div class="decision-step">
-            <div class="decision-number">2</div>
-            <div class="decision-content">
-                <h4>Make it readonly if...</h4>
-                <p>It should be set once and never change (like ID, birth date, enrollment date).</p>
-                <code>public readonly string StudentId;</code>
-            </div>
-        </div>
-        
-        <div class="decision-step">
-            <div class="decision-number">3</div>
-            <div class="decision-content">
-                <h4>Make it const if...</h4>
-                <p>It's a universal constant that will never, ever change (like Pi, days in week).</p>
-                <code>public const double PI = 3.14;</code>
-            </div>
-        </div>
-        
-        <div class="decision-step">
-            <div class="decision-number">4</div>
-            <div class="decision-content">
-                <h4>Make it static if...</h4>
-                <p>It should be shared by all objects of that class (like company name, counters).</p>
-                <code>public static int TotalStudents;</code>
-            </div>
-        </div>
-    </div>
-
-    <h2>🎯 Summary: Key Takeaways</h2>
-    <div class="summary-box">
-        <div class="summary-item">
-            <h4><span style="color: #0d6efd;">Static (Shared)</span></h4>
-            <ul>
-                <li>One copy shared by ALL objects</li>
-                <li>Can change anytime</li>
-                <li>Use for: counters, shared settings, utility methods</li>
-                <li>Example: <code>Player.TotalPlayers</code></li>
-            </ul>
-        </div>
-        
-        <div class="summary-item">
-            <h4><span style="color: #198754;">Readonly (Set Once)</span></h4>
-            <ul>
-                <li>Set once (in constructor or declaration)</li>
-                <li>Never changes after</li>
-                <li>Use for: IDs, dates, configuration</li>
-                <li>Example: <code>student.StudentId</code></li>
-            </ul>
-        </div>
-        
-        <div class="summary-item">
-            <h4><span style="color: #fd7e14;">Const (Constant)</span></h4>
-            <ul>
-                <li>Set at declaration only</li>
-                <li>Never changes, ever</li>
-                <li>Use for: mathematical constants, fixed values</li>
-                <li>Example: <code>Math.PI</code></li>
-            </ul>
-        </div>
-        
-        <div class="summary-item">
-            <h4><span style="color: #6f42c1;">Regular (Flexible)</span></h4>
-            <ul>
-                <li>Default - use this most often</li>
-                <li>Can change anytime</li>
-                <li>Use for: anything that changes</li>
-                <li>Example: <code>player.Score</code></li>
-            </ul>
-        </div>
-    </div>
+    <h2>Резиме</h2>
+    <ul>
+        <li><strong>Static</strong> – една вредност споделена од сите објекти</li>
+        <li><strong>Readonly</strong> – се поставува еднаш, потоа не се менува</li>
+        <li><strong>Const</strong> – апсолутна константа, никогаш не се менува</li>
+        <li><strong>Обична променлива</strong> – флексибилна, се менува кога било</li>
+    </ul>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Interfaces", "OOP")" class="btn btn-outline-primary ajax-link">← Interfaces</a>
-        <a href="@Url.Action("Summary", "OOP")" class="btn btn-primary ajax-link">Chapter Summary →</a>
+        <a href="@Url.Action("Interfaces", "OOP")" class="btn btn-outline-primary ajax-link">← Интерфејси</a>
+        <a href="@Url.Action("Summary", "OOP")" class="btn btn-primary ajax-link">Резиме на поглавје →</a>
     </div>
 </div>
+
 
 <style>
     .container {

@@ -1,240 +1,131 @@
 ﻿@{
-    ViewData["Title"] = "Arrays";
+    ViewData["Title"] = "Низи";
 }
 
 <div class="container" data-topic="arrays">
-    <h1 class="mb-4">📦 Arrays: Storing Multiple Values</h1>
-    
-    <p>An <strong>array</strong> is like a row of boxes where you can store multiple values of the same type in one place. Instead of creating many separate variables, you can use one array to hold all your data.</p>
+    <h1 class="mb-4">Низи: Складирање на повеќе вредности</h1>
 
-    <h2>📘 What is an Array?</h2>
-    <p>Think of an array as a <strong>numbered list</strong> or <strong>collection of boxes</strong>, each with a position number (called an <strong>index</strong>). In programming, we usually start counting from <strong>0</strong>, not 1.</p>
+    <p><strong>Низа</strong> е како редица од кутии каде што можеш да складираш повеќе вредности од ист тип на едно место. Наместо да креираш многу одделни променливи, можеш да користиш една низа за да ги чуваш сите податоци.</p>
+
+    <h2>Што е низа?</h2>
+    <p>Замисли ја низата како <strong>нумерирана листа</strong> или <strong>колекција од кутии</strong>, каде што секоја има позиција (наречена <strong>индекс</strong>). Во програмирањето, броењето најчесто започнува од <strong>0</strong>, а не од 1.</p>
 
     <div class="code-container">
-        <div class="code-header">Visual Representation</div>
+        <div class="code-header">Визуелна претстава</div>
         <div class="code-content">
 <pre>
-Index:  [0]    [1]    [2]    [3]    [4]
-Value:   10     20     30     40     50
-Name:   numbers[0]  numbers[1]  numbers[2] ...
+Индекс:   [0]    [1]    [2]    [3]    [4]
+Вредност:  10     20     30     40     50
+Име:     numbers[0]  numbers[1]  numbers[2] ...
 </pre>
         </div>
     </div>
 
-    <h2>🎯 Example 1: Creating and Accessing an Array</h2>
-    <p>Here's how to create an array and access its elements:</p>
-    
+    <h2>Пример 1: Креирање и пристап до низа</h2>
+    <p>Еве како да креираш низа и да пристапиш до нејзините елементи:</p>
+
     <div class="code-container">
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="window.convertCode('example1')">
-            <label class="form-check-label" for="example1Toggle">Convert to C#</label>
+            <label class="form-check-label" for="example1Toggle">Претвори во C#</label>
         </div>
         <div class="code-content">
 <pre class="codeBlock" id="example1Code">
-// Create an array with 5 numbers
+// Креирање низа со 5 броеви
 int numbers[5] = {10, 20, 30, 40, 50};
 
-// Access individual elements
-cout << "First number: " << numbers[0] << endl;  // Index 0 = 10
-cout << "Third number: " << numbers[2] << endl;  // Index 2 = 30
+// Пристап до поединечни елементи
+cout << "Прв број: " << numbers[0] << endl;   // Индекс 0 = 10
+cout << "Трет број: " << numbers[2] << endl; // Индекс 2 = 30
 </pre>
         </div>
         <div class="result-box" id="example1Result">
-            ➡ <strong>Result:</strong><br>First number: 10<br>Third number: 30<br>
-            <em>Explanation:</em> Arrays start at index 0, so <code>numbers[0]</code> is the first element (10) and <code>numbers[2]</code> is the third element (30).
+            → <strong>Резултат:</strong><br>Прв број: 10<br>Трет број: 30<br>
+            <em>Објаснување:</em> Низите започнуваат од индекс 0, па <code>numbers[0]</code> е првиот елемент (10), а <code>numbers[2]</code> е третиот елемент (30).
         </div>
     </div>
 
-    <h2>🎯 Example 2: Changing Array Values</h2>
-    <p>You can change the value at any position in the array:</p>
-    
+    <h2>Пример 2: Промена на вредности во низа</h2>
+    <p>Можеш да ја промениш вредноста на која било позиција во низата:</p>
+
     <div class="code-container">
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="window.convertCode('example2')">
-            <label class="form-check-label" for="example2Toggle">Convert to C#</label>
+            <label class="form-check-label" for="example2Toggle">Претвори во C#</label>
         </div>
         <div class="code-content">
 <pre class="codeBlock" id="example2Code">
 int scores[3] = {85, 90, 78};
 
-// Change the second score
-scores[1] = 95;  // Update index 1 from 90 to 95
+// Промена на вториот резултат
+scores[1] = 95;  // Ажурирање на индекс 1 од 90 на 95
 
-// Display all scores
-cout << "Scores: ";
+// Прикажување на сите резултати
+cout << "Резултати: ";
 cout << scores[0] << " ";  // 85
 cout << scores[1] << " ";  // 95
 cout << scores[2];         // 78
 </pre>
         </div>
         <div class="result-box" id="example2Result">
-            ➡ <strong>Result:</strong> Scores: 85 95 78<br>
-            <em>Explanation:</em> We created an array with 3 scores, then changed the value at index 1 from 90 to 95.
+            → <strong>Резултат:</strong> Резултати: 85 95 78<br>
+            <em>Објаснување:</em> Креиравме низа со 3 резултати, потоа ја сменивме вредноста на индекс 1 од 90 на 95.
         </div>
     </div>
 
-    <h2>🎯 Example 3: Arrays + Loops = Power!</h2>
-    <p>Combining arrays with <code>for</code> loops lets you easily process all elements. This is much better than writing separate code for each element!</p>
-    
+    <h2>Пример 3: Низи + циклуси = моќна комбинација</h2>
+    <p>Комбинирањето на низи со <code>for</code> циклуси овозможува лесна обработка на сите елементи. Ова е многу подобро отколку пишување посебен код за секој елемент.</p>
+
     <div class="code-container">
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="window.convertCode('example3')">
-            <label class="form-check-label" for="example3Toggle">Convert to C#</label>
+            <label class="form-check-label" for="example3Toggle">Претвори во C#</label>
         </div>
         <div class="code-content">
 <pre class="codeBlock" id="example3Code">
 int numbers[5] = {10, 20, 30, 40, 50};
 int sum = 0;
 
-// Loop through all array elements
+// Поминување низ сите елементи на низата
 for (int i = 0; i < 5; i++) {
-    sum += numbers[i];  // Add each number to sum
-    cout << "Adding " << numbers[i] << endl;
+    sum += numbers[i];  // Додавање на секој број во сумата
+    cout << "Се додава " << numbers[i] << endl;
 }
 
-cout << "Total sum: " << sum << endl;
+cout << "Вкупна сума: " << sum << endl;
 </pre>
         </div>
         <div class="result-box" id="example3Result">
-            ➡ <strong>Result:</strong><br>Adding 10<br>Adding 20<br>Adding 30<br>Adding 40<br>Adding 50<br>Total sum: 150<br>
-            <em>Explanation:</em> The loop goes from i=0 to i=4, accessing each element with <code>numbers[i]</code>. It adds all numbers together.
+            → <strong>Резултат:</strong><br>Се додава 10<br>Се додава 20<br>Се додава 30<br>Се додава 40<br>Се додава 50<br>Вкупна сума: 150<br>
+            <em>Објаснување:</em> Циклусот оди од i=0 до i=4 и пристапува до секој елемент преку <code>numbers[i]</code>. Сите броеви се собираат заедно.
         </div>
     </div>
 
-    <h2>🧠 Interactive Walkthrough: Following Array + Loop Code</h2>
-    <p>Watch how the array and loop work together step-by-step:</p>
+    <h2>Интерактивен водич: Следење на код со низа и циклус</h2>
+    <p>Погледни како низата и циклусот работат заедно чекор по чекор:</p>
 
-    <div class="code-container">
-        <div class="code-header">Active Code (C++)</div>
-        <div class="code-content">
-<pre id="walkthroughCodeBase">
-int numbers[5] = {10, 20, 30, 40, 50};
-int sum = 0;
-// for (int i = 0; i < 5; i++) {
-//     sum += numbers[i];
-// }
-// cout << "Total: " << sum;
-</pre>
-        </div>
-    </div>
+    <h2>Пример 4: Пронаоѓање на најголема вредност</h2>
+    <p>Низите се идеални за задачи како пронаоѓање на максимална или минимална вредност:</p>
 
-    <div class="code-container">
-        <div class="code-header">Variable State</div>
-        <div class="code-content">
-<pre id="walkthroughVariables">i = ?, sum = 0, numbers = [10, 20, 30, 40, 50]</pre>
-        </div>
-        <div class="result-box" id="walkthroughExplanation">
-            <em>Click <strong>Next</strong> to begin the trace:</em>
-        </div>
-        <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
-    </div>
+    <h2>Пример 5: Низи со стрингови</h2>
+    <p>Низите можат да содржат и текст (стрингови):</p>
 
-    <h2>🎯 Example 4: Finding the Largest Value</h2>
-    <p>Arrays are perfect for tasks like finding the maximum or minimum value:</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example4Toggle" onchange="window.convertCode('example4')">
-            <label class="form-check-label" for="example4Toggle">Convert to C#</label>
-        </div>
-        <div class="code-content">
-<pre class="codeBlock" id="example4Code">
-int temperatures[6] = {22, 25, 19, 28, 23, 27};
-int maxTemp = temperatures[0];  // Start with first temperature
+    <h2>Визуелен дијаграм: Низа во меморија</h2>
 
-// Check each temperature
-for (int i = 1; i < 6; i++) {
-    if (temperatures[i] > maxTemp) {
-        maxTemp = temperatures[i];  // Found a higher temperature
-    }
-}
+    <h2>Чести грешки што треба да се избегнат</h2>
 
-cout << "Highest temperature: " << maxTemp << "°C" << endl;
-</pre>
-        </div>
-        <div class="result-box" id="example4Result">
-            ➡ <strong>Result:</strong> Highest temperature: 28°C<br>
-            <em>Explanation:</em> We start with the first temperature (22°C) as the maximum. Then we check each other temperature. When we find 28°C (at index 3), it becomes the new maximum.
-        </div>
-    </div>
-
-    <h2>🎯 Example 5: String Arrays</h2>
-    <p>Arrays can also hold text (strings):</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example5Toggle" onchange="window.convertCode('example5')">
-            <label class="form-check-label" for="example5Toggle">Convert to C#</label>
-        </div>
-        <div class="code-content">
-<pre class="codeBlock" id="example5Code">
-string fruits[4] = {"apple", "banana", "orange", "grape"};
-
-// Display all fruits
-for (int i = 0; i < 4; i++) {
-    cout << "Fruit " << (i + 1) << ": " << fruits[i] << endl;
-}
-</pre>
-        </div>
-        <div class="result-box" id="example5Result">
-            ➡ <strong>Result:</strong><br>Fruit 1: apple<br>Fruit 2: banana<br>Fruit 3: orange<br>Fruit 4: grape<br>
-            <em>Explanation:</em> The array stores 4 fruit names. The loop displays each one with a number (adding 1 to the index so we show 1-4 instead of 0-3).
-        </div>
-    </div>
-
-    <h2>🧠 Visual Diagram: Array in Memory</h2>
-    
-    <div class="code-container">
-        <div class="code-header">How Arrays Work in Memory</div>
-        <div class="code-content">
-<pre>
-Memory Address:  1000  1004  1008  1012  1016
-Index:          [0]    [1]    [2]    [3]    [4]
-Value:           10     20     30     40     50
-Variable:      numbers[0]  numbers[1]  numbers[2] ...
-
-The computer calculates positions:
-numbers[0] = address 1000
-numbers[1] = address 1004 (1000 + 4 bytes for int)
-numbers[2] = address 1008 (1000 + 8 bytes for int)
-...
-</pre>
-        </div>
-    </div>
-
-    <h2>⚠️ Common Mistakes to Avoid</h2>
-    <div class="code-container">
-        <div class="code-header">Error Examples</div>
-        <div class="code-content">
-<pre>
-// ❌ WRONG: Accessing outside array bounds
-int arr[3] = {1, 2, 3};
-cout << arr[5];  // ERROR! Index 5 doesn't exist
-
-// ❌ WRONG: Wrong initialization
-int arr[3];
-arr = {1, 2, 3};  // ERROR! Can only initialize at declaration
-
-// ✅ CORRECT: Proper usage
-int arr[3] = {1, 2, 3};  // Good!
-cout << arr[0];          // Good!
-arr[1] = 5;              // Good!
-</pre>
-        </div>
-    </div>
-
-    <h2>🎉 Summary</h2>
+    <h2>Резиме</h2>
     <ul>
-        <li>Arrays store <strong>multiple values</strong> of the same type in one variable</li>
-        <li>Elements are accessed using an <strong>index</strong> starting at 0</li>
-        <li>Arrays + loops are a <strong>powerful combination</strong> for processing data</li>
-        <li>Common uses: storing lists, calculating totals, finding min/max values</li>
-        <li>Be careful not to access <strong>outside array bounds</strong> (e.g., arr[5] for a 3-element array)</li>
+        <li>Низите складираат <strong>повеќе вредности</strong> од ист тип во една променлива</li>
+        <li>До елементите се пристапува преку <strong>индекс</strong> кој започнува од 0</li>
+        <li>Низи + циклуси се <strong>моќна комбинација</strong> за обработка на податоци</li>
+        <li>Честа употреба: листи, пресметка на збир, пронаоѓање минимум/максимум</li>
+        <li>Внимавај да не пристапуваш <strong>надвор од границите на низата</strong> (пр. arr[5] за низа со 3 елементи)</li>
     </ul>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("ForLoops", "SP")" class="btn btn-outline-primary ajax-link">← For Loops</a>
-        <a href="@Url.Action("StringArrays", "SP")" class="btn btn-primary ajax-link">String Arrays →</a>
+        <a href="@Url.Action("ForLoops", "SP")" class="btn btn-outline-primary ajax-link">← For циклиси</a>
+        <a href="@Url.Action("StringArrays", "SP")" class="btn btn-primary ajax-link">Низи со стрингови →</a>
     </div>
 </div>
 
@@ -354,18 +245,18 @@ window.traceSteps = [
 window.currentTraceStep = 0;
 
 window.cppSnippets = {
-    example1: `// Create an array with 5 numbers
+    example1: `// Создади низа со 5 броја
 int numbers[5] = {10, 20, 30, 40, 50};
 
-// Access individual elements
+    // Пристапете до поединечни елементи
 cout << "First number: " << numbers[0] << endl;  // Index 0 = 10
 cout << "Third number: " << numbers[2] << endl;  // Index 2 = 30`,
     example2: `int scores[3] = {85, 90, 78};
 
-// Change the second score
+    // Променете го вториот резултат
 scores[1] = 95;  // Update index 1 from 90 to 95
 
-// Display all scores
+    //Прикажи ги сите резултати
 cout << "Scores: ";
 cout << scores[0] << " ";  // 85
 cout << scores[1] << " ";  // 95
@@ -373,45 +264,45 @@ cout << scores[2];         // 78`,
     example3: `int numbers[5] = {10, 20, 30, 40, 50};
 int sum = 0;
 
-// Loop through all array elements
+        // Врти низ сите елементи на низата
 for (int i = 0; i < 5; i++) {
-    sum += numbers[i];  // Add each number to sum
+        sum += numbers[i];  // Собери го секој број во збирот
     cout << "Adding " << numbers[i] << endl;
 }
 
 cout << "Total sum: " << sum << endl;`,
     example4: `int temperatures[6] = {22, 25, 19, 28, 23, 27};
-int maxTemp = temperatures[0];  // Start with first temperature
+    int maxTemp = temperatures[0];  // Започнете со првата температура
 
-// Check each temperature
+    // Проверете ја секоја температура
 for (int i = 1; i < 6; i++) {
     if (temperatures[i] > maxTemp) {
-        maxTemp = temperatures[i];  // Found a higher temperature
+            maxTemp = temperatures[i];  // Најдов повисока температура
     }
 }
 
 cout << "Highest temperature: " << maxTemp << "°C" << endl;`,
     example5: `string fruits[4] = {"apple", "banana", "orange", "grape"};
 
-// Display all fruits
+    // Прикажи ги сите плодови
 for (int i = 0; i < 4; i++) {
     cout << "Fruit " << (i + 1) << ": " << fruits[i] << endl;
 }`
 };
 
 window.csharpSnippets = {
-    example1: `// Create an array with 5 numbers
+        example1: `// Создади низа со 5 броја
 int[] numbers = {10, 20, 30, 40, 50};
 
-// Access individual elements
+    // Пристапете до поединечни елементи
 Console.WriteLine("First number: " + numbers[0]);  // Index 0 = 10
 Console.WriteLine("Third number: " + numbers[2]);  // Index 2 = 30`,
     example2: `int[] scores = {85, 90, 78};
 
-// Change the second score
+    // Променете го вториот резултат
 scores[1] = 95;  // Update index 1 from 90 to 95
 
-// Display all scores
+    // Прикажи ги сите резултати
 Console.Write("Scores: ");
 Console.Write(scores[0] + " ");  // 85
 Console.Write(scores[1] + " ");  // 95
@@ -419,30 +310,30 @@ Console.Write(scores[2]);         // 78`,
     example3: `int[] numbers = {10, 20, 30, 40, 50};
 int sum = 0;
 
-// Loop through all array elements
+    // Врти низ сите елементи на низата
 for (int i = 0; i < numbers.Length; i++)
 {
-    sum += numbers[i];  // Add each number to sum
+        sum += numbers[i];  // Собери го секој број во збирот
     Console.WriteLine("Adding " + numbers[i]);
 }
 
 Console.WriteLine("Total sum: " + sum);`,
     example4: `int[] temperatures = {22, 25, 19, 28, 23, 27};
-int maxTemp = temperatures[0];  // Start with first temperature
+    int maxTemp = temperatures[0];  // Започнете со првата температура
 
-// Check each temperature
+    // Проверете ја секоја температура
 for (int i = 1; i < temperatures.Length; i++)
 {
     if (temperatures[i] > maxTemp)
     {
-        maxTemp = temperatures[i];  // Found a higher temperature
+            maxTemp = temperatures[i];  // Пронајдена е повисока температура
     }
 }
 
 Console.WriteLine("Highest temperature: " + maxTemp + "°C");`,
     example5: `string[] fruits = {"apple", "banana", "orange", "grape"};
 
-// Display all fruits
+    // Прикажи ги сите плодови
 for (int i = 0; i < fruits.Length; i++)
 {
     Console.WriteLine("Fruit " + (i + 1) + ": " + fruits[i]);

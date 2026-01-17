@@ -1,85 +1,81 @@
 ﻿@{
-    ViewData["Title"] = "OOP - Polymorphism";
+    ViewData["Title"] = "OOP - Полиморфизам";
 }
 
 <body data-topic="polymorphism">
-<div class="container">
-    <h1 class="mb-4 text-center">Polymorphism: One Name, Many Forms</h1>
+    <div class="container">
+        <h1 class="mb-4 text-center">Полиморфизам: Едно име, многу форми</h1>
 
-    <p><strong>Polymorphism</strong> (pronounced "polly-more-fizz-um") means "many shapes." In programming, it lets the <strong>same method name</strong> do <strong>different things</strong> depending on the context. It's like one remote control that works differently for TV, AC, and lights!</p>
+        <p><strong>Полиморфизам</strong> значи „многу форми“. Во програмирањето, тоа овозможува <strong>исто име на метод</strong> да прави <strong>различни работи</strong> во зависност од контекстот. Тоа е како еден далечински управувач што работи различно за ТВ, клима и светла.</p>
 
-    <p>You see polymorphism in real life all the time:</p>
-    <ul>
-        <li>A <strong>remote control</strong> has a Power button - turns TV on/off, changes AC mode, switches lights</li>
-        <li>The word <strong>"bank"</strong> - river bank, money bank, bank shot in pool (same word, different meanings)</li>
-        <li>A <strong>driver</strong> - drives a car, drives a golf ball, drives a nail (same action, different objects)</li>
-        <li>Your phone's <strong>"back" button</strong> - goes back in browser, closes app, returns to home screen</li>
-    </ul>
+        <p>Полиморфизмот го гледаш постојано во реалниот живот:</p>
+        <ul>
+            <li><strong>Далечински управувач</strong> со копче Power – вклучува ТВ, менува режим на клима, гаси светла</li>
+            <li>Зборот <strong>„банка“</strong> – речно корито, финансиска институција, удар во билијард</li>
+            <li><strong>Возач</strong> – вози автомобил, удира топка, забива шајка</li>
+            <li><strong>Back копче</strong> на телефонот – се враќа назад, затвора апликација, оди на почетен екран</li>
+        </ul>
 
-    <h2 class="text-center">What is Polymorphism?</h2>
-    <p>Polymorphism has TWO main types in C#:</p>
-    
-    <div class="code-container">
-        <div class="code-header">Two Types of Polymorphism</div>
-        <div class="code-content">
+        <h2 class="text-center">Што е полиморфизам?</h2>
+        <p>Полиморфизмот има ДВА главни типа во C#:</p>
+
+        <div class="code-container">
+            <div class="code-header">Два типа на полиморфизам</div>
+            <div class="code-content">
 <pre>
-TYPE 1: COMPILE-TIME POLYMORPHISM (Static/Overloading)
-────────────────────────────────────────────────────────
-• SAME method name, DIFFERENT parameters
-• Decided at COMPILE time (when writing code)
-• Example: Add(int, int) vs Add(double, double)
+ТИП 1: ПОЛИМОРФИЗАМ ВО ВРЕМЕ НА КОМПИЛАЦИЈА (Статички / Overloading)
+────────────────────────────────────────────────────────────────
+• ИСТО име на метод, РАЗЛИЧНИ параметри
+• Се одлучува при компилација (кога се пишува код)
+• Пример: Add(int, int) vs Add(double, double)
 
-TYPE 2: RUNTIME POLYMORPHISM (Dynamic/Overriding)
-────────────────────────────────────────────────────────
-• SAME method name, SAME parameters, DIFFERENT classes
-• Decided at RUNTIME (when program runs)
-• Example: Animal.MakeSound() vs Dog.MakeSound()
+ТИП 2: ПОЛИМОРФИЗАМ ВО ВРЕМЕ НА ИЗВРШУВАЊЕ (Динамички / Overriding)
+────────────────────────────────────────────────────────────────
+• ИСТО име на метод, ИСТИ параметри, РАЗЛИЧНИ класи
+• Се одлучува при извршување на програмата
+• Пример: Animal.MakeSound() vs Dog.MakeSound()
 
-Think of it as:
-Overloading = One remote, different devices
-Overriding = Universal remote that learns each device
+Размислувај вака:
+Overloading = Едно копче, различни влезови
+Overriding = Универзално копче што се прилагодува
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2 class="text-center">1. Method Overloading (Compile-Time)</h2>
-    <p><strong>Overloading</strong> = Same method name, different parameters. The compiler picks which version to use.</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="oopPolymorphism.convertCode('example1')">
-            <label class="form-check-label" for="example1Toggle">Show Advanced Overloading Examples</label>
-        </div>
-        <div class="code-content">
+        <h2 class="text-center">1. Преоптоварување на методи (Compile-Time)</h2>
+        <p><strong>Overloading</strong> = Исто име на метод, различни параметри. Компилаторот одлучува која верзија да ја користи.</p>
+
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="oopPolymorphism.convertCode('example1')">
+                <label class="form-check-label" for="example1Toggle">Прикажи напредни примери за overloading</label>
+            </div>
+            <div class="code-content">
 <pre class="codeBlock" id="example1Code">
-// Example: Smart Calculator with Overloading
+// Пример: Паметен калкулатор со overloading
 public class Calculator
 {
-    // Version 1: Add two integers
     public int Add(int a, int b)
     {
-        Console.WriteLine("Adding integers: " + a + " + " + b);
+        Console.WriteLine("Собирање цели броеви: " + a + " + " + b);
         return a + b;
     }
 
-    // Version 2: Add two doubles (different parameter types)
     public double Add(double a, double b)
     {
-        Console.WriteLine("Adding doubles: " + a + " + " + b);
+        Console.WriteLine("Собирање децимални броеви: " + a + " + " + b);
         return a + b;
     }
 
-    // Version 3: Add three integers (different number of parameters)
     public int Add(int a, int b, int c)
     {
-        Console.WriteLine("Adding three integers: " + a + " + " + b + " + " + c);
+        Console.WriteLine("Собирање три цели броеви: " + a + " + " + b + " + " + c);
         return a + b + c;
     }
 
-    // Version 4: Add an array of integers
     public int Add(params int[] numbers)
     {
-        Console.Write("Adding array: ");
+        Console.Write("Собирање низа: ");
         int sum = 0;
         foreach (int num in numbers)
         {
@@ -91,603 +87,132 @@ public class Calculator
     }
 }
 
-// Using overloaded methods
 Calculator calc = new Calculator();
 
-// The compiler knows WHICH Add() to call based on parameters
-int result1 = calc.Add(5, 10);           // Calls Add(int, int)
-double result2 = calc.Add(3.5, 2.5);     // Calls Add(double, double)
-int result3 = calc.Add(1, 2, 3);         // Calls Add(int, int, int)
-int result4 = calc.Add(1, 2, 3, 4, 5);   // Calls Add(params int[])
-
-Console.WriteLine("Results:");
-Console.WriteLine("5 + 10 = " + result1);
-Console.WriteLine("3.5 + 2.5 = " + result2);
-Console.WriteLine("1 + 2 + 3 = " + result3);
-Console.WriteLine("1 + 2 + 3 + 4 + 5 = " + result4);
+int result1 = calc.Add(5, 10);
+double result2 = calc.Add(3.5, 2.5);
+int result3 = calc.Add(1, 2, 3);
+int result4 = calc.Add(1, 2, 3, 4, 5);
 </pre>
+            </div>
+            <div class="result-box" id="example1Result">
+                <strong>Излез:</strong><br>
+                Собирање цели броеви: 5 + 10<br>
+                Собирање децимални броеви: 3.5 + 2.5<br>
+                Собирање три цели броеви: 1 + 2 + 3<br>
+                Собирање низа: 1 2 3 4 5<br><br>
+                Клучна идеја: Го повикуваме истиот метод Add(), но компилаторот избира различна верзија врз основа на параметрите.
+            </div>
         </div>
-        <div class="result-box" id="example1Result">
-            <strong>Output:</strong><br>
-            Adding integers: 5 + 10<br>
-            Adding doubles: 3.5 + 2.5<br>
-            Adding three integers: 1 + 2 + 3<br>
-            Adding array: 1 2 3 4 5<br>
-            Results:<br>
-            5 + 10 = 15<br>
-            3.5 + 2.5 = 6<br>
-            1 + 2 + 3 = 6<br>
-            1 + 2 + 3 + 4 + 5 = 15<br><br>
-            <em>Overloading Magic:</em> We call <code>calc.Add()</code> four times, but each calls a DIFFERENT method! The compiler looks at the parameters (types and count) and picks the right version at COMPILE time. This makes the Calculator super flexible!
-        </div>
-    </div>
 
-    <h2 class="text-center">Interactive Walkthrough: How Overloading Works</h2>
-    <p>Watch the compiler pick the right overloaded method:</p>
+        <h2 class="text-center">2. Препокривање на методи (Runtime Polymorphism)</h2>
+        <p><strong>Overriding</strong> = Подкласите дефинираат своја верзија на метод од родителска класа. Се одлучува при извршување.</p>
 
-    <div class="code-container">
-        <div class="code-header">Compiler Decision Making</div>
-        <div class="code-content">
-<pre id="walkthroughCodeBase">
-public class Printer
-{
-    public void Print(string text) 
-    { 
-        Console.WriteLine("Printing text: " + text); 
-    }
-
-    public void Print(int number) 
-    { 
-        Console.WriteLine("Printing number: " + number); 
-    }
-
-    public void Print(string text, int copies) 
-    { 
-        Console.WriteLine("Printing '" + text + "' " + copies + " times");
-    }
-}
-
-// Printer printer = new Printer();
-// printer.Print("Hello");
-// printer.Print(42);
-// printer.Print("Test", 3);
-</pre>
-        </div>
-    </div>
-
-    <div class="code-container">
-        <div class="code-header">Compiler's Choice</div>
-        <div class="code-content">
-<pre id="walkthroughVariables">
-Printer class has 3 overloaded Print methods:
-1. Print(string text)
-2. Print(int number)  
-3. Print(string text, int copies)
-
-Compiler will match calls to methods based on parameters.
-</pre>
-        </div>
-        <div class="result-box" id="walkthroughExplanation">
-            <em>Click <strong>Next</strong> to see how the compiler decides:</em>
-        </div>
-        <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
-    </div>
-
-    <h2 class="text-center">2. Method Overriding (Runtime Polymorphism)</h2>
-    <p><strong>Overriding</strong> = Child classes provide their own version of a parent's method. Decided at runtime.</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="oopPolymorphism.convertCode('example2')">
-            <label class="form-check-label" for="example2Toggle">Show Complete Animal Hierarchy</label>
-        </div>
-        <div class="code-content">
-<pre class="codeBlock" id="example2Code">
-// Base class with virtual method
+        <div class="code-container">
+            <div class="code-content">
+<pre>
+// Основна класа
 public class Animal
 {
     public string Name;
 
-    // Virtual method - can be overridden by children
     public virtual void MakeSound()
     {
-        Console.WriteLine(Name + " makes a generic animal sound.");
+        Console.WriteLine(Name + " испушта звук.");
     }
 
-    // Virtual method with default behavior
     public virtual void Move()
     {
-        Console.WriteLine(Name + " moves in some way.");
+        Console.WriteLine(Name + " се движи.");
     }
 }
 
-// Child class Dog - overrides MakeSound
 public class Dog : Animal
 {
-    // Override keyword - provides Dog's version
     public override void MakeSound()
     {
-        Console.WriteLine(Name + " says: Woof! Woof!");
+        Console.WriteLine(Name + " вели: Ав! Ав!");
     }
-
-    // Dog doesn't override Move() - uses Animal's version
 }
 
-// Child class Cat - overrides MakeSound
 public class Cat : Animal
 {
     public override void MakeSound()
     {
-        Console.WriteLine(Name + " says: Meow!");
-    }
-
-    // Cat overrides Move() too
-    public override void Move()
-    {
-        Console.WriteLine(Name + " walks gracefully.");
-    }
-}
-
-// Child class Bird - overrides both methods
-public class Bird : Animal
-{
-    public override void MakeSound()
-    {
-        Console.WriteLine(Name + " says: Tweet! Tweet!");
+        Console.WriteLine(Name + " вели: Мјау!");
     }
 
     public override void Move()
     {
-        Console.WriteLine(Name + " flies through the air.");
+        Console.WriteLine(Name + " оди елегантно.");
     }
 }
 
-// Using polymorphism
-Console.WriteLine("=== Animal Sounds ===");
+Animal pet1 = new Dog { Name = "Buddy" };
+Animal pet2 = new Cat { Name = "Whiskers" };
 
-// Store different animals in SAME type (Animal)
-Animal myPet1 = new Dog();
-myPet1.Name = "Buddy";
-
-Animal myPet2 = new Cat();
-myPet2.Name = "Whiskers";
-
-Animal myPet3 = new Bird();
-myPet3.Name = "Tweety";
-
-// Same method call, different results!
-myPet1.MakeSound();  // Calls Dog's version
-myPet1.Move();       // Calls Animal's version (Dog didn't override)
-
-myPet2.MakeSound();  // Calls Cat's version
-myPet2.Move();       // Calls Cat's version (overridden)
-
-myPet3.MakeSound();  // Calls Bird's version
-myPet3.Move();       // Calls Bird's version (overridden)
-
-// Array of animals - all treated as Animal type
-Animal[] zoo = { myPet1, myPet2, myPet3 };
-
-Console.WriteLine("\n=== Zoo Tour ===");
-foreach (Animal animal in zoo)
-{
-    animal.MakeSound();  // Each animal makes its OWN sound!
-}
+pet1.MakeSound();
+pet2.MakeSound();
+pet2.Move();
 </pre>
+            </div>
+            <div class="result-box">
+                <strong>Излез:</strong><br>
+                Buddy вели: Ав! Ав!<br>
+                Whiskers вели: Мјау!<br>
+                Whiskers оди елегантно.<br><br>
+                Иако променливите се од тип Animal, се повикува точниот метод според реалниот објект.
+            </div>
         </div>
-        <div class="result-box" id="example2Result">
-            <strong>Output:</strong><br>
-            === Animal Sounds ===<br>
-            Buddy says: Woof! Woof!<br>
-            Buddy moves in some way.<br>
-            Whiskers says: Meow!<br>
-            Whiskers walks gracefully.<br>
-            Tweety says: Tweet! Tweet!<br>
-            Tweety flies through the air.<br><br>
-            === Zoo Tour ===<br>
-            Buddy says: Woof! Woof!<br>
-            Whiskers says: Meow!<br>
-            Tweety says: Tweet! Tweet!<br><br>
-            <em>Polymorphism Power:</em> All variables are type <code>Animal</code>, but each calls its ACTUAL object's method at RUNTIME. Dog, Cat, and Bird all respond differently to the same <code>MakeSound()</code> call! This lets us treat different objects the same way.
-        </div>
-    </div>
 
-    <h2 class="text-center">Visual Diagram: How Overriding Works</h2>
-    
-    <div class="code-container">
-        <div class="code-header">Runtime Method Resolution</div>
-        <div class="code-content">
+        <h2 class="text-center">Клучни зборови: virtual и override</h2>
+        <div class="code-container">
+            <div class="code-content">
 <pre>
-ANIMAL CLASS HIERARCHY:
-        Animal (Base Class)
-          │
-          ├─ virtual void MakeSound()
-          └─ virtual void Move()
-                  │
-        ┌─────────┴─────────┐
-        ▼                   ▼
-      Dog                 Cat
-        │                   │
-        ├─ override MakeSound()  ├─ override MakeSound()
-        └─ (uses Animal.Move())  └─ override Move()
-
-AT RUNTIME:
-─────────────────────────────────────────────
-Animal pet = new Dog();
-pet.MakeSound();
-
-What happens:
-1. Computer looks at pet's ACTUAL type: Dog
-2. Checks if Dog overrides MakeSound() → YES
-3. Calls Dog.MakeSound() → "Woof!"
-
-─────────────────────────────────────────────
-Animal pet = new Dog();
-pet.Move();
-
-What happens:
-1. Computer looks at pet's ACTUAL type: Dog  
-2. Checks if Dog overrides Move() → NO
-3. Calls parent's method: Animal.Move() → "moves in some way"
-
-THIS IS RUNTIME POLYMORPHISM:
-• Same variable type (Animal)
-• Different actual objects (Dog, Cat, Bird)
-• Different behavior for same method call
-• Decided WHEN PROGRAM RUNS, not when written
+virtual  – дозволува методот да биде препокриен
+override – ја заменува имплементацијата од родителската класа
+base     – повикува метод од родителската класа
+sealed   – спречува понатамошно препокривање
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2 class="text-center">Real-World Example: Payment System</h2>
-    <p>Polymorphism is perfect for payment processing - same action, different payment methods:</p>
-    
-    <div class="code-container">
-        <div class="code-header">Payment Processing System</div>
-        <div class="code-content">
+        <h2 class="text-center">Кога да користиш полиморфизам?</h2>
+        <div class="code-container">
+            <div class="code-content">
 <pre>
-public abstract class PaymentMethod
-{
-    public string CardholderName;
+КОРИСТИ OVERLOADING КОГА:
+- Истата операција има различни влезни податоци
+- Сакаш пофлексибилен и почитлив код
 
-    // Abstract method - children MUST implement
-    public abstract bool ProcessPayment(decimal amount);
+КОРИСТИ OVERRIDING КОГА:
+- Различни класи имаат различно однесување
+- Работиш со наследување
+- Градиш проширливи системи
 
-    // Virtual method - children CAN override
-    public virtual void PrintReceipt(decimal amount)
-    {
-        Console.WriteLine("Payment of $" + amount + " processed.");
-        Console.WriteLine("Cardholder: " + CardholderName);
-    }
-}
-
-public class CreditCard : PaymentMethod
-{
-    public string CardNumber;
-    public DateTime ExpiryDate;
-
-    public override bool ProcessPayment(decimal amount)
-    {
-        Console.WriteLine("Processing credit card payment...");
-        Console.WriteLine("Card: **** **** **** " + CardNumber.Substring(CardNumber.Length - 4));
-        Console.WriteLine("Amount: $" + amount);
-    
-        // Simulate payment processing
-        bool success = amount <= 1000;  // Fake limit
-        return success;
-    }
-
-    public override void PrintReceipt(decimal amount)
-    {
-        base.PrintReceipt(amount);
-        Console.WriteLine("Payment method: Credit Card");
-    }
-}
-
-public class PayPal : PaymentMethod
-{
-    public string Email;
-
-    public override bool ProcessPayment(decimal amount)
-    {
-        Console.WriteLine("Processing PayPal payment...");
-        Console.WriteLine("Email: " + Email);
-        Console.WriteLine("Amount: $" + amount);
-    
-        // Simulate PayPal processing
-        bool success = amount <= 5000;  // Different limit
-        return success;
-    }
-
-    public override void PrintReceipt(decimal amount)
-    {
-        base.PrintReceipt(amount);
-        Console.WriteLine("Payment method: PayPal");
-        Console.WriteLine("Confirmation sent to: " + Email);
-    }
-}
-
-public class Bitcoin : PaymentMethod
-{
-    public string WalletAddress;
-
-    public override bool ProcessPayment(decimal amount)
-    {
-        Console.WriteLine("Processing Bitcoin payment...");
-        Console.WriteLine("Wallet: " + WalletAddress);
-        Console.WriteLine("Amount: $" + amount + " (in BTC)");
-    
-        // Simulate Bitcoin processing
-        bool success = true;  // Bitcoin always works (in our example!)
-        return success;
-    }
-}
-
-// Using the payment system
-List<PaymentMethod> payments = new List<PaymentMethod>();
-
-CreditCard visa = new CreditCard();
-visa.CardholderName = "Alice Smith";
-visa.CardNumber = "4111111111111111";
-payments.Add(visa);
-
-PayPal paypal = new PayPal();
-paypal.CardholderName = "Bob Johnson";
-paypal.Email = "bob@email.com";
-payments.Add(paypal);
-
-Bitcoin bitcoin = new Bitcoin();
-bitcoin.CardholderName = "Charlie Brown";
-bitcoin.WalletAddress = "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa";
-payments.Add(bitcoin);
-
-// Process ALL payments the SAME way!
-Console.WriteLine("=== Processing Payments ===");
-foreach (PaymentMethod payment in payments)
-{
-    bool success = payment.ProcessPayment(100.00m);
-    if (success)
-    {
-        payment.PrintReceipt(100.00m);
-        Console.WriteLine("<span class=\"correct-text\">Payment successful!</span>\n");
-    }
-    else
-    {
-        Console.WriteLine("<span class=\"error-text\">Payment failed!</span>\n");
-    }
-}
+ПРИМЕРИ:
+- Shape.Draw() → Circle.Draw(), Rectangle.Draw()
+- Payment.Process() → Card, PayPal, Crypto
+- GameCharacter.Attack() → Warrior, Mage
 </pre>
+            </div>
+        </div>
+
+        <h2 class="text-center">Резиме: Моќта на полиморфизмот</h2>
+        <ul>
+            <li>Полиморфизам = ист интерфејс, различно однесување</li>
+            <li>Overloading – флексибилност при компилација</li>
+            <li>Overriding – прилагодување при извршување</li>
+            <li>Овозможува чист, одржлив и проширлив код</li>
+        </ul>
+
+        <div class="navigation-buttons">
+            <a href="@Url.Action("Encapsulation", "OOP")" class="btn btn-outline-primary ajax-link">← Инкапсулација</a>
+            <a href="@Url.Action("Abstraction", "OOP")" class="btn btn-primary ajax-link">Апстракција →</a>
         </div>
     </div>
 
-    <h2 class="text-center">The 'virtual' and 'override' Keywords</h2>
-    <div class="code-container">
-        <div class="code-header">How to Enable Polymorphism</div>
-        <div class="code-content">
-<pre>
-BASE CLASS (Parent):
-────────────────────
-public class Vehicle
-{
-    // 1. VIRTUAL method - can be overridden
-    public virtual void Start()
-    {
-        Console.WriteLine("Vehicle starting...");
-    }
 
-    // 2. REGULAR method - cannot be overridden
-    public void Stop()
-    {
-        Console.WriteLine("Vehicle stopping...");
-    }
-
-    // 3. SEALED virtual method - overridden once, no further
-    public virtual sealed void Honk()
-    {
-        Console.WriteLine("Beep beep!");
-    }
-}
-
-CHILD CLASS (Derived):
-──────────────────────
-public class Car : Vehicle
-{
-    // OVERRIDE - replaces parent's virtual method
-    public override void Start()
-    {
-        Console.WriteLine("Car engine starting... Vroom!");
-    }
-
-    // CAN'T override non-virtual method
-    // public override void Stop() { }  // ERROR!
-
-    // Can still CALL parent's method
-    public void SpecialStop()
-    {
-        base.Stop();  // Calls Vehicle.Stop()
-        Console.WriteLine("Car parking brake engaged.");
-    }
-
-    // Can override sealed method (but children can't override further)
-    public override void Honk()
-    {
-        Console.WriteLine("Car horn: HONK HONK!");
-    }
-}
-
-GRANDCHILD CLASS:
-─────────────────
-public class SportsCar : Car
-{
-    // Can override Car's Start()
-    public override void Start()
-    {
-        Console.WriteLine("Sports car roaring to life!");
-    }
-
-    // CAN'T override Car's Honk() - it's sealed!
-    // public override void Honk() { }  // ERROR!
-}
-
-KEY RULES:
-1. Only VIRTUAL methods can be overridden
-2. Use OVERRIDE keyword in child class
-3. Use BASE keyword to call parent's version
-4. SEALED prevents further overriding
-5. Without virtual/override, you get parent's method always
-</pre>
-        </div>
-    </div>
-
-    <h2 class="text-center">Common Polymorphism Mistakes</h2>
-    <div class="code-container">
-        <div class="code-header">What NOT to Do</div>
-        <div class="code-content">
-<pre>
-<span class="error-text">// MISTAKE 1: Forgetting 'virtual' keyword</span>
-public class Parent
-{
-    public void Show() { Console.WriteLine("Parent"); }  // No virtual!
-}
-
-public class Child : Parent
-{
-    public override void Show() { Console.WriteLine("Child"); }  // ERROR!
-}
-
-<span class="correct-text">// SOLUTION: Add 'virtual' to parent</span>
-public class Parent
-{
-    public virtual void Show() { Console.WriteLine("Parent"); }  // Virtual!
-}
-
-<span class="error-text">// MISTAKE 2: Using 'new' instead of 'override' (hides, doesn't override)</span>
-public class Parent
-{
-    public virtual void Show() { Console.WriteLine("Parent"); }
-}
-
-public class Child : Parent
-{
-    public new void Show() { Console.WriteLine("Child"); }  // Hides, not overrides
-}
-
-Parent obj = new Child();
-obj.Show();  // Prints "Parent" - WRONG! Should be "Child"
-
-<span class="correct-text">// SOLUTION: Use 'override' for polymorphism</span>
-public class Child : Parent
-{
-    public override void Show() { Console.WriteLine("Child"); }  // Overrides
-}
-
-<span class="error-text">// MISTAKE 3: Wrong parameter types in overloading</span>
-public class Test
-{
-    public void Process(int x) { }
-    public void Process(string x) { }  // Different type - OK
-
-    // public string Process(int x) { return ""; }  // Only return type differs
-    // ERROR: Can't overload by just return type!
-}
-
-<span class="correct-text">// SOLUTION: Overload by parameter DIFFERENCES:</span>
-// - Different number of parameters
-// - Different types of parameters  
-// - Different order of parameters
-// NOT by: return type alone
-
-<span class="error-text">// MISTAKE 4: Overriding without inheritance</span>
-public class Car
-{
-    public virtual void Drive() { }
-}
-
-public class Boat
-{
-    public override void Drive() { }  // Boat doesn't inherit from Car!
-}
-
-<span class="correct-text">// SOLUTION: Only override in inheritance chain</span>
-public class Vehicle
-{
-    public virtual void Drive() { }
-}
-
-public class Car : Vehicle  // Inherits from Vehicle
-{
-    public override void Drive() { }  // Can override
-}
-</pre>
-        </div>
-    </div>
-
-    <h2 class="text-center">When to Use Polymorphism</h2>
-    <div class="code-container">
-        <div class="code-header">Polymorphism Guidelines</div>
-        <div class="code-content">
-<pre>
-USE METHOD OVERLOADING WHEN:
-- Same operation, different input types
-  - Add(int, int) and Add(double, double)
-  - Print(string) and Print(int) and Print(string, int)
-
-- Same operation, different number of parameters
-  - CalculateTotal(price) and CalculateTotal(price, tax)
-  - SendMessage(to) and SendMessage(to, subject, body)
-
-- Providing convenience methods
-  - Default parameters via overloads
-  - Shorter versions of complex methods
-
-USE METHOD OVERRIDING WHEN:
-- Different classes need different behavior
-  - Animal.MakeSound() → Dog.Bark(), Cat.Meow()
-  - Payment.Process() → CreditCard, PayPal, Bitcoin
-
-- Creating framework/plugin architectures
-  - Game characters with different attack styles
-  - UI controls with different rendering
-  - Database connections for different DB types
-
-- When using inheritance hierarchies
-  - Base class defines interface, children implement
-  - Template Method pattern
-  - Strategy pattern implementations
-
-BEST PRACTICES:
-1. Use descriptive method names even when overloading
-2. Keep overloaded methods semantically similar
-3. Use virtual/override for true "is-a" relationships
-4. Document what each override/overload does
-5. Test polymorphic behavior thoroughly
-
-REAL-WORLD EXAMPLES:
-• Graphics rendering: Shape.Draw() → Circle.Draw(), Rectangle.Draw()
-• Game development: Character.Attack() → Warrior.Attack(), Mage.Attack()
-• E-commerce: Discount.Calculate() → PercentageDiscount, FixedDiscount
-• File handling: FileHandler.Read() → TextFile.Read(), BinaryFile.Read()
-</pre>
-        </div>
-    </div>
-
-    <h2 class="text-center">Summary: The Power of Polymorphism</h2>
-    <ul>
-        <li><strong>Polymorphism</strong> = "Many shapes" - same interface, different implementations</li>
-        <li><strong>Overloading</strong> (compile-time): Same method name, different parameters → Flexibility</li>
-        <li><strong>Overriding</strong> (runtime): Child classes provide own version of parent's method → Customization</li>
-        <li>Use <code>virtual</code> in parent class, <code>override</code> in child class</li>
-        <li><strong>Benefits:</strong> Code reuse, flexibility, extensibility, cleaner code</li>
-        <li><strong>Real-world analogy:</strong> Remote control (one button, many devices), Word "bank" (one word, many meanings)</li>
-        <li>Without polymorphism: We'd need different method names for everything = messy, hard-to-maintain code!</li>
-        <li>Polymorphism enables: Plug-and-play architectures, frameworks, game engines, payment systems</li>
-    </ul>
-
-    <div class="navigation-buttons">
-        <a href="@Url.Action("Encapsulation", "OOP")" class="btn btn-outline-primary ajax-link">← Encapsulation</a>
-        <a href="@Url.Action("Abstraction", "OOP")" class="btn btn-primary ajax-link">Abstraction →</a>
-    </div>
-</div>
 
 <style>
     .container {
@@ -787,482 +312,435 @@ REAL-WORLD EXAMPLES:
     }
 </style>
 
-<script>
-    // Create a namespace for OOP Polymorphism page
-    window.oopPolymorphism = {
-        // Interactive walkthrough for overloading
-        overloadSteps: [
-            {
-                code: `public class Printer
-{
-    public void Print(string text) 
-    { 
-        Console.WriteLine("Printing text: " + text); 
-    }
-
-    public void Print(int number) 
-    { 
-        Console.WriteLine("Printing number: " + number); 
-    }
-
-    public void Print(string text, int copies) 
-    { 
-        Console.WriteLine("Printing '" + text + "' " + copies + " times");
-    }
-}
-
-// Printer printer = new Printer();
-// printer.Print("Hello");
-// printer.Print(42);
-// printer.Print("Test", 3);`,
-                vars: `Printer class defined with 3 overloaded Print methods:
-1. Print(string text)
-2. Print(int number)  
-3. Print(string text, int copies)
-
-No printer object created yet.`,
-                exp: "We define a Printer class with THREE Print methods. All have the same name but different parameters. This is method overloading - same name, different 'signatures'."
-            },
-            {
-                code: `public class Printer
-{
-    public void Print(string text) 
-    { 
-        Console.WriteLine("Printing text: " + text); 
-    }
-
-    public void Print(int number) 
-    { 
-        Console.WriteLine("Printing number: " + number); 
-    }
-
-    public void Print(string text, int copies) 
-    { 
-        Console.WriteLine("Printing '" + text + "' " + copies + " times");
-    }
-}
-
-Printer printer = new Printer();
-// printer.Print("Hello");
-// printer.Print(42);
-// printer.Print("Test", 3);`,
-                vars: `Printer object created.
-Can call any of the 3 Print methods.
-Compiler will decide which one based on parameters.`,
-                exp: "We create a Printer object. The compiler now knows about all three Print methods. When we call Print(), it will look at what parameters we provide to decide which version to use."
-            },
-            {
-                code: `public class Printer
-{
-    public void Print(string text) 
-    { 
-        Console.WriteLine("Printing text: " + text); 
-    }
-
-    public void Print(int number) 
-    { 
-        Console.WriteLine("Printing number: " + number); 
-    }
-
-    public void Print(string text, int copies) 
-    { 
-        Console.WriteLine("Printing '" + text + "' " + copies + " times");
-    }
-}
-
-Printer printer = new Printer();
-printer.Print("Hello");  // Calling with string
-// printer.Print(42);
-// printer.Print("Test", 3);`,
-                vars: `Calling: printer.Print("Hello")
-Compiler checks:
-- Parameter type: string
-- Looks for Print(string) → FOUND!
-Calls: Print(string text) version
-
-Output: "Printing text: Hello"`,
-                exp: "We call Print(\"Hello\"). The compiler sees we're passing a string. It looks through the overloaded methods and finds Print(string text) matches perfectly. This happens at COMPILE time."
-            },
-            {
-                code: `public class Printer
-{
-    public void Print(string text) 
-    { 
-        Console.WriteLine("Printing text: " + text); 
-    }
-
-    public void Print(int number) 
-    { 
-        Console.WriteLine("Printing number: " + number); 
-    }
-
-    public void Print(string text, int copies) 
-    { 
-        Console.WriteLine("Printing '" + text + "' " + copies + " times");
-    }
-}
-
-Printer printer = new Printer();
-printer.Print("Hello");
-printer.Print(42);  // Calling with int
-// printer.Print("Test", 3);`,
-                vars: `Calling: printer.Print(42)
-Compiler checks:
-- Parameter type: int  
-- Looks for Print(int) → FOUND!
-Calls: Print(int number) version
-
-Output: "Printing number: 42"`,
-                exp: "We call Print(42). The compiler sees an int parameter. It finds Print(int number) matches. Different parameter type = different method called, even though they have the same name!"
-            },
-            {
-                code: `public class Printer
-{
-    public void Print(string text) 
-    { 
-        Console.WriteLine("Printing text: " + text); 
-    }
-
-    public void Print(int number) 
-    { 
-        Console.WriteLine("Printing number: " + number); 
-    }
-
-    public void Print(string text, int copies) 
-    { 
-        Console.WriteLine("Printing '" + text + "' " + copies + " times");
-    }
-}
-
-Printer printer = new Printer();
-printer.Print("Hello");
-printer.Print(42);
-printer.Print("Test", 3);  // Calling with string AND int`,
-                vars: `Calling: printer.Print("Test", 3)
-Compiler checks:
-- Parameters: string, int
-- Looks for Print(string, int) → FOUND!
-Calls: Print(string text, int copies) version
-
-Output: "Printing 'Test' 3 times"`,
-                exp: "We call Print(\"Test\", 3). The compiler sees string AND int parameters. It finds Print(string text, int copies) matches. Three calls, same method name, three different outputs - that's overloading!"
-            }
-        ],
-
-        // Code examples for toggles
-        simpleExamples: {
-            example1: `// Example: Smart Calculator with Overloading
-public class Calculator
-{
-    // Version 1: Add two integers
-    public int Add(int a, int b)
-    {
-        Console.WriteLine("Adding integers: " + a + " + " + b);
-        return a + b;
-    }
-
-    // Version 2: Add two doubles
-    public double Add(double a, double b)
-    {
-        Console.WriteLine("Adding doubles: " + a + " + " + b);
-        return a + b;
-    }
-
-    // Version 3: Add three integers
-    public int Add(int a, int b, int c)
-    {
-        Console.WriteLine("Adding three integers: " + a + " + " + b + " + " + c);
-        return a + b + c;
-    }
-}`,
-            example2: `// Base class with virtual method
-public class Animal
-{
-    public string Name;
-
-    // Virtual method - can be overridden
-    public virtual void MakeSound()
-    {
-        Console.WriteLine(Name + " makes a generic animal sound.");
-    }
-}
-
-// Child class Dog - overrides MakeSound
-public class Dog : Animal
-{
-    public override void MakeSound()
-    {
-        Console.WriteLine(Name + " says: Woof! Woof!");
-    }
-}
-
-// Child class Cat - overrides MakeSound
-public class Cat : Animal
-{
-    public override void MakeSound()
-    {
-        Console.WriteLine(Name + " says: Meow!");
-    }
-}
-
-// Child class Bird - overrides MakeSound
-public class Bird : Animal
-{
-    public override void MakeSound()
-    {
-        Console.WriteLine(Name + " says: Tweet! Tweet!");
-    }
-}`
-        },
-
-        completeExamples: {
-            example1: `// Example: Smart Calculator with Overloading
-public class Calculator
-{
-    // Version 1: Add two integers
-    public int Add(int a, int b)
-    {
-        Console.WriteLine("Adding integers: " + a + " + " + b);
-        return a + b;
-    }
-
-    // Version 2: Add two doubles (different parameter types)
-    public double Add(double a, double b)
-    {
-        Console.WriteLine("Adding doubles: " + a + " + " + b);
-        return a + b;
-    }
-
-    // Version 3: Add three integers (different number of parameters)
-    public int Add(int a, int b, int c)
-    {
-        Console.WriteLine("Adding three integers: " + a + " + " + b + " + " + c);
-        return a + b + c;
-    }
-
-    // Version 4: Add an array of integers
-    public int Add(params int[] numbers)
-    {
-        Console.Write("Adding array: ");
-        int sum = 0;
-        foreach (int num in numbers)
+    <script>
+            // Креирање namespace за OOP Polymorphism страница
+            window.oopPolymorphism = {
+                // Интерактивен walkthrough за overloading
+                overloadSteps: [
+                    {
+                        code: `public class Printer
         {
-            Console.Write(num + " ");
-            sum += num;
+            public void Print(string text)
+            {
+                Console.WriteLine("Printing text: " + text);
+            }
+
+            public void Print(int number)
+            {
+                Console.WriteLine("Printing number: " + number);
+            }
+
+            public void Print(string text, int copies)
+            {
+                Console.WriteLine("Printing '" + text + "' " + copies + " times");
+            }
         }
-        Console.WriteLine();
-        return sum;
-    }
-}
 
-// Using overloaded methods
-Calculator calc = new Calculator();
+        // Printer printer = new Printer();
+        // printer.Print("Hello");
+        // printer.Print(42);
+        // printer.Print("Test", 3);`,
+                        vars: `Printer class defined with 3 overloaded Print methods:
+        1. Print(string text)
+        2. Print(int number)
+        3. Print(string text, int copies)
 
-// The compiler knows WHICH Add() to call based on parameters
-int result1 = calc.Add(5, 10);           // Calls Add(int, int)
-double result2 = calc.Add(3.5, 2.5);     // Calls Add(double, double)
-int result3 = calc.Add(1, 2, 3);         // Calls Add(int, int, int)
-int result4 = calc.Add(1, 2, 3, 4, 5);   // Calls Add(params int[])
+        No printer object created yet.`,
+                        exp: "We define a Printer class with THREE Print methods. All have the same name but different parameters. This is method overloading - same name, different 'signatures'."
+                    },
+                    {
+                        code: `public class Printer
+        {
+            public void Print(string text)
+            {
+                Console.WriteLine("Printing text: " + text);
+            }
 
-Console.WriteLine("Results:");
-Console.WriteLine("5 + 10 = " + result1);
-Console.WriteLine("3.5 + 2.5 = " + result2);
-Console.WriteLine("1 + 2 + 3 = " + result3);
-Console.WriteLine("1 + 2 + 3 + 4 + 5 = " + result4);`,
-            example2: `// Base class with virtual method
-public class Animal
-{
-    public string Name;
+            public void Print(int number)
+            {
+                Console.WriteLine("Printing number: " + number);
+            }
 
-    // Virtual method - can be overridden by children
-    public virtual void MakeSound()
-    {
-        Console.WriteLine(Name + " makes a generic animal sound.");
-    }
+            public void Print(string text, int copies)
+            {
+                Console.WriteLine("Printing '" + text + "' " + copies + " times");
+            }
+        }
 
-    // Virtual method with default behavior
-    public virtual void Move()
-    {
-        Console.WriteLine(Name + " moves in some way.");
-    }
-}
+        Printer printer = new Printer();
+        // printer.Print("Hello");
+        // printer.Print(42);
+        // printer.Print("Test", 3);`,
+                        vars: `Printer object created.
+        Can call any of the 3 Print methods.
+        Compiler will decide which one based on parameters.`,
+                        exp: "We create a Printer object. The compiler now knows about all three Print methods. When we call Print(), it will look at what parameters we provide to decide which version to use."
+                    },
+                    {
+                        code: `public class Printer
+        {
+            public void Print(string text)
+            {
+                Console.WriteLine("Printing text: " + text);
+            }
 
-// Child class Dog - overrides MakeSound
-public class Dog : Animal
-{
-    // Override keyword - provides Dog's version
-    public override void MakeSound()
-    {
-        Console.WriteLine(Name + " says: Woof! Woof!");
-    }
+            public void Print(int number)
+            {
+                Console.WriteLine("Printing number: " + number);
+            }
 
-    // Dog doesn't override Move() - uses Animal's version
-}
+            public void Print(string text, int copies)
+            {
+                Console.WriteLine("Printing '" + text + "' " + copies + " times");
+            }
+        }
 
-// Child class Cat - overrides MakeSound
-public class Cat : Animal
-{
-    public override void MakeSound()
-    {
-        Console.WriteLine(Name + " says: Meow!");
-    }
+        Printer printer = new Printer();
+        printer.Print("Hello");  // Повикување со string
+        // printer.Print(42);
+        // printer.Print("Test", 3);`,
+                        vars: `Calling: printer.Print("Hello")
+        Compiler checks:
+        - Parameter type: string
+        - Looks for Print(string) → FOUND!
+        Calls: Print(string text) version
 
-    // Cat overrides Move() too
-    public override void Move()
-    {
-        Console.WriteLine(Name + " walks gracefully.");
-    }
-}
+        Output: "Printing text: Hello"`,
+                        exp: "We call Print(\"Hello\"). The compiler sees we're passing a string. It looks through the overloaded methods and finds Print(string text) matches perfectly. This happens at COMPILE time."
+                    },
+                    {
+                        code: `public class Printer
+        {
+            public void Print(string text)
+            {
+                Console.WriteLine("Printing text: " + text);
+            }
 
-// Child class Bird - overrides both methods
-public class Bird : Animal
-{
-    public override void MakeSound()
-    {
-        Console.WriteLine(Name + " says: Tweet! Tweet!");
-    }
+            public void Print(int number)
+            {
+                Console.WriteLine("Printing number: " + number);
+            }
 
-    public override void Move()
-    {
-        Console.WriteLine(Name + " flies through the air.");
-    }
-}
+            public void Print(string text, int copies)
+            {
+                Console.WriteLine("Printing '" + text + "' " + copies + " times");
+            }
+        }
 
-// Using polymorphism
-Console.WriteLine("=== Animal Sounds ===");
+        Printer printer = new Printer();
+        printer.Print("Hello");
+        printer.Print(42);  // Повикување со int
+        // printer.Print("Test", 3);`,
+                        vars: `Calling: printer.Print(42)
+        Compiler checks:
+        - Parameter type: int
+        - Looks for Print(int) → FOUND!
+        Calls: Print(int number) version
 
-// Store different animals in SAME type (Animal)
-Animal myPet1 = new Dog();
-myPet1.Name = "Buddy";
+        Output: "Printing number: 42"`,
+                        exp: "We call Print(42). The compiler sees an int parameter. It finds Print(int number) matches. Different parameter type = different method called, even though they have the same name!"
+                    },
+                    {
+                        code: `public class Printer
+        {
+            public void Print(string text)
+            {
+                Console.WriteLine("Printing text: " + text);
+            }
 
-Animal myPet2 = new Cat();
-myPet2.Name = "Whiskers";
+            public void Print(int number)
+            {
+                Console.WriteLine("Printing number: " + number);
+            }
 
-Animal myPet3 = new Bird();
-myPet3.Name = "Tweety";
+            public void Print(string text, int copies)
+            {
+                Console.WriteLine("Printing '" + text + "' " + copies + " times");
+            }
+        }
 
-// Same method call, different results!
-myPet1.MakeSound();  // Calls Dog's version
-myPet1.Move();       // Calls Animal's version (Dog didn't override)
+        Printer printer = new Printer();
+        printer.Print("Hello");
+        printer.Print(42);
+        printer.Print("Test", 3);  // Повикување со string И int`,
+                        vars: `Calling: printer.Print("Test", 3)
+        Compiler checks:
+        - Parameters: string, int
+        - Looks for Print(string, int) → FOUND!
+        Calls: Print(string text, int copies) version
 
-myPet2.MakeSound();  // Calls Cat's version
-myPet2.Move();       // Calls Cat's version (overridden)
-
-myPet3.MakeSound();  // Calls Bird's version
-myPet3.Move();       // Calls Bird's version (overridden)
-
-// Array of animals - all treated as Animal type
-Animal[] zoo = { myPet1, myPet2, myPet3 };
-
-Console.WriteLine("\n=== Zoo Tour ===");
-foreach (Animal animal in zoo)
-{
-    animal.MakeSound();  // Each animal makes its OWN sound!
-}`
-        },
-
-        currentStep: 0,
-
-        // Function to convert code between simple and complete versions
-        convertCode: function(id) {
-            const toggle = document.getElementById(id + "Toggle");
-            const isComplete = toggle ? toggle.checked : false;
-            const codeBlock = document.getElementById(id + "Code");
-            const resultBox = document.getElementById(id + "Result");
-
-            if (codeBlock && toggle) {
-                codeBlock.style.transition = 'opacity 0.3s ease';
-                codeBlock.style.opacity = '0.5';
-                setTimeout(() => {
-                    codeBlock.textContent = isComplete ? this.completeExamples[id] : this.simpleExamples[id];
-                    codeBlock.style.opacity = '1';
-                
-                    // Update result box text
-                    if (resultBox && id === 'example1') {
-                        resultBox.innerHTML = isComplete ? 
-                            '<strong>Output:</strong><br>Adding integers: 5 + 10<br>Adding doubles: 3.5 + 2.5<br>Adding three integers: 1 + 2 + 3<br>Adding array: 1 2 3 4 5<br>Results:<br>5 + 10 = 15<br>3.5 + 2.5 = 6<br>1 + 2 + 3 = 6<br>1 + 2 + 3 + 4 + 5 = 15<br><br><em>Overloading Magic:</em> We call <code>calc.Add()</code> four times, but each calls a DIFFERENT method! The compiler looks at the parameters (types and count) and picks the right version at COMPILE time. This makes the Calculator super flexible!' :
-                            '<strong>Code Structure:</strong><br>Calculator class with 3 overloaded Add methods:<br>1. Add(int, int) - adds two integers<br>2. Add(double, double) - adds two doubles<br>3. Add(int, int, int) - adds three integers<br><br><em>Toggle to see the complete example with array addition!</em>';
-                    } else if (resultBox && id === 'example2') {
-                        resultBox.innerHTML = isComplete ?
-                            '<strong>Output:</strong><br>=== Animal Sounds ===<br>Buddy says: Woof! Woof!<br>Buddy moves in some way.<br>Whiskers says: Meow!<br>Whiskers walks gracefully.<br>Tweety says: Tweet! Tweet!<br>Tweety flies through the air.<br><br>=== Zoo Tour ===<br>Buddy says: Woof! Woof!<br>Whiskers says: Meow!<br>Tweety says: Tweet! Tweet!<br><br><em>Polymorphism Power:</em> All variables are type <code>Animal</code>, but each calls its ACTUAL object\'s method at RUNTIME. Dog, Cat, and Bird all respond differently to the same <code>MakeSound()</code> call! This lets us treat different objects the same way.' :
-                            '<strong>Code Structure:</strong><br>Animal base class with virtual MakeSound()<br>Dog class overrides MakeSound() to "Woof!"<br>Cat class overrides MakeSound() to "Meow!"<br>Bird class overrides MakeSound() to "Tweet!"<br><br><em>Toggle to see the complete example with movement and array of animals!</em>';
+        Output: "Printing 'Test' 3 times"`,
+                        exp: "We call Print(\"Test\", 3). The compiler sees string AND int parameters. It finds Print(string text, int copies) matches. Three calls, same method name, three different outputs - that's overloading!"
                     }
-                }, 300);
+                ],
+
+                // Примери на код за toggle копчињата
+                simpleExamples: {
+                    example1: `// Пример: Паметен калкулатор со overloading
+        public class Calculator
+        {
+            // Верзија 1: Собира два цели броја
+            public int Add(int a, int b)
+            {
+                Console.WriteLine("Adding integers: " + a + " + " + b);
+                return a + b;
             }
-        },
 
-        // Function to update walkthrough display
-        updateWalkthrough: function(step) {
-            const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
-            const walkthroughVariables = document.getElementById('walkthroughVariables');
-            const walkthroughExplanation = document.getElementById('walkthroughExplanation');
-            const nextStepBtn = document.getElementById('nextStepBtn');
-
-            if (!walkthroughCodeBase || !walkthroughVariables || !walkthroughExplanation) return;
-
-            const data = this.overloadSteps[step];
-        
-            walkthroughCodeBase.textContent = data.code;
-            walkthroughVariables.textContent = data.vars;
-            walkthroughExplanation.innerHTML = `<em>Step ${step + 1}:</em> ${data.exp}`;
-        
-            if (step === this.overloadSteps.length - 1 && nextStepBtn) {
-                walkthroughExplanation.innerHTML += '<br><strong>Complete! Overloading lets one method name handle different parameter combinations.</strong>';
-                nextStepBtn.disabled = true;
+            // Верзија 2: Собира два double броја
+            public double Add(double a, double b)
+            {
+                Console.WriteLine("Adding doubles: " + a + " + " + b);
+                return a + b;
             }
-        },
 
-        nextStep: function() {
-            if (this.currentStep < this.overloadSteps.length) {
-                this.updateWalkthrough(this.currentStep);
-                this.currentStep++;
+            // Верзија 3: Собира три цели броја
+            public int Add(int a, int b, int c)
+            {
+                Console.WriteLine("Adding three integers: " + a + " + " + b + " + " + c);
+                return a + b + c;
             }
-        },
+        }`,
+                    example2: `// Основна класа со virtual метод
+        public class Animal
+        {
+            public string Name;
 
-        initWalkthrough: function() {
-            const nextStepBtn = document.getElementById('nextStepBtn');
-            if (nextStepBtn) {
-                this.currentStep = 0;
-            
-                const newButton = nextStepBtn.cloneNode(true);
-                nextStepBtn.parentNode.replaceChild(newButton, nextStepBtn);
-
-                newButton.addEventListener('click', () => this.nextStep());
-                newButton.disabled = false;
-
-                this.updateWalkthrough(0);
-                this.currentStep = 1;
-            }
-        },
-
-        initCodeExamples: function() {
-            const toggles = document.querySelectorAll('.form-check-input[type="checkbox"]');
-            toggles.forEach(toggle => {
-                const id = toggle.id.replace('Toggle', '');
-                if (id && this.simpleExamples[id]) {
-                    this.convertCode(id);
-                    toggle.addEventListener('change', () => this.convertCode(id));
-                }
-            });
-        },
-
-        init: function() {
-            console.log('Initializing OOP Polymorphism page');
-            this.initCodeExamples();
-            this.initWalkthrough();
-        
-            if (typeof hljs !== 'undefined') {
-                hljs.highlightAll();
+            // Virtual метод - може да се override
+            public virtual void MakeSound()
+            {
+                Console.WriteLine(Name + " makes a generic animal sound.");
             }
         }
-    };
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-            window.oopPolymorphism.init();
-        });
-    } else {
-        window.oopPolymorphism.init();
-    }
-</script>
+        // Child класа Dog - го override MakeSound
+        public class Dog : Animal
+        {
+            public override void MakeSound()
+            {
+                Console.WriteLine(Name + " says: Woof! Woof!");
+            }
+        }
+
+        // Child класа Cat - го override MakeSound
+        public class Cat : Animal
+        {
+            public override void MakeSound()
+            {
+                Console.WriteLine(Name + " says: Meow!");
+            }
+        }
+
+        // Child класа Bird - го override MakeSound
+        public class Bird : Animal
+        {
+            public override void MakeSound()
+            {
+                Console.WriteLine(Name + " says: Tweet! Tweet!");
+            }
+        }`
+                },
+
+                // Комплетни примери
+                completeExamples: {
+                    example1: `// Пример: Паметен калкулатор со overloading
+        public class Calculator
+        {
+            // Верзија 1: Собира два цели броја
+            public int Add(int a, int b)
+            {
+                Console.WriteLine("Adding integers: " + a + " + " + b);
+                return a + b;
+            }
+
+            // Верзија 2: Собира два double броја (различен тип на параметри)
+            public double Add(double a, double b)
+            {
+                Console.WriteLine("Adding doubles: " + a + " + " + b);
+                return a + b;
+            }
+
+            // Верзија 3: Собира три цели броја (различен број на параметри)
+            public int Add(int a, int b, int c)
+            {
+                Console.WriteLine("Adding three integers: " + a + " + " + b + " + " + c);
+                return a + b + c;
+            }
+
+            // Верзија 4: Собира низа од цели броја
+            public int Add(params int[] numbers)
+            {
+                Console.Write("Adding array: ");
+                int sum = 0;
+                foreach (int num in numbers)
+                {
+                    Console.Write(num + " ");
+                    sum += num;
+                }
+                Console.WriteLine();
+                return sum;
+            }
+        }
+
+        // Користење на overloaded методите
+        Calculator calc = new Calculator();
+
+        // Компилаторот знае КОЈ Add() да го повика според параметрите
+        int result1 = calc.Add(5, 10);
+        double result2 = calc.Add(3.5, 2.5);
+        int result3 = calc.Add(1, 2, 3);
+        int result4 = calc.Add(1, 2, 3, 4, 5);`,
+                    example2: `// Основна класа со virtual метод
+        public class Animal
+        {
+            public string Name;
+
+            // Virtual метод - може да биде override од деца
+            public virtual void MakeSound()
+            {
+                Console.WriteLine(Name + " makes a generic animal sound.");
+            }
+
+            // Virtual метод со default однесување
+            public virtual void Move()
+            {
+                Console.WriteLine(Name + " moves in some way.");
+            }
+        }
+
+        // Child класа Dog - го override MakeSound
+        public class Dog : Animal
+        {
+            // override keyword - дава Dog верзија
+            public override void MakeSound()
+            {
+                Console.WriteLine(Name + " says: Woof! Woof!");
+            }
+
+            // Dog НЕ го override Move() - ја користи Animal верзијата
+        }
+
+        // Child класа Cat - го override MakeSound
+        public class Cat : Animal
+        {
+            public override void MakeSound()
+            {
+                Console.WriteLine(Name + " says: Meow!");
+            }
+
+            // Cat го override и Move()
+            public override void Move()
+            {
+                Console.WriteLine(Name + " walks gracefully.");
+            }
+        }
+
+        // Child класа Bird - ги override двата методи
+        public class Bird : Animal
+        {
+            public override void MakeSound()
+            {
+                Console.WriteLine(Name + " says: Tweet! Tweet!");
+            }
+
+            public override void Move()
+            {
+                Console.WriteLine(Name + " flies through the air.");
+            }
+        }`
+                },
+
+                currentStep: 0,
+
+                // Функција за конверзија помеѓу simple и complete верзија
+                convertCode: function(id) {
+                    const toggle = document.getElementById(id + "Toggle");
+                    const isComplete = toggle ? toggle.checked : false;
+                    const codeBlock = document.getElementById(id + "Code");
+                    const resultBox = document.getElementById(id + "Result");
+
+                    if (codeBlock && toggle) {
+                        codeBlock.style.transition = 'opacity 0.3s ease';
+                        codeBlock.style.opacity = '0.5';
+                        setTimeout(() => {
+                            codeBlock.textContent = isComplete ? this.completeExamples[id] : this.simpleExamples[id];
+                            codeBlock.style.opacity = '1';
+                        }, 300);
+                    }
+                },
+
+                // Функција за ажурирање на walkthrough приказот
+                updateWalkthrough: function(step) {
+                    const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
+                    const walkthroughVariables = document.getElementById('walkthroughVariables');
+                    const walkthroughExplanation = document.getElementById('walkthroughExplanation');
+                    const nextStepBtn = document.getElementById('nextStepBtn');
+
+                    if (!walkthroughCodeBase || !walkthroughVariables || !walkthroughExplanation) return;
+
+                    const data = this.overloadSteps[step];
+
+                    walkthroughCodeBase.textContent = data.code;
+                    walkthroughVariables.textContent = data.vars;
+                    walkthroughExplanation.innerHTML = `<em>Step ${step + 1}:</em> ${data.exp}`;
+
+                    if (step === this.overloadSteps.length - 1 && nextStepBtn) {
+                        walkthroughExplanation.innerHTML += '<br><strong>Complete! Overloading lets one method name handle different parameter combinations.</strong>';
+                        nextStepBtn.disabled = true;
+                    }
+                },
+
+                nextStep: function() {
+                    if (this.currentStep < this.overloadSteps.length) {
+                        this.updateWalkthrough(this.currentStep);
+                        this.currentStep++;
+                    }
+                },
+
+                initWalkthrough: function() {
+                    const nextStepBtn = document.getElementById('nextStepBtn');
+                    if (nextStepBtn) {
+                        this.currentStep = 0;
+
+                        const newButton = nextStepBtn.cloneNode(true);
+                        nextStepBtn.parentNode.replaceChild(newButton, nextStepBtn);
+
+                        newButton.addEventListener('click', () => this.nextStep());
+                        newButton.disabled = false;
+
+                        this.updateWalkthrough(0);
+                        this.currentStep = 1;
+                    }
+                },
+
+                initCodeExamples: function() {
+                    const toggles = document.querySelectorAll('.form-check-input[type="checkbox"]');
+                    toggles.forEach(toggle => {
+                        const id = toggle.id.replace('Toggle', '');
+                        if (id && this.simpleExamples[id]) {
+                            this.convertCode(id);
+                            toggle.addEventListener('change', () => this.convertCode(id));
+                        }
+                    });
+                },
+
+                init: function() {
+                    console.log('Initializing OOP Polymorphism page');
+                    this.initCodeExamples();
+                    this.initWalkthrough();
+
+                    if (typeof hljs !== 'undefined') {
+                        hljs.highlightAll();
+                    }
+                }
+            };
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => {
+                    window.oopPolymorphism.init();
+                });
+            } else {
+                window.oopPolymorphism.init();
+            }
+    </script>
+
 </body>

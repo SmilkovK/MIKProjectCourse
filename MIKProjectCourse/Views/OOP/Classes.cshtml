@@ -1,107 +1,108 @@
 ﻿@{
-    ViewData["Title"] = "OOP - Classes";
+    ViewData["Title"] = "OOP - Класи";
 }
 
 <body data-topic="classes">
-<div class="container">
-    <h1 class="mb-4">Classes: Blueprints for Your Code</h1>
+    <div class="container">
+        <h1 class="mb-4">Класи: Планови за вашиот код</h1>
 
-    <p><strong>Classes</strong> are like <strong>blueprints</strong> or <strong>templates</strong> in programming. Just like architects use blueprints to build houses, programmers use classes to create objects in their code.</p>
+        <p><strong>Класите</strong> се како <strong>планови</strong> или <strong>шаблони</strong> во програмирањето. Како што архитектите користат планови за да градат куќи, така и програмерите користат класи за да создадат објекти во кодот.</p>
 
-    <p>You use "classes" in real life all the time:</p>
-    <ul>
-        <li>A <strong>recipe</strong> is a blueprint for cooking a dish</li>
-        <li>A <strong>cookie cutter</strong> is a template for making cookies</li>
-        <li>A <strong>car design</strong> is a plan for manufacturing cars</li>
-        <li>A <strong>student enrollment form</strong> is a template for student information</li>
-    </ul>
+        <p>Класите се користат во секојдневниот живот:</p>
+        <ul>
+            <li>Рецепт е план за готвење на јадење</li>
+            <li>Шаблон за колачи е шаблон за правење колачи</li>
+            <li>Дизајн на автомобил е план за производство на автомобили</li>
+            <li>Формулар за упис на студент е шаблон за информации за студентот</li>
+        </ul>
 
-    <h2>📘 What is a Class?</h2>
-    <p>A class has three essential parts:</p>
-    
-    <div class="code-container">
-        <div class="code-header">Class Anatomy</div>
-        <div class="code-content">
+        <h2>Што е класа?</h2>
+        <p>Класата има три основни делови:</p>
+
+        <div class="code-container">
+            <div class="code-header">Анатомија на класа</div>
+            <div class="code-content">
 <pre>
-         Class Name      Properties      Methods
+         Име на класа      Својства      Методи
             ↓               ↓              ↓
-      <strong>public class Car</strong>
+                <strong>public class Car</strong>
       {
-          <strong>public string Brand;</strong>      ← Property
-          <strong>public string Color;</strong>      ← Property
-          
-          <strong>public void Drive()</strong>      ← Method
+                <strong>public string Brand;</strong>      ← Својство
+                <strong>public string Color;</strong>      ← Својство
+
+                <strong>public void Drive()</strong>      ← Метод
           {
               Console.WriteLine("Vroom!");
           }
       }
 </pre>
+            </div>
         </div>
-    </div>
 
-    <p>Think of it like this:</p>
-    <ul>
-        <li><strong>Class Name</strong> → What kind of blueprint is it? (Car, Student, Product)</li>
-        <li><strong>Properties</strong> → What information it stores (Brand, Color, Name)</li>
-        <li><strong>Methods</strong> → What actions it can perform (Drive, Study, Display)</li>
-    </ul>
+        <p>Смислете го вака:</p>
+        <ul>
+            <li><strong>Име на класа</strong> → Кој тип на план е тоа? (Car, Student, Product)</li>
+            <li><strong>Својства</strong> → Какви информации чува (Brand, Color, Name)</li>
+            <li><strong>Методи</strong> → Кои дејства може да ги изврши (Drive, Study, Display)</li>
+        </ul>
 
-    <h2>📋 Understanding the Car Blueprint</h2>
-    
-    <div class="code-container">
-        <div class="code-header">Car Class Example</div>
-        <div class="code-content">
+        <h2>Пример: Car класа</h2>
+
+        <div class="code-container">
+            <div class="code-header">Пример за Car класа</div>
+            <div class="code-content">
 <pre>
-// BLUEPRINT (Class)
+// ПЛАН (Класа)
 public class Car
 {
-    // Properties - what a car HAS
+    // Својства - што автомобилот ИМА
     public string Brand;
     public string Color;
     public int Year;
-    
-    // Method - what a car CAN DO
+
+    // Метод - што автомобилот МОЖЕ ДА НАПРАВИ
     public void Honk()
     {
         Console.WriteLine("Beep beep!");
     }
 }
 </pre>
+            </div>
         </div>
-    </div>
 
-    <div class="result-box">
-        ➡ <strong>Important:</strong> This is just the blueprint!<br>
-        It's like saying "All cars will have a Brand, Color, and Year, and they can Honk."<br>
-        But we haven't created any actual cars yet!
-    </div>
-
-    <h2>🎯 Example 1: Creating Your First Class</h2>
-    <p>Let's create a simple Student class:</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="oopClasses.convertCode('example1')">
-            <label class="form-check-label" for="example1Toggle">Show Full Example</label>
+        <div class="result-box">
+            <strong>Важно:</strong><br>
+            Ова е само планот!<br>
+            Значи сите автомобили ќе имаат Brand, Color и Year, и можат да Honk.<br>
+            Сепак, сè уште не сме создале вистински автомобили!
         </div>
-        <div class="code-content">
+
+        <h2>Пример 1: Создавање на прва класа</h2>
+        <p>Да создадеме едноставна класа Student:</p>
+
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="oopClasses.convertCode('example1')">
+                <label class="form-check-label" for="example1Toggle">Прикажи цел пример</label>
+            </div>
+            <div class="code-content">
 <pre class="codeBlock" id="example1Code">
-// Step 1: Create the Blueprint (Class)
+// Чекор 1: Создајте планот (Класа)
 public class Student
 {
-    // Properties - what a student HAS
+    // Својства - што студентот ИМА
     public string Name;
     public int Age;
     public string Major;
-    
-    // Method - what a student CAN DO
+
+    // Метод - што студентот МОЖЕ ДА НАПРАВИ
     public void Study()
     {
-        Console.WriteLine(Name + " is studying " + Major);
+        Console.WriteLine(Name + " учи " + Major);
     }
 }
 
-// Step 2: Create actual students from the blueprint
+// Чекор 2: Создајте вистински студенти од планот
 Student student1 = new Student();
 student1.Name = "Alex";
 student1.Age = 20;
@@ -112,128 +113,124 @@ student2.Name = "Maria";
 student2.Age = 21;
 student2.Major = "Mathematics";
 </pre>
+            </div>
+            <div class="result-box" id="example1Result">
+                <strong>Што се случи:</strong><br>
+                1. Создавме <strong>Student план</strong> (класа)<br>
+                2. Создавме <strong>два вистински студенти</strong> (објекти) од планот<br>
+                3. Секој студент има свои Name, Age и Major<br>
+                <em>Размислете:</em> Еден рецепт (класа) → Многу колачи (објекти)!
+            </div>
         </div>
-        <div class="result-box" id="example1Result">
-            ➡ <strong>What happened:</strong><br>
-            1. We created a <strong>Student blueprint</strong> (class)<br>
-            2. We made <strong>two actual students</strong> (objects) from that blueprint<br>
-            3. Each student has their own Name, Age, and Major<br>
-            <em>Think:</em> One recipe (class) → Many cakes (objects)!
-        </div>
-    </div>
 
-    <h2>🧠 Interactive Walkthrough: From Blueprint to Object</h2>
-    <p>Watch how we go from class definition to actual objects:</p>
+        <h2>Интерактивно: Од план до објект</h2>
+        <p>Гледајте како од дефиниција на класа стануваат вистински објекти:</p>
 
-    <div class="code-container">
-        <div class="code-header">Step-by-Step Creation</div>
-        <div class="code-content">
+        <div class="code-container">
+            <div class="code-header">Чекор по чекор</div>
+            <div class="code-content">
 <pre id="walkthroughCodeBase">
-// 1. Define the blueprint
+// 1. Дефинирајте планот
 public class Book
 {
     public string Title;
     public string Author;
 }
 
-// 2. Create books from blueprint
+// 2. Создај книги од планот
 Book book1 = new Book();
 // Book book2 = new Book();
 </pre>
+            </div>
         </div>
-    </div>
 
-    <div class="code-container">
-        <div class="code-header">What We Created</div>
-        <div class="code-content">
-<pre id="walkthroughVariables">Class: Book (Blueprint)<br>Objects: book1, book2 (Actual books)</pre>
+        <div class="code-container">
+            <div class="code-header">Што создавме</div>
+            <div class="code-content">
+<pre id="walkthroughVariables">Класа: Book (План)<br>Објекти: book1, book2 (Вистински книги)</pre>
+            </div>
+            <div class="result-box" id="walkthroughExplanation">
+                <em>Кликнете <strong>Next</strong> за да го видите секој чекор:</em>
+            </div>
+            <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
         </div>
-        <div class="result-box" id="walkthroughExplanation">
-            <em>Click <strong>Next</strong> to see each step:</em>
-        </div>
-        <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
-    </div>
 
-    <h2>🎯 Example 2: Using Methods in Classes</h2>
-    <p>Methods give classes the ability to DO things:</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="oopClasses.convertCode('example2')">
-            <label class="form-check-label" for="example2Toggle">Show Complete Code</label>
-        </div>
-        <div class="code-content">
+        <h2>Пример 2: Користење методи во класи</h2>
+        <p>Методите им даваат на класите можност да ДЕЈСТВУВААТ:</p>
+
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="oopClasses.convertCode('example2')">
+                <label class="form-check-label" for="example2Toggle">Прикажи цел код</label>
+            </div>
+            <div class="code-content">
 <pre class="codeBlock" id="example2Code">
 public class Calculator
 {
-    // Method to add two numbers
+    // Метод за собирање два броја
     public int Add(int number1, int number2)
     {
         int result = number1 + number2;
         return result;
     }
-    
-    // Method to multiply two numbers
+
+    // Метод за множење два броја
     public int Multiply(int number1, int number2)
     {
         return number1 * number2;
     }
 }
 
-// Using the calculator
+// Користење на калкулатор
 Calculator myCalc = new Calculator();
 
-int sum = myCalc.Add(5, 3);        // Result: 8
-int product = myCalc.Multiply(4, 6); // Result: 24
+int sum = myCalc.Add(5, 3);        // Резултат: 8
+int product = myCalc.Multiply(4, 6); // Резултат: 24
 
 Console.WriteLine("5 + 3 = " + sum);
 Console.WriteLine("4 × 6 = " + product);
 </pre>
+            </div>
+            <div class="result-box" id="example2Result">
+                <strong>Клучни точки:</strong><br>
+                1. <strong>Методите се дејства</strong> (Add, Multiply)<br>
+                2. Тие можат да <strong>прифатат податоци</strong> (броеви за пресметка)<br>
+                3. Тие можат да <strong>вратат резултати</strong> (одговор)<br>
+                4. Секој објект може да изврши овие дејства
+            </div>
         </div>
-        <div class="result-box" id="example2Result">
-            ➡ <strong>Key Points:</strong><br>
-            1. <strong>Methods are actions</strong> (Add, Multiply)<br>
-            2. They can <strong>take inputs</strong> (numbers to calculate)<br>
-            3. They can <strong>return results</strong> (the answer)<br>
-            4. Each calculator object can perform these actions
-        </div>
-    </div>
 
-    <h2>🎯 Example 3: Real-World Product Class</h2>
-    <p>Let's create something you might see in an online store:</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="oopClasses.convertCode('example3')">
-            <label class="form-check-label" for="example3Toggle">Show with Output</label>
-        </div>
-        <div class="code-content">
+        <h2>Пример 3: Реална Product класа</h2>
+        <p>Да креираме пример како во онлајн продавница:</p>
+
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="oopClasses.convertCode('example3')">
+                <label class="form-check-label" for="example3Toggle">Прикажи со резултат</label>
+            </div>
+            <div class="code-content">
 <pre class="codeBlock" id="example3Code">
 public class Product
 {
-    // Properties
     public string Name;
     public decimal Price;
     public int Stock;
-    
-    // Method to display product info
+
     public void DisplayInfo()
     {
-        Console.WriteLine("=== Product Info ===");
-        Console.WriteLine("Name: " + Name);
-        Console.WriteLine("Price: $" + Price);
-        Console.WriteLine("In Stock: " + Stock);
-        Console.WriteLine("===================");
+        Console.WriteLine("=== Информации за производот ===");
+        Console.WriteLine("Име: " + Name);
+        Console.WriteLine("Цена: $" + Price);
+        Console.WriteLine("На залиха: " + Stock);
+        Console.WriteLine("===============================");
     }
-    
-    // Method to check if product is available
+
     public bool IsAvailable()
     {
-        return Stock > 0;  // true if stock > 0, false otherwise
+        return Stock > 0;
     }
 }
 
-// Creating products
 Product laptop = new Product();
 laptop.Name = "Dell XPS 13";
 laptop.Price = 999.99m;
@@ -242,84 +239,77 @@ laptop.Stock = 10;
 Product phone = new Product();
 phone.Name = "iPhone 15";
 phone.Price = 799.99m;
-phone.Stock = 0;  // Out of stock!
+phone.Stock = 0;
 
-// Using the products
 laptop.DisplayInfo();
-Console.WriteLine("Available: " + laptop.IsAvailable());
+Console.WriteLine("Достапно: " + laptop.IsAvailable());
 
 phone.DisplayInfo();
-Console.WriteLine("Available: " + phone.IsAvailable());
+Console.WriteLine("Достапно: " + phone.IsAvailable());
 </pre>
+            </div>
+            <div class="result-box" id="example3Result">
+                <strong>Излез:</strong><br>
+                === Информации за производот ===<br>
+                Име: Dell XPS 13<br>
+                Цена: $999.99<br>
+                На залиха: 10<br>
+                ===============================<br>
+                Достапно: True<br><br>
+                === Информации за производот ===<br>
+                Име: iPhone 15<br>
+                Цена: $799.99<br>
+                На залиха: 0<br>
+                ===============================<br>
+                Достапно: False
+            </div>
         </div>
-        <div class="result-box" id="example3Result">
-            ➡ <strong>Output:</strong><br>
-            === Product Info ===<br>
-            Name: Dell XPS 13<br>
-            Price: $999.99<br>
-            In Stock: 10<br>
-            ===================<br>
-            Available: True<br><br>
-            === Product Info ===<br>
-            Name: iPhone 15<br>
-            Price: $799.99<br>
-            In Stock: 0<br>
-            ===================<br>
-            Available: False
-        </div>
-    </div>
 
-    <h2>🎯 Example 4: Bank Account Class</h2>
-    <p>A practical example for managing money:</p>
-    
-    <div class="code-container">
-        <div class="code-header">Bank Account Simulation</div>
-        <div class="code-content">
+        <h2>Пример 4: Класа BankAccount</h2>
+        <p>Практичен пример за управување со пари:</p>
+
+        <div class="code-container">
+            <div class="code-header">Симулација на банкарска сметка</div>
+            <div class="code-content">
 <pre>
 public class BankAccount
 {
-    // Properties
     public string Owner;
     public decimal Balance;
-    
-    // Constructor (special method - we'll learn this next!)
+
     public BankAccount(string ownerName, decimal startingBalance)
     {
         Owner = ownerName;
         Balance = startingBalance;
     }
-    
-    // Method to deposit money
+
     public void Deposit(decimal amount)
     {
-        Balance = Balance + amount;
-        Console.WriteLine(Owner + " deposited: $" + amount);
+        Balance += amount;
+        Console.WriteLine(Owner + " депонираше: $" + amount);
     }
-    
-    // Method to withdraw money
+
     public bool Withdraw(decimal amount)
     {
         if (amount <= Balance)
         {
-            Balance = Balance - amount;
-            Console.WriteLine(Owner + " withdrew: $" + amount);
-            return true;  // Success
+            Balance -= amount;
+            Console.WriteLine(Owner + " подигна: $" + amount);
+            return true;
         }
         else
         {
-            Console.WriteLine("Insufficient funds!");
+            Console.WriteLine("Недоволно средства!");
             return false;
         }
     }
-    
-    // Method to check balance
+
     public void CheckBalance()
     {
-        Console.WriteLine(Owner + "'s balance: $" + Balance);
+        Console.WriteLine(Owner + "'s салдо: $" + Balance);
     }
 }
 
-// Using the bank account
 BankAccount johnAccount = new BankAccount("John", 1000.00m);
 BankAccount sarahAccount = new BankAccount("Sarah", 500.00m);
 
@@ -328,16 +318,16 @@ johnAccount.Deposit(200.00m);
 johnAccount.Withdraw(300.00m);
 johnAccount.CheckBalance();
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2>📊 Visual Diagram: How Classes and Objects Work</h2>
-    
-    <div class="code-container">
-        <div class="code-header">Memory Representation</div>
-        <div class="code-content">
+        <h2>Дијаграма: Како функционираат класи и објекти</h2>
+
+        <div class="code-container">
+            <div class="code-header">Меморија</div>
+            <div class="code-content">
 <pre>
-Class Definition (Blueprint):
+Класа (План):
 ┌─────────────────────────┐
 │     Student Class       │
 ├─────────────────────────┤
@@ -348,143 +338,136 @@ Class Definition (Blueprint):
 │ + void Study()          │
 └─────────────────────────┘
 
-Objects Created (Actual Instances):
+Објекти (Вистински примери):
 ┌─────────────────────────┐    ┌─────────────────────────┐
-│    Student Object 1     │    │    Student Object 2     │
+│    Student Објект 1     │    │    Student Објект 2     │
 ├─────────────────────────┤    ├─────────────────────────┤
 │ Name = "Alex"           │    │ Name = "Maria"          │
 │ Age = 20                │    │ Age = 21                │
 │ Major = "CS"            │    │ Major = "Math"          │
 └─────────────────────────┘    └─────────────────────────┘
 
-When you call: student1.Study()
-- Computer finds student1 object
-- Uses the Study() method from the blueprint
-- Runs: "Alex is studying CS"
+Кога се повикува: student1.Study()
+- Компјутерот го наоѓа student1 објектот
+- Го користи Study() методот од планот
+- Извршува: "Alex учи CS"
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2>⚠️ Common Mistakes to Avoid</h2>
-    <div class="code-container">
-        <div class="code-header">Class Errors and Solutions</div>
-        <div class="code-content">
+        <h2>Чести грешки</h2>
+        <div class="code-container">
+            <div class="code-header">Грешки и решенија</div>
+            <div class="code-content">
 <pre>
-<span style="color: #dc3545; font-weight: bold;">// WRONG: Using class without creating object</span>
-Student.Name = "Alex";  // ERROR: Need to create object first!
+<span style="color:red; font-weight:bold;">// ГРЕШНО: Користење класа без објект</span>
+Student.Name = "Alex";  // ERROR: Треба објект!
 
-<span style="color: #28a745; font-weight: bold;">// CORRECT: Create object first</span>
+<span style="color:lightgreen; font-weight:bold;">// ТОЧНО: Создајте објект</span>
 Student student = new Student();
 student.Name = "Alex";  // GOOD!
 
-<span style="color: #dc3545; font-weight: bold;">// WRONG: Forgetting the 'new' keyword</span>
-Student student;         // Just declared, not created
-student.Name = "Alex";   // ERROR: Object not created!
+<span style="color:red; font-weight:bold;">// ГРЕШНО: Заборавен 'new'</span>
+Student student;        
+student.Name = "Alex";  // ERROR
 
-<span style="color: #28a745; font-weight: bold;">// CORRECT: Use 'new' to create object</span>
-Student student = new Student();  // Actually creates it
-student.Name = "Alex";            // Now it works!
+<span style="color:lightgreen; font-weight:bold;">// ТОЧНО: Користете 'new'</span>
+Student student = new Student();  
+student.Name = "Alex";            
 
-<span style="color: #dc3545; font-weight: bold;">// WRONG: Confusing class with object</span>
-// Class is blueprint, object is actual thing
-Car myCar = Car;  // ERROR: Can't assign class to variable
+<span style="color:red; font-weight:bold;">// ГРЕШНО: Мешање класа и објект</span>
+Car myCar = Car;  // ERROR
 
-<span style="color: #28a745; font-weight: bold;">// CORRECT: Create object from class</span>
-Car myCar = new Car();  // GOOD: Creates actual car
+<span style="color:lightgreen; font-weight:bold;">// ТОЧНО: Создај објект од класа</span>
+Car myCar = new Car();  
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2>🎯 Naming Rules & Best Practices</h2>
-    <div class="code-container">
-        <div class="code-header">Good Class Design</div>
-        <div class="code-content">
+        <h2>Правила за именување и добри практики</h2>
+        <div class="code-container">
+            <div class="code-header">Дизајн на класи</div>
+            <div class="code-content">
 <pre>
-<span style="color: #28a745; font-weight: bold;">// GOOD CLASS NAMES: Clear and singular</span>
-public class Car {}          // Not: Cars
-public class Student {}      // Not: Students
-public class Product {}      // Not: Products
-public class BankAccount {}  // Not: BankAccounts
+<span style="color:lightgreen; font-weight:bold;">// ДОБРИ ИМЕЊА НА КЛАСИ</span>
+public class Car {}          
+public class Student {}      
+public class Product {}      
+public class BankAccount {}  
 
-<span style="color: #28a745; font-weight: bold;">// GOOD PROPERTY NAMES: Descriptive</span>
-public string Brand;         // Not: b
-public string Model;         // Not: m
-public int Year;             // Not: y
-public decimal Price;        // Not: p
+<span style="color:lightgreen; font-weight:bold;">// ДОБРИ ИМЕЊА НА СВОЈСТВА</span>
+public string Brand;        
+public string Model;        
+public int Year;            
+public decimal Price;       
 
-<span style="color: #28a745; font-weight: bold;">// GOOD METHOD NAMES: Action-oriented</span>
-public void Drive() {}       // Not: doSomething()
-public void Study() {}       // Not: action1()
-public void DisplayInfo() {} // Not: show()
+<span style="color:lightgreen; font-weight:bold;">// ДОБРИ ИМЕЊА НА МЕТОДИ</span>
+public void Drive() {}       
+public void Study() {}       
+public void DisplayInfo() {} 
 
-<span style="color: #28a745; font-weight: bold;">// FOLLOW THESE RULES:</span>
-// 1. Class names start with Capital letter
-// 2. Use PascalCase for class names (MyClassName)
-// 3. Use camelCase for properties/methods (myProperty)
-// 4. One class = One responsibility (Car drives, Student studies)
-// 5. Keep classes focused and simple
+<span style="color:lightgreen; font-weight:bold;">// ПРАВИЛА:</span>
+// 1. Името на класа започнува со голема буква
+// 2. PascalCase за класи (MyClassName)
+// 3. camelCase за својства и методи (myProperty)
+// 4. Една класа = една одговорност
+// 5. Класите да бидат едноставни и фокусирани
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2>🔑 Key Differences: Class vs Object</h2>
-    <div class="code-container">
-        <div class="code-header">Blueprint vs Actual Thing</div>
-        <div class="code-content">
+        <h2>Клучни разлики: Класа vs Објект</h2>
+        <div class="code-container">
+            <div class="code-header">План vs Вистински пример</div>
+            <div class="code-content">
 <pre>
-CLASS (Blueprint)                    OBJECT (Actual Thing)
+КЛАСА (План)                        ОБЈЕКТ (Вистински пример)
 ─────────────────────────────────────────────────────────────
-Recipe for cookies                  Actual cookie you eat
-Car design blueprint                Actual car you drive
-Student enrollment form             Actual student Alex
-Cookie cutter                      Cookie shaped by cutter
+Рецепт за колачи                     Вистински колач
+Дизајн на автомобил                   Вистински автомобил
+Формулар за студент                  Вистински студент Alex
+Шаблон за колачи                     Колач направен од шаблон
 
-ONE class can create                MANY different objects
+ЕДНА класа може да создаде             МНОГУ различни објекти
 ─────────────────────────────────────────────────────────────
-Example:
 public class Car {}                 Car myCar = new Car();
                                     Car yourCar = new Car();
                                     Car momsCar = new Car();
-
-Think of it this way:
-• Class = Mold for making toys
-• Object = Actual toy made from mold
-• You can make many toys from one mold!
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2>🎉 Summary</h2>
-    <ul>
-        <li><strong>Class</strong> = <strong>Blueprint</strong> or <strong>Template</strong></li>
-        <li><strong>Object</strong> = <strong>Actual thing</strong> created from the blueprint</li>
-        <li>Classes contain <strong>Properties</strong> (what they have) and <strong>Methods</strong> (what they do)</li>
-        <li>Use <code>new</code> keyword to create objects from classes</li>
-        <li>One class can create <strong>many different objects</strong></li>
-        <li>Each object has its <strong>own values</strong> for properties</li>
-        <li>Classes make your code <strong>organized</strong> and <strong>reusable</strong></li>
-        <li>Real-world applications use classes to represent things like Users, Products, Orders, etc.</li>
-    </ul>
-
-    <div class="practice-exercise">
-        <h3>Try It Yourself!</h3>
-        <p>Create a <strong>Pet</strong> class with these features:</p>
+        <h2>Резиме</h2>
         <ul>
-            <li>Properties: Name (string), Type (string), Age (int)</li>
-            <li>Method: MakeSound() that prints the pet's sound</li>
-            <li>Create if-else statement for two types a dog and a cat inside the method</li>
-            <li>Make each pet make their sound!</li>
+            <li><strong>Класа</strong> = <strong>План</strong> или <strong>Шаблон</strong></li>
+            <li><strong>Објект</strong> = <strong>Вистински пример</strong> создаден од планот</li>
+            <li>Класите имаат <strong>Својства</strong> (што имаат) и <strong>Методи</strong> (што прават)</li>
+            <li>Користете <code>new</code> за да креирате објекти од класи</li>
+            <li>Една класа може да создаде <strong>многу објекти</strong></li>
+            <li>Секој објект има <strong>свои вредности</strong> за својствата</li>
+            <li>Класите го прават кодот <strong>организиран</strong> и <strong>повторно употреблив</strong></li>
+            <li>Реални апликации користат класи за Users, Products, Orders и сл.</li>
         </ul>
-        <div class="code-container hint">
-            <div class="code-header">Hint (Click to reveal)</div>
-            <div class="code-content">
+
+        <div class="practice-exercise">
+            <h3>Обидете се сами!</h3>
+            <p>Креирајте <strong>Pet</strong> класа со следниве карактеристики:</p>
+            <ul>
+                <li>Својства: Name (string), Type (string), Age (int)</li>
+                <li>Метод: MakeSound() кој печати звукот на миленикот</li>
+                <li>if-else за два типа: dog и cat во методот</li>
+                <li>Нека секој миленик ја произведе својата звучност!</li>
+            </ul>
+            <div class="code-container hint">
+                <div class="code-header">Стапка (кликни за прикажување)</div>
+                <div class="code-content">
 <pre>
 public class Pet
 {
     public string Name;
     public string Type;
     public int Age;
-    
+
     public void MakeSound()
     {
         if (Type == "Dog")
@@ -494,15 +477,16 @@ public class Pet
     }
 }
 </pre>
+                </div>
             </div>
+        </div>
+
+        <div class="navigation-buttons">
+            <a href="@Url.Action("Introduction", "OOP")" class="btn btn-outline-primary ajax-link">← Вовед во OOP</a>
+            <a href="@Url.Action("Constructors", "OOP")" class="btn btn-primary ajax-link">Следно: Конструктори →</a>
         </div>
     </div>
 
-    <div class="navigation-buttons">
-        <a href="@Url.Action("Introduction", "OOP")" class="btn btn-outline-primary ajax-link">← Introduction to OOP</a>
-        <a href="@Url.Action("Constructors", "OOP")" class="btn btn-primary ajax-link">Next: Constructors →</a>
-    </div>
-</div>
 
 <style>
     .container {
@@ -604,340 +588,335 @@ public class Pet
     }
 </style>
 
-<script>
-    // Create a namespace for OOP Classes page
-    window.oopClasses = {
-        // Interactive walkthrough for class creation
-        classSteps: [
-            {
-                code: `// 1. Define the blueprint
-public class Book
-{
-    public string Title;
-    public string Author;
-}
+    <script>
+            // Креирање namespace за OOP Classes страната
+            window.oopClasses = {
+                // Интерактивен walkthrough за креирање класи
+                classSteps: [
+                    {
+                        code: `// 1. Дефинирање на планот
+        public class Book
+        {
+            public string Title;
+            public string Author;
+        }
 
-// 2. Create books from blueprint
-// Book book1 = new Book();
-// Book book2 = new Book();`,
-                vars: "Class: Book (Blueprint)\nObjects: None created yet",
-                exp: "First we define the Book class blueprint. It tells us what every book will have: Title and Author."
-            },
-            {
-                code: `// 1. Define the blueprint
-public class Book
-{
-    public string Title;
-    public string Author;
-}
+        // 2. Креирање книги од планот
+        // Book book1 = new Book();
+        // Book book2 = new Book();`,
+                        vars: "Класа: Book (План)\nОбјекти: Сè уште не се креирани",
+                        exp: "Прво ја дефинираме класата Book како план. Таа ни кажува што ќе има секоја книга: Title и Author."
+                    },
+                    {
+                        code: `// 1. Дефинирање на планот
+        public class Book
+        {
+            public string Title;
+            public string Author;
+        }
 
-// 2. Create books from blueprint
-Book book1 = new Book();
-// Book book2 = new Book();`,
-                vars: "Class: Book (Blueprint)\nObjects: book1 (empty book)",
-                exp: "Now we create the first book object using 'new Book()'. Think of it as making the first actual book from our blueprint."
-            },
-            {
-                code: `// 1. Define the blueprint
-public class Book
-{
-    public string Title;
-    public string Author;
-}
+        // 2. Креирање книги од планот
+        Book book1 = new Book();
+        // Book book2 = new Book();`,
+                        vars: "Класа: Book (План)\nОбјекти: book1 (празна книга)",
+                        exp: "Сега го креираме првиот објект книга со 'new Book()'. Замисли го ова како правење на првата вистинска книга од планот."
+                    },
+                    {
+                        code: `// 1. Дефинирање на планот
+        public class Book
+        {
+            public string Title;
+            public string Author;
+        }
 
-// 2. Create books from blueprint
-Book book1 = new Book();
-Book book2 = new Book();`,
-                vars: "Class: Book (Blueprint)\nObjects: book1, book2 (two empty books)",
-                exp: "We create a second book object. Both books are empty right now - they don't have titles or authors yet."
-            },
-            {
-                code: `// 1. Define the blueprint
-public class Book
-{
-    public string Title;
-    public string Author;
-}
+        // 2. Креирање книги од планот
+        Book book1 = new Book();
+        Book book2 = new Book();`,
+                        vars: "Класа: Book (План)\nОбјекти: book1, book2 (две празни книги)",
+                        exp: "Креираме и втор објект книга. Двете книги моментално се празни — немаат наслов и автор."
+                    },
+                    {
+                        code: `// 1. Дефинирање на планот
+        public class Book
+        {
+            public string Title;
+            public string Author;
+        }
 
-// 2. Create books from blueprint
-Book book1 = new Book();
-Book book2 = new Book();
+        // 2. Креирање книги од планот
+        Book book1 = new Book();
+        Book book2 = new Book();
 
-// 3. Give books their properties
-book1.Title = "Harry Potter";
-book1.Author = "J.K. Rowling";`,
-                vars: "Class: Book (Blueprint)\nObjects:\nbook1: Title='Harry Potter', Author='J.K. Rowling'\nbook2: (empty)",
-                exp: "Now we fill the first book with actual information. Each book object gets its own values for Title and Author."
-            },
-            {
-                code: `// 1. Define the blueprint
-public class Book
-{
-    public string Title;
-    public string Author;
-}
+        // 3. Доделување својства на книгите
+        book1.Title = "Harry Potter";
+        book1.Author = "J.K. Rowling";`,
+                        vars: "Класа: Book (План)\nОбјекти:\nbook1: Title='Harry Potter', Author='J.K. Rowling'\nbook2: (празна)",
+                        exp: "Сега ја пополнуваме првата книга со вистински информации. Секој објект книга има свои вредности за Title и Author."
+                    },
+                    {
+                        code: `// 1. Дефинирање на планот
+        public class Book
+        {
+            public string Title;
+            public string Author;
+        }
 
-// 2. Create books from blueprint
-Book book1 = new Book();
-Book book2 = new Book();
+        // 2. Креирање книги од планот
+        Book book1 = new Book();
+        Book book2 = new Book();
 
-// 3. Give books their properties
-book1.Title = "Harry Potter";
-book1.Author = "J.K. Rowling";
-book2.Title = "The Hobbit";
-book2.Author = "J.R.R. Tolkien";`,
-                vars: "Class: Book (Blueprint)\nObjects:\nbook1: Title='Harry Potter', Author='J.K. Rowling'\nbook2: Title='The Hobbit', Author='J.R.R. Tolkien'",
-                exp: "Both books now have their own unique information. From one blueprint (class), we created two different books (objects)!"
-            }
-        ],
-
-        // Code examples for toggles
-        simpleExamples: {
-            example1: `// Step 1: Create the Blueprint (Class)
-public class Student
-{
-    public string Name;
-    public int Age;
-    public string Major;
-    
-    public void Study()
-    {
-        Console.WriteLine(Name + " is studying " + Major);
-    }
-}`,
-            example2: `public class Calculator
-{
-    public int Add(int number1, int number2)
-    {
-        int result = number1 + number2;
-        return result;
-    }
-}`,
-            example3: `public class Product
-{
-    public string Name;
-    public decimal Price;
-    public int Stock;
-}`,
-        },
-
-        completeExamples: {
-            example1: `// Step 1: Create the Blueprint (Class)
-public class Student
-{
-    // Properties - what a student HAS
-    public string Name;
-    public int Age;
-    public string Major;
-    
-    // Method - what a student CAN DO
-    public void Study()
-    {
-        Console.WriteLine(Name + " is studying " + Major);
-    }
-}
-
-// Step 2: Create actual students from the blueprint
-Student student1 = new Student();
-student1.Name = "Alex";
-student1.Age = 20;
-student1.Major = "Computer Science";
-
-Student student2 = new Student();
-student2.Name = "Maria";
-student2.Age = 21;
-student2.Major = "Mathematics";
-
-// Using the students
-student1.Study();  // Output: Alex is studying Computer Science
-student2.Study();  // Output: Maria is studying Mathematics`,
-            example2: `public class Calculator
-{
-    // Method to add two numbers
-    public int Add(int number1, int number2)
-    {
-        int result = number1 + number2;
-        return result;
-    }
-    
-    // Method to multiply two numbers
-    public int Multiply(int number1, int number2)
-    {
-        return number1 * number2;
-    }
-}
-
-// Using the calculator
-Calculator myCalc = new Calculator();
-
-int sum = myCalc.Add(5, 3);        // Result: 8
-int product = myCalc.Multiply(4, 6); // Result: 24
-
-Console.WriteLine("5 + 3 = " + sum);
-Console.WriteLine("4 × 6 = " + product);`,
-            example3: `public class Product
-{
-    // Properties
-    public string Name;
-    public decimal Price;
-    public int Stock;
-    
-    // Method to display product info
-    public void DisplayInfo()
-    {
-        Console.WriteLine("=== Product Info ===");
-        Console.WriteLine("Name: " + Name);
-        Console.WriteLine("Price: $" + Price);
-        Console.WriteLine("In Stock: " + Stock);
-        Console.WriteLine("===================");
-    }
-    
-    // Method to check if product is available
-    public bool IsAvailable()
-    {
-        return Stock > 0;  // true if stock > 0, false otherwise
-    }
-}
-
-// Creating products
-Product laptop = new Product();
-laptop.Name = "Dell XPS 13";
-laptop.Price = 999.99m;
-laptop.Stock = 10;
-
-Product phone = new Product();
-phone.Name = "iPhone 15";
-phone.Price = 799.99m;
-phone.Stock = 0;  // Out of stock!
-
-// Using the products
-laptop.DisplayInfo();
-Console.WriteLine("Available: " + laptop.IsAvailable());
-
-phone.DisplayInfo();
-Console.WriteLine("Available: " + phone.IsAvailable());`,
-        },
-
-        currentStep: 0,
-        currentWalkthrough: null,
-
-        // Function to convert code between simple and complete versions
-        convertCode: function(id) {
-            const toggle = document.getElementById(id + "Toggle");
-            const isComplete = toggle ? toggle.checked : false;
-            const codeBlock = document.getElementById(id + "Code");
-
-            if (codeBlock && toggle) {
-                codeBlock.style.transition = 'opacity 0.3s ease';
-                codeBlock.style.opacity = '0.5';
-                setTimeout(() => {
-                    codeBlock.textContent = isComplete ? this.completeExamples[id] : this.simpleExamples[id];
-                    codeBlock.style.opacity = '1';
-                    
-                    const resultBox = document.getElementById(id + "Result");
-                    if (resultBox) {
-                        if (id === 'example1') {
-                            resultBox.innerHTML = isComplete ? 
-                                '➡ <strong>Full Output:</strong><br>Alex is studying Computer Science<br>Maria is studying Mathematics<br><em>Two students, one blueprint!</em>' :
-                                '➡ <strong>What happened:</strong><br>1. We created a <strong>Student blueprint</strong> (class)<br>2. We made <strong>two actual students</strong> (objects) from that blueprint<br>3. Each student has their own Name, Age, and Major<br><em>Think:</em> One recipe (class) → Many cakes (objects)!';
-                        }
+        // 3. Доделување својства на книгите
+        book1.Title = "Harry Potter";
+        book1.Author = "J.K. Rowling";
+        book2.Title = "The Hobbit";
+        book2.Author = "J.R.R. Tolkien";`,
+                        vars: "Класа: Book (План)\nОбјекти:\nbook1: Title='Harry Potter', Author='J.K. Rowling'\nbook2: Title='The Hobbit', Author='J.R.R. Tolkien'",
+                        exp: "Двете книги сега имаат свои уникатни информации. Од еден план (класа), создадовме две различни книги (објекти)!"
                     }
-                }, 300);
+                ],
+
+                // Code examples за toggle копчиња
+                simpleExamples: {
+                    example1: `// Чекор 1: Креирајте го планот (класа)
+        public class Student
+        {
+            public string Name;
+            public int Age;
+            public string Major;
+
+            public void Study()
+            {
+                Console.WriteLine(Name + " учи " + Major);
             }
-        },
-
-        // Function to update walkthrough display
-        updateWalkthrough: function(step) {
-            const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
-            const walkthroughVariables = document.getElementById('walkthroughVariables');
-            const walkthroughExplanation = document.getElementById('walkthroughExplanation');
-            const nextStepBtn = document.getElementById('nextStepBtn');
-
-            if (!walkthroughCodeBase || !walkthroughVariables || !walkthroughExplanation) return;
-
-            const data = this.classSteps[step];
-            
-            walkthroughCodeBase.textContent = data.code;
-            walkthroughVariables.textContent = data.vars;
-            walkthroughExplanation.innerHTML = `<em>Step ${step + 1}:</em> ${data.exp}`;
-            
-            if (step === this.classSteps.length - 1 && nextStepBtn) {
-                walkthroughExplanation.innerHTML += '<br><strong>✅ Complete! We created 2 book objects from 1 class blueprint.</strong>';
-                nextStepBtn.disabled = true;
+        }`,
+                    example2: `public class Calculator
+        {
+            public int Add(int number1, int number2)
+            {
+                int result = number1 + number2;
+                return result;
             }
-        },
+        }`,
+                    example3: `public class Product
+        {
+            public string Name;
+            public decimal Price;
+            public int Stock;
+        }`,
+                },
 
-        nextStep: function() {
-            if (this.currentStep < this.classSteps.length) {
-                this.updateWalkthrough(this.currentStep);
-                this.currentStep++;
-            }
-        },
+                completeExamples: {
+                    example1: `// Чекор 1: Креирајте го планот (класа)
+        public class Student
+        {
+            // Својства – што студентот ИМА
+            public string Name;
+            public int Age;
+            public string Major;
 
-        initWalkthrough: function() {
-            const nextStepBtn = document.getElementById('nextStepBtn');
-            if (nextStepBtn) {
-                this.currentStep = 0;
-
-                const newButton = nextStepBtn.cloneNode(true);
-                nextStepBtn.parentNode.replaceChild(newButton, nextStepBtn);
-
-                newButton.addEventListener('click', () => this.nextStep());
-                newButton.disabled = false;
-
-                this.updateWalkthrough(0);
-                this.currentStep = 1;
-            }
-        },
-
-        initCodeExamples: function() {
-            const toggles = document.querySelectorAll('.form-check-input[type="checkbox"]');
-            toggles.forEach(toggle => {
-                const id = toggle.id.replace('Toggle', '');
-                if (id && this.simpleExamples[id]) {
-                    this.convertCode(id);
-                    toggle.addEventListener('change', () => this.convertCode(id));
-                }
-            });
-        },
-
-        initHint: function() {
-            const hintContainer = document.querySelector('.hint');
-            if (hintContainer) {
-                hintContainer.addEventListener('mouseenter', function() {
-                    const content = this.querySelector('.code-content');
-                    if (content) {
-                        content.style.display = 'block';
-                    }
-                });
-                
-                hintContainer.addEventListener('mouseleave', function() {
-                    const content = this.querySelector('.code-content');
-                    if (content) {
-                        content.style.display = 'none';
-                    }
-                });
-            }
-        },
-
-        init: function() {
-            console.log('Initializing OOP Classes page');
-            this.initCodeExamples();
-            this.initWalkthrough();
-            this.initHint();
-            
-            if (typeof hljs !== 'undefined') {
-                hljs.highlightAll();
+            // Метод – што студентот МОЖЕ да прави
+            public void Study()
+            {
+                Console.WriteLine(Name + " учи " + Major);
             }
         }
-    };
 
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-            window.oopClasses.init();
-        });
-    } else {
-        window.oopClasses.init();
-    }
-</script>
+        // Чекор 2: Креирајте вистински студенти од планот
+        Student student1 = new Student();
+        student1.Name = "Alex";
+        student1.Age = 20;
+        student1.Major = "Computer Science";
+
+        Student student2 = new Student();
+        student2.Name = "Maria";
+        student2.Age = 21;
+        student2.Major = "Mathematics";
+
+        // Користење на студентите
+        student1.Study();  // Излез: Alex учи Computer Science
+        student2.Study();  // Излез: Maria учи Mathematics`,
+                    example2: `public class Calculator
+        {
+            // Метод за собирање на два броја
+            public int Add(int number1, int number2)
+            {
+                int result = number1 + number2;
+                return result;
+            }
+
+            // Метод за множење на два броја
+            public int Multiply(int number1, int number2)
+            {
+                return number1 * number2;
+            }
+        }
+
+        // Користење на калкулаторот
+        Calculator myCalc = new Calculator();
+
+        int sum = myCalc.Add(5, 3);          // Резултат: 8
+        int product = myCalc.Multiply(4, 6); // Резултат: 24
+
+        Console.WriteLine("5 + 3 = " + sum);
+        Console.WriteLine("4 × 6 = " + product);`,
+                    example3: `public class Product
+        {
+            // Својства
+            public string Name;
+            public decimal Price;
+            public int Stock;
+
+            // Метод за прикажување информации за производот
+            public void DisplayInfo()
+            {
+                Console.WriteLine("=== Информации за производ ===");
+                Console.WriteLine("Име: " + Name);
+                Console.WriteLine("Цена: $" + Price);
+                Console.WriteLine("На залиха: " + Stock);
+                Console.WriteLine("==============================");
+            }
+
+            // Метод за проверка дали производот е достапен
+            public bool IsAvailable()
+            {
+                return Stock > 0;  // точно ако има залиха
+            }
+        }
+
+        // Креирање производи
+        Product laptop = new Product();
+        laptop.Name = "Dell XPS 13";
+        laptop.Price = 999.99m;
+        laptop.Stock = 10;
+
+        Product phone = new Product();
+        phone.Name = "iPhone 15";
+        phone.Price = 799.99m;
+        phone.Stock = 0;  // Нема на залиха!
+
+        // Користење на производите
+        laptop.DisplayInfo();
+        Console.WriteLine("Достапно: " + laptop.IsAvailable());
+
+        phone.DisplayInfo();
+        Console.WriteLine("Достапно: " + phone.IsAvailable());`,
+                },
+
+                currentStep: 0,
+                currentWalkthrough: null,
+
+                // Функција за менување помеѓу simple и complete код
+                convertCode: function(id) {
+                    const toggle = document.getElementById(id + "Toggle");
+                    const isComplete = toggle ? toggle.checked : false;
+                    const codeBlock = document.getElementById(id + "Code");
+
+                    if (codeBlock && toggle) {
+                        codeBlock.style.transition = 'opacity 0.3s ease';
+                        codeBlock.style.opacity = '0.5';
+                        setTimeout(() => {
+                            codeBlock.textContent = isComplete ? this.completeExamples[id] : this.simpleExamples[id];
+                            codeBlock.style.opacity = '1';
+
+                            const resultBox = document.getElementById(id + "Result");
+                            if (resultBox && id === 'example1') {
+                                resultBox.innerHTML = isComplete ?
+                                    ' <strong>Целосен излез:</strong><br>Alex учи Computer Science<br>Maria учи Mathematics<br><em>Два студенти, еден план!</em>' :
+                                    ' <strong>Што се случи:</strong><br>1. Креиравме <strong>Student класа</strong><br>2. Направивме <strong>два објекти</strong> од неа<br>3. Секој има свои вредности<br><em>Еден рецепт → повеќе колачи!</em>';
+                            }
+                        }, 300);
+                    }
+                },
+
+                // Функција за ажурирање на walkthrough приказот
+                updateWalkthrough: function(step) {
+                    const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
+                    const walkthroughVariables = document.getElementById('walkthroughVariables');
+                    const walkthroughExplanation = document.getElementById('walkthroughExplanation');
+                    const nextStepBtn = document.getElementById('nextStepBtn');
+
+                    if (!walkthroughCodeBase || !walkthroughVariables || !walkthroughExplanation) return;
+
+                    const data = this.classSteps[step];
+
+                    walkthroughCodeBase.textContent = data.code;
+                    walkthroughVariables.textContent = data.vars;
+                    walkthroughExplanation.innerHTML = `<em>Чекор ${step + 1}:</em> ${data.exp}`;
+
+                    if (step === this.classSteps.length - 1 && nextStepBtn) {
+                        walkthroughExplanation.innerHTML += '<br><strong> Завршено! Креиравме 2 објекти од 1 класа.</strong>';
+                        nextStepBtn.disabled = true;
+                    }
+                },
+
+                nextStep: function() {
+                    if (this.currentStep < this.classSteps.length) {
+                        this.updateWalkthrough(this.currentStep);
+                        this.currentStep++;
+                    }
+                },
+
+                initWalkthrough: function() {
+                    const nextStepBtn = document.getElementById('nextStepBtn');
+                    if (nextStepBtn) {
+                        this.currentStep = 0;
+
+                        const newButton = nextStepBtn.cloneNode(true);
+                        nextStepBtn.parentNode.replaceChild(newButton, nextStepBtn);
+
+                        newButton.addEventListener('click', () => this.nextStep());
+                        newButton.disabled = false;
+
+                        this.updateWalkthrough(0);
+                        this.currentStep = 1;
+                    }
+                },
+
+                initCodeExamples: function() {
+                    const toggles = document.querySelectorAll('.form-check-input[type="checkbox"]');
+                    toggles.forEach(toggle => {
+                        const id = toggle.id.replace('Toggle', '');
+                        if (id && this.simpleExamples[id]) {
+                            this.convertCode(id);
+                            toggle.addEventListener('change', () => this.convertCode(id));
+                        }
+                    });
+                },
+
+                initHint: function() {
+                    const hintContainer = document.querySelector('.hint');
+                    if (hintContainer) {
+                        hintContainer.addEventListener('mouseenter', function() {
+                            const content = this.querySelector('.code-content');
+                            if (content) content.style.display = 'block';
+                        });
+
+                        hintContainer.addEventListener('mouseleave', function() {
+                            const content = this.querySelector('.code-content');
+                            if (content) content.style.display = 'none';
+                        });
+                    }
+                },
+
+                init: function() {
+                    console.log('Иницијализација на OOP Classes страната');
+                    this.initCodeExamples();
+                    this.initWalkthrough();
+                    this.initHint();
+
+                    if (typeof hljs !== 'undefined') {
+                        hljs.highlightAll();
+                    }
+                }
+            };
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => {
+                    window.oopClasses.init();
+                });
+            } else {
+                window.oopClasses.init();
+            }
+    </script>
+
 </body>

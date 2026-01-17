@@ -4,52 +4,52 @@
 
 <body data-topic="ifelse">
     <div class="container">
-        <h1 class="mb-4">🔀 If - Else: Making Decisions in Code</h1>
+        <h1 class="mb-4">If - Else: Донесување одлуки во код</h1>
 
-        <p><strong>If-Else statements</strong> are the decision-makers of programming. They allow your program to <strong>choose different paths</strong> based on conditions, just like you make decisions in daily life.</p>
+        <p><strong>If-Else изразите</strong> се носители на одлуки во програмирањето. Тие му овозможуваат на програмот да <strong>избере различни патеки</strong> врз основа на услови, исто како што носиш одлуки во секојдневниот живот.</p>
 
-        <p>You already use this logic every day:</p>
+        <p>Оваа логика ја користиш секој ден:</p>
         <ul>
-            <li>If it's raining → take an umbrella</li>
-            <li>If you're hungry → eat something</li>
-            <li>If the traffic light is red → stop</li>
-            <li>If it's your birthday → celebrate!</li>
+            <li>Ако врне → земи чадор</li>
+            <li>Ако си гладен → јади нешто</li>
+            <li>Ако семафорот е црвен → застани</li>
+            <li>Ако ти е роденден → слави</li>
         </ul>
 
-        <h2>📘 The Basic Structure</h2>
-        <p>An <strong>if statement</strong> checks a condition inside parentheses <code>()</code>. If the condition is true, the code inside the curly braces <code>{}</code> runs.</p>
+        <h2>Основна структура</h2>
+        <p><strong>If израз</strong> проверува услов во загради <code>()</code>. Ако условот е точен, кодот во виткастите загради <code>{}</code> се извршува.</p>
 
         <div class="code-container">
-            <div class="code-header">If Statement Syntax</div>
+            <div class="code-header">Синтакса на If израз</div>
             <div class="code-content">
 <pre>
 if (condition) {
-    // Code that runs ONLY if condition is true
+    // Код што се извршува САМО ако условот е точен
 }
 </pre>
             </div>
         </div>
 
         <div class="code-container">
-            <div class="code-header">If-Else Statement Syntax</div>
+            <div class="code-header">Синтакса на If-Else израз</div>
             <div class="code-content">
 <pre>
 if (condition) {
-    // Code that runs if condition is TRUE
+    // Код што се извршува ако условот е TRUE
 } else {
-    // Code that runs if condition is FALSE
+    // Код што се извршува ако условот е FALSE
 }
 </pre>
             </div>
         </div>
 
-        <h2>🎯 Example 1: Basic Age Check</h2>
-        <p>Checking if someone is old enough to vote:</p>
-        
+        <h2>Пример 1: Основна проверка на возраст</h2>
+        <p>Проверка дали некој е доволно стар за гласање:</p>
+
         <div class="code-container">
             <div class="form-check form-switch mb-2">
                 <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="convertCode('example1')">
-                <label class="form-check-label" for="example1Toggle">Convert to C#</label>
+                <label class="form-check-label" for="example1Toggle">Претвори во C#</label>
             </div>
             <div class="code-content">
 <pre class="codeBlock" id="example1Code">
@@ -63,18 +63,18 @@ if (age >= 18) {
 </pre>
             </div>
             <div class="result-box" id="example1Result">
-                ➡ <strong>Result:</strong> You can vote!<br>
-                <em>Explanation:</em> The condition <code>age >= 18</code> is true (20 ≥ 18), so the code inside the <strong>if</strong> block runs.
+                <strong>Резултат:</strong> You can vote!<br>
+                <em>Објаснување:</em> Условот <code>age >= 18</code> е точен (20 ≥ 18), па кодот во <strong>if</strong> блокот се извршува.
             </div>
         </div>
 
-        <h2>🎯 Example 2: Simple If (No Else)</h2>
-        <p>Sometimes you only want to do something when a condition is true, and do nothing when it's false.</p>
-        
+        <h2>Пример 2: Едноставен If (без Else)</h2>
+        <p>Понекогаш сакаш нешто да се изврши само кога условот е точен, а ништо да не се случи кога е неточен.</p>
+
         <div class="code-container">
             <div class="form-check form-switch mb-2">
                 <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="convertCode('example2')">
-                <label class="form-check-label" for="example2Toggle">Convert to C#</label>
+                <label class="form-check-label" for="example2Toggle">Претвори во C#</label>
             </div>
             <div class="code-content">
 <pre class="codeBlock" id="example2Code">
@@ -85,217 +85,54 @@ if (score >= passingScore) {
     cout << "Congratulations! You passed!" << endl;
 }
 
-// This code runs regardless of the if statement
+// Овој код се извршува без разлика на if изразот
 cout << "Your score: " << score << endl;
 </pre>
             </div>
             <div class="result-box" id="example2Result">
-                ➡ <strong>Result:</strong><br>Congratulations! You passed!<br>Your score: 85<br>
-                <em>Explanation:</em> Since 85 ≥ 60, the congratulatory message prints. The second line always prints because it's outside the if block.
+                <strong>Резултат:</strong><br>Congratulations! You passed!<br>Your score: 85<br>
+                <em>Објаснување:</em> Бидејќи 85 ≥ 60, се печати пораката за честитка. Втората линија секогаш се печати бидејќи е надвор од if блокот.
             </div>
         </div>
 
-        <h2>🧠 Interactive Walkthrough: Following the Decision</h2>
-        <p>Watch how the program makes a decision step-by-step:</p>
+        <h2>Интерактивен водич: Следење на одлуката</h2>
+        <p>Погледни како програмата носи одлука чекор по чекор:</p>
 
+        <h2>Пример 3: Повеќе услови (Else If)</h2>
+        <p>Кога имаш повеќе од два можни исходи, користи <strong>else if</strong> за да провериш дополнителни услови.</p>
+
+        <h2>Пример 4: Проверка на температура</h2>
+        <p>Практичен пример со температурни опсези:</p>
+
+        <h2>Пример 5: Споредување стрингови</h2>
+        <p>Можеш да споредуваш и текст (стрингови) во услови:</p>
+
+        <h2>Пример 6: Комплексни услови</h2>
+        <p>Користење на логички оператори (<code>&&</code> за AND, <code>||</code> за OR) за креирање покомплексни услови:</p>
+
+        <h2>Визуелен дијаграм: Тек на одлуки</h2>
+
+        <h2>Чести грешки што треба да се избегнат</h2>
         <div class="code-container">
-            <div class="code-header">Active Code (C++)</div>
-            <div class="code-content">
-<pre id="walkthroughCodeBase">
-int temperature = 25;
-// if (temperature > 20) {
-//     cout << "Nice weather!" << endl;
-// } else {
-//     cout << "It's cold!" << endl;
-// }
-</pre>
-            </div>
-        </div>
-
-        <div class="code-container">
-            <div class="code-header">Variable State</div>
-            <div class="code-content">
-<pre id="walkthroughVariables">temperature = 25</pre>
-            </div>
-            <div class="result-box" id="walkthroughExplanation">
-                <em>Click <strong>Next</strong> to begin the trace:</em>
-            </div>
-            <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
-        </div>
-
-        <h2>🎯 Example 3: Multiple Conditions (Else If)</h2>
-        <p>When you have more than two possible outcomes, use <strong>else if</strong> to check additional conditions.</p>
-        
-        <div class="code-container">
-            <div class="form-check form-switch mb-2">
-                <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="convertCode('example3')">
-                <label class="form-check-label" for="example3Toggle">Convert to C#</label>
-            </div>
-            <div class="code-content">
-<pre class="codeBlock" id="example3Code">
-int grade = 85;
-
-if (grade >= 90) {
-    cout << "Grade: A - Excellent!" << endl;
-}
-else if (grade >= 80) {
-    cout << "Grade: B - Very Good!" << endl;
-}
-else if (grade >= 70) {
-    cout << "Grade: C - Good!" << endl;
-}
-else if (grade >= 60) {
-    cout << "Grade: D - Pass" << endl;
-}
-else {
-    cout << "Grade: F - Try again!" << endl;
-}
-</pre>
-            </div>
-            <div class="result-box" id="example3Result">
-                ➡ <strong>Result:</strong> Grade: B - Very Good!<br>
-                <em>Explanation:</em> The program checks conditions from top to bottom. Since 85 ≥ 80 but < 90, it executes the second <strong>else if</strong> block and stops checking other conditions.
-            </div>
-        </div>
-
-        <h2>Example 4: Temperature Check</h2>
-        <p>A practical example using temperature ranges:</p>
-        
-        <div class="code-container">
-            <div class="form-check form-switch mb-2">
-                <input class="form-check-input" type="checkbox" id="example4Toggle" onchange="convertCode('example4')">
-                <label class="form-check-label" for="example4Toggle">Convert to C#</label>
-            </div>
-            <div class="code-content">
-<pre class="codeBlock" id="example4Code">
-int temperature = 30;
-
-if (temperature > 35) {
-    cout << "It's very hot! Stay hydrated." << endl;
-}
-else if (temperature > 25) {
-    cout << "Nice and warm. Perfect weather!" << endl;
-}
-else if (temperature > 15) {
-    cout << "Pleasant weather. Enjoy!" << endl;
-}
-else if (temperature > 0) {
-    cout << "It's cold. Wear a jacket." << endl;
-}
-else {
-    cout << "Freezing! Stay warm." << endl;
-}
-</pre>
-            </div>
-            <div class="result-box" id="example4Result">
-                ➡ <strong>Result:</strong> Nice and warm. Perfect weather!<br>
-                <em>Explanation:</em> Temperature is 30°C. Since 30 > 25 but ≤ 35, the second <strong>else if</strong> block executes.
-            </div>
-        </div>
-
-        <h2>🎯 Example 5: String Comparisons</h2>
-        <p>You can also compare text (strings) in conditions:</p>
-        
-        <div class="code-container">
-            <div class="form-check form-switch mb-2">
-                <input class="form-check-input" type="checkbox" id="example5Toggle" onchange="convertCode('example5')">
-                <label class="form-check-label" for="example5Toggle">Convert to C#</label>
-            </div>
-            <div class="code-content">
-<pre class="codeBlock" id="example5Code">
-string day = "Saturday";
-
-if (day == "Saturday" || day == "Sunday") {
-    cout << "It's the weekend! Time to relax." << endl;
-} else if (day == "Friday") {
-    cout << "TGIF! Almost weekend." << endl;
-} else {
-    cout << "It's a weekday. Time to work!" << endl;
-}
-</pre>
-            </div>
-            <div class="result-box" id="example5Result">
-                ➡ <strong>Result:</strong> It's the weekend! Time to relax.<br>
-                <em>Explanation:</em> The <code>||</code> means "OR". The condition is true if day equals "Saturday" OR "Sunday". Since day is "Saturday", the first block runs.
-            </div>
-        </div>
-
-        <h2>🎯 Example 6: Complex Conditions</h2>
-        <p>Using logical operators (<code>&&</code> for AND, <code>||</code> for OR) to create more complex conditions:</p>
-        
-        <div class="code-container">
-            <div class="form-check form-switch mb-2">
-                <input class="form-check-input" type="checkbox" id="example6Toggle" onchange="convertCode('example6')">
-                <label class="form-check-label" for="example6Toggle">Convert to C#</label>
-            </div>
-            <div class="code-content">
-<pre class="codeBlock" id="example6Code">
-int age = 16;
-bool hasPermission = true;
-
-// Check multiple conditions with &&
-if (age >= 18) {
-    cout << "You can watch any movie." << endl;
-}
-else if (age >= 13 && hasPermission) {
-    cout << "You can watch PG-13 movies with permission." << endl;
-}
-else if (age >= 13) {
-    cout << "You need permission for PG-13 movies." << endl;
-}
-else {
-    cout << "You can only watch PG movies." << endl;
-}
-</pre>
-            </div>
-            <div class="result-box" id="example6Result">
-                ➡ <strong>Result:</strong> You can watch PG-13 movies with permission.<br>
-                <em>Explanation:</em> <code>&&</code> means "AND". The condition <code>age >= 13 && hasPermission</code> is true because both parts are true (16 ≥ 13 AND hasPermission is true).
-            </div>
-        </div>
-
-        <h2>🧠 Visual Diagram: Decision Flow</h2>
-        
-        <div class="code-container">
-            <div class="code-header">If-Else-If Decision Tree</div>
+            <div class="code-header">Примери со грешки</div>
             <div class="code-content">
 <pre>
-         [Check First Condition]
-                |
-          True / \ False
-          |         |
-   [Execute If Block]  [Check Else If Condition]
-                           |
-                    True / \ False
-                    |         |
-           [Execute Else If]  [Check Next Else If...]
-                                     |
-                              ... → [Execute Else Block]
-</pre>
-            </div>
-        </div>
-
-        <h2>⚠️ Common Mistakes to Avoid</h2>
-        <div class="code-container">
-            <div class="code-header">Error Examples</div>
-            <div class="code-content">
-<pre>
-// ❌ WRONG: Using = instead of == for comparison
-if (age = 18) {  // This ASSIGNS 18 to age, doesn't compare!
+// <span style="color: red;">ПОГРЕШНО: Користење = наместо == за споредување </span>
+if (age = 18) {  // ОВА ДОДЕЛУВА 18 на age, не споредува!
     cout << "You're 18";
 }
 
-// ✅ CORRECT: Use == for comparison
+// <span style="color: lightgreen;">ТОЧНО: Користи == за споредување </span> 
 if (age == 18) {
     cout << "You're 18";
 }
 
-// ❌ WRONG: Missing braces for multiple statements
+// <span style="color: red;">ПОГРЕШНО: Недостасуваат загради за повеќе наредби </span>
 if (score > 50)
     cout << "Good job!";
-    cout << "Keep it up!";  // This ALWAYS runs!
+    cout << "Keep it up!";  // ОВА СЕКОГАШ се извршува!
 
-// ✅ CORRECT: Use braces for multiple statements
+// <span style="color: lightgreen;">ТОЧНО: Користи загради за повеќе наредби</span>
 if (score > 50) {
     cout << "Good job!";
     cout << "Keep it up!";
@@ -304,15 +141,15 @@ if (score > 50) {
             </div>
         </div>
 
-        <h2>🎉 Summary</h2>
+        <h2>Резиме</h2>
         <ul>
-            <li><strong>If statements</strong> run code only when a condition is true</li>
-            <li><strong>Else statements</strong> provide an alternative when the condition is false</li>
-            <li><strong>Else if statements</strong> allow multiple conditions to be checked in order</li>
-            <li>Use <strong>comparison operators</strong>: <code>==</code> (equal), <code>!=</code> (not equal), <code>></code>, <code><</code>, <code>>=</code>, <code><=</code></li>
-            <li>Use <strong>logical operators</strong>: <code>&&</code> (AND), <code>||</code> (OR) for complex conditions</li>
-            <li>Always use <strong>braces <code>{}</code></strong> for code blocks, especially with multiple statements</li>
-            <li>Conditions are checked <strong>from top to bottom</strong> - the first true condition wins</li>
+            <li><strong>If изразите</strong> извршуваат код само кога условот е точен</li>
+            <li><strong>Else изразите</strong> нудат алтернатива кога условот е неточен</li>
+            <li><strong>Else if изразите</strong> овозможуваат проверка на повеќе услови по ред</li>
+            <li>Користи <strong>оператори за споредба</strong>: <code>==</code>, <code>!=</code>, <code>></code>, <code><</code>, <code>>=</code>, <code><=</code></li>
+            <li>Користи <strong>логички оператори</strong>: <code>&&</code> (AND), <code>||</code> (OR) за сложени услови</li>
+            <li>Секогаш користи <strong>загради <code>{}</code></strong>, особено кога има повеќе наредби</li>
+            <li>Условите се проверуваат <strong>од горе надолу</strong> – првиот точен услов победува</li>
         </ul>
 
         <div class="navigation-buttons">
@@ -320,6 +157,7 @@ if (score > 50) {
             <a href="@Url.Action("ForLoops", "SP")" class="btn btn-primary ajax-link">For Loops →</a>
         </div>
     </div>
+
 
     <style>
         .container {

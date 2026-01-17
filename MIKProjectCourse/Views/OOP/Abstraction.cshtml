@@ -1,131 +1,130 @@
 ﻿@{
-    ViewData["Title"] = "OOP - Abstraction";
+    ViewData["Title"] = "OOP - Апстракција";
 }
 
 <body data-topic="abstraction">
-<div class="container">
-    <h1 class="mb-4">🎭 Abstraction: Hiding Complexity, Showing Simplicity</h1>
+    <div class="container">
+        <h1 class="mb-4">Апстракција: Скривање на комплексност, прикажување на едноставност</h1>
 
-    <p><strong>Abstraction</strong> is like using a <strong>TV remote</strong> - you press buttons to change channels or adjust volume without knowing about the circuits inside. In programming, abstraction hides complex details and shows only what's necessary.</p>
+        <p><strong>Апстракција</strong> е како користење на <strong>TV далечински управувач</strong> - притискате копчиња за да менувате канали или да ја регулирате јачината на звукот без да знаете за електронските кола внатре. Во програмирањето, апстракцијата ја крие комплексноста и покажува само она што е потребно.</p>
 
-    <p>You use abstraction in real life every day:</p>
-    <ul>
-        <li>A <strong>car's dashboard</strong> - shows speed, fuel level, but hides engine complexity</li>
-        <li>A <strong>smartphone</strong> - you tap apps, but don't see the millions of lines of code</li>
-        <li>An <strong>ATM machine</strong> - you get cash without knowing banking software details</li>
-        <li>A <strong>microwave</strong> - you set time, but don't see radiation generation</li>
-    </ul>
+        <p>Апстракција користите во секојдневниот живот:</p>
+        <ul>
+            <li><strong>Контрола на автомобилот</strong> - покажува брзина, ниво на гориво, но ја крие комплексноста на моторот</li>
+            <li><strong>Смартфон</strong> - тапкате на апликации, но не гледате милиони линии код</li>
+            <li><strong>ATM машина</strong> - добивате пари без да знаете детали за банкарскиот софтвер</li>
+            <li><strong>Микробранова</strong> - поставувате време, но не гледате како се генерира зрачење</li>
+        </ul>
 
-    <h2>📘 What is Abstraction?</h2>
-    <p>Abstraction has TWO main tools in C#:</p>
-    
-    <div class="code-container">
-        <div class="code-header">Two Tools for Abstraction</div>
-        <div class="code-content">
+        <h2>Што е Апстракција?</h2>
+        <p>Апстракцијата има ДВА главни алатки во C#:</p>
+
+        <div class="code-container">
+            <div class="code-header">Две алатки за апстракција</div>
+            <div class="code-content">
 <pre>
-TOOL 1: ABSTRACT CLASSES
+АЛАТКА 1: АБСТРАКТНИ КЛАСИ
 ────────────────────────
-• CAN have SOME implementation (some methods have code)
-• CAN have abstract methods (no code, must be implemented)
-• Example: Vehicle class with some common code + abstract Drive()
+• МОЖЕ да има делумна имплементација (некои методи имаат код)
+• МОЖЕ да има апстрактни методи (нема код, мора да се имплементира)
+• Пример: Класа Vehicle со делумен код + апстрактен Drive()
 
-TOOL 2: INTERFACES
+АЛАТКА 2: ИНТЕРФЕЈСИ
 ────────────────────────
-• CANNOT have implementation (just method signatures)
-• Pure contract, no code
-• Example: IDrivable with Drive(), Stop() signatures
+• НЕ МОЖЕ да има имплементација (само сигнатури на методи)
+• Чист договор, без код
+• Пример: IDrivable со сигнатури Drive(), Stop()
 
-BOTH:
-• Cannot create objects directly (can't do: new AbstractClass())
-• Force child classes to implement certain methods
-• Hide complexity behind simple interfaces
+И ДВЕТО:
+• Не може да се создадат објекти директно (не може: new AbstractClass())
+• Се принудуваат наследниците да имплементираат одредени методи
+• Се крие комплексноста зад едноставни интерфејси
 
-Think of it as:
-Abstract Class = Recipe with some steps filled in
-Interface = List of ingredients needed
+Смислете го вака:
+Апстрактна класа = Рецепт со делумно пополнети чекори
+Интерфејс = Листа на потребни состојки
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2>1. Abstract Classes (Partial Abstraction)</h2>
-    <p>Abstract classes can have BOTH implemented and abstract methods:</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="oopAbstraction.convertCode('example1')">
-            <label class="form-check-label" for="example1Toggle">Show Complete Shape System</label>
-        </div>
-        <div class="code-content">
+        <h2>1. Апстрактни класи (Делумна апстракција)</h2>
+        <p>Апстрактните класи можат да имаат ИМПЛЕМЕНТИРАНИ и АПСТРАКТНИ методи:</p>
+
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="oopAbstraction.convertCode('example1')">
+                <label class="form-check-label" for="example1Toggle">Прикажи цел систем на облици</label>
+            </div>
+            <div class="code-content">
 <pre class="codeBlock" id="example1Code">
-// Abstract class: Defines what shapes ARE, some HOW
+// Апстрактна класа: Дефинира што се облиците, делумно како
 public abstract class Shape
 {
-    // Abstract method - MUST be implemented by children
+    // Апстрактен метод - МОРАТ да го имплементираат наследниците
     public abstract double CalculateArea();
-    
-    // Abstract method - MUST be implemented
+
+    // Апстрактен метод - МОРАТ да го имплементираат
     public abstract double CalculatePerimeter();
-    
-    // Concrete method - ALREADY implemented here
+
+    // Конкретен метод - веќе имплементиран
     public void DisplayInfo()
     {
-        Console.WriteLine("Shape Type: " + GetType().Name);
-        Console.WriteLine("Area: " + CalculateArea());
-        Console.WriteLine("Perimeter: " + CalculatePerimeter());
+        Console.WriteLine("Тип на облик: " + GetType().Name);
+        Console.WriteLine("Плоштина: " + CalculateArea());
+        Console.WriteLine("Периметар: " + CalculatePerimeter());
         Console.WriteLine("---");
     }
-    
-    // Another concrete method
+
+    // Друг конкретен метод
     public virtual string GetDescription()
     {
-        return "This is a geometric shape.";
+        return "Ова е геометриски облик.";
     }
 }
 
-// Concrete class: Circle implements Shape
+// Конкретна класа: Circle ја имплементира Shape
 public class Circle : Shape
 {
     public double Radius;
-    
-    // MUST implement abstract methods
+
+    // МОРАТ да имплементираат апстрактни методи
     public override double CalculateArea()
     {
         return Math.PI * Radius * Radius;
     }
-    
+
     public override double CalculatePerimeter()
     {
         return 2 * Math.PI * Radius;
     }
-    
-    // CAN override virtual method (optional)
+
+    // МОЖЕ да ја надополните виртуелната метода (опционално)
     public override string GetDescription()
     {
-        return "A circle with radius " + Radius;
+        return "Круг со радиус " + Radius;
     }
 }
 
-// Concrete class: Rectangle implements Shape
+// Конкретна класа: Rectangle ја имплементира Shape
 public class Rectangle : Shape
 {
     public double Width;
     public double Height;
-    
-    // MUST implement abstract methods
+
     public override double CalculateArea()
     {
         return Width * Height;
     }
-    
+
     public override double CalculatePerimeter()
     {
         return 2 * (Width + Height);
     }
-    
-    // Uses default GetDescription() from Shape
+
+    // Го користи стандардниот GetDescription() од Shape
 }
 
-// Concrete class: Triangle implements Shape
+// Конкретна класа: Triangle ја имплементира Shape
 public class Triangle : Shape
 {
     public double Base;
@@ -133,158 +132,145 @@ public class Triangle : Shape
     public double SideA;
     public double SideB;
     public double SideC;
-    
+
     public override double CalculateArea()
     {
         return 0.5 * Base * Height;
     }
-    
+
     public override double CalculatePerimeter()
     {
         return SideA + SideB + SideC;
     }
-    
+
     public override string GetDescription()
     {
-        return "A triangle with base " + Base + " and height " + Height;
+        return "Триаголник со основа " + Base + " и висина " + Height;
     }
 }
 
-// Using the abstraction
-Console.WriteLine("=== Shape Calculations ===");
+// Користење на апстракцијата
+Console.WriteLine("=== Пресметки на облици ===");
 
-// Can't create Shape directly: ❌ Shape s = new Shape();
-// But can store children in Shape variables
+// Не може да се создаде Shape директно
+// Но може да се чуваат објекти на деца во Shape променливи
 
 Shape circle = new Circle() { Radius = 5 };
 Shape rectangle = new Rectangle() { Width = 4, Height = 6 };
 Shape triangle = new Triangle() { Base = 3, Height = 4, SideA = 3, SideB = 4, SideC = 5 };
 
-// Same method calls, different implementations
-circle.DisplayInfo();      // Uses Circle's CalculateArea/Perimeter
-rectangle.DisplayInfo();   // Uses Rectangle's CalculateArea/Perimeter  
-triangle.DisplayInfo();    // Uses Triangle's CalculateArea/Perimeter
+// Исти повици на методи, различни имплементации
+circle.DisplayInfo();      
+rectangle.DisplayInfo();   
+triangle.DisplayInfo();    
 
-// All shapes have GetDescription() from Shape class
-Console.WriteLine("Descriptions:");
+// Сите облици имаат GetDescription() од Shape класа
+Console.WriteLine("Описи:");
 Console.WriteLine(circle.GetDescription());
-Console.WriteLine(rectangle.GetDescription());  // Uses Shape's version
+Console.WriteLine(rectangle.GetDescription());  
 Console.WriteLine(triangle.GetDescription());
 </pre>
+            </div>
+            <div class="result-box" id="example1Result">
+                <strong>Излез:</strong><br>
+                === Пресметки на облици ===<br>
+                Тип на облик: Circle<br>
+                Плоштина: 78.53981633974483<br>
+                Периметар: 31.41592653589793<br>
+                ---<br>
+                Тип на облик: Rectangle<br>
+                Плоштина: 24<br>
+                Периметар: 20<br>
+                ---<br>
+                Тип на облик: Triangle<br>
+                Плоштина: 6<br>
+                Периметар: 12<br>
+                ---<br><br>
+                Описи:<br>
+                Круг со радиус 5<br>
+                Ова е геометриски облик.<br>
+                Триаголник со основа 3 и висина 4<br><br>
+                <em>Апстракција во акција:</em> Shape класата го крие КАКО се пресметува плоштината и периметарот. Circle, Rectangle и Triangle ја имплементираат својата формула. Корисниците само повикуваат CalculateArea() без да знаат математика.
+            </div>
         </div>
-        <div class="result-box" id="example1Result">
-            ➡ <strong>Output:</strong><br>
-            === Shape Calculations ===<br>
-            Shape Type: Circle<br>
-            Area: 78.53981633974483<br>
-            Perimeter: 31.41592653589793<br>
-            ---<br>
-            Shape Type: Rectangle<br>
-            Area: 24<br>
-            Perimeter: 20<br>
-            ---<br>
-            Shape Type: Triangle<br>
-            Area: 6<br>
-            Perimeter: 12<br>
-            ---<br><br>
-            Descriptions:<br>
-            A circle with radius 5<br>
-            This is a geometric shape.<br>
-            A triangle with base 3 and height 4<br><br>
-            <em>Abstraction in Action:</em> The Shape class hides HOW area/perimeter are calculated. Circle, Rectangle, Triangle each implement their own formulas. Users just call CalculateArea() without knowing the math behind it!
-        </div>
-    </div>
 
-    <h2>Interactive Walkthrough: How Abstraction Works</h2>
-    <p>Watch abstraction hide complexity step by step:</p>
+        <h2>Интерактивен преглед: Како функционира апстракцијата</h2>
+        <p>Следете ја апстракцијата чекор по чекор:</p>
 
-    <div class="code-container">
-        <div class="code-header">Abstraction Layer by Layer</div>
-        <div class="code-content">
-<pre id="walkthroughCodeBase">
+        <div class="code-container">
+            <div class="code-header">Апстракциски слоеви</div>
+            <div class="code-content">
+<pre>
 public abstract class PaymentProcessor
 {
-    // Abstract - children must implement
+    // Апстрактно - наследниците мора да го имплементираат
     public abstract bool Process(decimal amount);
-    
-    // Concrete - already implemented  
+
+    // Конкретно - веќе имплементирано  
     public void PrintReceipt(decimal amount)
     {
-        Console.WriteLine("Receipt for: $" + amount);
-        Console.WriteLine("Date: " + DateTime.Now);
+        Console.WriteLine("Доказ за: $" + amount);
+        Console.WriteLine("Датум: " + DateTime.Now);
     }
-    
-    // Virtual - can be overridden
+
+    // Виртуелно - може да се надополнува
     public virtual string GetProcessorName()
     {
-        return "Generic Payment Processor";
+        return "Општ обработувач на плаќања";
     }
 }
-
-// public class CreditCardProcessor : PaymentProcessor
-// {
-//     public override bool Process(decimal amount)
-//     {
-//         Console.WriteLine("Processing credit card: $" + amount);
-//         return true;
-//     }
-// }
-
-// PaymentProcessor processor = new CreditCardProcessor();
-// processor.Process(100);
-// processor.PrintReceipt(100);
 </pre>
+            </div>
         </div>
-    </div>
 
-    <div class="code-container">
-        <div class="code-header">Abstraction Levels</div>
-        <div class="code-content">
-<pre id="walkthroughVariables">
-PaymentProcessor (Abstract Class):
-- Process() method: ABSTRACT (no implementation)
-- PrintReceipt() method: CONCRETE (has implementation)
-- GetProcessorName() method: VIRTUAL (has default, can override)
-
-Child classes get PrintReceipt() for free, must implement Process().
-</pre>
-        </div>
-        <div class="result-box" id="walkthroughExplanation">
-            <em>Click <strong>Next</strong> to see abstraction unfold:</em>
-        </div>
-        <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
-    </div>
-
-    <h2>📊 Visual Diagram: Abstraction Layers</h2>
-    
-    <div class="code-container">
-        <div class="code-header">How Abstraction Hides Complexity</div>
-<div class="code-content">
+        <div class="code-container">
+            <div class="code-header">Нивоа на апстракција</div>
+            <div class="code-content">
 <pre>
-USER'S VIEW (Simple Interface):
+PaymentProcessor (Апстрактна класа):
+- Process() метод: АПСТРАКТЕН (нема имплементација)
+- PrintReceipt() метод: КОНКРЕТЕН (има имплементација)
+- GetProcessorName() метод: ВИРТУЕЛЕН (има стандард, може да се надополни)
+
+Наследничките класи добиваат PrintReceipt() бесплатно, мора да го имплементираат Process().
+</pre>
+            </div>
+            <div class="result-box" id="walkthroughExplanation">
+                <em>Кликнете Next за да ја видите апстракцијата чекор по чекор:</em>
+            </div>
+            <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
+        </div>
+
+        <h2>Визуелна дијаграма: Слоеви на апстракција</h2>
+
+        <div class="code-container">
+            <div class="code-header">Како апстракцијата ја крие комплексноста</div>
+            <div class="code-content">
+<pre>
+Поглед на корисникот (Едноставен интерфејс):
 ─────────────────────────────────────────────
 Shape shape = new Circle(5);
-double area = shape.CalculateArea();  // "Just give me the area"
-shape.DisplayInfo();                   // "Show me shape info"
+double area = shape.CalculateArea();  
+shape.DisplayInfo();                   
 
-USER DOESN'T SEE (Hidden Complexity):
+Корисникот не гледа (Скриена комплексност):
 ─────────────────────────────────────────────
-ABSTRACT CLASS LAYER:
+АПСТРАКТНА КЛАСА:
 public abstract class Shape
 {
-    public abstract double CalculateArea();  ← "Must be implemented"
-    public void DisplayInfo() { ... }       ← "Here's some common code"
+    public abstract double CalculateArea();  // Мора да се имплементира
+    public void DisplayInfo() { ... }       // Еве некој стандард код
 }
 
-CONCRETE IMPLEMENTATION LAYER:
+КОНКРЕТНА ИМПЛЕМЕНТАЦИЈА:
 public class Circle : Shape
 {
     private double radius;
     private const double PI = 3.14159265358979;
-    
+
     public override double CalculateArea()
     {
-        // Complex math hidden from user
+        // Комплексна математика скриена од корисник
         return PI * radius * radius;
     }
 }
@@ -292,213 +278,182 @@ public class Circle : Shape
 public class Rectangle : Shape
 {
     private double width, height;
-    
+
     public override double CalculateArea()
     {
-        // Different math, also hidden
+        // Различна математика, исто скриена
         return width * height;
     }
 }
 
-BENEFIT OF ABSTRACTION:
+БЕНЕФИТ ОД АПСТРАКЦИЈА:
 ─────────────────────────────────────────────
-User Code:                                |   Hidden Complexity:
+Кориснички код:                          |   Скриена комплексност:
 ─────────────────────────────────────────────
 Shape s = GetShape();                     |   Circle: πr²
 double a = s.CalculateArea();             |   Rectangle: w×h
                                           |   Triangle: ½bh
-                                          |   Pentagon: complex formula
+                                          |   Pentagon: комплексна формула
                                           |
-SIMPLE INTERFACE                          |   COMPLEX IMPLEMENTATIONS
-(same for all shapes)                     |   (different for each shape)
+ЕДНОСТАВЕН ИНТЕРФЕЈС                      |   КОМПЛЕКСНИ ИМПЛЕМЕНТАЦИИ
+(исто за сите облици)                     |   (различно за секој облик)
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2>🎯 Example 2: Database Abstraction</h2>
-    <p>Abstract classes are perfect for database operations - same interface, different databases:</p>
-    
-    <div class="code-container">
-        <div class="code-header">Database Connection Abstraction</div>
-        <div class="code-content">
+        <h2>Пример 2: Апстракција за база на податоци</h2>
+        <p>Апстрактните класи се идеални за операции со база на податоци - исти интерфејс, различни бази:</p>
+
+        <div class="code-container">
+            <div class="code-header">Апстракција на конекција со база</div>
+            <div class="code-content">
 <pre>
 public abstract class DatabaseConnection
 {
-    // Abstract methods - each database implements differently
     public abstract void Connect();
     public abstract void Disconnect();
     public abstract void ExecuteQuery(string query);
-    
-    // Concrete method - same for all databases
+
     public void LogOperation(string operation)
     {
         Console.WriteLine($"[{DateTime.Now}] {operation}");
     }
-    
-    // Virtual method - default, can be overridden
+
     public virtual int GetTimeout()
     {
-        return 30;  // Default 30 seconds
+        return 30;  
     }
-    
-    // Abstract property
+
     public abstract string ConnectionString { get; set; }
 }
 
 public class SqlServerConnection : DatabaseConnection
 {
     private string connectionString;
-    
+
     public override string ConnectionString
     {
         get { return connectionString; }
         set { connectionString = value; }
     }
-    
+
     public override void Connect()
     {
-        LogOperation("Connecting to SQL Server...");
-        Console.WriteLine("SQL Server connection established.");
-        // Real code would use SqlConnection, etc.
+        LogOperation("Поврзување со SQL Server...");
+        Console.WriteLine("Конекција со SQL Server воспоставена.");
     }
-    
+
     public override void Disconnect()
     {
-        LogOperation("Disconnecting from SQL Server...");
-        Console.WriteLine("SQL Server connection closed.");
+        LogOperation("Одврзување од SQL Server...");
+        Console.WriteLine("Конекција со SQL Server затворена.");
     }
-    
+
     public override void ExecuteQuery(string query)
     {
-        LogOperation("Executing SQL query: " + query);
-        Console.WriteLine("Query executed on SQL Server.");
+        LogOperation("Извршување на SQL query: " + query);
+        Console.WriteLine("Query извршен на SQL Server.");
     }
-    
+
     public override int GetTimeout()
     {
-        return 60;  // SQL Server needs more time
+        return 60;  
     }
 }
 
 public class MySqlConnection : DatabaseConnection
 {
     private string connectionString;
-    
+
     public override string ConnectionString
     {
         get { return connectionString; }
         set { connectionString = value; }
     }
-    
+
     public override void Connect()
     {
-        LogOperation("Connecting to MySQL...");
-        Console.WriteLine("MySQL connection established.");
-        // Real code would use MySqlConnection
+        LogOperation("Поврзување со MySQL...");
+        Console.WriteLine("Конекција со MySQL воспоставена.");
     }
-    
+
     public override void Disconnect()
     {
-        LogOperation("Disconnecting from MySQL...");
-        Console.WriteLine("MySQL connection closed.");
+        LogOperation("Одврзување од MySQL...");
+        Console.WriteLine("Конекција со MySQL затворена.");
     }
-    
+
     public override void ExecuteQuery(string query)
     {
-        LogOperation("Executing MySQL query: " + query);
-        Console.WriteLine("Query executed on MySQL.");
+        LogOperation("Извршување на MySQL query: " + query);
+        Console.WriteLine("Query извршен на MySQL.");
     }
-    // Uses default GetTimeout() from base class
 }
-
-// Using the abstraction
-Console.WriteLine("=== Database Operations ===");
-
-DatabaseConnection db1 = new SqlServerConnection();
-db1.ConnectionString = "Server=myServer;Database=myDB;";
-db1.Connect();
-db1.ExecuteQuery("SELECT * FROM Users");
-db1.Disconnect();
-
-Console.WriteLine();
-
-DatabaseConnection db2 = new MySqlConnection();
-db2.ConnectionString = "Server=localhost;Database=test;";
-db2.Connect();
-db2.ExecuteQuery("SELECT * FROM Products");
-Console.WriteLine("Timeout: " + db2.GetTimeout() + " seconds");
-db2.Disconnect();
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2>🔑 Abstract vs Concrete Classes</h2>
-    <div class="code-container">
-        <div class="code-header">Key Differences</div>
-        <div class="code-content">
+        <h2>Апстрактна vs Конкретна класа</h2>
+        <div class="code-container">
+            <div class="code-header">Клучни разлики</div>
+            <div class="code-content">
 <pre>
-                  ABSTRACT CLASS           CONCRETE CLASS
+                  АПСТРАКТНА КЛАСА           КОНКРЕТНА КЛАСА
 ─────────────────────────────────────────────────────────────
-Instantiation   CANNOT create objects     CAN create objects
-                ❌ new Shape()            ✅ new Circle()
+Иницијализација   НЕ МОЖЕ да се создадат објекти     МОЖЕ да се создадат објекти
+                <span style="color:red;">// Некој пример на ❌ претходно</span> new Shape()            
+                <span style="color:green;">// Некој пример на ✅ претходно</span> new Circle()
 
-Implementation  Can have BOTH:            Must have FULL:
-                • Abstract methods        • All methods implemented
-                • Concrete methods        • No abstract methods
-                • Virtual methods
+Имплементација    Може да има И ДВЕТО:               Мора да има ПОЛНА:
+                  • Апстрактни методи               • Сите методи имплементирани
+                  • Конкретни методи                • Без апстрактни методи
+                  • Виртуелни методи
 
-Purpose         • Define base structure   • Ready-to-use objects
-                • Force implementation    • Complete functionality
-                • Share common code       • Specific behavior
+Цел               • Дефинира основна структура      • Подготвени за употреба објекти
+                  • Принудува имплементација       • Комплетна функционалност
+                  • Споделува заеднички код        • Специфично однесување
 
-Inheritance     Meant to be inherited     Can be inherited OR standalone
-                (base class)              (can be base or leaf)
+Наследување       Се користи за наследување         Може да се наследи или самостојно
+                  (основна класа)                   (може да биде база или лист)
 
-Example         Shape (abstract)          Circle, Rectangle, Triangle
-                • CalculateArea() abstract • Circle.CalculateArea() = πr²
-                • DisplayInfo() concrete  • Rectangle.CalculateArea() = w×h
+Пример            Shape (апстрактна)               Circle, Rectangle, Triangle
+                  • CalculateArea() апстрактен      • Circle.CalculateArea() = πr²
+                  • DisplayInfo() конкретен         • Rectangle.CalculateArea() = w×h
 
-Real Analogy    Employee handbook         Actual employee
-                (some rules, some blanks) (doing actual work)
+Реална аналогија  Прирачник за вработените         Вистински вработен
+                  (некои правила, некои празнини) (врши вистинска работа)
 
-When to Use     • Creating frameworks     • Creating objects
-                • Defining contracts      • Implementing logic
-                • Sharing code            • Final implementation
-                • When multiple related   • When no need to extend
-                  classes share behavior
-
-C# Keywords     abstract class            class
-                abstract method           (no keyword needed)
-                override in children
+Кога да се користи • Креирање на рамки           • Креирање објекти
+                  • Дефинирање договори          • Имплементирање логика
+                  • Споделување код               • Финална имплементација
+                  • Кога повеќе поврзани класи делат однесување
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2>Common Abstraction Mistakes</h2>
-    <div class="code-container">
-        <div class="code-header">Abstraction Pitfalls</div>
-        <div class="code-content">
+        <h2>Чести грешки при апстракција</h2>
+        <div class="code-container">
+            <div class="code-header">Проблеми со апстракција</div>
+            <div class="code-content">
 <pre>
-// ❌ MISTAKE 1: Creating abstract class with no abstract members
+// <span style="color:red;">Мистерија 1</span>: Апстрактна класа без апстрактни членови
 public abstract class Logger
 {
-    public void Log(string message)  // All methods concrete
+    public void Log(string message)  
     {
         Console.WriteLine(message);
     }
-    // ❌ No abstract methods - should be regular class!
-
-    // Can't do: new Logger() - but also can't force implementation
+    // Не може да принуди имплементација
 }
 
-// ✅ SOLUTION: Use abstract class only when you need abstraction
+// <span style="color:green;">Решение</span>: Користете апстракција кога е потребно
 public abstract class Logger
 {
-    public abstract void Log(string message);  // ✅ Abstract
-    public virtual string GetSource() { return "Unknown"; }  // ✅ Virtual
+    public abstract void Log(string message);  
+    public virtual string GetSource() { return "Unknown"; }  
 }
 
-// ❌ MISTAKE 2: Forgetting to implement abstract methods
+// <span style="color:red;">Мистерија 2</span>: Заборавено имплементирање апстрактни методи
 public abstract class Animal
 {
     public abstract void MakeSound();
@@ -506,183 +461,98 @@ public abstract class Animal
 
 public class Dog : Animal
 {
-    // ❌ Forgot to implement MakeSound() - COMPILER ERROR!
+    // Ошибка - COMPILER ERROR!
 }
 
-// ✅ SOLUTION: Implement ALL abstract methods
+// <span style="color:green;">Решение</span>: Имплементирајте сите апстрактни методи
 public class Dog : Animal
 {
-    public override void MakeSound()  // ✅ Implemented
+    public override void MakeSound()  
     {
         Console.WriteLine("Woof!");
     }
 }
-
-// ❌ MISTAKE 3: Too many abstract methods
-public abstract class SwissArmyKnife  // ❌ Too abstract!
-{
-    public abstract void Cut();
-    public abstract void Screw();
-    public abstract void OpenBottle();
-    public abstract void FileNails();
-    // ... 20 more abstract methods
-}
-
-// ✅ SOLUTION: Split into focused abstractions
-public abstract class Cutter { public abstract void Cut(); }
-public abstract class Screwdriver { public abstract void Screw(); }
-// Classes implement only what they need
-
-// ❌ MISTAKE 4: Using abstract when interface is better
-public abstract class IPayment  // ❌ Wrong! Should be interface
-{
-    public abstract void Process();
-}
-
-// ✅ SOLUTION: Use interface for pure contracts
-public interface IPayment  // ✅ Correct
-{
-    void Process();
-}
-
-// Use abstract class when you need to share code
-public abstract class PaymentBase  // ✅ Has common code
-{
-    protected decimal CalculateTax(decimal amount)
-    {
-        return amount * 0.20m;  // Shared implementation
-    }
-    public abstract void Process();  // Still abstract
-}
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2>🎯 When to Use Abstraction</h2>
-    <div class="code-container">
-        <div class="code-header">Abstraction Guidelines</div>
-        <div class="code-content">
+        <h2>Кога да се користи апстракција</h2>
+        <div class="code-container">
+            <div class="code-header">Упатства</div>
+            <div class="code-content">
 <pre>
-USE ABSTRACT CLASSES WHEN:
-✅ You need to share code between related classes
-   - Shape with DisplayInfo() used by Circle, Rectangle, Triangle
-   - DatabaseConnection with LogOperation() for all DB types
+Користете апстрактни класи кога:
+- Потребно е да се сподели код меѓу поврзани класи
+- Постојат основни имплементации со варијации
+- Се нуди стандардно однесување кое може да се надополни
+- Креирате рамки или бази на библиотеки
 
-✅ You have a base implementation with some variations
-   - PaymentProcessor with common receipt printing + abstract Process()
-   - GameCharacter with common health system + abstract Attack()
+Користете интерфејси кога:
+- Потребен е чист договор без имплементација
+- Неповрзани класи имаат исти способности
+- Потребна е мулти-наследност
+- Дефинирање на plugin/extensibility точки
 
-✅ You want to provide default behavior that can be overridden
-   - Vehicle with default Start() + abstract Drive()
-   - Logger with default timestamp format + abstract Log()
-
-✅ Creating a framework or library base class
-   - Web controllers in ASP.NET
-   - UI controls in Windows Forms
-   - Entity Framework DbContext
-
-USE INTERFACES (Pure Abstraction) WHEN:
-✅ You need a pure contract with no implementation
-✅ Multiple unrelated classes need same capability
-✅ You need multiple "inheritance" of behavior
-✅ Defining plugin/extensibility points
-
-DON'T USE ABSTRACTION WHEN:
-❌ Class is complete and ready to use (use concrete class)
-❌ Only one implementation exists (YAGNI - You Ain't Gonna Need It)
-❌ The abstraction doesn't simplify anything
-❌ You're creating simple data containers (DTOs)
-
-BEST PRACTICES:
-1. Start with concrete classes, abstract when patterns emerge
-2. Keep abstract classes focused (Single Responsibility)
-3. Use meaningful abstract method names that clearly state what's required
-4. Document what implementers should do
-5. Provide useful default implementations when possible
-6. Test abstract classes through concrete implementations
-
-REAL-WORLD ABSTRACTION EXAMPLES:
-• Graphics: Shape → Circle, Rectangle, Triangle (area calculations)
-• Payments: PaymentProcessor → CreditCard, PayPal, Bitcoin
-• Databases: DbConnection → SqlConnection, MySqlConnection, OracleConnection
-• Logging: Logger → FileLogger, DatabaseLogger, ConsoleLogger
-• Game: Character → Warrior, Mage, Archer (attack methods)
+Не користете апстракција кога:
+- Класата е комплетна и спремна за употреба
+- Постоји само една имплементација
+- Апстракцијата не поедноставува ништо
+- Создавате едноставни контејнери на податоци
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2>🔗 Connection to Other OOP Concepts</h2>
-    <div class="code-container">
-        <div class="code-header">How Abstraction Relates</div>
-        <div class="code-content">
+        <h2>Поврзаност со други OOP концепти</h2>
+        <div class="code-container">
+            <div class="code-header">Како апстракцијата се поврзува</div>
+            <div class="code-content">
 <pre>
-ABSTRACTION + INHERITANCE:
-─────────────────────────────
-Abstract classes ARE inherited
-• Shape (abstract) ← Circle inherits
-• Forces Circle to implement abstract methods
-• Circle gets concrete methods for free
+АПСТРАКЦИЈА + НАСЛЕДУВАЊЕ:
+- Апстрактните класи се наследуваат
+- Принудува имплементација на апстрактни методи
+- Наследниците добиваат конкретни методи бесплатно
 
-ABSTRACTION + ENCAPSULATION:
-─────────────────────────────
-Abstraction hides complexity
-Encapsulation protects data
-• DatabaseConnection abstracts connection details
-• Private fields encapsulate connection strings
-• User just calls Connect(), doesn't see internals
+АПСТРАКЦИЈА + ЕНКАПСУЛАЦИЈА:
+- Апстракцијата крие комплексност
+- Енкапсулацијата ја штити податоците
+- Корисникот повикува Connect() без да знае детали
 
-ABSTRACTION + POLYMORPHISM:
-─────────────────────────────
-Abstraction defines the interface
-Polymorphism provides implementations
-• Shape.CalculateArea() (abstract)
-• Circle.CalculateArea() = πr² (polymorphism)
-• Rectangle.CalculateArea() = w×h (polymorphism)
-• Same method call, different behaviors
+АПСТРАКЦИЈА + ПОЛИМОРФИЗАМ:
+- Апстракцијата дефинира интерфејс
+- Полиморфизмот обезбедува имплементации
+- Исти повици на методи, различно однесување
 
-ABSTRACTION + INTERFACES:
-─────────────────────────────
-Both provide abstraction, but differently:
-Abstract Classes              Interfaces
-• Can have implementation    • No implementation
-• Single inheritance         • Multiple interfaces
-• Constructors allowed       • No constructors
-• Fields allowed             • No fields (before C# 8)
-• Partial abstraction        • Pure abstraction
-
-Often used together:
-public abstract class DbConnection : IDisposable
-{
-    public abstract void Open();  // Abstract method
-    public void Dispose() { ... } // From interface
-}
+АПСТРАКЦИЈА + ИНТЕРФЕЈСИ:
+- Двете обезбедуваат апстракција, но различно
+- Апстрактна класа: може имплементација, единствено наследување, конструктори дозволени
+- Интерфејс: нема имплементација, мулти-интерфејс, без конструктори
 </pre>
+            </div>
+        </div>
+
+        <h2>Резиме: Моќта на апстракцијата</h2>
+        <ul>
+            <li>Апстракција = Скривање на комплексни детали, прикажување на едноставен интерфејс</li>
+            <li>Имплементирано преку апстрактни класи (делумна апстракција) и интерфејси (чиста апстракција)</li>
+            <li>Апстрактни класи: можат да имаат апстрактни (мора да се имплементираат) и конкретни (веќе имплементирани) методи</li>
+            <li>Не може да се создадат објекти од апстрактни класи</li>
+            <li>Наследничките класи мора да имплементираат сите апстрактни методи</li>
+            <li>Бенефити: намалување на комплексност, повторна употреба, подобрено одржување, овозможува полиморфизам</li>
+            <li>Реална аналогија: контрола на автомобил, TV далечински управувач</li>
+            <li>Без апстракција: корисниците би морале да разберат сите детали = преоптоварени</li>
+            <li>Апстракцијата овозможува: рамки, библиотеки, plugins, чиста архитектура</li>
+        </ul>
+
+        <div class="note-box">
+            <h3>Следно: Интерфејси</h3>
+            <p>Откако разбирате апстракција со апстрактни класи, следно е <strong>интерфејси</strong> - најчиста форма на апстракција која дефинира договори без никаква имплементација.</p>
+        </div>
+
+        <div class="navigation-buttons">
+            <a href="@Url.Action("Polymorphism", "OOP")" class="btn btn-outline-primary ajax-link">← Полиморфизам</a>
+            <a href="@Url.Action("Interfaces", "OOP")" class="btn btn-primary ajax-link">Интерфејси →</a>
         </div>
     </div>
-
-    <h2>🎉 Summary: The Power of Abstraction</h2>
-    <ul>
-        <li><strong>Abstraction</strong> = Hiding complex details, showing simple interface</li>
-        <li>Implemented via <strong>abstract classes</strong> (partial abstraction) and <strong>interfaces</strong> (pure abstraction)</li>
-        <li><strong>Abstract classes</strong>: Can have both abstract (must implement) and concrete (already implemented) methods</li>
-        <li>Cannot create objects from abstract classes: <code>❌ new Shape()</code></li>
-        <li>Child classes MUST implement all abstract methods using <code>override</code></li>
-        <li><strong>Benefits</strong>: Reduces complexity, increases reusability, improves maintenance, enables polymorphism</li>
-        <li><strong>Real-world analogy</strong>: Car dashboard (shows speed, hides engine), TV remote (buttons hide circuits)</li>
-        <li>Without abstraction: Users would need to understand ALL implementation details = overwhelmed!</li>
-        <li>Abstraction enables: Frameworks, libraries, plugins, clean architecture</li>
-    </ul>
-
-    <div class="note-box">
-        <h3>🔗 Next Up: Interfaces</h3>
-        <p>Now that you understand abstraction with abstract classes, you're ready for <strong>interfaces</strong> - the purest form of abstraction that defines contracts without any implementation!</p>
-    </div>
-
-    <div class="navigation-buttons">
-        <a href="@Url.Action("Polymorphism", "OOP")" class="btn btn-outline-primary ajax-link">← Polymorphism</a>
-        <a href="@Url.Action("Interfaces", "OOP")" class="btn btn-primary ajax-link">Interfaces →</a>
-    </div>
-</div>
 
 <style>
     .container {
@@ -1178,8 +1048,8 @@ Console.WriteLine(triangle.GetDescription());`
 
                     if (resultBox && id === 'example1') {
                         resultBox.innerHTML = isComplete ? 
-                            '➡ <strong>Output:</strong><br>=== Shape Calculations ===<br>Shape Type: Circle<br>Area: 78.53981633974483<br>Perimeter: 31.41592653589793<br>---<br>Shape Type: Rectangle<br>Area: 24<br>Perimeter: 20<br>---<br>Shape Type: Triangle<br>Area: 6<br>Perimeter: 12<br>---<br><br>Descriptions:<br>A circle with radius 5<br>This is a geometric shape.<br>A triangle with base 3 and height 4<br><br><em>Abstraction in Action:</em> The Shape class hides HOW area/perimeter are calculated. Circle, Rectangle, Triangle each implement their own formulas. Users just call CalculateArea() without knowing the math behind it!' :
-                            '➡ <strong>Code Structure:</strong><br>Abstract Shape class with CalculateArea() and CalculatePerimeter() methods.<br>Circle class implements Shape with circle formulas (πr²).<br>Rectangle class implements Shape with rectangle formulas (w×h).<br>All shapes share DisplayInfo() method from Shape class.<br><br><em>Toggle to see the complete example with Triangle and descriptions!</em>';
+                            ' <strong>Output:</strong><br>=== Shape Calculations ===<br>Shape Type: Circle<br>Area: 78.53981633974483<br>Perimeter: 31.41592653589793<br>---<br>Shape Type: Rectangle<br>Area: 24<br>Perimeter: 20<br>---<br>Shape Type: Triangle<br>Area: 6<br>Perimeter: 12<br>---<br><br>Descriptions:<br>A circle with radius 5<br>This is a geometric shape.<br>A triangle with base 3 and height 4<br><br><em>Abstraction in Action:</em> The Shape class hides HOW area/perimeter are calculated. Circle, Rectangle, Triangle each implement their own formulas. Users just call CalculateArea() without knowing the math behind it!' :
+                            ' <strong>Code Structure:</strong><br>Abstract Shape class with CalculateArea() and CalculatePerimeter() methods.<br>Circle class implements Shape with circle formulas (πr²).<br>Rectangle class implements Shape with rectangle formulas (w×h).<br>All shapes share DisplayInfo() method from Shape class.<br><br><em>Toggle to see the complete example with Triangle and descriptions!</em>';
                     }
                 }, 300);
             }
@@ -1200,7 +1070,7 @@ Console.WriteLine(triangle.GetDescription());`
             walkthroughExplanation.innerHTML = `<em>Step ${step + 1}:</em> ${data.exp}`;
             
             if (step === this.abstractionSteps.length - 1 && nextStepBtn) {
-                walkthroughExplanation.innerHTML += '<br><strong>✅ Complete! Abstraction hides implementation details behind a simple interface.</strong>';
+                walkthroughExplanation.innerHTML += '<br><strong> Complete! Abstraction hides implementation details behind a simple interface.</strong>';
                 nextStepBtn.disabled = true;
             }
         },

@@ -3,68 +3,75 @@
 }
 
 <div class="container" data-topic="inputoutput">
-    <h1 class="mb-4">📝 Input and Output: Communicating with Programs</h1>
+    <h1 class="mb-4">Input и Output: Комуникација со програмите</h1>
 
-    <p><strong>Input and Output (I/O)</strong> are how programs communicate with users. <strong>Input</strong> is information the user gives to the program (like typing their name), and <strong>Output</strong> is information the program shows to the user (like displaying a welcome message).</p>
+    <p><strong>Input и Output (I/O)</strong> се начинот на кој програмите комуницираат со корисниците. <strong>Input</strong> е информација што корисникот му ја дава на програмот (на пример внесување име), а <strong>Output</strong> е информација што програмот му ја прикажува на корисникот (на пример порака за добредојде).</p>
 
-    <p>Think of it like a conversation:</p>
+    <p>Замисли го како разговор:</p>
     <ul>
-        <li><strong>Program asks</strong> → "What's your name?" (Output)</li>
-        <li><strong>User answers</strong> → "Alice" (Input)</li>
-        <li><strong>Program responds</strong> → "Hello, Alice!" (Output)</li>
+        <li><strong>Програмата прашува</strong> → „Како се викаш?“ (Output)</li>
+        <li><strong>Корисникот одговара</strong> → „Alice“ (Input)</li>
+        <li><strong>Програмата одговара</strong> → „Здраво, Alice!“ (Output)</li>
     </ul>
 
-    <h2>📘 Output: Showing Information</h2>
-    <p>Output is how your program displays information to the user. In C++, we use <code>cout</code> (pronounced "see-out"), and in C#, we use <code>Console.WriteLine()</code>.</p>
+    <h2>Output: Прикажување информации</h2>
+    <p>Output е начинот на кој програмата прикажува информации на корисникот. Во C++ се користи <code>cout</code>, а во C# се користи <code>Console.WriteLine()</code>.</p>
 
     <div class="code-container">
-        <div class="code-header">Output Syntax</div>
+        <div class="code-header">Синтакса за Output</div>
         <div class="code-content">
 <pre>
-C++:    cout << "Text to display" << endl;
-C#:     Console.WriteLine("Text to display");
+C++:    cout << "Текст за прикажување" << endl;
+C#:     Console.WriteLine("Текст за прикажување");
 
-// Displaying variables:
-C++:    cout << "Your age: " << age << endl;
-C#:     Console.WriteLine("Your age: " + age);
+// Прикажување променливи:
+C++:    cout << "Твојата возраст: " << age << endl;
+C#:     Console.WriteLine("Твојата возраст: " + age);
 </pre>
         </div>
     </div>
 
-    <h2>🎯 Example 1: Basic Output</h2>
-    <p>Displaying simple messages and text:</p>
-    
+    <h2>Пример 1: Основен Output</h2>
+    <p>Прикажување едноставни пораки и текст:</p>
+
     <div class="code-container">
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="window.convertCode('example1')">
-            <label class="form-check-label" for="example1Toggle">Convert to C#</label>
+            <label class="form-check-label" for="example1Toggle">Претвори во C#</label>
         </div>
         <div class="code-content">
 <pre class="codeBlock" id="example1Code">
-// Simple text output
-cout << "Welcome to Programming!" << endl;
-cout << "This is line 1." << endl;
-cout << "This is line 2." << endl;
+// Едноставен текстуален output
+cout << "Добредојде во програмирањето!" << endl;
+cout << "Ова е линија 1." << endl;
+cout << "Ова е линија 2." << endl;
 
-// Text with special characters
-cout << "Use \\n for new line: First line\nSecond line" << endl;
-cout << "Use \\t for tab: Name:\tJohn" << endl;
-cout << "Quotes: She said, \"Hello!\"" << endl;
+// Текст со специјални карактери
+cout << "Користи \\n за нов ред: Прва линија\nВтора линија" << endl;
+cout << "Користи \\t за таб: Име:\tJohn" << endl;
+cout << "Наводници: Таа рече, \"Здраво!\"" << endl;
 </pre>
         </div>
         <div class="result-box" id="example1Result">
-            ➡ <strong>Result:</strong><br>Welcome to Programming!<br>This is line 1.<br>This is line 2.<br>Use \n for new line: First line<br>Second line<br>Use \t for tab: Name:&nbsp;&nbsp;&nbsp;&nbsp;John<br>Quotes: She said, "Hello!"<br>
-            <em>Explanation:</em> <code>endl</code> (C++) or <code>WriteLine</code> (C#) creates a new line. Special characters like <code>\n</code> (new line) and <code>\t</code> (tab) help format text.
+            <strong>Резултат:</strong><br>
+            Добредојде во програмирањето!<br>
+            Ова е линија 1.<br>
+            Ова е линија 2.<br>
+            Користи \n за нов ред: Прва линија<br>
+            Втора линија<br>
+            Користи \t за таб: Име:&nbsp;&nbsp;&nbsp;&nbsp;John<br>
+            Наводници: Таа рече, "Здраво!"<br>
+            <em>Објаснување:</em> <code>endl</code> (C++) или <code>WriteLine</code> (C#) креира нов ред. Специјалните карактери како <code>\n</code> (нов ред) и <code>\t</code> (таб) помагаат за форматирање на текст.
         </div>
     </div>
 
-    <h2>🎯 Example 2: Output with Variables</h2>
-    <p>Displaying variable values along with text:</p>
-    
+    <h2>Пример 2: Output со променливи</h2>
+    <p>Прикажување вредности на променливи заедно со текст:</p>
+
     <div class="code-container">
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="window.convertCode('example2')">
-            <label class="form-check-label" for="example2Toggle">Convert to C#</label>
+            <label class="form-check-label" for="example2Toggle">Претвори во C#</label>
         </div>
         <div class="code-content">
 <pre class="codeBlock" id="example2Code">
@@ -73,324 +80,140 @@ int age = 25;
 float height = 1.68;
 bool isStudent = true;
 
-// Displaying variable values
-cout << "Name: " << name << endl;
-cout << "Age: " << age << " years" << endl;
-cout << "Height: " << height << " meters" << endl;
-cout << "Student: " << (isStudent ? "Yes" : "No") << endl;
+// Прикажување вредности на променливи
+cout << "Име: " << name << endl;
+cout << "Возраст: " << age << " години" << endl;
+cout << "Висина: " << height << " метри" << endl;
+cout << "Студент: " << (isStudent ? "Да" : "Не") << endl;
 
-// Multiple variables in one line
-cout << name << " is " << age << " years old and " << height << " meters tall." << endl;
+// Повеќе променливи во една линија
+cout << name << " има " << age << " години и е висока " << height << " метри." << endl;
 </pre>
         </div>
         <div class="result-box" id="example2Result">
-            ➡ <strong>Result:</strong><br>Name: Sarah<br>Age: 25 years<br>Height: 1.68 meters<br>Student: Yes<br>Sarah is 25 years old and 1.68 meters tall.<br>
-            <em>Explanation:</em> You can combine text and variables using <code><<</code> in C++ or <code>+</code> in C#. The computer replaces variables with their actual values when displaying.
+            <strong>Резултат:</strong><br>
+            Име: Sarah<br>
+            Возраст: 25 години<br>
+            Висина: 1.68 метри<br>
+            Студент: Да<br>
+            Sarah има 25 години и е висока 1.68 метри.<br>
+            <em>Објаснување:</em> Можеш да комбинираш текст и променливи со <code><<</code> во C++ или <code>+</code> во C#. Компјутерот ги заменува променливите со нивните реални вредности при прикажување.
         </div>
     </div>
 
-    <h2>📘 Input: Getting Information from Users</h2>
-    <p>Input allows users to provide information to your program. In C++, we use <code>cin</code> (pronounced "see-in"), and in C#, we use <code>Console.ReadLine()</code>.</p>
+    <h2>Input: Внесување информации од корисник</h2>
+    <p>Input му овозможува на корисникот да внесе информации во програмата. Во C++ се користи <code>cin</code>, а во C# се користи <code>Console.ReadLine()</code>.</p>
 
     <div class="code-container">
-        <div class="code-header">Input Syntax</div>
+        <div class="code-header">Синтакса за Input</div>
         <div class="code-content">
 <pre>
 C++:    cin >> variableName;
 C#:     variableName = Console.ReadLine();
 
-// For numbers (C# needs conversion):
+// За броеви (во C# е потребна конверзија):
 C#:     age = Convert.ToInt32(Console.ReadLine());
 </pre>
         </div>
     </div>
 
-    <h2>🎯 Example 3: Basic Input</h2>
-    <p>Getting user input and storing it in variables:</p>
-    
+    <h2>Пример 3: Основен Input</h2>
+    <p>Земање влез од корисник и зачувување во променливи:</p>
+
     <div class="code-container">
         <div class="form-check form-switch mb-2">
             <input class="form-check-input" type="checkbox" id="example3Toggle" onchange="window.convertCode('example3')">
-            <label class="form-check-label" for="example3Toggle">Convert to C#</label>
+            <label class="form-check-label" for="example3Toggle">Претвори во C#</label>
         </div>
         <div class="code-content">
 <pre class="codeBlock" id="example3Code">
 string userName;
 int userAge;
 
-// Ask for input
-cout << "What is your name? ";
+// Барање влез
+cout << "Како се викаш? ";
 cin >> userName;
 
-cout << "How old are you? ";
+cout << "Колку години имаш? ";
 cin >> userAge;
 
-// Display what was entered
-cout << "Hello, " << userName << "!" << endl;
-cout << "You are " << userAge << " years old." << endl;
+// Прикажување на внесеното
+cout << "Здраво, " << userName << "!" << endl;
+cout << "Имаш " << userAge << " години." << endl;
 
-// Calculate based on input
+// Пресметка базирана на влез
 int birthYear = 2025 - userAge;
-cout << "You were born around " << birthYear << "." << endl;
+cout << "Роден/а си околу " << birthYear << " година." << endl;
 </pre>
         </div>
         <div class="result-box" id="example3Result">
-            ➡ <strong>Result (if user enters "John" and "20"):</strong><br>What is your name? John<br>How old are you? 20<br>Hello, John!<br>You are 20 years old.<br>You were born around 2005.<br>
-            <em>Explanation:</em> The program waits for user input when it reaches <code>cin</code>. Whatever the user types gets stored in the variable, then can be used in calculations or displayed back.
+            <strong>Резултат (ако корисникот внесе „John“ и „20“):</strong><br>
+            Како се викаш? John<br>
+            Колку години имаш? 20<br>
+            Здраво, John!<br>
+            Имаш 20 години.<br>
+            Роден/а си околу 2005 година.<br>
+            <em>Објаснување:</em> Програмата чека кориснички влез кога ќе стигне до <code>cin</code>. Внесените вредности се зачувуваат во променливи и може да се користат за пресметки или прикажување.
         </div>
     </div>
 
-    <h2>🧠 Interactive Walkthrough: Following Input/Output Code</h2>
-    <p>Watch how the program interacts with the user step-by-step:</p>
+    <h2>Интерактивен водич: Следење на Input/Output код</h2>
+    <p>Погледни како програмата комуницира со корисникот чекор по чекор:</p>
 
+    <h2>Пример 4: Повеќе влезови и пресметки</h2>
+    <p>Земање повеќе информации и извршување пресметки:</p>
+
+    <h2>Пример 5: Внес на текст со празни места</h2>
+    <p>Земање текст што содржи празни места (на пример цело име):</p>
+
+    <h2>Пример 6: Едноставна поздравна програма</h2>
+    <p>Целосна интерактивна програма со input и output:</p>
+
+    <h2>Чести грешки што треба да се избегнат</h2>
     <div class="code-container">
-        <div class="code-header">Active Code (C++)</div>
-        <div class="code-content">
-<pre id="walkthroughCodeBase">
-string name;
-int score;
-// cout << "Enter your name: ";
-// cin >> name;
-// cout << "Enter your score: ";
-// cin >> score;
-// cout << "Hello " << name << ", your score is " << score << endl;
-</pre>
-        </div>
-    </div>
-
-    <div class="code-container">
-        <div class="code-header">Variable State</div>
-        <div class="code-content">
-<pre id="walkthroughVariables">name = ?, score = ?</pre>
-        </div>
-        <div class="result-box" id="walkthroughExplanation">
-            <em>Click <strong>Next</strong> to begin the trace (assume user enters "Alice" and "95"):</em>
-        </div>
-        <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
-    </div>
-
-    <h2>🎯 Example 4: Multiple Inputs and Calculations</h2>
-    <p>Getting multiple pieces of information and performing calculations:</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example4Toggle" onchange="window.convertCode('example4')">
-            <label class="form-check-label" for="example4Toggle">Convert to C#</label>
-        </div>
-        <div class="code-content">
-<pre class="codeBlock" id="example4Code">
-int num1, num2, num3;
-
-cout << "=== CALCULATOR ===" << endl;
-cout << "Enter first number: ";
-cin >> num1;
-
-cout << "Enter second number: ";
-cin >> num2;
-
-cout << "Enter third number: ";
-cin >> num3;
-
-// Perform calculations
-int sum = num1 + num2 + num3;
-int average = sum / 3;
-int product = num1 * num2 * num3;
-
-// Display results
-cout << "\n=== RESULTS ===" << endl;
-cout << "Numbers: " << num1 << ", " << num2 << ", " << num3 << endl;
-cout << "Sum: " << sum << endl;
-cout << "Average: " << average << endl;
-cout << "Product: " << product << endl;
-</pre>
-        </div>
-        <div class="result-box" id="example4Result">
-            ➡ <strong>Result (if user enters 10, 20, 30):</strong><br>=== CALCULATOR ===<br>Enter first number: 10<br>Enter second number: 20<br>Enter third number: 30<br><br>=== RESULTS ===<br>Numbers: 10, 20, 30<br>Sum: 60<br>Average: 20<br>Product: 6000<br>
-            <em>Explanation:</em> The program collects three numbers from the user, stores them in variables, then uses those variables in calculations. The results are displayed back to the user.
-        </div>
-    </div>
-
-    <h2>🎯 Example 5: String Input with Spaces</h2>
-    <p>Getting text input that contains spaces (like full names):</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example5Toggle" onchange="window.convertCode('example5')">
-            <label class="form-check-label" for="example5Toggle">Convert to C#</label>
-        </div>
-        <div class="code-content">
-<pre class="codeBlock" id="example5Code">
-// For strings with spaces in C++, we need getline
-string fullName;
-int age;
-
-// Clear input buffer first
-cin.ignore();
-
-cout << "Enter your full name: ";
-getline(cin, fullName);  // Gets entire line including spaces
-
-cout << "Enter your age: ";
-cin >> age;
-
-cout << "\n=== PROFILE ===" << endl;
-cout << "Name: " << fullName << endl;
-cout << "Age: " << age << endl;
-cout << "Initial: " << fullName[0] << endl;  // First character
-</pre>
-        </div>
-        <div class="result-box" id="example5Result">
-            ➡ <strong>Result (if user enters "John Smith" and "30"):</strong><br>Enter your full name: John Smith<br>Enter your age: 30<br><br>=== PROFILE ===<br>Name: John Smith<br>Age: 30<br>Initial: J<br>
-            <em>Explanation:</em> Regular <code>cin >></code> stops at spaces, so for full names we use <code>getline()</code> in C++. C# handles this automatically with <code>ReadLine()</code>.
-        </div>
-    </div>
-
-    <h2>🎯 Example 6: Simple Greeting Program</h2>
-    <p>A complete interactive program using both input and output:</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example6Toggle" onchange="window.convertCode('example6')">
-            <label class="form-check-label" for="example6Toggle">Convert to C#</label>
-        </div>
-        <div class="code-content">
-<pre class="codeBlock" id="example6Code">
-string firstName;
-string lastName;
-int birthYear;
-int currentYear = 2025;
-
-cout << "=== PERSONAL GREETING ===" << endl;
-
-cout << "Enter your first name: ";
-cin >> firstName;
-
-cout << "Enter your last name: ";
-cin >> lastName;
-
-cout << "Enter your birth year: ";
-cin >> birthYear;
-
-// Calculate age
-int age = currentYear - birthYear;
-
-// Create greeting message
-cout << "\n=== WELCOME ===" << endl;
-cout << "Hello, " << firstName << " " << lastName << "!" << endl;
-cout << "You are " << age << " years old." << endl;
-cout << "Nice to meet you!" << endl;
-</pre>
-        </div>
-        <div class="result-box" id="example6Result">
-            ➡ <strong>Result (if user enters "Alex", "Johnson", and "2005"):</strong><br>=== PERSONAL GREETING ===<br>Enter your first name: Alex<br>Enter your last name: Johnson<br>Enter your birth year: 2005<br><br>=== WELCOME ===<br>Hello, Alex Johnson!<br>You are 20 years old.<br>Nice to meet you!<br>
-            <em>Explanation:</em> This complete program collects user information, performs a simple calculation (age), and displays a personalized greeting. All using only input and output operations.
-        </div>
-    </div>
-
-    <h2>⚠️ Common Mistakes to Avoid</h2>
-    <div class="code-container">
-        <div class="code-header">Input/Output Errors and Solutions</div>
+        <div class="code-header">Грешки и решенија за Input/Output</div>
         <div class="code-content">
 <pre>
-// ❌ WRONG: Forgetting to prompt the user
-cin >> age;  // User sees nothing - what should they enter?
+//<span style="color: red;"> ПОГРЕШНО: Заборавена порака за корисникот</span>
+cin >> age;  // Корисникот не знае што треба да внесе
 
-// ✅ CORRECT: Always show a prompt first
-cout << "Enter your age: ";
+//<span style="color: lightgreen;"> ТОЧНО: Секогаш прикажи порака</span>
+cout << "Внеси ја твојата возраст: ";
 cin >> age;
 
-// ❌ WRONG: Wrong conversion in C#
+//<span style="color: red;"> ПОГРЕШНО: Погрешна конверзија во C#</span>
 string input = Console.ReadLine();
-int age = input;  // ERROR: Can't assign string to int
+int age = input;  // ГРЕШКА: string не може директно во int
 
-// ✅ CORRECT: Convert properly in C#
+//<span style="color: lightgreen;"> ТОЧНО: Правилна конверзија во C#</span>
 string input = Console.ReadLine();
 int age = Convert.ToInt32(input);
 
-// ❌ WRONG: Using wrong operator in C#
-Console.WriteLine("Age: " << age);  // ERROR: C# uses +
+//<span style="color: red;"> ПОГРЕШНО: Погрешен оператор во C#</span>
+Console.WriteLine("Возраст: " << age);  // ГРЕШКА: C# користи +
 
-// ✅ CORRECT: Use + in C#
-Console.WriteLine("Age: " + age);
+//<span style="color: lightgreen;"> ТОЧНО: Користи + </span>
+Console.WriteLine("Возраст: " + age);
 
-// ❌ WRONG: Missing semicolon
-cout << "Hello"  // ERROR: Missing ;
+//<span style="color: red;"> ПОГРЕШНО: Недостасува точка-запирка</span>
+cout << "Здраво"  // ГРЕШКА: недостасува ;
 
-// ✅ CORRECT: Always end statements with ;
-cout << "Hello";
+//<span style="color: lightgreen;"> ТОЧНО: Секогаш завршувај со ;</span>
+cout << "Здраво";
 </pre>
         </div>
     </div>
 
-    <h2>🧠 Visual Diagram: Input/Output Flow</h2>
-    
-    <div class="code-container">
-        <div class="code-header">How Programs Communicate with Users</div>
-        <div class="code-content">
-<pre>
-Program Flow:
-1. [Program] → Output: "What's your name?"
-2. [User]    → Input: Types "Alice" and presses Enter
-3. [Program] → Stores "Alice" in 'name' variable
-4. [Program] → Output: "Hello, Alice!"
-5. [Program] → Does calculations with the data
-6. [Program] → Output: Shows results
-
-Memory View:
-Variables store what users enter:
-name = "Alice"
-age = 25
-score = 95
-
-Output combines variables and text:
-"Hello, Alice! You are 25 years old."
-</pre>
-        </div>
-    </div>
-
-    <h2>🔤 Special Characters for Formatting</h2>
-    <div class="code-container">
-        <div class="code-header">Common Escape Sequences</div>
-        <div class="code-content">
-<pre>
-\n      New line           "Line 1\nLine 2"
-\t      Tab (indent)      "Name:\tJohn"
-\\      Backslash         "Path: C:\\Users"
-\"      Double quote      "She said, \"Hi!\""
-\'      Single quote      "It's raining"
-</pre>
-        </div>
-    </div>
-
-    <h2>📊 Input/Output Summary Table</h2>
-    <div class="code-container">
-        <div class="code-header">C++ vs C# Comparison</div>
-        <div class="code-content">
-<pre>
-OPERATION          C++                          C#
------------        ---------------------------- -------------------------
-Display text       cout << "Hello" << endl;     Console.WriteLine("Hello");
-Display variable   cout << age;                 Console.WriteLine(age);
-Combine text+var   cout << "Age: " << age;      Console.WriteLine("Age: " + age);
-Get text input     cin >> name;                 name = Console.ReadLine();
-Get number input   cin >> age;                  age = Convert.ToInt32(Console.ReadLine());
-Get line with spaces getline(cin, name);        name = Console.ReadLine();
-New line           endl or "\n"                 "\n" or WriteLine()
-Tab                "\t"                         "\t"
-</pre>
-        </div>
-    </div>
-
-    <h2>🎉 Summary</h2>
+    <h2>Резиме</h2>
     <ul>
-        <li><strong>Output (<code>cout</code>/<code>Console.WriteLine</code>)</strong> displays information to users</li>
-        <li><strong>Input (<code>cin</code>/<code>Console.ReadLine</code>)</strong> gets information from users</li>
-        <li>Always use <strong>prompts</strong> to tell users what to enter</li>
-        <li>Combine text and variables in output using <code><<</code> (C++) or <code>+</code> (C#)</li>
-        <li>Use <code>getline()</code> for string input with spaces in C++</li>
-        <li>Convert input properly in C# using <code>Convert.ToInt32()</code> etc.</li>
-        <li>Use special characters (<code>\n</code>, <code>\t</code>) to format output</li>
-        <li>Input/output make programs interactive and useful for real tasks</li>
+        <li><strong>Output (<code>cout</code>/<code>Console.WriteLine</code>)</strong> прикажува информации на корисникот</li>
+        <li><strong>Input (<code>cin</code>/<code>Console.ReadLine</code>)</strong> зема информации од корисникот</li>
+        <li>Секогаш користи <strong>пораки</strong> за да му кажеш на корисникот што да внесе</li>
+        <li>Комбинирај текст и променливи со <code><<</code> (C++) или <code>+</code> (C#)</li>
+        <li>Користи <code>getline()</code> за текст со празни места во C++</li>
+        <li>Правилно конвертирај внес во C# со <code>Convert.ToInt32()</code> и слично</li>
+        <li>Специјалните карактери (<code>\n</code>, <code>\t</code>) помагаат за форматирање</li>
+        <li>Input и Output ги прават програмите интерактивни и корисни</li>
     </ul>
 
     <div class="navigation-buttons">
@@ -398,6 +221,7 @@ Tab                "\t"                         "\t"
         <a href="@Url.Action("IfElse", "SP")" class="btn btn-primary ajax-link">If-Else →</a>
     </div>
 </div>
+
 
 <style>
     .container {
@@ -506,12 +330,12 @@ window.traceSteps = [
 ];
 
 window.cppSnippets = {
-    example1: `// Simple text output
+            example1: `// Едноставен излез на текст
 cout << "Welcome to Programming!" << endl;
 cout << "This is line 1." << endl;
 cout << "This is line 2." << endl;
 
-// Text with special characters
+    // Текст со специјални знаци
 cout << "Use \\n for new line: First line\nSecond line" << endl;
 cout << "Use \\t for tab: Name:\tJohn" << endl;
 cout << "Quotes: She said, \"Hello!\"" << endl;`,
@@ -520,29 +344,29 @@ int age = 25;
 float height = 1.68;
 bool isStudent = true;
 
-// Displaying variable values
+    //Прикажување на променливи вредности
 cout << "Name: " << name << endl;
 cout << "Age: " << age << " years" << endl;
 cout << "Height: " << height << " meters" << endl;
 cout << "Student: " << (isStudent ? "Yes" : "No") << endl;
 
-// Multiple variables in one line
+    //Повеќе променливи во еден ред
 cout << name << " is " << age << " years old and " << height << " meters tall." << endl;`,
     example3: `string userName;
 int userAge;
 
-// Ask for input
+    //Побарајте влез
 cout << "What is your name? ";
 cin >> userName;
 
 cout << "How old are you? ";
 cin >> userAge;
 
-// Display what was entered
+    //Прикажи што е внесено
 cout << "Hello, " << userName << "!" << endl;
 cout << "You are " << userAge << " years old." << endl;
 
-// Calculate based on input
+    //Пресметајте врз основа на внесеното
 int birthYear = 2025 - userAge;
 cout << "You were born around " << birthYear << "." << endl;`,
     example4: `int num1, num2, num3;
@@ -557,26 +381,26 @@ cin >> num2;
 cout << "Enter third number: ";
 cin >> num3;
 
-// Perform calculations
+    //Изведете пресметки
 int sum = num1 + num2 + num3;
 int average = sum / 3;
 int product = num1 * num2 * num3;
 
-// Display results
+    //Прикажи резултати
 cout << "\n=== RESULTS ===" << endl;
 cout << "Numbers: " << num1 << ", " << num2 << ", " << num3 << endl;
 cout << "Sum: " << sum << endl;
 cout << "Average: " << average << endl;
 cout << "Product: " << product << endl;`,
-    example5: `// For strings with spaces in C++, we need getline
+        example5: `// За низи со празни места во C++, ни треба getline
 string fullName;
 int age;
 
-// Clear input buffer first
+    //Прво исчистете го влезниот бафер
 cin.ignore();
 
 cout << "Enter your full name: ";
-getline(cin, fullName);  // Gets entire line including spaces
+    getline(cin, fullName);  // Добива цела линија, вклучувајќи празни места
 
 cout << "Enter your age: ";
 cin >> age;
@@ -584,7 +408,7 @@ cin >> age;
 cout << "\n=== PROFILE ===" << endl;
 cout << "Name: " << fullName << endl;
 cout << "Age: " << age << endl;
-cout << "Initial: " << fullName[0] << endl;  // First character`,
+cout << "Initial: " << fullName[0] << endl;  // Прв карактер`,
     example6: `string firstName;
 string lastName;
 int birthYear;
@@ -601,10 +425,10 @@ cin >> lastName;
 cout << "Enter your birth year: ";
 cin >> birthYear;
 
-// Calculate age
+// Пресметај возраст
 int age = currentYear - birthYear;
 
-// Create greeting message
+    //Креирајте порака за поздравување
 cout << "\n=== WELCOME ===" << endl;
 cout << "Hello, " << firstName << " " << lastName << "!" << endl;
 cout << "You are " << age << " years old." << endl;
@@ -612,12 +436,12 @@ cout << "Nice to meet you!" << endl;`
 };
 
 window.csharpSnippets = {
-    example1: `// Simple text output
+        example1: `//Едноставен излез на текст
 Console.WriteLine("Welcome to Programming!");
 Console.WriteLine("This is line 1.");
 Console.WriteLine("This is line 2.");
 
-// Text with special characters
+    //Текст со специјални знаци
 Console.WriteLine("Use \\n for new line: First line\nSecond line");
 Console.WriteLine("Use \\t for tab: Name:\tJohn");
 Console.WriteLine("Quotes: She said, \"Hello!\"");`,
@@ -626,29 +450,29 @@ int age = 25;
 float height = 1.68f;
 bool isStudent = true;
 
-// Displaying variable values
+    //Прикажување на променливи вредности
 Console.WriteLine("Name: " + name);
 Console.WriteLine("Age: " + age + " years");
 Console.WriteLine("Height: " + height + " meters");
 Console.WriteLine("Student: " + (isStudent ? "Yes" : "No"));
 
-// Multiple variables in one line
+    //Повеќе променливи во еден ред
 Console.WriteLine(name + " is " + age + " years old and " + height + " meters tall.");`,
     example3: `string userName;
 int userAge;
 
-// Ask for input
+    //Побарајте влез
 Console.Write("What is your name? ");
 userName = Console.ReadLine();
 
 Console.Write("How old are you? ");
 userAge = Convert.ToInt32(Console.ReadLine());
 
-// Display what was entered
+    //Прикажи што е внесено
 Console.WriteLine("Hello, " + userName + "!");
 Console.WriteLine("You are " + userAge + " years old.");
 
-// Calculate based on input
+    //Пресметајте врз основа на внесување
 int birthYear = 2025 - userAge;
 Console.WriteLine("You were born around " + birthYear + ".");`,
     example4: `int num1, num2, num3;
@@ -663,23 +487,23 @@ num2 = Convert.ToInt32(Console.ReadLine());
 Console.Write("Enter third number: ");
 num3 = Convert.ToInt32(Console.ReadLine());
 
-// Perform calculations
+    //Изведете пресметки
 int sum = num1 + num2 + num3;
 int average = sum / 3;
 int product = num1 * num2 * num3;
 
-// Display results
+//Прикажи резултати
 Console.WriteLine("\n=== RESULTS ===");
 Console.WriteLine("Numbers: " + num1 + ", " + num2 + ", " + num3);
 Console.WriteLine("Sum: " + sum);
 Console.WriteLine("Average: " + average);
 Console.WriteLine("Product: " + product);`,
-    example5: `// C# handles spaces automatically with ReadLine
+        example5: `// C# автоматски обработува празни места со ReadLine.
 string fullName;
 int age;
 
 Console.Write("Enter your full name: ");
-fullName = Console.ReadLine();  // Gets entire line including spaces
+    fullName = Console.ReadLine();  // Добива цела линија, вклучувајќи празни места
 
 Console.Write("Enter your age: ");
 age = Convert.ToInt32(Console.ReadLine());
@@ -687,7 +511,7 @@ age = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("\n=== PROFILE ===");
 Console.WriteLine("Name: " + fullName);
 Console.WriteLine("Age: " + age);
-Console.WriteLine("Initial: " + fullName[0]);  // First character`,
+Console.WriteLine("Initial: " + fullName[0]);  // Прв карактер`,
     example6: `string firstName;
 string lastName;
 int birthYear;
@@ -704,10 +528,10 @@ lastName = Console.ReadLine();
 Console.Write("Enter your birth year: ");
 birthYear = Convert.ToInt32(Console.ReadLine());
 
-// Calculate age
+// Пресметај возраст
 int age = currentYear - birthYear;
 
-// Create greeting message
+// Создади порака за поздравување
 Console.WriteLine("\n=== WELCOME ===");
 Console.WriteLine("Hello, " + firstName + " " + lastName + "!");
 Console.WriteLine("You are " + age + " years old.");

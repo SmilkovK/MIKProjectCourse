@@ -1,468 +1,194 @@
 ﻿@{
-    ViewData["Title"] = "OOP - Objects";
+    ViewData["Title"] = "OOP - Објекти";
 }
 
 <body data-topic="objects">
-<div class="container">
-    <h1 class="mb-4 text-center">Objects: Bringing Blueprints to Life</h1>
+    <div class="container">
+        <h1 class="mb-4 text-center">Објекти: Оживување на шаблоните</h1>
 
-    <p><strong>Objects</strong> are the <strong>actual things</strong> you create from a class blueprint. If a class is a recipe, then objects are the actual meals you cook using that recipe!</p>
+        <p><strong>Објектите</strong> се <strong>реалните нешта</strong> што ги креираш од шаблонот на една класа. Ако класата е рецепт, тогаш објектите се вистинските јадења што ги готвиш според тој рецепт.</p>
 
-    <div class="note-box">
-        <strong>Note:</strong> In the <a href="@Url.Action("Classes", "OOP")" class="ajax-link"><strong>Classes lesson</strong></a>, we briefly mentioned objects when we created actual students and products from class blueprints. Now, we'll dive <strong>DEEPER</strong> into what objects really are and how they work!
-    </div>
-
-    <p>You use objects in real life every day:</p>
-    <ul>
-        <li>A <strong>cookie</strong> made from a cookie cutter (class)</li>
-        <li>A <strong>specific car</strong> built from a car design (class)</li>
-        <li>Your <strong>Instagram account</strong> created from the User blueprint (class)</li>
-        <li>This <strong>specific webpage</strong> loaded from the Page template (class)</li>
-    </ul>
-
-    <h2 class="text-center">What is an Object?</h2>
-    <p>An object is an <strong>instance</strong> of a class. Think of it like this:</p>
-    
-    <div class="code-container">
-        <div class="code-header">Class vs Object Relationship</div>
-        <div class="code-content">
-<pre>
-CLASS (Blueprint/Template)      OBJECTS (Actual Things)
-────────────────────────────────────────────────────────
-Cookie Cutter                   Actual Cookies
-Recipe                          Cakes You Bake
-Car Design                      Cars on the Road
-Student Form                    Individual Students
-
-ONE Class can create            MANY Objects
-</pre>
+        <div class="note-box">
+            <strong>Забелешка:</strong> Во лекцијата за
+            <a href="@Url.Action("Classes", "OOP")" class="ajax-link"><strong>Класи</strong></a>,
+            накратко ги спомнавме објектите кога креиравме вистински студенти и производи од шаблони на класи.
+            Сега ќе навлеземе <strong>подлабоко</strong> во тоа што навистина се објектите и како функционираат.
         </div>
-    </div>
 
-    <p><strong>Key Idea:</strong> Classes define WHAT things are, Objects are ACTUAL things with their own data.</p>
+        <p>Објекти користиш секојдневно во реалниот живот:</p>
+        <ul>
+            <li><strong>Колаче</strong> направено со калап за колачи (класа)</li>
+            <li><strong>Конкретен автомобил</strong> изграден според дизајн (класа)</li>
+            <li>Твојот <strong>Instagram профил</strong> креиран од шаблонот User (класа)</li>
+            <li>Оваа <strong>конкретна веб-страница</strong> вчитана од шаблонот Page (класа)</li>
+        </ul>
 
-    <h2 class="text-center">Creating Objects: The 'new' Keyword</h2>
-    <p>You create objects using the <code>new</code> keyword. This is like saying "Make me a new one of these!"</p>
-    
-    <div class="code-container">
-        <div class="code-header">Creating Objects Syntax</div>
-        <div class="code-content">
+        <h2 class="text-center">Што е објект?</h2>
+        <p>Објект е <strong>инстанца</strong> од една класа. Размислувај вака:</p>
+
+        <div class="code-container">
+            <div class="code-header">Однос помеѓу класа и објект</div>
+            <div class="code-content">
 <pre>
-// Class Definition (Blueprint)
+КЛАСА (Шаблон)               ОБЈЕКТИ (Вистински нешта)
+──────────────────────────────────────────────────────
+Калап за колачи              Вистински колачи
+Рецепт                        Колачи што ги печеш
+Дизајн на автомобил          Автомобили на пат
+Формулар за студент          Индивидуални студенти
+
+ЕДНА класа може да креира     МНОГУ објекти
+</pre>
+            </div>
+        </div>
+
+        <p><strong>Клучна идеја:</strong> Класите дефинираат ШТО се нештата, а објектите се ВИСТИНСКИТЕ нешта со сопствени податоци.</p>
+
+        <h2 class="text-center">Креирање објекти: клучниот збор „new“</h2>
+        <p>Објектите се креираат со клучниот збор <code>new</code>. Тоа е како да кажеш: „Направи ми ново вакво нешто“.</p>
+
+        <div class="code-container">
+            <div class="code-header">Синтакса за креирање објекти</div>
+            <div class="code-content">
+<pre>
+// Дефиниција на класа (шаблон)
 public class Student
 {
     public string Name;
     public int Age;
 }
 
-// Creating Objects (Actual Students)
-Student student1 = new Student();  // First student object
-Student student2 = new Student();  // Second student object
-Student student3 = new Student();  // Third student object
+// Креирање објекти (вистински студенти)
+Student student1 = new Student();
+Student student2 = new Student();
+Student student3 = new Student();
 
-// Each object is SEPARATE and UNIQUE!
+// Секој објект е ОДВОЕН и УНИКАТЕН
 </pre>
+            </div>
         </div>
-    </div>
 
-    <h2 class="text-center">Example 1: Student Objects - Going Deeper</h2>
-    <p>Remember in Classes lesson we created students? Let's explore what that REALLY means:</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="oopObjects.convertCode('example1')">
-            <label class="form-check-label" for="example1Toggle">Show Memory Visualization</label>
-        </div>
-        <div class="code-content">
+        <h2 class="text-center">Пример 1: Објекти Student – подлабоко објаснување</h2>
+        <p>Во лекцијата за класи креиравме студенти. Ајде да видиме што тоа навистина значи:</p>
+
+        <div class="code-container">
+            <div class="form-check form-switch mb-2">
+                <input class="form-check-input" type="checkbox" id="example1Toggle" onchange="oopObjects.convertCode('example1')">
+                <label class="form-check-label" for="example1Toggle">Прикажи визуелизација на меморија</label>
+            </div>
+            <div class="code-content">
 <pre class="codeBlock" id="example1Code">
-// Class Definition (Blueprint) - ONE copy exists
+// Дефиниција на класа (шаблон) – постои САМО ЕДНАШ
 public class Student
 {
     public string Name;
     public int Age;
     public string Major;
-    
+
     public void Introduce()
     {
-        Console.WriteLine("Hi, I'm " + Name + ", studying " + Major);
+        Console.WriteLine("Здраво, јас сум " + Name + ", студирам " + Major);
     }
 }
 
-// Creating THREE separate objects
+// Креирање ТРИ одвоени објекти
 Student student1 = new Student();
 student1.Name = "Alice";
 student1.Age = 20;
-student1.Major = "Computer Science";
+student1.Major = "Компјутерски науки";
 
 Student student2 = new Student();
 student2.Name = "Bob";
 student2.Age = 22;
-student2.Major = "Mathematics";
+student2.Major = "Математика";
 
 Student student3 = new Student();
 student3.Name = "Charlie";
 student3.Age = 21;
-student3.Major = "Biology";
+student3.Major = "Биологија";
 
-// Each object works independently
-student1.Introduce();  // Uses Alice's data
-student2.Introduce();  // Uses Bob's data
-student3.Introduce();  // Uses Charlie's data
+// Секој објект работи независно
+student1.Introduce();
+student2.Introduce();
+student3.Introduce();
 </pre>
+            </div>
+            <div class="result-box" id="example1Result">
+                <strong>Излез:</strong><br>
+                Здраво, јас сум Alice, студирам Компјутерски науки<br>
+                Здраво, јас сум Bob, студирам Математика<br>
+                Здраво, јас сум Charlie, студирам Биологија<br><br>
+                <em>Клучен увид:</em> Имаме ЕДНА класа Student, но ТРИ различни објекти во меморија. Секој објект има сопствен простор за Name, Age и Major.
+            </div>
         </div>
-        <div class="result-box" id="example1Result">
-            <strong>Output:</strong><br>
-            Hi, I'm Alice, studying Computer Science<br>
-            Hi, I'm Bob, studying Mathematics<br>
-            Hi, I'm Charlie, studying Biology<br><br>
-            <em>Deep Insight:</em> We have ONE Student class, but THREE separate objects in memory. Each object has its own space for Name, Age, and Major. When <code>student1.Introduce()</code> runs, it uses <code>student1</code>'s data, not <code>student2</code>'s or <code>student3</code>'s!
-        </div>
-    </div>
 
-    <h2 class="text-center">Interactive Walkthrough: Object Creation in Memory</h2>
-    <p>Watch how objects get created in computer memory:</p>
+        <h2 class="text-center">Пример 2: Независност на објекти</h2>
+        <p>Објектите не влијаат еден на друг – тие се целосно независни:</p>
 
-    <div class="code-container">
-        <div class="code-header">Step-by-Step Object Creation</div>
-        <div class="code-content">
-<pre id="walkthroughCodeBase">
-public class Book
-{
-    public string Title;
-    public string Author;
-    
-    public void Display()
-    {
-        Console.WriteLine(Title + " by " + Author);
-    }
-}
-
-// We'll create books step by step
-// Book book1 = new Book();
-// Book book2 = new Book();
-</pre>
-        </div>
-    </div>
-
-    <div class="code-container">
-        <div class="code-header">Memory State</div>
-        <div class="code-content">
-<pre id="walkthroughVariables">
-MEMORY LAYOUT:
-[Class Area] Book class definition
-[Heap] No book objects yet
-</pre>
-        </div>
-        <div class="result-box" id="walkthroughExplanation">
-            <em>Click <strong>Next</strong> to see how objects are created in memory:</em>
-        </div>
-        <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
-    </div>
-
-    <h2 class="text-center">Visual Diagram: Objects in Memory</h2>
-    
-    <div class="code-container">
-        <div class="code-header">How Objects Really Work</div>
-        <div class="code-content">
-<pre>
-COMPUTER MEMORY:
-
-[CLASS AREA - ONE COPY]
-┌─────────────────────────┐
-│      Student Class      │
-├─────────────────────────┤
-│ - string Name           │ ← Method code lives here
-│ - int Age               │
-│ + void Introduce() {    │
-│     // Code here        │
-│   }                     │
-└─────────────────────────┘
-↑ Only ONE copy of the code
-
-[HEAP - SEPARATE OBJECTS]
-┌─────────────────────────┐    ┌─────────────────────────┐    ┌─────────────────────────┐
-│     student1 Object     │    │     student2 Object     │    │     student3 Object     │
-├─────────────────────────┤    ├─────────────────────────┤    ├─────────────────────────┤
-│ Name = "Alice"          │    │ Name = "Bob"            │    │ Name = "Charlie"        │
-│ Age = 20                │    │ Age = 22                │    │ Age = 21                │
-│ Major = "CS"            │    │ Major = "Math"          │    │ Major = "Biology"       │
-└───────┬─────────────────┘    └───────┬─────────────────┘    └───────┬─────────────────┘
-        │                              │                              │
-        └─────── All objects SHARE ────┴────── the same CLASS CODE ───┘
-
-When student1.Introduce() runs:
-1. Computer finds student1 object
-2. Gets student1's Name ("Alice")
-3. Uses the SAME Introduce() code from Class Area
-4. Prints: "Hi, I'm Alice, studying Computer Science"
-</pre>
-        </div>
-    </div>
-
-    <h2 class="text-center">Example 2: Objects in E-commerce - The Real Story</h2>
-    <p>In our Classes lesson, we saw products. Now let's understand the OBJECTS behind them:</p>
-    
-    <div class="code-container">
-        <div class="form-check form-switch mb-2">
-            <input class="form-check-input" type="checkbox" id="example2Toggle" onchange="oopObjects.convertCode('example2')">
-            <label class="form-check-label" for="example2Toggle">Show Inventory System</label>
-        </div>
-        <div class="code-content">
-<pre class="codeBlock" id="example2Code">
-public class Product
-{
-    public string Name;
-    public decimal Price;
-    public int Stock;
-    
-    public bool IsAvailable()
-    {
-        return Stock > 0;
-    }
-    
-    public void Sell(int quantity)
-    {
-        if (quantity <= Stock)
-        {
-            Stock -= quantity;  // Reduce stock
-            decimal total = Price * quantity;
-            Console.WriteLine("Sold " + quantity + " of " + Name + " for $" + total);
-        }
-        else
-        {
-            Console.WriteLine("Not enough " + Name + " in stock!");
-        }
-    }
-}
-
-// Real inventory - each product is a SEPARATE object
-Product laptop = new Product();
-laptop.Name = "Dell XPS 13";
-laptop.Price = 999.99m;
-laptop.Stock = 10;  // laptop object has Stock = 10
-
-Product phone = new Product();
-phone.Name = "iPhone 15";
-phone.Price = 799.99m;
-phone.Stock = 5;    // phone object has Stock = 5
-
-// Customers buy products
-Console.WriteLine("=== Sales Transactions ===");
-laptop.Sell(3);    // Reduces laptop.Stock to 7
-phone.Sell(2);     // Reduces phone.Stock to 3
-laptop.Sell(8);    // Should fail - not enough stock
-
-Console.WriteLine("\n=== Remaining Stock ===");
-Console.WriteLine(laptop.Name + ": " + laptop.Stock + " left");
-Console.WriteLine(phone.Name + ": " + phone.Stock + " left");
-</pre>
-        </div>
-        <div class="result-box" id="example2Result">
-            <strong>Output:</strong><br>
-            === Sales Transactions ===<br>
-            Sold 3 of Dell XPS 13 for $2999.97<br>
-            Sold 2 of iPhone 15 for $1599.98<br>
-            Not enough Dell XPS 13 in stock!<br><br>
-            === Remaining Stock ===<br>
-            Dell XPS 13: 7 left<br>
-            iPhone 15: 3 left<br><br>
-            <em>Key Insight:</em> Each product object MAINTAINS ITS OWN STOCK. When we sell laptops, only the <code>laptop</code> object's Stock changes. The <code>phone</code> object's Stock stays separate. This is why objects are perfect for real systems!
-        </div>
-    </div>
-
-    <h2 class="text-center">Example 3: Object Independence</h2>
-    <p>Objects don't affect each other - they're completely independent:</p>
-    
-    <div class="code-container">
-        <div class="code-header">Independent Objects Demo</div>
-        <div class="code-content">
+        <div class="code-container">
+            <div class="code-header">Демо за независни објекти</div>
+            <div class="code-content">
 <pre>
 public class Counter
 {
     public int Value = 0;
-    
+
     public void Increment()
     {
         Value++;
-        Console.WriteLine("Counter is now: " + Value);
+        Console.WriteLine("Бројачот сега е: " + Value);
     }
 }
 
-// Create TWO independent counters
 Counter counterA = new Counter();
 Counter counterB = new Counter();
 
-Console.WriteLine("Counter A: " + counterA.Value);  // 0
-Console.WriteLine("Counter B: " + counterB.Value);  // 0
+counterA.Increment();
+counterA.Increment();
 
-// Only change counterA
-counterA.Increment();  // counterA.Value becomes 1
-counterA.Increment();  // counterA.Value becomes 2
-counterA.Increment();  // counterA.Value becomes 3
-
-// Check counterB - UNCHANGED!
-Console.WriteLine("After changing counterA:");
-Console.WriteLine("Counter A: " + counterA.Value);  // 3
-Console.WriteLine("Counter B: " + counterB.Value);  // Still 0!
-
-// Now change counterB
-counterB.Increment();  // counterB.Value becomes 1
-Console.WriteLine("Counter B after increment: " + counterB.Value);  // 1
+Console.WriteLine(counterA.Value); // 2
+Console.WriteLine(counterB.Value); // 0
 </pre>
-        </div>
-    </div>
-
-    <h2 class="text-center">Common Object Mistakes (And How to Avoid Them)</h2>
-    <div class="code-container">
-        <div class="code-header">Object Pitfalls</div>
-        <div class="code-content">
-<pre>
-<span class="error-text">// MISTAKE 1: Thinking objects share data</span>
-Student s1 = new Student();
-Student s2 = new Student();
-s1.Name = "Alice";
-Console.WriteLine(s2.Name);  // EMPTY! Not "Alice"
-
-<span class="correct-text">// SOLUTION: Each object needs its own data</span>
-Student s1 = new Student();
-Student s2 = new Student();
-s1.Name = "Alice";
-s2.Name = "Bob";  // Give EACH object its data
-
-<span class="error-text">// MISTAKE 2: Forgetting 'new' </span>
-Product p;         // Just a reference, no object!
-p.Name = "Test";   // CRASH! Object doesn't exist
-
-<span class="correct-text">// SOLUTION: Always use 'new'</span>
-Product p = new Product();  // Actually creates it
-p.Name = "Test";            // Now it works
-
-<span class="error-text">// MISTAKE 3: Changing one object affects another</span>
-Product p1 = new Product();
-Product p2 = p1;           // p2 REFERENCES p1, not a new object
-p1.Price = 100;
-Console.WriteLine(p2.Price);  // Also 100! They're the SAME object
-
-<span class="correct-text">// SOLUTION: Create separate objects</span>
-Product p1 = new Product();
-Product p2 = new Product();  // NEW object
-p1.Price = 100;
-p2.Price = 200;              // Different values
-</pre>
-        </div>
-    </div>
-
-    <h2 class="text-center">Key Object Concepts</h2>
-    <div class="code-container">
-        <div class="code-header">Object Essentials</div>
-        <div class="code-content">
-<pre>
-1. OBJECT = INSTANCE OF A CLASS
-   - Created with 'new' keyword
-   - Has its own memory space
-   - Contains actual data values
-
-2. EACH OBJECT IS INDEPENDENT
-   - Changing one doesn't change others
-   - Each has its own property values
-   - Methods use the object's own data
-
-3. OBJECTS EXIST IN MEMORY
-   - Class code: ONE copy (in method area)
-   - Object data: SEPARATE for each object (in heap)
-   - Objects reference the class code
-
-4. REAL-WORLD ANALOGY:
-   Class = Facebook user template
-   Objects = Actual user accounts (yours, mine, friends')
-   Your posts ≠ My posts (separate objects!)
-   But we all use same Facebook code (class)
-
-5. WHY OBJECTS MATTER:
-   - Model real-world entities
-   - Keep data organized and separate
-   - Enable complex systems (social media, stores, banks)
-   - Make code reusable and maintainable
-</pre>
-        </div>
-    </div>
-
-    <h2 class="text-center">Real-World Object Systems</h2>
-    <div class="code-container">
-        <div class="code-header">Objects in Action</div>
-        <div class="code-content">
-<pre>
-SOCIAL MEDIA (Like Instagram):
-User Class → Your account object, My account object
-Post Class → Your photo object, My story object
-Like Class → Your like on my photo (object), My like on your post (object)
-
-ONLINE BANKING:
-Account Class → Your checking account (object), Your savings account (object)
-Transaction Class → Your deposit today (object), Your withdrawal yesterday (object)
-Customer Class → You (object), Me (object)
-
-GAME DEVELOPMENT:
-Player Class → Player1 object, Player2 object, AI bot object
-Weapon Class → Sword in Player1's hand (object), Bow in Player2's inventory (object)
-PowerUp Class → Health boost you just collected (object)
-
-E-COMMERCE:
-Cart Class → Your shopping cart (object), My shopping cart (object)
-Order Class → Your order #123 (object), My order #124 (object)
-Review Class → Your review of product X (object), My review of product Y (object)
-</pre>
-        </div>
-    </div>
-
-    <h2 class="text-center">Quick Understanding Check</h2>
-    <div class="quiz-container">
-        <div class="quiz-question">
-            <p>1. If you create <code>Car car1 = new Car();</code> and <code>Car car2 = new Car();</code>, then set <code>car1.Color = "Red"</code>, what is <code>car2.Color</code>?</p>
-            <div class="quiz-options">
-                <button class="btn btn-sm btn-outline-secondary" onclick="oopObjects.checkAnswer(1, 'A')">A) "Red"</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="oopObjects.checkAnswer(1, 'B')">B) Empty/Null</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="oopObjects.checkAnswer(1, 'C')">C) Error</button>
             </div>
-            <div id="quiz1Result" class="quiz-result mt-2"></div>
         </div>
-        
-        <div class="quiz-question mt-3">
-            <p>2. How many times is the class code loaded into memory when you create 100 objects?</p>
-            <div class="quiz-options">
-                <button class="btn btn-sm btn-outline-secondary" onclick="oopObjects.checkAnswer(2, 'A')">A) 100 times</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="oopObjects.checkAnswer(2, 'B')">B) 1 time</button>
-                <button class="btn btn-sm btn-outline-secondary" onclick="oopObjects.checkAnswer(2, 'C')">C) 0 times</button>
+
+        <h2 class="text-center">Најважни концепти за објекти</h2>
+        <div class="code-container">
+            <div class="code-header">Основи за објекти</div>
+            <div class="code-content">
+<pre>
+1. ОБЈЕКТ = ИНСТАНЦА ОД КЛАСА
+2. СЕ КРЕИРА СО 'new'
+3. СЕКОЈ ОБЈЕКТ ИМА СОПСТВЕНА МЕМОРИЈА
+4. ОБЈЕКТИТЕ СЕ НЕЗАВИСНИ
+5. КОДОТ НА КЛАСАТА ПОСТОИ САМО ЕДНАШ
+</pre>
             </div>
-            <div id="quiz2Result" class="quiz-result mt-2"></div>
         </div>
-    </div>
 
-    <h2 class="text-center">Summary: Objects Deep Dive</h2>
-    <ul>
-        <li><strong>Objects are instances</strong> - Actual things created from class blueprints</li>
-        <li>Created with <code>new</code>: <code>Student s = new Student();</code></li>
-        <li>Each object has <strong>its own memory space</strong> and data</li>
-        <li>Objects are <strong>independent</strong> - changing one doesn't affect others</li>
-        <li>Class code exists <strong>once</strong> in memory, shared by all objects</li>
-        <li>Objects <strong>store state</strong> (data) that can change over time</li>
-        <li>Real systems use objects to represent: Users, Products, Orders, Game characters, etc.</li>
-        <li>Without objects, we couldn't have: Social media, Online stores, Banking apps, Video games!</li>
-    </ul>
-
-    <div class="next-steps">
-        <h3 class="text-center">What's Next?</h3>
-        <p>Now that you understand objects, you're ready for:</p>
+        <h2 class="text-center">Резиме: Објекти</h2>
         <ul>
-            <li><strong>Inheritance</strong> - Creating new classes from existing ones</li>
+            <li><strong>Објектите се реални инстанци</strong> креирани од класи</li>
+            <li>Се креираат со <code>new</code></li>
+            <li>Секој објект има сопствени податоци</li>
+            <li>Промена на еден објект не влијае на друг</li>
+            <li>Класата е шаблон, објектите се вистинските нешта</li>
         </ul>
+
+        <div class="next-steps">
+            <h3 class="text-center">Што следува?</h3>
+            <p>Сега кога ги разбра објектите, подготвен си за:</p>
+            <ul>
+                <li><strong>Наследување</strong> – креирање нови класи од постоечки</li>
+            </ul>
+        </div>
+
+        <div class="navigation-buttons">
+            <a href="@Url.Action("Constructors", "OOP")" class="btn btn-outline-primary ajax-link">← Конструктори</a>
+            <a href="@Url.Action("Inheritance", "OOP")" class="btn btn-primary ajax-link">Наследување →</a>
+        </div>
     </div>
 
-    <div class="navigation-buttons">
-        <a href="@Url.Action("Constructors", "OOP")" class="btn btn-outline-primary ajax-link">← Constructors</a>
-        <a href="@Url.Action("Inheritance", "OOP")" class="btn btn-primary ajax-link">Inheritance →</a>
-    </div>
-</div>
 
 <style>
     .container {
@@ -649,7 +375,7 @@ Review Class → Your review of product X (object), My review of product Y (obje
     }
 }
 
-// We'll create books step by step
+        // Ќе создадеме книги чекор по чекор
 // Book book1 = new Book();
 // Book book2 = new Book();`,
                 vars: `MEMORY LAYOUT:
@@ -669,7 +395,7 @@ Review Class → Your review of product X (object), My review of product Y (obje
     }
 }
 
-// We'll create books step by step
+        // Ќе создадеме книги чекор по чекор
 Book book1 = new Book();
 // Book book2 = new Book();`,
                 vars: `MEMORY LAYOUT:
@@ -693,7 +419,7 @@ Book book1 = new Book();
     }
 }
 
-// We'll create books step by step
+// Ќе создадеме книги чекор по чекор
 Book book1 = new Book();
 book1.Title = "Harry Potter";
 book1.Author = "J.K. Rowling";
@@ -719,7 +445,7 @@ book1.Author = "J.K. Rowling";
     }
 }
 
-// We'll create books step by step
+// Ќе создадеме книги чекор по чекор
 Book book1 = new Book();
 book1.Title = "Harry Potter";
 book1.Author = "J.K. Rowling";
@@ -745,7 +471,7 @@ Book book2 = new Book();`,
     }
 }
 
-// We'll create books step by step
+// Ќе создадеме книги чекор по чекор
 Book book1 = new Book();
 book1.Title = "Harry Potter";
 book1.Author = "J.K. Rowling";
@@ -765,7 +491,7 @@ book2.Author = "J.R.R. Tolkien";`,
 
         // Code examples for toggles
         simpleExamples: {
-            example1: `// Class Definition (Blueprint) - ONE copy exists
+                    example1: `// Дефиниција на класа (план) - постои ЕДНА копија
 public class Student
 {
     public string Name;
@@ -778,7 +504,7 @@ public class Student
     }
 }
 
-// Creating THREE separate objects
+        // Креирање на три одделни објекти
 Student student1 = new Student();
 student1.Name = "Alice";
 student1.Age = 20;
@@ -819,7 +545,7 @@ student3.Major = "Biology";`,
     }
 }
 
-// Real inventory - each product is a SEPARATE object
+        // Вистински инвентар - секој производ е ПОСЕБЕН објект
 Product laptop = new Product();
 laptop.Name = "Dell XPS 13";
 laptop.Price = 999.99m;
@@ -841,15 +567,15 @@ phone.Stock = 5;`,
     }
 }
 
-// Creating a person object
+// Создади објект person
 Person person = new Person();
 person.Name = "Charlie";
 person.Age = 25;`
         },
 
         completeExamples: {
-            example1: `// Class Definition (Blueprint) - ONE copy exists
-public class Student
+                    example1: `//Дефиниција на класа (план) - постои ЕДНА копија
+        public class Student
 {
     public string Name;
     public int Age;
@@ -861,7 +587,7 @@ public class Student
     }
 }
 
-// Creating THREE separate objects
+        // Креирање на три одделни објекти
 Student student1 = new Student();
 student1.Name = "Alice";
 student1.Age = 20;
@@ -877,7 +603,7 @@ student3.Name = "Charlie";
 student3.Age = 21;
 student3.Major = "Biology";
 
-// Each object works independently
+        // Секој објект работи независно
 student1.Introduce();  // Uses Alice's data
 student2.Introduce();  // Uses Bob's data
 student3.Introduce();  // Uses Charlie's data`,
@@ -907,22 +633,22 @@ student3.Introduce();  // Uses Charlie's data`,
     }
 }
 
-// Real inventory - each product is a SEPARATE object
+        // Вистински инвентар - секој производ е ПОСЕБЕН објект
 Product laptop = new Product();
 laptop.Name = "Dell XPS 13";
 laptop.Price = 999.99m;
-laptop.Stock = 10;  // laptop object has Stock = 10
+        laptop.Stock = 10;  // објектот Laptop има Stock = 10
 
 Product phone = new Product();
 phone.Name = "iPhone 15";
 phone.Price = 799.99m;
-phone.Stock = 5;    // phone object has Stock = 5
+phone.Stock = 5;    // објектот Phone има Stock = 5
 
 // Customers buy products
 Console.WriteLine("=== Sales Transactions ===");
-laptop.Sell(3);    // Reduces laptop.Stock to 7
-phone.Sell(2);     // Reduces phone.Stock to 3
-laptop.Sell(8);    // Should fail - not enough stock
+laptop.Sell(3);    // Намалува laptop.Stock до 7
+phone.Sell(2);     // Намалува phone.Stock до 3
+        laptop.Sell(8);    // Треба да е грешно - нема доволно залихи
 
 Console.WriteLine("\n=== Remaining Stock ===");
 Console.WriteLine(laptop.Name + ": " + laptop.Stock + " left");
@@ -934,19 +660,19 @@ Console.WriteLine(phone.Name + ": " + phone.Stock + " left");`,
     
     public void Birthday()
     {
-        Age++;  // Increase age by 1
+        Age++;  // Инкрементирај воздрас за 1
         Console.WriteLine(Name + " is now " + Age + " years old!");
     }
 }
 
-// Creating a person object
+        // Креирање на објект person
 Person person = new Person();
 person.Name = "Charlie";
 person.Age = 25;
 
 Console.WriteLine("Initial age: " + person.Age);
 
-// Have 3 birthdays
+// Има 3 родендени
 person.Birthday();
 person.Birthday();
 person.Birthday();
