@@ -431,29 +431,81 @@ namespace MyWebApp.Controllers
     </div>
 
     <div class="interactive-exercise">
-        <h3><i class="fas fa-puzzle-piece"></i> Controller Detective Game</h3>
-        <p>Match the URL with the correct controller action:</p>
+        <h3><i class="fas fa-puzzle-piece"></i> Controller Knowledge Quiz</h3>
+        <p>Test your understanding of controllers in ASP.NET Core:</p>
         
-        <div class="matching-game">
-            <div class="game-column">
-                <h5>URLs</h5>
-                <div class="game-item" data-match="1">/Products/Details/5</div>
-                <div class="game-item" data-match="2">/Blog/Create</div>
-                <div class="game-item" data-match="3">/Api/Users</div>
-                <div class="game-item" data-match="4">/Home/Privacy</div>
+        <div class="quiz-container">
+            <div class="quiz-question mb-4">
+                <p><strong>Question 1:</strong> What is the correct naming convention for controller classes?</p>
             </div>
             
-            <div class="game-column">
-                <h5>Controller Actions</h5>
-                <div class="game-item" data-match="1">Details(int id)</div>
-                <div class="game-item" data-match="3">GetUsers()</div>
-                <div class="game-item" data-match="4">Privacy()</div>
-                <div class="game-item" data-match="2">Create()</div>
+            <div class="quiz-options mb-4">
+                <div class="quiz-option" data-correct="false">
+                    <div class="option-letter">A</div>
+                    <div class="option-content">
+                        Must start with "Controller" (ControllerHome)
+                    </div>
+                </div>
+                
+                <div class="quiz-option" data-correct="true">
+                    <div class="option-letter">B</div>
+                    <div class="option-content">
+                        Must end with "Controller" (HomeController)
+                    </div>
+                </div>
+                
+                <div class="quiz-option" data-correct="false">
+                    <div class="option-letter">C</div>
+                    <div class="option-content">
+                        Must contain "Ctrl" (HomeCtrl)
+                    </div>
+                </div>
+                
+                <div class="quiz-option" data-correct="false">
+                    <div class="option-letter">D</div>
+                    <div class="option-content">
+                        No specific naming convention required
+                    </div>
+                </div>
             </div>
+            
+            <div class="quiz-question mb-4">
+                <p><strong>Question 2:</strong> Which of these methods would handle a POST request to "/Home/Contact"?</p>
+            </div>
+            
+            <div class="quiz-options mb-4">
+                <div class="quiz-option" data-correct="false">
+                    <div class="option-letter">A</div>
+                    <div class="option-content">
+                        <code>[HttpGet] public IActionResult Contact()</code>
+                    </div>
+                </div>
+                
+                <div class="quiz-option" data-correct="true">
+                    <div class="option-letter">B</div>
+                    <div class="option-content">
+                        <code>[HttpPost] public IActionResult Contact()</code>
+                    </div>
+                </div>
+                
+                <div class="quiz-option" data-correct="false">
+                    <div class="option-letter">C</div>
+                    <div class="option-content">
+                        <code>public IActionResult PostContact()</code>
+                    </div>
+                </div>
+                
+                <div class="quiz-option" data-correct="false">
+                    <div class="option-letter">D</div>
+                    <div class="option-content">
+                        <code>[Route("post")] public IActionResult Contact()</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quiz-feedback"></div>
+            <button class="btn btn-primary mt-3" id="checkQuiz">Check Answers</button>
         </div>
-        
-        <div class="game-feedback"></div>
-        <button class="btn btn-primary mt-3" id="checkMatches">Check Answers</button>
     </div>
 
     <div class="routing-explanation">
@@ -524,8 +576,8 @@ namespace MyWebApp.Controllers
     </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Introduction", "Web")" class="btn btn-outline-primary">Previous: Introduction to .NET</a>
-        <a href="@Url.Action("ControllersExample", "Web")" class="btn btn-primary">Next: Controller Example</a>
+        <a href="@Url.Action("Introduction", "Web")" class="btn btn-outline-primary ajax-link" data-path="/Web/Introduction">Previous: Introduction to .NET</a>
+        <a href="@Url.Action("ControllersExample", "Web")" class="btn btn-primary ajax-link" data-path="/Web/ControllersExample">Next: Controller Example</a>
     </div>
 </div>
 
@@ -965,64 +1017,114 @@ namespace MyWebApp.Controllers
         margin-top: 0;
     }
     
-    .matching-game {
-        display: flex;
-        gap: 30px;
+    .quiz-container {
         margin: 20px 0;
     }
     
-    .game-column {
-        flex: 1;
-    }
-    
-    .game-column h5 {
-        color: var(--bs-warning);
-        margin-bottom: 15px;
-        padding-bottom: 5px;
-        border-bottom: 2px solid var(--bs-warning);
-    }
-    
-    .game-item {
+    .quiz-question {
         background-color: rgba(255, 255, 255, 0.05);
-        padding: 12px 15px;
-        margin: 8px 0;
-        border-radius: 6px;
-        cursor: move;
-        border: 2px dashed transparent;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    
+    .quiz-options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .quiz-option {
+        display: flex;
+        gap: 15px;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 2px solid transparent;
+        border-radius: 8px;
+        cursor: pointer;
         transition: all 0.3s;
-        font-family: monospace;
     }
     
-    .game-item:hover {
-        background-color: rgba(255, 193, 7, 0.2);
+    .quiz-option:hover {
+        background-color: rgba(255, 193, 7, 0.1);
+        border-color: var(--bs-warning);
     }
     
-    .game-item.dragging {
-        opacity: 0.5;
+    .quiz-option.selected {
+        background-color: rgba(13, 110, 253, 0.1);
+        border-color: var(--bs-primary);
     }
     
-    .game-item.matched {
-        background-color: rgba(40, 167, 69, 0.2);
+    .quiz-option.correct {
+        background-color: rgba(40, 167, 69, 0.1);
         border-color: var(--bs-success);
-        color: var(--bs-success);
     }
     
-    .game-feedback {
+    .quiz-option.incorrect {
+        background-color: rgba(220, 53, 69, 0.1);
+        border-color: var(--bs-danger);
+    }
+    
+    .option-letter {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+    
+    .quiz-option.correct .option-letter {
+        background-color: var(--bs-success);
+    }
+    
+    .quiz-option.incorrect .option-letter {
+        background-color: var(--bs-danger);
+    }
+    
+    .option-content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+    
+    .option-content code {
+        font-size: 1rem;
+        margin: 0 5px;
+    }
+    
+    .quiz-feedback {
         margin-top: 20px;
         padding: 15px;
         border-radius: 6px;
         display: none;
+        border: 1px solid transparent;
+        font-weight: 500;
     }
     
-    .game-feedback.success {
+    .quiz-feedback.success {
         background-color: rgba(40, 167, 69, 0.2);
-        color: #155724;
+        color: #d4edda;
+        border-color: #28a745;
         display: block;
     }
     
-    .game-feedback.error {
+    .quiz-feedback.error {
         background-color: rgba(220, 53, 69, 0.2);
-        color: #721c24;
+        color: #f8d7da;
+        border-color: #dc3545;
+        display: block;
+    }
+    
+    .quiz-feedback.partial {
+        background-color: rgba(255, 193, 7, 0.2);
+        color: #fff3cd;
+        border-color: #ffc107;
         display: block;
     }
 
@@ -1163,8 +1265,13 @@ namespace MyWebApp.Controllers
             text-align: center;
         }
         
-        .matching-game {
+        .quiz-option {
             flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .option-letter {
+            align-self: flex-start;
         }
         
         .table-header, .table-row {
@@ -1189,12 +1296,10 @@ namespace MyWebApp.Controllers
 
 <script>
 $(document).ready(function() {
-    // Initialize syntax highlighting
     if (typeof hljs !== 'undefined') {
         hljs.highlightAll();
     }
 
-    // Copy code functionality
     $('.copy-btn').on('click', function() {
         const $codeElement = $(this).closest('.code-example').find('code');
         const codeText = $codeElement.text();
@@ -1211,89 +1316,120 @@ $(document).ready(function() {
         });
     });
 
-    // Initialize drag and drop for matching game
-    let draggedItem = null;
+    let selectedOptions = {
+        question1: null,
+        question2: null
+    };
     
-    $('.game-item').on('dragstart', function(e) {
-        draggedItem = this;
-        $(this).addClass('dragging');
-    });
-    
-    $('.game-item').on('dragend', function() {
-        $(this).removeClass('dragging');
-        draggedItem = null;
-    });
-    
-    $('.game-item').on('dragover', function(e) {
-        e.preventDefault();
-    });
-    
-    $('.game-item').on('drop', function(e) {
-        e.preventDefault();
+    $('.quiz-option').on('click', function() {
+        const $option = $(this);
+        const questionNumber = $option.closest('.quiz-options').prev('.quiz-question').text().includes('Question 1') ? 1 : 2;
+        const key = `question${questionNumber}`;
         
-        if (draggedItem && draggedItem !== this) {
-            // Swap positions
-            const tempHTML = $(this).html();
-            const tempData = $(this).data('match');
-            
-            $(this).html($(draggedItem).html());
-            $(this).data('match', $(draggedItem).data('match'));
-            
-            $(draggedItem).html(tempHTML);
-            $(draggedItem).data('match', tempData);
-        }
+        $option.siblings().removeClass('selected');
+        
+        $option.addClass('selected');
+        selectedOptions[key] = $option;
+        
+        $option.closest('.quiz-options').nextAll('.question-feedback').first().remove();
     });
 
-    // Check matching game answers
-    $('#checkMatches').on('click', function() {
-        const $feedback = $('.game-feedback');
-        let correctMatches = 0;
-        const totalMatches = 4;
+    $('#checkQuiz').on('click', function() {
+        const $feedback = $('.quiz-feedback');
+        let correctCount = 0;
+        let totalQuestions = 2;
         
-        // Check each pair
-        $('.game-column:first-child .game-item').each(function(index) {
-            const leftMatch = $(this).data('match');
-            const $rightItem = $('.game-column:last-child .game-item').eq(index);
-            const rightMatch = $rightItem.data('match');
-            
-            if (leftMatch === rightMatch) {
-                $(this).addClass('matched');
-                $rightItem.addClass('matched');
-                correctMatches++;
-            } else {
-                $(this).removeClass('matched');
-                $rightItem.removeClass('matched');
-            }
+        $('.quiz-option').each(function() {
+            $(this).removeClass('correct incorrect');
         });
         
-        if (correctMatches === totalMatches) {
+        if (selectedOptions.question1) {
+            const isCorrect1 = selectedOptions.question1.data('correct') === true;
+            if (isCorrect1) {
+                selectedOptions.question1.addClass('correct');
+                correctCount++;
+                
+                selectedOptions.question1.closest('.quiz-options').after(`
+                    <div class="question-feedback success" style="margin-top: 10px; padding: 10px; background-color: rgba(40, 167, 69, 0.1); border-radius: 6px;">
+                        <i class="fas fa-check-circle"></i> <strong>Correct!</strong> Controller classes must always end with "Controller" (e.g., HomeController).
+                    </div>
+                `);
+            } else {
+                selectedOptions.question1.addClass('incorrect');
+                
+                const correctOption1 = selectedOptions.question1.closest('.quiz-options').find('[data-correct="true"]');
+                correctOption1.addClass('correct');
+                
+                selectedOptions.question1.closest('.quiz-options').after(`
+                    <div class="question-feedback error" style="margin-top: 10px; padding: 10px; background-color: rgba(220, 53, 69, 0.1); border-radius: 6px;">
+                        <i class="fas fa-times-circle"></i> <strong>Incorrect.</strong> The correct answer is that controller names <strong>must end with "Controller"</strong> (HomeController). This is a strict convention in ASP.NET Core.
+                    </div>
+                `);
+            }
+        }
+        
+        if (selectedOptions.question2) {
+            const isCorrect2 = selectedOptions.question2.data('correct') === true;
+            if (isCorrect2) {
+                selectedOptions.question2.addClass('correct');
+                correctCount++;
+                
+                selectedOptions.question2.closest('.quiz-options').after(`
+                    <div class="question-feedback success" style="margin-top: 10px; padding: 10px; background-color: rgba(40, 167, 69, 0.1); border-radius: 6px;">
+                        <i class="fas fa-check-circle"></i> <strong>Correct!</strong> The [HttpPost] attribute is used to handle POST requests to the same URL.
+                    </div>
+                `);
+            } else {
+                selectedOptions.question2.addClass('incorrect');
+                
+                const correctOption2 = selectedOptions.question2.closest('.quiz-options').find('[data-correct="true"]');
+                correctOption2.addClass('correct');
+                
+                selectedOptions.question2.closest('.quiz-options').after(`
+                    <div class="question-feedback error" style="margin-top: 10px; padding: 10px; background-color: rgba(220, 53, 69, 0.1); border-radius: 6px;">
+                        <i class="fas fa-times-circle"></i> <strong>Incorrect.</strong> The correct answer is <strong>[HttpPost] public IActionResult Contact()</strong>. POST requests require the [HttpPost] attribute, while GET requests use [HttpGet].
+                    </div>
+                `);
+            }
+        }
+        
+        if (correctCount === 0) {
+            $feedback.html(`
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-exclamation-circle" style="color: #dc3545; font-size: 1.5rem;"></i>
+                    <div>
+                        <strong>Better luck next time!</strong><br>
+                        You got ${correctCount} out of ${totalQuestions} correct. Review the controller basics section.
+                    </div>
+                </div>
+            `).removeClass('success partial').addClass('error').show();
+        } else if (correctCount === totalQuestions) {
             $feedback.html(`
                 <div style="display: flex; align-items: center; gap: 10px;">
                     <i class="fas fa-check-circle" style="color: #28a745; font-size: 1.5rem;"></i>
                     <div>
-                        <strong>Perfect!</strong><br>
-                        You correctly matched all URL patterns to their controller actions!
+                        <strong>Excellent!</strong><br>
+                        You got all ${correctCount} questions correct! You have a good understanding of controller basics.
                     </div>
                 </div>
-            `).addClass('success').show();
+            `).removeClass('error partial').addClass('success').show();
         } else {
             $feedback.html(`
                 <div style="display: flex; align-items: center; gap: 10px;">
-                    <i class="fas fa-exclamation-circle" style="color: #ffc107; font-size: 1.5rem;"></i>
+                    <i class="fas fa-check-circle" style="color: #ffc107; font-size: 1.5rem;"></i>
                     <div>
-                        <strong>Almost there!</strong><br>
-                        You got ${correctMatches} out of ${totalMatches} correct. 
-                        Remember: /Controller/Action/Parameters pattern.
+                        <strong>Good job!</strong><br>
+                        You got ${correctCount} out of ${totalQuestions} correct. Review the answers to improve your understanding.
                     </div>
                 </div>
-            `).addClass('error').show();
+            `).removeClass('success error').addClass('partial').show();
         }
+        
+        $('html, body').animate({
+            scrollTop: $feedback.offset().top - 100
+        }, 500);
     });
 
-    // Make game items draggable
-    $('.game-item').attr('draggable', 'true');
-
-    // Add click interaction to method cards
     $('.method-card').on('click', function() {
         const $card = $(this);
         $card.toggleClass('active');
@@ -1347,5 +1483,7 @@ $(document).ready(function() {
             $(this).find('.code-snippet').css('background-color', '#2d2d2d');
         }
     );
+
+    $('.navigation-buttons a').addClass('ajax-link');
 });
 </script>

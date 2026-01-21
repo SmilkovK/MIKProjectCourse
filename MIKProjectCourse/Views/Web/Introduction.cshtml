@@ -357,8 +357,8 @@ class SimpleCalculator
     </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Instalation", "Web")" class="btn btn-outline-primary ajax-link">← Installation Guide</a>
-        <a href="@Url.Action("Controllers", "Web")" class="btn btn-primary ajax-link">Next: Controller Basics →</a>
+        <a href="@Url.Action("Installation", "Web")" class="btn btn-outline-primary ajax-link" data-path="/Web/Installation">← Installation Guide</a>
+        <a href="@Url.Action("Controllers", "Web")" class="btn btn-primary ajax-link" data-path="/Web/Controllers">Next: Controller Basics →</a>
     </div>
 </div>
 
@@ -873,7 +873,6 @@ class SimpleCalculator
 
 <script>
 $(document).ready(function() {
-    // Initialize syntax highlighting
     if (typeof hljs !== 'undefined') {
         hljs.highlightAll();
     }

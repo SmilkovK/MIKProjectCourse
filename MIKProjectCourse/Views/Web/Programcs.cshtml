@@ -476,8 +476,9 @@ app.Run();</code></pre>
     </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Database", "Web")" class="btn btn-outline-primary">Back: Database in .NET</a>
-        <a href="@Url.Action("Summary", "Web")" class="btn btn-primary">Next: Chapter Summary</a>
+        <a href="@Url.Action("Database", "Web")" class="btn btn-outline-primary ajax-link" data-path="/Web/Database">Back: Database in .NET</a>
+        <a href="@Url.Action("Summary", "Web")" class="btn btn-primary ajax-link" data-path="/Web/Summary">Next: Chapter Summary</a>
+    </div>
     </div>
 </div>
 
@@ -1189,12 +1190,10 @@ app.Run();</code></pre>
 
 <script>
 $(document).ready(function() {
-    // Initialize syntax highlighting
     if (typeof hljs !== 'undefined') {
         hljs.highlightAll();
     }
 
-    // Copy code functionality
     $('.copy-btn').on('click', function() {
         const $codeElement = $(this).closest('.code-example').find('code');
         const codeText = $codeElement.text();
@@ -1211,18 +1210,14 @@ $(document).ready(function() {
         });
     });
 
-    // Quiz functionality
     let selectedOption = null;
     
     $('.quiz-option').on('click', function() {
-        // Remove selected class from all options
         $('.quiz-option').removeClass('selected');
-        
-        // Add selected class to clicked option
+
         $(this).addClass('selected');
         selectedOption = $(this);
-        
-        // Clear any previous feedback
+
         $('.quiz-feedback').hide().removeClass('success error').empty();
     });
 
@@ -1242,8 +1237,7 @@ $(document).ready(function() {
         }
         
         const isCorrect = selectedOption.data('correct') === true;
-        
-        // Mark all options as correct/incorrect
+
         $('.quiz-option').each(function() {
             const $option = $(this);
             const correct = $option.data('correct') === true;
@@ -1286,14 +1280,12 @@ $(document).ready(function() {
                 </div>
             `).addClass('error').show();
         }
-        
-        // Scroll to feedback
+
         $('html, body').animate({
             scrollTop: $feedback.offset().top - 100
         }, 500);
     });
 
-    // Add click interaction to method cards
     $('.method-card').on('click', function() {
         const $card = $(this);
         $card.toggleClass('active');
@@ -1307,7 +1299,6 @@ $(document).ready(function() {
         }
     });
 
-    // Flow animation
     const flowSteps = $('.flow-step');
     let currentStep = 0;
     
@@ -1322,7 +1313,6 @@ $(document).ready(function() {
         setTimeout(animateFlow, 2000);
     }
 
-    // Initialize flow animation
     flowSteps.each(function(index) {
         $(this).css({
             'opacity': '0.7',
@@ -1341,7 +1331,6 @@ $(document).ready(function() {
         setTimeout(animateFlow, 1000);
     }, 500);
 
-    // Hover effect for return items
     $('.return-item').hover(
         function() {
             $(this).find('.code-snippet').css('background-color', '#404040');

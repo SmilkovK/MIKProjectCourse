@@ -475,75 +475,80 @@ namespace MyStore.Controllers
     </div>
 
     <div class="interactive-exercise">
-        <h3><i class="fas fa-code"></i> Code Completion Challenge</h3>
-        <p>Fill in the missing code to complete the controller action:</p>
+        <h3><i class="fas fa-code"></i> Controller Knowledge Quiz</h3>
+        <p>Test your understanding of controller actions and HTTP methods:</p>
         
-        <div class="code-challenge">
-            <div class="challenge-header">
-                <h5>Complete the Search Action</h5>
-                <p>This action should search products by category and price range</p>
+        <div class="quiz-container">
+            <div class="quiz-question mb-4">
+                <p><strong>Question 1:</strong> Which HTTP method should be used for retrieving data without side effects?</p>
             </div>
             
-            <div class="challenge-code">
-<pre><code class="language-csharp">public IActionResult AdvancedSearch(string category, decimal? minPrice, decimal? maxPrice)
-{
-    // Start with all products
-    var results = products.AsEnumerable();
-    
-    // Filter by category if provided
-    if (!string.IsNullOrEmpty(category))
-    {
-        // TODO: Add filtering logic here
-        // Hint: Use .Where() and .ToLower() for case-insensitive comparison
-    }
-    
-    // Filter by minimum price if provided
-    if (minPrice.HasValue)
-    {
-        // TODO: Add minimum price filter
-        // Hint: Products where Price >= minPrice
-    }
-    
-    // Filter by maximum price if provided
-    if (maxPrice.HasValue)
-    {
-        // TODO: Add maximum price filter
-        // Hint: Products where Price <= maxPrice
-    }
-    
-    // Convert back to list and pass to view
-    return View("Index", results.ToList());
-}</code></pre>
+            <div class="quiz-options mb-4">
+                <div class="quiz-option" data-correct="true">
+                    <div class="option-letter">A</div>
+                    <div class="option-content">
+                        GET
+                    </div>
+                </div>
+                
+                <div class="quiz-option" data-correct="false">
+                    <div class="option-letter">B</div>
+                    <div class="option-content">
+                        POST
+                    </div>
+                </div>
+                
+                <div class="quiz-option" data-correct="false">
+                    <div class="option-letter">C</div>
+                    <div class="option-content">
+                        PUT
+                    </div>
+                </div>
+                
+                <div class="quiz-option" data-correct="false">
+                    <div class="option-letter">D</div>
+                    <div class="option-content">
+                        DELETE
+                    </div>
+                </div>
             </div>
             
-            <div class="challenge-solution" style="display: none;">
-                <h5>Solution:</h5>
-<pre><code class="language-csharp">public IActionResult AdvancedSearch(string category, decimal? minPrice, decimal? maxPrice)
-{
-    var results = products.AsEnumerable();
-    
-    if (!string.IsNullOrEmpty(category))
-    {
-        results = results.Where(p => 
-            p.Category.ToLower() == category.ToLower());
-    }
-    
-    if (minPrice.HasValue)
-    {
-        results = results.Where(p => p.Price >= minPrice.Value);
-    }
-    
-    if (maxPrice.HasValue)
-    {
-        results = results.Where(p => p.Price <= maxPrice.Value);
-    }
-    
-    return View("Index", results.ToList());
-}</code></pre>
+            <div class="quiz-question mb-4">
+                <p><strong>Question 2:</strong> In the ProductsController, what does the TempData["SuccessMessage"] pattern achieve?</p>
             </div>
             
-            <button class="btn btn-primary" id="showSolution">Show Solution</button>
-            <button class="btn btn-outline-secondary" id="resetChallenge">Reset</button>
+            <div class="quiz-options mb-4">
+                <div class="quiz-option" data-correct="false">
+                    <div class="option-letter">A</div>
+                    <div class="option-content">
+                        Stores data permanently in the database
+                    </div>
+                </div>
+                
+                <div class="quiz-option" data-correct="true">
+                    <div class="option-letter">B</div>
+                    <div class="option-content">
+                        Passes temporary messages between redirects
+                    </div>
+                </div>
+                
+                <div class="quiz-option" data-correct="false">
+                    <div class="option-letter">C</div>
+                    <div class="option-content">
+                        Validates form input data
+                    </div>
+                </div>
+                
+                <div class="quiz-option" data-correct="false">
+                    <div class="option-letter">D</div>
+                    <div class="option-content">
+                        Handles HTTP error responses
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quiz-feedback"></div>
+            <button class="btn btn-primary mt-3" id="checkQuiz">Check Answers</button>
         </div>
     </div>
 
@@ -607,8 +612,8 @@ namespace MyStore.Controllers
     </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Controllers", "Web")" class="btn btn-outline-primary">Back: Controller Basics</a>
-        <a href="@Url.Action("Models", "Web")" class="btn btn-primary">Next: Model Basics</a>
+        <a href="@Url.Action("Controllers", "Web")" class="btn btn-outline-primary ajax-link" data-path="/Web/Controllers">Back: Controller Basics</a>
+        <a href="@Url.Action("Models", "Web")" class="btn btn-primary ajax-link" data-path="/Web/Models">Next: Model Basics</a>
     </div>
 </div>
 
@@ -986,32 +991,110 @@ namespace MyStore.Controllers
         margin-top: 0;
     }
     
-    .code-challenge {
-        margin-top: 20px;
+    .quiz-container {
+        margin: 20px 0;
     }
     
-    .challenge-header {
-        margin-bottom: 15px;
-    }
-    
-    .challenge-code {
-        background-color: #1a1a1a;
+    .quiz-question {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 15px;
         border-radius: 8px;
-        overflow: hidden;
         margin-bottom: 20px;
     }
     
-    .challenge-solution {
+    .quiz-options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .quiz-option {
+        display: flex;
+        gap: 15px;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border: 2px solid transparent;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .quiz-option:hover {
+        background-color: rgba(255, 193, 7, 0.1);
+        border-color: var(--bs-warning);
+    }
+    
+    .quiz-option.selected {
+        background-color: rgba(13, 110, 253, 0.1);
+        border-color: var(--bs-primary);
+    }
+    
+    .quiz-option.correct {
         background-color: rgba(40, 167, 69, 0.1);
-        border: 1px solid var(--bs-success);
-        border-radius: 8px;
-        padding: 20px;
-        margin-bottom: 20px;
+        border-color: var(--bs-success);
     }
     
-    .challenge-solution h5 {
-        color: var(--bs-success);
-        margin-top: 0;
+    .quiz-option.incorrect {
+        background-color: rgba(220, 53, 69, 0.1);
+        border-color: var(--bs-danger);
+    }
+    
+    .option-letter {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+    
+    .quiz-option.correct .option-letter {
+        background-color: var(--bs-success);
+    }
+    
+    .quiz-option.incorrect .option-letter {
+        background-color: var(--bs-danger);
+    }
+    
+    .option-content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+    }
+    
+    .quiz-feedback {
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 6px;
+        display: none;
+        border: 1px solid transparent;
+        font-weight: 500;
+    }
+    
+    .quiz-feedback.success {
+        background-color: rgba(40, 167, 69, 0.2);
+        color: #d4edda;
+        border-color: #28a745;
+        display: block;
+    }
+    
+    .quiz-feedback.error {
+        background-color: rgba(220, 53, 69, 0.2);
+        color: #f8d7da;
+        border-color: #dc3545;
+        display: block;
+    }
+    
+    .quiz-feedback.partial {
+        background-color: rgba(255, 193, 7, 0.2);
+        color: #fff3cd;
+        border-color: #ffc107;
+        display: block;
     }
 
     .best-practices {
@@ -1129,6 +1212,15 @@ namespace MyStore.Controllers
             font-size: 0.9rem;
         }
         
+        .quiz-option {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .option-letter {
+            align-self: flex-start;
+        }
+        
         .navigation-buttons {
             flex-direction: column;
             gap: 10px;
@@ -1176,17 +1268,119 @@ $(document).ready(function() {
         }
     });
 
-    $('#showSolution').on('click', function() {
-        $('.challenge-solution').slideDown();
-        $(this).hide();
-        $('#resetChallenge').show();
+    let selectedOptions = {
+        question1: null,
+        question2: null
+    };
+    
+    $('.quiz-option').on('click', function() {
+        const $option = $(this);
+        const questionNumber = $option.closest('.quiz-options').prev('.quiz-question').text().includes('Question 1') ? 1 : 2;
+        const key = `question${questionNumber}`;
+        
+        $option.siblings().removeClass('selected');
+        
+        $option.addClass('selected');
+        selectedOptions[key] = $option;
+        
+        $option.closest('.quiz-options').nextAll('.question-feedback').first().remove();
     });
 
-    $('#resetChallenge').on('click', function() {
-        $('.challenge-solution').slideUp();
-        $('#showSolution').show();
-        $(this).hide();
-    }).hide();
+    $('#checkQuiz').on('click', function() {
+        const $feedback = $('.quiz-feedback');
+        let correctCount = 0;
+        let totalQuestions = 2;
+        
+        $('.quiz-option').each(function() {
+            $(this).removeClass('correct incorrect');
+        });
+        
+        if (selectedOptions.question1) {
+            const isCorrect1 = selectedOptions.question1.data('correct') === true;
+            if (isCorrect1) {
+                selectedOptions.question1.addClass('correct');
+                correctCount++;
+                
+                selectedOptions.question1.closest('.quiz-options').after(`
+                    <div class="question-feedback success" style="margin-top: 10px; padding: 10px; background-color: rgba(40, 167, 69, 0.1); border-radius: 6px;">
+                        <i class="fas fa-check-circle"></i> <strong>Correct!</strong> GET should be used for retrieving data without side effects, making it safe and cacheable.
+                    </div>
+                `);
+            } else {
+                selectedOptions.question1.addClass('incorrect');
+                
+                const correctOption1 = selectedOptions.question1.closest('.quiz-options').find('[data-correct="true"]');
+                correctOption1.addClass('correct');
+                
+                selectedOptions.question1.closest('.quiz-options').after(`
+                    <div class="question-feedback error" style="margin-top: 10px; padding: 10px; background-color: rgba(220, 53, 69, 0.1); border-radius: 6px;">
+                        <i class="fas fa-times-circle"></i> <strong>Incorrect.</strong> The correct answer is <strong>GET</strong>. GET requests should be idempotent (no side effects) and used for retrieving data, while POST is for creating/updating data.
+                    </div>
+                `);
+            }
+        }
+        
+        if (selectedOptions.question2) {
+            const isCorrect2 = selectedOptions.question2.data('correct') === true;
+            if (isCorrect2) {
+                selectedOptions.question2.addClass('correct');
+                correctCount++;
+                
+                selectedOptions.question2.closest('.quiz-options').after(`
+                    <div class="question-feedback success" style="margin-top: 10px; padding: 10px; background-color: rgba(40, 167, 69, 0.1); border-radius: 6px;">
+                        <i class="fas fa-check-circle"></i> <strong>Correct!</strong> TempData stores data temporarily for a single request/response cycle and is perfect for success messages.
+                    </div>
+                `);
+            } else {
+                selectedOptions.question2.addClass('incorrect');
+                
+                const correctOption2 = selectedOptions.question2.closest('.quiz-options').find('[data-correct="true"]');
+                correctOption2.addClass('correct');
+                
+                selectedOptions.question2.closest('.quiz-options').after(`
+                    <div class="question-feedback error" style="margin-top: 10px; padding: 10px; background-color: rgba(220, 53, 69, 0.1); border-radius: 6px;">
+                        <i class="fas fa-times-circle"></i> <strong>Incorrect.</strong> The correct answer is that TempData <strong>passes temporary messages between redirects</strong>. It's cleared after being read, making it ideal for one-time notifications.
+                    </div>
+                `);
+            }
+        }
+        
+        if (correctCount === 0) {
+            $feedback.html(`
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-exclamation-circle" style="color: #dc3545; font-size: 1.5rem;"></i>
+                    <div>
+                        <strong>Better luck next time!</strong><br>
+                        You got ${correctCount} out of ${totalQuestions} correct. Review the controller concepts section.
+                    </div>
+                </div>
+            `).removeClass('success partial').addClass('error').show();
+        } else if (correctCount === totalQuestions) {
+            $feedback.html(`
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle" style="color: #28a745; font-size: 1.5rem;"></i>
+                    <div>
+                        <strong>Excellent!</strong><br>
+                        You got all ${correctCount} questions correct! You have a good understanding of controller patterns.
+                    </div>
+                </div>
+            `).removeClass('error partial').addClass('success').show();
+        } else {
+            $feedback.html(`
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-check-circle" style="color: #ffc107; font-size: 1.5rem;"></i>
+                    <div>
+                        <strong>Good job!</strong><br>
+                        You got ${correctCount} out of ${totalQuestions} correct. Review the answers to improve your understanding.
+                    </div>
+                </div>
+            `).removeClass('success error').addClass('partial').show();
+        }
+        
+        $('html, body').animate({
+            scrollTop: $feedback.offset().top - 100
+        }, 500);
+    });
 
     $('.breakdown-item').hover(
         function() {
@@ -1232,5 +1426,7 @@ $(document).ready(function() {
             });
         }
     });
+
+    $('.navigation-buttons a').addClass('ajax-link');
 });
 </script>
