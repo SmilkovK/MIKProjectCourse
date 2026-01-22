@@ -1,151 +1,331 @@
 ﻿@{
-    ViewData["Title"] = "Advanced Web App - Introduction";
+    ViewData["Title"] = "Advanced Web Development";
 }
 
 <div class="container">
-    <h1>Introduction to Advanced Web Applications</h1>
-    <p>In this chapter, we will learn how to build more complex and secure web applications using ASP.NET Core. We will cover:</p>
+    <h1 class="text-center">Advanced Web Development</h1>
 
-    <ul>
-        <li><strong>Layers:</strong> Organizing your app into different layers (Controller, Service, Repository) to keep code clean and maintainable.</li>
-        <li><strong>Authentication:</strong> Allowing users to securely log in and access your app.</li>
-        <li><strong>Authorization:</strong> Controlling which users can access which parts of your app.</li>
-        <li><strong>Identity:</strong> Using ASP.NET Core Identity to manage users, passwords, and roles.</li>
-    </ul>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-layer-group"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>From Building Blocks to Complete Systems</h4>
+            <p><strong>This is where everything comes together!</strong> You've learned all the individual pieces. Now you'll see how professional developers combine them into robust, scalable web applications.</p>
+        </div>
+    </div>
 
-    <h2>Why Layers Are Important</h2>
-    <p>Breaking your app into layers helps:</p>
-    <ul>
-        <li>Keep business logic separate from UI logic.</li>
-        <li>Make it easier to test and maintain your app.</li>
-        <li>Reuse code across different parts of your application.</li>
-    </ul>
+    <div class="key-points">
+        <h3><i class="fas fa-check-circle"></i> What You've Already Mastered</h3>
+        <p>Let's take a moment to appreciate how far you've come. You now understand:</p>
+        <div class="achievements-grid">
+            <div class="achievement-item">
+                <div class="achievement-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="achievement-content">
+                    <h5>Structural Programming</h5>
+                    <p>Variables, loops, conditionals - the fundamental logic that makes programs work</p>
+                </div>
+            </div>
+            
+            <div class="achievement-item">
+                <div class="achievement-icon">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <div class="achievement-content">
+                    <h5>Object-Oriented Programming</h5>
+                    <p>Classes, objects, inheritance - organizing code into reusable, maintainable structures</p>
+                </div>
+            </div>
+            
+            <div class="achievement-item">
+                <div class="achievement-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <div class="achievement-content">
+                    <h5>Database Fundamentals</h5>
+                    <p>Storing, retrieving, and organizing data efficiently</p>
+                </div>
+            </div>
+            
+            <div class="achievement-item">
+                <div class="achievement-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <div class="achievement-content">
+                    <h5>Database Relationships</h5>
+                    <p>Connecting data meaningfully with one-to-one, one-to-many, and many-to-many relationships</p>
+                </div>
+            </div>
+            
+            <div class="achievement-item">
+                <div class="achievement-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="achievement-content">
+                    <h5>Web Application Basics</h5>
+                    <p>MVC pattern, controllers, models, views - the foundation of web development</p>
+                </div>
+            </div>
+            
+            <div class="achievement-item">
+                <div class="achievement-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <div class="achievement-content">
+                    <h5>Web Communication</h5>
+                    <p>HTTP protocol, client-server architecture, APIs - how the web actually works</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h2>Example: Layered Structure</h2>
-    <pre><code class="language-csharp">
-// Controller Layer: Handles user requests
-public class ProductController : Controller
-{
-    private readonly IProductService _productService;
+    <div class="intro-section">
+        <h3><i class="fas fa-rocket"></i> Where We're Going Next</h3>
+        <p>Now we're ready to take your skills to the professional level. In this Advanced Web Development section, you'll learn how real-world applications are structured and built.</p>
+    </div>
 
-    public ProductController(IProductService productService)
-    {
-        _productService = productService;
-    }
+    <h2 class="text-center">What You're About to Learn</h2>
+    
+    <div class="learning-path">
+        <div class="path-step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <h4>Application Layering Architecture</h4>
+                <p>Discover how professional .NET applications are organized into distinct layers, each with a specific responsibility. You'll learn about the Controller Layer (handles user requests), Service Layer (contains business logic), and Repository Layer (manages database communication). This separation makes code cleaner, more maintainable, and easier to test.</p>
+            </div>
+        </div>
+        
+        <div class="path-step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <h4>Implementing CRUD Operations</h4>
+                <p>Master the four essential operations every web application needs: Create, Read, Update, and Delete. You'll see how these operations flow through each layer of your application, from the user interface all the way to the database and back. This is the core functionality behind every social media post, every e-commerce purchase, and every content update.</p>
+            </div>
+        </div>
+        
+        <div class="path-step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <h4>ASP.NET Identity & Security</h4>
+                <p>Learn how to secure your applications with user authentication and authorization. You'll implement login systems, manage user roles and permissions, and protect sensitive data. Security isn't an afterthought - it's built into every layer of professional web development.</p>
+            </div>
+        </div>
+        
+        <div class="path-step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <h4>Building Complete Applications</h4>
+                <p>Finally, you'll put everything together to build a fully-functional web application from scratch. You'll start with an empty project and end with a working system that incorporates all the concepts you've learned. This is where you transition from understanding individual concepts to building complete solutions.</p>
+            </div>
+        </div>
+    </div>
 
-    public IActionResult Index()
-    {
-        var products = _productService.GetAllProducts();
-        return View(products);
-    }
-}
+    <div class="routing-explanation">
+        <h3><i class="fas fa-lightbulb"></i> The Big Picture</h3>
+        <p>Think of everything you've learned as individual tools in a toolbox. Structural programming gave you hammers and screwdrivers. Object-oriented programming taught you how to organize your tools. Databases showed you where to store materials. Web basics explained blueprints and building plans.</p>
+        <p>Now, in this advanced section, you're going to learn <strong>how to build an entire house</strong>. You'll see how all those tools work together, in the right sequence, following professional patterns and best practices. You're not just learning more tools - you're learning how to be a builder.</p>
+    </div>
 
-// Service Layer: Business logic
-public interface IProductService
-{
-    List<Product> GetAllProducts();
-}
-
-public class ProductService : IProductService
-{
-    private readonly IProductRepository _repository;
-
-    public ProductService(IProductRepository repository)
-    {
-        _repository = repository;
-    }
-
-    public List<Product> GetAllProducts()
-    {
-        return _repository.GetProducts();
-    }
-}
-
-// Repository Layer: Data access
-public interface IProductRepository
-{
-    List<Product> GetProducts();
-}
-
-public class ProductRepository : IProductRepository
-{
-    public List<Product> GetProducts()
-    {
-        return new List<Product>
-        {
-            new Product { Id = 1, Name = "Laptop" },
-            new Product { Id = 2, Name = "Mouse" }
-        };
-    }
-}
-</code></pre>
-
-    <h2>Exercise</h2>
-    <ul>
-        <li>Create a small ASP.NET Core project with at least three layers: Controller, Service, and Repository.</li>
-        <li>Create a simple page that lists a few items (like products) using this layered structure.</li>
-        <li>Try adding a new method in the Service layer to filter items.</li>
-    </ul>
+    <div class="alert alert-info">
+        <i class="fas fa-star"></i> <strong>Ready to Begin?</strong> This is the culmination of all your hard work. Every concept you've learned was preparing you for this moment. Let's start building professional web applications!
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Index", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← Advanced Web App</a>
-        <a href="@Url.Action("Layers", "AdvancedWebApp")" class="btn btn-primary ajax-link">Layers →</a>
+        <a href="@Url.Action("Summary", "Web")" class="btn btn-outline-primary ajax-link" data-path="/AdvancedWebApp/Index">← Back to Chapter Introduction</a>
+        <a href="@Url.Action("Layers", "AdvancedWebApp")" class="btn btn-primary ajax-link" data-path="/AdvancedWebApp/Layers">Next: Introduction to .NET Layering →</a>
     </div>
 </div>
 
 <style>
-    .container {
-        max-width: 800px;
+    .container { 
+        max-width: 900px; 
+        padding: 20px; 
+        background-color: var(--bs-body-bg); 
+    }
+    
+    h1, h2, h3, h4, h5 { 
+        color: var(--bs-heading-color); 
+        margin-bottom: 15px; 
+    }
+    
+    h1 { 
+        border-bottom: 2px solid var(--bs-primary); 
+        padding-bottom: 10px; 
+    }
+    
+    .beginner-note {
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
         padding: 20px;
-        background-color: var(--bs-body-bg);
+        margin-bottom: 30px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
     }
-
-    h1, h2 {
-        color: var(--bs-heading-color);
-        margin-bottom: 20px;
+    
+    .beginner-note-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
     }
-
-    p, li {
-        color: var(--bs-body-color);
-        line-height: 1.6;
+    
+    .key-points {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 10px;
     }
-
-    ul {
-        margin-left: 20px;
-        padding-left: 15px;
+    
+    .achievements-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
     }
-
-    pre {
+    
+    .achievement-item {
+        display: flex;
+        gap: 15px;
         padding: 15px;
-        background-color: var(--code-bg);
-        border: 1px solid var(--bs-border-color);
-        border-radius: 5px;
-        overflow-x: auto;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border-left: 4px solid var(--bs-success);
     }
-
-    code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+    
+    .achievement-icon {
+        background-color: var(--bs-success);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        flex-shrink: 0;
     }
-
+    
+    .intro-section {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(23, 162, 184, 0.1);
+        border: 1px solid var(--bs-info);
+        border-radius: 10px;
+    }
+    
+    .learning-path {
+        margin: 40px 0;
+    }
+    
+    .path-step {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 30px;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        border-left: 4px solid var(--bs-primary);
+    }
+    
+    .step-number {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+    
+    .routing-explanation {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 10px;
+    }
+    
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
-
+    
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
+        transition: all 0.3s;
     }
-
-    .btn-primary {
-        background-color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    
+    .btn:hover {
+        transform: translateY(-2px);
     }
-
-    .btn-outline-primary {
-        color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    
+    @@media (max-width: 768px) {
+        .beginner-note {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .path-step {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .step-number {
+            margin: 0 auto;
+        }
+        
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .navigation-buttons .btn {
+            width: 100%;
+            text-align: center;
+        }
     }
 </style>
+
+<script>
+$(document).ready(function() {
+    $('.navigation-buttons a').addClass('ajax-link');
+    
+    const achievementItems = $('.achievement-item');
+    achievementItems.each(function(index) {
+        $(this).css({
+            'opacity': '0',
+            'transform': 'translateY(20px)',
+            'transition': 'all 0.5s ease ' + (index * 0.1) + 's'
+        });
+    });
+    
+    setTimeout(() => {
+        achievementItems.each(function() {
+            $(this).css({
+                'opacity': '1',
+                'transform': 'translateY(0)'
+            });
+        });
+    }, 300);
+});
+</script>

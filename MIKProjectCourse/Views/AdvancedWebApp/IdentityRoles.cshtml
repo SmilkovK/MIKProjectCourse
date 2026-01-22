@@ -1,161 +1,932 @@
 ﻿@{
-    ViewData["Title"] = "Advanced Web App - Identity Roles";
+    ViewData["Title"] = "Identity Roles - User Access Control";
 }
 
 <div class="container">
-    <h1>Identity Roles in ASP.NET Core</h1>
-    <p><strong>Roles</strong> are a way to group users and control what parts of your web application they can access. They are a key part of authorization.</p>
+    <h1 class="text-center">Identity Roles: User Access Control</h1>
 
-    <h2>Why Roles Are Important</h2>
-    <ul>
-        <li>Allow different users to have different permissions.</li>
-        <li>Make it easy to manage access for groups of users instead of individual accounts.</li>
-        <li>Enhance security by restricting sensitive areas of your app.</li>
-    </ul>
-
-    <h2>Example: Creating Roles</h2>
-    <p>You can create roles using the <code>RoleManager</code> in ASP.NET Core:</p>
-
-    <div class="code-container">
-        <div class="code-header">Adding Roles</div>
-        <div class="code-content">
-<pre><code class="language-csharp">
-using Microsoft.AspNetCore.Identity;
-
-public class SeedRoles
-{
-    public static async Task Initialize(RoleManager<IdentityRole> roleManager)
-    {
-        string[] roleNames = { "Admin", "User", "Manager" };
-
-        foreach (var roleName in roleNames)
-        {
-            var roleExist = await roleManager.RoleExistsAsync(roleName);
-            if (!roleExist)
-            {
-                await roleManager.CreateAsync(new IdentityRole(roleName));
-            }
-        }
-    }
-}
-</code></pre>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-user-tag"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Think of Roles as Job Titles in a Company</h4>
+            <p>Roles define what users can and cannot do in your application. Just like in a company:</p>
+            <ul>
+                <li><strong>CEO (Admin):</strong> Can do everything - manage users, change settings, access all data</li>
+                <li><strong>Manager (Moderator):</strong> Can manage content and users but not change system settings</li>
+                <li><strong>Employee (User):</strong> Can use the application but has limited permissions</li>
+                <li><strong>Visitor (Guest):</strong> Can only view public content, cannot interact</li>
+            </ul>
+            <p>Roles make it easy to control access without having to set permissions for each user individually.</p>
         </div>
     </div>
 
-    <h2>Assigning a Role to a User</h2>
-    <div class="code-container">
-        <div class="code-header">Assign Role to User</div>
-        <div class="code-content">
-<pre><code class="language-csharp">
-var user = await _userManager.FindByEmailAsync("user@example.com");
-await _userManager.AddToRoleAsync(user, "Admin");
-</code></pre>
+    <div class="important-note">
+        <h4>Why Roles Matter</h4>
+               <p>Without roles, you'd have to check each user's permissions individually. With roles, you can group users and control access efficiently. This is essential for applications with different user types like admins, moderators, paid users, free users, etc.</p>
+    </div>
+
+    <div class="concept-section">
+        <h2>Understanding Role-Based Access Control (RBAC)</h2>
+        <p>RBAC is a security approach that restricts system access based on user roles. Here's how it works:</p>
+        
+        <div class="rbac-explanation">
+            <div class="rbac-diagram">
+                <div class="users-section">
+                    <h5>Users</h5>
+                    <div class="user-item">john@example.com</div>
+                    <div class="user-item">sarah@example.com</div>
+                    <div class="user-item">mike@example.com</div>
+                    <div class="user-item">admin@example.com</div>
+                </div>
+                
+                <div class="arrows-section">
+                    <div class="arrow">→</div>
+                    <div class="arrow">→</div>
+                    <div class="arrow">→</div>
+                    <div class="arrow">→</div>
+                </div>
+                
+                <div class="roles-section">
+                    <h5>Roles</h5>
+                    <div class="role-item admin">Admin</div>
+                    <div class="role-item moderator">Moderator</div>
+                    <div class="role-item user">User</div>
+                </div>
+                
+                <div class="arrows-section">
+                    <div class="arrow">→</div>
+                    <div class="arrow">→</div>
+                    <div class="arrow">→</div>
+                </div>
+                
+                <div class="permissions-section">
+                    <h5>Permissions</h5>
+                    <div class="permission-item">Create Posts</div>
+                    <div class="permission-item">Delete Posts</div>
+                    <div class="permission-item">Manage Users</div>
+                    <div class="permission-item">View Reports</div>
+                </div>
+            </div>
+            
+            <div class="rbac-description">
+                <h5>How RBAC Works</h5>
+                <ol>
+                    <li><strong>Users are assigned roles</strong> (John is an Admin, Sarah is a Moderator)</li>
+                    <li><strong>Roles have permissions</strong> (Admins can manage users, Moderators can delete posts)</li>
+                    <li><strong>System checks roles</strong> when users try to access resources</li>
+                    <li><strong>Access is granted or denied</strong> based on role permissions</li>
+                </ol>
+                <p>This approach is scalable and maintainable. If you need to change permissions for all moderators, you change it once in the Moderator role, not for each moderator individually.</p>
+            </div>
         </div>
     </div>
 
-    <h2>Protecting Pages by Role</h2>
-    <div class="code-container">
-        <div class="code-header">Role-Based Authorization</div>
-        <div class="code-content">
-<pre><code class="language-csharp">
-using Microsoft.AspNetCore.Authorization;
-
-[Authorize(Roles = "Admin")]
-public IActionResult AdminDashboard()
-{
-    return View();
-}
-</code></pre>
+    <div class="role-examples">
+        <h2>Common Role Patterns in Applications</h2>
+        
+        <div class="examples-grid">
+            <div class="example-card">
+                <div class="example-header admin">
+                    <h4>Admin Role</h4>
+                </div>
+                <div class="example-content">
+                    <h5>Full System Access</h5>
+                    <ul>
+                        <li>Manage all users (create, edit, delete)</li>
+                        <li>Access system settings</li>
+                        <li>View all data and reports</li>
+                        <li>Manage database backups</li>
+                        <li>Configure application settings</li>
+                    </ul>
+                    <div class="code-snippet">
+                        <code>[Authorize(Roles = "Admin")]</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="example-card">
+                <div class="example-header moderator">
+                    <h4>Moderator Role</h4>
+                </div>
+                <div class="example-content">
+                    <h5>Content Management Access</h5>
+                    <ul>
+                        <li>Approve/reject user content</li>
+                        <li>Delete inappropriate posts</li>
+                        <li>Manage comments</li>
+                        <li>Warn/suspend users</li>
+                        <li>View moderation reports</li>
+                    </ul>
+                    <div class="code-snippet">
+                        <code>[Authorize(Roles = "Moderator,Admin")]</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="example-card">
+                <div class="example-header user">
+                    <h4>User Role</h4>
+                </div>
+                <div class="example-content">
+                    <h5>Standard Application Access</h5>
+                    <ul>
+                        <li>Create and edit own content</li>
+                        <li>Comment on posts</li>
+                        <li>Update profile information</li>
+                        <li>Access personal dashboard</li>
+                        <li>View public content</li>
+                    </ul>
+                    <div class="code-snippet">
+                        <code>[Authorize] // Any authenticated user</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="example-card">
+                <div class="example-header premium">
+                    <h4>Premium Role</h4>
+                </div>
+                <div class="example-content">
+                    <h5>Paid Features Access</h5>
+                    <ul>
+                        <li>Access premium content</li>
+                        <li>Advanced analytics</li>
+                        <li>Priority support</li>
+                        <li>Additional storage</li>
+                        <li>Customization options</li>
+                    </ul>
+                    <div class="code-snippet">
+                        <code>[Authorize(Roles = "Premium,Admin")]</code>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <h2>Exercise</h2>
-    <ul>
-        <li>Create two roles: <code>Admin</code> and <code>User</code>.</li>
-        <li>Register two users and assign them different roles.</li>
-        <li>Create a protected page that only the Admin role can access.</li>
-        <li>Test logging in with both users and verify access restrictions.</li>
-    </ul>
+    <div class="implementation-section">
+        <h2>How to Work with Roles in .NET Identity</h2>
+        
+        <div class="implementation-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Create and Manage Roles</h4>
+                    <p>Roles are typically created during application startup or through an admin interface:</p>
+                    <ul>
+                        <li>Create roles like "Admin", "Moderator", "User"</li>
+                        <li>Assign users to roles (one user can have multiple roles)</li>
+                        <li>Update role names or delete roles as needed</li>
+                        <li>Roles are stored in the <code>AspNetRoles</code> database table</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Protect Resources with Role Attributes</h4>
+                    <p>Use the <code>[Authorize]</code> attribute with role parameters to control access:</p>
+                    <ul>
+                        <li><code>[Authorize(Roles = "Admin")]</code> - Only Admins can access</li>
+                        <li><code>[Authorize(Roles = "Admin,Moderator")]</code> - Admins OR Moderators can access</li>
+                        <li><code>[Authorize(Roles = "Admin")]</code> on a controller protects all actions</li>
+                        <li><code>[Authorize(Roles = "Premium")]</code> on specific actions for fine-grained control</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Check Roles Programmatically</h4>
+                    <p>Sometimes you need to check roles in code, not just with attributes:</p>
+                    <ul>
+                        <li><code>User.IsInRole("Admin")</code> - Check if current user is in a role</li>
+                        <li><code>_userManager.IsInRoleAsync(user, "Admin")</code> - Check any user's role</li>
+                        <li><code>_userManager.AddToRoleAsync(user, "Admin")</code> - Assign role to user</li>
+                        <li><code>_userManager.GetUsersInRoleAsync("Admin")</code> - Get all users in a role</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Display UI Based on Roles</h4>
+                    <p>Show or hide interface elements based on user roles:</p>
+                    <ul>
+                        <li>Show admin controls only to admins</li>
+                        <li>Display premium features only to premium users</li>
+                        <li>Show moderation tools to moderators</li>
+                        <li>Conditionally render navigation items</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="practical-scenarios">
+        <h2>Real-World Role Scenarios</h2>
+        
+        <div class="scenarios-grid">
+            <div class="scenario">
+                <h4>E-commerce Application</h4>
+                <div class="scenario-roles">
+                    <div class="role-badge">Admin</div>
+                    <div class="role-badge">Manager</div>
+                    <div class="role-badge">Customer</div>
+                    <div class="role-badge">Guest</div>
+                </div>
+                <div class="scenario-description">
+                    <p><strong>Admin:</strong> Manage products, view all orders, handle refunds</p>
+                    <p><strong>Manager:</strong> Update product inventory, process orders</p>
+                    <p><strong>Customer:</strong> Browse products, place orders, view order history</p>
+                    <p><strong>Guest:</strong> View products, add to cart (must register to checkout)</p>
+                </div>
+            </div>
+            
+            <div class="scenario">
+                <h4>Content Management System</h4>
+                <div class="scenario-roles">
+                    <div class="role-badge">Admin</div>
+                    <div class="role-badge">Editor</div>
+                    <div class="role-badge">Author</div>
+                    <div class="role-badge">Subscriber</div>
+                </div>
+                <div class="scenario-description">
+                    <p><strong>Admin:</strong> Manage all users, configure site settings</p>
+                    <p><strong>Editor:</strong> Review and publish content, manage authors</p>
+                    <p><strong>Author:</strong> Create and edit own articles</p>
+                    <p><strong>Subscriber:</strong> Read premium content, comment on articles</p>
+                </div>
+            </div>
+            
+            <div class="scenario">
+                <h4>Learning Management System</h4>
+                <div class="scenario-roles">
+                    <div class="role-badge">Admin</div>
+                    <div class="role-badge">Instructor</div>
+                    <div class="role-badge">Student</div>
+                    <div class="role-badge">TA</div>
+                </div>
+                <div class="scenario-description">
+                    <p><strong>Admin:</strong> Manage courses, enrollments, system settings</p>
+                    <p><strong>Instructor:</strong> Create course content, grade assignments</p>
+                    <p><strong>Student:</strong> Access course materials, submit assignments</p>
+                    <p><strong>TA:</strong> Assist with grading, moderate discussions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="best-practices">
+        <h2>Role Management Best Practices</h2>
+        
+        <div class="practices-grid">
+            <div class="practice do">
+                <h4>Do These</h4>
+                <ul>
+                    <li><strong>Start with few roles:</strong> Begin with basic roles (Admin, User) and add more as needed</li>
+                    <li><strong>Use meaningful names:</strong> Name roles clearly (Admin, Moderator, PremiumUser)</li>
+                    <li><strong>Document role permissions:</strong> Keep a document of what each role can do</li>
+                    <li><strong>Test role changes:</strong> Always test when adding or changing role permissions</li>
+                    <li><strong>Use role inheritance:</strong> Consider creating hierarchical roles when appropriate</li>
+                </ul>
+            </div>
+            
+            <div class="practice dont">
+                <h4>Avoid These</h4>
+                <ul>
+                    <li><strong>Too many roles:</strong> Don't create a role for every minor permission difference</li>
+                    <li><strong>Hardcoding role checks:</strong> Avoid spreading role checks throughout business logic</li>
+                    <li><strong>Ignoring security:</strong> Never assume frontend role checks are sufficient</li>
+                    <li><strong>Complex role logic:</strong> Keep role logic simple and maintainable</li>
+                    <li><strong>Forgetting edge cases:</strong> Always consider what happens when users have no roles</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="quiz-section">
+        <h3>Quick Check: Role Understanding</h3>
+        <div class="quiz-question">
+            <p><strong>Question:</strong> Which statement about roles is correct?</p>
+            
+            <div class="quiz-options">
+                <button class="quiz-option" data-correct="true">
+                    Roles allow grouping users with similar permissions
+                </button>
+                <button class="quiz-option" data-correct="false">
+                    Each user should have their own unique role
+                </button>
+                <button class="quiz-option" data-correct="true">
+                    Multiple users can be assigned to the same role
+                </button>
+                <button class="quiz-option" data-correct="false">
+                    Roles should be checked only in the frontend
+                </button>
+                <button class="quiz-option" data-correct="true">
+                    The [Authorize(Roles = "Admin")] attribute protects controller actions
+                </button>
+                <button class="quiz-option" data-correct="false">
+                    Roles replace the need for any other security measures
+                </button>
+            </div>
+            
+            <div class="quiz-feedback">
+                <p id="quiz-feedback-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="next-section">
+        <h3>Beyond Basic Roles: Advanced Concepts</h3>
+        <div class="advanced-concepts">
+            <div class="concept">
+                <h5>Claims-Based Authorization</h5>
+                <p>For more granular control than roles, use claims. Claims are name-value pairs that represent what a user is, not just what role they have. Example: "CanDeletePosts=true", "Department=Marketing".</p>
+            </div>
+            
+            <div class="concept">
+                <h5>Policy-Based Authorization</h5>
+                <p>Policies combine requirements (like roles, claims, custom requirements) into reusable authorization rules. This is more flexible than simple role checks.</p>
+            </div>
+            
+            <div class="concept">
+                <h5>Role Inheritance</h5>
+                <p>Some systems allow roles to inherit permissions from other roles. For example, a "SuperAdmin" role might inherit all permissions from "Admin" plus additional ones.</p>
+            </div>
+        </div>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Identity", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← .NET Identity</a>
-        <a href="@Url.Action("Authentication", "AdvancedWebApp")" class="btn btn-primary ajax-link">Authentication →</a>
+        <a href="@Url.Action("Identity", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link" data-path="/AdvancedWebApp/Identity">← Back: .NET Identity Introduction</a>
+        <a href="@Url.Action("Authentication", "AdvancedWebApp")" class="btn btn-primary ajax-link" data-path="/AdvancedWebApp/Authentication">Next: Authentication →</a>
     </div>
 </div>
 
 <style>
-    .container {
-        max-width: 800px;
+    .container { 
+        max-width: 1000px; 
+        padding: 20px; 
+        background-color: var(--bs-body-bg); 
+    }
+    
+    h1, h2, h3, h4, h5 { 
+        color: var(--bs-heading-color); 
+        margin-bottom: 15px; 
+    }
+    
+    h1 { 
+        border-bottom: 2px solid var(--bs-info); 
+        padding-bottom: 10px; 
+    }
+    
+    .beginner-note {
+        background-color: rgba(23, 162, 184, 0.1);
+        border: 2px solid var(--bs-info);
+        border-radius: 8px;
         padding: 20px;
-        background-color: var(--bs-body-bg);
+        margin-bottom: 30px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
     }
-
-    h1, h2 {
-        color: var(--bs-heading-color);
-        margin-bottom: 20px;
+    
+    .beginner-note-icon {
+        background-color: var(--bs-info);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
     }
-
-    p, li {
-        color: var(--bs-body-color);
-        line-height: 1.6;
+    
+    .important-note {
+        background-color: rgba(255, 193, 7, 0.2);
+        border: 2px solid var(--bs-warning);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
     }
-
-    ul {
-        margin-left: 20px;
-        padding-left: 15px;
+    
+    .concept-section {
+        margin-bottom: 40px;
     }
-
-    .code-container {
-        margin: 25px 0;
-        border: 1px solid var(--bs-border-color);
-        border-radius: 5px;
-        overflow: hidden;
-        background-color: var(--code-bg);
+    
+    .rbac-explanation {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-top: 20px;
     }
-
-    .code-header {
-        background-color: var(--code-header-bg);
-        padding: 10px 15px;
-        border-bottom: 1px solid var(--bs-border-color);
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+    
+    @@media (max-width: 768px) {
+        .rbac-explanation {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    .rbac-diagram {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr auto 1fr;
+        gap: 10px;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        align-items: start;
+    }
+    
+    .users-section, .roles-section, .permissions-section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .users-section h5, .roles-section h5, .permissions-section h5 {
+        text-align: center;
+        color: var(--bs-primary);
+        margin-bottom: 10px;
+    }
+    
+    .user-item, .role-item, .permission-item {
+        padding: 8px 12px;
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 1px solid rgba(13, 110, 253, 0.3);
+        border-radius: 4px;
+        text-align: center;
         font-size: 0.9rem;
-        color: var(--bs-body-color);
     }
-
-    .code-content {
+    
+    .role-item.admin {
+        background-color: rgba(220, 53, 69, 0.1);
+        border-color: rgba(220, 53, 69, 0.3);
+    }
+    
+    .role-item.moderator {
+        background-color: rgba(255, 193, 7, 0.1);
+        border-color: rgba(255, 193, 7, 0.3);
+    }
+    
+    .role-item.user {
+        background-color: rgba(40, 167, 69, 0.1);
+        border-color: rgba(40, 167, 69, 0.3);
+    }
+    
+    .arrows-section {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        height: 100%;
+    }
+    
+    .arrow {
+        color: var(--bs-info);
+        font-size: 1.2rem;
+        text-align: center;
+    }
+    
+    .rbac-description {
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+    
+    .rbac-description ol {
+        margin: 15px 0;
+        padding-left: 20px;
+    }
+    
+    .rbac-description li {
+        margin-bottom: 10px;
+    }
+    
+    .role-examples {
+        margin: 40px 0;
+    }
+    
+    .examples-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .example-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .example-header {
         padding: 15px;
-        overflow-x: auto;
+        color: white;
+        text-align: center;
     }
-
-    pre {
+    
+    .example-header.admin {
+        background-color: #dc3545;
+    }
+    
+    .example-header.moderator {
+        background-color: #ffc107;
+        color: #212529;
+    }
+    
+    .example-header.user {
+        background-color: #28a745;
+    }
+    
+    .example-header.premium {
+        background-color: #6f42c1;
+    }
+    
+    .example-content {
+        padding: 15px;
+    }
+    
+    .example-content h5 {
+        color: var(--bs-heading-color);
+        margin-bottom: 10px;
+    }
+    
+    .example-content ul {
+        margin: 10px 0;
+        padding-left: 20px;
+        font-size: 0.9rem;
+    }
+    
+    .example-content li {
+        margin-bottom: 5px;
+    }
+    
+    .code-snippet {
+        margin-top: 15px;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 0.9rem;
+    }
+    
+    .implementation-section {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 10px;
+    }
+    
+    .implementation-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .step {
+        display: flex;
+        gap: 20px;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border-left: 4px solid var(--bs-success);
+    }
+    
+    .step-number {
+        background-color: var(--bs-success);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+    
+    .step-content h4 {
+        color: var(--bs-success);
+        margin-bottom: 10px;
+    }
+    
+    .step-content ul {
+        margin: 10px 0 0 0;
+        padding-left: 20px;
+    }
+    
+    .step-content li {
+        margin-bottom: 5px;
+        font-size: 0.95rem;
+    }
+    
+    .practical-scenarios {
+        margin: 40px 0;
+    }
+    
+    .scenarios-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .scenario {
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 1px solid var(--bs-secondary);
+    }
+    
+    .scenario h4 {
+        color: var(--bs-primary);
+        margin-bottom: 15px;
+    }
+    
+    .scenario-roles {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+    
+    .role-badge {
+        background-color: var(--bs-info);
+        color: white;
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+    }
+    
+    .scenario-description p {
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    
+    .best-practices {
+        margin: 40px 0;
+    }
+    
+    .practices-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    @@media (max-width: 768px) {
+        .practices-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    .practice {
+        padding: 20px;
+        border-radius: 8px;
+    }
+    
+    .practice.do {
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+    }
+    
+    .practice.dont {
+        background-color: rgba(220, 53, 69, 0.1);
+        border: 1px solid var(--bs-danger);
+    }
+    
+    .practice h4 {
+        margin-bottom: 15px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid currentColor;
+    }
+    
+    .do h4 {
+        color: var(--bs-success);
+    }
+    
+    .dont h4 {
+        color: var(--bs-danger);
+    }
+    
+    .practice ul {
         margin: 0;
-        white-space: pre-wrap;
-        background-color: transparent;
+        padding-left: 20px;
     }
-
-    code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    
+    .practice li {
+        margin-bottom: 10px;
+        font-size: 0.95rem;
     }
-
+    
+    .quiz-section {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid var(--bs-warning);
+        border-radius: 10px;
+    }
+    
+    .quiz-question {
+        margin-top: 20px;
+    }
+    
+    .quiz-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 10px;
+        margin: 20px 0;
+    }
+    
+    .quiz-option {
+        padding: 15px;
+        background-color: rgba(0, 0, 0, 0.2);
+        border: 2px solid var(--bs-secondary);
+        border-radius: 8px;
+        color: var(--bs-body-color);
+        cursor: pointer;
+        transition: all 0.3s;
+        text-align: left;
+        font-size: 0.95rem;
+    }
+    
+    .quiz-option:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+    }
+    
+    .quiz-option.correct {
+        background-color: rgba(40, 167, 69, 0.3);
+        border-color: var(--bs-success);
+    }
+    
+    .quiz-option.incorrect {
+        background-color: rgba(220, 53, 69, 0.3);
+        border-color: var(--bs-danger);
+    }
+    
+    .quiz-option.selected {
+        border-width: 3px;
+    }
+    
+    .quiz-feedback {
+        padding: 15px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        display: none;
+    }
+    
+    .quiz-feedback.show {
+        display: block;
+        animation: fadeIn 0.5s;
+    }
+    
+    .next-section {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border: 1px solid var(--bs-secondary);
+        border-radius: 10px;
+    }
+    
+    .advanced-concepts {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .concept {
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+    
+    .concept h5 {
+        color: var(--bs-info);
+        margin-bottom: 10px;
+    }
+    
+    .concept p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+    
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
-
+    
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
+        transition: all 0.3s;
     }
-
-    .btn-primary {
-        background-color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    
+    .btn:hover {
+        transform: translateY(-2px);
     }
-
-    .btn-outline-primary {
-        color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    
+    @@media (max-width: 768px) {
+        .beginner-note {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .step {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .rbac-diagram {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto auto auto;
+        }
+        
+        .arrows-section {
+            flex-direction: row;
+            justify-content: center;
+            padding: 10px 0;
+        }
+        
+        .arrow {
+            margin: 0 5px;
+        }
+        
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .navigation-buttons .btn {
+            width: 100%;
+            text-align: center;
+        }
     }
 </style>
+
+<script>
+$(document).ready(function() {
+    // Quiz functionality
+    $('.quiz-option').click(function() {
+        const $this = $(this);
+        const isCorrect = $this.data('correct') === true;
+        
+        // Reset all options
+        $('.quiz-option').removeClass('correct incorrect selected');
+        
+        // Mark this option as selected
+        $this.addClass('selected');
+        
+        // Mark correct/incorrect
+        $this.addClass(isCorrect ? 'correct' : 'incorrect');
+        
+        // Show feedback based on selection
+        let feedbackText;
+        if (isCorrect) {
+            feedbackText = 'Correct! Roles are designed to group users with similar permissions. Multiple users can have the same role, and the [Authorize] attribute is used to protect controller actions. However, roles should be checked on both frontend and backend, and they work alongside other security measures, not replace them.';
+        } else {
+            feedbackText = 'Not quite. Roles are meant to be shared among multiple users with similar needs, not unique per user. Security checks must happen on the backend (server-side) as frontend checks can be bypassed. Roles are part of a comprehensive security strategy, not the only security measure needed.';
+        }
+        
+        $('#quiz-feedback-text').text(feedbackText);
+        $('.quiz-feedback').addClass('show');
+    });
+    
+    // Animate steps
+    const steps = $('.step');
+    steps.each(function(index) {
+        $(this).css({
+            'opacity': '0',
+            'transform': 'translateX(-20px)',
+            'transition': 'all 0.5s ease ' + (index * 0.2) + 's'
+        });
+    });
+    
+    setTimeout(() => {
+        steps.each(function() {
+            $(this).css({
+                'opacity': '1',
+                'transform': 'translateX(0)'
+            });
+        });
+    }, 300);
+    
+    // Add AJAX navigation to buttons
+    $('.navigation-buttons a').addClass('ajax-link');
+});
+</script>

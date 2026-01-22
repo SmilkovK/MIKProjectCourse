@@ -1,134 +1,1047 @@
 ﻿@{
-    ViewData["Title"] = "Advanced Web App - Authorization";
+    ViewData["Title"] = "Authorization - Controlling User Access";
 }
 
 <div class="container">
-    <h1>Authorization in Web Applications</h1>
-    <p><strong>Authorization</strong> is the process of determining what a user is allowed to do. While authentication asks <em>"Who are you?"</em>, authorization asks <em>"What can you access?"</em></p>
+    <h1 class="text-center">Authorization: Controlling What Users Can Do</h1>
 
-    <h2>Why Authorization is Important</h2>
-    <ul>
-        <li>Ensures only allowed users can access certain pages or features.</li>
-        <li>Protects sensitive data from unauthorized users.</li>
-        <li>Helps implement roles and permissions in your app.</li>
-    </ul>
-
-    <h2>Example: Role-Based Authorization in ASP.NET Core</h2>
-    <p>In ASP.NET Core, you can use roles to authorize users. For example:</p>
-
-    <div class="code-container">
-        <div class="code-header">Authorize Admin Users Only</div>
-        <div class="code-content">
-<pre><code class="language-csharp">
-using Microsoft.AspNetCore.Authorization;
-
-[Authorize(Roles = "Admin")]
-public class AdminController : Controller
-{
-    public IActionResult Dashboard()
-    {
-        return View();
-    }
-}
-</code></pre>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-user-check"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Authorization is Like Door Access Control</h4>
+            <p>Once authentication has verified who you are (like checking your ID at the building entrance), authorization determines what areas you can access inside the building.</p>
+            <ul>
+                <li><strong>Regular Employee:</strong> Can access their office, break room</li>
+                <li><strong>Manager:</strong> Can also access management offices, conference rooms</li>
+                <li><strong>Security Staff:</strong> Can access security rooms, control systems</li>
+                <li><strong>Visitor:</strong> Can only access reception and public areas</li>
+            </ul>
+            <p><strong>Simple definition:</strong> Authorization is the process of determining what authenticated users are allowed to do.</p>
         </div>
     </div>
 
-    <h2>How It Works</h2>
-    <ul>
-        <li>The `[Authorize]` attribute checks if the user is logged in.</li>
-        <li>The `Roles` parameter ensures only users with the specified role can access the controller or action.</li>
-        <li>If a user does not meet the requirements, they are redirected to the login page or an "Access Denied" page.</li>
-    </ul>
+    <div class="important-note">
+        <h4>Remember: Authentication vs Authorization</h4>
+        <p><strong>Authentication</strong> answers "Who are you?" (Verifying identity). <strong>Authorization</strong> answers "What are you allowed to do?" (Checking permissions). With .NET Individual Accounts, authentication is done. Now we control what authenticated users can access.</p>
+    </div>
 
-    <h2>Exercise</h2>
-    <p>Practice role-based authorization:</p>
-    <ul>
-        <li>Create two roles: `Admin` and `User`.</li>
-        <li>Protect an "Admin Dashboard" page so only users with the `Admin` role can access it.</li>
-        <li>Protect a "Profile" page so all logged-in users can access it.</li>
-        <li>Test logging in with different users and observe which pages they can access.</li>
-    </ul>
+    <div class="authorization-types">
+        <h2>Types of Authorization in .NET</h2>
+        <p>.NET provides several ways to control access. Here are the most common approaches:</p>
+        
+        <div class="types-grid">
+            <div class="type-card">
+                <div class="type-header">
+                    <h4>1. Simple Authorization</h4>
+                </div>
+                <div class="type-content">
+                    <p><strong>Basic access control</strong> - Is the user logged in?</p>
+                    <div class="code-example">
+                        <code>[Authorize]</code>
+                    </div>
+                    <ul>
+                        <li>Allows any authenticated user</li>
+                        <li>Blocks anonymous (not logged in) users</li>
+                        <li>Used for pages that require login</li>
+                        <li>Example: User dashboard, profile page</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="type-card">
+                <div class="type-header">
+                    <h4>2. Role-Based Authorization</h4>
+                </div>
+                <div class="type-content">
+                    <p><strong>Access based on user roles</strong> - What role does the user have?</p>
+                    <div class="code-example">
+                        <code>[Authorize(Roles = "Admin")]</code>
+                    </div>
+                    <ul>
+                        <li>Users must have specific role(s)</li>
+                        <li>Multiple roles: <code>"Admin,Manager"</code></li>
+                        <li>Example: Admin panel, moderation tools</li>
+                        <li>Built on Identity roles we learned earlier</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="type-card">
+                <div class="type-header">
+                    <h4>3. Policy-Based Authorization</h4>
+                </div>
+                <div class="type-content">
+                    <p><strong>Complex rules and requirements</strong> - Custom business logic</p>
+                    <div class="code-example">
+                        <code>[Authorize(Policy = "Over18")]</code>
+                    </div>
+                    <ul>
+                        <li>Custom authorization logic</li>
+                        <li>Multiple requirements combined</li>
+                        <li>Example: Age restrictions, subscription status</li>
+                        <li>More flexible than simple roles</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="implementation-examples">
+        <h2>How Authorization Works in Practice</h2>
+        
+        <div class="examples-section">
+            <div class="example">
+                <h4>Protecting Controllers and Actions</h4>
+                <p>You add the <code>[Authorize]</code> attribute to controllers or specific actions:</p>
+                
+                <div class="example-tabs">
+                    <button class="example-tab active" data-target="controller">Controller Level</button>
+                    <button class="example-tab" data-target="action">Action Level</button>
+                    <button class="example-tab" data-target="allow-anonymous">Allow Anonymous</button>
+                </div>
+                
+                <div class="tab-content active" id="controller-tab">
+                    <div class="code-block">
+                        <p><strong>Protect entire controller:</strong> All actions require authentication</p>
+<pre><code>// All actions in this controller require login
+[Authorize]
+public class DashboardController : Controller
+{
+    public IActionResult Index() { }
+    
+    public IActionResult Profile() { }
+    
+    public IActionResult Settings() { }
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="action-tab">
+                    <div class="code-block">
+                        <p><strong>Protect specific actions:</strong> Mix protected and public actions</p>
+<pre><code>public class ProductController : Controller
+{
+    // Public: Anyone can view products
+    public IActionResult Index() { }
+    
+    // Protected: Must be logged in to create
+    [Authorize]
+    public IActionResult Create() { }
+    
+    // Role-based: Must be Admin to delete
+    [Authorize(Roles = "Admin")]
+    public IActionResult Delete(int id) { }
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="allow-anonymous-tab">
+                    <div class="code-block">
+                        <p><strong>Allow exceptions:</strong> Make specific actions public even in protected controllers</p>
+<pre><code>// Entire controller requires authentication
+[Authorize]
+public class AccountController : Controller
+{
+    // But registration and login should be public
+    [AllowAnonymous]
+    public IActionResult Register() { }
+    
+    [AllowAnonymous]
+    public IActionResult Login() { }
+    
+    // These still require authentication
+    public IActionResult Profile() { }
+    
+    public IActionResult ChangePassword() { }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="real-world-scenarios">
+        <h2>Real-World Authorization Scenarios</h2>
+        
+        <div class="scenarios-grid">
+            <div class="scenario">
+                <h4>E-commerce Store</h4>
+                <div class="access-controls">
+                    <div class="access-item">
+                        <span class="access-type public">Public</span>
+                        <span class="access-desc">Browse products, view product details</span>
+                    </div>
+                    <div class="access-item">
+                        <span class="access-type user">Logged-in Users</span>
+                        <span class="access-desc">Add to cart, checkout, view order history</span>
+                    </div>
+                    <div class="access-item">
+                        <span class="access-type admin">Admins Only</span>
+                        <span class="access-desc">Manage products, view all orders, process refunds</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scenario">
+                <h4>Blog Platform</h4>
+                <div class="access-controls">
+                    <div class="access-item">
+                        <span class="access-type public">Public</span>
+                        <span class="access-desc">Read blog posts, view comments</span>
+                    </div>
+                    <div class="access-item">
+                        <span class="access-type user">Logged-in Users</span>
+                        <span class="access-desc">Comment on posts, like posts, save favorites</span>
+                    </div>
+                    <div class="access-item">
+                        <span class="access-type author">Authors</span>
+                        <span class="access-desc">Write posts, edit own posts, moderate comments</span>
+                    </div>
+                    <div class="access-item">
+                        <span class="access-type admin">Admins Only</span>
+                        <span class="access-desc">Manage all users, delete any post, site configuration</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scenario">
+                <h4>Document Management System</h4>
+                <div class="access-controls">
+                    <div class="access-item">
+                        <span class="access-type user">All Employees</span>
+                        <span class="access-desc">View company documents, upload personal files</span>
+                    </div>
+                    <div class="access-item">
+                        <span class="access-type department">Department Members</span>
+                        <span class="access-desc">Access department-specific documents</span>
+                    </div>
+                    <div class="access-item">
+                        <span class="access-type manager">Managers</span>
+                        <span class="access-desc">Approve documents, manage team files</span>
+                    </div>
+                    <div class="access-item">
+                        <span class="access-type hr">HR Only</span>
+                        <span class="access-desc">Access confidential employee records</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="authorization-workflow">
+        <h2>How Authorization Decisions Are Made</h2>
+        
+        <div class="workflow-diagram">
+            <div class="workflow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h5>User Requests Page</h5>
+                    <p>User tries to access <code>/admin/dashboard</code></p>
+                </div>
+                <div class="step-arrow">→</div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h5>Middleware Checks Authentication</h5>
+                    <p>ASP.NET checks if user is logged in (has valid authentication cookie)</p>
+                </div>
+                <div class="step-arrow">→</div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h5>Controller/Action Checks Authorization</h5>
+                    <p>System reads the <code>[Authorize]</code> attribute and its parameters</p>
+                </div>
+                <div class="step-arrow">→</div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h5>Check User Claims/Roles</h5>
+                    <p>System checks if user has required roles or meets policy requirements</p>
+                    <div class="check-details">
+                        <p><strong>For <code>[Authorize(Roles = "Admin")]</code>:</strong></p>
+                        <ul>
+                            <li>Is user in "Admin" role?</li>
+                            <li>If yes → allow access</li>
+                            <li>If no → deny access</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="step-arrow">→</div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h5>Access Decision</h5>
+                    <p>Based on checks, system either:</p>
+                    <div class="decision-options">
+                        <div class="decision allowed">
+                            <strong>Allows Access:</strong> User sees the page
+                        </div>
+                        <div class="decision denied">
+                            <strong>Denies Access:</strong> User redirected to login or access denied page
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="practical-tips">
+        <h2>Authorization Best Practices</h2>
+        
+        <div class="tips-grid">
+            <div class="tip">
+                <h4>Start Simple</h4>
+                <p>Begin with basic <code>[Authorize]</code> attributes. Add role-based authorization as needed. Don't overcomplicate your authorization system initially.</p>
+            </div>
+            
+            <div class="tip">
+                <h4>Use Controller-Level Protection</h4>
+                <p>Apply <code>[Authorize]</code> at the controller level for consistency. Use <code>[AllowAnonymous]</code> for specific public actions.</p>
+            </div>
+            
+            <div class="tip">
+                <h4>Test Both Sides</h4>
+                <p>Always test authorization from both sides: logged-in users with correct roles AND users without access. Make sure unauthorized users get appropriate responses.</p>
+            </div>
+            
+            <div class="tip">
+                <h4>Consider UX</h4>
+                <p>Don't just hide UI elements from unauthorized users. Also protect the backend endpoints. Users can bypass frontend checks.</p>
+            </div>
+            
+            <div class="tip">
+                <h4>Document Your Authorization Rules</h4>
+                <p>Keep track of which roles can access which features. This helps with maintenance and auditing.</p>
+            </div>
+            
+            <div class="tip">
+                <h4>Use Meaningful Role Names</h4>
+                <p>Name roles based on responsibilities (Admin, Moderator, Editor) not vague terms (User1, User2).</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="common-patterns">
+        <h2>Common Authorization Patterns</h2>
+        
+        <div class="patterns-grid">
+            <div class="pattern">
+                <h4>Layered Access</h4>
+                <p>Public → User → Premium → Admin. Each level adds more permissions. Easy to understand and implement.</p>
+            </div>
+            
+            <div class="pattern">
+                <h4>Resource Ownership</h4>
+                <p>Users can edit/delete only their own content (posts, comments, files). Others need admin rights.</p>
+            </div>
+            
+            <div class="pattern">
+                <h4>Department-Based</h4>
+                <p>Users can access resources within their department. HR accesses HR docs, Finance accesses finance data.</p>
+            </div>
+            
+            <div class="pattern">
+                <h4>Tiered Subscriptions</h4>
+                <p>Free users get basic features. Paid tiers unlock more features. Common in SaaS applications.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="security-considerations">
+        <h2>Security Considerations</h2>
+        
+        <div class="considerations">
+            <div class="consideration">
+                <h4>Principle of Least Privilege</h4>
+                <p>Users should have only the permissions they need to perform their tasks. Don't give all users admin access "just in case."</p>
+            </div>
+            
+            <div class="consideration">
+                <h4>Backend Validation is Essential</h4>
+                <p>Frontend hiding of buttons/menus is for user experience only. Always validate authorization on the server where users can't bypass it.</p>
+            </div>
+            
+            <div class="consideration">
+                <h4>Regular Audits</h4>
+                <p>Periodically review who has what permissions. Remove access when users change roles or leave.</p>
+            </div>
+            
+            <div class="consideration">
+                <h4>Error Messages</h4>
+                <p>Don't reveal too much in error messages. "Access denied" is better than "Admin access required" which tells hackers what role to target.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="quiz-section">
+        <h3>Quick Check: Authorization Understanding</h3>
+        <div class="quiz-question">
+            <p><strong>Question:</strong> Which statements about authorization are correct?</p>
+            
+            <div class="quiz-options">
+                <button class="quiz-option" data-correct="true">
+                    [Authorize] requires users to be logged in
+                </button>
+                <button class="quiz-option" data-correct="false">
+                    Authorization happens before authentication
+                </button>
+                <button class="quiz-option" data-correct="true">
+                    [AllowAnonymous] allows public access to specific actions
+                </button>
+                <button class="quiz-option" data-correct="true">
+                    [Authorize(Roles = "Admin")] requires Admin role
+                </button>
+                <button class="quiz-option" data-correct="false">
+                    Frontend authorization checks are sufficient for security
+                </button>
+                <button class="quiz-option" data-correct="true">
+                    Multiple roles can be specified: [Authorize(Roles = "Admin,Manager")]
+                </button>
+            </div>
+            
+            <div class="quiz-feedback">
+                <p id="quiz-feedback-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="putting-it-together">
+        <h2>Putting It All Together</h2>
+        <div class="summary">
+            <h4>The Complete Security Picture</h4>
+            <p>When you create an ASP.NET Core application with Individual Accounts, you get:</p>
+            <ol>
+                <li><strong>Complete Authentication</strong> - User registration, login, password management (provided automatically)</li>
+                <li><strong>Role Management</strong> - Ability to create and assign roles to users</li>
+                <li><strong>Authorization System</strong> - <code>[Authorize]</code> attributes to control access</li>
+                <li><strong>Security Infrastructure</strong> - Password hashing, session management, protection against common attacks</li>
+            </ol>
+            <p>Your job is to:</p>
+            <ul>
+                <li>Decide what parts of your application require login (<code>[Authorize]</code>)</li>
+                <li>Define roles that make sense for your application (Admin, User, Premium, etc.)</li>
+                <li>Assign appropriate authorization to controllers and actions</li>
+                <li>Test that the right people can access the right things</li>
+            </ul>
+            <p>The framework handles the complex security implementation. You focus on defining the rules for your specific application.</p>
+        </div>
+    </div>
+
+    <div class="next-steps">
+        <h3>What's Next?</h3>
+        <p>Now that you understand authentication (verifying identity) and authorization (controlling access), you're ready to implement these concepts in a real application. In the next sections, you'll learn:</p>
+        <ul>
+            <li>How to create and assign roles programmatically</li>
+            <li>How to customize the authentication experience</li>
+            <li>How to implement more advanced authorization scenarios</li>
+            <li>Best practices for securing your applications</li>
+        </ul>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Authentication", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← Authentication</a>
-        <a href="@Url.Action("IdentityTutorial", "AdvancedWebApp")" class="btn btn-primary ajax-link">Code tutorial to .NET Identity →</a>
+        <a href="@Url.Action("Authentication", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link" data-path="/AdvancedWebApp/Authentication">← Back: Authentication</a>
+        <a href="@Url.Action("Migrations", "AdvancedWebApp")" class="btn btn-primary ajax-link" data-path="/AdvancedWebApp/IdentityTutorial">Next: .NET Identity Guide →</a>
     </div>
 </div>
 
 <style>
-    .container {
-        max-width: 800px;
+    .container { 
+        max-width: 1000px; 
+        padding: 20px; 
+        background-color: var(--bs-body-bg); 
+    }
+    
+    h1, h2, h3, h4, h5 { 
+        color: var(--bs-heading-color); 
+        margin-bottom: 15px; 
+    }
+    
+    h1 { 
+        border-bottom: 2px solid var(--bs-warning); 
+        padding-bottom: 10px; 
+    }
+    
+    .beginner-note {
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 2px solid var(--bs-warning);
+        border-radius: 8px;
         padding: 20px;
-        background-color: var(--bs-body-bg);
+        margin-bottom: 30px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
     }
-
-    h1, h2 {
-        color: var(--bs-heading-color);
-        margin-bottom: 20px;
+    
+    .beginner-note-icon {
+        background-color: var(--bs-warning);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
     }
-
-    p, li {
-        color: var(--bs-body-color);
-        line-height: 1.6;
+    
+    .important-note {
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
     }
-
-    ul {
-        margin-left: 20px;
-        padding-left: 15px;
+    
+    .authorization-types {
+        margin: 40px 0;
     }
-
-    .code-container {
-        margin: 25px 0;
-        border: 1px solid var(--bs-border-color);
-        border-radius: 5px;
+    
+    .types-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .type-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
         overflow: hidden;
-        background-color: var(--code-bg);
+        border: 1px solid var(--bs-secondary);
     }
-
-    .code-header {
-        background-color: var(--code-header-bg);
-        padding: 10px 15px;
-        border-bottom: 1px solid var(--bs-border-color);
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
-        font-size: 0.9rem;
-        color: var(--bs-body-color);
-    }
-
-    .code-content {
+    
+    .type-header {
+        background-color: var(--bs-warning);
+        color: white;
         padding: 15px;
+    }
+    
+    .type-header h4 {
+        margin: 0;
+        color: white;
+    }
+    
+    .type-content {
+        padding: 20px;
+    }
+    
+    .code-example {
+        margin: 15px 0;
+        padding: 12px;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+        font-family: monospace;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+    
+    .type-content ul {
+        margin: 15px 0 0 0;
+        padding-left: 20px;
+    }
+    
+    .type-content li {
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+    }
+    
+    .implementation-examples {
+        margin: 40px 0;
+    }
+    
+    .example-tabs {
+        display: flex;
+        gap: 5px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid var(--bs-border-color);
+        padding-bottom: 10px;
+    }
+    
+    .example-tab {
+        padding: 10px 20px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border: none;
+        border-radius: 4px;
+        color: var(--bs-body-color);
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .example-tab.active {
+        background-color: var(--bs-warning);
+        color: white;
+    }
+    
+    .tab-content {
+        display: none;
+    }
+    
+    .tab-content.active {
+        display: block;
+    }
+    
+    .code-block {
+        background-color: #1a1a1a;
+        border-radius: 8px;
+        padding: 20px;
         overflow-x: auto;
     }
-
+    
+    .code-block p {
+        margin-bottom: 10px;
+        color: var(--bs-info);
+    }
+    
     pre {
         margin: 0;
-        white-space: pre-wrap;
-        background-color: transparent;
+        color: #e0e0e0;
+        line-height: 1.5;
     }
-
+    
     code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        color: #f8f8f2;
     }
-
+    
+    .real-world-scenarios {
+        margin: 40px 0;
+    }
+    
+    .scenarios-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .scenario {
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 1px solid var(--bs-secondary);
+    }
+    
+    .scenario h4 {
+        color: var(--bs-info);
+        margin-bottom: 15px;
+    }
+    
+    .access-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .access-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .access-type {
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        font-weight: bold;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    
+    .access-type.public {
+        background-color: rgba(40, 167, 69, 0.2);
+        color: #28a745;
+    }
+    
+    .access-type.user {
+        background-color: rgba(23, 162, 184, 0.2);
+        color: #17a2b8;
+    }
+    
+    .access-type.admin {
+        background-color: rgba(220, 53, 69, 0.2);
+        color: #dc3545;
+    }
+    
+    .access-type.author {
+        background-color: rgba(111, 66, 193, 0.2);
+        color: #6f42c1;
+    }
+    
+    .access-type.department {
+        background-color: rgba(255, 193, 7, 0.2);
+        color: #ffc107;
+    }
+    
+    .access-type.manager {
+        background-color: rgba(13, 110, 253, 0.2);
+        color: #0d6efd;
+    }
+    
+    .access-type.hr {
+        background-color: rgba(253, 126, 20, 0.2);
+        color: #fd7e14;
+    }
+    
+    .access-desc {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    
+    .authorization-workflow {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(23, 162, 184, 0.1);
+        border: 1px solid var(--bs-info);
+        border-radius: 10px;
+    }
+    
+    .workflow-diagram {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .workflow-step {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border-left: 4px solid var(--bs-info);
+    }
+    
+    .step-number {
+        background-color: var(--bs-info);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+    
+    .step-content {
+        flex: 1;
+    }
+    
+    .check-details {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+    
+    .check-details ul {
+        margin: 5px 0 0 0;
+        padding-left: 20px;
+    }
+    
+    .decision-options {
+        display: flex;
+        gap: 15px;
+        margin-top: 10px;
+    }
+    
+    .decision {
+        flex: 1;
+        padding: 10px;
+        border-radius: 6px;
+        text-align: center;
+    }
+    
+    .decision.allowed {
+        background-color: rgba(40, 167, 69, 0.2);
+        border: 1px solid #28a745;
+    }
+    
+    .decision.denied {
+        background-color: rgba(220, 53, 69, 0.2);
+        border: 1px solid #dc3545;
+    }
+    
+    .step-arrow {
+        color: var(--bs-info);
+        font-size: 1.5rem;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+    
+    .practical-tips {
+        margin: 40px 0;
+    }
+    
+    .tips-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .tip {
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 1px solid var(--bs-success);
+    }
+    
+    .tip h4 {
+        color: var(--bs-success);
+        margin-bottom: 10px;
+    }
+    
+    .common-patterns {
+        margin: 40px 0;
+    }
+    
+    .patterns-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .pattern {
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 1px solid var(--bs-purple);
+    }
+    
+    .pattern h4 {
+        color: var(--bs-purple);
+        margin-bottom: 10px;
+    }
+    
+    .security-considerations {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(220, 53, 69, 0.1);
+        border: 1px solid var(--bs-danger);
+        border-radius: 10px;
+    }
+    
+    .considerations {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .consideration {
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+    
+    .consideration h4 {
+        color: var(--bs-danger);
+        margin-bottom: 10px;
+    }
+    
+    .quiz-section {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid var(--bs-warning);
+        border-radius: 10px;
+    }
+    
+    .quiz-question {
+        margin-top: 20px;
+    }
+    
+    .quiz-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 10px;
+        margin: 20px 0;
+    }
+    
+    .quiz-option {
+        padding: 15px;
+        background-color: rgba(0, 0, 0, 0.2);
+        border: 2px solid var(--bs-secondary);
+        border-radius: 8px;
+        color: var(--bs-body-color);
+        cursor: pointer;
+        transition: all 0.3s;
+        text-align: left;
+        font-size: 0.95rem;
+    }
+    
+    .quiz-option:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+    }
+    
+    .quiz-option.correct {
+        background-color: rgba(40, 167, 69, 0.3);
+        border-color: var(--bs-success);
+    }
+    
+    .quiz-option.incorrect {
+        background-color: rgba(220, 53, 69, 0.3);
+        border-color: var(--bs-danger);
+    }
+    
+    .quiz-option.selected {
+        border-width: 3px;
+    }
+    
+    .quiz-feedback {
+        padding: 15px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        display: none;
+    }
+    
+    .quiz-feedback.show {
+        display: block;
+        animation: fadeIn 0.5s;
+    }
+    
+    .putting-it-together {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 10px;
+    }
+    
+    .summary ol, .summary ul {
+        margin: 15px 0;
+        padding-left: 20px;
+    }
+    
+    .summary li {
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+    
+    .next-steps {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border: 1px solid var(--bs-secondary);
+        border-radius: 10px;
+    }
+    
+    .next-steps ul {
+        margin: 15px 0 0 0;
+        padding-left: 20px;
+    }
+    
+    .next-steps li {
+        margin-bottom: 10px;
+    }
+    
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
-
+    
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
+        transition: all 0.3s;
     }
-
-    .btn-primary {
-        background-color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    
+    .btn:hover {
+        transform: translateY(-2px);
     }
-
-    .btn-outline-primary {
-        color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    
+    @@media (max-width: 768px) {
+        .beginner-note {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .workflow-step {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .step-arrow {
+            transform: rotate(90deg);
+        }
+        
+        .decision-options {
+            flex-direction: column;
+        }
+        
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .navigation-buttons .btn {
+            width: 100%;
+            text-align: center;
+        }
     }
 </style>
+
+<script>
+$(document).ready(function() {
+    // Tab functionality for code examples
+    $('.example-tab').click(function() {
+        const target = $(this).data('target');
+        
+        // Update active tab
+        $('.example-tab').removeClass('active');
+        $(this).addClass('active');
+        
+        // Show corresponding content
+        $('.tab-content').removeClass('active');
+        $(`#${target}-tab`).addClass('active');
+    });
+    
+    // Quiz functionality
+    $('.quiz-option').click(function() {
+        const $this = $(this);
+        const isCorrect = $this.data('correct') === true;
+        
+        // Reset all options
+        $('.quiz-option').removeClass('correct incorrect selected');
+        
+        // Mark this option as selected
+        $this.addClass('selected');
+
+        $this.addClass(isCorrect ? 'correct' : 'incorrect');
+
+        let feedbackText;
+        if (isCorrect) {
+            feedbackText = 'Correct! [Authorize] requires authentication, [AllowAnonymous] allows public access to specific actions, and you can require multiple roles. Remember that authorization happens AFTER authentication (first verify identity, then check permissions), and frontend checks alone are not sufficient for security - you must also check authorization on the server.';
+        } else {
+            feedbackText = 'Not quite. Authorization happens AFTER authentication (first we verify who you are, then we check what you can do). Frontend authorization checks can be bypassed by users, so you must always check authorization on the server where users cannot bypass the checks. The other statements about [Authorize], [AllowAnonymous], and multiple roles are correct.';
+        }
+        
+        $('#quiz-feedback-text').text(feedbackText);
+        $('.quiz-feedback').addClass('show');
+    });
+
+    $('.navigation-buttons a').addClass('ajax-link');
+});
+</script>

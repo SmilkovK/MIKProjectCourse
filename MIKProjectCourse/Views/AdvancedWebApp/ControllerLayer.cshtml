@@ -1,140 +1,1081 @@
 ﻿@{
-    ViewData["Title"] = "Advanced Web App - Controller Layer";
+    ViewData["Title"] = "Controller Layer - The Waiter of Your Application";
 }
 
 <div class="container">
-    <h1>The Controller Layer in Web Applications</h1>
-    <p>In an ASP.NET Core web application, the <strong>Controller Layer</strong> is responsible for handling user requests, interacting with the business logic or service layer, and returning the appropriate response (HTML, JSON, etc.).</p>
+    <h1 class="text-center">Controller Layer: The Waiter of Your Application</h1>
 
-    <h2>Why the Controller Layer is Important</h2>
-    <ul>
-        <li>Acts as the bridge between the user interface (views) and the data/business logic.</li>
-        <li>Organizes your application by separating responsibilities.</li>
-        <li>Makes your code easier to maintain and test.</li>
-    </ul>
-
-    <h2>Example: Simple Controller</h2>
-    <div class="code-container">
-        <div class="code-header">HomeController Example</div>
-        <div class="code-content">
-<pre><code class="language-csharp">
-using Microsoft.AspNetCore.Mvc;
-
-public class HomeController : Controller
-{
-    // Action method for the homepage
-    public IActionResult Index()
-    {
-        // You could get data from a service or repository here
-        ViewData["Message"] = "Welcome to the Controller Layer Example!";
-        return View();
-    }
-
-    // Action method for About page
-    public IActionResult About()
-    {
-        ViewData["Message"] = "This is the About page";
-        return View();
-    }
-}
-</code></pre>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-traffic-light"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Remember the Restaurant Analogy!</h4>
+            <p><strong>Controllers = Waiters in a restaurant</strong></p>
+            <ul>
+                <li><strong>One job:</strong> Take orders from customers and deliver food back</li>
+                <li><strong>Don't cook:</strong> Never touch the actual cooking (business logic)</li>
+                <li><strong>Don't get ingredients:</strong> Never go to the refrigerator (database)</li>
+                <li><strong>Just communicate:</strong> Pass messages between customer and kitchen</li>
+            </ul>
+            <p><strong>In web terms:</strong> Controllers handle HTTP requests and responses. They're the bridge between users and your application!</p>
         </div>
     </div>
 
-    <h2>How it Works</h2>
-    <ul>
-        <li>Each public method in a controller is called an <strong>action</strong> and can respond to a user request.</li>
-        <li>The controller can access models, services, or repositories to get or manipulate data.</li>
-        <li>It then returns a response, often a <code>View()</code> or <code>Json()</code>, which the browser can display.</li>
-    </ul>
+    <div class="important-note">
+        <h4><i class="fas fa-star"></i> What You Already Know</h4>
+        <p>You already understand controllers from the basic MVC section! Remember <code>HomeController.cs</code> with its <code>Index()</code>, <code>About()</code>, and <code>Contact()</code> methods? That was a controller! Now we're just organizing them better within a layered architecture.</p>
+    </div>
 
-    <h2>Exercise</h2>
-    <ul>
-        <li>Create a controller named <code>ProductsController</code>.</li>
-        <li>Add two actions: <code>List()</code> to show all products and <code>Details(int id)</code> to show a single product.</li>
-        <li>Use <code>ViewData</code> or <code>ViewBag</code> to send some example product information to the views.</li>
-        <li>Test the actions by navigating to the corresponding URLs in your browser.</li>
-    </ul>
+    <div class="intro-section">
+        <h2>What Controllers REALLY Do</h2>
+        <p>In layered architecture, controllers have a very specific, limited role. They are the entry point for all user interactions with your web application.</p>
+        
+        <div class="controller-tasks">
+            <div class="task-card">
+                <div class="task-icon">
+                    <i class="fas fa-sign-in-alt"></i>
+                </div>
+                <h5>1. Receive Requests</h5>
+                <p>Get HTTP requests from browsers (GET, POST, PUT, DELETE)</p>
+            </div>
+            
+            <div class="task-card">
+                <div class="task-icon">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <h5>2. Validate Input</h5>
+                <p>Check if user input is valid (required fields, correct format)</p>
+            </div>
+            
+            <div class="task-card">
+                <div class="task-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h5>3. Call Services</h5>
+                <p>Ask Service Layer to perform actual work</p>
+            </div>
+            
+            <div class="task-card">
+                <div class="task-icon">
+                    <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <h5>4. Return Responses</h5>
+                <p>Send HTML, JSON, or redirects back to user</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="code-section">
+        <h2>Controller Code Structure</h2>
+        <p>Let's look at a typical controller in a layered application:</p>
+        
+        <div class="code-comparison">
+            <div class="code-block">
+                <h4><i class="fas fa-check-circle"></i> Good Controller (Layered)</h4>
+                <div class="code-explanation">
+                    <p><strong>This controller:</strong></p>
+                    <ul>
+                        <li>Only handles HTTP stuff</li>
+                        <li>Calls services for logic</li>
+                        <li>Stays thin and simple</li>
+                        <li>Easy to test and maintain</li>
+                    </ul>
+                </div>
+<pre><code class="language-csharp">public class ProductController : Controller
+{
+    private readonly IProductService _productService;
+    
+    // Constructor gets service via Dependency Injection
+    public ProductController(IProductService productService)
+    {
+        _productService = productService; // Store for later use
+    }
+    
+    // GET: /products
+    public IActionResult Index()
+    {
+        // Ask service layer for all products
+        var products = _productService.GetAllProducts();
+        
+        // Show them in a view
+        return View(products);
+    }
+    
+    // GET: /products/details/5
+    public IActionResult Details(int id)
+    {
+        // Ask service for specific product
+        var product = _productService.GetProductById(id);
+        
+        // If not found, show 404
+        if (product == null)
+        {
+            return NotFound();
+        }
+        
+        // Show product details view
+        return View(product);
+    }
+    
+    // GET: /products/create
+    public IActionResult Create()
+    {
+        // Just show the empty form
+        return View();
+    }
+    
+    // POST: /products/create
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Create(ProductViewModel model)
+    {
+        // Check if form data is valid
+        if (!ModelState.IsValid)
+        {
+            return View(model); // Show form again with errors
+        }
+        
+        // Ask service to create new product
+        _productService.CreateProduct(model);
+        
+        // Redirect to product list
+        return RedirectToAction(nameof(Index));
+    }
+}</code></pre>
+            </div>
+            
+            <div class="code-block">
+                <h4><i class="fas fa-times-circle"></i> Bad Controller (Monolithic)</h4>
+                <div class="code-explanation">
+                    <p><strong>This controller:</strong></p>
+                    <ul>
+                        <li>Does too many jobs</li>
+                        <li>Hard to test</li>
+                        <li>Difficult to maintain</li>
+                        <li>Violates separation of concerns</li>
+                    </ul>
+                </div>
+<pre><code class="language-csharp">public class BadProductController : Controller
+{
+    private readonly ApplicationDbContext _context;
+    
+    public BadProductController(ApplicationDbContext context)
+    {
+        _context = context;
+    }
+    
+    public IActionResult Details(int id)
+    {
+        // 1. Direct database access (should be in repository)
+        var product = _context.Products
+            .FirstOrDefault(p => p.Id == id);
+        
+        // 2. Business logic in controller (should be in service)
+        if (product != null && product.AddedDate.Year < 2020)
+        {
+            product.Price *= 0.5m; // 50% discount for old products
+        }
+        
+        // 3. More business logic mixed in
+        if (product.Stock < 10)
+        {
+            ViewBag.StockWarning = "Low stock!";
+        }
+        
+        // 4. Even more logic
+        product.Description = CleanDescription(product.Description);
+        
+        return View(product);
+    }
+    
+    // Helper method that belongs in service layer
+    private string CleanDescription(string desc)
+    {
+        // Business logic doesn't belong here!
+        return desc.ToUpper();
+    }
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="interactive-exercise">
+        <h2><i class="fas fa-gamepad"></i> Controller Flow Visualization</h2>
+        <p>Follow what happens when someone creates a new product:</p>
+        
+        <div class="flow-diagram">
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>User Fills Form</h5>
+                    <p>User enters product details and clicks "Save"</p>
+                    <code class="flow-code">POST /products/create</code>
+                </div>
+                <div class="flow-arrow">→</div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-server"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>Controller Receives</h5>
+                    <p><code>Create()</code> method runs with form data</p>
+                    <div class="step-detail">
+                        <strong>Controller checks:</strong>
+                        <ul>
+                            <li>Is data valid? (ModelState.IsValid)</li>
+                            <li>Is user logged in? (if needed)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="flow-arrow">→</div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>Call Service Layer</h5>
+                    <p><code>_productService.CreateProduct(model)</code></p>
+                    <div class="step-detail">
+                        <strong>Controller says:</strong>
+                        "Hey Service, please create this product with these details. I trust you'll handle it properly!"
+                    </div>
+                </div>
+                <div class="flow-arrow">→</div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-spinner"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>Wait for Response</h5>
+                    <p>Controller waits while Service does its work</p>
+                    <div class="step-detail">
+                        <strong>Controller does NOT:</strong>
+                        <ul>
+                            <li>Check business rules</li>
+                            <li>Access database</li>
+                            <li>Calculate prices</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="flow-arrow">←</div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>Service Returns</h5>
+                    <p>Service says "Product created successfully!"</p>
+                </div>
+                <div class="flow-arrow">→</div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-redo"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>Controller Responds</h5>
+                    <p><code>RedirectToAction("Index")</code></p>
+                    <div class="step-detail">
+                        Sends user back to product list page
+                    </div>
+                </div>
+                <div class="flow-arrow">→</div>
+            </div>
+            
+            <div class="flow-step">
+                <div class="flow-icon">
+                    <i class="fas fa-list"></i>
+                </div>
+                <div class="flow-content">
+                    <h5>User Sees Result</h5>
+                    <p>User sees product list with new product added!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="best-practices">
+        <h2><i class="fas fa-graduation-cap"></i> Controller Best Practices</h2>
+        
+        <div class="practice-grid">
+            <div class="practice-item do">
+                <div class="practice-header">
+                    <i class="fas fa-check"></i>
+                    <h5>DO These</h5>
+                </div>
+                <ul>
+                    <li>Keep controllers thin (less than 100 lines)</li>
+                    <li>Only handle HTTP-related logic</li>
+                    <li>Use dependency injection for services</li>
+                    <li>Validate ModelState early</li>
+                    <li>Return appropriate HTTP responses</li>
+                    <li>Use [Authorize] for protected actions</li>
+                    <li>Apply [ValidateAntiForgeryToken] for forms</li>
+                </ul>
+            </div>
+            
+            <div class="practice-item dont">
+                <div class="practice-header">
+                    <i class="fas fa-times"></i>
+                    <h5>DON'T Do These</h5>
+                </div>
+                <ul>
+                    <li>Put business logic in controllers</li>
+                    <li>Access database directly</li>
+                    <li>Perform complex calculations</li>
+                    <li>Mix multiple responsibilities</li>
+                    <li>Write long controller methods</li>
+                    <li>Hardcode configuration values</li>
+                    <li>Skip input validation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="real-world-example">
+        <h2><i class="fas fa-building"></i> Real-World Example: E-commerce Controller</h2>
+        <p>Let's see how a real e-commerce site might structure its controllers:</p>
+        
+        <div class="example-tabs">
+            <div class="tab-buttons">
+                <button class="tab-button active" data-tab="cart">ShoppingCartController</button>
+                <button class="tab-button" data-tab="order">OrderController</button>
+                <button class="tab-button" data-tab="product">ProductController</button>
+            </div>
+            
+            <div class="tab-content active" id="cart-tab">
+<pre><code class="language-csharp">public class ShoppingCartController : Controller
+{
+    private readonly IShoppingCartService _cartService;
+    
+    public ShoppingCartController(IShoppingCartService cartService)
+    {
+        _cartService = cartService;
+    }
+    
+    // View cart contents
+    public IActionResult Index()
+    {
+        var cart = _cartService.GetCartForUser(User.Identity.Name);
+        return View(cart);
+    }
+    
+    // Add item to cart
+    [HttpPost]
+    public IActionResult AddToCart(int productId, int quantity = 1)
+    {
+        _cartService.AddToCart(productId, quantity, User.Identity.Name);
+        
+        // Return to product page with success message
+        TempData["Success"] = "Item added to cart!";
+        return RedirectToAction("Details", "Product", new { id = productId });
+    }
+    
+    // Update cart quantity
+    [HttpPost]
+    public IActionResult UpdateQuantity(int cartItemId, int newQuantity)
+    {
+        _cartService.UpdateQuantity(cartItemId, newQuantity);
+        return RedirectToAction(nameof(Index));
+    }
+    
+    // Remove item from cart
+    [HttpPost]
+    public IActionResult RemoveItem(int cartItemId)
+    {
+        _cartService.RemoveItem(cartItemId);
+        return RedirectToAction(nameof(Index));
+    }
+}</code></pre>
+            </div>
+            
+            <div class="tab-content" id="order-tab">
+<pre><code class="language-csharp">public class OrderController : Controller
+{
+    private readonly IOrderService _orderService;
+    
+    public OrderController(IOrderService orderService)
+    {
+        _orderService = orderService;
+    }
+    
+    // Checkout process
+    [Authorize] // Must be logged in
+    public IActionResult Checkout()
+    {
+        var order = _orderService.PrepareOrder(User.Identity.Name);
+        return View(order);
+    }
+    
+    // Place order
+    [HttpPost]
+    [Authorize]
+    [ValidateAntiForgeryToken]
+    public IActionResult PlaceOrder(CheckoutViewModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View("Checkout", model);
+        }
+        
+        var orderId = _orderService.PlaceOrder(model, User.Identity.Name);
+        
+        // Redirect to order confirmation
+        return RedirectToAction("Confirmation", new { id = orderId });
+    }
+    
+    // Order confirmation
+    public IActionResult Confirmation(int id)
+    {
+        var order = _orderService.GetOrder(id, User.Identity.Name);
+        return View(order);
+    }
+}</code></pre>
+            </div>
+            
+            <div class="tab-content" id="product-tab">
+<pre><code class="language-csharp">public class ProductController : Controller
+{
+    private readonly IProductService _productService;
+    
+    public ProductController(IProductService productService)
+    {
+        _productService = productService;
+    }
+    
+    // Product listing with filters
+    public IActionResult Index(string category = null, string search = null)
+    {
+        var products = _productService.GetProducts(category, search);
+        return View(products);
+    }
+    
+    // Product details
+    public IActionResult Details(int id)
+    {
+        var product = _productService.GetProductWithDetails(id);
+        
+        if (product == null)
+        {
+            return NotFound();
+        }
+        
+        return View(product);
+    }
+    
+    // Product reviews
+    [HttpPost]
+    [Authorize]
+    public IActionResult AddReview(int productId, ReviewViewModel review)
+    {
+        if (!ModelState.IsValid)
+        {
+            // Return to product page with errors
+            return RedirectToAction("Details", new { id = productId });
+        }
+        
+        _productService.AddReview(productId, review, User.Identity.Name);
+        
+        TempData["Success"] = "Review added successfully!";
+        return RedirectToAction("Details", new { id = productId });
+    }
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-takeaways">
+        <h3><i class="fas fa-key"></i> Key Takeaways</h3>
+        <div class="takeaway-grid">
+            <div class="takeaway-item">
+                <div class="takeaway-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h5>Single Responsibility</h5>
+                <p>Controllers only handle HTTP communication. That's it!</p>
+            </div>
+            
+            <div class="takeaway-item">
+                <div class="takeaway-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <h5>Message Passer</h5>
+                <p>They pass messages between users and services, nothing more.</p>
+            </div>
+            
+            <div class="takeaway-item">
+                <div class="takeaway-icon">
+                    <i class="fas fa-weight"></i>
+                </div>
+                <h5>Stay Thin</h5>
+                <p>If your controller is getting fat, move logic to services.</p>
+            </div>
+            
+            <div class="takeaway-item">
+                <div class="takeaway-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h5>Security First</h5>
+                <p>Controllers handle authentication, authorization, and validation.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="quiz-section">
+        <h3><i class="fas fa-brain"></i> Quick Check: Controller Knowledge</h3>
+        <div class="quiz-question">
+            <p><strong>Question:</strong> Which of these SHOULD be in a Controller?</p>
+            
+            <div class="quiz-options">
+                <button class="quiz-option" data-correct="true">
+                    <i class="fas fa-traffic-light"></i> Validate user input from forms
+                </button>
+                <button class="quiz-option" data-correct="false">
+                    <i class="fas fa-calculator"></i> Calculate discount percentages
+                </button>
+                <button class="quiz-option" data-correct="true">
+                    <i class="fas fa-redo"></i> Redirect users after form submission
+                </button>
+                <button class="quiz-option" data-correct="false">
+                    <i class="fas fa-database"></i> Direct database queries
+                </button>
+            </div>
+            
+            <div class="quiz-feedback">
+                <p id="quiz-feedback-text"></p>
+            </div>
+        </div>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Layers", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← Layers</a>
-        <a href="@Url.Action("RepositoryLayer", "AdvancedWebApp")" class="btn btn-primary ajax-link">RepositoryLayer →</a>
+        <a href="@Url.Action("Layers", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link" data-path="/AdvancedWebApp/Layers">← Back: Introduction to Layers</a>
+        <a href="@Url.Action("RepositoryLayer", "AdvancedWebApp")" class="btn btn-primary ajax-link" data-path="/AdvancedWebApp/RepositoryLayer">Next: Repository Layer →</a>
     </div>
 </div>
 
 <style>
-    .container {
-        max-width: 800px;
-        padding: 20px;
-        background-color: var(--bs-body-bg);
+    .container { 
+        max-width: 900px; 
+        padding: 20px; 
+        background-color: var(--bs-body-bg); 
     }
-
-    h1, h2 {
-        color: var(--bs-heading-color);
+    
+    h1, h2, h3, h4, h5 { 
+        color: var(--bs-heading-color); 
+        margin-bottom: 15px; 
+    }
+    
+    h1 { 
+        border-bottom: 2px solid var(--bs-primary); 
+        padding-bottom: 10px; 
+    }
+    
+    .beginner-note {
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .beginner-note-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+    
+    .important-note {
+        background-color: rgba(255, 193, 7, 0.2);
+        border: 2px solid var(--bs-warning);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .intro-section {
+        margin-bottom: 40px;
+    }
+    
+    .controller-tasks {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .task-card {
+        text-align: center;
+        padding: 20px;
+        background-color: rgba(13, 110, 253, 0.1);
+        border-radius: 8px;
+        border: 1px solid rgba(13, 110, 253, 0.3);
+    }
+    
+    .task-icon {
+        font-size: 2rem;
+        color: var(--bs-primary);
+        margin-bottom: 10px;
+    }
+    
+    .code-section {
+        margin: 40px 0;
+    }
+    
+    .code-comparison {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    @@media (max-width: 768px) {
+        .code-comparison {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    .code-block {
+        background-color: #1a1a1a;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+    
+    .code-block h4 {
+        padding: 15px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .code-block:first-child h4 {
+        background-color: #28a745;
+        color: white;
+    }
+    
+    .code-block:last-child h4 {
+        background-color: #dc3545;
+        color: white;
+    }
+    
+    .code-explanation {
+        padding: 15px;
+        background-color: #2d2d2d;
+    }
+    
+    .code-explanation ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+    
+    .code-explanation li {
+        margin-bottom: 5px;
+    }
+    
+    .interactive-exercise {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(23, 162, 184, 0.1);
+        border: 1px solid var(--bs-info);
+        border-radius: 10px;
+    }
+    
+    .flow-diagram {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .flow-step {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border-left: 4px solid var(--bs-info);
+    }
+    
+    .flow-icon {
+        background-color: var(--bs-info);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+    
+    .flow-content {
+        flex: 1;
+    }
+    
+    .flow-code {
+        display: inline-block;
+        background-color: rgba(0, 0, 0, 0.3);
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-family: monospace;
+        margin-top: 5px;
+    }
+    
+    .step-detail {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 4px;
+        font-size: 0.9rem;
+    }
+    
+    .step-detail ul {
+        margin: 5px 0;
+        padding-left: 20px;
+    }
+    
+    .flow-arrow {
+        color: var(--bs-info);
+        font-size: 1.5rem;
+        font-weight: bold;
+    }
+    
+    .best-practices {
+        margin: 40px 0;
+    }
+    
+    .practice-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    @@media (max-width: 768px) {
+        .practice-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    .practice-item {
+        padding: 20px;
+        border-radius: 8px;
+    }
+    
+    .practice-item.do {
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+    }
+    
+    .practice-item.dont {
+        background-color: rgba(220, 53, 69, 0.1);
+        border: 1px solid var(--bs-danger);
+    }
+    
+    .practice-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    
+    .do .practice-header i {
+        color: var(--bs-success);
+    }
+    
+    .dont .practice-header i {
+        color: var(--bs-danger);
+    }
+    
+    .practice-item ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+    
+    .practice-item li {
+        margin-bottom: 8px;
+    }
+    
+    .real-world-example {
+        margin: 40px 0;
+        background-color: rgba(108, 117, 125, 0.1);
+        border-radius: 8px;
+        padding: 25px;
+    }
+    
+    .example-tabs {
+        margin-top: 20px;
+    }
+    
+    .tab-buttons {
+        display: flex;
+        gap: 5px;
         margin-bottom: 20px;
     }
-
-    p, li {
+    
+    .tab-button {
+        flex: 1;
+        padding: 10px;
+        background-color: rgba(0, 0, 0, 0.2);
+        border: none;
         color: var(--bs-body-color);
-        line-height: 1.6;
+        cursor: pointer;
+        transition: all 0.3s;
     }
-
-    ul {
-        margin-left: 20px;
-        padding-left: 15px;
+    
+    .tab-button.active {
+        background-color: var(--bs-primary);
+        color: white;
     }
-
-    .code-container {
-        margin: 25px 0;
-        border: 1px solid var(--bs-border-color);
-        border-radius: 5px;
+    
+    .tab-content {
+        display: none;
+        background-color: #1a1a1a;
+        border-radius: 8px;
         overflow: hidden;
-        background-color: var(--code-bg);
     }
-
-    .code-header {
-        background-color: var(--code-header-bg);
-        padding: 10px 15px;
-        border-bottom: 1px solid var(--bs-border-color);
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
-        font-size: 0.9rem;
-        color: var(--bs-body-color);
+    
+    .tab-content.active {
+        display: block;
     }
-
-    .code-content {
+    
+    .key-takeaways {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-indigo);
+        border-radius: 10px;
+    }
+    
+    .takeaway-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .takeaway-item {
+        text-align: center;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+    
+    .takeaway-icon {
+        background-color: var(--bs-indigo);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin: 0 auto 15px;
+    }
+    
+    .quiz-section {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid var(--bs-warning);
+        border-radius: 10px;
+    }
+    
+    .quiz-question {
+        margin-top: 20px;
+    }
+    
+    .quiz-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin: 20px 0;
+    }
+    
+    @@media (max-width: 768px) {
+        .quiz-options {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    .quiz-option {
         padding: 15px;
-        overflow-x: auto;
+        background-color: rgba(0, 0, 0, 0.2);
+        border: 2px solid var(--bs-secondary);
+        border-radius: 8px;
+        color: var(--bs-body-color);
+        cursor: pointer;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        text-align: left;
     }
-
-    pre {
-        margin: 0;
-        white-space: pre-wrap;
-        background-color: transparent;
+    
+    .quiz-option:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
     }
-
-    code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    
+    .quiz-option.correct {
+        background-color: rgba(40, 167, 69, 0.3);
+        border-color: var(--bs-success);
     }
-
+    
+    .quiz-option.incorrect {
+        background-color: rgba(220, 53, 69, 0.3);
+        border-color: var(--bs-danger);
+    }
+    
+    .quiz-option.selected {
+        border-width: 3px;
+    }
+    
+    .quiz-feedback {
+        padding: 15px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        display: none;
+    }
+    
+    .quiz-feedback.show {
+        display: block;
+        animation: fadeIn 0.5s;
+    }
+    
+    @@keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
-
+    
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
+        transition: all 0.3s;
     }
-
-    .btn-primary {
-        background-color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    
+    .btn:hover {
+        transform: translateY(-2px);
     }
-
-    .btn-outline-primary {
-        color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    
+    @@media (max-width: 768px) {
+        .beginner-note {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .flow-step {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .flow-arrow {
+            transform: rotate(90deg);
+        }
+        
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .navigation-buttons .btn {
+            width: 100%;
+            text-align: center;
+        }
     }
 </style>
+
+<script>
+$(document).ready(function() {
+    // Initialize syntax highlighting
+    if (typeof hljs !== 'undefined') {
+        hljs.highlightAll();
+    }
+
+    $('.tab-button').click(function() {
+        const tabId = $(this).data('tab');
+
+        $('.tab-button').removeClass('active');
+        $(this).addClass('active');
+
+        $('.tab-content').removeClass('active');
+        $(`#${tabId}-tab`).addClass('active');
+    });
+
+    $('.quiz-option').click(function() {
+        const $this = $(this);
+        const isCorrect = $this.data('correct') === true;
+
+        $('.quiz-option').removeClass('correct incorrect selected');
+
+        $this.addClass('selected');
+
+        $this.addClass(isCorrect ? 'correct' : 'incorrect');
+
+        let feedbackText;
+        if (isCorrect) {
+            feedbackText = '✅ Correct! Controllers SHOULD validate input and handle redirects. They should NOT calculate discounts or do direct database queries.';
+        } else {
+            feedbackText = '❌ Actually, controllers should NOT handle business calculations or direct database access. These belong in the Service and Repository layers respectively.';
+        }
+        
+        $('#quiz-feedback-text').text(feedbackText);
+        $('.quiz-feedback').addClass('show');
+    });
+
+    const flowSteps = $('.flow-step');
+    flowSteps.each(function(index) {
+        $(this).css({
+            'opacity': '0',
+            'transform': 'translateX(-20px)',
+            'transition': 'all 0.5s ease ' + (index * 0.1) + 's'
+        });
+    });
+    
+    setTimeout(() => {
+        flowSteps.each(function() {
+            $(this).css({
+                'opacity': '1',
+                'transform': 'translateX(0)'
+            });
+        });
+    }, 300);
+
+    $('.navigation-buttons a').addClass('ajax-link');
+});
+</script>

@@ -1,146 +1,996 @@
 ﻿@{
-    ViewData["Title"] = "Advanced Web App - Authentication";
+    ViewData["Title"] = "Authentication - Verifying User Identity";
 }
 
 <div class="container">
-    <h1>Authentication in Web Applications</h1>
-    <p><strong>Authentication</strong> is the process of verifying who a user is. In other words, it answers the question: <em>"Are you really who you say you are?"</em></p>
+    <h1 class="text-center">Authentication: Verifying Who You Are</h1>
 
-    <h2>Why Authentication is Important</h2>
-    <ul>
-        <li>Protects sensitive information.</li>
-        <li>Allows users to access personalized content.</li>
-        <li>Prevents unauthorized access to your application.</li>
-    </ul>
-
-    <h2>Example: Simple Login in ASP.NET Core</h2>
-    <p>In ASP.NET Core, you can use <strong>Identity</strong> to handle authentication easily. Here’s a simplified example:</p>
-
-    <div class="code-container">
-        <div class="code-header">Registering a User</div>
-        <div class="code-content">
-<pre><code class="language-csharp">
-// Model
-public class RegisterModel
-{
-    public string Email { get; set; }
-    public string Password { get; set; }
-}
-
-// Controller
-[HttpPost]
-public async Task<IActionResult> Register(RegisterModel model)
-{
-    if (ModelState.IsValid)
-    {
-        var user = new IdentityUser { UserName = model.Email, Email = model.Email };
-        var result = await _userManager.CreateAsync(user, model.Password);
-        if (result.Succeeded)
-        {
-            await _signInManager.SignInAsync(user, isPersistent: false);
-            return RedirectToAction("Index", "Home");
-        }
-    }
-    return View(model);
-}
-</code></pre>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-fingerprint"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Authentication is Like Showing Your ID</h4>
+            <p>When you need to prove who you are in real life, you show your ID card or passport. Authentication is the digital version of this process.</p>
+            <ul>
+                <li><strong>Username/Password:</strong> Like showing your ID card</li>
+                <li><strong>Email Confirmation:</strong> Like verifying your address on the ID</li>
+                <li><strong>Two-Factor Authentication:</strong> Like also showing a second form of ID</li>
+                <li><strong>Login Session:</strong> Like wearing a visitor badge that shows you're verified</li>
+            </ul>
+            <p><strong>Simple definition:</strong> Authentication is the process of verifying that users are who they claim to be.</p>
         </div>
     </div>
 
-    <h2>How It Works</h2>
-    <ul>
-        <li>User provides their email and password.</li>
-        <li>ASP.NET Identity checks if the user exists and if the password is correct.</li>
-        <li>If valid, the user is logged in and can access protected pages.</li>
-    </ul>
+    <div class="important-note">
+        <h4>The Good News: .NET Handles Authentication For You</h4>
+        <p>When you create a new ASP.NET Core project and select "Individual Accounts" authentication, you get a complete, professional-grade authentication system without writing any authentication code yourself. Everything is pre-built and secure.</p>
+    </div>
 
-    <h2>Exercise</h2>
-    <p>Create a simple login page:</p>
-    <ul>
-        <li>Use a form with Email and Password fields.</li>
-        <li>Implement registration and login logic using ASP.NET Identity.</li>
-        <li>Protect a page so only logged-in users can access it.</li>
-    </ul>
+    <div class="simplified-section">
+        <h2 class="text-center">How Authentication Works in .NET</h2>
+        
+        <div class="process-flow">
+            <div class="process-step">
+                <div class="step-circle">
+                    <div class="step-number">1</div>
+                </div>
+                <h4>Project Creation</h4>
+                <p>When creating your project, you select "Individual Accounts" as the authentication type.</p>
+                <div class="visual-guide">
+                    <div class="visual-box">
+                        <strong>Visual Studio / .NET CLI</strong>
+                        <p>Select: Individual Accounts</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="process-arrow">→</div>
+            
+            <div class="process-step">
+                <div class="step-circle">
+                    <div class="step-number">2</div>
+                </div>
+                <h4>Auto-Generated Code</h4>
+                <p>.NET automatically creates all the authentication code you need:</p>
+                <ul>
+                    <li>Registration pages</li>
+                    <li>Login pages</li>
+                    <li>Password reset</li>
+                    <li>Email confirmation</li>
+                </ul>
+            </div>
+            
+            <div class="process-arrow">→</div>
+            
+            <div class="process-step">
+                <div class="step-circle">
+                    <div class="step-number">3</div>
+                </div>
+                <h4>Database Setup</h4>
+                <p>All necessary database tables are created automatically:</p>
+                <ul>
+                    <li>User accounts table</li>
+                    <li>Password hashes</li>
+                    <li>Login sessions</li>
+                    <li>Security tokens</li>
+                </ul>
+            </div>
+            
+            <div class="process-arrow">→</div>
+            
+            <div class="process-step">
+                <div class="step-circle">
+                    <div class="step-number">4</div>
+                </div>
+                <h4>Ready to Use</h4>
+                <p>Your application now has complete authentication:</p>
+                <ul>
+                    <li>Users can register</li>
+                    <li>Users can login/logout</li>
+                    <li>Passwords are secured</li>
+                    <li>Sessions are managed</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="authentication-components">
+        <h2>What You Get With Individual Accounts</h2>
+        <p>When you select "Individual Accounts" authentication, here's everything that's included:</p>
+        
+        <div class="components-grid">
+            <div class="component">
+                <div class="component-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <h4>User Registration</h4>
+                <ul>
+                    <li>Complete registration form</li>
+                    <li>Email validation</li>
+                    <li>Password strength checking</li>
+                    <li>Duplicate user detection</li>
+                    <li>Terms of service agreement</li>
+                </ul>
+            </div>
+            
+            <div class="component">
+                <div class="component-icon">
+                    <i class="fas fa-sign-in-alt"></i>
+                </div>
+                <h4>Login System</h4>
+                <ul>
+                    <li>Secure login form</li>
+                    <li>Remember me functionality</li>
+                    <li>Failed attempt tracking</li>
+                    <li>Account lockout protection</li>
+                    <li>Session management</li>
+                </ul>
+            </div>
+            
+            <div class="component">
+                <div class="component-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <h4>Password Management</h4>
+                <ul>
+                    <li>Password reset functionality</li>
+                    <li>Secure password hashing</li>
+                    <li>Password complexity rules</li>
+                    <li>Password change capability</li>
+                    <li>Password history tracking</li>
+                </ul>
+            </div>
+            
+            <div class="component">
+                <div class="component-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h4>Email Integration</h4>
+                <ul>
+                    <li>Email confirmation system</li>
+                    <li>Password reset emails</li>
+                    <li>Email change notifications</li>
+                    <li>Account security alerts</li>
+                    <li>Configurable email templates</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="no-code-section">
+        <h2>You Don't Need to Write Authentication Code</h2>
+        <p>The most important thing to understand is that <strong>all the complex authentication code is already written for you</strong>. Here's what you <strong>don't</strong> need to do:</p>
+        
+        <div class="dont-do-grid">
+            <div class="dont-do-item">
+                <div class="dont-icon">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <h5>Don't Write Login Logic</h5>
+                <p>No need to write code that checks usernames and passwords. .NET Identity handles this securely.</p>
+            </div>
+            
+            <div class="dont-do-item">
+                <div class="dont-icon">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <h5>Don't Hash Passwords</h5>
+                <p>No need to learn cryptographic algorithms. Passwords are automatically hashed using industry-standard methods.</p>
+            </div>
+            
+            <div class="dont-do-item">
+                <div class="dont-icon">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <h5>Don't Manage Sessions</h5>
+                <p>No need to create session tokens or manage cookie expiration. Session management is built-in.</p>
+            </div>
+            
+            <div class="dont-do-item">
+                <div class="dont-icon">
+                    <i class="fas fa-times-circle"></i>
+                </div>
+                <h5>Don't Build Security Features</h5>
+                <p>No need to implement account lockout, brute force protection, or other security measures. They're included.</p>
+            </div>
+        </div>
+        
+        <div class="focus-on">
+            <h4>What You <strong>Should</strong> Focus On</h4>
+            <p>Instead of building authentication, focus on what makes your application unique:</p>
+            <div class="focus-grid">
+                <div class="focus-item">
+                    <div class="focus-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h5>Your Business Logic</h5>
+                    <p>What your application actually does for users</p>
+                </div>
+                
+                <div class="focus-item">
+                    <div class="focus-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h5>User Experience</h5>
+                    <p>Making your application easy and enjoyable to use</p>
+                </div>
+                
+                <div class="focus-item">
+                    <div class="focus-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h5>Application Features</h5>
+                    <p>The unique functionality that solves user problems</p>
+                </div>
+                
+                <div class="focus-item">
+                    <div class="focus-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h5>Interface Design</h5>
+                    <p>Creating a beautiful, responsive user interface</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="setup-guide">
+        <h2>How to Enable Authentication in Your Project</h2>
+        
+        <div class="setup-options">
+            <div class="option">
+                <h4>Option 1: Visual Studio</h4>
+                <div class="option-steps">
+                    <div class="option-step">
+                        <div class="step-marker">1</div>
+                        <p>Create new ASP.NET Core Web App project</p>
+                    </div>
+                    <div class="option-step">
+                        <div class="step-marker">2</div>
+                        <p>In the authentication type dropdown, select "Individual Accounts"</p>
+                    </div>
+                    <div class="option-step">
+                        <div class="step-marker">3</div>
+                        <p>Click Create - authentication is now set up</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="option">
+                <h4>Option 2: .NET CLI</h4>
+                <div class="option-steps">
+                    <div class="option-step">
+                        <div class="step-marker">1</div>
+                        <p>Open terminal/command prompt</p>
+                    </div>
+                    <div class="option-step">
+                        <div class="step-marker">2</div>
+                        <p>Run: <code>dotnet new mvc --auth Individual</code></p>
+                    </div>
+                    <div class="option-step">
+                        <div class="step-marker">3</div>
+                        <p>Project with authentication is created</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="verification">
+            <h4>How to Verify Authentication is Working</h4>
+            <div class="verification-steps">
+                <ol>
+                    <li>Run your application</li>
+                    <li>Look for "Register" and "Login" links in the navigation</li>
+                    <li>Click Register and create a test account</li>
+                    <li>Log out and log back in with your credentials</li>
+                    <li>Try accessing a protected page (like the Privacy page if you add <code>[Authorize]</code>)</li>
+                </ol>
+                <p>If all these work, your authentication system is fully functional.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="authentication-vs-authorization">
+        <h2>Authentication vs Authorization: Understanding the Difference</h2>
+        
+        <div class="comparison">
+            <div class="auth-type">
+                <h3>Authentication</h3>
+                <p class="subtitle">(What we're covering now)</p>
+                <ul>
+                    <li><strong>Question:</strong> Who are you?</li>
+                    <li><strong>Answer:</strong> Verifying identity</li>
+                    <li><strong>Example:</strong> Login with username/password</li>
+                    <li><strong>Result:</strong> System knows who you are</li>
+                    <li><strong>Code:</strong> Built-in with Individual Accounts</li>
+                </ul>
+                <div class="key-point">
+                    <strong>Authentication = Identity Verification</strong>
+                </div>
+            </div>
+            
+            <div class="separator">
+                <div class="vs-circle">VS</div>
+            </div>
+            
+            <div class="auth-type">
+                <h3>Authorization</h3>
+                <p class="subtitle">(Coming next)</p>
+                <ul>
+                    <li><strong>Question:</strong> What can you do?</li>
+                    <li><strong>Answer:</strong> Checking permissions</li>
+                    <li><strong>Example:</strong> Can you access admin pages?</li>
+                    <li><strong>Result:</strong> System knows what you're allowed to do</li>
+                    <li><strong>Code:</strong> Uses roles and policies</li>
+                </ul>
+                <div class="key-point">
+                    <strong>Authorization = Permission Checking</strong>
+                </div>
+            </div>
+        </div>
+        
+        <div class="simple-analogy">
+            <h4>Simple Analogy</h4>
+            <p><strong>Authentication</strong> is like checking someone's ID to enter a building. <strong>Authorization</strong> is like checking if they have access to the executive floor once they're inside.</p>
+            <p>With .NET Individual Accounts, authentication is done. You'll learn about authorization (controlling what authenticated users can do) in the next section.</p>
+        </div>
+    </div>
+
+    <div class="customization-note">
+        <h3>Important: You Can Still Customize</h3>
+        <p>While .NET provides complete authentication out of the box, you can still customize it:</p>
+        <div class="customization-grid">
+            <div class="custom-option">
+                <h5>Add Custom User Fields</h5>
+                <p>Add properties like FirstName, LastName, ProfilePicture to the user model</p>
+            </div>
+            <div class="custom-option">
+                <h5>Modify Password Rules</h5>
+                <p>Change password length or complexity requirements</p>
+            </div>
+            <div class="custom-option">
+                <h5>Customize Email Templates</h5>
+                <p>Change the look and content of confirmation emails</p>
+            </div>
+            <div class="custom-option">
+                <h5>Add Social Logins</h5>
+                <p>Enable login with Google, Facebook, or other providers</p>
+            </div>
+        </div>
+        <p class="mt-3"><strong>The key point:</strong> You start with a complete, working system and only customize what you need to change.</p>
+    </div>
+
+    <div class="quiz-section">
+        <h3>Quick Check: Authentication Understanding</h3>
+        <div class="quiz-question">
+            <p><strong>Question:</strong> What does selecting "Individual Accounts" authentication give you?</p>
+            
+            <div class="quiz-options">
+                <button class="quiz-option" data-correct="true">
+                    A complete user registration and login system
+                </button>
+                <button class="quiz-option" data-correct="false">
+                    Just a basic login form without security
+                </button>
+                <button class="quiz-option" data-correct="true">
+                    Automatic password hashing and security features
+                </button>
+                <button class="quiz-option" data-correct="false">
+                    Only the database tables for users
+                </button>
+                <button class="quiz-option" data-correct="true">
+                    Built-in email confirmation and password reset
+                </button>
+                <button class="quiz-option" data-correct="false">
+                    A system you need to code from scratch
+                </button>
+            </div>
+            
+            <div class="quiz-feedback">
+                <p id="quiz-feedback-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="key-takeaway">
+        <h3>The Bottom Line</h3>
+        <div class="takeaway-content">
+            <p><strong>.NET's "Individual Accounts" authentication gives you a professional, secure authentication system without writing authentication code.</strong></p>
+            <p>You don't need to be a security expert. You don't need to implement cryptographic algorithms. You don't need to build user management from scratch.</p>
+            <p>Just select "Individual Accounts" when creating your project, and you get a battle-tested authentication system that's used by thousands of applications worldwide.</p>
+        </div>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("IdentityRoles", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← .NET Identity Roles</a>
-        <a href="@Url.Action("Authorization", "AdvancedWebApp")" class="btn btn-primary ajax-link">Authorization →</a>
+        <a href="@Url.Action("IdentityRoles", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link" data-path="/AdvancedWebApp/IdentityRoles">← Back: Identity Roles</a>
+        <a href="@Url.Action("Authorization", "AdvancedWebApp")" class="btn btn-primary ajax-link" data-path="/AdvancedWebApp/Authorization">Next: Authorization →</a>
     </div>
 </div>
 
 <style>
-    .container {
-        max-width: 800px;
+    .container { 
+        max-width: 1000px; 
+        padding: 20px; 
+        background-color: var(--bs-body-bg); 
+    }
+    
+    h1, h2, h3, h4, h5 { 
+        color: var(--bs-heading-color); 
+        margin-bottom: 15px; 
+    }
+    
+    h1 { 
+        border-bottom: 2px solid var(--bs-success); 
+        padding-bottom: 10px; 
+    }
+    
+    .beginner-note {
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 2px solid var(--bs-success);
+        border-radius: 8px;
         padding: 20px;
-        background-color: var(--bs-body-bg);
+        margin-bottom: 30px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
     }
-
-    h1, h2 {
-        color: var(--bs-heading-color);
-        margin-bottom: 20px;
+    
+    .beginner-note-icon {
+        background-color: var(--bs-success);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
     }
-
-    p, li {
-        color: var(--bs-body-color);
+    
+    .important-note {
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .simplified-section {
+        margin: 40px 0;
+    }
+    
+    .process-flow {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-top: 30px;
+        flex-wrap: wrap;
+    }
+    
+    @@media (max-width: 768px) {
+        .process-flow {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .process-arrow {
+            transform: rotate(90deg);
+            margin: 20px 0;
+        }
+    }
+    
+    .process-step {
+        flex: 1;
+        min-width: 200px;
+        text-align: center;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        margin: 0 10px;
+    }
+    
+    .step-circle {
+        background-color: var(--bs-success);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 0 auto 15px;
+    }
+    
+    .process-step h4 {
+        color: var(--bs-success);
+        margin-bottom: 10px;
+    }
+    
+    .process-step ul {
+        margin: 10px 0 0 0;
+        padding-left: 20px;
+        text-align: left;
+        font-size: 0.9rem;
+    }
+    
+    .process-step li {
+        margin-bottom: 5px;
+    }
+    
+    .visual-guide {
+        margin-top: 15px;
+    }
+    
+    .visual-box {
+        padding: 15px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 6px;
+        font-size: 0.9rem;
+    }
+    
+    .process-arrow {
+        color: var(--bs-success);
+        font-size: 2rem;
+        font-weight: bold;
+        margin-top: 30px;
+    }
+    
+    .authentication-components {
+        margin: 40px 0;
+    }
+    
+    .components-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .component {
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 1px solid var(--bs-secondary);
+    }
+    
+    .component-icon {
+        font-size: 2rem;
+        color: var(--bs-primary);
+        margin-bottom: 15px;
+        text-align: center;
+    }
+    
+    .component ul {
+        margin: 15px 0 0 0;
+        padding-left: 20px;
+    }
+    
+    .component li {
+        margin-bottom: 8px;
+        font-size: 0.9rem;
+    }
+    
+    .no-code-section {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(23, 162, 184, 0.1);
+        border: 1px solid var(--bs-info);
+        border-radius: 10px;
+    }
+    
+    .dont-do-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin: 20px 0 30px 0;
+    }
+    
+    .dont-do-item {
+        text-align: center;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 1px solid var(--bs-danger);
+    }
+    
+    .dont-icon {
+        font-size: 2rem;
+        color: var(--bs-danger);
+        margin-bottom: 10px;
+    }
+    
+    .focus-on {
+        margin-top: 30px;
+    }
+    
+    .focus-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .focus-item {
+        text-align: center;
+        padding: 20px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border-radius: 8px;
+        border: 1px solid var(--bs-success);
+    }
+    
+    .focus-icon {
+        font-size: 2rem;
+        color: var(--bs-success);
+        margin-bottom: 10px;
+    }
+    
+    .setup-guide {
+        margin: 40px 0;
+    }
+    
+    .setup-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        margin-top: 20px;
+    }
+    
+    @@media (max-width: 768px) {
+        .setup-options {
+            grid-template-columns: 1fr;
+        }
+    }
+    
+    .option {
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 1px solid var(--bs-warning);
+    }
+    
+    .option h4 {
+        color: var(--bs-warning);
+        margin-bottom: 15px;
+    }
+    
+    .option-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .option-step {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .step-marker {
+        background-color: var(--bs-warning);
+        color: var(--bs-dark);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+    
+    .option-step p {
+        margin: 0;
+        line-height: 1.5;
+    }
+    
+    code {
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 0.9rem;
+    }
+    
+    .verification {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 1px solid var(--bs-info);
+    }
+    
+    .verification h4 {
+        color: var(--bs-info);
+        margin-bottom: 15px;
+    }
+    
+    .verification-steps ol {
+        margin: 15px 0;
+        padding-left: 20px;
+    }
+    
+    .verification-steps li {
+        margin-bottom: 10px;
+    }
+    
+    .authentication-vs-authorization {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(111, 66, 193, 0.1);
+        border: 1px solid var(--bs-purple);
+        border-radius: 10px;
+    }
+    
+    .comparison {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 30px;
+        margin-top: 20px;
+    }
+    
+    @@media (max-width: 768px) {
+        .comparison {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto;
+        }
+        
+        .separator {
+            order: 2;
+        }
+        
+        .auth-type:first-child {
+            order: 1;
+        }
+        
+        .auth-type:last-child {
+            order: 3;
+        }
+    }
+    
+    .auth-type {
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+    
+    .auth-type h3 {
+        color: var(--bs-purple);
+        margin-bottom: 5px;
+    }
+    
+    .subtitle {
+        font-style: italic;
+        color: var(--bs-secondary);
+        margin-bottom: 15px;
+        font-size: 0.9rem;
+    }
+    
+    .auth-type ul {
+        margin: 15px 0;
+        padding-left: 20px;
+    }
+    
+    .auth-type li {
+        margin-bottom: 10px;
+        font-size: 0.95rem;
+    }
+    
+    .key-point {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: rgba(111, 66, 193, 0.2);
+        border-radius: 6px;
+        text-align: center;
+        font-weight: bold;
+    }
+    
+    .separator {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .vs-circle {
+        background-color: var(--bs-purple);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+    }
+    
+    .simple-analogy {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+    
+    .simple-analogy h4 {
+        color: var(--bs-info);
+        margin-bottom: 15px;
+    }
+    
+    .simple-analogy p {
+        margin-bottom: 15px;
         line-height: 1.6;
     }
-
-    ul {
-        margin-left: 20px;
-        padding-left: 15px;
+    
+    .customization-note {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid var(--bs-warning);
+        border-radius: 10px;
     }
-
-    .code-container {
-        margin: 25px 0;
-        border: 1px solid var(--bs-border-color);
-        border-radius: 5px;
-        overflow: hidden;
-        background-color: var(--code-bg);
+    
+    .customization-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
     }
-
-    .code-header {
-        background-color: var(--code-header-bg);
-        padding: 10px 15px;
-        border-bottom: 1px solid var(--bs-border-color);
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
-        font-size: 0.9rem;
-        color: var(--bs-body-color);
-    }
-
-    .code-content {
+    
+    .custom-option {
         padding: 15px;
-        overflow-x: auto;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
     }
-
-    pre {
-        margin: 0;
-        white-space: pre-wrap;
-        background-color: transparent;
+    
+    .custom-option h5 {
+        color: var(--bs-warning);
+        margin-bottom: 10px;
     }
-
-    code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    
+    .quiz-section {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(23, 162, 184, 0.1);
+        border: 1px solid var(--bs-info);
+        border-radius: 10px;
     }
-
+    
+    .quiz-question {
+        margin-top: 20px;
+    }
+    
+    .quiz-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 10px;
+        margin: 20px 0;
+    }
+    
+    .quiz-option {
+        padding: 15px;
+        background-color: rgba(0, 0, 0, 0.2);
+        border: 2px solid var(--bs-secondary);
+        border-radius: 8px;
+        color: var(--bs-body-color);
+        cursor: pointer;
+        transition: all 0.3s;
+        text-align: left;
+        font-size: 0.95rem;
+    }
+    
+    .quiz-option:hover {
+        background-color: rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+    }
+    
+    .quiz-option.correct {
+        background-color: rgba(40, 167, 69, 0.3);
+        border-color: var(--bs-success);
+    }
+    
+    .quiz-option.incorrect {
+        background-color: rgba(220, 53, 69, 0.3);
+        border-color: var(--bs-danger);
+    }
+    
+    .quiz-option.selected {
+        border-width: 3px;
+    }
+    
+    .quiz-feedback {
+        padding: 15px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        display: none;
+    }
+    
+    .quiz-feedback.show {
+        display: block;
+        animation: fadeIn 0.5s;
+    }
+    
+    .key-takeaway {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 10px;
+    }
+    
+    .takeaway-content p {
+        margin-bottom: 15px;
+        line-height: 1.6;
+    }
+    
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
     }
-
+    
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 12px 25px;
+        border-radius: 6px;
         font-weight: 500;
+        transition: all 0.3s;
     }
-
-    .btn-primary {
-        background-color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    
+    .btn:hover {
+        transform: translateY(-2px);
     }
-
-    .btn-outline-primary {
-        color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    
+    @@media (max-width: 768px) {
+        .beginner-note {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .navigation-buttons .btn {
+            width: 100%;
+            text-align: center;
+        }
     }
 </style>
+
+<script>
+$(document).ready(function() {
+    // Quiz functionality
+    $('.quiz-option').click(function() {
+        const $this = $(this);
+        const isCorrect = $this.data('correct') === true;
+        
+        // Reset all options
+        $('.quiz-option').removeClass('correct incorrect selected');
+        
+        // Mark this option as selected
+        $this.addClass('selected');
+        
+        // Mark correct/incorrect
+        $this.addClass(isCorrect ? 'correct' : 'incorrect');
+        
+        // Show feedback based on selection
+        let feedbackText;
+        if (isCorrect) {
+            feedbackText = 'Correct! Selecting "Individual Accounts" gives you a complete, professional authentication system including user registration, secure login, password hashing, email confirmation, and password reset functionality. You do NOT need to code it from scratch - it is provided ready to use.';
+        } else {
+            feedbackText = 'Not quite. "Individual Accounts" provides much more than just basic forms or database tables. It gives you a complete, secure authentication system that includes security features, email integration, and professional-grade user management. You do not need to build it from scratch.';
+        }
+        
+        $('#quiz-feedback-text').text(feedbackText);
+        $('.quiz-feedback').addClass('show');
+    });
+    
+    // Add AJAX navigation to buttons
+    $('.navigation-buttons a').addClass('ajax-link');
+});
+</script>

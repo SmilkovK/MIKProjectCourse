@@ -44,7 +44,7 @@ namespace MIKProjectCourse.Controllers
         {
             return View();
         }
-        public IActionResult IdentityTutorial()
+        public IActionResult Migrations()
         {
             return View();
         }
