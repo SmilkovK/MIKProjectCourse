@@ -1,5 +1,1102 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = ".NET Migrations - Database Changes Made Easy";
 }
+
+<div class="container">
+    <h1 class="text-center">.NET Migrations: Your First Database Changes</h1>
+    
+    <div class="beginner-explanation">
+        <div class="beginner-explanation-icon">
+            <i class="fas fa-database"></i>
+        </div>
+        <div class="beginner-explanation-content">
+            <h3>What Are Migrations?</h3>
+            <p><strong>Migrations are like "change instructions" for your database.</strong> When you update your C# code (like adding a new field to a user), migrations tell your database how to update itself to match.</p>
+            
+            <div class="simple-analogy">
+                <div class="analogy-card">
+                    <i class="fas fa-home"></i>
+                    <div class="analogy-content">
+                        <h5>Think of it like renovating a house:</h5>
+                        <ul>
+                            <li><strong>Your C# code</strong> = The architect's blueprint</li>
+                            <li><strong>Your database</strong> = The actual house</li>
+                            <li><strong>Migrations</strong> = The contractor who updates the house to match the blueprint</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="important-note">
+        <h4>Remember: Why We Need Migrations</h4>
+        <p><strong>Without migrations</strong>, you'd have to manually update your database every time you change your code. <strong>With migrations</strong>, .NET does it automatically and keeps track of all changes.</p>
+    </div>
+
+    <div class="migration-types">
+        <h2>The Migration Process in 3 Steps</h2>
+        
+        <div class="types-grid">
+            <div class="type-card">
+                <div class="type-header">
+                    <h4>1. Change Your Code</h4>
+                </div>
+                <div class="type-content">
+                    <p><strong>Add/remove properties in your C# classes</strong></p>
+                    <div class="code-example">
+                        <code>public string PhoneNumber { get; set; }</code>
+                    </div>
+                    <ul>
+                        <li>Edit your ApplicationUser class</li>
+                        <li>Add properties you need</li>
+                        <li>Remove properties you don't need</li>
+                        <li>Change property types if needed</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="type-card">
+                <div class="type-header">
+                    <h4>2. Create Migration</h4>
+                </div>
+                <div class="type-content">
+                    <p><strong>Generate the migration file</strong></p>
+                    <div class="code-example">
+                        <code>Add-Migration AddPhoneNumber</code>
+                    </div>
+                    <ul>
+                        <li>Open Package Manager Console</li>
+                        <li>Run Add-Migration command</li>
+                        <li>Give it a descriptive name</li>
+                        <li>Creates migration files automatically</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="type-card">
+                <div class="type-header">
+                    <h4>3. Update Database</h4>
+                </div>
+                <div class="type-content">
+                    <p><strong>Apply changes to your database</strong></p>
+                    <div class="code-example">
+                        <code>Update-Database</code>
+                    </div>
+                    <ul>
+                        <li>Run Update-Database command</li>
+                        <li>Applies all pending migrations</li>
+                        <li>Updates database structure</li>
+                        <li>Keeps your existing data safe</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="implementation-examples">
+        <h2>Step-by-Step: Your First Migration</h2>
+        
+        <div class="examples-section">
+            <div class="example">
+                <h4>Adding First Name & Last Name to Users</h4>
+                <p>Follow these exact steps to add new fields to your users:</p>
+                
+                <div class="example-tabs">
+                    <button class="example-tab active" data-target="step1">Step 1: Edit Code</button>
+                    <button class="example-tab" data-target="step2">Step 2: Create Migration</button>
+                    <button class="example-tab" data-target="step3">Step 3: Update Database</button>
+                </div>
+                
+                <div class="tab-content active" id="step1-tab">
+                    <div class="code-block">
+                        <p><strong>Edit your ApplicationUser.cs file:</strong></p>
+<pre><code>using Microsoft.AspNetCore.Identity;
+
+public class ApplicationUser : IdentityUser
+{
+    // Add these new properties:
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    
+    // That's it! Just add what you need.
+}</code></pre>
+                    </div>
+                    <div class="tip">
+                        <i class="fas fa-lightbulb"></i>
+                        <p><strong>Tip:</strong> Save the file after making changes. Make sure there are no red errors in your code.</p>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="step2-tab">
+                    <div class="code-block">
+                        <p><strong>Open Package Manager Console and run:</strong></p>
+<pre><code>Add-Migration AddUserNameFields</code></pre>
+                    </div>
+                    <div class="note">
+                        <i class="fas fa-info-circle"></i>
+                        <p><strong>What happens:</strong> This creates migration files in your Migrations folder. Check the folder to see the new files!</p>
+                    </div>
+                </div>
+                
+                <div class="tab-content" id="step3-tab">
+                    <div class="code-block">
+                        <p><strong>In Package Manager Console, run:</strong></p>
+<pre><code>Update-Database</code></pre>
+                    </div>
+                    <div class="success-message">
+                        <i class="fas fa-check-circle"></i>
+                        <p><strong>Success!</strong> Your database is now updated. Run your app to make sure everything still works.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="real-world-scenarios">
+        <h2>Common Things You'll Want to Do</h2>
+        
+        <div class="scenarios-grid">
+            <div class="scenario">
+                <h4>Add New Information</h4>
+                <div class="access-controls">
+                    <div class="access-item">
+                        <span class="access-type code">Edit Code</span>
+                        <span class="access-desc">Add new property to your class</span>
+                    </div>
+                    <div class="access-item">
+                        <span class="access-type migration">Create Migration</span>
+                        <span class="access-desc"><code>Add-Migration AddFieldName</code></span>
+                    </div>
+                    <div class="access-item">
+                        <span class="access-type database">Update Database</span>
+                        <span class="access-desc"><code>Update-Database</code></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scenario">
+                <h4>Remove Old Fields</h4>
+                <div class="access-controls">
+                    <div class="access-item">
+                        <span class="access-type code">Edit Code</span>
+                        <span class="access-desc">Remove property from your class</span>
+                    </div>
+                    <div class="access-item">
+                        <span class="access-type migration">Create Migration</span>
+                        <span class="access-desc"><code>Add-Migration RemoveFieldName</code></span>
+                    </div>
+                    <div class="access-item">
+                        <span class="access-type database">Update Database</span>
+                        <span class="access-desc"><code>Update-Database</code></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="scenario">
+                <h4>Change Field Types</h4>
+                <div class="access-controls">
+                    <div class="access-item">
+                        <span class="access-type code">Edit Code</span>
+                        <span class="access-desc">Change property type (string → int)</span>
+                    </div>
+                    <div class="access-item">
+                        <span class="access-type migration">Create Migration</span>
+                        <span class="access-desc"><code>Add-Migration ChangeFieldType</code></span>
+                    </div>
+                    <div class="access-item">
+                        <span class="access-type database">Update Database</span>
+                        <span class="access-desc"><code>Update-Database</code></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="migration-workflow">
+        <h2>How Migrations Work</h2>
+        
+        <div class="workflow-diagram">
+            <div class="workflow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h5>You Change Your Code</h5>
+                    <p>Add/remove properties in your C# classes</p>
+                </div>
+                <div class="step-arrow">→</div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h5>.NET Detects Changes</h5>
+                    <p>Entity Framework compares your code with database</p>
+                </div>
+                <div class="step-arrow">→</div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h5>Migration Files Created</h5>
+                    <p><code>Add-Migration</code> generates SQL instructions</p>
+                </div>
+                <div class="step-arrow">→</div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h5>Database Updated</h5>
+                    <p><code>Update-Database</code> runs the SQL on your database</p>
+                </div>
+                <div class="step-arrow">→</div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h5>Code & Database in Sync</h5>
+                    <p>Your C# code and database structure now match!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="practical-tips">
+        <h2>Migration Best Practices</h2>
+        
+        <div class="tips-grid">
+            <div class="tip">
+                <h4>Use Descriptive Names</h4>
+                <p>Name migrations clearly: <code>AddPhoneNumber</code>, <code>RemoveOldEmail</code>, <code>CreateProductsTable</code>. This helps you remember what each migration does.</p>
+            </div>
+            
+            <div class="tip">
+                <h4>One Change Per Migration</h4>
+                <p>When learning, make one change at a time. Add one field, create migration, update database. This makes debugging easier.</p>
+            </div>
+            
+            <div class="tip">
+                <h4>Test After Each Migration</h4>
+                <p>After running <code>Update-Database</code>, always run your application to make sure it still works.</p>
+            </div>
+            
+            <div class="tip">
+                <h4>Keep Migration Files</h4>
+                <p>Don't delete migration files from your Migrations folder. They track your database history.</p>
+            </div>
+            
+            <div class="tip">
+                <h4>Backup Your Database</h4>
+                <p>Before major changes, make a backup of your database. Just in case!</p>
+            </div>
+            
+            <div class="tip">
+                <h4>Check for Errors</h4>
+                <p>If <code>Add-Migration</code> fails, fix any red errors in your code first, then try again.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="common-patterns">
+        <h2>Essential Migration Commands</h2>
+        
+        <div class="patterns-grid">
+            <div class="pattern">
+                <h4>Create Migration</h4>
+                <p><code>Add-Migration MigrationName</code><br>Generates new migration files.</p>
+            </div>
+            
+            <div class="pattern">
+                <h4>Update Database</h4>
+                <p><code>Update-Database</code><br>Applies all pending migrations.</p>
+            </div>
+            
+            <div class="pattern">
+                <h4>Remove Migration</h4>
+                <p><code>Remove-Migration</code><br>Deletes last migration (if not applied).</p>
+            </div>
+            
+            <div class="pattern">
+                <h4>List Migrations</h4>
+                <p><code>Get-Migration</code><br>Shows which migrations are applied.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="troubleshooting">
+        <h2>Common Problems & Fixes</h2>
+        
+        <div class="problems">
+            <div class="problem">
+                <h5>Problem: "No database provider has been configured"</h5>
+                <div class="solution">
+                    <p><strong>Fix:</strong> Make sure your <code>Program.cs</code> has database configuration:</p>
+                    <div class="code-snippet-small">
+                        <code>builder.Services.AddDbContext&lt;ApplicationDbContext&gt;(options =&gt;<br>    options.UseSqlServer(connectionString));</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="problem">
+                <h5>Problem: Can't find Package Manager Console</h5>
+                <div class="solution">
+                    <p><strong>Fix:</strong> In Visual Studio: View → Other Windows → Package Manager Console</p>
+                </div>
+            </div>
+            
+            <div class="problem">
+                <h5>Problem: "Build failed" when adding migration</h5>
+                <div class="solution">
+                    <p><strong>Fix:</strong> Fix any red errors in your C# code first. Build your project (Ctrl+Shift+B), then try again.</p>
+                </div>
+            </div>
+            
+            <div class="problem">
+                <h5>Problem: "Migration already exists"</h5>
+                <div class="solution">
+                    <p><strong>Fix:</strong> Give your migration a different name, or delete the old migration files first.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="practice-exercise">
+        <h2>Try It Yourself: Add Phone Number Field</h2>
+        
+        <div class="exercise-card">
+            <h4>Your Mission:</h4>
+            <p>Add a phone number field to your users. Follow these steps:</p>
+            
+            <div class="exercise-steps">
+                <div class="ex-step">
+                    <div class="ex-number">1</div>
+                    <div class="ex-content">
+                        <h5>Edit ApplicationUser.cs</h5>
+                        <p>Add this to your ApplicationUser class:</p>
+                        <div class="code-hint">
+                            <code>public string PhoneNumber { get; set; }</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ex-step">
+                    <div class="ex-number">2</div>
+                    <div class="ex-content">
+                        <h5>Create Migration</h5>
+                        <p>Run in Package Manager Console:</p>
+                        <div class="code-hint">
+                            <code>Add-Migration AddPhoneNumber</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ex-step">
+                    <div class="ex-number">3</div>
+                    <div class="ex-content">
+                        <h5>Update Database</h5>
+                        <p>Apply the migration:</p>
+                        <div class="code-hint">
+                            <code>Update-Database</code>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ex-step">
+                    <div class="ex-number">4</div>
+                    <div class="ex-content">
+                        <h5>Check Your Work</h5>
+                        <p>Look in your Migrations folder - you should see new files!</p>
+                        <button class="btn btn-sm btn-success check-work-btn">
+                            <i class="fas fa-check"></i> Mark as Complete
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="exercise-tip">
+                <i class="fas fa-star"></i>
+                <p><strong>Tip:</strong> If you get stuck, go back to "Step-by-Step: Your First Migration" and follow it exactly.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="quick-reference">
+        <h2>Quick Reference</h2>
+        
+        <div class="reference-cards">
+            <div class="ref-card">
+                <h5>When to Use Migrations</h5>
+                <ul>
+                    <li>Adding new fields to classes</li>
+                    <li>Removing unused fields</li>
+                    <li>Changing field types</li>
+                    <li>Creating new tables</li>
+                </ul>
+            </div>
+            
+            <div class="ref-card">
+                <h5>Migration Workflow</h5>
+                <ol>
+                    <li>Change C# code</li>
+                    <li><code>Add-Migration Name</code></li>
+                    <li><code>Update-Database</code></li>
+                    <li>Test application</li>
+                </ol>
+            </div>
+            
+            <div class="ref-card">
+                <h5>Good Migration Names</h5>
+                <ul>
+                    <li><code>AddFirstNameToUser</code></li>
+                    <li><code>CreateProductsTable</code></li>
+                    <li><code>RemoveOldEmailField</code></li>
+                    <li><code>UpdateAddressStructure</code></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="putting-it-together">
+        <h2>Putting It All Together</h2>
+        <div class="summary">
+            <h4>The Complete Migration Picture</h4>
+            <p>When you work with .NET and databases, migrations handle the synchronization:</p>
+            <ol>
+                <li><strong>You write C# code</strong> - Define what your data should look like</li>
+                <li><strong>Migrations translate</strong> - Convert your C# changes to SQL commands</li>
+                <li><strong>Database updates</strong> - Apply the changes safely</li>
+                <li><strong>History tracked</strong> - Every change is recorded in migration files</li>
+            </ol>
+            <p>Your job is simple:</p>
+            <ul>
+                <li>Change your C# classes when needed</li>
+                <li>Run <code>Add-Migration</code> with a good name</li>
+                <li>Run <code>Update-Database</code> to apply changes</li>
+                <li>Test that everything still works</li>
+            </ul>
+            <p>The framework does the complex database work. You just write C# and run two commands!</p>
+        </div>
+    </div>
+
+
+    <div class="navigation-buttons">
+        <a href="@Url.Action("Authorization", "AdvancedWebApp")" class="btn btn-outline-primary">
+            <i class="fas fa-arrow-left"></i> Back: Authorization
+        </a>
+        <a href="@Url.Action("Summary", "AdvancedWebApp")" class="btn btn-primary">
+            Next: Chapter Summary <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</div>
+
+<style>
+    .container { 
+        max-width: 1000px; 
+        padding: 20px; 
+        background-color: var(--bs-body-bg); 
+    }
+    
+    h1, h2, h3, h4, h5 { 
+        color: var(--bs-heading-color); 
+        margin-bottom: 15px; 
+    }
+    
+    h1 { 
+        border-bottom: 2px solid var(--bs-primary); 
+        padding-bottom: 10px; 
+    }
+
+    .beginner-explanation {
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+    
+    .beginner-explanation-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        flex-shrink: 0;
+    }
+    
+    .simple-analogy {
+        margin-top: 20px;
+    }
+    
+    .analogy-card {
+        display: flex;
+        gap: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 8px;
+        border-left: 4px solid var(--bs-warning);
+    }
+    
+    .analogy-card i {
+        color: var(--bs-warning);
+        font-size: 28px;
+        margin-top: 5px;
+    }
+    
+    .analogy-card ul {
+        margin: 10px 0 0 0;
+        padding-left: 20px;
+    }
+    
+    .analogy-card li {
+        margin-bottom: 5px;
+        font-size: 0.95rem;
+    }
+
+    .important-note {
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 2px solid var(--bs-warning);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .migration-types {
+        margin: 40px 0;
+    }
+    
+    .types-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .type-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--bs-secondary);
+    }
+    
+    .type-header {
+        background-color: var(--bs-success);
+        color: white;
+        padding: 15px;
+    }
+    
+    .type-header h4 {
+        margin: 0;
+        color: white;
+    }
+    
+    .type-content {
+        padding: 20px;
+    }
+    
+    .code-example {
+        margin: 15px 0;
+        padding: 12px;
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 6px;
+        font-family: monospace;
+        font-size: 1.1rem;
+        text-align: center;
+    }
+    
+    .type-content ul {
+        margin: 15px 0 0 0;
+        padding-left: 20px;
+    }
+    
+    .type-content li {
+        margin-bottom: 8px;
+        font-size: 0.95rem;
+    }
+
+    .implementation-examples {
+        margin: 40px 0;
+    }
+    
+    .example-tabs {
+        display: flex;
+        gap: 5px;
+        margin-bottom: 20px;
+        border-bottom: 2px solid var(--bs-border-color);
+        padding-bottom: 10px;
+    }
+    
+    .example-tab {
+        padding: 10px 20px;
+        background-color: rgba(0, 0, 0, 0.1);
+        border: none;
+        border-radius: 4px;
+        color: var(--bs-body-color);
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .example-tab.active {
+        background-color: var(--bs-success);
+        color: white;
+    }
+    
+    .tab-content {
+        display: none;
+    }
+    
+    .tab-content.active {
+        display: block;
+    }
+    
+    .code-block {
+        background-color: #1a1a1a;
+        border-radius: 8px;
+        padding: 20px;
+        overflow-x: auto;
+    }
+    
+    .code-block p {
+        margin-bottom: 10px;
+        color: var(--bs-info);
+    }
+    
+    pre {
+        margin: 0;
+        color: #e0e0e0;
+        line-height: 1.5;
+    }
+    
+    code {
+        color: #f8f8f2;
+    }
+    
+    .tip, .note, .success-message {
+        background-color: rgba(255, 193, 7, 0.1);
+        border-left: 4px solid var(--bs-warning);
+        padding: 15px;
+        margin: 15px 0;
+        border-radius: 0 5px 5px 0;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+    }
+    
+    .tip i, .note i, .success-message i {
+        color: var(--bs-warning);
+    }
+    
+    .note {
+        background-color: rgba(13, 202, 240, 0.1);
+        border-left-color: var(--bs-info);
+    }
+    
+    .note i {
+        color: var(--bs-info);
+    }
+    
+    .success-message {
+        background-color: rgba(40, 167, 69, 0.1);
+        border-left-color: var(--bs-success);
+    }
+    
+    .success-message i {
+        color: var(--bs-success);
+    }
+    
+    /* Real World Scenarios */
+    .real-world-scenarios {
+        margin: 40px 0;
+    }
+    
+    .scenarios-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .scenario {
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 1px solid var(--bs-secondary);
+    }
+    
+    .scenario h4 {
+        color: var(--bs-info);
+        margin-bottom: 15px;
+    }
+    
+    .access-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .access-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .access-type {
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        font-weight: bold;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+    
+    .access-type.code {
+        background-color: rgba(13, 110, 253, 0.2);
+        color: var(--bs-primary);
+    }
+    
+    .access-type.migration {
+        background-color: rgba(111, 66, 193, 0.2);
+        color: #6f42c1;
+    }
+    
+    .access-type.database {
+        background-color: rgba(40, 167, 69, 0.2);
+        color: var(--bs-success);
+    }
+    
+    .access-desc {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    
+    /* Migration Workflow */
+    .migration-workflow {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(23, 162, 184, 0.1);
+        border: 1px solid var(--bs-info);
+        border-radius: 10px;
+    }
+    
+    .workflow-diagram {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .workflow-step {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border-left: 4px solid var(--bs-info);
+    }
+    
+    .step-number {
+        background-color: var(--bs-info);
+        color: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+    }
+    
+    .step-content {
+        flex: 1;
+    }
+    
+    .step-arrow {
+        color: var(--bs-info);
+        font-size: 1.5rem;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+    
+    /* Practical Tips */
+    .practical-tips {
+        margin: 40px 0;
+    }
+    
+    .tips-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .tip {
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 1px solid var(--bs-warning);
+    }
+    
+    .tip h4 {
+        color: var(--bs-warning);
+        margin-bottom: 10px;
+    }
+    
+    /* Common Patterns */
+    .common-patterns {
+        margin: 40px 0;
+    }
+    
+    .patterns-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .pattern {
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        border: 1px solid var(--bs-purple);
+    }
+    
+    .pattern h4 {
+        color: var(--bs-purple);
+        margin-bottom: 10px;
+    }
+
+    .troubleshooting {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(220, 53, 69, 0.1);
+        border: 1px solid var(--bs-danger);
+        border-radius: 10px;
+    }
+    
+    .problems {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .problem {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 8px;
+        border-left: 4px solid var(--bs-danger);
+    }
+    
+    .code-snippet-small {
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+        font-family: monospace;
+        font-size: 0.85rem;
+        overflow-x: auto;
+    }
+
+    .practice-exercise {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid var(--bs-success);
+        border-radius: 10px;
+    }
+    
+    .exercise-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 25px;
+        border-radius: 8px;
+    }
+    
+    .exercise-steps {
+        margin: 25px 0;
+    }
+    
+    .ex-step {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+        align-items: flex-start;
+    }
+    
+    .ex-number {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+    
+    .code-hint {
+        background-color: rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        border-radius: 5px;
+        margin-top: 10px;
+        font-family: monospace;
+    }
+    
+    .check-work-btn {
+        margin-top: 10px;
+    }
+    
+    .exercise-tip {
+        background-color: rgba(255, 193, 7, 0.1);
+        border-left: 4px solid var(--bs-warning);
+        padding: 15px;
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        border-radius: 0 5px 5px 0;
+    }
+
+    .quick-reference {
+        margin: 40px 0;
+    }
+    
+    .reference-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    
+    .ref-card {
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 8px;
+        border-top: 4px solid var(--bs-purple);
+    }
+    
+    .ref-card ul, .ref-card ol {
+        margin: 15px 0 0 20px;
+    }
+
+    .putting-it-together {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(13, 110, 253, 0.1);
+        border: 1px solid var(--bs-primary);
+        border-radius: 10px;
+    }
+    
+    .summary ol, .summary ul {
+        margin: 15px 0;
+        padding-left: 20px;
+    }
+    
+    .summary li {
+        margin-bottom: 10px;
+        line-height: 1.5;
+    }
+
+    .next-steps {
+        margin: 40px 0;
+        padding: 25px;
+        background-color: rgba(108, 117, 125, 0.1);
+        border: 1px solid var(--bs-secondary);
+        border-radius: 10px;
+    }
+    
+    .next-steps ul {
+        margin: 15px 0 0 0;
+        padding-left: 20px;
+    }
+    
+    .next-steps li {
+        margin-bottom: 10px;
+    }
+
+    .navigation-buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 2px solid var(--bs-border-color);
+    }
+    
+    .btn {
+        padding: 12px 25px;
+        border-radius: 6px;
+        font-weight: 500;
+        transition: all 0.3s;
+    }
+    
+    .btn:hover {
+        transform: translateY(-2px);
+    }
+    
+    @@media (max-width: 768px) {
+        .beginner-explanation {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .workflow-step {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .step-arrow {
+            transform: rotate(90deg);
+        }
+        
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .navigation-buttons .btn {
+            width: 100%;
+            text-align: center;
+        }
+    }
+</style>
+
+<script>
+$(document).ready(function() {
+    $('.example-tab').click(function() {
+        const target = $(this).data('target');
+
+        $('.example-tab').removeClass('active');
+        $(this).addClass('active');
+
+        $('.tab-content').removeClass('active');
+        $(`#${target}-tab`).addClass('active');
+    });
+
+    $('.check-work-btn').click(function() {
+        $(this).html('<i class="fas fa-check-circle"></i> Completed!');
+        $(this).removeClass('btn-success').addClass('btn-secondary');
+
+        $(this).closest('.exercise-steps').find('.ex-step').css({
+            'background-color': 'rgba(40, 167, 69, 0.1)',
+            'border-left': '4px solid var(--bs-success)'
+        });
+    });
+
+    $('.navigation-buttons a').addClass('ajax-link');
+});
+</script>

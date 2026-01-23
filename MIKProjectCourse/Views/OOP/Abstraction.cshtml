@@ -4,7 +4,7 @@
 
 <body data-topic="abstraction">
 <div class="container">
-    <h1 class="mb-4">🎭 Abstraction: Hiding Complexity, Showing Simplicity</h1>
+    <h1 class="mb-4">Abstraction: Hiding Complexity, Showing Simplicity</h1>
 
     <p><strong>Abstraction</strong> is like using a <strong>TV remote</strong> - you press buttons to change channels or adjust volume without knowing about the circuits inside. In programming, abstraction hides complex details and shows only what's necessary.</p>
 
@@ -16,7 +16,7 @@
         <li>A <strong>microwave</strong> - you set time, but don't see radiation generation</li>
     </ul>
 
-    <h2>📘 What is Abstraction?</h2>
+    <h2>What is Abstraction?</h2>
     <p>Abstraction has TWO main tools in C#:</p>
     
     <div class="code-container">
@@ -255,7 +255,7 @@ Child classes get PrintReceipt() for free, must implement Process().
         <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
     </div>
 
-    <h2>📊 Visual Diagram: Abstraction Layers</h2>
+    <h2>Visual Diagram: Abstraction Layers</h2>
     
     <div class="code-container">
         <div class="code-header">How Abstraction Hides Complexity</div>
@@ -315,7 +315,7 @@ SIMPLE INTERFACE                          |   COMPLEX IMPLEMENTATIONS
         </div>
     </div>
 
-    <h2>🎯 Example 2: Database Abstraction</h2>
+    <h2>Example 2: Database Abstraction</h2>
     <p>Abstract classes are perfect for database operations - same interface, different databases:</p>
     
     <div class="code-container">
@@ -432,7 +432,7 @@ db2.Disconnect();
         </div>
     </div>
 
-    <h2>🔑 Abstract vs Concrete Classes</h2>
+    <h2>Abstract vs Concrete Classes</h2>
     <div class="code-container">
         <div class="code-header">Key Differences</div>
         <div class="code-content">
@@ -479,7 +479,7 @@ C# Keywords     abstract class            class
         <div class="code-header">Abstraction Pitfalls</div>
         <div class="code-content">
 <pre>
-// ❌ MISTAKE 1: Creating abstract class with no abstract members
+// MISTAKE 1: Creating abstract class with no abstract members
 public abstract class Logger
 {
     public void Log(string message)  // All methods concrete
@@ -491,14 +491,14 @@ public abstract class Logger
     // Can't do: new Logger() - but also can't force implementation
 }
 
-// ✅ SOLUTION: Use abstract class only when you need abstraction
+// SOLUTION: Use abstract class only when you need abstraction
 public abstract class Logger
 {
     public abstract void Log(string message);  // ✅ Abstract
     public virtual string GetSource() { return "Unknown"; }  // ✅ Virtual
 }
 
-// ❌ MISTAKE 2: Forgetting to implement abstract methods
+// MISTAKE 2: Forgetting to implement abstract methods
 public abstract class Animal
 {
     public abstract void MakeSound();
@@ -509,7 +509,7 @@ public class Dog : Animal
     // ❌ Forgot to implement MakeSound() - COMPILER ERROR!
 }
 
-// ✅ SOLUTION: Implement ALL abstract methods
+// SOLUTION: Implement ALL abstract methods
 public class Dog : Animal
 {
     public override void MakeSound()  // ✅ Implemented
@@ -518,7 +518,7 @@ public class Dog : Animal
     }
 }
 
-// ❌ MISTAKE 3: Too many abstract methods
+// MISTAKE 3: Too many abstract methods
 public abstract class SwissArmyKnife  // ❌ Too abstract!
 {
     public abstract void Cut();
@@ -528,18 +528,18 @@ public abstract class SwissArmyKnife  // ❌ Too abstract!
     // ... 20 more abstract methods
 }
 
-// ✅ SOLUTION: Split into focused abstractions
+// SOLUTION: Split into focused abstractions
 public abstract class Cutter { public abstract void Cut(); }
 public abstract class Screwdriver { public abstract void Screw(); }
 // Classes implement only what they need
 
-// ❌ MISTAKE 4: Using abstract when interface is better
+// MISTAKE 4: Using abstract when interface is better
 public abstract class IPayment  // ❌ Wrong! Should be interface
 {
     public abstract void Process();
 }
 
-// ✅ SOLUTION: Use interface for pure contracts
+// SOLUTION: Use interface for pure contracts
 public interface IPayment  // ✅ Correct
 {
     void Process();
@@ -558,17 +558,17 @@ public abstract class PaymentBase  // ✅ Has common code
         </div>
     </div>
 
-    <h2>🎯 When to Use Abstraction</h2>
+    <h2>When to Use Abstraction</h2>
     <div class="code-container">
         <div class="code-header">Abstraction Guidelines</div>
         <div class="code-content">
 <pre>
 USE ABSTRACT CLASSES WHEN:
-✅ You need to share code between related classes
+   You need to share code between related classes
    - Shape with DisplayInfo() used by Circle, Rectangle, Triangle
    - DatabaseConnection with LogOperation() for all DB types
 
-✅ You have a base implementation with some variations
+ You have a base implementation with some variations
    - PaymentProcessor with common receipt printing + abstract Process()
    - GameCharacter with common health system + abstract Attack()
 
@@ -611,7 +611,7 @@ REAL-WORLD ABSTRACTION EXAMPLES:
         </div>
     </div>
 
-    <h2>🔗 Connection to Other OOP Concepts</h2>
+    <h2>Connection to Other OOP Concepts</h2>
     <div class="code-container">
         <div class="code-header">How Abstraction Relates</div>
         <div class="code-content">
@@ -660,7 +660,7 @@ public abstract class DbConnection : IDisposable
         </div>
     </div>
 
-    <h2>🎉 Summary: The Power of Abstraction</h2>
+    <h2>Summary: The Power of Abstraction</h2>
     <ul>
         <li><strong>Abstraction</strong> = Hiding complex details, showing simple interface</li>
         <li>Implemented via <strong>abstract classes</strong> (partial abstraction) and <strong>interfaces</strong> (pure abstraction)</li>

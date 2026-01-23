@@ -3,7 +3,7 @@
 }
 
 <div class="container" data-topic="loops">
-    <h1 class="mb-4">🔁 For Loops: Repeating Actions</h1>
+    <h1 class="mb-4">For Loops: Repeating Actions</h1>
     
     <p>Loops are one of the most powerful tools in programming, allowing you to <strong>repeat actions</strong> without having to rewrite the same code many times. The <strong>for loop</strong> is perfect for situations where you know exactly how many times you need to repeat the action.</p>
 
@@ -48,7 +48,7 @@ for (int i = 1; i <= 5; i++) {
         </div>
     </div>
 
-    <h2>🎯 Example 2: Counting Down (Decrement)</h2>
+    <h2>Example 2: Counting Down (Decrement)</h2>
     <p>You can also use loops to count backward, such as for a countdown.</p>
     
     <div class="code-container">
@@ -69,7 +69,7 @@ for (int i = 10; i >= 1; i--) {
         </div>
     </div>
 
-    <h2>🎯 Example 3: Processing Data (Calculating Sums)</h2>
+    <h2>Example 3: Processing Data (Calculating Sums)</h2>
     <p>Loops are often used to process data, such as calculating totals. We use a separate variable (<code>sum</code>) outside the loop to store the running total.</p>
     
     <div class="code-container">
@@ -92,7 +92,7 @@ cout << "Sum = " << sum;
         </div>
     </div>
 
-    <h2>🧠 Interactive Walkthrough: Following the Code</h2>
+    <h2>Interactive Walkthrough: Following the Code</h2>
     <p>Watch the code (Example 3) execute step-by-step. The <strong>Active Code</strong> below shows which line is currently running, and the <strong>Variable State</strong> tracks the changes.</p>
 
     <div class="code-container">
@@ -119,7 +119,7 @@ int sum = 0;
         <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
     </div>
 
-    <h2>🎯 Example 4: Looping Through Text (Strings)</h2>
+    <h2>Example 4: Looping Through Text (Strings)</h2>
     <p>You can use the loop's counter variable to access individual parts of text. We start the counter at 0 because in programming, we often start counting from zero.</p>
     
     <div class="code-container">
@@ -141,7 +141,7 @@ for (int i = 0; i < word.length(); i++) {
         </div>
     </div>
 
-    <h2>🧠 Visual Diagram</h2>
+    <h2>Visual Diagram</h2>
     <p>This diagram illustrates the flow of a <strong>For Loop</strong> from start to finish.</p>
     
     <div class="code-container">
@@ -167,7 +167,7 @@ for (int i = 0; i < word.length(); i++) {
         </div>
     </div>
 
-    <h2>🎉 Summary</h2>
+    <h2>Summary</h2>
     <ul>
         <li>A <strong>for loop</strong> is best when you know the number of repetitions.</li>
         <li>The three parts control <strong>start</strong> (initialization), <strong>stop</strong> (condition), and <strong>step</strong> (increment/decrement).</li>
@@ -265,7 +265,6 @@ for (int i = 0; i < word.length(); i++) {
 </style>
 
 <script>
-// Make all functions and data available globally
 window.fullCodeLines = [
     'int sum = 0;',
     'for (int i = 1; i <= 5; i++) {',
@@ -290,7 +289,6 @@ window.traceSteps = [
     { line: 4, vars: 'i = 6, sum = 15', exp: 'Code proceeds after the loop, printing the final result.' }
 ];
 
-// Initialize global state
 window.currentTraceStep = 0;
 
 window.cppSnippets = {
@@ -333,7 +331,6 @@ for (int i = 0; i < word.Length; i++)
 }`
 };
 
-// Function to convert code between C++ and C#
 window.convertCode = function(id) {
     console.log("Converting code for:", id);
     const toggle = document.getElementById(id + "Toggle");
@@ -355,7 +352,6 @@ window.convertCode = function(id) {
     }, 250);
 };
 
-// Function to update walkthrough
 window.updateWalkthrough = function(step) {
     const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
     const walkthroughVariables = document.getElementById('walkthroughVariables');
@@ -394,7 +390,6 @@ window.updateWalkthrough = function(step) {
     }
 };
 
-// Create global handler for walkthrough button
 window.nextStepHandler = function() {
     if (window.currentTraceStep < window.traceSteps.length) {
         if (typeof window.updateWalkthrough === 'function') {
@@ -404,7 +399,6 @@ window.nextStepHandler = function() {
     }
 };
 
-// Initialize all code examples on page load
 function initializeCodeExamples() {
     console.log("Initializing For Loops page code examples");
     for (let i = 1; i <= 4; i++) {

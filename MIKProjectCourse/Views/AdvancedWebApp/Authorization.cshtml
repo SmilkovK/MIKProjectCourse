@@ -451,7 +451,7 @@ public class AccountController : Controller
 
     <div class="navigation-buttons">
         <a href="@Url.Action("Authentication", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link" data-path="/AdvancedWebApp/Authentication">← Back: Authentication</a>
-        <a href="@Url.Action("Migrations", "AdvancedWebApp")" class="btn btn-primary ajax-link" data-path="/AdvancedWebApp/IdentityTutorial">Next: .NET Identity Guide →</a>
+        <a href="@Url.Action("Migrations", "AdvancedWebApp")" class="btn btn-primary ajax-link" data-path="/AdvancedWebApp/Migrations">Next: .NET Migrations →</a>
     </div>
 </div>
 
@@ -1005,28 +1005,22 @@ public class AccountController : Controller
 
 <script>
 $(document).ready(function() {
-    // Tab functionality for code examples
     $('.example-tab').click(function() {
         const target = $(this).data('target');
-        
-        // Update active tab
+
         $('.example-tab').removeClass('active');
         $(this).addClass('active');
-        
-        // Show corresponding content
+
         $('.tab-content').removeClass('active');
         $(`#${target}-tab`).addClass('active');
     });
-    
-    // Quiz functionality
+
     $('.quiz-option').click(function() {
         const $this = $(this);
         const isCorrect = $this.data('correct') === true;
-        
-        // Reset all options
+
         $('.quiz-option').removeClass('correct incorrect selected');
-        
-        // Mark this option as selected
+
         $this.addClass('selected');
 
         $this.addClass(isCorrect ? 'correct' : 'incorrect');

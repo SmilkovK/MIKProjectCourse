@@ -3,11 +3,11 @@
 }
 
 <div class="container" data-topic="arrays">
-    <h1 class="mb-4">📦 Arrays: Storing Multiple Values</h1>
+    <h1 class="mb-4">Arrays: Storing Multiple Values</h1>
     
     <p>An <strong>array</strong> is like a row of boxes where you can store multiple values of the same type in one place. Instead of creating many separate variables, you can use one array to hold all your data.</p>
 
-    <h2>📘 What is an Array?</h2>
+    <h2>What is an Array?</h2>
     <p>Think of an array as a <strong>numbered list</strong> or <strong>collection of boxes</strong>, each with a position number (called an <strong>index</strong>). In programming, we usually start counting from <strong>0</strong>, not 1.</p>
 
     <div class="code-container">
@@ -21,7 +21,7 @@ Name:   numbers[0]  numbers[1]  numbers[2] ...
         </div>
     </div>
 
-    <h2>🎯 Example 1: Creating and Accessing an Array</h2>
+    <h2>Example 1: Creating and Accessing an Array</h2>
     <p>Here's how to create an array and access its elements:</p>
     
     <div class="code-container">
@@ -45,7 +45,7 @@ cout << "Third number: " << numbers[2] << endl;  // Index 2 = 30
         </div>
     </div>
 
-    <h2>🎯 Example 2: Changing Array Values</h2>
+    <h2>Example 2: Changing Array Values</h2>
     <p>You can change the value at any position in the array:</p>
     
     <div class="code-container">
@@ -73,7 +73,7 @@ cout << scores[2];         // 78
         </div>
     </div>
 
-    <h2>🎯 Example 3: Arrays + Loops = Power!</h2>
+    <h2>Example 3: Arrays + Loops = Power!</h2>
     <p>Combining arrays with <code>for</code> loops lets you easily process all elements. This is much better than writing separate code for each element!</p>
     
     <div class="code-container">
@@ -101,7 +101,7 @@ cout << "Total sum: " << sum << endl;
         </div>
     </div>
 
-    <h2>🧠 Interactive Walkthrough: Following Array + Loop Code</h2>
+    <h2>Interactive Walkthrough: Following Array + Loop Code</h2>
     <p>Watch how the array and loop work together step-by-step:</p>
 
     <div class="code-container">
@@ -129,7 +129,7 @@ int sum = 0;
         <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
     </div>
 
-    <h2>🎯 Example 4: Finding the Largest Value</h2>
+    <h2>Example 4: Finding the Largest Value</h2>
     <p>Arrays are perfect for tasks like finding the maximum or minimum value:</p>
     
     <div class="code-container">
@@ -158,7 +158,7 @@ cout << "Highest temperature: " << maxTemp << "°C" << endl;
         </div>
     </div>
 
-    <h2>🎯 Example 5: String Arrays</h2>
+    <h2>Example 5: String Arrays</h2>
     <p>Arrays can also hold text (strings):</p>
     
     <div class="code-container">
@@ -182,7 +182,7 @@ for (int i = 0; i < 4; i++) {
         </div>
     </div>
 
-    <h2>🧠 Visual Diagram: Array in Memory</h2>
+    <h2>Visual Diagram: Array in Memory</h2>
     
     <div class="code-container">
         <div class="code-header">How Arrays Work in Memory</div>
@@ -202,7 +202,7 @@ numbers[2] = address 1008 (1000 + 8 bytes for int)
         </div>
     </div>
 
-    <h2>⚠️ Common Mistakes to Avoid</h2>
+    <h2>Common Mistakes to Avoid</h2>
     <div class="code-container">
         <div class="code-header">Error Examples</div>
         <div class="code-content">
@@ -215,7 +215,7 @@ cout << arr[5];  // ERROR! Index 5 doesn't exist
 int arr[3];
 arr = {1, 2, 3};  // ERROR! Can only initialize at declaration
 
-// ✅ CORRECT: Proper usage
+// CORRECT: Proper usage
 int arr[3] = {1, 2, 3};  // Good!
 cout << arr[0];          // Good!
 arr[1] = 5;              // Good!
@@ -223,7 +223,7 @@ arr[1] = 5;              // Good!
         </div>
     </div>
 
-    <h2>🎉 Summary</h2>
+    <h2>Summary</h2>
     <ul>
         <li>Arrays store <strong>multiple values</strong> of the same type in one variable</li>
         <li>Elements are accessed using an <strong>index</strong> starting at 0</li>
@@ -350,7 +350,6 @@ window.traceSteps = [
     { line: 5, vars: 'i = 5, sum = 150, numbers = [10,20,30,40,50]', exp: 'Prints the final total sum.' }
 ];
 
-// Initialize global state
 window.currentTraceStep = 0;
 
 window.cppSnippets = {
@@ -471,7 +470,6 @@ window.convertCode = function(id) {
     }, 250);
 };
 
-// Function to update walkthrough
 window.updateWalkthrough = function(step) {
     const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
     const walkthroughVariables = document.getElementById('walkthroughVariables');
@@ -510,7 +508,6 @@ window.updateWalkthrough = function(step) {
     }
 };
 
-// Create global handler for walkthrough button
 window.nextStepHandler = function() {
     if (window.currentTraceStep < window.traceSteps.length) {
         if (typeof window.updateWalkthrough === 'function') {
@@ -520,7 +517,6 @@ window.nextStepHandler = function() {
     }
 };
 
-// Initialize all code examples on page load
 function initializeCodeExamples() {
     console.log("Initializing Arrays page code examples");
     for (let i = 1; i <= 5; i++) {

@@ -3,7 +3,7 @@
 }
 
 <div class="container" data-topic="inputoutput">
-    <h1 class="mb-4">📝 Input and Output: Communicating with Programs</h1>
+    <h1 class="mb-4">Input and Output: Communicating with Programs</h1>
 
     <p><strong>Input and Output (I/O)</strong> are how programs communicate with users. <strong>Input</strong> is information the user gives to the program (like typing their name), and <strong>Output</strong> is information the program shows to the user (like displaying a welcome message).</p>
 
@@ -14,7 +14,7 @@
         <li><strong>Program responds</strong> → "Hello, Alice!" (Output)</li>
     </ul>
 
-    <h2>📘 Output: Showing Information</h2>
+    <h2>Output: Showing Information</h2>
     <p>Output is how your program displays information to the user. In C++, we use <code>cout</code> (pronounced "see-out"), and in C#, we use <code>Console.WriteLine()</code>.</p>
 
     <div class="code-container">
@@ -31,7 +31,7 @@ C#:     Console.WriteLine("Your age: " + age);
         </div>
     </div>
 
-    <h2>🎯 Example 1: Basic Output</h2>
+    <h2>Example 1: Basic Output</h2>
     <p>Displaying simple messages and text:</p>
     
     <div class="code-container">
@@ -58,7 +58,7 @@ cout << "Quotes: She said, \"Hello!\"" << endl;
         </div>
     </div>
 
-    <h2>🎯 Example 2: Output with Variables</h2>
+    <h2>Example 2: Output with Variables</h2>
     <p>Displaying variable values along with text:</p>
     
     <div class="code-container">
@@ -89,7 +89,7 @@ cout << name << " is " << age << " years old and " << height << " meters tall." 
         </div>
     </div>
 
-    <h2>📘 Input: Getting Information from Users</h2>
+    <h2>Input: Getting Information from Users</h2>
     <p>Input allows users to provide information to your program. In C++, we use <code>cin</code> (pronounced "see-in"), and in C#, we use <code>Console.ReadLine()</code>.</p>
 
     <div class="code-container">
@@ -105,7 +105,7 @@ C#:     age = Convert.ToInt32(Console.ReadLine());
         </div>
     </div>
 
-    <h2>🎯 Example 3: Basic Input</h2>
+    <h2>Example 3: Basic Input</h2>
     <p>Getting user input and storing it in variables:</p>
     
     <div class="code-container">
@@ -140,7 +140,7 @@ cout << "You were born around " << birthYear << "." << endl;
         </div>
     </div>
 
-    <h2>🧠 Interactive Walkthrough: Following Input/Output Code</h2>
+    <h2>Interactive Walkthrough: Following Input/Output Code</h2>
     <p>Watch how the program interacts with the user step-by-step:</p>
 
     <div class="code-container">
@@ -169,7 +169,7 @@ int score;
         <button class="btn btn-primary mt-2" id="nextStepBtn">Next →</button>
     </div>
 
-    <h2>🎯 Example 4: Multiple Inputs and Calculations</h2>
+    <h2>Example 4: Multiple Inputs and Calculations</h2>
     <p>Getting multiple pieces of information and performing calculations:</p>
     
     <div class="code-container">
@@ -210,7 +210,7 @@ cout << "Product: " << product << endl;
         </div>
     </div>
 
-    <h2>🎯 Example 5: String Input with Spaces</h2>
+    <h2>Example 5: String Input with Spaces</h2>
     <p>Getting text input that contains spaces (like full names):</p>
     
     <div class="code-container">
@@ -245,7 +245,7 @@ cout << "Initial: " << fullName[0] << endl;  // First character
         </div>
     </div>
 
-    <h2>🎯 Example 6: Simple Greeting Program</h2>
+    <h2>Example 6: Simple Greeting Program</h2>
     <p>A complete interactive program using both input and output:</p>
     
     <div class="code-container">
@@ -287,42 +287,42 @@ cout << "Nice to meet you!" << endl;
         </div>
     </div>
 
-    <h2>⚠️ Common Mistakes to Avoid</h2>
+    <h2>Common Mistakes to Avoid</h2>
     <div class="code-container">
         <div class="code-header">Input/Output Errors and Solutions</div>
         <div class="code-content">
 <pre>
-// ❌ WRONG: Forgetting to prompt the user
+// WRONG: Forgetting to prompt the user
 cin >> age;  // User sees nothing - what should they enter?
 
-// ✅ CORRECT: Always show a prompt first
+// CORRECT: Always show a prompt first
 cout << "Enter your age: ";
 cin >> age;
 
-// ❌ WRONG: Wrong conversion in C#
+// WRONG: Wrong conversion in C#
 string input = Console.ReadLine();
 int age = input;  // ERROR: Can't assign string to int
 
-// ✅ CORRECT: Convert properly in C#
+// CORRECT: Convert properly in C#
 string input = Console.ReadLine();
 int age = Convert.ToInt32(input);
 
-// ❌ WRONG: Using wrong operator in C#
+// WRONG: Using wrong operator in C#
 Console.WriteLine("Age: " << age);  // ERROR: C# uses +
 
-// ✅ CORRECT: Use + in C#
+// CORRECT: Use + in C#
 Console.WriteLine("Age: " + age);
 
-// ❌ WRONG: Missing semicolon
+// WRONG: Missing semicolon
 cout << "Hello"  // ERROR: Missing ;
 
-// ✅ CORRECT: Always end statements with ;
+// CORRECT: Always end statements with ;
 cout << "Hello";
 </pre>
         </div>
     </div>
 
-    <h2>🧠 Visual Diagram: Input/Output Flow</h2>
+    <h2>Visual Diagram: Input/Output Flow</h2>
     
     <div class="code-container">
         <div class="code-header">How Programs Communicate with Users</div>
@@ -348,7 +348,7 @@ Output combines variables and text:
         </div>
     </div>
 
-    <h2>🔤 Special Characters for Formatting</h2>
+    <h2>Special Characters for Formatting</h2>
     <div class="code-container">
         <div class="code-header">Common Escape Sequences</div>
         <div class="code-content">
@@ -362,7 +362,7 @@ Output combines variables and text:
         </div>
     </div>
 
-    <h2>📊 Input/Output Summary Table</h2>
+    <h2>Input/Output Summary Table</h2>
     <div class="code-container">
         <div class="code-header">C++ vs C# Comparison</div>
         <div class="code-content">
@@ -381,7 +381,7 @@ Tab                "\t"                         "\t"
         </div>
     </div>
 
-    <h2>🎉 Summary</h2>
+    <h2>Summary</h2>
     <ul>
         <li><strong>Output (<code>cout</code>/<code>Console.WriteLine</code>)</strong> displays information to users</li>
         <li><strong>Input (<code>cin</code>/<code>Console.ReadLine</code>)</strong> gets information from users</li>

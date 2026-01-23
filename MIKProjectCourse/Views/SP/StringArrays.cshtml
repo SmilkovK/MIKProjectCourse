@@ -523,7 +523,6 @@ for (int i = 0; i < cities.Length; i++)
 Console.WriteLine("Total cities: " + cities.Length);`
             },
 
-            // Function to convert code between C++ and C#
             convertCode: function(id) {
                 const toggle = document.getElementById(id + "Toggle");
                 const isCSharp = toggle.checked;
@@ -538,7 +537,6 @@ Console.WriteLine("Total cities: " + cities.Length);`
                 }
             },
 
-            // Function to update walkthrough display
             updateWalkthrough: function(step) {
                 const walkthroughCodeBase = document.getElementById('walkthroughCodeBase');
                 const walkthroughVariables = document.getElementById('walkthroughVariables');
@@ -581,14 +579,12 @@ Console.WriteLine("Total cities: " + cities.Length);`
             },
 
             init: function() {
-                // Initialize code examples
                 for (let i = 1; i <= 6; i++) {
                     this.convertCode('example' + i);
                 }
 
                 const nextStepBtn = document.getElementById('nextStepBtn');
                 if (nextStepBtn) {
-                    // Reset state
                     this.currentTraceStep = 0;
                     this.updateWalkthrough(0);
                     this.currentTraceStep = 1;
