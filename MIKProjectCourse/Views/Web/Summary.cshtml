@@ -1164,54 +1164,44 @@ User → Controller → Model → View → User</code></pre>
 
 <script>
 $(document).ready(function() {
-    // Initialize syntax highlighting
     if (typeof hljs !== 'undefined') {
         hljs.highlightAll();
     }
-    
-    // Quiz state
+
     let currentQuestion = 1;
     const totalQuestions = 10;
     let userAnswers = {};
     let quizCompleted = false;
-    
-    // Initialize quiz
+
     function initializeQuiz() {
         console.log("Initializing Web Intro Quiz");
         currentQuestion = 1;
         userAnswers = {};
         quizCompleted = false;
-        
-        // Reset all questions
+
         $('.question-container').removeClass('active').hide();
         $('.explanation').removeClass('show').hide();
         $('.option').removeClass('selected correct incorrect');
         $('input[type="radio"]').prop('checked', false);
-        
-        // Show first question
+
         $(`#question${currentQuestion}`).addClass('active').show();
-        
-        // Update progress
+
         updateProgress();
-        
-        // Update button states
+
         updateButtonStates();
-        
-        // Hide results
+
         $('#quizResults').removeClass('show').hide();
         
         console.log("Quiz initialized, current question:", currentQuestion);
     }
-    
-    // Update progress bar
+
     function updateProgress() {
         const progressPercent = ((currentQuestion - 1) / totalQuestions) * 100;
         $('#progressFill').css('width', `${progressPercent}%`);
         $('#currentQuestion').text(currentQuestion);
         $('#totalQuestions').text(totalQuestions);
     }
-    
-    // Update button states
+
     function updateButtonStates() {
         $('#prevBtn').prop('disabled', currentQuestion === 1);
         
@@ -1223,20 +1213,17 @@ $(document).ready(function() {
             $('#submitBtn').hide();
         }
     }
-    
-    // Show question
+
     function showQuestion(questionNumber) {
         $('.question-container').removeClass('active').hide();
         $(`#question${questionNumber}`).addClass('active').show();
-        
-        // Show/hide explanation based on if answer was selected
+
         const questionContainer = $(`#question${questionNumber}`);
         const selectedOption = questionContainer.find('input[type="radio"]:checked');
         
         if (selectedOption.length > 0) {
             questionContainer.find('.explanation').addClass('show').show();
-            
-            // Update option styling
+
             questionContainer.find('.option').each(function() {
                 const $option = $(this);
                 const isCorrect = $option.data('correct') === true;
@@ -1260,8 +1247,7 @@ $(document).ready(function() {
         updateProgress();
         updateButtonStates();
     }
-    
-    // Check answer for current question
+
     function checkCurrentQuestion() {
         const questionContainer = $(`#question${currentQuestion}`);
         const selectedOption = questionContainer.find('input[type="radio"]:checked');
@@ -1273,17 +1259,14 @@ $(document).ready(function() {
         
         const selectedLabel = selectedOption.next('label').text();
         const isCorrect = selectedOption.closest('.option').data('correct') === true;
-        
-        // Store answer
+
         userAnswers[currentQuestion] = {
             selected: selectedLabel,
             correct: isCorrect
         };
-        
-        // Show explanation
+
         questionContainer.find('.explanation').addClass('show').show();
-        
-        // Update option styling
+
         questionContainer.find('.option').each(function() {
             const $option = $(this);
             const optionIsCorrect = $option.data('correct') === true;
@@ -1303,28 +1286,24 @@ $(document).ready(function() {
         
         return true;
     }
-    
-    // Calculate and show results
+
     function showResults() {
         if (!checkCurrentQuestion()) {
             return;
         }
         
         quizCompleted = true;
-        
-        // Calculate score
+
         let correctCount = 0;
         Object.values(userAnswers).forEach(answer => {
             if (answer.correct) correctCount++;
         });
         
         const scorePercentage = Math.round((correctCount / totalQuestions) * 100);
-        
-        // Update results display
+
         $('#scorePercentage').text(`${scorePercentage}%`);
         $('#correctCount').text(correctCount);
-        
-        // Set score message
+
         let scoreMessage = '';
         if (scorePercentage >= 90) {
             scoreMessage = 'Excellent! You have mastered the Intro to Web concepts!';
@@ -1336,8 +1315,7 @@ $(document).ready(function() {
             scoreMessage = 'Keep practicing! Review the chapter material and try again.';
         }
         $('#scoreMessage').text(scoreMessage);
-        
-        // Build question review
+
         let reviewHtml = '';
         for (let i = 1; i <= totalQuestions; i++) {
             const answer = userAnswers[i];
@@ -1354,16 +1332,13 @@ $(document).ready(function() {
             `;
         }
         $('#questionReview').html(reviewHtml);
-        
-        // Show results
+
         $('.question-container').removeClass('active').hide();
         $('#quizResults').addClass('show').show();
-        
-        // Update progress to 100%
+
         $('#progressFill').css('width', '100%');
     }
-    
-    // Event handlers
+
     $('#prevBtn').on('click', function() {
         if (currentQuestion > 1) {
             checkCurrentQuestion();
@@ -1384,23 +1359,18 @@ $(document).ready(function() {
     $('#submitBtn').on('click', showResults);
     
     $('#restartQuizBtn').on('click', initializeQuiz);
-    
-    // Option click handlers
+
     $(document).on('click', '.option', function() {
         const $option = $(this);
         const $radio = $option.find('input[type="radio"]');
-        
-        // Uncheck all radios in this question
+
         $option.closest('.options-container').find('input[type="radio"]').prop('checked', false);
-        
-        // Check this radio
+
         $radio.prop('checked', true);
-        
-        // Update styling
+
         $option.closest('.options-container').find('.option').removeClass('selected');
         $option.addClass('selected');
-        
-        // Store answer immediately
+
         const questionNumber = parseInt($option.closest('.question-container').attr('id').replace('question', ''));
         const isCorrect = $option.data('correct') === true;
         const selectedLabel = $option.find('label').text();

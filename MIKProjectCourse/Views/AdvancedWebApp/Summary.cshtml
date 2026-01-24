@@ -1,82 +1,1725 @@
 ﻿@{
-    ViewData["Title"] = "Advanced Web App - Chapter Summary";
+    ViewData["Title"] = "Advanced Web Development - Chapter Summary";
 }
 
 <div class="container">
-    <h1>Advanced Web App - Chapter Summary</h1>
+    <h1 class="text-center">🚀 Advanced Web Development - Chapter Summary</h1>
 
-    <p>In this chapter, we learned how to build more advanced web applications using ASP.NET Core. Here’s a recap of what we covered:</p>
+    <div class="beginner-note">
+        <div class="beginner-note-icon">
+            <i class="fas fa-layer-group"></i>
+        </div>
+        <div class="beginner-note-content">
+            <h4>Think of Web Development Like a Professional Kitchen</h4>
+            <p><strong>Advanced Web Development = Building scalable, maintainable, and secure applications</strong></p>
+            <p><strong>Simple analogy:</strong></p>
+            <ul>
+                <li><strong>Controller Layer</strong> = Waiters taking orders</li>
+                <li><strong>Service Layer</strong> = Chefs preparing food</li>
+                <li><strong>Repository Layer</strong> = Kitchen assistants getting ingredients</li>
+                <li><strong>.NET Identity</strong> = Security system checking IDs</li>
+                <li><strong>Authentication</strong> = Checking if you have a reservation</li>
+                <li><strong>Authorization</strong> = Checking what you can order</li>
+                <li><strong>Migrations</strong> = Updating the menu/kitchen setup</li>
+            </ul>
+            <p><strong>In technical terms:</strong> Layered architecture with proper security and database management!</p>
+        </div>
+    </div>
 
-    <h2>Main Topics</h2>
-    <ul>
-        <li><strong>Layers:</strong> Organizing your app into Controller, Service, and Repository layers to separate responsibilities.</li>
-        <li><strong>Controller Layer:</strong> Handles user requests and returns responses.</li>
-        <li><strong>Service Layer:</strong> Contains business logic, processes data, and applies rules before passing it to controllers.</li>
-        <li><strong>Repository Layer:</strong> Manages data access and communicates with the database.</li>
-        <li><strong>Identity & Roles:</strong> Using ASP.NET Core Identity to manage users, passwords, and roles.</li>
-        <li><strong>Authentication:</strong> Securing your app by verifying users' identity.</li>
-        <li><strong>Authorization:</strong> Controlling which users can access which parts of the app.</li>
-        <li><strong>Identity Tutorial:</strong> Practical step-by-step guide to implement Identity in your app.</li>
-    </ul>
+    <div class="chapter-overview">
+        <h3><i class="fas fa-list-check"></i> What You've Learned</h3>
+        
+        <div class="overview-grid">
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-sitemap"></i>
+                </div>
+                <div class="overview-content">
+                    <h5>Layered Architecture</h5>
+                    <p>Separate concerns into Controllers, Services, and Repositories for better maintainability</p>
+                </div>
+            </div>
+            
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-traffic-light"></i>
+                </div>
+                <div class="overview-content">
+                    <h5>Controller Layer</h5>
+                    <p>Handle HTTP requests/responses without business logic</p>
+                </div>
+            </div>
+            
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <div class="overview-content">
+                    <h5>Service Layer</h5>
+                    <p>Implement business logic and application rules</p>
+                </div>
+            </div>
+            
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-database"></i>
+                </div>
+                <div class="overview-content">
+                    <h5>Repository Layer</h5>
+                    <p>Handle data access and database operations</p>
+                </div>
+            </div>
+            
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <div class="overview-content">
+                    <h5>.NET Identity</h5>
+                    <p>Built-in authentication and authorization system</p>
+                </div>
+            </div>
+            
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <div class="overview-content">
+                    <h5>Authentication</h5>
+                    <p>Verifying user identity (login process)</p>
+                </div>
+            </div>
+            
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <div class="overview-content">
+                    <h5>Authorization</h5>
+                    <p>Controlling what authenticated users can do</p>
+                </div>
+            </div>
+            
+            <div class="overview-item">
+                <div class="overview-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <div class="overview-content">
+                    <h5>Database Migrations</h5>
+                    <p>Managing database schema changes safely</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <h2>Exercises</h2>
-    <ul>
-        <li>Create a small web app that uses three layers: Controller, Service, and Repository.</li>
-        <li>Add a model (e.g., Product) and display a list of items on a page using the layers.</li>
-        <li>Implement a simple authentication system using ASP.NET Core Identity.</li>
-        <li>Add roles and authorization rules to restrict access to certain pages.</li>
-        <li>Test your app to ensure that data flows correctly through layers and that authentication/authorization works as expected.</li>
-    </ul>
+    <div class="key-concepts">
+        <h3><i class="fas fa-lightbulb"></i> Key Concepts Review</h3>
+        
+        <div class="concepts-grid">
+            <div class="concept-card">
+                <div class="concept-header">
+                    <div class="concept-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h5>Layered Architecture</h5>
+                </div>
+                <div class="concept-content">
+                    <p><strong>Separation of Concerns:</strong></p>
+                    <ul>
+                        <li><strong>Controller</strong> - Handle HTTP requests/responses</li>
+                        <li><strong>Service</strong> - Business logic and rules</li>
+                        <li><strong>Repository</strong> - Data access and persistence</li>
+                    </ul>
+                    <div class="concept-code">
+<pre><code class="language-csharp">// Data Flow
+User → Controller → Service → Repository → Database
+Database → Repository → Service → Controller → User</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="concept-card">
+                <div class="concept-header">
+                    <div class="concept-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h5>Security Layers</h5>
+                </div>
+                <div class="concept-content">
+                    <p><strong>Identity + Authentication + Authorization:</strong></p>
+                    <div class="security-flow">
+                        <div class="security-step">
+                            <span class="step-icon">1</span>
+                            <span class="step-desc"><strong>Identity</strong> - User management system</span>
+                        </div>
+                        <div class="security-step">
+                            <span class="step-icon">2</span>
+                            <span class="step-desc"><strong>Authentication</strong> - "Who are you?"</span>
+                        </div>
+                        <div class="security-step">
+                            <span class="step-icon">3</span>
+                            <span class="step-desc"><strong>Authorization</strong> - "What can you do?"</span>
+                        </div>
+                    </div>
+                    <div class="concept-code">
+<pre><code class="language-csharp">[Authorize]  // Must be logged in
+[Authorize(Roles = "Admin")]  // Must be Admin</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="concept-card">
+                <div class="concept-header">
+                    <div class="concept-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h5>Migrations Workflow</h5>
+                </div>
+                <div class="concept-content">
+                    <p><strong>Safe database changes:</strong></p>
+                    <ul>
+                        <li>Change C# model (add properties)</li>
+                        <li>Create migration</li>
+                        <li>Update database</li>
+                    </ul>
+                    <div class="migration-commands">
+                        <div class="command">
+                            <code>Add-Migration AddFieldName</code>
+                            <span>Creates migration files</span>
+                        </div>
+                        <div class="command">
+                            <code>Update-Database</code>
+                            <span>Applies changes to database</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="concept-card">
+                <div class="concept-header">
+                    <div class="concept-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h5>Dependency Injection</h5>
+                </div>
+                <div class="concept-content">
+                    <p><strong>Connecting layers:</strong></p>
+                    <ul>
+                        <li>Controllers depend on Services</li>
+                        <li>Services depend on Repositories</li>
+                        <li>DI manages these dependencies</li>
+                    </ul>
+                    <div class="concept-code">
+<pre><code class="language-csharp">// In Program.cs
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
-    <p>Once you complete these exercises, you will have a solid understanding of how advanced web applications are structured and secured.</p>
+// In Controller
+public UserController(IUserService userService)
+{
+    _userService = userService;
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="architectural-diagram">
+        <h3><i class="fas fa-project-diagram"></i> Complete Architecture Flow</h3>
+        
+        <div class="architecture-flow">
+            <div class="arch-layer client">
+                <div class="layer-title">
+                    <i class="fas fa-user"></i>
+                    Client (User/Browser)
+                </div>
+                <div class="layer-content">
+                    <p>Makes HTTP requests</p>
+                </div>
+            </div>
+            
+            <div class="arch-arrow">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            
+            <div class="arch-layer controller">
+                <div class="layer-title">
+                    <i class="fas fa-traffic-light"></i>
+                    Controller Layer
+                </div>
+                <div class="layer-content">
+                    <ul>
+                        <li>Handles HTTP requests</li>
+                        <li>Returns views/responses</li>
+                        <li>Validates input</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="arch-arrow">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            
+            <div class="arch-layer service">
+                <div class="layer-title">
+                    <i class="fas fa-cogs"></i>
+                    Service Layer
+                </div>
+                <div class="layer-content">
+                    <ul>
+                        <li>Business logic</li>
+                        <li>Application rules</li>
+                        <li>Coordinates data flow</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="arch-arrow">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            
+            <div class="arch-layer repository">
+                <div class="layer-title">
+                    <i class="fas fa-database"></i>
+                    Repository Layer
+                </div>
+                <div class="layer-content">
+                    <ul>
+                        <li>Data access operations</li>
+                        <li>Database queries</li>
+                        <li>CRUD operations</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="arch-arrow">
+                <i class="fas fa-arrow-down"></i>
+            </div>
+            
+            <div class="arch-layer database">
+                <div class="layer-title">
+                    <i class="fas fa-server"></i>
+                    Database
+                </div>
+                <div class="layer-content">
+                    <ul>
+                        <li>Data storage</li>
+                        <li>Managed by migrations</li>
+                        <li>Permanent storage</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="interactive-quiz">
+        <h3><i class="fas fa-question-circle"></i> Test Your Knowledge - Chapter Quiz</h3>
+        
+        <div class="quiz-progress" id="quizProgress">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <div class="progress-text">
+                Question <span id="currentQuestion">1</span> of <span id="totalQuestions">10</span>
+            </div>
+        </div>
+        
+        <div class="quiz-container">
+            <div class="question-container active" id="question1">
+                <h5>Question 1: Layered Architecture</h5>
+                <p>In a three-layer architecture, which layer is responsible for containing business logic and application rules?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q1" id="q1a">
+                        <label for="q1a">Controller Layer</label>
+                    </div>
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q1" id="q1b">
+                        <label for="q1b">Service Layer</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q1" id="q1c">
+                        <label for="q1c">Repository Layer</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q1" id="q1d">
+                        <label for="q1d">Database Layer</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: Service Layer</strong></p>
+                    <p>The Service Layer contains business logic and application rules. Controllers handle HTTP requests, Repositories handle data access.</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question2">
+                <h5>Question 2: Controller Layer</h5>
+                <p>What is the primary responsibility of the Controller Layer?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q2" id="q2a">
+                        <label for="q2a">Handle HTTP requests and responses</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q2" id="q2b">
+                        <label for="q2b">Execute complex business logic</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q2" id="q2c">
+                        <label for="q2c">Manage database connections</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q2" id="q2d">
+                        <label for="q2d">Store application data</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: Handle HTTP requests and responses</strong></p>
+                    <p>Controllers handle incoming HTTP requests, validate input, and return appropriate responses (views, JSON, etc.).</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question3">
+                <h5>Question 3: Repository Layer</h5>
+                <p>Which of these tasks would you typically find in the Repository Layer?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q3" id="q3a">
+                        <label for="q3a">Rendering HTML views</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q3" id="q3b">
+                        <label for="q3b">Validating user input</label>
+                    </div>
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q3" id="q3c">
+                        <label for="q3c">Executing database queries</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q3" id="q3d">
+                        <label for="q3d">Handling authentication cookies</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: Executing database queries</strong></p>
+                    <p>The Repository Layer is responsible for data access operations, including executing database queries using Entity Framework Core.</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question4">
+                <h5>Question 4: .NET Identity</h5>
+                <p>What is the main purpose of .NET Identity in ASP.NET Core applications?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q4" id="q4a">
+                        <label for="q4a">User authentication and authorization</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q4" id="q4b">
+                        <label for="q4b">Database migration management</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q4" id="q4c">
+                        <label for="q4c">HTML template rendering</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q4" id="q4d">
+                        <label for="q4d">HTTP request routing</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: User authentication and authorization</strong></p>
+                    <p>.NET Identity provides built-in functionality for managing users, roles, claims, and authentication/authorization.</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question5">
+                <h5>Question 5: Authentication vs Authorization</h5>
+                <p>Which statement correctly distinguishes between Authentication and Authorization?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q5" id="q5a">
+                        <label for="q5a">Authentication verifies identity, Authorization checks permissions</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q5" id="q5b">
+                        <label for="q5b">Authorization verifies identity, Authentication checks permissions</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q5" id="q5c">
+                        <label for="q5c">Both verify user identity</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q5" id="q5d">
+                        <label for="q5d">Both check user permissions</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: Authentication verifies identity, Authorization checks permissions</strong></p>
+                    <p>Authentication answers "Who are you?" (login process). Authorization answers "What are you allowed to do?" (permissions).</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question6">
+                <h5>Question 6: [Authorize] Attribute</h5>
+                <p>What does the [Authorize] attribute do when placed on a controller action?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q6" id="q6a">
+                        <label for="q6a">Automatically logs the user in</label>
+                    </div>
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q6" id="q6b">
+                        <label for="q6b">Restricts access to authenticated users only</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q6" id="q6c">
+                        <label for="q6c">Creates a new user account</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q6" id="q6d">
+                        <label for="q6d">Encrypts the page content</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: Restricts access to authenticated users only</strong></p>
+                    <p>The [Authorize] attribute ensures that only logged-in users can access the protected action or controller.</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question7">
+                <h5>Question 7: Database Migrations</h5>
+                <p>Which command sequence correctly shows the migration workflow?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q7" id="q7a">
+                        <label for="q7a">Update-Database → Change Code → Add-Migration</label>
+                    </div>
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q7" id="q7b">
+                        <label for="q7b">Change Code → Add-Migration → Update-Database</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q7" id="q7c">
+                        <label for="q7c">Add-Migration → Change Code → Update-Database</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q7" id="q7d">
+                        <label for="q7d">Update-Database → Add-Migration → Change Code</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: Change Code → Add-Migration → Update-Database</strong></p>
+                    <p>First change your C# code, then create migration files, then apply them to the database.</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question8">
+                <h5>Question 8: Dependency Injection</h5>
+                <p>How do you register a service for dependency injection in Program.cs?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q8" id="q8a">
+                        <label for="q8a">builder.Services.AddScoped&lt;IService, Service&gt;()</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q8" id="q8b">
+                        <label for="q8b">app.UseService&lt;IService, Service&gt;()</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q8" id="q8c">
+                        <label for="q8c">var service = new Service()</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q8" id="q8d">
+                        <label for="q8d">Service.Register()</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: builder.Services.AddScoped&lt;IService, Service&gt;()</strong></p>
+                    <p>This registers the service with the dependency injection container using the AddScoped lifetime.</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question9">
+                <h5>Question 9: Role-Based Authorization</h5>
+                <p>How do you restrict a controller action to users with the "Admin" role?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q9" id="q9a">
+                        <label for="q9a">[Authorize(Roles = "Admin")]</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q9" id="q9b">
+                        <label for="q9b">[AdminOnly]</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q9" id="q9c">
+                        <label for="q9c">[RequireRole("Admin")]</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q9" id="q9d">
+                        <label for="q9d">[Authorize(User.IsAdmin)]</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: [Authorize(Roles = "Admin")]</strong></p>
+                    <p>This attribute restricts access to users who are in the "Admin" role.</p>
+                </div>
+            </div>
+            
+            <div class="question-container" id="question10">
+                <h5>Question 10: Repository Pattern</h5>
+                <p>Why use the Repository Pattern in layered architecture?</p>
+                
+                <div class="options-container">
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q10" id="q10a">
+                        <label for="q10a">To make controllers more complex</label>
+                    </div>
+                    <div class="option" data-correct="true">
+                        <input type="radio" name="q10" id="q10b">
+                        <label for="q10b">To separate data access logic from business logic</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q10" id="q10c">
+                        <label for="q10c">To eliminate the need for services</label>
+                    </div>
+                    <div class="option" data-correct="false">
+                        <input type="radio" name="q10" id="q10d">
+                        <label for="q10d">To automatically generate database tables</label>
+                    </div>
+                </div>
+                
+                <div class="explanation">
+                    <p><strong>Answer: To separate data access logic from business logic</strong></p>
+                    <p>The Repository Pattern isolates data access code, making it easier to maintain and test, and separating it from business logic.</p>
+                </div>
+            </div>
+            
+            <div class="quiz-results" id="quizResults">
+                <h5><i class="fas fa-trophy"></i> Quiz Results</h5>
+                <div class="score-display">
+                    <div class="score-circle">
+                        <span id="scorePercentage">0%</span>
+                    </div>
+                    <div class="score-details">
+                        <p>You answered <strong><span id="correctCount">0</span> out of 10</strong> questions correctly!</p>
+                        <p id="scoreMessage">Keep practicing to improve your score!</p>
+                    </div>
+                </div>
+                <div class="result-breakdown">
+                    <h6>Question Review:</h6>
+                    <div id="questionReview"></div>
+                </div>
+                <button class="btn btn-primary" id="restartQuizBtn">
+                    <i class="fas fa-redo"></i> Try Again
+                </button>
+            </div>
+        </div>
+        
+        <div class="quiz-controls">
+            <button class="btn btn-outline-secondary" id="prevBtn" disabled>
+                <i class="fas fa-arrow-left"></i> Previous
+            </button>
+            <button class="btn btn-primary" id="nextBtn">
+                Next Question <i class="fas fa-arrow-right"></i>
+            </button>
+            <button class="btn btn-success" id="submitBtn" style="display: none;">
+                <i class="fas fa-paper-plane"></i> Submit Quiz
+            </button>
+        </div>
+    </div>
+
+    <div class="complete-workflow">
+        <h3><i class="fas fa-code-branch"></i> Complete Development Workflow</h3>
+        
+        <div class="workflow-steps">
+            <div class="workflow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h5>Define Models</h5>
+                    <p>Create C# classes for your data structures</p>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h5>Create Migrations</h5>
+                    <p>Generate database schema from your models</p>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h5>Build Repositories</h5>
+                    <p>Implement data access layer for CRUD operations</p>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h5>Create Services</h5>
+                    <p>Add business logic and application rules</p>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h5>Implement Controllers</h5>
+                    <p>Handle HTTP requests and coordinate responses</p>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <h5>Add Authentication</h5>
+                    <p>Secure your application with .NET Identity</p>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">7</div>
+                <div class="step-content">
+                    <h5>Implement Authorization</h5>
+                    <p>Control access with roles and policies</p>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-number">8</div>
+                <div class="step-content">
+                    <h5>Test & Deploy</h5>
+                    <p>Validate functionality and deploy to production</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="next-steps">
+        <h3><i class="fas fa-rocket"></i> What's Next in Your Journey</h3>
+        
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="step-content">
+                    <h5>Build Real Applications</h5>
+                    <p>Apply these concepts to create complete web applications with authentication, databases, and business logic.</p>
+                </div>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <div class="step-content">
+                    <h5>Advanced Topics</h5>
+                    <p>Explore API development, real-time applications (SignalR), microservices, and cloud deployment (Azure).</p>
+                </div>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="step-content">
+                    <h5>Security Deep Dive</h5>
+                    <p>Learn about JWT tokens, OAuth, API security, and advanced authorization patterns.</p>
+                </div>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-icon">
+                    <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <div class="step-content">
+                    <h5>Performance Optimization</h5>
+                    <p>Master caching strategies, database optimization, and application performance tuning.</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("IdentityTutorial", "AdvancedWebApp")" class="btn btn-outline-primary ajax-link">← .NET Identity Guide</a>
-        <a href="@Url.Action("Summary", "AdvancedWebApp")" class="btn btn-primary ajax-link">Next Chapter (404 for now) →</a>
+        <a href="@Url.Action("Migrations", "AdvancedWebApp")" class="btn btn-outline-primary">
+            <i class="fas fa-arrow-left"></i> Back: Intro to Migrations
+        </a>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-primary">
+            <i class="fas fa-home"></i> Return to Home
+        </a>
     </div>
 </div>
 
 <style>
     .container {
-        max-width: 800px;
+        max-width: 900px;
+        margin: 0 auto;
         padding: 20px;
         background-color: var(--bs-body-bg);
     }
-
-    h1, h2 {
+    
+    h1, h2, h3, h4, h5, h6 {
         color: var(--bs-heading-color);
-        margin-bottom: 20px;
+        margin-bottom: 1rem;
     }
-
-    p, li {
-        color: var(--bs-body-color);
-        line-height: 1.6;
+    
+    h1 {
+        border-bottom: 2px solid var(--bs-primary);
+        padding-bottom: 0.5rem;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
-
-    ul {
-        margin-left: 20px;
-        padding-left: 15px;
+    
+    .beginner-note {
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
+        border: 2px solid var(--bs-primary);
+        border-radius: 8px;
+        padding: 1.25rem;
+        margin-bottom: 2rem;
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
     }
-
+    
+    .beginner-note-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+    }
+    
+    .beginner-note-content h4 {
+        margin-top: 0;
+        color: var(--bs-primary);
+    }
+    
+    .beginner-note-content ul {
+        padding-left: 1.25rem;
+        margin: 0.75rem 0;
+    }
+    
+    .beginner-note-content li {
+        margin-bottom: 0.25rem;
+    }
+    
+    .chapter-overview {
+        margin: 2.5rem 0;
+    }
+    
+    .chapter-overview h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--bs-success);
+    }
+    
+    .overview-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+    }
+    
+    .overview-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1.25rem;
+        background-color: rgba(var(--bs-secondary-rgb), 0.1);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+    
+    .overview-item:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        border-color: var(--bs-primary);
+    }
+    
+    .overview-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        flex-shrink: 0;
+    }
+    
+    .overview-content h5 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        color: var(--bs-primary);
+    }
+    
+    .overview-content p {
+        color: var(--bs-secondary);
+        margin-bottom: 0;
+        font-size: 0.9rem;
+    }
+    
+    .key-concepts {
+        margin: 2.5rem 0;
+    }
+    
+    .key-concepts h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--bs-warning);
+    }
+    
+    .concepts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+    }
+    
+    .concept-card {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: var(--bs-body-bg);
+        transition: all 0.3s ease;
+    }
+    
+    .concept-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+    
+    .concept-header {
+        background-color: var(--bs-primary);
+        color: white;
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .concept-icon {
+        background-color: white;
+        color: var(--bs-primary);
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+    }
+    
+    .concept-content {
+        padding: 1rem;
+    }
+    
+    .concept-content ul {
+        padding-left: 1.25rem;
+        margin: 0.75rem 0;
+    }
+    
+    .concept-content li {
+        margin-bottom: 0.25rem;
+        font-size: 0.9rem;
+    }
+    
+    .concept-code {
+        background-color: #1a1a1a;
+        color: var(--bs-light);
+        padding: 0.75rem;
+        border-radius: 6px;
+        margin-top: 0.75rem;
+        font-size: 0.85rem;
+        overflow-x: auto;
+    }
+    
+    .security-flow {
+        margin: 0.75rem 0;
+    }
+    
+    .security-step {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.5rem;
+        background-color: rgba(var(--bs-secondary-rgb), 0.1);
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+    }
+    
+    .step-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: bold;
+    }
+    
+    .migration-commands {
+        margin: 0.75rem 0;
+    }
+    
+    .command {
+        background-color: rgba(var(--bs-secondary-rgb), 0.1);
+        padding: 0.5rem;
+        border-radius: 4px;
+        margin-bottom: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+    
+    .command code {
+        font-family: var(--bs-font-monospace);
+        color: var(--bs-info);
+    }
+    
+    .command span {
+        font-size: 0.8rem;
+        color: var(--bs-secondary);
+    }
+    
+    .architectural-diagram {
+        margin: 2.5rem 0;
+        padding: 1.5rem;
+        background-color: rgba(var(--bs-info-rgb), 0.1);
+        border: 1px solid var(--bs-info);
+        border-radius: 10px;
+    }
+    
+    .architectural-diagram h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--bs-info);
+        margin-top: 0;
+    }
+    
+    .architecture-flow {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+    
+    .arch-layer {
+        border: 2px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 1rem;
+        background-color: var(--bs-body-bg);
+    }
+    
+    .arch-layer.client {
+        border-color: var(--bs-primary);
+    }
+    
+    .arch-layer.controller {
+        border-color: var(--bs-success);
+    }
+    
+    .arch-layer.service {
+        border-color: var(--bs-warning);
+    }
+    
+    .arch-layer.repository {
+        border-color: var(--bs-info);
+    }
+    
+    .arch-layer.database {
+        border-color: var(--bs-purple);
+    }
+    
+    .layer-title {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-weight: bold;
+        margin-bottom: 0.75rem;
+        color: var(--bs-primary);
+    }
+    
+    .arch-layer.controller .layer-title {
+        color: var(--bs-success);
+    }
+    
+    .arch-layer.service .layer-title {
+        color: var(--bs-warning);
+    }
+    
+    .arch-layer.repository .layer-title {
+        color: var(--bs-info);
+    }
+    
+    .arch-layer.database .layer-title {
+        color: var(--bs-purple);
+    }
+    
+    .layer-content ul {
+        padding-left: 1.25rem;
+        margin: 0;
+    }
+    
+    .layer-content li {
+        margin-bottom: 0.25rem;
+        font-size: 0.9rem;
+    }
+    
+    .arch-arrow {
+        text-align: center;
+        color: var(--bs-secondary);
+    }
+    
+    .complete-workflow {
+        margin: 2.5rem 0;
+    }
+    
+    .complete-workflow h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--bs-success);
+    }
+    
+    .workflow-steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+    }
+    
+    .workflow-step {
+        padding: 1.25rem;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        text-align: center;
+        background-color: var(--bs-body-bg);
+        transition: all 0.3s ease;
+    }
+    
+    .workflow-step:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        border-color: var(--bs-primary);
+    }
+    
+    .step-number {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.1rem;
+        margin: 0 auto 1rem;
+    }
+    
+    .step-content h5 {
+        margin-top: 0;
+        color: var(--bs-primary);
+    }
+    
+    .step-content p {
+        color: var(--bs-secondary);
+        font-size: 0.9rem;
+        margin-bottom: 0;
+    }
+    
+    .next-steps {
+        margin: 2.5rem 0;
+    }
+    
+    .next-steps h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--bs-primary);
+    }
+    
+    .steps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.25rem;
+        margin-top: 1.5rem;
+    }
+    
+    .step-card {
+        padding: 1.5rem;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        background-color: var(--bs-body-bg);
+        transition: all 0.3s ease;
+    }
+    
+    .step-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        border-color: var(--bs-primary);
+    }
+    
+    .step-icon {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+    
+    .step-content h5 {
+        margin-top: 0;
+        color: var(--bs-primary);
+    }
+    
+    .step-content p {
+        color: var(--bs-secondary);
+        margin-bottom: 0;
+        font-size: 0.9rem;
+    }
+    
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 2.5rem;
+        padding-top: 1.5rem;
+        border-top: 2px solid var(--bs-border-color);
     }
-
+    
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 0.75rem 1.5rem;
+        border-radius: 6px;
         font-weight: 500;
+        transition: all 0.3s ease;
     }
-
-    .btn-primary {
-        background-color: var(--bs-primary);
-        border-color: var(--bs-primary);
+    
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
-
-    .btn-outline-primary {
+    
+    /* Quiz Styles (same as previous summary) */
+    .interactive-quiz {
+        margin: 2.5rem 0;
+        padding: 1.5rem;
+        background-color: rgba(var(--bs-info-rgb), 0.1);
+        border: 1px solid var(--bs-info);
+        border-radius: 10px;
+    }
+    
+    .interactive-quiz h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--bs-info);
+        margin-top: 0;
+    }
+    
+    .quiz-progress {
+        margin-bottom: 1.5rem;
+    }
+    
+    .progress-bar {
+        height: 8px;
+        background-color: rgba(var(--bs-secondary-rgb), 0.2);
+        border-radius: 4px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+    }
+    
+    .progress-fill {
+        height: 100%;
+        background-color: var(--bs-success);
+        width: 0%;
+        transition: width 0.3s ease;
+    }
+    
+    .progress-text {
+        text-align: center;
+        color: var(--bs-secondary);
+        font-size: 0.9rem;
+    }
+    
+    .quiz-container {
+        min-height: 300px;
+        position: relative;
+    }
+    
+    .question-container {
+        display: none;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    .question-container.active {
+        display: block;
+    }
+    
+    .question-container h5 {
         color: var(--bs-primary);
+        margin-bottom: 1rem;
+    }
+    
+    .question-container p {
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+    
+    .options-container {
+        margin: 1.5rem 0;
+    }
+    
+    .option {
+        padding: 0.75rem 1rem;
+        margin-bottom: 0.75rem;
+        background-color: var(--bs-body-bg);
+        border: 2px solid var(--bs-border-color);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+    
+    .option:hover {
+        background-color: rgba(var(--bs-primary-rgb), 0.1);
         border-color: var(--bs-primary);
+    }
+    
+    .option.selected {
+        background-color: rgba(var(--bs-primary-rgb), 0.2);
+        border-color: var(--bs-primary);
+    }
+    
+    .option.correct {
+        background-color: rgba(var(--bs-success-rgb), 0.2);
+        border-color: var(--bs-success);
+    }
+    
+    .option.incorrect {
+        background-color: rgba(var(--bs-danger-rgb), 0.2);
+        border-color: var(--bs-danger);
+    }
+    
+    .option input[type="radio"] {
+        cursor: pointer;
+    }
+    
+    .option label {
+        cursor: pointer;
+        margin-bottom: 0;
+        flex: 1;
+    }
+    
+    .explanation {
+        padding: 1rem;
+        background-color: rgba(var(--bs-info-rgb), 0.1);
+        border-radius: 6px;
+        margin-top: 1rem;
+        display: none;
+    }
+    
+    .explanation.show {
+        display: block;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    .quiz-results {
+        display: none;
+        text-align: center;
+        padding: 2rem;
+    }
+    
+    .quiz-results.show {
+        display: block;
+        animation: fadeIn 0.5s ease;
+    }
+    
+    .score-display {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        margin: 2rem 0;
+        flex-wrap: wrap;
+    }
+    
+    .score-circle {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background-color: var(--bs-primary);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        box-shadow: 0 4px 12px rgba(var(--bs-primary-rgb), 0.3);
+    }
+    
+    .score-details {
+        text-align: left;
+        flex: 1;
+        min-width: 250px;
+    }
+    
+    .result-breakdown {
+        margin: 2rem 0;
+        text-align: left;
+    }
+    
+    .question-review-item {
+        padding: 0.75rem;
+        margin-bottom: 0.75rem;
+        border-radius: 6px;
+        background-color: rgba(var(--bs-secondary-rgb), 0.1);
+    }
+    
+    .question-review-item.correct {
+        border-left: 4px solid var(--bs-success);
+    }
+    
+    .question-review-item.incorrect {
+        border-left: 4px solid var(--bs-danger);
+    }
+    
+    .quiz-controls {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--bs-border-color);
+    }
+    
+    @@keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @@media (max-width: 768px) {
+        .container {
+            padding: 1rem;
+        }
+        
+        .overview-grid,
+        .concepts-grid,
+        .steps-grid,
+        .workflow-steps {
+            grid-template-columns: 1fr;
+        }
+        
+        .score-display {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .score-details {
+            text-align: center;
+        }
+        
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .navigation-buttons .btn {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .quiz-controls {
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .quiz-controls .btn {
+            width: 100%;
+        }
     }
 </style>
+
+<script>
+$(document).ready(function() {
+    // Same quiz JavaScript as previous summary page
+    let currentQuestion = 1;
+    const totalQuestions = 10;
+    let userAnswers = {};
+    let quizCompleted = false;
+
+    function initializeQuiz() {
+        console.log("Initializing Advanced Web Quiz");
+        currentQuestion = 1;
+        userAnswers = {};
+        quizCompleted = false;
+
+        $('.question-container').removeClass('active').hide();
+        $('.explanation').removeClass('show').hide();
+        $('.option').removeClass('selected correct incorrect');
+        $('input[type="radio"]').prop('checked', false);
+
+        $(`#question${currentQuestion}`).addClass('active').show();
+
+        updateProgress();
+        updateButtonStates();
+
+        $('#quizResults').removeClass('show').hide();
+        
+        console.log("Quiz initialized, current question:", currentQuestion);
+    }
+
+    function updateProgress() {
+        const progressPercent = ((currentQuestion - 1) / totalQuestions) * 100;
+        $('#progressFill').css('width', `${progressPercent}%`);
+        $('#currentQuestion').text(currentQuestion);
+        $('#totalQuestions').text(totalQuestions);
+    }
+
+    function updateButtonStates() {
+        $('#prevBtn').prop('disabled', currentQuestion === 1);
+        
+        if (currentQuestion === totalQuestions) {
+            $('#nextBtn').hide();
+            $('#submitBtn').show();
+        } else {
+            $('#nextBtn').show();
+            $('#submitBtn').hide();
+        }
+    }
+
+    function showQuestion(questionNumber) {
+        $('.question-container').removeClass('active').hide();
+        $(`#question${questionNumber}`).addClass('active').show();
+
+        const questionContainer = $(`#question${questionNumber}`);
+        const selectedOption = questionContainer.find('input[type="radio"]:checked');
+        
+        if (selectedOption.length > 0) {
+            questionContainer.find('.explanation').addClass('show').show();
+
+            questionContainer.find('.option').each(function() {
+                const $option = $(this);
+                const isCorrect = $option.data('correct') === true;
+                const isSelected = $option.find('input').is(':checked');
+                
+                $option.removeClass('selected correct incorrect');
+                
+                if (isSelected) {
+                    $option.addClass('selected');
+                    if (isCorrect) {
+                        $option.addClass('correct');
+                    } else {
+                        $option.addClass('incorrect');
+                    }
+                }
+            });
+        } else {
+            questionContainer.find('.explanation').removeClass('show').hide();
+        }
+        
+        updateProgress();
+        updateButtonStates();
+    }
+
+    function checkCurrentQuestion() {
+        const questionContainer = $(`#question${currentQuestion}`);
+        const selectedOption = questionContainer.find('input[type="radio"]:checked');
+        
+        if (selectedOption.length === 0) {
+            alert('Please select an answer before continuing.');
+            return false;
+        }
+        
+        const selectedLabel = selectedOption.next('label').text();
+        const isCorrect = selectedOption.closest('.option').data('correct') === true;
+
+        userAnswers[currentQuestion] = {
+            selected: selectedLabel,
+            correct: isCorrect
+        };
+
+        questionContainer.find('.explanation').addClass('show').show();
+
+        questionContainer.find('.option').each(function() {
+            const $option = $(this);
+            const optionIsCorrect = $option.data('correct') === true;
+            const optionIsSelected = $option.find('input').is(':checked');
+            
+            $option.removeClass('selected correct incorrect');
+            
+            if (optionIsSelected) {
+                $option.addClass('selected');
+                if (optionIsCorrect) {
+                    $option.addClass('correct');
+                } else {
+                    $option.addClass('incorrect');
+                }
+            }
+        });
+        
+        return true;
+    }
+
+    function showResults() {
+        if (!checkCurrentQuestion()) {
+            return;
+        }
+        
+        quizCompleted = true;
+
+        let correctCount = 0;
+        Object.values(userAnswers).forEach(answer => {
+            if (answer.correct) correctCount++;
+        });
+        
+        const scorePercentage = Math.round((correctCount / totalQuestions) * 100);
+
+        $('#scorePercentage').text(`${scorePercentage}%`);
+        $('#correctCount').text(correctCount);
+
+        let scoreMessage = '';
+        if (scorePercentage >= 90) {
+            scoreMessage = 'Excellent! You have mastered Advanced Web Development concepts!';
+        } else if (scorePercentage >= 70) {
+            scoreMessage = 'Great job! You have a strong understanding of layered architecture and security.';
+        } else if (scorePercentage >= 50) {
+            scoreMessage = 'Good effort! Review the key concepts to strengthen your understanding.';
+        } else {
+            scoreMessage = 'Keep practicing! Review the chapter material and try again.';
+        }
+        $('#scoreMessage').text(scoreMessage);
+
+        let reviewHtml = '';
+        for (let i = 1; i <= totalQuestions; i++) {
+            const answer = userAnswers[i];
+            const isCorrect = answer?.correct || false;
+            const questionText = $(`#question${i} p`).text();
+            const selectedText = answer?.selected || 'Not answered';
+            
+            reviewHtml += `
+                <div class="question-review-item ${isCorrect ? 'correct' : 'incorrect'}">
+                    <strong>Q${i}:</strong> ${questionText}<br>
+                    <strong>Your answer:</strong> ${selectedText}<br>
+                    <strong>Result:</strong> ${isCorrect ? '✅ Correct' : '❌ Incorrect'}
+                </div>
+            `;
+        }
+        $('#questionReview').html(reviewHtml);
+
+        $('.question-container').removeClass('active').hide();
+        $('#quizResults').addClass('show').show();
+
+        $('#progressFill').css('width', '100%');
+    }
+
+    $('#prevBtn').on('click', function() {
+        if (currentQuestion > 1) {
+            checkCurrentQuestion();
+            currentQuestion--;
+            showQuestion(currentQuestion);
+        }
+    });
+    
+    $('#nextBtn').on('click', function() {
+        if (checkCurrentQuestion()) {
+            if (currentQuestion < totalQuestions) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            }
+        }
+    });
+    
+    $('#submitBtn').on('click', showResults);
+    
+    $('#restartQuizBtn').on('click', initializeQuiz);
+
+    $(document).on('click', '.option', function() {
+        const $option = $(this);
+        const $radio = $option.find('input[type="radio"]');
+
+        $option.closest('.options-container').find('input[type="radio"]').prop('checked', false);
+
+        $radio.prop('checked', true);
+
+        $option.closest('.options-container').find('.option').removeClass('selected');
+        $option.addClass('selected');
+
+        const questionNumber = parseInt($option.closest('.question-container').attr('id').replace('question', ''));
+        const isCorrect = $option.data('correct') === true;
+        const selectedLabel = $option.find('label').text();
+        
+        userAnswers[questionNumber] = {
+            selected: selectedLabel,
+            correct: isCorrect
+        };
+
+        $option.closest('.question-container').find('.explanation').addClass('show').show();
+
+        $option.closest('.options-container').find('.option').each(function() {
+            const $opt = $(this);
+            const optIsCorrect = $opt.data('correct') === true;
+            const optIsSelected = $opt.find('input').is(':checked');
+            
+            $opt.removeClass('correct incorrect');
+            
+            if (optIsSelected) {
+                if (optIsCorrect) {
+                    $opt.addClass('correct');
+                } else {
+                    $opt.addClass('incorrect');
+                }
+            }
+        });
+    });
+
+    initializeQuiz();
+});
+</script>
