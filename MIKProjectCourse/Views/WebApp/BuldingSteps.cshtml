@@ -1,111 +1,501 @@
 ﻿@{
-    ViewData["Title"] = "Building Steps for a Web App in Visual Studio";
+    ViewData["Title"] = "ASP.NET MVC + Identity: Student & Courses";
 }
 
 <div class="container">
-    <h1>Building Steps for a Web App</h1>
-    <p>Here are the steps to create a simple web application using <strong>Microsoft Visual Studio</strong>. Follow them in order to set up your project, add code, and run the app.</p>
+    <h1>ASP.NET MVC with Identity (Beginner Guide)</h1>
+    
+    <div class="alert alert-info">
+        <i class="fas fa-info-circle"></i> In this lesson, you will create an <strong>ASP.NET Core MVC application</strong> with
+        <strong>Individual User Accounts</strong>, a <strong>custom Identity user</strong>,
+        and a <strong>Student – Courses</strong> relationship.
+    </div>
 
-    <h2>Steps</h2>
-    <ol>
-        <li><strong>Open Visual Studio</strong><br />Launch Microsoft Visual Studio from your computer.</li>
-        <li><strong>Create a new project</strong><br />Go to <code>File → New → Project</code>, then choose <code>ASP.NET Core Web App (Model-View-Controller)</code>.</li>
-        <li><strong>Configure the project</strong><br />Enter a project name, location, and solution name, then click <em>Create</em>.</li>
-        <li><strong>Select framework</strong><br />Pick the latest <code>.NET</code> version, then press <em>Create</em>.</li>
-        <li><strong>Explore project structure</strong><br />Notice the folders: <code>Controllers</code>, <code>Views</code>, <code>Models</code>, and <code>wwwroot</code>.</li>
-        <li><strong>Add a Controller</strong><br />Right-click the <code>Controllers</code> folder → <em>Add</em> → <em>Controller</em>. Choose <code>MVC Controller – Empty</code>, name it <code>HomeController</code>.</li>
-        <li><strong>Add a View</strong><br />Right-click the <code>Views</code> folder → <em>Add</em> → <em>New Folder</em> → name it <code>Home</code>. Inside, add a new <code>View</code> (e.g., <code>Index.cshtml</code>).</li>
-        <li><strong>Write your code</strong><br />In <code>HomeController.cs</code>, return the <code>Index</code> view. In <code>Index.cshtml</code>, add some HTML to display content.</li>
-        <li><strong>Run the application</strong><br />Click the green <em>Run</em> button (IIS Express). The browser will open your web app.</li>
-    </ol>
+    <hr class="my-4" />
 
-    <div class="code-container">
-        <div class="code-header">Example Controller Code</div>
-        <div class="code-content">
-<pre><code class="language-csharp">
-public class HomeController : Controller
-{
-    public IActionResult Index()
-    {
-        return View();
-    }
-}
-</code></pre>
+    <div class="section-card">
+        <h2 class="section-title">
+            <span class="step-number">1</span>
+            Create a New Project
+        </h2>
+        <ol class="step-list">
+            <li>Open <strong>Visual Studio 2022</strong></li>
+            <li>Click <strong>Create a new project</strong></li>
+            <li>Select <strong>ASP.NET Core Web App (Model-View-Controller)</strong></li>
+            <li>Click <strong>Next</strong></li>
+        </ol>
+    </div>
+
+    <div class="section-card">
+        <h2 class="section-title">
+            <span class="step-number">2</span>
+            Name the Project
+        </h2>
+        <ul class="step-list">
+            <li><strong>Project name:</strong> StudentCoursesApp</li>
+            <li>Click <strong>Next</strong></li>
+        </ul>
+    </div>
+
+    <div class="section-card">
+        <h2 class="section-title">
+            <span class="step-number">3</span>
+            Enable Identity
+        </h2>
+        <ol class="step-list">
+            <li>Framework: latest <code class="code-inline">.NET</code></li>
+            <li>Authentication Type: <strong>Individual Accounts</strong></li>
+            <li>Click <strong>Create</strong></li>
+        </ol>
+        <div class="success-note">
+            <i class="fas fa-check-circle"></i> Visual Studio automatically adds Login, Register, and Identity database support.
         </div>
     </div>
 
-    <p>After following these steps, you’ll have a working web app that you can expand with more controllers, models, and views.</p>
+    <hr class="my-4" />
+
+    <div class="section-card">
+        <h2 class="section-title">
+            <span class="step-number">4</span>
+            Create a Custom Identity User
+        </h2>
+        <p>We extend <code class="code-inline">IdentityUser</code> so we can store extra data for each user (student).</p>
+        
+        <div class="reveal-section">
+            <button class="reveal-btn" onclick="toggleCode(this, 'code-block-1')">
+                <i class="fas fa-chevron-right"></i> Click to reveal ApplicationUser.cs
+            </button>
+            <div id="code-block-1" class="code-block hidden">
+                <div class="code-header">
+                    <span>ApplicationUser.cs</span>
+                    <button class="code-copy-btn" onclick="copyCode(this)">
+                        <i class="far fa-copy"></i>
+                    </button>
+                </div>
+                <pre><code class="language-csharp">using Microsoft.AspNetCore.Identity;
+
+public class ApplicationUser : IdentityUser
+{
+    public string FullName { get; set; }
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-4" />
+
+    <div class="section-card">
+        <h2 class="section-title">
+            <span class="step-number">5</span>
+            Create the Student and Course Models
+        </h2>
+        <p>One student can have many courses (one-to-many relationship).</p>
+        
+        <div class="reveal-section">
+            <button class="reveal-btn" onclick="toggleCode(this, 'code-block-2')">
+                <i class="fas fa-chevron-right"></i> Click to reveal Student.cs
+            </button>
+            <div id="code-block-2" class="code-block hidden">
+                <div class="code-header">
+                    <span>Student.cs</span>
+                    <button class="code-copy-btn" onclick="copyCode(this)">
+                        <i class="far fa-copy"></i>
+                    </button>
+                </div>
+                <pre><code class="language-csharp">public class Student
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+
+    public ICollection&lt;Course&gt; Courses { get; set; }
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="reveal-section mt-3">
+            <button class="reveal-btn" onclick="toggleCode(this, 'code-block-3')">
+                <i class="fas fa-chevron-right"></i> Click to reveal Course.cs
+            </button>
+            <div id="code-block-3" class="code-block hidden">
+                <div class="code-header">
+                    <span>Course.cs</span>
+                    <button class="code-copy-btn" onclick="copyCode(this)">
+                        <i class="far fa-copy"></i>
+                    </button>
+                </div>
+                <pre><code class="language-csharp">public class Course
+{
+    public int Id { get; set; }
+    public string Title { get; set; }
+
+    public int StudentId { get; set; }
+    public Student Student { get; set; }
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-4" />
+
+    <div class="section-card">
+        <h2 class="section-title">
+            <span class="step-number">6</span>
+            Update the Database Context
+        </h2>
+        
+        <div class="reveal-section">
+            <button class="reveal-btn" onclick="toggleCode(this, 'code-block-4')">
+                <i class="fas fa-chevron-right"></i> Click to reveal ApplicationDbContext.cs
+            </button>
+            <div id="code-block-4" class="code-block hidden">
+                <div class="code-header">
+                    <span>ApplicationDbContext.cs</span>
+                    <button class="code-copy-btn" onclick="copyCode(this)">
+                        <i class="far fa-copy"></i>
+                    </button>
+                </div>
+                <pre><code class="language-csharp">public class ApplicationDbContext
+    : IdentityDbContext&lt;ApplicationUser&gt;
+{
+    public ApplicationDbContext(DbContextOptions&lt;ApplicationDbContext&gt; options)
+        : base(options)
+    {
+    }
+
+    public DbSet&lt;Student&gt; Students { get; set; }
+    public DbSet&lt;Course&gt; Courses { get; set; }
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-4" />
+
+    <div class="section-card">
+        <h2 class="section-title">
+            <span class="step-number">7</span>
+            Create the Database
+        </h2>
+        <p>Open <strong>Package Manager Console</strong> and run:</p>
+        
+        <div class="terminal-block">
+            <div class="terminal-header">
+                <i class="fas fa-terminal"></i> Package Manager Console
+            </div>
+            <div class="terminal-content">
+                PM> Add-Migration InitialCreate<br>
+                PM> Update-Database
+            </div>
+        </div>
+    </div>
+
+    <hr class="my-4" />
+
+    <div class="section-card">
+        <h2 class="section-title">
+            <span class="step-number">8</span>
+            Generate CRUD Automatically
+        </h2>
+        <ol class="step-list">
+            <li>Right-click <strong>Controllers</strong></li>
+            <li><strong>Add → New Scaffolded Item</strong></li>
+            <li>MVC Controller with views, using Entity Framework</li>
+            <li>Model: <code class="code-inline">Student</code></li>
+            <li>Data Context: <code class="code-inline">ApplicationDbContext</code></li>
+            <li>Click <strong>Add</strong></li>
+        </ol>
+        <div class="success-note">
+            <i class="fas fa-check-circle"></i> Visual Studio generates controller + views automatically.
+        </div>
+    </div>
+
+    <hr class="my-4" />
+
+    <div class="summary-card">
+        <h2><i class="fas fa-graduation-cap"></i> What You Learned</h2>
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="checklist">
+                    <li><i class="fas fa-check-circle text-success"></i> MVC project creation</li>
+                    <li><i class="fas fa-check-circle text-success"></i> ASP.NET Identity</li>
+                    <li><i class="fas fa-check-circle text-success"></i> Custom Identity user</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <ul class="checklist">
+                    <li><i class="fas fa-check-circle text-success"></i> Entity Framework relationships</li>
+                    <li><i class="fas fa-check-circle text-success"></i> Automatic CRUD scaffolding</li>
+                    <li><i class="fas fa-check-circle text-success"></i> Database migrations</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <div class="navigation-buttons">
-        <a href="@Url.Action("Index", "WebApp")" class="btn btn-outline-primary ajax-link">← Intro to web app</a>
-        <a href="@Url.Action("Summary", "WebApp")" class="btn btn-primary ajax-link">Summary of chapter →</a>
+        <a href="@Url.Action("Summary", "WebApp")" class="btn btn-outline-primary ajax-link">
+            <i class="fas fa-arrow-left"></i> Previous lesson
+        </a>
+        <a href="@Url.Action("IdentityRoles", "AdvancedWebApp")" class="btn btn-primary ajax-link">
+            Next: Roles & Authorization <i class="fas fa-arrow-right"></i>
+        </a>
     </div>
 </div>
 
 <style>
     .container {
-        max-width: 800px;
-        padding: 20px;
+        max-width: 1000px;
+        padding: 30px;
         background-color: var(--bs-body-bg);
+        animation: fadeIn 0.3s ease-in;
     }
 
-    h1, h2 {
+    h1 {
         color: var(--bs-heading-color);
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--bs-border-color);
+        font-weight: 700;
+    }
+
+    .alert {
+        border-left: 4px solid var(--bs-info-border-subtle);
+        background-color: var(--bs-info-bg-subtle);
+        border-color: var(--bs-info-border-subtle);
+        color: var(--bs-info-text);
+        margin-bottom: 30px;
+    }
+
+    .alert i {
+        margin-right: 10px;
+    }
+
+    .section-card {
+        background-color: var(--bs-secondary-bg);
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 25px;
+        margin-bottom: 25px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .section-title {
+        color: var(--bs-heading-color);
+        font-size: 1.5rem;
         margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
     }
 
-    p, li {
-        color: var(--bs-body-color);
-        line-height: 1.6;
+    .step-number {
+        background-color: var(--bs-primary);
+        color: white;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 1.1rem;
     }
 
-    ol {
+    .step-list {
         margin-left: 20px;
         padding-left: 15px;
     }
 
-    .code-container {
-        margin: 25px 0;
+    .step-list li {
+        color: var(--bs-body-color);
+        margin-bottom: 8px;
+        line-height: 1.5;
+    }
+
+    .code-inline {
+        background-color: var(--bs-secondary-bg);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.9em;
+        color: var(--bs-code-color);
+    }
+
+    .reveal-section {
+        margin: 20px 0;
+    }
+
+    .reveal-btn {
+        background-color: var(--bs-tertiary-bg);
         border: 1px solid var(--bs-border-color);
-        border-radius: 5px;
+        border-radius: 6px;
+        color: var(--bs-body-color);
+        cursor: pointer;
+        padding: 12px 20px;
+        width: 100%;
+        text-align: left;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        font-size: 0.95rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.2s;
+    }
+
+    .reveal-btn:hover {
+        background-color: var(--bs-secondary-bg);
+        border-color: var(--bs-primary);
+    }
+
+    .reveal-btn.active {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+        border-bottom: none;
+    }
+
+    .reveal-btn.active i {
+        transform: rotate(90deg);
+    }
+
+    .reveal-btn i {
+        transition: transform 0.2s;
+    }
+
+    .code-block {
+        border: 1px solid var(--bs-border-color);
+        border-radius: 0 0 6px 6px;
         overflow: hidden;
-        background-color: var(--code-bg);
+        background-color: var(--bs-secondary-bg);
+        border-top: none;
+    }
+
+    .code-block.hidden {
+        display: none;
     }
 
     .code-header {
-        background-color: var(--code-header-bg);
-        padding: 10px 15px;
+        background-color: var(--bs-tertiary-bg);
+        padding: 12px 20px;
         border-bottom: 1px solid var(--bs-border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
-        font-size: 0.9rem;
         color: var(--bs-body-color);
     }
 
-    .code-content {
-        padding: 15px;
-        overflow-x: auto;
+    .code-copy-btn {
+        background: none;
+        border: none;
+        color: var(--bs-body-color);
+        cursor: pointer;
+        padding: 5px 10px;
+        border-radius: 4px;
+        transition: background-color 0.2s;
+    }
+
+    .code-copy-btn:hover {
+        background-color: var(--bs-secondary-bg);
     }
 
     pre {
         margin: 0;
-        white-space: pre-wrap;
-        background-color: transparent;
+        padding: 20px;
+        overflow-x: auto;
+        background-color: transparent !important;
     }
 
-    code {
-        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    .success-note {
+        background-color: var(--bs-success-bg-subtle);
+        border-left: 4px solid var(--bs-success-border-subtle);
+        padding: 12px 20px;
+        margin-top: 20px;
+        border-radius: 4px;
+        color: var(--bs-success-text);
+    }
+
+    .success-note i {
+        margin-right: 10px;
+    }
+
+    .terminal-block {
+        margin: 20px 0;
+        border: 1px solid var(--bs-border-color);
+        border-radius: 6px;
+        overflow: hidden;
+        background-color: #1e1e1e;
+    }
+
+    .terminal-header {
+        background-color: #2d2d2d;
+        padding: 12px 20px;
+        border-bottom: 1px solid var(--bs-border-color);
+        color: #e0e0e0;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+    }
+
+    .terminal-header i {
+        margin-right: 10px;
+    }
+
+    .terminal-content {
+        padding: 20px;
+        color: #4ec9b0;
+        font-family: 'SFMono-Regular', Menlo, Monaco, Consolas, "Courier New", monospace;
+        white-space: pre-wrap;
+        line-height: 1.6;
+    }
+
+    .summary-card {
+        background: linear-gradient(135deg, var(--bs-primary-bg-subtle), var(--bs-secondary-bg));
+        border: 1px solid var(--bs-border-color);
+        border-radius: 8px;
+        padding: 25px;
+        margin: 30px 0;
+    }
+
+    .summary-card h2 {
+        color: var(--bs-heading-color);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .checklist {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .checklist li {
+        padding: 8px 0;
+        color: var(--bs-body-color);
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
 
     .navigation-buttons {
         display: flex;
         justify-content: space-between;
-        margin-top: 30px;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid var(--bs-border-color);
     }
 
     .btn {
-        padding: 8px 20px;
-        border-radius: 4px;
+        padding: 10px 25px;
+        border-radius: 6px;
         font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.2s;
+    }
+
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
     .btn-primary {
@@ -117,4 +507,77 @@ public class HomeController : Controller
         color: var(--bs-primary);
         border-color: var(--bs-primary);
     }
+
+    .btn-outline-primary:hover {
+        background-color: var(--bs-primary);
+        color: white;
+    }
+
+    @@media (max-width: 768px) {
+        .container {
+            padding: 20px;
+        }
+        
+        .section-card {
+            padding: 20px;
+        }
+        
+        .navigation-buttons {
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .navigation-buttons .btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
 </style>
+
+<script>
+    function toggleCode(button, codeBlockId) {
+        const codeBlock = document.getElementById(codeBlockId);
+        const isHidden = codeBlock.classList.contains('hidden');
+        
+        if (isHidden) {
+            codeBlock.classList.remove('hidden');
+            button.classList.add('active');
+            button.querySelector('i').style.transform = 'rotate(90deg)';
+            
+            // Highlight the code if hljs is available
+            if (typeof hljs !== 'undefined') {
+                setTimeout(() => {
+                    hljs.highlightElement(codeBlock.querySelector('code'));
+                }, 10);
+            }
+        } else {
+            codeBlock.classList.add('hidden');
+            button.classList.remove('active');
+            button.querySelector('i').style.transform = 'rotate(0deg)';
+        }
+    }
+    
+    function copyCode(button) {
+        const codeBlock = button.closest('.code-block').querySelector('pre code');
+        const text = codeBlock.innerText;
+        
+        navigator.clipboard.writeText(text).then(() => {
+            const originalIcon = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-check"></i>';
+            button.style.color = 'var(--bs-success)';
+            
+            setTimeout(() => {
+                button.innerHTML = originalIcon;
+                button.style.color = '';
+            }, 2000);
+        }).catch(err => {
+            console.error('Failed to copy text: ', err);
+        });
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        if (typeof hljs !== 'undefined') {
+            hljs.highlightAll();
+        }
+    });
+</script>
